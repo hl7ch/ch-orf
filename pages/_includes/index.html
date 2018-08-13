@@ -1,0 +1,1408 @@
+<p><strong>Order &amp; Referral by Form - Implementation Guide/Profile</strong> '''(CH:ORF)<br />
+<strong>Introduction to this Implementation Guide</strong></p>
+<p>This supplement uses FHIR defined resources – Composition Resource, Questionnaire Resource, QuestionnaireResponse Resource, Patient Resource, Practitioner Resource, ReferralRequest Resource, DiagnosticOrder Resource, ImagingStudy Resource, OperationOutcome Resource and Bundle. For details on HL7 FHIR see <a href="http://hl7.org/fhir/" class="uri">http://hl7.org/fhir/</a>.</p>
+<p>The Order &amp; Referral by Form (ORF) Profile describes how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise information exchange.</p>
+<p>The profile supports creation and domain wide deployment of forms for structured and coded information exchange as well as exchange of such forms for referral, orders etc. The profile relies on FHIR e.g. the questionnaire resource. Because the profile relies heavily on the FHIR Resources Questionnaire and QuestionnaireResponse, forms are addressed here as Questionnaires.</p>
+<h1 id="volume-1-order-referral-by-form-orf-profile">Volume 1 – Order &amp; Referral by Form (ORF) Profile</h1>
+<p>This profile concerns directional information exchange between institutions such as requests for referral, requests for previous imaging results, requests for second opinions etc. as well as corresponding responses. Such request are often done – or could be done – by means of structured forms. The same may apply for responses or documents coming along in case the response consists of a particular payload (e.g. exam results). However, forms for these purposes are in general proprietary constructs and seldom suitable for further machine processing. Furthermore, such forms are more or less hard coded and concerned systems may not easily be updated for new use cases.</p>
+<p>The ORF Profile addresses two issues:</p>
+<ol>
+<li>It supports a scenario where an authority (e. g. health authority, expert panel etc.) defines a set of forms (here called Questionnaires) for well-defined use cases which then are deployed in a specific enterprise, domain etc. or even nationwide.</li>
+<li>New use cases or changes in use cases can easily be handled either by modification of existing Questionnaires or new ones. The profile itself is agnostic to the nature of a particular Questionnaire and the ORF Profile puts only little limits on its definition.</li>
+</ol>
+<p>Venders implementing the ORF Profile benefit of a high re-use potential. Applications which support the ORF Profile may be used for various settings of directional information exchange. The specific needs of a particular use case will be covered by a adequate design of the Questionnaire and the value sets being used..</p>
+<p>When writing the ORF Profile, the authors had the following use case in mind: A human fills in a Questionnaire for a particular request and sends this Questionnaire to a receiver. There, a human reads the Questionnaire with its content. A corresponding response will work in the same way. There is possibly some payload coming with the Questionnaire: A request may be accompanied by results of preceding exams (e.g. images, reports); the response may be a diagnostic result.</p>
+<p>The primary aim of the ORF Profile is to assure a consistent representation of Questionnaires at both – filler- and receiver – site. But there is the need for further machine processing: at filler site in terms of prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the receiver may want to have the content of the form ready for further processing in his applications. Obviously the two aims – semantic interoperability and flexibility in the definition of Questionnaires – are contradictory. The ORF Profile addresses this problem by a mandatory set of mandatory given elements and codes with defined meaning which are part of every Questionnaire in the ORF Profile. It is up to the Questionnaire Creator to create Questionnaires with additional use case specific elements.</p>
+<p>Applications claiming for conformance with the ORF Profile shall:</p>
+<ul>
+<li>Render (and in case of the Questionnaire filler allow for data entry) all elements of a questionnaire in the user interface (e.g. on screen, in print). Grouping of elements and the order of groups and elements within shall be adequately reproduced according to the Questionnaire.</li>
+<li>Be able to process all codes related to the mandatory given elements in a Questionnaire.</li>
+</ul>
+<p>Venders of applications with Questionnaire Filler /Questionnaire Receiver Actors are strongly recommended to implement interfaces to other applications (such as HIS and PACS) for all data in the mandatory given elements of Questionnaires.</p>
+<p>Applications designed like this will provide out-of-the-box interconnectivity for mandatory given elements as well as out-of-the-box interoperability for all questionnaires as far it concerns user interfaces at filler and receiver site.</p>
+<p>Nothing speaks against interfaces for data in the use case specific part of a particular Questionnaire. One has however to keep in mind, that such interfaces are tied to a specific questionnaire. Ownership or other means, which prevent changes of the questionnaire by third parties, are therefore advisable.</p>
+<p>The ORF profile deals with Transport, Workflow and Content. It is based on FHIR resources and in particular the FHIR Questionnaire resource. FHIR specifies RESTful Web services as a mean for transport.  An implementation based on RESTful Web services is strongly recommended however not mandatory to comply with the ORF Profile. Workflow is addressed by the scope of ORF Profile which addresses directional information exchange with request and response. Content is defined by a set of mandatory mandatory given elements and codes and the possibility to extend both as required by the use cases addressed.</p>
+<h2 id="orf-actors-transactions-and-content-modules">1.1 (ORF) Actors, Transactions, and Content Modules</h2>
+<p>This section defines the actors, transactions, and/or content modules in this profile.</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actor</p></th>
+<th><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Questionnaire Creator</p></td>
+<td><p>A system that generates Questionnaires.</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Filler</p></td>
+<td><p>A system that renders Questionnaires and allows for filling in. The Questionnaire Filler is also responsible for filling in the corresponding resources in the Bundle.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Manager</p></td>
+<td><p>A system that assembles a Bundle containing the resources according to the Questionnaire. The Questionnaire Manager may also populate elements of the questionnaire and the corresponding resources where appropriate.</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>A system that receives a Bundle (according to the Questionnaire) from a Questionnaire filler and renders it.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Processor</p></td>
+<td><p>The Questionnaire Processor is an integrated Questionnaire Manager, Questionnaire Receiver and Questionnaire Filler, supporting all of the transactions and options of those actors.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 1.1-1 shows the actors directly involved in the ORF Profile and the relevant transactions between them. If needed for context, other actors that may be indirectly involved due to their participation in other related profiles are shown in dotted lines. Actors which have a mandatory grouping are shown in conjoined boxes.</p>
+<figure>
+<embed src="./media/image2.emf" title="./media/image2.emf" width="624" height="467" /><figcaption>./media/image2.emf</figcaption>
+</figure>
+<p>Figure 1.1-1: Questionnaire Handling Actor Diagram</p>
+<p>Table 1.1-1 lists the transactions for each actor directly involved in the Order &amp; Referral by Form Profile (ORF) Profile. To claim compliance with this Profile, an actor shall support all required transactions (labeled “R”) and may support the optional transactions (labeled “O”).</p>
+<p>Table 1.1-1: Order &amp; Referral by Form Profile (ORF) Profile</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actors</p></th>
+<th><p>Transactions</p></th>
+<th><p>Optionality</p></th>
+<th><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Questionnaire Creator</p></td>
+<td><p>Query Questionnaire [CH:ORF-1]</p></td>
+<td><p>R</p></td>
+<td><p>3.1</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Retrieve Questionnaire [CH:ORF-1]</p></td>
+<td><p>R</p></td>
+<td><p>3.1</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Store Questionnaire [CH:ORF-2]</p></td>
+<td><p>R</p></td>
+<td><p>3.2</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Manager</p></td>
+<td><p>Query Questionnaire [CH:ORF-1]</p></td>
+<td><p>R</p></td>
+<td><p>3.1</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Store Questionnaire [CH:ORF-2] (required for Stand alone Questionnaire Manager only, for Questionnaire Mangers grouped in a Questionnaire Processor optional)</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Retrieve Bundle [CH:ORF-3]</p></td>
+<td><p>R</p></td>
+<td><p>3.3</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Filler</p></td>
+<td><p>Retrieve Questionnaire [CH:ORF-1]</p></td>
+<td><p>R</p></td>
+<td><p>3.1</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Submit Bundle [CH:ORF-4]</p></td>
+<td><p>R</p></td>
+<td><p>3.4</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>Submit Bundle[CH:ORF-4]</p></td>
+<td><p>R</p></td>
+<td><p>3.4</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 1.1-1 shows the actors directly involved in the ORF Profile and the direction that the content is exchanged.</p>
+<p>The Submit Bundle transaction is marked as optional to allow solutions which choose a different communication transaction method like IHE XDS, XDR, XMD to be conform with this profile.</p>
+<p>A product implementation using this profile must group actors from this profile with actors from a workflow or transport profile to be functional. The grouping of the content module described in this profile to specific actors is described in more detail in the “Required Actor Groupings” section below.</p>
+<p>Table 1.1-2 lists the content module defined in the Order &amp; Referral by Form Profile (ORF) Profile. To claim support with this profile, an actor shall support all required content modules (labeled “R”) and may support optional content modules (labeled “O”).</p>
+<p>Table 1.1-2: Order &amp; Referral by Form Profile (ORF) Profile - Actors and Content Modules</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actors</p></th>
+<th><p>Content Modules</p></th>
+<th><p>Optionality</p></th>
+<th><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Questionnaire Filler</p></td>
+<td><p>ORF Content Module <sup>See Note 1</sup></p></td>
+<td><p>R</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>ORF Content Module <sup>See Note 1</sup></p></td>
+<td><p>R <sup>See Note 1</sup></p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note 1: <em>The content of the form depends on the form which itself is defined by the FHIR Questionnaire The FHIR Questionnaire defines elements and structure of the form. Codes for coded attributes are provided with a corresponding value set (details see ORF Content Module)</em></p>
+<h3 id="actor-descriptions-and-actor-profile-requirements">1.1.1 Actor Descriptions and Actor Profile Requirements</h3>
+<p>Most requirements are documented in Transactions (Volume 2) and Content Modules (Volume 3). This section documents any additional requirements on profile’s actors.</p>
+<p>Questionnaire Filler and Questionnaire Receiver Actors may be implemented on a mobile device, although this is not the primary setting in mind. All other Actors will rather be implemented in a stationary setting because the use case addressed involve mostly stationary applications.</p>
+<h2 id="orf-actor-options">1.2 ORF Actor Options</h2>
+<p>Options that may be selected for each actor in this profile, if any, are listed in the table 1.2-1. Dependencies between options when applicable are specified in notes.</p>
+<p>Table 1.2-1: &lt;Profile Name&gt; - Actors and Options</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actor</p></th>
+<th><p>Option Name</p></th>
+<th><p>Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Questionnaire Creator</p></td>
+<td><p>No options defined</p></td>
+<td><p>--</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Manager</p></td>
+<td><p>No options defined</p></td>
+<td><p>--</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Filler</p></td>
+<td><p>No options defined</p></td>
+<td><p>--</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>No options defined</p></td>
+<td><p>--</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Processor</p></td>
+<td><p>No options defined</p></td>
+<td><p>--</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="orf-required-actor-groupings">1.3 ORF Required Actor Groupings</h2>
+<p>An Actor from this profile (Column 1) shall implement all of the required transactions and/or content modules in this profile <strong><em>in addition to</em></strong> all of the transactions required for the grouped actor (Column 2).</p>
+<p>If this is a content profile, and actors from this profile are grouped with actors from a workflow or transport profile, the Content Bindings reference column references any specifications for mapping data from the content module into data elements from the workflow or transport transactions.</p>
+<p>In some cases, required groupings are defined as at least one of an enumerated set of possible actors; this is designated by merging column one into a single cell spanning multiple potential grouped actors. Notes are used to highlight this situation.</p>
+<p>Section 1.5 describes some optional groupings that may be of interest for security considerations and section 1.6 describes some optional groupings in other related profiles.</p>
+<p>Table 1.3-1: ORF - Required Actor Groupings</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>ORF Actor</p></th>
+<th><p>Actor to be grouped with</p></th>
+<th><p>Reference</p></th>
+<th><p>Content Bindings Reference</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Questionnaire Filler</p></td>
+<td><p>Questionnaire Receiver</p></td>
+<td><p>1.1</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>Questionnaire Filler</p></td>
+<td><p>1.1</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Processor</p></td>
+<td><p>Questionnaire Manager Questionnaire Receiver</p>
+<p>Questionnaire Filler</p></td>
+<td><p>1.1</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Filler</p></td>
+<td><p>CT Time Client</p></td>
+<td><p>ITI TF-1: 7.1</p></td>
+<td><p>na</p></td>
+</tr>
+<tr class="odd">
+<td><p>Questionnaire Receiver</p></td>
+<td><p>CT Time Client</p></td>
+<td><p>ITI TF-1: 7.1</p></td>
+<td><p>na</p></td>
+</tr>
+<tr class="even">
+<td><p>Questionnaire Processor</p></td>
+<td><p>CT Time Client</p></td>
+<td><p>ITI TF-1: 7.1</p></td>
+<td><p>na</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="orf-overview">1.4 ORF Overview</h2>
+<h3 id="use-cases">1.4.2 Use Cases</h3>
+<h4 id="use-case-1-questionnaire-creation">1.4.2.1 Use Case #1: Questionnaire Creation</h4>
+<h5 id="questionnaire-creation-use-case-description">1.4.2.1.1 Questionnaire Creation Use Case Description</h5>
+<p>The national radiological society has launched the UOR Program, a nationwide initiative to make ordering and referrals easier by means of Unified Ordering an Referral (UOR). The author of a new referral form defines a new Questionnaire Resource for a specific radiological examination (e.g. MRI). He does this with an application which acts as a Questionnaire Creator Actor. The author decides to query first already existing questionnaires, and retrieves one close to that what the new Questionnaire should represent. The author edits this Questionnaire and stores the result back to the Questionnaire Manager.</p>
+<h5 id="questionnaire-creation-process-flow">1.4.2.1.2 Questionnaire Creation Process Flow</h5>
+<figure>
+<embed src="./media/image3.emf" title="./media/image3.emf" width="462" height="310" /><figcaption>./media/image3.emf</figcaption>
+</figure>
+<p>Figure 1.4.2.2-1Questionnaire Creation Process Flow in ORF Profile</p>
+<p>The Questionnaire Manager Actor supports two tasks in the Questionnaire Creation Process:</p>
+<ol>
+<li>It acts as a repository for Questionnaire Resources and allows query and retrieve transactions with regard existing resources. The Store Questionnaire Transaction allows for storing new questionnaires.</li>
+<li>It allows for further processing in terms of assembling bundles and creating new resources as determined by the Questionnaire Resource.</li>
+</ol>
+<h5 id="section">1.4.2.1.2</h5>
+<h5 id="questionnaire-deployment-process-flow">Questionnaire Deployment Process Flow</h5>
+<figure>
+<embed src="./media/image4.emf" title="./media/image4.emf" width="460" height="351" /><figcaption>./media/image4.emf</figcaption>
+</figure>
+<p>Figure 1.4.2.2-1Questionnaire Deployment Process Flow in ORF Profile</p>
+<p>The radiology service S-U-P-E-R-XR joins the UOR program. The service owns an application acting as a Questionnaire Processor Actor which fulfills the following tasks.</p>
+<ol>
+<li>It queries periodically the Questionnaire Manager of the national radiology society in order to provide always the newest versions of questionnaires to the referring doctors.</li>
+<li>It populates elements such as the recipient name, telco and address with the data of S-U-P-E-R-XR.</li>
+<li>Upon request by a referring doctor, it provides the questionnaire for the required order or referral (see section 1.4.2.1.2 Questionnaire Usage Process Flow)</li>
+</ol>
+<h5 id="questionnaire-usage-process-flow">1.4.2.1.2 Questionnaire Usage Process Flow</h5>
+<p>Dr. Miller has a new Patient John Doe who has had an MRI at the radiology service “S-U-P-E-R-XR”. Dr. Miller retrieves a special order questionnaire from the Questionnaire Manager at S-U-P-E-R-XR which allows ordering of images and reports of previous exams. Dr. Miller fills in this questionnaire and sends it back. At S-U-P-E-R-XR, a staff member will fill in another Questionnaire with a reply, attaches images and reports an sends all to Dr. Miller.</p>
+<figure>
+<embed src="./media/image5.emf" title="./media/image5.emf" width="572" height="382" /><figcaption>./media/image5.emf</figcaption>
+</figure>
+<p>Figure 1.4.2.2 Questionnaire Usage Process Flow in ORF Profile</p>
+<h2 id="orf-security-considerations">1.5 ORF Security Considerations</h2>
+<p>A resource server should not return any patient information unless proper authentication and communications security have been proven.</p>
+<p>There are many reasonable methods of securing interoperability transactions. These security models can be layered in without modifying the characteristics of the ORF Profile transactions. The use of TLS is mandatory.</p>
+<p>User authentication on mobile devices is encouraged using Internet User Authorization (IUA) Profile. The network communication security and user authentication are layered in at the HTTP transport layer and do not modify the interoperability characteristics defined in the ORF Profile.</p>
+<p>The Security Audit logging (e.g., ATNA) is recommended. Support for ATNA-based audit logging on the mobile health device may be beyond the ability of this constrained environment.</p>
+<p>In case vendors decide to include the Patient ID (patient.identifier) as a query parameter on the Resource URL (what would be out of the scope of ORF Profile), this URL pattern would present a risk when using typical web server audit logging of URL requests, and browser history. In both of these cases the URL with the patient identity would be clearly visible. These risks should be mitigated in system or operational design.</p>
+<h2 id="orf-cross-profile-considerations">1.6 ORF Cross Profile Considerations</h2>
+<p>None</p>
+<h1 id="volume-2-transactions">Volume 2 – Transactions</h1>
+<h2 id="query-questionnaire-chorf-1">3.1 Query Questionnaire [CH:ORF-1]</h2>
+<p><code>This section corresponds to Transaction CH:ORF-1. Transaction CH:ORF-1 is used by the Questionnaire Creator, Questionnaire Manager and Questionnaire Filler.</code></p>
+<h3 id="scope">3.1.1 Scope</h3>
+<p>This transaction is used by the the Questionnaire Creator, Questionnaire Manager and Questionnaire Filler to solicit information about questionnaires whose data match data provided in the query parameters on the request. The request is received by the Questionnaire Manager. The Questionnaire Manager processes the request and returns a response with the matching questionnaires.</p>
+<h3 id="actor-roles">3.1.2 Actor Roles</h3>
+<figure>
+<embed src="./media/image6.emf" title="./media/image6.emf" width="495" height="371" /><figcaption>./media/image6.emf</figcaption>
+</figure>
+<p>Figure 3.1.2-1: Use Case Diagram</p>
+<p>Table 3.1.2-1: Actor Roles</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actor:</p></th>
+<th><p>Questionnaire Creator</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that create new Questionnaires, based on existing ones if appropriate. In order to allow the latter, the Questionnaire Creator must query the Questionnaire Manager and retrieve suitable questionnaires.</p></td>
+</tr>
+<tr class="even">
+<td><p>Actor:</p></td>
+<td><p>Questionnaire Manager</p></td>
+</tr>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that provides Questionnaires. In addition the Questionnaire Manager can process questionnaires in terms of population of elements, creating of resources and bundles as needed. A Questionnaire Manager may also query other Questionnaire Managers (e .g. one of an authority responsible for the management of Questionnaires in a certain domain) and retrieve suitable questionnaires.</p></td>
+</tr>
+<tr class="even">
+<td><p>Actor:</p></td>
+<td><p>Questionnaire Filler</p></td>
+</tr>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that allows querying a Questionnaire Manager for a Questionnaire in order to fill in the elements for submission.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenced-standards">3.1.3 Referenced Standards</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>HL7 FHIR</p></td>
+<td><p>Fast Healthcare Interoperability Resources <a href="http://hl7.org/fhir/index.html" class="uri">http://hl7.org/fhir/index.html</a></p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 2616</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/1.1</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 7540</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/2</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 3986</p></td>
+<td><p>Uniform Resource Identifier (URI): Generic Syntax</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 4627</p></td>
+<td><p>The application/json Media Type for JavaScript Object Notation (JSON)</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 6585</p></td>
+<td><p>Additional HTTP Status Codes</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="interaction-diagram">3.1.4 Interaction Diagram</h3>
+<h4 id="query-questionnaire-resource-request">3.1.4.1 Query Questionnaire Resource Request</h4>
+<p>Query Questionnaire Resource Request represents an HTTP GET parameterized query from the Questionnaire Creator/Filler/Manager to the Questionnaire Manager.</p>
+<h5 id="trigger-events">3.1.4.1.1 Trigger Events</h5>
+<p>When a Questionnaire Creator/Filler/Manager needs to select a questionnaire based on information about questionnaires whose information matches a minimal set of known data, it issues a Query Questionnaire Resource request.</p>
+<h5 id="message-semantics">3.1.4.1.2 Message Semantics</h5>
+<p>The Query Questionnaire Resource request is conducted by the Questionnaire Creator/Filler/Manager by executing an HTTP GET against the Questionnaire Manager Questionnaire Resource URL.</p>
+<p>The search target follows the FHIR http specification, addressing the Questionnaire Resource type <a href="http://hl7.org/fhir/http.html" class="uri">http://hl7.org/fhir/http.html</a>:</p>
+<p>GET [base]/[type]{?[parameters]{&amp;_format=[mime-type]}}</p>
+<p>This URL is configurable by the Questionnaire Manager and is subject to the following constraints.</p>
+<p>The [parameters] represents a series of encoded name-value pairs representing the filter for the query specified in Section 3.1.4.1.2.1, as well as control parameters to modify the behavior of the Questionnaire Manager such as response format, or pagination.</p>
+<h6 id="query-search-parameters">3.1.4.1.2.1 Query Search Parameters</h6>
+<p>The Questionnaire Creator/Filler/Manager may supply and the Questionnaire Manager shall be capable of processing all query parameters listed below. See <a href="http://hl7.org/implement/standards/fhir/http.html#mime-type" class="uri">http://hl7.org/implement/standards/fhir/http.html#mime-type</a> for details on encoding.</p>
+<p>Questionnaire Managers may choose to support additional query parameters beyond the subset listed below. Such parameters are considered out of scope for this transaction.</p>
+<p><strong>_id Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type string<em>,</em> when supplied, represents the resource identifier for the Questionnaire Resource being queried. See ITI TF-2x: Appendix Z.2.3 for use of the string data type. Note: A search using _id is always an exact match search.</p>
+</blockquote>
+<p><strong>code Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type token<em>,</em> when supplied, specifies a code that corresponds to the questionnaire or one of its groups whose information is being queried. See ITI TF-2x: Appendix Z.2.2 for use of the token data type.</p>
+</blockquote>
+<p><strong>identifier Search Parameters</strong></p>
+<blockquote>
+<p>This repeating parameter of type token<em>,</em> when supplied, specifies an identifier associated with the questionnaire whose information is being queried (e.g., a local identifier, account identifier, etc.). See ITI TF-2x: Appendix Z.2.2 for use of the token data type.</p>
+</blockquote>
+<p><strong>publisher Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type string, when supplied, specifies the author of the questionnaire whose information is being queried. For details on matching rules see ITI TF-2x: Appendix Z.2.3 .</p>
+</blockquote>
+<p><strong>status Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type token<em>,</em> when supplied, specifies a code that corresponds to the status of the questionnaire. See ITI TF-2x: Appendix Z.2.2 for use of the token data type.</p>
+</blockquote>
+<p><strong>title Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type string, when supplied, specifies all or part of the name of the questionnaire (title for the root group of the questionnaire) whose information is being queried. For details on matching rules see ITI TF-2x: Appendix Z.2.3 .</p>
+</blockquote>
+<p><strong>version Search Parameter</strong></p>
+<blockquote>
+<p>This parameter of type string<em>,</em> when supplied, specifies the business version of the questionnaire whose information is being queried. For details on matching rules see ITI TF-2x: Appendix Z.2.3 .</p>
+</blockquote>
+<h6 id="populating-expected-response-format">3.1.4.1.2.2 Populating Expected Response Format</h6>
+<p>The FHIR standard provides encodings for responses as either XML or JSON. Questionnaire Manager Actors shall support both message encodings, whilst Questionnaire Creator/Filler/Manager Actors shall support one and may support both.</p>
+<p>See ITI TF-2x: Appendix Z.6 for details.</p>
+<h5 id="expected-actions">3.1.4.1.3 Expected Actions</h5>
+<p>The Questionnaire Manager shall return questionnaire resources that reflect the match to all of the search criteria provided by the Questionnaire Creator/Filler/Manager. The Questionnaire Manager shall respond with a Query Questionnaire Resource Response synchronously (i.e., on the same connection as was used to initiate the request).</p>
+<p>If the Questionnaire Creator/Filler/Manager supplied a query parameter, or used a query parameter modifier which the Questionnaire Manager is not capable of utilizing, then the Questionnaire Manager shall respond with an <strong>HTTP 400</strong> (Bad request) status code and an OperationOutcome resource indicating the parameters in error.</p>
+<p>The Questionnaire Manager shall respond to the query request as described by the following cases with a Query Questionnaire Resource Response described in Section 2.1.4.2, and shall behave according to the cases listed below:</p>
+<p><strong>Case 1:</strong> The Questionnaire Manager finds at least one questionnaire resource matching the criteria sent as HTTP query parameters.</p>
+<p><strong>HTTP 200</strong> (OK) is returned as the HTTP status code.</p>
+<p>A Resource Bundle is returned representing the result set. The Questionnaire Manager populates the total property of the bundle with the total number of matching results. One entry is returned from the Questionnaire Manager for each Questionnaire Resource found.</p>
+<p><strong>Case 2:</strong> The Questionnaire Manager fails to find in its information source, any questionnaire resource matching the criteria sent as HTTP query parameters.</p>
+<p><strong>HTTP 200</strong> (OK) is returned as the HTTP status code.</p>
+<p>A Resource Bundle is returned representing the zero result set. The Questionnaire Manager populates the total with a value of 0 indicating no results were found. No entry attributes are provided in the result.</p>
+<p><strong>Case 3:</strong> The Questionnaire Manager is not capable of producing a response in the requested format specified by _format parameter (specified in Section 2.1.4.1.2.2).</p>
+<p><strong>HTTP 406</strong> (Not Acceptable) is returned as the HTTP status code.</p>
+<p>An OperationOutcome Resource is returned indicating that the requested response format is not supported in an issue having:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>Attribute</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="even">
+<td><p>severity</p></td>
+<td><p>error</p></td>
+</tr>
+<tr class="odd">
+<td><p>code</p></td>
+<td><p>{<a href="http://hl7.org/fhir/issue-type.html" class="uri">http://hl7.org/fhir/issue-type.html</a>, ,not-supported}</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Questionnaire Manager may be capable of servicing requests for response formats not listed in Section 3.1.4.1.2.5, but shall, at minimum, be capable of producing XML and JSON encodings.</p>
+<p>The Questionnaire Manager may return other HTTP status codes to represent specific error conditions. When HTTP error status codes are returned by the Questionnaire Manager, they shall conform to the HTTP standard RFC 2616. Their use is not further constrained or specified by this transaction.</p>
+<h4 id="query-questionnaire-resource-response">3.1.4.2 Query Questionnaire Resource Response</h4>
+<h5 id="trigger-events-1">3.1.4.2.1 Trigger Events</h5>
+<p>The Questionnaire Manager found questionnaires matching the query parameters specified by the Questionnaire Creator/Filler/Manager as a result of a Query Questionnaire Resource Request.</p>
+<h5 id="message-semantics-1">3.1.4.2.2 Message Semantics</h5>
+<p>The Query Questionnaire Resource Response is sent from the Questionnaire Manager to the Questionnaire Creator/Filler/Manager as a Bundle of Questionnaire Resources. The “content-type” of the response will depend upon the requested response format indicated by the Questionnaire Creator/Filler/Manager.</p>
+<p>See ITI TF-2x: Appendix Z.6 for more details on response format handling. See ITI TF-2x: Appendix Z.7 for handling guidance for Access Denied.</p>
+<h6 id="questionnaire-resource-definition-in-the-context-of-query-questionnaire-resource-response">3.1.4.2.2.1 Questionnaire Resource Definition in the Context of Query Questionnaire Resource Response</h6>
+<p>The components of the Questionnaire Resource with cardinality greater than 0 (as shown below) are required, and the detailed description is provided here. All other attributes of the response are optional.<br />
+The Questionnaire Resource contained within the Query Questionnaire Resource Response is described at <a href="http://hl7.org/fhir/questionnaire.html" class="uri">http://hl7.org/fhir/questionnaire.html</a>. The Questionnaire Resource shall follow the rules according to the <a href="http://ihe.net/iti/qrf/trial/QRFQuestionnaireProfile" class="uri">http://ihe.net/iti/qrf/trial/QRFQuestionnaireProfile</a> Profile. See Content Volume 3 for profile description.</p>
+<h6 id="resource-bundling">3.1.4.2.2.2 Resource Bundling</h6>
+<p>Please see ITI TF-2x: Appendix Z.1 for details on the IHE guidelines for implementing FHIR bundles.</p>
+<h5 id="conformance-resource">3.1.4.2.3 Conformance Resource</h5>
+<p>Questionnaire Managers implementing [CH:ORF-1] should provide a Conformance Resource as described in ITI TF-2x: Appendix Z.4 indicating the query operation for the Questionnaire Resource has been implemented and shall include all query parameters implemented for the Questionnaire Resource.</p>
+<h4 id="retrieve-questionnaire-resource-request">3.1.4.3 Retrieve Questionnaire Resource Request</h4>
+<p>The Retrieve Questionnaire Resource Request represents an HTTP GET from the Questionnaire Creator/Filler/Manager to the Questionnaire Manager and provides a mechanism for retrieving a single Questionnaire Resource with a known resource identifier.</p>
+<h5 id="trigger-events-2">3.1.4.3.1 Trigger Events</h5>
+<p>When the Questionnaire Creator/Filler/Manager possesses a Questionnaire Resource’s identifier (either through query, database lookup, or other mechanism) for which it requires additional or new information, it issues a Retrieve Questionnaire Resource operation.</p>
+<h5 id="message-semantics-2">3.1.4.3.2 Message Semantics</h5>
+<p>The Retrieve Questionnaire Resource is conducted by executing an HTTP GET against the Questionnaire Manager’s Questionnaire Resource URL, providing the resource id of the Questionnaire being retrieved. The target is formatted as:</p>
+<blockquote>
+<p>GET [base]/Questionnaire/[resourceId]</p>
+</blockquote>
+<p>The Questionnaire Manager shall respond to this query by sending a single Questionnaire Resource instance. The specification for [base] is identified in 3.1.4.1.2.</p>
+<h5 id="expected-actions-1">3.1.4.3.3 Expected Actions</h5>
+<p>The Questionnaire Manager shall retrieve the Questionnaire by the Resource identifier on the HTTP GET supplied by the Questionnaire Creator/Filler/Manager. The Questionnaire Manager shall respond to the retrieve request as described by the following cases:</p>
+<p><strong>Case 1:</strong> The Questionnaire Manager finds in its information source the Questionnaire matching the resourceId sent in the HTTP request.</p>
+<p><strong>HTTP 200</strong> (OK) is returned as the HTTP status code.</p>
+<p>A Questionnaire Resource is returned representing the result.</p>
+<p><strong>Case 2:</strong> The Questionnaire Manager fails to find in its information source the Questionnaire matching the resourceId sent in the HTTP request.</p>
+<p><strong>HTTP 404</strong> (Not Found) is returned as the HTTP status code</p>
+<p>An OperationOutcome Resource is returned indicating that the Patient Resource could not be found:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>Attribute</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="even">
+<td><p>severity</p></td>
+<td><p>error</p></td>
+</tr>
+<tr class="odd">
+<td><p>type</p></td>
+<td><p>{<a href="http://hl7.org/fhir/vs/issue-type%7Dnot-found" class="uri">http://hl7.org/fhir/vs/issue-type}not-found</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>The Questionnaire Manager may return other HTTP status codes to represent specific error conditions. When HTTP error status codes are returned by the Questionnaire Manager, they shall conform to the HTTP standard RFC 2616. Their use is not further constrained or specified by this transaction.</p>
+<h4 id="retrieve-questionnaire-resource-response">3.1.4.4 Retrieve Questionnaire Resource Response</h4>
+<p>The Questionnaire Manager’s response to a successful Questionnaire Retrieve shall be an <strong>HTTP 200</strong> (OK) Status code with a FHIR Questionnaire Resource, or an appropriate error code as defined in Section 3.1.4.2.2.1.</p>
+<h5 id="trigger-events-3">3.1.4.4.1 Trigger Events</h5>
+<p>The Questionnaire Manager found a questionnaire matching the Resource identifier specified by the Questionnaire Creator/Filler/Manager.</p>
+<h5 id="message-semantics-3">3.1.4.4.2 Message Semantics</h5>
+<p>The Retrieve Questionnaire Resource response is sent from the Questionnaire Manager to the Questionnaire Creator/Filler/Manager as a single Questionnaire Resource. See <a href="http://hl7.org/fhir/questionnaire.html" class="uri">http://hl7.org/fhir/questionnaire.html</a> for details on this resource.</p>
+<p>See ITI TF-2x: Appendix Z.6 for more details on response format handling. See ITI TF-2x: Appendix Z.7 for handling guidance for Access Denied.</p>
+<p>If the Questionnaire Manager is unable to produce a response in the requested format, it shall respond with an <strong>HTTP 400</strong> error indicating that it was unable to fulfill the request. The Questionnaire Manager may be capable of servicing requests for response formats not listed, but shall, at minimum, be capable of producing XML and JSON encodings.</p>
+<h6 id="questionnaire-resource-definition-in-the-context-of-retrieve-questionnaire-resource-response">3.1.4.4.2.1 Questionnaire Resource Definition in the Context of Retrieve Questionnaire Resource Response</h6>
+<p>The Questionnaire Resource definition in the context of a retrieve operation is identical to the constraints placed on the Questionnaire Resource for a search (see Section 3.1.4.2.2.1)</p>
+<p>For the complete FHIR definition of this Resource, see <a href="http://hl7.org/fhir/questionnaire.html" class="uri">http://hl7.org/fhir/questionnaire.html</a>.</p>
+<h2 id="store-questionnaire-chorf-2">3.2 Store Questionnaire [CH:ORF-2]</h2>
+<p>This section corresponds to Transaction CH:ORF-2. Transaction CH:ORF-2 is used by the Questionnaire Creator and Questionnaire Manager.</p>
+<h3 id="scope-1">3.2.1 Scope</h3>
+<p>Transaction CH:ORF-2 is used by the Questionnaire Creator to store a questionnaire in the Questionnaire Manager.</p>
+<h3 id="actor-roles-1">3.2.2 Actor Roles</h3>
+<figure>
+<embed src="./media/image7.emf" title="./media/image7.emf" width="624" height="468" /><figcaption>./media/image7.emf</figcaption>
+</figure>
+<p>Figure 3.2.2-1: Use Case Diagram</p>
+<p>Table 3.2.2-1: Actor Roles</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actor:</p></th>
+<th><p>Questionnaire Creator</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that creates new Questionnaires.</p></td>
+</tr>
+<tr class="even">
+<td><p>Actor:</p></td>
+<td><p>Questionnaire Manager</p></td>
+</tr>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that provides Questionnaires. In addition the Questionnaire Manager can process questionnaires in terms of population of elements, creating of resources and bundles as needed. A Questionnaire Manager may also query other Questionnaire Managers (e .g. one of an authority responsible for the management of Questionnaires in a certain domain) and retrieve suitable questionnaires.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenced-standards-1">3.2.3 Referenced Standards</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>HL7 FHIR</p></td>
+<td><p>Fast Healthcare Interoperability Resources <a href="http://hl7.org/fhir/index.html" class="uri">http://hl7.org/fhir/index.html</a></p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 2616</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/1.1</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 7540</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/2</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 3986</p></td>
+<td><p>Uniform Resource Identifier (URI): Generic Syntax</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 4627</p></td>
+<td><p>The application/json Media Type for JavaScript Object Notation (JSON)</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 6585</p></td>
+<td><p>Additional HTTP Status Codes</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="interaction-diagram-1">3.2.4 Interaction Diagram</h3>
+<h4 id="store-questionnaire-resource-request">3.2.4.1 Store Questionnaire Resource Request</h4>
+<p>The Questionnaire Manager shall support the message semantics for create as defined at <a href="http://hl7.org/fhir/http.html#create" class="uri">http://hl7.org/fhir/http.html#create</a> as applicable to a Questionnaire Resource defined at <a href="http://hl7.org/fhir/questionnaire.html" class="uri">http://hl7.org/fhir/questionnaire.html</a>. The Questionnaire Resource is further constrained by a profile, see in Volume 3.</p>
+<h5 id="trigger-events-4">3.2.4.1.1 Trigger Events</h5>
+<p>When a Questionnaire Creator needs to store a questionnaire it issues a Store Questionnaire Resource Request.</p>
+<h5 id="message-semantics-4">3.2.4.1.2 Message Semantics</h5>
+<p>A Questionnaire Creator initiates a create request as defined at <a href="http://hl7.org/fhir/http.html#create" class="uri">http://hl7.org/fhir/http.html#create</a> on the Questionnaire Resource in order to store a new questionnaire. A Questionnaire Creator shall use either the XML or the JSON messaging formats as defined in FHIR. A Questionnaire Manager shall support receiving a request in both the JSON and the XML messaging formats as defined in FHIR. See ITI TF-2x: Appendix Z.6 for more details.</p>
+<h5 id="expected-actions-2">3.2.4.1.3 Expected Actions</h5>
+<p>The Questionnaire Manager shall issue a Store Questionnaire Response upon validation of a received Questionnaire Resource Request. See Section 3.2.4.2. The Questionnaire Manager shall respond with appropriate HTTP error codes as described at <a href="http://hl7.org/fhir/http.html#create" class="uri">http://hl7.org/fhir/http.html#create</a>.</p>
+<h4 id="store-questionnaire-resource-response">3.2.4.2 Store Questionnaire Resource response</h4>
+<p>The Questionnaire Manager uses the response semantics as appropriate according to the FHIR operation initiated by the Questionnaire Creator.</p>
+<h5 id="trigger-events-5">3.2.4.2.1 Trigger Events</h5>
+<p>A Questionnaire Manager sends a Store Questionnaire Resource response to the Questionnaire Creator upon validation of a received Store Questionnaire Resource request.</p>
+<h5 id="message-semantics-5">3.2.4.2.2 Message Semantics</h5>
+<p>The Questionnaire Manager shall respond with the appropriate response codes as defined at <a href="http://hl7.org/fhir/http.html#create" class="uri">http://hl7.org/fhir/http.html#create</a>.</p>
+<h5 id="expected-actions-3">3.2.4.2.3 Expected Actions</h5>
+<p>There are no additional actions required on Questionnaire Creator upon receipt of the Store Questionnaire Response.</p>
+<h4 id="conformance-resource-1">3.2.4.3 Conformance Resource</h4>
+<p>Questionnaire Manager implementing this transaction should provide a Conformance Resource as described in ITI TF-2x: Appendix Z.3 indicating the operation has been implemented.</p>
+<h2 id="retrieve-bundle-chorf-3">3.3 Retrieve Bundle [CH:ORF-3]</h2>
+<p>This section corresponds to Transaction CH:ORF-3. Transaction ITI-Y3 is used by the Questionnaire Filler and Questionnaire Manager.</p>
+<h3 id="scope-2">3.3.1 Scope</h3>
+<p>This transaction is used to retrieve a Bundle related to a specific Questionnaire.</p>
+<h3 id="actor-roles-2">3.3.2 Actor Roles</h3>
+<figure>
+<embed src="./media/image8.emf" title="./media/image8.emf" width="624" height="467" /><figcaption>./media/image8.emf</figcaption>
+</figure>
+<p>Figure 3.3.2-1: Use Case Diagram</p>
+<p>Table 3.3.2-1: Actor Roles</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Actor:</p></th>
+<th><p>Questionnaire Filler</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that allows querying a Questionnaire Manager for a suitable Questionnaire. It then retrieves the corresponding Bundle. After completion of the Questionnaire, the Questionnaire Filler submits it.</p></td>
+</tr>
+<tr class="even">
+<td><p>Actor:</p></td>
+<td><p>Questionnaire Manager</p></td>
+</tr>
+<tr class="odd">
+<td><p>Role:</p></td>
+<td><p>A system that provides Questionnaires. In addition the Questionnaire Manager can process questionnaires in terms of population of elements, creating of resources and bundles as needed. A Questionnaire Manager may also query other Questionnaire Managers (e .g. one of an authority responsible for the management of Questionnaires in a certain domain) and retrieve suitable questionnaires.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenced-standards-2">3.3.3 Referenced Standards</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>HL7 FHIR</p></td>
+<td><p>Fast Healthcare Interoperability Resources <a href="http://hl7.org/fhir/index.html" class="uri">http://hl7.org/fhir/index.html</a></p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 2616</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/1.1</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 7540</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/2</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 3986</p></td>
+<td><p>Uniform Resource Identifier (URI): Generic Syntax</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 4627</p></td>
+<td><p>The application/json Media Type for JavaScript Object Notation (JSON)</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 6585</p></td>
+<td><p>Additional HTTP Status Codes</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="interaction-diagram-2">3.3.4 Interaction Diagram</h3>
+<h4 id="retrieve-bundle-operation">3.3.4.1 Retrieve Bundle Operation</h4>
+<p>The Questionnaire Manager shall support a retrieve Bundle operation on the Questionnaire Resource according to <a href="https://www.hl7.org/fhir/operations.html" class="uri">https://www.hl7.org/fhir/operations.html</a>.</p>
+<h5 id="trigger-events-6">3.3.4.1.1 Trigger Events</h5>
+<p>When a Questionnaire Filler needs a Questionnaire bundle it issues a retrieve Bundle operation.</p>
+<h5 id="message-semantics-6">3.2.4.1.2 Message Semantics</h5>
+<p>A Questionnaire Filler initiates a retrieve Bundle upon the Questionnaire Resource with the following operation request:</p>
+<p>URL: [base]/Questionnaire/[id]/$retrieveBundle</p>
+<p>The operation contains no parameters.</p>
+<h5 id="expected-actions-4">3.3.4.1.3 Expected Actions</h5>
+<p>The Questionnaire Manager shall create an empty document bundle according to the FHIR QRFDocumentProfile (see Volume 3). The <a href="http://hl7.org/fhir/bundle.html">Bundle</a> is of <a href="http://hl7.org/fhir/bundle-definitions.html#Bundle.type">type</a> &quot;document&quot; and has a <a href="http://hl7.org/fhir/composition.html">Composition</a> resource as the first resource in the bundle, followed by a series of other resources, referenced from the Composition resource.</p>
+<h4 id="retrieve-bundle-response">3.3.4.2 Retrieve Bundle Response</h4>
+<p>The Questionnaire Manager uses the response semantics as appropriate according to the FHIR operation initiated by the Questionnaire Filler.</p>
+<h5 id="trigger-events-7">3.3.4.2.1 Trigger Events</h5>
+<p>A Questionnaire Manager sends a Retrieve Bundle operation response to the Questionnaire Filler upon invoking the retrieveBundle operation.</p>
+<h5 id="message-semantics-7">3.3.4.2.2 Message Semantics</h5>
+<p>The Questionnaire Manager shall respond with the appropriate response codes as defined at <a href="https://www.hl7.org/fhir/operations.html" class="uri">https://www.hl7.org/fhir/operations.html</a>.</p>
+<h5 id="expected-actions-5">3.3.4.2.3 Expected Actions</h5>
+<p>After receiving the Bundle the Questionnaire Filler shall provide a User Interface/Visualization of the Bundle to the User so that he can add the information. After completing the form/questionnaire by the user, the Questionnaire Filler shall update the bundle and included resources in the bundle with the information provided by the User.</p>
+<h4 id="conformance-resource-2">3.2.4.3 Conformance Resource</h4>
+<p>Questionnaire Managers implementing this operation should provide a Conformance Resource as described in ITI TF-2x: Appendix Z.3 indicating the operation has been implemented.</p>
+<h2 id="submit-bundle-chorf-4">3.4 Submit Bundle [CH:ORF-4]</h2>
+<p>This section corresponds to Transaction CH:ORF-4. Transaction CH:ORF-4 is used by the Questionnaire Filler and Questionnaire Receiver.</p>
+<h3 id="scope-3">3.4.1 Scope</h3>
+<p>This transaction is used to submit a filled in questionnaire together with required additional resources and attachments in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.</p>
+<h3 id="actor-roles-3">3.4.2 Actor Roles</h3>
+<figure>
+<embed src="./media/image9.emf" title="./media/image9.emf" width="624" height="468" /><figcaption>./media/image9.emf</figcaption>
+</figure>
+<p>Figure 3.4.2-1: Use Case Diagram</p>
+<p>Table 3.4.2-1: Actor Roles</p>
+<table>
+<thead>
+<tr class="header">
+<th><p><strong>Actor:</strong></p></th>
+<th><p>Questionnaire Filler</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Role:</strong></p></td>
+<td><p>A system that allows querying a Questionnaire Manager for a Questionnaire in order to fill in the elements. Upon completion, a corresponding bundle will be submitted to the Questionnaire Receiver.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Actor:</strong></p></td>
+<td><p>Questionnaire Receiver</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Role:</strong></p></td>
+<td><p>A system that receives bundles and processes them compliant to the ORF Profile.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenced-standard">3.4.3 Referenced Standard</h3>
+<table>
+<tbody>
+<tr class="odd">
+<td><p>HL7 FHIR</p></td>
+<td><p>Fast Healthcare Interoperability Resources <a href="http://hl7.org/fhir/index.html" class="uri">http://hl7.org/fhir/index.html</a></p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 2616</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/1.1</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 7540</p></td>
+<td><p>Hypertext Transfer Protocol – HTTP/2</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 3986</p></td>
+<td><p>Uniform Resource Identifier (URI): Generic Syntax</p></td>
+</tr>
+<tr class="odd">
+<td><p>IETF RFC 4627</p></td>
+<td><p>The application/json Media Type for JavaScript Object Notation (JSON)</p></td>
+</tr>
+<tr class="even">
+<td><p>IETF RFC 6585</p></td>
+<td><p>Additional HTTP Status Codes</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="interaction-diagram-3">3.4.4 Interaction Diagram</h3>
+<h4 id="submit-bundle">3.4.4.1 Submit Bundle</h4>
+<p>The transaction uses the HTTP POST method on the target Questionnaire Bundle endpoint to convey the questionnaire bundle as a FHIR transaction.</p>
+<h5 id="trigger-events-8">3.4.4.1.1 Trigger Events</h5>
+<p>After the Questionnaire is completed by the Questionnaire filler user, the Questionnaire Filler submits a the corresponding bundle to the Questionnaire receiver.</p>
+<h5 id="message-semantics-8">3.4.4.1.2 Message Semantics</h5>
+<p>The Questionnaire Manager shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST request method composed of a FHIR Bundle Resource containing the Composition resource and all resources referenced in, in particular one Questionnaire Resource, one QuestionnaireResponse Resource and additional resources according to the Questionnaire Profile.</p>
+<p>The media type of the HTTP body shall be either “application/json+fhir” or “application/xml+fhir”.</p>
+<p>See <a href="http://hl7.org/fhir/http.html#transaction" class="uri">http://hl7.org/fhir/http.html#transaction</a> for complete requirements of a transaction. See <a href="http://hl7.org/fhir/bundle-transaction.html" class="uri">http://hl7.org/fhir/bundle-transaction.html</a> for example of a transaction bundle.</p>
+<p>Submit Bundle is sent to the base URI as defined in FHIR. See <a href="http://hl7.org/fhir/http.html" class="uri">http://hl7.org/fhir/http.html</a> for the definition of “http” access methods and “base”.</p>
+<h6 id="bundle-resources">3.4.4.1.2.1 Bundle Resources</h6>
+<p>For complete information on constructing a FHIR Bundle Resource, see: <a href="http://hl7.org/fhir/bundle.html" class="uri">http://hl7.org/fhir/bundle.html</a></p>
+<p>The FHIR Bundle.meta.profile shall include the value “http://ihe.net/iti/qrf/trial/QRFDocumentProfile”.</p>
+<h5 id="expected-actions-6">3.4.4.1.3 Expected Actions</h5>
+<p>The Questionnaire Receiver shall accept both media types application/json+fhir and application/xml+fhir.</p>
+<p>On receipt of the submission, the Questionnaire Receiver shall validate the resources and respond with one of the HTTP codes defined in Section 3.4.4.2.2 Message Semantics.</p>
+<h4 id="status-message">3.4.4.2 Status Message</h4>
+<p>The Questionnaire receiver returns a HTTP Status code appropriate to the processing, conforming to the transaction specification requirements as specified in <a href="http://hl7.org/fhir/http.html#transaction" class="uri">http://hl7.org/fhir/http.html#transaction</a></p>
+<h5 id="trigger-events-9">3.4.4.2.1 Trigger Events</h5>
+<p>This message shall be sent once the questionnaire bundle is received and completely processed.</p>
+<h5 id="message-semantics-9">3.4.4.2.2 Message Semantics</h5>
+<p>When the Questionnaire Receiver has successfully processed the POST transaction, then the Questionnaire Receiver shall return an HTTP response with an overall status code.</p>
+<p>In order to allow the Questionnaire Filler to know the outcomes of processing the transaction, and the identities assigned to the resources by the Questionnaire Receiver, the Questionnaire Receiver shall return a Bundle, with type set to transaction-response, that contains one entry for each entry in the request, in the same order, with the outcome of processing the entry. See FHIR <a href="http://hl7.org/fhir/bundle.html#transaction-response" class="uri">http://hl7.org/fhir/bundle.html#transaction-response</a></p>
+<p>Each entry element shall contain a response element which details the outcome of processing the entry - the HTTP status code. All other elements are not required.</p>
+<p>On success, the Questionnaire Receiver shall return the HTTP status code 200 – OK.</p>
+<p>Guidance on handling Access Denied related to use of 403 and 404 can be found in ITI TF-2x: Appendix Z.7.</p>
+<p>On failure, the Questionnaire Receiver shall return the HTTP status codes as follows:</p>
+<ul>
+<li>400 Bad Request - resource could not be parsed or failed basic FHIR validation rules like reference inconsistencies, schema violations, etc.</li>
+<li>404 Not Found - resource type not supported.</li>
+<li>422 Unprocessable Entity - one or more proposed resources violated applicable FHIR profiles or server business rules.</li>
+</ul>
+<p>In addition, the Questionnaire Receiver may also send 5xx HTTP status codes to indicate non-transaction related failures. Note that the Questionnaire Filler may also encounter non-FHIR endpoints which will not return an Bundle in the response.</p>
+<p>The Questionnaire Receiver may return HTTP redirect responses (responses with HTTP status codes 301, 302, 303 or 307) in response to a request.</p>
+<h5 id="expected-actions-7">3.4.4.2.3 Expected Actions</h5>
+<p>If the Questionnaire Receiver returns an HTTP redirect response (HTTP status codes 301, 302, 303, or 307), the Questionnaire Filler shall follow that redirection, although it may stop processing if it detects a loop.</p>
+<p>The Questionnaire Receiver processes the results according to application-defined rules.</p>
+<p>If a Questionnaire Receiver cannot automatically recover from an error condition, at a minimum, it should display the error to the user.</p>
+<h4 id="conformance-resource-3">3.4.4.3 Conformance Resource</h4>
+<p>Questionnaire Receiver implementing this transaction should provide a Conformance Resource as described in ITI TF-2x: Appendix Z.3 indicating the operation has been implemented.</p>
+<h1 id="volume-3-content-modules">Volume 3 – Content Modules</h1>
+<h2 id="questionnaire-content">6. Questionnaire Content</h2>
+<p><code>This section describes the content of a form. The following definitions apply:</code></p>
+<p>Request and responses consist of filled in questionnaires. Some elements of the questionnaire are mandatory given elements (such as author, data entry person, receiver etc. are always present in a questionnaire compliant to the ORF Profile. In addition, a questionnaire will contain elements which are use case specific. The ORF Profile makes no assumptions about the nature of such elements: structure and content (including coding of codes elements) are in the responsibility of those creating a form for a particular use case.</p>
+<p>As this profile is based on FHIR, the following rules apply:</p>
+<p>Elements, grouping of elements, order of groups and order of elements within groups of a questionnaire shall be defined in a Questionnaire Resource. The Questionnaire Resource is defined by means of the Questionnaire Creator Actor.</p>
+<p>Based on the Questionnaire, a Questionnaire Manager Actor defines a QuestionnaireResponse and appropriate additional resources aimed at transmitting the information provided by the Questionnaire filler in a standardized structured form. In addition, the Questionnaire Manager shall create a QuestionnaireResponse Resource (based on the Questionnaire Resource), a Composition Resource. Upon completion of the questionnaire, the Questionnaire Manager shall create a bundle with all resources mentioned above.</p>
+<p>Questionnaires may be accompanied by additional material which can be attached or sent by postal mail (e.g. xray-films or paper documents). The use case may require some references between attached objects (e. g. which pdf-reports belongs to which imaging study).</p>
+<h2 id="mandatory-given-elements-of-a-questionnaire">6.1 Mandatory given elements of a questionnaire</h2>
+<p>A questionnaire shall have a set of mandatory given elements (e.g. author, data entry person, receiver etc. Table 6.1.-1 lists the mandatory given elements</p>
+<p><strong>Table 6.1-1: Mandatory given elements in Questionnaires compliant to the ORF Profile</strong></p>
+<table>
+<tbody>
+<tr class="odd">
+<td><p><strong>Name</strong></p></td>
+<td><p><strong>Role taker</strong></p></td>
+<td><p><strong>HL 7 V3 Equivalent</strong></p></td>
+<td><p><strong>FHIR<br />
+Representation</strong></p></td>
+<td><p><strong>Comment</strong></p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p><strong>Human</strong></p></td>
+<td><p><strong>Organi-zation</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>Author</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>Author</p></td>
+<td><p>Practitioner</p></td>
+<td><p>The person responsible for Form Content</p></td>
+</tr>
+<tr class="even">
+<td><p>Date Entry Person</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>DataEnterer</p></td>
+<td><p>Practitioner</p></td>
+<td><p>The person who has typed/filled in the Form Content.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Urgent Notification Contact for this document</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>PrimaryInformationRecipient</p></td>
+<td><p>Practitioner</p></td>
+<td><p>An information recipient to notify for urgent matters (e.g. in a radiology service, the Radiologist has to be called by phone right away at the time the images arrive.</p></td>
+</tr>
+<tr class="even">
+<td><p>Urgent Notification Contact for the Response to this document</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>PrimaryInformationRecipient</p></td>
+<td><p>Practitioner</p></td>
+<td><p>An information recipient to notify for urgent matters about the response. (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive.</p>
+<p>The Urgent Notification Contact for the Response can be specified already in the request. At the time the response is written, this element shall be populated to the Urgent Notification Contact element in the response</p></td>
+</tr>
+<tr class="odd">
+<td><p>Receiver</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td></td>
+<td><p>Practitioner</p></td>
+<td><p>Person and/or institution who receives the Bundle</p></td>
+</tr>
+<tr class="even">
+<td><p>Patient</p></td>
+<td><p>X</p></td>
+<td></td>
+<td></td>
+<td><p>Patient</p></td>
+<td><p>The principle target of a particular Form Content is one patient (for obstetrical and neonatal use cases see….).</p></td>
+</tr>
+<tr class="odd">
+<td><p>PrecedentDocumentId</p></td>
+<td><p>na</p></td>
+<td><p>na</p></td>
+<td></td>
+<td></td>
+<td><p>This element provides a link to the preceding document in a thread (e.g. from a response to the request</p></td>
+</tr>
+<tr class="even">
+<td><p>Date</p></td>
+<td><p>na</p></td>
+<td><p>na</p></td>
+<td></td>
+<td></td>
+<td><p>Date, the document was created</p></td>
+</tr>
+<tr class="odd">
+<td><p>Priority</p></td>
+<td><p>na</p></td>
+<td><p>na</p></td>
+<td></td>
+<td><p>DiagnosticOrderPriority</p></td>
+<td><p>The priority shall be indicated in the one of the resources in the table “Optional given elements of a questionnaire”</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-given-elements-of-a-questionnaire-one-of-them-shall-be-provided">6.2 Optional given elements of a questionnaire (One of them shall be provided)</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td><p><strong>Resource</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="even">
+<td><p>DiagnosticOrder</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>ReferralRequest</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>CommunicationRequest</p></td>
+<td><p>CommunicationRequest applies for all documents which are not a DiagnosticOrder or a ReferralRequest</p></td>
+</tr>
+</tbody>
+</table>
+<p>There may be the need to provide a linkage between a particular files or between a particular file and an imaging study (e.g. a link between a PDF-File containing a report and a DICOM study). Such links shall be expressed with a DocumentManifest as follows:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><p><strong>Resource</strong></p></td>
+<td><p><strong>Elements</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>DocumentManifest</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>type</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>(e.g. LOINC 18748-4 for Diagnostic Imaging Study)</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>content</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>pAttachment</p></td>
+<td></td>
+<td><p>Attachment</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td><p>contentType</p></td>
+<td></td>
+<td><p>Mime Type</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td><p>data</p></td>
+<td></td>
+<td><p>Data inline, base64ed (contains the file; e.g. a PDF-Report)</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>related</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>Reference (ImagingStudy)</p></td>
+<td></td>
+<td></td>
+<td><p>ImagingStudyResource prorvides StudyinstanceUID etc.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fhir-representation">6.3 FHIR Representation</h2>
+<p>FHIR depicts forms (questionnaires) in a Questionnaire Resource. A Questionnaire Resource can be conceived as an empty questionnaire where as the filled in questionnaire refers to the QuestionnaireResponse Resource. QuestionnaireResponse Resources are certainly structured but due to their flexibility in design not in a standardized manner. FHIR addresses this issue by means of its standardized resources.</p>
+<p>The Order &amp; Referral by Form Profile is based on two FHIR Resources profiles. For details on profiling FHIR see HL7 FHIR <a href="http://www.hl7.org/fhir/profiling.html" class="uri">http://www.hl7.org/fhir/profiling.html</a>. For details on FHIR resources and data-types see HL7 FHIR <a href="http://hl7.org/fhir/" class="uri">http://hl7.org/fhir/</a>.</p>
+<ol>
+<li>The Order &amp; Referral by Form Questionnaire (ORF) Profile defines the usage of the FHIR Questionnaire Resource within the Order &amp; Referral by Form Profile. The Questionnaire Resource is an organized collection of questions intended to solicit information from patients, providers or other individuals involved in the healthcare domain. They may be simple flat lists of questions or can be hierarchically organized in groups and sub-groups, each containing questions. The Questionnaire defines the questions to be asked, how they are ordered and grouped and what the constraints are on the allowed answers. The results of a Questionnaire can be communicated using the QuestionnaireResponse resource (see <a href="http://www.hl7.org/fhir/questionnaire.html" class="uri">http://www.hl7.org/fhir/questionnaire.html</a>).</li>
+<li>The Order &amp; Referral by Form Document (ORF) Profile defines the usage of the FHIR Bundle within the Order &amp; Referral by Form (ORF) Profile. The QRFDocumentProfile consist of a FHIR document (bundle) that contains the results of a filled in Questionnaire (QuestionnaireResponse Resource) together with the structured resources which map all information filled in the questionnaire. The <a href="http://hl7.org/fhir/bundle.html">Bundle</a> is of <a href="http://hl7.org/fhir/bundle-definitions.html#Bundle.type">type</a> &quot;document&quot; and has a <a href="http://hl7.org/fhir/composition.html">Composition</a> resource as the first resource in the bundle, followed by a series of other resources, referenced from the Composition resource. The bundle gathers all the content of the document into a single XML document which may be signed and managed as required. The resources include both human readable and computer processable sections. In addition, a bundle as defined in this profile shall include a CSS stylesheets and optionally it may include a signature.</li>
+</ol>
+<blockquote>
+<p>Any resource referenced directly in the Composition Resource shall be included in the bundle. Other resources that these referenced resources refer to shall also be included in the bundle. Including these additional resources will make the document bigger, but will save applications from needing to retrieve the linked resources.</p>
+</blockquote>
+<h3 id="fhir-resources-constraints">6.7 FHIR Resources Constraints</h3>
+<p>This section lists FHIR resources where this profile provides additional information. Resources not listed here follow the specifications of FHIR. For details refer to <a href="https://www.hl7.org/fhir/resourcelist.html" class="uri">https://www.hl7.org/fhir/resourcelist.html</a>.</p>
+<h4 id="composition-resource">6.7.1 Composition resource</h4>
+<table>
+<tbody>
+<tr class="odd">
+<td><p><strong>FHIR Composition Resource</strong></p></td>
+<td><p><strong>FHIR Type</strong></p></td>
+<td><p><strong>IHE Constraint</strong></p></td>
+<td><p><strong>Notes</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>Element</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Cardinality</p></td>
+<td><p>Optionality</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>text</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Narrative Text of the composition.</p></td>
+</tr>
+<tr class="even">
+<td><p>extension</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>extension</p></td>
+<td><p>QRFPrecedentDocument</p></td>
+<td><p>Identifier</p></td>
+<td></td>
+<td></td>
+<td><p>Identifier of the document which precedes this document in a thread.</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>extension</p></td>
+<td><p>QRFDataEntryPerson</p></td>
+<td><p>Practitioner</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>extension</p></td>
+<td><p>QRFUrgentNotificiationContactForRequest</p></td>
+<td><p>Practitioner</p></td>
+<td><p>0..1</p></td>
+<td><p>R</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>extension</p></td>
+<td><p>QRFUrgentNotificiationContactForResponse</p></td>
+<td><p>Practitioner</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>extension</p></td>
+<td><p>QRFRequestReceiver</p></td>
+<td><p>Practitioner</p></td>
+<td><p>0..1</p></td>
+<td><p>R</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>extension</p></td>
+<td><p>QRFResponseReceiver</p></td>
+<td><p>Practitioner</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>extension</p></td>
+<td><p>QRFVisitNumber</p></td>
+<td><p>Identifier</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>identifier</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Identifier</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Identifier for this composition.</p></td>
+</tr>
+<tr class="odd">
+<td><p>date</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>dateTime</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Composition editing time</p></td>
+</tr>
+<tr class="even">
+<td><p>type</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Codeable<br />
+Concept</p></td>
+<td><p>1..1</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>class</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Codeable<br />
+Concept</p></td>
+<td><p>1..1</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>title</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>string</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Meaningful title</p></td>
+</tr>
+<tr class="odd">
+<td><p>status</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>code</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>subject</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Reference(Patient)</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>author</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Reference (Practitioner)</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>section</p></td>
+<td></td>
+<td></td>
+<td><p>A section must at least one of text, entries, or sub-sections.</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>title</p></td>
+<td></td>
+<td><p>string</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>entry</p></td>
+<td></td>
+<td><p>Reference (Questionnaire)</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Questionnaire</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Reference (QuestionnaireResponse)</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>QuestionnaireResponse</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Reference (ANY)</p></td>
+<td><p>0..n</p></td>
+<td><p>R</p></td>
+<td><p>Additionally structured entries like DiagnosticOrder</p>
+<p>ReferralRequest</p>
+<p>CommonicationRequest</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="questionnaire-resource">6.7.2 Questionnaire resource</h4>
+<p>The intention of the ORF profile is to provide a standardized representation of forms at sender and receiver site as well. This is achieved with the Questionnaire Resource, which defines representation of all elements for the user (with the help of a CCS) and user interaction as well (e.g. with drop down lists).</p>
+<p>This approach requires two things:</p>
+<ol>
+<li>Precise definition of all questions</li>
+<li>Mapping between elements of the Questionnaire Resource and the corresponding elements of the other resources in the bundle</li>
+</ol>
+<p>Both is achieved by assigning meaningful concepts to all elements concerned. For codes refer to Appendix A.</p>
+<p><strong><br />
+</strong></p>
+<p><strong>Table 6.7.2-1: Content of the Questionnaire resource</strong></p>
+<table>
+<tbody>
+<tr class="odd">
+<td><p><strong>FHIR Questionnaire Resource</strong></p></td>
+<td><p><strong>FHIR Type</strong></p></td>
+<td><p><strong>IHE Constraint</strong></p></td>
+<td><p>'''Notes '''</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p><strong>Cardinality</strong></p></td>
+<td><p><strong>Optionality</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>identifier</p></td>
+<td></td>
+<td></td>
+<td><p>Identifier</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>version</p></td>
+<td></td>
+<td></td>
+<td><p>string</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p>status</p></td>
+<td></td>
+<td></td>
+<td><p>code</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p>group</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Root group: Groups may either contain questions or groups but not both</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>linkId</p></td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>group</p></td>
+<td></td>
+<td></td>
+<td><p>0..*</p></td>
+<td><p>(R)</p></td>
+<td><p>Nested questionnaire group. Groups may either contain questions or groups but not both; there may be 1..* nested groups</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>question</p></td>
+<td></td>
+<td></td>
+<td><p>0..*</p></td>
+<td><p>(R)</p></td>
+<td><p>.</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>linkId</p></td>
+<td><p>string</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>concept</p></td>
+<td><p>code</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td><p>Concept that represents this question on a questionnaire: used for mapping to the corresponding elements in the other resources in the bundle.</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>text</p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>type</p></td>
+<td><p>code</p></td>
+<td><p>1..1</p></td>
+<td><p>R</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>required</p></td>
+<td><p>boolean</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>repeats</p></td>
+<td><p>boolean</p></td>
+<td><p>0..1</p></td>
+<td><p>O</p></td>
+<td><p>Whether the question can have multiple answers</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>A question must use either option or options, not both.</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td><p>options</p></td>
+<td><p>Reference (ValueSet)</p></td>
+<td><p>0..1</p></td>
+<td><p>(R)</p></td>
+<td><p>Valueset containing permitted answers</p></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><p>option</p></td>
+<td><p>Coding</p></td>
+<td><p>0..*</p></td>
+<td><p>(R)</p></td>
+<td><p>Permitted answers</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="questionnaireresponse-resource">6.7.3 QuestionnaireResponse resource</h4>
+<p>The QuestionnaireResponse Resource depends of the definition of the Questionnaire Resource and is therefore use case specific. For deriving QuestionnaireResponse Resources from the Questionnaire Resources refer to <a href="https://www.hl7.org/fhir/questionnaireresponse.html" class="uri">https://www.hl7.org/fhir/questionnaireresponse.html</a>.</p>

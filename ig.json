@@ -1,0 +1,37 @@
+{
+  "tool": "jekyll",
+  "fixed-business-version": "1.0.0",
+  "license": "CC-BY-SA-4.0",
+  "npm-name": "ch.fhir.ig.orf",
+  "paths": {
+    "resources": [
+      "resources",
+      "examples"
+    ],
+    "pages": "pages",
+    "temp": "temp",
+    "output": "output",
+    "qa": "qa",
+    "txCache": "txCache",
+    "specification": "http://build.fhir.org/"
+  },
+  "path-pattern": "[type]-[id].html",
+  "defaults": {
+    "Any": {
+      "java": false
+    }
+  },
+  "template": "https://github.com/ahdis/test-template",
+  "template-dev": "/Users/oliveregger/Documents/github/test-template",
+  "canonicalBase": "http://fhir.ch/ig/ch-orf",
+  "source": "implementationguide/CH-ORF.xml",
+  "sct-edition": "http://snomed.info/sct/900000000000207008",
+  "resources": {},
+  "logging": [
+    "init",
+    "progress",
+    "context",
+    "html",
+    "tx"
+  ]
+}

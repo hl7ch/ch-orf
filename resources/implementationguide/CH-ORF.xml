@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+  <id value="CH-ORF" />
+  <text>
+    <status value="additional" />
+    <div xmlns="http://www.w3.org/1999/xhtml">
+	ImplementationGuide for CH:ORF                         
+    </div>
+  </text>
+  <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/CH-ORF" />
+  <name value="CH:ORF" />
+  <status value="active" />
+  <experimental value="false" />
+  <date value="2018-05-14" />
+  <publisher value="eHealth Suisse" />
+  <contact>
+    <name value="eHealth Suisse" />
+    <telecom>
+      <system value="url" />
+      <value value="https://www.e-health-suisse.ch/" />
+    </telecom>
+  </contact>
+  <contact>
+    <name value="Oliver Egger" />
+    <telecom>
+      <system value="email" />
+      <value value="oliver.egger@ahdis.ch" />
+    </telecom>
+  </contact>
+  <description value="ImplementationGuide for CH:ORF" />
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="CH"/>
+    </coding>
+  </jurisdiction>
+  <copyright value="CC-BY-SA-4.0" />
+  <fhirVersion value="3.4.0" />
+  <definition>
+    <package>
+      <name value="CH:ORF" />
+    </package>
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ebida-order-1" />
+      </reference> 
+      <name value="Ebida Order" />
+      <exampleBoolean value="true" />
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Questionnaire/lab-order-chemogram" />
+      </reference> 
+      <name value="lab order chemogram" />
+      <exampleBoolean value="true" />
+    </resource>
+    <!-- added for ig -->
+    <page>
+      <nameUrl value="index.html"/>
+      <title value="IG Templage Homepage"/>
+      <generation value="html" />
+    </page>
+  </definition>
+</ImplementationGuide>

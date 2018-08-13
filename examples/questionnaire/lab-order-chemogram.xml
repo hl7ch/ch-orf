@@ -1,0 +1,547 @@
+<Questionnaire 
+    xmlns="http://hl7.org/fhir">
+    <id value="lab-order-chemogram"/>
+    <text>
+        <status value="generated"/>
+        <div 
+            xmlns="http://www.w3.org/1999/xhtml">            Lab Order Questionnarie Example for a Chemogram                                                                                                                                                            
+            <pre>todo copy text out of rendering</pre>
+        </div>
+    </text>
+    <title value="Lab Order Example"/>
+    <status value="draft"/>
+    <experimental value="true" />
+    <subjectType value="Patient"/>
+    <date value="2018-04-12"/>
+    <publisher value="ahdis" />
+    <item>
+        <linkId value="info"/>
+        <text value="Lab Order Questionnarie Example for a Chemogram"/>
+        <type value="display"/>
+    </item>
+    <item>
+        <linkId value="order"/>
+        <text value="Auftrag"/>
+        <type value="group"/>
+        <item>
+            <linkId value="order.date"/>
+            <text value="Auftrags-Datum" />
+            <type value="date"/>
+        </item>
+    </item>
+    <item>
+        <linkId value="orderer"/>
+        <text value="Auftraggeber"/>
+        <type value="group"/>
+        <item>
+            <linkId value="orderer.author"/>
+            <text value="Author"/>
+            <type value="group"/>
+            <item>
+                <linkId value="orderer.author.visum"/>
+                <text value="Visum"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.organization"/>
+                <text value="Organisation"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.lastname"/>
+                <text value="Name"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.firstname"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.tel"/>
+                <text value="Telefon"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.e-mail"/>
+                <text value="E-Mail"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.street"/>
+                <text value="Strasse"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.postfach"/>
+                <text value="Postfach"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.zip"/>
+                <text value="PLZ"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.author.city"/>
+                <text value="Ort"/>
+                <type value="string"/>
+            </item>
+        </item>
+        <item>
+            <linkId value="orderer.dataenterer"/>
+            <text value="Erfasser"/>
+            <type value="group"/>
+            <item>
+                <linkId value="orderer.dataenterer.visum"/>
+                <text value="Visum"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.organization"/>
+                <text value="Organisation"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.lastname"/>
+                <!--1) -->
+                <definition value="http://ahdis.ch/fhir/StructureDefinition/QRFDataEntryPerson#Practitioner.name.given"/>
+                <!--2) -->
+                <code>
+                    <system value="http://tbd" />
+                    <code value="datlname" /></code> <!-- code to define mapping to QRFDataEntryPerson#Practitioner, given name-->
+                <text value="Name"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.firstname"/>
+                <definition value="http://ahdis.ch/fhir/StructureDefinition/QRFDataEntryPerson#Practitioner.name.first"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.tel"/>
+                <text value="Telefon"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.e-mail"/>
+                <text value="E-Mail"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.street"/>
+                <text value="Strasse"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.postfach"/>
+                <text value="Postfach"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.zip"/>
+                <text value="PLZ"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.dataenterer.city"/>
+                <text value="Ort"/>
+                <type value="string"/>
+            </item>
+        </item>
+        <item>
+            <linkId value="orderer.notcontactthisdoc"/>
+            <text value="Urgent Notification Contact for this document:"/>
+            <type value="group"/>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.visum"/>
+                <text value="Visum"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.organization"/>
+                <text value="Organisation"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.lastname"/>
+                <text value="Name"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.firstname"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.tel"/>
+                <text value="Telefon"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.e-mail"/>
+                <text value="E-Mail"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.street"/>
+                <text value="Strasse"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.postfach"/>
+                <text value="Postfach"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.zip"/>
+                <text value="PLZ"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactthisdoc.city"/>
+                <text value="Ort"/>
+                <type value="string"/>
+            </item>
+        </item>
+        <item>
+            <linkId value="orderer.notcontactresponsedoc"/>
+            <text value="Urgent Notification Contact for the response of this document:"/>
+            <type value="group"/>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.visum"/>
+                <text value="Visum"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.organization"/>
+                <text value="Organisation"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.lastname"/>
+                <text value="Name"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.firstname"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.tel"/>
+                <text value="Telefon"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.e-mail"/>
+                <text value="E-Mail"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.street"/>
+                <text value="Strasse"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.postfach"/>
+                <text value="Postfach"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.zip"/>
+                <text value="PLZ"/>
+                <type value="string"/>
+            </item>
+            <item>
+                <linkId value="orderer.notifcontactresponsedoc.city"/>
+                <text value="Ort"/>
+                <type value="string"/>
+            </item>
+        </item>
+    </item>
+    <item>
+        <linkId value="receiver"/>
+        <text value="Receiver"/>
+        <type value="group"/>
+        <item>
+            <linkId value="receiver.visum"/>
+            <text value="Visum"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.bereich"/>
+            <text value="Bereich"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.abt"/>
+            <text value="Bereich"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.lastname"/>
+            <text value="Name"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.firstname"/>
+            <text value="Vorname"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.tel"/>
+            <text value="Telefon"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.e-mail"/>
+            <text value="E-Mail"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.cstreet"/>
+            <text value="Strasse"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.postfach"/>
+            <text value="Postfach"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.zip"/>
+            <text value="PLZ"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="receiver.city"/>
+            <text value="Ort"/>
+            <type value="string"/>
+        </item>
+    </item>
+    <item>
+        <linkId value="patient"/>
+        <text value="Patient"/>
+        <type value="group"/>
+        <item>
+            <linkId value="patient.lastname"/>
+            <definition value="http://hl7.org/fhir/StructureDefinition/Patient#Patient.name.given"/>
+            <text value="Name"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="patient.firstname"/>
+            <definition value="http://hl7.org/fhir/StructureDefinition/Patient#Patient.name.first"/>
+            <text value="Vorname"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="patient.pid"/>
+            <text value="PID (sendendes System)"/>
+            <type value="string"/>
+        </item>
+        <item>
+            <linkId value="patient.birthdate"/>
+            <text value="Geburtsdatum"/>
+            <type value="date"/>
+        </item>
+        <item>
+            <linkId value="patient.sex"/>
+            <text value="Geschlecht"/>
+            <type value="choice"/>
+            <option>
+                <valueString value="M" />
+            </option>
+            <option>
+                <valueString value="F" />
+            </option>
+        </item>
+        <item>
+            <linkId value="patient.amborstat"/>
+            <text value="Amb/Stat"/>
+            <type value="choice"/>
+            <option>
+                <valueString value="Amb" />
+            </option>
+            <option>
+                <valueString value="Stat" />
+            </option>
+        </item>
+    </item>
+    <item>
+        <linkId value="chemogramm"/>
+        <text value="Chemogramm"/>
+        <type value="choice"/>
+        <item>
+            <linkId value="lab"/>
+            <text value="Laborwerte"/>
+            <type value="string"/>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="27353-2" />
+                    <display value="Glucose" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="33898-8" />
+                    <display value="Bilirubin" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="3094-0" />
+                    <display value="Harnstoff" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="57332-9" />
+                    <display value="Harnsäure" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2160-0" />
+                    <display value="Kreatinin" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="56776-8" />
+                    <display value="Amylase" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2325-9" />
+                    <display value="GGT" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="1916-6" />
+                    <display value="GOT (ASAT)" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="76625-3" />
+                    <display value="GPT (ALAT)" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="53524-5" />
+                    <display value="AP" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="49129-0" />
+                    <display value="CK gesamt" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2777-1" />
+                    <display value="Phosphat" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2276-4" />
+                    <display value="Ferritin" />
+                </valueCoding>
+            </option>
+            <!-- Juerg klaert code ab           
+            <option><valueCoding><system value="http://loinc.org" /><code value="" /><display value="Eiweiss" /></valueCoding></option>
+-->
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="16615-7" />
+                    <display value="Cholesterin" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="3043-7" />
+                    <display value="Triglyceride" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2823-3" />
+                    <display value="K" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2951-2" />
+                    <display value="Na" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="17863-2" />
+                    <display value="Ca" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2572-6" />
+                    <display value="Lipase" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="2537-9" />
+                    <display value="LDH" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="27340-9" />
+                    <display value="HDL-Cholesterin" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="22748-8" />
+                    <display value="LDL-Cholesterin" />
+                </valueCoding>
+            </option>
+            <option>
+                <valueCoding>
+                    <system value="http://loinc.org" />
+                    <code value="1751-7" />
+                    <display value="Albumin" />
+                </valueCoding>
+            </option>
+        </item>
+    </item>
+</Questionnaire>
