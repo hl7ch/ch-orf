@@ -8,6 +8,7 @@
             <pre>todo copy text out of rendering</pre>
         </div>
     </text>
+    <name value="LabOrderExample"/>
     <title value="Lab Order Example"/>
     <status value="draft"/>
     <experimental value="true" />
@@ -351,23 +352,23 @@
             <linkId value="patient.sex"/>
             <text value="Geschlecht"/>
             <type value="choice"/>
-            <option>
+            <answerOption>
                 <valueString value="M" />
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueString value="F" />
-            </option>
+            </answerOption>
         </item>
         <item>
             <linkId value="patient.amborstat"/>
             <text value="Amb/Stat"/>
             <type value="choice"/>
-            <option>
+            <answerOption>
                 <valueString value="Amb" />
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueString value="Stat" />
-            </option>
+            </answerOption>
         </item>
     </item>
     <item>
@@ -378,170 +379,170 @@
             <linkId value="lab"/>
             <text value="Laborwerte"/>
             <type value="string"/>
-            <option>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="27353-2" />
                     <display value="Glucose" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="33898-8" />
                     <display value="Bilirubin" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="3094-0" />
                     <display value="Harnstoff" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="57332-9" />
                     <display value="Harnsäure" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2160-0" />
                     <display value="Kreatinin" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="56776-8" />
                     <display value="Amylase" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2325-9" />
                     <display value="GGT" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="1916-6" />
                     <display value="GOT (ASAT)" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="76625-3" />
                     <display value="GPT (ALAT)" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="53524-5" />
                     <display value="AP" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="49129-0" />
                     <display value="CK gesamt" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2777-1" />
                     <display value="Phosphat" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2276-4" />
                     <display value="Ferritin" />
                 </valueCoding>
-            </option>
+            </answerOption>
             <!-- Juerg klaert code ab           
-            <option><valueCoding><system value="http://loinc.org" /><code value="" /><display value="Eiweiss" /></valueCoding></option>
+            <answerOption><valueCoding><system value="http://loinc.org" /><code value="" /><display value="Eiweiss" /></valueCoding></answerOption>
 -->
-            <option>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="16615-7" />
                     <display value="Cholesterin" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="3043-7" />
                     <display value="Triglyceride" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2823-3" />
                     <display value="K" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2951-2" />
                     <display value="Na" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="17863-2" />
                     <display value="Ca" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2572-6" />
                     <display value="Lipase" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="2537-9" />
                     <display value="LDH" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="27340-9" />
                     <display value="HDL-Cholesterin" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="22748-8" />
                     <display value="LDL-Cholesterin" />
                 </valueCoding>
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueCoding>
                     <system value="http://loinc.org" />
                     <code value="1751-7" />
                     <display value="Albumin" />
                 </valueCoding>
-            </option>
+            </answerOption>
         </item>
     </item>
 </Questionnaire>

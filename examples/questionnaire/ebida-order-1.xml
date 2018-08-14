@@ -6,6 +6,7 @@
             <pre>todo, see screenshot provided by juerg</pre>
         </div>
     </text>
+    <name value="EbidaOrderExample"/>
     <title value="Ebida Order Example"/>
     <status value="draft"/>
     <experimental value="true" />
@@ -225,12 +226,12 @@
             <linkId value="patient.sex"/>
             <text value="Geschlecht"/>
             <type value="choice"/>
-            <option>
+            <answerOption>
                 <valueString value="M" />
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueString value="F" />
-            </option>
+            </answerOption>
         </item>
         <item>
             <linkId value="patient.casenumber"/>
@@ -241,12 +242,12 @@
             <linkId value="patient.amborstat"/>
             <text value="Amb/Stat"/>
             <type value="choice"/>
-            <option>
+            <answerOption>
                 <valueString value="Amb" />
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueString value="Stat" />
-            </option>
+            </answerOption>
         </item>
     </item>
     <item>
@@ -257,12 +258,12 @@
             <linkId value="command.partner"/>
             <text value="EBIDA-Partner"/>
             <type value="choice"/>
-            <option>
+            <answerOption>
                 <valueString value="Inselspital Bern" />
-            </option>
-            <option>
+            </answerOption>
+            <answerOption>
                 <valueString value="Spital Limmatplatz" />
-            </option>
+            </answerOption>
         </item>
         <item>
             <linkId value="command.partner.info"/>
