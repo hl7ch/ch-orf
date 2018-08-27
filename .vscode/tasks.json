@@ -147,7 +147,7 @@
             "command": "java",
             "args": [
                 "-jar",
-                "${workspaceRoot}/igpublisher/org.hl7.fhir.igpublisher.jar",
+                "${workspaceRoot}/org.hl7.fhir.igpublisher.jar",
                 "-web",
                 "-ig",
                 "${workspaceRoot}/ig.json"
