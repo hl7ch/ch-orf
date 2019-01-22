@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="300.0000" height="250.0000" style="zoom: 1;">
+    <!--
+    <defs>
+        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"></path>
+        </pattern>
+        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">1
+            <rect width="100" height="100" fill="url(#smallGrid)"></rect>
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="darkslategray" stroke-width="1"></path>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    -->
+
+    <defs>
+        <marker id="arrow" markerWidth="5" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L5,3 z" fill="#000" />
+        </marker>
+    </defs>
+
+    <g transform="translate(20, 0)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="100px" y="30px">Questionnaire</tspan>
+            <tspan x="100px" y="42px">Creator</tspan>
+        </text>
+        <line x1="100" y1="60" x2="100" y2="220" stroke="black" stroke-dasharray="5" stroke-width="1.5px" />
+        <rect stroke="#000000" x="90px" height="110px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+    </g>
+
+    <g transform="translate(150, 0)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="100px" y="30px">Questionnaire</tspan>
+            <tspan x="100px" y="42px">Manager</tspan>
+        </text>
+        <line x1="100" y1="60" x2="100" y2="220" stroke="black" stroke-dasharray="5" stroke-width="1.5px" />
+        <rect stroke="#000000" x="90px" height="110px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+    </g>
+
+    <line x1="130" y1="100" x2="235" y2="100" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+
+    <line x1="130" y1="180" x2="235" y2="180" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+
+    <polyline points="110,120 90,120 90,140 105,140" stroke="#000" stroke-width="1" marker-end="url(#arrow)" fill="none" />
+
+
+    <g transform="translate(30, 90)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="left">
+            <tspan x="0px" y="0px">Design</tspan>
+            <tspan x="0px" y="12px">Questionnaire</tspan>
+            <tspan x="0px" y="24px">based on existing</tspan>
+            <tspan x="0px" y="36px">template if</tspan>
+            <tspan x="0px" y="48px">appropiate</tspan>
+        </text>
+    </g>
+
+    <g transform="translate(190, 70)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="0px" y="0px">Query/Retrieve</tspan>
+            <tspan x="0px" y="12px">Questionnaire</tspan>
+            <tspan x="0px" y="24px">[CH:ORF-1]</tspan>
+        </text>
+    </g>
+
+    <g transform="translate(190, 160)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="0px" y="0px">Store Questionnaire</tspan>
+            <tspan x="0px" y="12px">[CH:ORF-2]</tspan>
+        </text>
+    </g>
+
+
+</svg>

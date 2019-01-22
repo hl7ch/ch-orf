@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="400.0000" height="350.0000" style="zoom: 1;">
+
+    <!--
+    <defs>
+        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"></path>
+        </pattern>
+        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">1
+            <rect width="100" height="100" fill="url(#smallGrid)"></rect>
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="darkslategray" stroke-width="1"></path>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    -->
+    <defs>
+        <marker id="arrow" markerWidth="5" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L5,3 z" fill="#000" />
+        </marker>
+    </defs>
+
+    <g transform="translate(0, 0)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="100px" y="30px">Questionnaire</tspan>
+            <tspan x="100px" y="42px">Creator/Filler/Manager</tspan>
+        </text>
+        <line x1="100" y1="60" x2="100" y2="320" stroke="black" stroke-dasharray="5" stroke-width="1.5px" />
+        <rect stroke="#000000" x="90px" height="90px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+        <g transform="translate(0, 120)">
+            <rect stroke="#000000" x="90px" height="90px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+        </g>
+    </g>
+
+    <g transform="translate(230, 0)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="middle">
+            <tspan x="100px" y="30px">Questionnaire</tspan>
+            <tspan x="100px" y="42px">Manager</tspan>
+        </text>
+        <line x1="100" y1="60" x2="100" y2="320" stroke="black" stroke-dasharray="5" stroke-width="1.5px" />
+        <rect stroke="#000000" x="90px" height="90px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+        <g transform="translate(0, 120)">
+            <rect stroke="#000000" x="90px" height="90px" y="80px" id="rect1" stroke-width="1px" width="20px" fill="#ffffff" transform=""></rect>
+        </g>
+    </g>
+
+    <g transform="translate(110, 100)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="left">
+            <tspan x="10px" y="0px">Query Questionnaire Resource Request</tspan>
+        </text>
+        <line x1="0" y1="10" x2="205" y2="10" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+    </g>
+
+    <g transform="translate(110, 140)">
+        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="left">
+            <tspan x="10px" y="0px">Query Questionnaire Resource Response</tspan>
+        </text>
+        <line x1="210" y1="10" x2="5" y2="10" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+    </g>
+
+    <g transform="translate(0, 120)">
+
+        <g transform="translate(110, 100)">
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="left">
+                <tspan x="10px" y="0px">Retrieve Questionnaire Resource Request</tspan>
+            </text>
+            <line x1="0" y1="10" x2="205" y2="10" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+        </g>
+
+        <g transform="translate(110, 140)">
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="10px" transform="" text-anchor="left">
+                <tspan x="10px" y="0px">Retrieve Questionnaire Resource Response</tspan>
+            </text>
+            <line x1="210" y1="10" x2="5" y2="10" stroke="#000" stroke-width="1" marker-end="url(#arrow)" />
+        </g>
+    </g>
+
+
+</svg>

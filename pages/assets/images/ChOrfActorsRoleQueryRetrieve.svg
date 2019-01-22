@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="620" height="460" style="zoom: 1;">
+
+<!--
+    <defs>
+        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5"/>
+        </pattern>
+        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+            <rect width="100" height="100" fill="url(#smallGrid)"/>
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="darkslategray" stroke-width="1"/>
+        </pattern>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#grid)" />
+-->
+    <g transform="translate(-40, -20)">
+        <g transform="translate(70,50)">
+            <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="1px" width="150px" fill="#ffffff" transform=""></rect>
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
+                <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
+                <tspan x="75px" y="55px">Creator</tspan>
+            </text>
+        </g>
+        <g transform="translate(480,50)">
+            <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="1px" width="150px" fill="#ffffff" transform=""></rect>
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text0-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
+                <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
+                <tspan x="75px" y="55px">Manager</tspan>
+            </text>
+        </g>
+        <g transform="translate(70,370)">
+            <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="1px" width="150px" fill="#ffffff" transform=""></rect>
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
+                <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
+                <tspan x="75px" y="55px">Filler</tspan>
+            </text>
+        </g>
+        <g transform="translate(480,370)">
+            <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="1px" width="150px" fill="#ffffff" transform=""></rect>
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
+                <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
+                <tspan x="75px" y="55px">Manager</tspan>
+            </text>
+        </g>
+        <g transform="translate(270,200)">
+           <ellipse stroke="#000000" cx="80" cy="40" rx="100" ry="50" stroke-width="1px" width="1" fill="#ffffff" transform=""></ellipse>
+            <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
+                <tspan x="75px" y="35px" visibility="visible">Query/Retrieve</tspan>
+                <tspan x="75px" y="55px">Questionnaire</tspan>
+            </text>
+        </g>
+    <line stroke="#000000" id="line1" x1="220px" y1="130px" stroke-width="1px" x2="290px" y2="200px" transform=""></line>
+    <line stroke="#000000" id="line2" x1="480px" y1="130px" stroke-width="1px" x2="410px" y2="200px" transform=""></line>
+    <line stroke="#000000" id="line3" x1="480px" y1="370px" stroke-width="1px" x2="410px" y2="280px" transform=""></line>
+    <line stroke="#000000" id="line4" x1="220px" y1="370px" stroke-width="1px" x2="290px" y2="280px" transform=""></line>
+    </g>
+</svg>

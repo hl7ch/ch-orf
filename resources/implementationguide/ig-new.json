@@ -1,0 +1,93 @@
+{
+  "resourceType" : "ImplementationGuide",
+  "id" : "CH-ORF",
+  "text" : {
+    "status" : "additional",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tImplementationGuide for CH:ORF                         \n    </div>"
+  },
+  "extension" : [{
+    "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-resource",
+    "valueString" : "/Users/oliveregger/Documents/github/ch-orf/resources"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-resource",
+    "valueString" : "/Users/oliveregger/Documents/github/ch-orf/examples"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages",
+    "valueString" : "/Users/oliveregger/Documents/github/ch-orf/pages"
+  }],
+  "url" : "http://fhir.ch/ig/ch-orf/ImplementationGuide/CH-ORF",
+  "version" : "1.0.0",
+  "name" : "CH_ORF",
+  "status" : "active",
+  "experimental" : false,
+  "date" : "2018-05-14",
+  "publisher" : "eHealth Suisse",
+  "contact" : [{
+    "name" : "eHealth Suisse",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.e-health-suisse.ch/"
+    }]
+  },
+  {
+    "name" : "Oliver Egger",
+    "telecom" : [{
+      "system" : "email",
+      "value" : "oliver.egger@ahdis.ch"
+    }]
+  }],
+  "description" : "ImplementationGuide for CH:ORF",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "CH"
+    }]
+  }],
+  "copyright" : "CC-BY-SA-4.0",
+  "packageId" : "ch.fhir.ig.orf",
+  "license" : "CC-BY-SA-4.0",
+  "fhirVersion" : ["4.0.0",
+  "4.0.0"],
+  "definition" : {
+    "grouping" : [{
+      "name" : "CH:ORF"
+    }],
+    "resource" : [{
+      "reference" : {
+        "reference" : "Questionnaire/ebida-order-1"
+      },
+      "name" : "Ebida Order",
+      "exampleBoolean" : true
+    },
+    {
+      "reference" : {
+        "reference" : "Questionnaire/lab-order-chemogram"
+      },
+      "name" : "lab order chemogram",
+      "exampleBoolean" : true
+    }],
+    "page" : {
+      "nameUrl" : "index.html",
+      "title" : "IG Templage Homepage",
+      "generation" : "html"
+    },
+    "parameter" : [{
+      "code" : "generate-json",
+      "value" : "true"
+    },
+    {
+      "code" : "generate-xml",
+      "value" : "true"
+    },
+    {
+      "code" : "generate-turtle",
+      "value" : "true"
+    },
+    {
+      "code" : "apply",
+      "value" : "version"
+    }]
+  }
+}

@@ -1,33 +1,5 @@
-<div>
+<p style="background-color: gold; border:1px solid maroon; padding: 5px;">
+    This is the Continuous Integration Build of the CH-ORF Implementation Guide, based on <a href="http://build.fhir.org">FHIR Version {{ site.data.fhir.version }}</a>. (will be incorrect/inconsistent at times). 
+</p>
 
-    <h2>Order &amp; Referral by Form (CH:ORF) Profile (Swiss realm)
-    </h2>
-
-    <div>The <a href="http://e-health-wiki.ch/index.php/CH-ORF">Order &amp; Referral by Form (CH:ORF) Profile</a> describes
-        how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports
-        etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise
-        information exchange. The profile supports creation and domain wide deployment of forms for structured and coded
-        information exchange as well as exchange of such forms for referral, orders etc. The profile relies on FHIR e.g.
-        the questionnaire resource. Because the profile relies heavily on the FHIR Resources Questionnaire and QuestionnaireResponse,
-        forms are addressed here as Questionnaires.
-    </div>
-
-    <figure>
-        <img src="assets/images/ChOrfQuestionnaireHandlingActorDiagram.svg" title="ORF Actor Diagram" width="700" height="650" />
-        <figcaption>ORF Actor Diagram</figcaption>
-    </figure>
-
-    <h3>Relation to Structured Data Capture Implementation Guide from HL7</h3>
-    <div>
-        HL7 publishs an Implementation Guide for <a href="http://hl7.org/fhir/us/sdc/history.html">Structured Data Capture</a>,
-        which has a similar Use Case. The actors are named differently, however with the CH:ORF Implementation Guide the
-        concepts have been harmonized that there are no differences.
-
-        <figure>
-            <img src="assets/images/ChOrfQuestionnaireHandlingActorDiagramRelationSDC.svg" title="ORF/SDC Actor Diagram" width="490"
-                height="455" />
-            <figcaption>ORF/SWC Actor Diagram</figcaption>
-        </figure>
-    </div>
-
-</div>
+{% include mediawiki.html %}

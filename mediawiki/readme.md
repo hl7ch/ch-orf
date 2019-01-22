@@ -4,5 +4,13 @@
 
 ```
 cd mediawiki
-pandoc orf.wiki -f mediawiki -t html -o ../pages/_includes/index.html
+pandoc orf.wiki -f mediawiki -t html -o ../pages/_includes/mediawiki.html
 ```
+this does not copy svg images, therefore:
+
+copy html from from ehealth wiki and make the following adjustments
+
+Find and Replace:
+<div style="max-width:40%;".*\n.*\n.*
+
+<img alt="(.*?)"\n.*\n.*?>
