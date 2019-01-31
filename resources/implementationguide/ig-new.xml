@@ -68,6 +68,34 @@
       <name value="lab order chemogram"/>
       <exampleBoolean value="true"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-composition"/>
+      </reference>
+      <name value="ORF Composition Profile"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-document"/>
+      </reference>
+      <name value="ORF Document Profile"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-questionnaire"/>
+      </reference>
+      <name value="ORF Questionnaire Profile"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-questionnaireresponse"/>
+      </reference>
+      <name value="ORF Questionnaire Profile"/>
+      <exampleBoolean value="false"/>
+    </resource>
     <page>
       <nameUrl value="index.html"/>
       <title value="IG Templage Homepage"/>

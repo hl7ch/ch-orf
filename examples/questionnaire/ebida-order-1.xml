@@ -14,7 +14,7 @@
     <date value="2018-03-31"/>
     <publisher value="ahdis" />
     <item>
-        <linkId value="order"/>
+        <linkId value="orf.ch.order"/>
         <text value="Auftrag"/>
         <type value="group"/>
         <item>

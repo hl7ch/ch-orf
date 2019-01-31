@@ -67,6 +67,34 @@
       },
       "name" : "lab order chemogram",
       "exampleBoolean" : true
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-composition"
+      },
+      "name" : "ORF Composition Profile",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-document"
+      },
+      "name" : "ORF Document Profile",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-questionnaire"
+      },
+      "name" : "ORF Questionnaire Profile",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-questionnaireresponse"
+      },
+      "name" : "ORF Questionnaire Profile",
+      "exampleBoolean" : false
     }],
     "page" : {
       "nameUrl" : "index.html",
