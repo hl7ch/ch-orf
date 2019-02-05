@@ -72,28 +72,60 @@
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-composition"
       },
-      "name" : "ORF Composition Profile",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-dataentryperson"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-precedentdocument"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-urgentnoficationcontactforrequest"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-urgentnoficationcontactforresponse"
+      },
       "exampleBoolean" : false
     },
     {
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-document"
       },
-      "name" : "ORF Document Profile",
       "exampleBoolean" : false
     },
     {
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-questionnaire"
       },
-      "name" : "ORF Questionnaire Profile",
       "exampleBoolean" : false
     },
     {
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-questionnaireresponse"
       },
-      "name" : "ORF Questionnaire Profile",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-servicerequest"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-visitnumber"
+      },
       "exampleBoolean" : false
     }],
     "page" : {

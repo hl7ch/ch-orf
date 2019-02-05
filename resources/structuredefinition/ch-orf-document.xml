@@ -2,9 +2,9 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
     <id value="ch-orf-document"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
-    <version value="0.1.0"/>
+    <version value="0.9.0"/>
     <name value="ORFDocument"/>
-    <title value="ORFDocument"/>
+    <title value="Document"/>
     <status value="draft"/>
     <date value="2019-01-30"/>
     <publisher value="eHealth Suisse"/>
@@ -104,7 +104,7 @@
             </type>
             <mustSupport value="true"/>
         </element>
-      <element id="Bundle.entry:ChfOrfQuestionnaire">
+        <element id="Bundle.entry:ChfOrfQuestionnaire">
             <path value="Bundle.entry"/>
             <sliceName value="ChfOrfQuestionnaire"/>
             <short value="Composition"/>
@@ -123,8 +123,8 @@
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
             </type>
             <mustSupport value="true"/>
-        </element>  
-             <element id="Bundle.entry:ChfOrfQuestionnaireResponse">
+        </element>
+        <element id="Bundle.entry:ChfOrfQuestionnaireResponse">
             <path value="Bundle.entry"/>
             <sliceName value="ChfOrfQuestionnaireResponse"/>
             <short value="Composition"/>
@@ -143,6 +143,26 @@
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
             </type>
             <mustSupport value="true"/>
-        </element>              
+        </element>
+        <element id="Bundle.entry:ChfOrfServiceRequest">
+            <path value="Bundle.entry"/>
+            <sliceName value="ChfOrfServiceRequest"/>
+            <short value="Composition"/>
+            <min value="1"/>
+            <max value="1"/>
+        </element>
+        <element id="Bundle.entry:ChfOrfServiceRequest.fullUrl">
+            <path value="Bundle.entry.fullUrl"/>
+            <min value="0"/>
+        </element>
+        <element id="Bundle.entry:ChfOrfServiceRequest.resource">
+            <path value="Bundle.entry.resource"/>
+            <max value="1"/>
+            <type>
+                <code value="ServiceRequest"/>
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
+            </type>
+            <mustSupport value="true"/>
+        </element>
     </differential>
 </StructureDefinition>
