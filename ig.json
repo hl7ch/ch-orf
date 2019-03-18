@@ -1,6 +1,7 @@
 {
   "tool": "jekyll",
-  "fixed-business-version": "1.0.0",
+  "version": "4.0.0",
+  "fixed-business-version": "0.9.0",
   "license": "CC-BY-SA-4.0",
   "npm-name": "ch.fhir.ig.orf",
   "paths": {
@@ -28,7 +29,7 @@
   "template": "https://github.com/ahdis/test-template",
   "template-dev": "/Users/oliveregger/Documents/github/test-template",
   "canonicalBase": "http://fhir.ch/ig/ch-orf",
-  "source": "implementationguide/CH-ORF.xml",
+  "source": "implementationguide/ch.fhir.ig.orf-0.9.0.xml",
   "sct-edition": "http://snomed.info/sct/900000000000207008",
   "resources": {},
   "logging": [

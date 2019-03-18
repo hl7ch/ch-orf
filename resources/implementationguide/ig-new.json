@@ -1,6 +1,6 @@
 {
   "resourceType" : "ImplementationGuide",
-  "id" : "CH-ORF",
+  "id" : "ch.fhir.ig.orf-0.9.0",
   "text" : {
     "status" : "additional",
     "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tImplementationGuide for CH:ORF                         \n    </div>"
@@ -17,12 +17,12 @@
     "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages",
     "valueString" : "/Users/oliveregger/Documents/github/ch-orf/pages"
   }],
-  "url" : "http://fhir.ch/ig/ch-orf/ImplementationGuide/CH-ORF",
-  "version" : "1.0.0",
+  "url" : "http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.0",
+  "version" : "0.9.0",
   "name" : "CH_ORF",
   "status" : "active",
   "experimental" : false,
-  "date" : "2018-05-14",
+  "date" : "2018-05-14T00:00:00+02:00",
   "publisher" : "eHealth Suisse",
   "contact" : [{
     "name" : "eHealth Suisse",

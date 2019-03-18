@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="CH-ORF"/>
+  <id value="ch.fhir.ig.orf-0.9.0"/>
   <text>
     <status value="additional"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
 	ImplementationGuide for CH:ORF                         
     </div>
   </text>
-  <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/CH-ORF"/>
-  <version value="0.2.0"/>
+  <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.0"/>
+  <version value="0.9.0"/>
   <name value="CH_ORF"/>
   <status value="active"/>
   <experimental value="false"/>
@@ -43,10 +43,12 @@
   <dependsOn>
     <uri value="http://fhir.ch/ig/ch-core" />
     <packageId value="ch.fhir.ig.core" />
+    <version value="current" />
   </dependsOn>
   <dependsOn>
     <uri value="http://hl7.org/fhir/uv/sdc" />
     <packageId value="hl7.fhir.uv.sdc" />
+    <version value="current" />
   </dependsOn>
   <definition>
     <grouping>
