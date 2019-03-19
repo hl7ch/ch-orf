@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="700" height="650" style="zoom: 1;">
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="700" height="220" style="zoom: 1;">
 
 <!--
     <defs>
@@ -12,45 +12,12 @@
             <path d="M 100 0 L 0 0 0 100" fill="none" stroke="darkslategray" stroke-width="1"/>
         </pattern>
     </defs>
- -->   
+-->
 
     <rect width="100%" height="100%" fill="url(#grid)" />
 
-    <g transform="translate(50,50)">
-        <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
-        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
-            <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
-            <tspan x="75px" y="55px">Manager</tspan>
-        </text>
-    </g>
 
-    <g transform="translate(200,75)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">← Query/Retrieve Questionnaire [CH:ORF-1]</text>
-        <line stroke="#000000" y1="0px" id="line1" x1="000000px" stroke-width="2px" y2="0px" x2="300.000000px" transform=""></line>
-    </g>
-
-    <g transform="translate(200,110)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">← Store Questionnaire [CH:ORF-2]</text>
-        <line stroke="#000000" y1="0px" id="line1" x1="000000px" stroke-width="2px" y2="0px" x2="300.000000px" transform=""></line>
-    </g>
-
-    <g transform="translate(500,50)">
-        <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
-        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
-            <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
-            <tspan x="75px" y="55px">Creator</tspan>
-        </text>
-    </g>
-
-    <g transform="translate(50,250)">
-        <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
-        <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
-            <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
-            <tspan x="75px" y="55px">Manager</tspan>
-        </text>
-    </g>
-
-    <g transform="translate(350,250)">
+    <g transform="translate(500,10)">
         <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
         <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
             <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
@@ -58,7 +25,7 @@
         </text>
     </g>
 
-    <g transform="translate(500,250)">
+    <g transform="translate(500,90)">
         <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
         <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
             <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
@@ -66,7 +33,7 @@
         </text>
     </g>
 
-    <g transform="translate(50,450)">
+    <g transform="translate(50,10)">
         <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
         <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
             <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
@@ -74,7 +41,7 @@
         </text>
     </g>
 
-    <g transform="translate(50,530)">
+    <g transform="translate(50,90)">
         <rect stroke="#000000" x="0px" height="80px" y="0px" id="rect1" stroke-width="2px" width="150px" fill="#ffffff" transform=""></rect>
         <text stroke="none" style="outline-style:none;" id="text3" stroke-width="1px" x="50px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="72px" transform="" text-anchor="middle">
             <tspan x="75px" y="35px" visibility="visible">Questionnaire</tspan>
@@ -82,49 +49,14 @@
         </text>
     </g>
 
-    <g transform="translate(70,130)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="10px" transform="" text-anchor="start">
-            <tspan x="5px" y="35px" visibility="visible">↑ Query/Retrieve</tspan>
-            <tspan x="15px" y="55px"> Questionnaire</tspan>
-            <tspan x="15px" y="75px">[CH:ORF-1]</tspan>
-        </text>         
-        <line stroke="#000000" x1="0px" y1="0px" x2="0px" y2="120px" stroke-width="2px" transform=""></line>
-    </g>    
-
-    <g transform="translate(70,330)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="10px" transform="" text-anchor="start">
-            <tspan x="5px" y="35px" visibility="visible">↑ Query</tspan>
-            <tspan x="15px" y="55px"> Questionnaire</tspan>
-            <tspan x="15px" y="75px">[CH:ORF-1]</tspan>
-        </text>         
-        <line stroke="#000000" x1="0px" y1="0px" x2="0px" y2="120px" stroke-width="2px" transform=""></line>
-    </g>    
-
-    <g transform="translate(170,330)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="10px" transform="" text-anchor="start">
-            <tspan x="5px" y="35px" visibility="visible">↑ Retrieve</tspan>
-            <tspan x="15px" y="55px"> Bundle</tspan>
-            <tspan x="15px" y="75px">[CH:ORF-3]</tspan>
-        </text>         
-        <line stroke="#000000" x1="0px" y1="0px" x2="0px" y2="120px" stroke-width="2px" transform=""></line>
-    </g>    
-
-    <rect x="30px" height="150px" y="220px" width="650px" style="stroke-linecap:butt;stroke-width:1;stroke:#4A7EBB" stroke-dasharray="5,10,5" fill="none"></rect>
-
-    <g transform="translate(220,250)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="16px" y="-10px" transform="" text-anchor="start">Questionnaire Processor</text>
+    <g transform="translate(200,40)">
+        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">Submit Bundle [CH:ORF-1] →</text>
+        <line stroke="#000000" x1="0px" y1="0px" x2="300px" y2="0px" stroke-width="2px" transform=""></line>
     </g>
 
-    <g transform="translate(200,480)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">Submit Bundle [CH:ORF-4] →</text>
-        <line stroke="#000000" x1="0px" y1="0px" x2="220px" y2="0px" stroke-width="2px" transform=""></line>
-        <line stroke="#000000" x1="220px" y1="0px" x2="220px" y2="-150px" stroke-width="2px" transform=""></line>
-    </g>
-
-    <g transform="translate(200,550)">
-        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">← Submit Bundle [CH:ORF-4]</text>
-        <line stroke="#000000" x1="0px" y1="0px" x2="370px" y2="0px" stroke-width="2px" transform=""></line>
-        <line stroke="#000000" x1="370px" y1="0px" x2="370px" y2="-220px" stroke-width="2px" transform=""></line>
+    <g transform="translate(200,120)">
+        <text stroke="none" style="outline-style:none;" id="text1" stroke-width="1px" x="20px" text-rendering="geometricPrecision" font-family="Helvetica" fill="#000000" font-size="12px" y="-10px" transform="" text-anchor="start">← Submit Bundle [CH:ORF-1]</text>
+        <line stroke="#000000" x1="0px" y1="0px" x2="300px" y2="0px" stroke-width="2px" transform=""></line>
     </g>
 
 

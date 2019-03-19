@@ -1,6 +1,6 @@
 {
   "resourceType" : "ImplementationGuide",
-  "id" : "ch.fhir.ig.orf-0.9.0",
+  "id" : "ch.fhir.ig.orf-0.9.1",
   "text" : {
     "status" : "additional",
     "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tImplementationGuide for CH:ORF                         \n    </div>"
@@ -17,8 +17,8 @@
     "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages",
     "valueString" : "/Users/oliveregger/Documents/github/ch-orf/pages"
   }],
-  "url" : "http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.0",
-  "version" : "0.9.0",
+  "url" : "http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.1",
+  "version" : "0.9.1",
   "name" : "CH_ORF",
   "status" : "active",
   "experimental" : false,
@@ -83,6 +83,18 @@
     {
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-precedentdocument"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-requestreceiver"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureDefinition/ch-orf-responsereceiver"
       },
       "exampleBoolean" : false
     },

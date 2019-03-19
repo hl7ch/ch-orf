@@ -111,6 +111,26 @@
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse" />
             </type>
         </element>
+        <element id="Composition.extension:requestReceiver">
+            <path value="Composition.extension" />
+            <sliceName value="requestReceiver" />
+            <min value="0"/>
+            <max value="1"/>
+            <type>
+                <code value="Extension" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestreceiver" />
+            </type>
+        </element>
+        <element id="Composition.extension:responseReceiver">
+            <path value="Composition.extension" />
+            <sliceName value="responseReceiver" />
+            <min value="0"/>
+            <max value="*"/>
+            <type>
+                <code value="Extension" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver" />
+            </type>
+        </element>
         <element id="Composition.extension:visitNumber">
             <path value="Composition.extension" />
             <sliceName value="visitNumber" />
@@ -312,7 +332,7 @@
                 <map value="FiveWs.subject"/>
             </mapping>
         </element>
-<!--        
+        <!--        
         <element id="Composition.encounter">
             <path value="Composition.encounter"/>
             <short value="Context of the Composition"/>
@@ -346,7 +366,7 @@
                 <map value="DocumentReference.context.encounter"/>
             </mapping>
         </element>
--->        
+-->
         <element id="Composition.date">
             <path value="Composition.date"/>
             <short value="Composition editing time"/>
@@ -437,7 +457,7 @@
                 <map value="DocumentReference.description, DocumentReference.content.attachment.title"/>
             </mapping>
         </element>
-<!--        
+        <!--        
         <element id="Composition.confidentiality">
             <path value="Composition.confidentiality"/>
             <short value="As defined by affinity domain"/>
@@ -774,7 +794,7 @@
                 <map value="n/a"/>
             </mapping>
         </element>
--->        
+-->
         <element id="Composition.section">
             <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
                 <valueString value="Section"/>
@@ -833,7 +853,7 @@
                 <map value=".title"/>
             </mapping>
         </element>
-<!--        
+        <!--        
         <element id="Composition.section.code">
             <path value="Composition.section.code"/>
             <short value="Classification of section (recommended)"/>

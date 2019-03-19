@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="ch.fhir.ig.orf-0.9.0"/>
+  <id value="ch.fhir.ig.orf-0.9.1"/>
   <text>
     <status value="additional"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
@@ -17,8 +17,8 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages">
     <valueString value="/Users/oliveregger/Documents/github/ch-orf/pages"/>
   </extension>
-  <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.0"/>
-  <version value="0.9.0"/>
+  <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.1"/>
+  <version value="0.9.1"/>
   <name value="CH_ORF"/>
   <status value="active"/>
   <experimental value="false"/>
@@ -83,6 +83,18 @@
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-precedentdocument"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-requestreceiver"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-responsereceiver"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>

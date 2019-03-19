@@ -60,9 +60,8 @@
         </element>
         <element id="Extension.valueIdentifier">
             <path value="Extension.valueIdentifier"/>
-            <short value="valueientifier"/>
-            <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see
-       Extensibility in the spec for list)."/>
+            <short value="valueIdentifier"/>
+            <definition value="Identifier of preceding document"/>
             <min value="1"/>
             <max value="1"/>
             <type>
