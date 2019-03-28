@@ -70,6 +70,13 @@
     },
     {
       "reference" : {
+        "reference" : "Questionnaire/referral-min"
+      },
+      "name" : "Referral minimal",
+      "exampleBoolean" : true
+    },
+    {
+      "reference" : {
         "reference" : "StructureDefinition/ch-orf-composition"
       },
       "exampleBoolean" : false

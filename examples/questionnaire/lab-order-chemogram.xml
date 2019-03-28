@@ -105,12 +105,9 @@
             </item>
             <item>
                 <linkId value="orderer.dataenterer.lastname"/>
-                <!--1) -->
-                <definition value="http://ahdis.ch/fhir/StructureDefinition/QRFDataEntryPerson#Practitioner.name.given"/>
-                <!--2) -->
                 <code>
                     <system value="http://tbd" />
-                    <code value="datlname" /></code> <!-- code to define mapping to QRFDataEntryPerson#Practitioner, given name-->
+                    <code value="datlname" /></code> 
                 <text value="Name"/>
                 <type value="string"/>
             </item>

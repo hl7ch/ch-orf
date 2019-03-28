@@ -70,6 +70,13 @@
     </resource>
     <resource>
       <reference>
+        <reference value="Questionnaire/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="StructureDefinition/ch-orf-composition"/>
       </reference>
       <exampleBoolean value="false"/>
