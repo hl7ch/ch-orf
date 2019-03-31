@@ -1,10 +1,14 @@
-<Questionnaire 
+<Questionnaire
     xmlns="http://hl7.org/fhir">
     <id value="lab-order-chemogram"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
+    </meta>
     <text>
         <status value="generated"/>
-        <div 
-            xmlns="http://www.w3.org/1999/xhtml">            Lab Order Questionnarie Example for a Chemogram                                                                                                                                                            
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
+            Lab Order Questionnarie Example for a Chemogram
             <pre>todo copy text out of rendering</pre>
         </div>
     </text>
@@ -107,7 +111,8 @@
                 <linkId value="orderer.dataenterer.lastname"/>
                 <code>
                     <system value="http://tbd" />
-                    <code value="datlname" /></code> 
+                    <code value="datlname" />
+                </code>
                 <text value="Name"/>
                 <type value="string"/>
             </item>

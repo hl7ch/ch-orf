@@ -59,21 +59,21 @@
         "reference" : "Questionnaire/ebida-order-1"
       },
       "name" : "Ebida Order",
-      "exampleBoolean" : true
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"
     },
     {
       "reference" : {
         "reference" : "Questionnaire/lab-order-chemogram"
       },
       "name" : "lab order chemogram",
-      "exampleBoolean" : true
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"
     },
     {
       "reference" : {
         "reference" : "Questionnaire/referral-min"
       },
       "name" : "Referral minimal",
-      "exampleBoolean" : true
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"
     },
     {
       "reference" : {

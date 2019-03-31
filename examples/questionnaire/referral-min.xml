@@ -1,13 +1,16 @@
 <Questionnaire xmlns="http://hl7.org/fhir">
     <id value="referral-min" />
-        <text>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
+    </meta>
+    <text>
         <status value="generated"/>
-        <div 
-            xmlns="http://www.w3.org/1999/xhtml">                                                                                                                                                                      
+        <div
+            xmlns="http://www.w3.org/1999/xhtml">
             <pre>radio button für geschlecht horizontal, required Element, textbox für untersuchung, Checkboxen mit optional Textangaben, Angabe von mehreren Beilagen</pre>
         </div>
     </text>
-    <name value="ORF Referral Minimial" />
+    <name value="ORFReferralMinimial" />
     <title value="ORF Referral Minimial" />
     <status value="draft" />
     <experimental value="true" />

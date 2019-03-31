@@ -1,5 +1,8 @@
 <Questionnaire xmlns="http://hl7.org/fhir">
     <id value="ebida-order-1"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
+    </meta>
     <text>
         <status value="generated"/>
         <div xmlns="http://www.w3.org/1999/xhtml">

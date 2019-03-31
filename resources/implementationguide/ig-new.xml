@@ -59,21 +59,21 @@
         <reference value="Questionnaire/ebida-order-1"/>
       </reference>
       <name value="Ebida Order"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
       <reference>
         <reference value="Questionnaire/lab-order-chemogram"/>
       </reference>
       <name value="lab order chemogram"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
       <reference>
         <reference value="Questionnaire/referral-min"/>
       </reference>
       <name value="Referral minimal"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
       <reference>
