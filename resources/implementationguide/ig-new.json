@@ -3,7 +3,7 @@
   "id" : "ch.fhir.ig.orf-0.9.1",
   "text" : {
     "status" : "additional",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\tImplementationGuide for CH:ORF                         \n    </div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      ImplementationGuide for CH:ORF\n    </div>"
   },
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-resource",
@@ -50,11 +50,43 @@
   "license" : "CC-BY-SA-4.0",
   "fhirVersion" : ["4.0.0",
   "4.0.0"],
+  "dependsOn" : [{
+    "id" : "chcore",
+    "uri" : "http://fhir.ch/ig/ch-core",
+    "packageId" : "ch.fhir.ig.core",
+    "version" : "current"
+  }],
   "definition" : {
     "grouping" : [{
       "name" : "CH:ORF"
     }],
     "resource" : [{
+      "reference" : {
+        "reference" : "Bundle/referral-min"
+      },
+      "name" : "Referral minimal",
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"
+    },
+    {
+      "reference" : {
+        "reference" : "Composition/referral-min"
+      },
+      "name" : "Referral minimal",
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"
+    },
+    {
+      "reference" : {
+        "reference" : "Patient/FranzMuster"
+      },
+      "exampleBoolean" : true
+    },
+    {
+      "reference" : {
+        "reference" : "Practitioner/AgparMarc"
+      },
+      "exampleBoolean" : true
+    },
+    {
       "reference" : {
         "reference" : "Questionnaire/ebida-order-1"
       },
@@ -74,6 +106,20 @@
       },
       "name" : "Referral minimal",
       "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"
+    },
+    {
+      "reference" : {
+        "reference" : "QuestionnaireResponse/referral-min"
+      },
+      "name" : "Referral Response minimal",
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"
+    },
+    {
+      "reference" : {
+        "reference" : "ServiceRequest/referral-min"
+      },
+      "name" : "Referral Response minimal",
+      "exampleCanonical" : "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"
     },
     {
       "reference" : {

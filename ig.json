@@ -29,6 +29,13 @@
   "template": "https://github.com/ahdis/test-template",
   "template-dev": "/Users/oliveregger/Documents/github/test-template",
   "canonicalBase": "http://fhir.ch/ig/ch-orf",
+  "dependencyList": [  
+    {
+       "name" : "chcore",
+       "location" : "http://fhir.ch/ig/ch-core",
+       "version" : "current"
+    }
+  ],
   "source": "implementationguide/ch.fhir.ig.orf-0.9.1.xml",
   "sct-edition": "http://snomed.info/sct/900000000000207008",
   "resources": {},

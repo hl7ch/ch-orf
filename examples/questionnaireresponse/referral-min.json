@@ -1,0 +1,152 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "referral-min",
+  "meta": {
+    "profile": [
+      "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"
+    ]
+  },
+  "questionnaire": "Questionnaire/referral-min",
+  "status": "completed",
+  "item": [
+    {
+      "linkId": "order",
+      "text": "Auftrag",
+      "item": [
+        {
+          "linkId": "order.number",
+          "text": "Auftrags-Nummer",
+          "answer": [
+            {
+              "valueString": "123"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "item": [
+        {
+          "linkId": "patient.lastname",
+          "text": "Name",
+          "answer": [
+            {
+              "valueString": "Muster"
+            }
+          ]
+        },
+        {
+          "linkId": "patient.firstname",
+          "text": "Vorname",
+          "answer": [
+            {
+              "valueString": "Franz"
+            }
+          ]
+        },
+        {
+          "linkId": "patient.pid",
+          "text": "PID (sendendes System)",
+          "answer": [
+            {
+              "valueString": "012/08.111111"
+            }
+          ]
+        },
+        {
+          "linkId": "patient.sex",
+          "text": "Geschlecht",
+          "answer": [
+            {
+              "valueCoding": {
+                "code": "M",
+                "display": "Männlich"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.zip",
+          "text": "PLZ",
+          "answer": [
+            {
+              "valueString": "5679"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "orderer",
+      "text": "Sender",
+      "item": [
+        {
+          "linkId": "orderer.sender",
+          "text": "Sender",
+          "item": [
+            {
+              "linkId": "orderer.sender.visum",
+              "text": "Visum"
+            },
+            {
+              "linkId": "orderer.sender.bereich",
+              "text": "Bereich"
+            },
+            {
+              "linkId": "orderer.sender.abt",
+              "text": "Bereich"
+            },
+            {
+              "linkId": "orderer.sender.lastname",
+              "text": "Name",
+              "answer": [
+                {
+                  "valueString": "Agpar"
+                }
+              ]
+            },
+            {
+              "linkId": "orderer.sender.firstname",
+              "text": "Vorname",
+              "answer": [
+                {
+                  "valueString": "Marc"
+                }
+              ]
+            },
+            {
+              "linkId": "orderer.sender.organization",
+              "text": "Organisastion"
+            },
+            {
+              "linkId": "orderer.sender.tel",
+              "text": "Telefon"
+            },
+            {
+              "linkId": "orderer.sender.e-mail",
+              "text": "E-Mail"
+            },
+            {
+              "linkId": "orderer.sender.street",
+              "text": "Strasse"
+            },
+            {
+              "linkId": "orderer.sender.postfach",
+              "text": "Postfach"
+            },
+            {
+              "linkId": "orderer.sender.zip",
+              "text": "PLZ"
+            },
+            {
+              "linkId": "orderer.sender.city",
+              "text": "Ort"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+@host = http://test.fhir.ch/r4
+
+### FranzMuster
+PUT {{host}}/Patient/FranzMuster HTTP/1.1
+Content-Type: application/fhir+xml
+
+< ./examples/patient/FranzMuster.xml
+
+### AgparMarc
+PUT {{host}}/Practitioner/AgparMarc HTTP/1.1
+Content-Type: application/fhir+xml
+
+< ./examples/practitioner/AgparMarc.xml
+
+### Questionnaire Referral-min
+PUT {{host}}/Questionnaire/referral-min HTTP/1.1
+Content-Type: application/fhir+xml
+
+< ./examples/questionnaire/referral-min.xml
+
+### QuestionnaireResponse Referral-min
+PUT {{host}}/QuestionnaireResponse/referral-min HTTP/1.1
+Content-Type: application/fhir+json
+
+< ./examples/questionnaireresponse/referral-min.json
+
+### Composition referral-min
+PUT {{host}}/Composition/referral-min HTTP/1.1
+Content-Type: application/fhir+xml
+
+< ./examples/composition/referral-min.xml
+
+### Composition referral-min
+
+GET {{host}}/Composition/referral-min/$document HTTP/1.1
+Content-Type: application/fhir+xml

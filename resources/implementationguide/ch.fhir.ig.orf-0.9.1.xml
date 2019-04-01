@@ -5,7 +5,7 @@
   <text>
     <status value="additional"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-	ImplementationGuide for CH:ORF                         
+      ImplementationGuide for CH:ORF
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.orf-0.9.1"/>
@@ -56,6 +56,32 @@
     </grouping>
     <resource>
       <reference>
+        <reference value="Bundle/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Composition/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Patient/FranzMuster"/>
+      </reference>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/AgparMarc"/>
+      </reference>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Questionnaire/ebida-order-1"/>
       </reference>
       <name value="Ebida Order"/>
@@ -74,6 +100,20 @@
       </reference>
       <name value="Referral minimal"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/referral-min"/>
+      </reference>
+      <name value="Referral Response minimal"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="ServiceRequest/referral-min"/>
+      </reference>
+      <name value="Referral Response minimal"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
     </resource>
     <resource>
       <reference>

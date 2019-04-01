@@ -1,0 +1,667 @@
+<Bundle
+    xmlns="http://hl7.org/fhir">
+    <id value="referral-min"/>
+    <meta>
+        <versionId value="1"/>
+        <lastUpdated value="2019-04-01T20:18:41.341+00:00"/>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
+    </meta>
+    <identifier>
+        <system value="http://test.fhir.ch/id/uuid"/>
+        <value value="26d3dff7-ab05-4737-a49c-5eccd33595f8"/>
+    </identifier>
+    <type value="document"/>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/Composition/referral-min"/>
+        <resource>
+            <Composition
+                xmlns="http://hl7.org/fhir">
+                <id value="referral-min"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2019-04-01T20:18:41.341+00:00"/>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
+                </meta>
+                <text>
+                    <status value="generated"/>
+                    <div
+                        xmlns="http://www.w3.org/1999/xhtml">
+                        Referral min
+                    </div>
+                </text>
+                <!--
+    <extension url=""><valueString value="" /></extension>
+    -->
+                <identifier>
+                    <system value="http://test.fhir.ch/id/uuid"/>
+                    <value value="26d3dff7-ab05-4737-a49c-5eccd33595f7"/>
+                </identifier>
+                <status value="final"/>
+                <type>
+                    <!-- 
+        <coding><system value="" /><code value="" /></coding>-->
+                    <text value="Referral min"/>
+                </type>
+                <subject>
+                    <reference value="http://test.fhir.ch/r4/Patient/FranzMuster"/>
+                </subject>
+                <date value="2019-03-31T11:46:09+02:00"/>
+                <author>
+                    <reference value="Practitioner/AgparMarc"/>
+                </author>
+                <title value="Referral min"/>
+                <attester>
+                    <mode value="professional"/>
+                    <time value="2010-03-12T11:46:09+02:00"/>
+                    <party>
+                        <reference value="Practitioner/AgparMarc"/>
+                    </party>
+                </attester>
+                <section>
+                    <title value="Referral"/>
+                    <text>
+                        <status value="generated"/>
+                        <div
+                            xmlns="http://www.w3.org/1999/xhtml">
+                            Referral min
+                        </div>
+                    </text>
+                    <entry>
+                        <reference value="Questionnaire/referral-min"/>
+                    </entry>
+                    <entry>
+                        <reference value="QuestionnaireResponse/referral-min"/>
+                    </entry>
+                    <entry>
+                        <reference value="ServiceRequest/referral-min"/>
+                    </entry>
+                </section>
+            </Composition>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/Patient/FranzMuster"/>
+
+        <resource>
+            <Patient
+                xmlns="http://hl7.org/fhir">
+                <id value="FranzMuster"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2019-04-01T20:14:17.451+00:00"/>
+                    <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
+                </meta>
+                <text>
+                    <status value="generated"/>
+                    <div
+                        xmlns="http://www.w3.org/1999/xhtml">
+                        <p>
+                            <b>Generated Narrative with Details</b>
+                        </p>
+                        <p>
+                            <b>id</b>
+                            : FranzMuster
+
+                        </p>
+                        <p>
+                            <b>meta</b>
+                            :
+
+                        </p>
+                        <p>
+                            <b>identifier</b>
+                            : 012/08.111111
+
+                        </p>
+                        <p>
+                            <b>name</b>
+                            : Franz Muster
+
+                        </p>
+                        <p>
+                            <b>gender</b>
+                            : MALE
+
+                        </p>
+                        <p>
+                            <b>birthDate</b>
+                            : Jan 27, 1995
+
+                        </p>
+                        <p>
+                            <b>maritalStatus</b>
+                            : in eingetragener Partnerschaft
+
+                            <span style="background: LightGoldenRodYellow">(Details : {http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus code '6' = '6', given as 'in eingetragener Partnerschaft'})</span>
+                        </p>
+                        <h3>Communications</h3>
+                        <table class="grid">
+                            <tr>
+                                <td>-</td>
+                                <td>
+                                    <b>Language</b>
+                                </td>
+                                <td>
+                                    <b>Preferred</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>*</td>
+                                <td>
+                                    Deutsch (Schweiz)
+
+                                    <span style="background: LightGoldenRodYellow">(Details : {urn:ietf:bcp:47 code 'de-CH' = 'German (Region=Switzerland))</span>
+                                </td>
+                                <td>true</td>
+                            </tr>
+                        </table>
+                    </div>
+                </text>
+                <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-ech-11-placeofbirth">
+                    <valueAddress>
+                        <city value="Paris"/>
+                        <country value="Frankreich"/>
+                    </valueAddress>
+                </extension>
+                <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-ech-11-placeoforigin">
+                    <valueAddress>
+                        <city value="Köniz"/>
+                        <state value="BE"/>
+                    </valueAddress>
+                </extension>
+                <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-religion">
+                    <valueCodeableConcept>
+                        <coding>
+                            <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-religion"/>
+                            <code value="111"/>
+                            <display value="evangelisch-reformierte (protestantische) Kirche"/>
+                        </coding>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation"/>
+                            <code value="1077"/>
+                            <display value="Protestant"/>
+                        </coding>
+                    </valueCodeableConcept>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.756.5.30.999999.1"/>
+                    <value value="012/08.111111"/>
+                </identifier>
+                <name>
+                    <family value="Muster"/>
+                    <given value="Franz"/>
+                </name>
+                <gender value="male"/>
+                <birthDate value="1995-01-27"/>
+                <maritalStatus>
+                    <coding>
+                        <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                        <code value="6"/>
+                        <display value="in eingetragener Partnerschaft"/>
+                    </coding>
+                </maritalStatus>
+                <communication>
+                    <language>
+                        <coding>
+                            <system value="urn:ietf:bcp:47"/>
+                            <code value="de-CH"/>
+                        </coding>
+                        <text value="Deutsch (Schweiz)"/>
+                    </language>
+                    <preferred value="true"/>
+                </communication>
+            </Patient>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/Practitioner/AgparMarc"/>
+
+        <resource>
+            <Practitioner
+                xmlns="http://hl7.org/fhir">
+                <id value="AgparMarc"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2019-04-01T20:15:40.996+00:00"/>
+                    <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+                </meta>
+                <identifier>
+                    <system value="urn:oid:2.51.1.3"/>
+                    <value value="7601000050717"/>
+                </identifier>
+                <name>
+                    <family value="Agpar"/>
+                    <given value="Marc"/>
+                </name>
+            </Practitioner>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/Questionnaire/referral-min"/>
+
+        <resource>
+            <Questionnaire
+                xmlns="http://hl7.org/fhir">
+                <id value="referral-min"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2019-04-01T20:16:43.634+00:00"/>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+                </meta>
+                <text>
+                    <status value="generated"/>
+                    <div
+                        xmlns="http://www.w3.org/1999/xhtml">
+                        <pre>radio button für geschlecht horizontal, required Element, textbox für untersuchung, Checkboxen mit optional Textangaben, Angabe von mehreren Beilagen</pre>
+                    </div>
+                </text>
+                <name value="ORFReferralMinimial"/>
+                <title value="ORF Referral Minimial"/>
+                <status value="draft"/>
+                <experimental value="true"/>
+                <subjectType value="Patient"/>
+                <date value="2019-03-28"/>
+                <publisher value="ahdis"/>
+                <item>
+                    <linkId value="order"/>
+                    <text value="Auftrag"/>
+                    <type value="group"/>
+                    <item>
+                        <linkId value="order.number"/>
+                        <text value="Auftrags-Nummer"/>
+                        <type value="string"/>
+                        <required value="true"/>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="patient"/>
+                    <text value="Patient"/>
+                    <type value="group"/>
+                    <item>
+                        <linkId value="patient.lastname"/>
+                        <text value="Name"/>
+                        <type value="string"/>
+                        <required value="true"/>
+                    </item>
+                    <item>
+                        <linkId value="patient.firstname"/>
+                        <text value="Vorname"/>
+                        <type value="string"/>
+                        <required value="true"/>
+                    </item>
+                    <item>
+                        <linkId value="patient.pid"/>
+                        <text value="PID (sendendes System)"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="patient.birthdate"/>
+                        <text value="Geburtsdatum"/>
+                        <type value="date"/>
+                        <required value="true"/>
+                    </item>
+                    <item>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation">
+                            <valueCode value="horizontal"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                                    <code value="radio-button"/>
+                                    <display value="Radio Button"/>
+                                </coding>
+                                <text value="A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others."/>
+                            </valueCodeableConcept>
+                        </extension>
+                        <linkId value="patient.sex"/>
+                        <text value="Geschlecht"/>
+                        <type value="choice"/>
+                        <required value="true"/>
+                        <answerOption>
+                            <valueCoding>
+                                <code value="F"/>
+                                <display value="Weiblich"/>
+                            </valueCoding>
+                            <initialSelected value="true"/>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <code value="M"/>
+                                <display value="Männlich"/>
+                            </valueCoding>
+                        </answerOption>
+                    </item>
+                    <item>
+                        <linkId value="patient.zip"/>
+                        <text value="PLZ"/>
+                        <type value="string"/>
+                        <required value="true"/>
+                        <maxLength value="6"/>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="examiniation"/>
+                    <text value="Untersuch"/>
+                    <type value="group"/>
+                    <item>
+                        <linkId value="examiniation.reason"/>
+                        <text value="Grund Überweisung"/>
+                        <type value="text"/>
+                        <required value="true"/>
+                    </item>
+                    <item>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation">
+                            <valueCode value="horizontal"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                                    <code value="check-box"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                        <linkId value="chemogramm"/>
+                        <text value="Chemogramm"/>
+                        <type value="open-choice"/>
+                        <item>
+                            <linkId value="lab"/>
+                            <text value="Laborwerte"/>
+                            <type value="string"/>
+                            <answerOption>
+                                <valueCoding>
+                                    <system value="http://loinc.org"/>
+                                    <code value="27353-2"/>
+                                    <display value="Glucose"/>
+                                </valueCoding>
+                            </answerOption>
+                            <answerOption>
+                                <valueCoding>
+                                    <system value="http://loinc.org"/>
+                                    <code value="33898-8"/>
+                                    <display value="Bilirubin"/>
+                                </valueCoding>
+                            </answerOption>
+                            <answerOption>
+                                <valueCoding>
+                                    <system value="http://loinc.org"/>
+                                    <code value="3094-0"/>
+                                    <display value="Harnstoff"/>
+                                </valueCoding>
+                            </answerOption>
+                        </item>
+                    </item>
+                    <item>
+                        <linkId value="examiniation.attachments"/>
+                        <text value="Beilage"/>
+                        <type value="attachment"/>
+                        <repeats value="true"/>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="receiver"/>
+                    <text value="Receiver"/>
+                    <type value="group"/>
+                    <item>
+                        <linkId value="receiver.lastname"/>
+                        <text value="Name"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.firstname"/>
+                        <text value="Vorname"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.organization"/>
+                        <text value="Organisation"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.street"/>
+                        <text value="Strasse"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.postfach"/>
+                        <text value="Postfach"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.zip"/>
+                        <text value="PLZ"/>
+                        <type value="string"/>
+                    </item>
+                    <item>
+                        <linkId value="receiver.city"/>
+                        <text value="Ort"/>
+                        <type value="string"/>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="orderer"/>
+                    <text value="Sender"/>
+                    <type value="group"/>
+                    <item>
+                        <linkId value="orderer.sender"/>
+                        <text value="Sender"/>
+                        <type value="group"/>
+                        <item>
+                            <linkId value="orderer.sender.visum"/>
+                            <text value="Visum"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.bereich"/>
+                            <text value="Bereich"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.abt"/>
+                            <text value="Bereich"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.lastname"/>
+                            <text value="Name"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.firstname"/>
+                            <text value="Vorname"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.organization"/>
+                            <text value="Organisastion"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.tel"/>
+                            <text value="Telefon"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.e-mail"/>
+                            <text value="E-Mail"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.street"/>
+                            <text value="Strasse"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.postfach"/>
+                            <text value="Postfach"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.zip"/>
+                            <text value="PLZ"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.city"/>
+                            <text value="Ort"/>
+                            <type value="string"/>
+                        </item>
+                    </item>
+                </item>
+            </Questionnaire>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/QuestionnaireResponse/referral-min"/>
+
+        <resource>
+            <QuestionnaireResponse
+                xmlns="http://hl7.org/fhir">
+                <id value="referral-min"/>
+                <meta>
+                    <versionId value="1"/>
+                    <lastUpdated value="2019-04-01T20:17:53.340+00:00"/>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+                </meta>
+                <questionnaire value="Questionnaire/referral-min"/>
+                <status value="completed"/>
+                <item>
+                    <linkId value="order"/>
+                    <text value="Auftrag"/>
+                    <item>
+                        <linkId value="order.number"/>
+                        <text value="Auftrags-Nummer"/>
+                        <answer>
+                            <valueString value="123"/>
+                        </answer>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="patient"/>
+                    <text value="Patient"/>
+                    <item>
+                        <linkId value="patient.lastname"/>
+                        <text value="Name"/>
+                        <answer>
+                            <valueString value="Muster"/>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.firstname"/>
+                        <text value="Vorname"/>
+                        <answer>
+                            <valueString value="Franz"/>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.pid"/>
+                        <text value="PID (sendendes System)"/>
+                        <answer>
+                            <valueString value="012/08.111111"/>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.sex"/>
+                        <text value="Geschlecht"/>
+                        <answer>
+                            <valueCoding>
+                                <code value="M"/>
+                                <display value="Männlich"/>
+                            </valueCoding>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.zip"/>
+                        <text value="PLZ"/>
+                        <answer>
+                            <valueString value="5679"/>
+                        </answer>
+                    </item>
+                </item>
+                <item>
+                    <linkId value="orderer"/>
+                    <text value="Sender"/>
+                    <item>
+                        <linkId value="orderer.sender"/>
+                        <text value="Sender"/>
+                        <item>
+                            <linkId value="orderer.sender.visum"/>
+                            <text value="Visum"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.bereich"/>
+                            <text value="Bereich"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.abt"/>
+                            <text value="Bereich"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.lastname"/>
+                            <text value="Name"/>
+                            <answer>
+                                <valueString value="Agpar"/>
+                            </answer>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.firstname"/>
+                            <text value="Vorname"/>
+                            <answer>
+                                <valueString value="Marc"/>
+                            </answer>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.organization"/>
+                            <text value="Organisastion"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.tel"/>
+                            <text value="Telefon"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.e-mail"/>
+                            <text value="E-Mail"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.street"/>
+                            <text value="Strasse"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.postfach"/>
+                            <text value="Postfach"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.zip"/>
+                            <text value="PLZ"/>
+                        </item>
+                        <item>
+                            <linkId value="orderer.sender.city"/>
+                            <text value="Ort"/>
+                        </item>
+                    </item>
+                </item>
+            </QuestionnaireResponse>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://test.fhir.ch/r4/ServiceRequest/referral-min"/>
+        <resource>
+            <ServiceRequest xmlns="http://hl7.org/fhir">
+                <id value="referral-min"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
+                </meta>
+                <status value="active"/>
+                <intent value="original-order"/>
+                <subject>
+                    <reference value="Patient/FranzMuster"/>
+                </subject>
+                <requester>
+                    <reference value="Practitioner/AgparMarc"/>
+                </requester>
+            </ServiceRequest>
+        </resource>
+    </entry>
+
+</Bundle>

@@ -1,0 +1,14 @@
+<ServiceRequest xmlns="http://hl7.org/fhir">
+    <id value="referral-min"/>
+        <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
+    </meta>
+    <status value="active"/>
+    <intent value="original-order"/>
+    <subject>
+        <reference value="Patient/FranzMuster"/>
+    </subject>
+    <requester>
+        <reference value="Practitioner/AgparMarc"/>
+    </requester>
+</ServiceRequest>
