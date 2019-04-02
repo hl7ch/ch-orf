@@ -68,6 +68,13 @@
     </resource>
     <resource>
       <reference>
+        <reference value="CodeSystem/minimaldataset"/>
+      </reference>
+      <name value="Minimal Data Set for questionnaires"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Composition/referral-min"/>
       </reference>
       <name value="Referral minimal"/>
@@ -190,6 +197,13 @@
       <reference>
         <reference value="StructureDefinition/ch-orf-visitnumber"/>
       </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="ValueSet/minimaldataset"/>
+      </reference>
+      <name value="Minimal Data Set for questionnaires"/>
       <exampleBoolean value="false"/>
     </resource>
     <page>

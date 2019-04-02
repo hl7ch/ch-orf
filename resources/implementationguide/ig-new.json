@@ -69,6 +69,13 @@
     },
     {
       "reference" : {
+        "reference" : "CodeSystem/minimaldataset"
+      },
+      "name" : "Minimal Data Set for questionnaires",
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
         "reference" : "Composition/referral-min"
       },
       "name" : "Referral minimal",
@@ -191,6 +198,13 @@
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-visitnumber"
       },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "ValueSet/minimaldataset"
+      },
+      "name" : "Minimal Data Set for questionnaires",
       "exampleBoolean" : false
     }],
     "page" : {

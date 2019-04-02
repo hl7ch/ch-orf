@@ -1,0 +1,44 @@
+<CodeSystem xmlns="http://hl7.org/fhir">
+    <id value="minimaldataset"/>
+    <url value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset"/>
+    <version value="0.1.0"/>
+    <name value="OrfCodeSystemMiminalDataSet"/>
+    <title value="Minimal Data Set for ORF Questionnaires"/>
+    <status value="draft"/>
+    <experimental value="true"/>
+    <date value="2019-04-02"/>
+    <publisher value="eHealth Suisse"/>
+    <contact>
+        <name value="eHealth Suisse"/>
+        <telecom>
+            <system value="url"/>
+            <value value="https://www.e-health-suisse.ch/"/>
+        </telecom>
+    </contact>
+    <contact>
+        <name value="Oliver Egger"/>
+        <telecom>
+            <system value="email"/>
+            <value value="oliver.egger@ahdis.ch"/>
+        </telecom>
+    </contact>
+    <description value="Minimal Data Set to define codes for questions which can be mapped" />
+    <jurisdiction>
+        <coding>
+            <system value="urn:iso:std:iso:3166"/>
+            <code value="CH"/>
+        </coding>
+    </jurisdiction>
+    <caseSensitive value="true"/>
+    <compositional value="false"/>
+    <versionNeeded value="true"/>
+    <content value="complete"/>
+    <concept>
+        <code value="Patient.name.family"/>
+        <display value="last Name of Patient"/>
+    </concept>
+    <concept>
+        <code value="Patient.name.given"/>
+        <display value="given Name of Patient"/>
+    </concept>
+</CodeSystem>

@@ -30,16 +30,28 @@
     </item>
     <item>
         <linkId value="patient" />
+        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient" />
         <text value="Patient" />
         <type value="group" />
         <item>
             <linkId value="patient.lastname" />
+            <!-- don't know how to go deeper (Patient name coud repeat and HumanName is a type should reference something like #Patient.name[use="offical"].family -->
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
+            <code>
+                <system value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset" />
+                <code value="Patient.name.family" />
+            </code>
             <text value="Name" />
             <type value="string" />
             <required value="true" />
         </item>
         <item>
             <linkId value="patient.firstname" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
+            <code>
+                <system value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset" />
+                <code value="Patient.name.given" />
+            </code>
             <text value="Vorname" />
             <type value="string" />
             <required value="true" />

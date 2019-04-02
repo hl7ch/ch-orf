@@ -719,7 +719,7 @@
             <comment value="The value may come from the ElementDefinition referred to by .definition."/>
             <requirements value="Allows linking of groups of questions to formal terminologies."/>
             <min value="0"/>
-            <max value="*"/>
+            <max value="1"/>
             <type>
                 <code value="Coding"/>
             </type>
@@ -728,9 +728,9 @@
                 <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
                     <valueString value="QuestionnaireConcept"/>
                 </extension>
-                <strength value="example"/>
+                <strength value="extensible"/>
                 <description value="Codes for questionnaires, groups and individual questions."/>
-                <valueSet value="http://hl7.org/fhir/ValueSet/questionnaire-questions"/>
+                <valueSet value="http://fhir.ch/ig/ch-orf/ValueSet/minimaldataset"/>
             </binding>
             <mapping>
                 <identity value="rim"/>
