@@ -9,6 +9,10 @@
             <pre>todo, see screenshot provided by juerg</pre>
         </div>
     </text>
+    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
+        <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/map-orf" />
+    </extension>
+    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/ebida-order-1"/>
     <name value="EbidaOrderExample"/>
     <title value="Ebida Order Example"/>
     <status value="draft"/>

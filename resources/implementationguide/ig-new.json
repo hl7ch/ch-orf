@@ -55,6 +55,12 @@
     "uri" : "http://fhir.ch/ig/ch-core",
     "packageId" : "ch.fhir.ig.core",
     "version" : "current"
+  },
+  {
+    "id" : "sdc",
+    "uri" : "http://hl7.org/fhir/uv/sdc",
+    "packageId" : "hl7.fhir.uv.sdc",
+    "version" : "current"
   }],
   "definition" : {
     "grouping" : [{
@@ -197,6 +203,12 @@
     {
       "reference" : {
         "reference" : "StructureDefinition/ch-orf-visitnumber"
+      },
+      "exampleBoolean" : false
+    },
+    {
+      "reference" : {
+        "reference" : "StructureMap/map-orf"
       },
       "exampleBoolean" : false
     },

@@ -34,7 +34,12 @@
        "name" : "chcore",
        "location" : "http://fhir.ch/ig/ch-core",
        "version" : "current"
-    }
+    },    
+    {
+      "name" : "sdc",
+      "location" : "http://hl7.org/fhir/uv/sdc",
+      "version" : "current"
+   }
   ],
   "source": "implementationguide/ch.fhir.ig.orf-0.9.1.xml",
   "sct-edition": "http://snomed.info/sct/900000000000207008",

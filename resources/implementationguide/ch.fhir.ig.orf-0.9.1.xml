@@ -196,6 +196,12 @@
     </resource>
     <resource>
       <reference>
+        <reference value="StructureMap/map-orf"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="ValueSet/minimaldataset"/>
       </reference>
       <name value="Minimal Data Set for questionnaires"/>

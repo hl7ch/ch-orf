@@ -55,6 +55,11 @@
     <packageId value="ch.fhir.ig.core"/>
     <version value="current"/>
   </dependsOn>
+  <dependsOn id="sdc">
+    <uri value="http://hl7.org/fhir/uv/sdc"/>
+    <packageId value="hl7.fhir.uv.sdc"/>
+    <version value="current"/>
+  </dependsOn>
   <definition>
     <grouping>
       <name value="CH:ORF"/>
@@ -196,6 +201,12 @@
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-visitnumber"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureMap/map-orf"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
