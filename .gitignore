@@ -9,5 +9,11 @@ tools
 http
 scripts
 var
+template
 c:\\temp\\json.json
 org.hl7.fhir.igpublisher.jar
+ig.ini
+resources/implementationguide/ig-expansion-parameters.json
+resources/implementationguide/ig-new.json
+resources/implementationguide/ig-new.xml
+resources/implementationguide/ig-validation-parameters.json
