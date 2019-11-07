@@ -11,6 +11,7 @@
         <value value="26d3dff7-ab05-4737-a49c-5eccd33595f8"/>
     </identifier>
     <type value="document"/>
+    <timestamp value="2019-04-01T20:18:41.341+00:00"/>
     <entry>
         <fullUrl value="http://test.fhir.ch/r4/Composition/referral-min"/>
         <resource>

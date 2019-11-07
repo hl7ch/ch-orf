@@ -1,6 +1,6 @@
 {
   "tool": "jekyll",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "fixed-business-version": "0.9.1",
   "license": "CC-BY-SA-4.0",
   "npm-name": "ch.fhir.ig.orf",
@@ -21,6 +21,16 @@
     "en", "de-CH", "fr-CH", "it-CH"
   ],
   "path-pattern": "[type]-[id].html",
+  "extraTemplates": [
+    {
+      "name": "mappings",
+      "description": "Mappings"
+    },
+    {
+      "name": "examples",
+      "description": "Examples"
+    }
+  ],
   "defaults": {
     "Any": {
       "java": false
@@ -31,7 +41,7 @@
   "dependencyList": [  
     {
        "name" : "chcore",
-       "location" : "http://fhir.ch/ig/ch-core",
+       "package" : "ch.fhir.ig.ch-core",
        "version" : "current"
     },    
     {

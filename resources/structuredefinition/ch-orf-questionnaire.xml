@@ -30,7 +30,7 @@
         </coding>
     </jurisdiction>
     <copyright value="CC-BY-SA-4.0"/>
-    <fhirVersion value="4.0.0"/>
+    <fhirVersion value="4.0.1"/>
     <kind value="resource"/>
     <abstract value="false"/>
     <type value="Questionnaire"/>
@@ -286,7 +286,7 @@
                 </extension>
                 <strength value="required"/>
                 <description value="Distinguishes groups from questions and display text and indicates data type for questions."/>
-                <valueSet value="http://hl7.org/fhir/ValueSet/item-type|4.0.0"/>
+                <valueSet value="http://hl7.org/fhir/ValueSet/item-type|4.0.1"/>
             </binding>
             <mapping>
                 <identity value="rim"/>
@@ -348,7 +348,7 @@
                 </extension>
                 <strength value="required"/>
                 <description value="The criteria by which a question is enabled."/>
-                <valueSet value="http://hl7.org/fhir/ValueSet/questionnaire-enable-operator|4.0.0"/>
+                <valueSet value="http://hl7.org/fhir/ValueSet/questionnaire-enable-operator|4.0.1"/>
             </binding>
             <mapping>
                 <identity value="rim"/>
@@ -423,7 +423,7 @@
                 </extension>
                 <strength value="required"/>
                 <description value="Controls how multiple enableWhen values are interpreted -  whether all or any must be true."/>
-                <valueSet value="http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior|4.0.0"/>
+                <valueSet value="http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior|4.0.1"/>
             </binding>
             <mapping>
                 <identity value="rim"/>

@@ -39,8 +39,8 @@
   <copyright value="CC-BY-SA-4.0"/>
   <packageId value="ch.fhir.ig.orf"/>
   <license value="CC-BY-SA-4.0"/>
-  <fhirVersion value="4.0.0"/>
-  <dependsOn>
+  <fhirVersion value="4.0.1"/>
+  <!--<dependsOn>
     <uri value="http://fhir.ch/ig/ch-core" />
     <packageId value="ch.fhir.ig.core" />
     <version value="current" />
@@ -49,7 +49,7 @@
     <uri value="http://hl7.org/fhir/uv/sdc" />
     <packageId value="hl7.fhir.uv.sdc" />
     <version value="current" />
-  </dependsOn>
+  </dependsOn>-->
   <definition>
     <grouping>
       <name value="CH:ORF"/>
