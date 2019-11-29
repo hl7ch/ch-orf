@@ -14,7 +14,7 @@
     "output": "output",
     "qa": "qa",
     "txCache": "txCache",
-    "specification": "http:/hl7.org/fhir/r4"
+    "specification": "http://hl7.org/fhir/r4"
   },
   "language" : "en", 
   "languages" : [ 
@@ -31,11 +31,6 @@
       "description": "Examples"
     }
   ],
-  "defaults": {
-    "Any": {
-      "java": false
-    }
-  },
   "template": "https://github.com/ahdis/ig-template",
   "canonicalBase": "http://fhir.ch/ig/ch-orf",
   "dependencyList": [  
@@ -46,7 +41,7 @@
     },    
     {
       "name" : "sdc",
-      "location" : "http://hl7.org/fhir/uv/sdc",
+      "package" : "hl7.fhir.uv.sdc",
       "version" : "current"
    }
   ],
