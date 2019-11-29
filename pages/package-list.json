@@ -1,0 +1,27 @@
+{
+    "package-id": "ch.fhir.ig.ch-orf",
+    "title": "CH-ORF (R4)",
+    "introduction": "Order & Referral by Form - Implementation Guide (CH-ORF)",
+    "canonical": "http://fhir.ch/ig/ch-orf",
+    "list": [
+      {
+        "version": "dev",
+        "date": "n/a",
+        "desc": "Continuous Integration Build (latest in version control)",
+        "path": "http://build.fhir.org/ig/ahdis/ch-orf",
+        "fhirVersion": "4.0.1",
+        "status": "ci-build",
+        "sequence": "STU"
+      },
+      {
+        "version": "0.9.1",
+        "date": "2019-11-29",
+        "desc": "Draft version 0.9.1",
+        "path": "http://fhir.ch/ig/ch-orf",
+        "status": "draft",
+        "fhirVersion": "4.0.1",
+        "current": true,
+        "sequence": "STU"
+      }
+    ]
+  }
