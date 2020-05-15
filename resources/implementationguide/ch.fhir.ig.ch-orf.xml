@@ -215,5 +215,10 @@
       <code value="generate-turtle"/>
       <value value="true"/>
     </parameter>
+    <parameter>
+      <code value="releaselabel"/>
+      <value value="CI build"/>
+      <!--<value value="STU Ballot"/>-->
+    </parameter>
   </definition>
 </ImplementationGuide>
