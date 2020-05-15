@@ -220,5 +220,13 @@
       <value value="CI build"/>
       <!--<value value="STU Ballot"/>-->
     </parameter>
+    <parameter>
+      <code value="copyrightyear"/>
+      <value value="2020+"/>
+    </parameter>
+    <parameter>
+      <code value="path-pages" />
+      <value value="pages"/>
+    </parameter>
   </definition>
 </ImplementationGuide>
