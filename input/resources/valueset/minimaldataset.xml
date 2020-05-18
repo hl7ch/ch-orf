@@ -3,7 +3,7 @@
     <url value="http://fhir.ch/ig/ch-orf/ValueSet/minimaldataset"/>
     <version value="0.1.0"/>
     <name value="MinimalDataSet"/>
-    <title value="Minimal Data Set fo ORF questionnaires"/>
+    <title value="Minimal Data Set for ORF Questionnaires"/>
     <status value="draft"/>
     <experimental value="true"/>
     <date value="2019-04-02"/>

@@ -5,13 +5,13 @@
   <text>
     <status value="additional"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      ImplementationGuide for CH-ORF
+      ImplementationGuide for CH ORF
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
   <version value="0.9.1"/>
   <name value="CH_ORF"/>
-  <title value="CH-ORF"/>
+  <title value="CH ORF (R4)"/>
   <status value="active"/>
   <experimental value="false"/>
   <date value="2018-05-14"/>
@@ -41,15 +41,26 @@
   <packageId value="ch.fhir.ig.ch-orf"/>
   <license value="CC-BY-SA-4.0"/>
   <fhirVersion value="4.0.1"/>
+  <dependsOn id="chcore">
+    <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
+    <packageId value="ch.fhir.ig.ch-core"/>
+    <version value="current"/>
+  </dependsOn>
+  <dependsOn id="sdc">
+    <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
+    <packageId value="hl7.fhir.uv.sdc"/>
+    <version value="current"/>
+  </dependsOn>
   <definition>
     <grouping>
-      <name value="CH:ORF"/>
+      <name value="CH-ORF"/>
     </grouping>
     <resource>
       <reference>
         <reference value="Bundle/referral-min"/>
       </reference>
       <name value="Referral minimal"/>
+      <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
     <resource>
@@ -64,18 +75,23 @@
         <reference value="Composition/referral-min"/>
       </reference>
       <name value="Referral minimal"/>
+      <description value="Example for Composition"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
     <resource>
       <reference>
         <reference value="Patient/FranzMuster"/>
       </reference>
+      <name value="Franz Muster"/>
+      <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
       <reference>
         <reference value="Practitioner/AgparMarc"/>
       </reference>
+      <name value="Agpar Marc"/>
+      <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
@@ -83,13 +99,15 @@
         <reference value="Questionnaire/ebida-order-1"/>
       </reference>
       <name value="Ebida Order"/>
+      <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
       <reference>
         <reference value="Questionnaire/lab-order-chemogram"/>
       </reference>
-      <name value="lab order chemogram"/>
+      <name value="Lab Order Chemogram"/>
+      <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
@@ -97,6 +115,7 @@
         <reference value="Questionnaire/referral-min"/>
       </reference>
       <name value="Referral minimal"/>
+      <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
     <resource>
@@ -104,6 +123,7 @@
         <reference value="QuestionnaireResponse/referral-min"/>
       </reference>
       <name value="Referral Response minimal"/>
+      <description value="Example for Questionnaire Response"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
     <resource>
@@ -111,6 +131,7 @@
         <reference value="ServiceRequest/referral-min"/>
       </reference>
       <name value="Referral Response minimal"/>
+      <description value="Example for Service Request"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
     </resource>
     <resource>
@@ -189,6 +210,8 @@
       <reference>
         <reference value="StructureMap/map-orf"/>
       </reference>
+      <name value="Map ORF"/>
+      <description value="Mapping ORF Questionnaire Response to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>
@@ -198,11 +221,35 @@
       <name value="Minimal Data Set for questionnaires"/>
       <exampleBoolean value="false"/>
     </resource>
+
+    <!-- pages -->
     <page>
-      <nameUrl value="index.html"/>
-      <title value="IG Templage Homepage"/>
+      <nameUrl value="toc.html"/>
+      <title value="Table of Contents"/>
       <generation value="html"/>
+      <page>
+        <nameUrl value="index.html"/>
+        <title value="Home"/>
+        <generation value="html"/>
+      </page>
+      <page>
+        <nameUrl value="profiles.html"/>
+        <title value="Profiles"/>
+        <generation value="html"/>
+      </page>
+      <page>
+        <nameUrl value="extensions.html"/>
+        <title value="Extensions"/>
+        <generation value="html"/>
+      </page>
+      <page>
+        <nameUrl value="terminology.html"/>
+        <title value="Terminology"/>
+        <generation value="html"/>
+      </page>
     </page>
+
+    <!-- parameters -->
     <parameter>
       <code value="generate-json"/>
       <value value="true"/>
@@ -217,7 +264,7 @@
     </parameter>
     <parameter>
       <code value="releaselabel"/>
-      <value value="CI build"/>
+      <value value="CI Build"/>
       <!--<value value="STU Ballot"/>-->
     </parameter>
     <parameter>

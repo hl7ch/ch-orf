@@ -1,0 +1,1759 @@
+<div xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas-r5/fhir-single.xsd">
+
+
+    <p>This Implementation Guide uses FHIR defined resources – Composition Resource, Questionnaire Resource,
+    QuestionnaireResponse Resource, Patient Resource, Practitioner Resource, ServiceRequest Resource and Bundle from
+    FHIR R4. For details on HL7 FHIR R4 see <a rel="nofollow" class="external free" href="http://hl7.org/fhir/r4">http://hl7.org/fhir/r4</a>.
+    </p>
+    <p>The Order &amp; Referral by Form (ORF) Implementation Guide describes how forms for eReferrals, requests for
+        information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and
+        used in order to achieve a syntactical and semantically consistent cross enterprise information exchange.
+    </p>
+    <p>The Implementation Guide supports creation and domain wide deployment of forms for structured and coded information
+        exchange as well as exchange of such forms for referral, orders etc. The Implementation Guide relies on FHIR e.g.
+        the questionnaire resource. Because the Implementation Guide relies heavily on the FHIR Resources Questionnaire and
+        QuestionnaireResponse, forms are addressed here as Questionnaires.
+    </p>
+    <p>This Implementation Guide is derived from the HL7 Structured Data Capture Implementation Guide, see <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/">SDC IG</a> and uses the Swiss Core Profiles, see
+        <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/hl7ch/ch-core/index.html">CH Core</a>.
+    </p>
+
+    <h3>
+        <span id="Volume_1_–_Order_&amp;_Referral_by_Form_(CH:ORF)_Implementation_Guide"></span>
+        <span class="mw-headline" id="Volume_1_.E2.80.93_Order_.26_Referral_by_Form_.28CH:ORF.29_Implementation_Guide">Volume 1 – Order &amp;
+            Referral by Form (CH ORF) Implementation Guide</span>
+    </h3>
+    <p>This Implementation Guide concerns directional information exchange between institutions such as requests for
+        referral, requests for previous imaging results, requests for second opinions etc. as well as corresponding
+        responses. Such request are often done – or could be done – by means of structured forms. The same may apply for
+        responses or documents coming along in case the response consists of a particular payload (e.g. exam results).
+        However, forms for these purposes are in general proprietary constructs and seldom suitable for further machine
+        processing. Furthermore, such forms are more or less hard coded and concerned systems may not easily be updated for
+        new use cases.
+    </p>
+
+    <p>The ORF Implementation Guide addresses two issues:
+    </p>
+    <ol>
+        <li>It supports a scenario where an authority (e.g. health authority, expert panel etc.) defines a set of forms
+        (here called Questionnaires) for well-defined use cases which then are deployed in a specific enterprise, domain
+        etc. or even nationwide.</li>
+        <li>New use cases or changes in use cases can easily be handled either by modification of existing Questionnaires or
+        new ones. The Implementation Guide itself is agnostic to the nature of a particular Questionnaire and the ORF
+        Implementation Guide puts only little limits on its definition.</li>
+    </ol>
+    <p>Venders implementing the ORF Implementation Guide benefit of a high re-use potential. Applications which support the
+    ORF Implementation Guide may be used for various settings of directional information exchange. The specific needs of
+    a particular use case will be covered by a adequate design of the Questionnaire and the value sets being used.
+    </p>
+    <p>When writing the ORF Implementation Guide, the authors had the following use case in mind: A human fills in a
+    Questionnaire for a particular request and sends this Questionnaire to a receiver. There, a human reads the
+    Questionnaire with its content. A corresponding response will work in the same way. There is possibly some payload
+    coming with the Questionnaire: A request may be accompanied by results of preceding exams (e.g. images, reports);
+    the response may be a diagnostic result.
+    </p>
+    <p>The primary aim of the ORF Implementation Guide is to assure a consistent representation of Questionnaires at both –
+    filler- and receiver – site. But there is the need for further machine processing: at filler site in terms of
+    prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the
+    receiver may want to have the content of the form ready for further processing in his applications. Obviously the
+    two aims – semantic interoperability and flexibility in the definition of Questionnaires – are contradictory. The
+    ORF Implementation Guide addresses this problem by a mandatory set of mandatory given elements and codes with
+    defined meaning which are part of every Questionnaire in the ORF Implementation Guide. It is up to a SDC Form
+    Designer to create Questionnaires with additional use case specific elements.
+    </p>
+    <p>Applications claiming for conformance with the ORF Implementation Guide shall:
+    </p>
+    <ul>
+        <li>Render (and in case of the Questionnaire filler allow for data entry) all elements of a questionnaire in the
+        user interface (e.g. on screen, in print). Grouping of items and the order of items within shall be adequately
+        reproduced according to the Questionnaire.</li>
+        <li>Be able to process all codes related to the mandatory given elements in a Questionnaire.</li>
+    </ul>
+    <p>Venders of applications with Questionnaire Filler/Questionnaire Receiver Actors are strongly recommended to implement
+    interfaces to other applications (such as HIS and PACS) for all data in the mandatory given elements of
+    Questionnaires.
+    </p>
+    <p>Applications designed like this will provide out-of-the-box interconnectivity for mandatory given elements as well as
+    out-of-the-box interoperability for all questionnaires as far it concerns user interfaces at filler and receiver
+    site.
+    </p>
+    <p>Nothing speaks against interfaces for data in the use case specific part of a particular Questionnaire. One has
+    however to keep in mind, that such interfaces are tied to a specific questionnaire. Ownership or other means, which
+    prevent changes of the questionnaire by third parties, are therefore advisable.
+    </p>
+    <p>The ORF Implementation Guide deals with Transport, Workflow and Content. It is based on FHIR resources and in
+    particular the FHIR Questionnaire resource. FHIR specifies RESTful Web services as a mean for transport.&#160; An
+    implementation based on RESTful Web services is strongly recommended however not mandatory to comply with the ORF
+    Implementation Guide. Workflow is addressed by the scope of ORF Implementation Guide which addresses directional
+    information exchange with request and response. Content is defined by a set of mandatory mandatory given elements
+    and codes and the possibility to extend both as required by the use cases addressed.
+    </p>
+
+
+    <h4>
+        <span id="ORF_Actors,_Transactions,_and_Content_Modules"></span>
+        <span class="mw-headline" id="ORF_Actors.2C_Transactions.2C_and_Content_Modules">ORF Actors, Transactions, and Content Modules</span>
+    </h4>
+    <p>This Implementation Guide depends on the <a rel="nofollow" class="external text" href="http://www.hl7.org/fhir/uv/sdc/history.cfml">SDC Implementation Guide</a>:
+    </p>
+    <p>Questionnaires and forms permeate healthcare. They are used to capture administrative data, claims data, clinical
+    information, research information, for public health reporting - every type of data that is manipulated by
+    healthcare systems. They provide a user-friendly mechanism for capturing data in a consistent way. In FHIR, forms
+    are represented using the Questionnaire resource and completed forms are represented using the QuestionnaireResponse
+    resource. The base FHIR specification defines these resources but doesn't provide much guidance around how they
+    should be used, nor does it set minimal expectations for interoperation. The <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/">SDC Implementation Guide</a> provides a set of guidance around the use
+    of Questionnaire and QuestionnaireResponse.
+    </p>
+
+    <h5>
+        <span class="mw-headline" id="SDC_Specification_relevant_to_CH-ORF">SDC Specification relevant to CH ORF</span>
+    </h5>
+    <p>These sections define the different use-cases supported by SDC, specify the profile(s) needed to meet the use-cases.
+    </p>
+    <ol>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/search.html">Finding a
+            Questionnaire</a> describes expectations for systems serving as form repositories as well as clients who
+        will need to search for forms.</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/rendering.html">Advanced
+            Rendering</a> describes how to use various questions and the base capabilities of Questionnaire to render
+        different types of form elements</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/behavior.html">Form Behavior</a>
+        describes how to design 'active' forms that adjust what information is displayed and/or that perform
+        calculations based on user input</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/adaptive.html">Adaptive Forms</a>
+        describes an architecture to support completing forms where the questionnaire is not pre-defined and instead is
+        dynamically developed based on the user's answers</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/populate.html">Questionnaire
+            Population</a> describes how to design questionnaires to support pre-population of answers and how to use
+        services that support pre-populating forms</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/extraction.html">Data
+            Extraction</a> describes how to design questionnaires to support converting completed forms into a FHIR
+        resource or Bundle of FHIR resources for subsequent analysis</li>
+    </ol>
+    <h5>
+        <span class="mw-headline" id="SDC_Actors_and_workflow_relevant_to_CH-ORF">SDC Actors and workflow relevant to
+        CH ORF</span>
+    </h5>
+    <p>To be considered SDC-conformant, a system must adhere to the requirements defined by at least one of these
+    statements. Some systems might choose to comply with more than one.
+    </p>
+    <ul>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-designer.html">SDC Form
+            Designer</a> - System responsible for creating and editing form designs</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-filler.html">SDC Form
+            Filler</a> - System responsible for capturing user form input to produce partially or fully completed forms
+        </li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-manager.html">SDC Form
+            Manager</a> - Repository for form definitions. May also perform pre-population</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-response-manager.html">SDC Form Response Manager</a> -
+        Searchable repository for storage and retrieval of completed and partially completed forms.</li>
+        <li>
+            <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-receiver.html">SDC Form
+            Receiver</a> - Write-only destination to which forms are sent for processing</li>
+    </ul>
+
+    <p>The relationship between these roles and a summary of how they can interact is shown in <sup id="cite_ref-Figure0_1-0" class="reference">&#91;Figure 1&#93;</sup>.
+    </p>
+    <p>
+        <div style="max-width:40%;">
+            <img src="sdc-form-operations.png" width="472" height="354" />
+        </div>
+    </p>
+    <p>
+        <sup id="cite_ref-Figure0_1-1" class="reference">&#91;Figure 1&#93;</sup>
+        <i>SDC Role operations</i>
+    </p>
+
+    <h5>
+        <span class="mw-headline" id="CH-ORF">CH ORF</span>
+    </h5>
+    <p>This section defines the actors, transactions, and/or content modules specific to this Implementation Guide.
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Actor
+                </th>
+                <th>Definition
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>A system that renders Questionnaires and allows for filling in. The Questionnaire Filler is also
+                responsible for filling in the corresponding resources in the Bundle, corresponds to the <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-filler.html">SDC Form Filler</a>.
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>A system that receives a Bundle (according to the Questionnaire) from a Questionnaire filler and
+                renders
+                it, corresponds to the <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/sdc-form-receiver.html">SDC Form Receiver</a>.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <sup id="cite_ref-Table1_2-0" class="reference">&#91;Table 1&#93;</sup>
+        <i>Actors
+        in the ORF Implementation Guide</i>
+    </p>
+    <p>
+        <div style="max-width:40%;">
+            <img alt="ChOrfQuestionnaireHandlingActorDiagram.svg" src="ChOrfQuestionnaireHandlingActorDiagram.svg" width="700" height="220" class="img-on-screen" />
+        </div>
+    </p>
+    <p>
+        <sup id="cite_ref-Figure1_3-0" class="reference">&#91;Figure 2&#93;</sup>
+        <i>Questionnaire Handling Actor Diagram</i>
+    </p>
+    <p>
+        <sup id="cite_ref-Figure1_3-1" class="reference">&#91;Figure 2&#93;</sup>
+    shows
+    the actors directly involved in the ORF Implementation Guide and the relevant transactions between them. Actors
+    which have a mandatory grouping are shown in conjoined boxes.
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Actors
+                </th>
+                <th>Transactions
+                </th>
+                <th>Optionality
+                </th>
+                <th>Reference
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>Submit Bundle [CH:ORF-1]
+                </td>
+                <td>O
+                </td>
+                <td>3.1
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>Submit Bundle[CH:ORF-1]
+                </td>
+                <td>O
+                </td>
+                <td>3.1
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <sup id="cite_ref-Table2_4-0" class="reference">&#91;Table 2&#93;</sup>
+        <i>Actors
+        in the ORF Implementation Guide</i>
+    </p>
+    <p>
+        <sup id="cite_ref-Table2_4-1" class="reference">&#91;Table 2&#93;</sup> lists
+    the
+    transactions for each actor directly involved in the Order &amp; Referral by Form (ORF) Implementation Guide. To
+    claim compliance with this Implementation Guide, an actor shall support all required transactions (labeled “R”)
+    and
+    may support the optional transactions (labeled “O”).
+    </p>
+    <p>The Submit Bundle transaction is marked as optional to allow solutions which choose a different communication
+    transaction method like IHE XDS, XDR, XMD to be conform with this Implementation Guide.
+    </p>
+    <p>A product implementation using this Implementation Guide group actors from this with actors from a workflow or
+    transport Implementation Guide to be functional. The grouping of the content module described in this
+    Implementation
+    Guide to specific actors is described in more detail in the “Required Actor Groupings” section below.
+    </p>
+    <p>
+        <sup id="cite_ref-Table3_5-0" class="reference">&#91;Table 3&#93;</sup> lists
+    the
+    content module defined in the Order &amp; Referral by Form (ORF)) Implementation Guide. To claim support with
+    this
+    Implementation Guide, an actor shall support all required content modules (labeled “R”) and may support optional
+    content modules (labeled “O”). The content module is based on the [Swiss core] profiles.
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Actors
+                </th>
+                <th>Content Modules
+                </th>
+                <th>Optionality
+                </th>
+                <th>Reference
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>ORF Content Module <sup id="cite_ref-Note1_6-0" class="reference">&#91;Note 1&#93;</sup>
+                </td>
+                <td>R
+                </td>
+                <td>Vol 3
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>ORF Content Module <sup id="cite_ref-Note1_6-1" class="reference">&#91;Note
+                    1&#93;</sup>
+                </td>
+                <td>R <sup id="cite_ref-Note1_6-2" class="reference">&#91;Note
+                    1&#93;</sup>
+                </td>
+                <td>Vol 3
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <sup id="cite_ref-Table3_5-1" class="reference">&#91;Table 3&#93;</sup>
+        <i>Order
+        &amp; Referral by Form (ORF) Implementation Guide - Actors and Content Modules</i>
+    </p>
+    <p>
+        <sup id="cite_ref-Note1_6-3" class="reference">&#91;Note 1&#93;</sup>
+        <i>The
+        content
+        of the form depends on the form which itself is defined by the FHIR Questionnaire The FHIR Questionnaire
+        defines
+        elements and structure of the form. Codes for coded attributes are provided with a corresponding value set
+        (details see ORF Content Module)</i>
+    </p>
+
+    <h5><span class="mw-headline" id="ORF_Actor_Descriptions_and_Actor_Requirements">ORF Actor Descriptions and Actor
+        Requirements</span></h5>
+    <p>Most requirements are documented in Transactions (Volume 2) and Content Modules (Volume 3). This section
+    documents any additional requirements on Implementation Guide's actors.
+    </p>
+    <p>Questionnaire Filler and Questionnaire Receiver Actors may be implemented on a mobile device, although this is
+        not
+        the primary setting in mind. All other Actors will rather be implemented in a stationary setting because the use
+        case addressed involve mostly stationary applications.
+    </p>
+
+
+    <h4><span class="mw-headline" id="ORF_Actor_Options">ORF Actor Options</span></h4>
+    <p>Options that may be selected for each actor in this profile, if any, are listed in <sup id="cite_ref-Table4_7-0"
+            class="reference">&#91;Table 4&#93;</sup>. Dependencies between options when applicable are specified in notes.
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Actor
+                </th>
+                <th>Option Name
+                </th>
+                <th>Reference
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>No options defined
+                </td>
+                <td>--
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>No options defined
+                </td>
+                <td>--
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><sup id="cite_ref-Table4_7-1" class="reference">&#91;Table 4&#93;</sup><i>ORF - Actors and Options</i>
+    </p>
+
+
+    <h4><span class="mw-headline" id="ORF_Required_Actor_Groupings">ORF Required Actor Groupings</span></h4>
+    <p>An Actor from this Implementation Guide (Column 1) shall implement all of the required transactions and/or
+        content modules in this profile <i><b>in addition to</b></i> all of the transactions required for the grouped actor
+        (Column 2).
+    </p>
+    <p>If this is a content module, and actors from this Implementation Guide are grouped with actors from a workflow or
+        transport profile, the Content Bindings reference column references any specifications for mapping data from the
+        content module into data elements from the workflow or transport transactions.
+    </p>
+    <p>In some cases, required groupings are defined as at least one of an enumerated set of possible actors; this is
+        designated by merging column one into a single cell spanning multiple potential grouped actors. Notes are used
+        to highlight this situation.
+    </p>
+    <p>Section 1.5 describes some optional groupings that may be of interest for security considerations and section 1.6
+        describes some optional groupings in other related profiles.
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>ORF Actor
+                </th>
+                <th>Actor to be grouped with
+                </th>
+                <th>Reference
+                </th>
+                <th>Content Bindings Reference
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>Questionnaire Receiver
+                </td>
+                <td>1.1
+                </td>
+                <td>Volume 3
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>Questionnaire Filler
+                </td>
+                <td>1.1
+                </td>
+                <td>Volume 3
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>CT Time Client
+                </td>
+                <td>ITI TF-1: 7.1
+                </td>
+                <td>na
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>CT Time Client
+                </td>
+                <td>ITI TF-1: 7.1
+                </td>
+                <td>na
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <sup id="cite_ref-Table5_8-0" class="reference">&#91;Table 5&#93;</sup><i>ORF - Required Actor Groupings</i>
+    </p>
+
+
+    <h4><span class="mw-headline" id="ORF_Overview">ORF Overview</span></h4>
+    <h5><span class="mw-headline" id="Use_Cases">Use Cases</span></h5>
+    <h6><span class="mw-headline" id="Questionnaire_Usage_Process_Flow">Questionnaire Usage Process Flow</span></h6>
+    <p>Dr. Miller has a new Patient John Doe who has had an MRI at the radiology service “S-U-P-E-R-XR”. Dr. Miller
+        retrieves a special order questionnaire from the SDC Form Manager at S-U-P-E-R-XR which allows ordering of
+        images and reports of previous exams. Dr. Miller fills in this questionnaire and sends it back. At S-U-P-E-R-XR, a
+        staff member will fill in another Questionnaire with a reply, attaches images and reports an sends all to Dr. Miller.
+    </p>
+
+
+    <h4><span class="mw-headline" id="ORF_Security_Considerations">ORF Security Considerations</span></h4>
+    <p>A resource server should not return any patient information unless proper authentication and communications
+        security have been proven.
+    </p>
+    <p>There are many reasonable methods of securing interoperability transactions. These security models can be layered
+        in without modifying the characteristics of the ORF Profile transactions. The use of TLS is mandatory.
+    </p>
+    <p>User authentication on mobile devices is encouraged using Internet User Authorization (IUA) Profile. The network
+        communication security and user authentication are layered in at the HTTP transport layer and do not modify the
+        interoperability characteristics defined in the ORF Profile.
+    </p>
+    <p>The Security Audit logging (e.g. ATNA) is recommended. Support for ATNA-based audit logging on the mobile health
+        device may be beyond the ability of this constrained environment.
+    </p>
+    <p>In case vendors decide to include the Patient ID (patient.identifier) as a query parameter on the Resource URL
+        (what would be out of the scope of ORF Implementation Guide), this URL pattern would present a risk when using typical
+        web server audit logging of URL requests, and browser history. In both of these cases the URL with the patient
+        identity would be clearly visible. These risks should be mitigated in system or operational design.
+    </p>
+
+
+    <h3><span id="Volume_2_–_Transactions"></span><span class="mw-headline" id="Volume_2_.E2.80.93_Transactions">Volume
+        2 – Transactions</span></h3>
+   
+    <h4><span id="Submit_Bundle_[CH:ORF-1]"></span><span class="mw-headline" id="Submit_Bundle_.5BCH:ORF-1.5D">Submit
+            Bundle [CH ORF-1]</span></h4>
+    <p>This section corresponds to Transaction CH:ORF-1. Transaction CH:ORF-1 is used by the Questionnaire Filler and
+        Questionnaire Receiver. This is a combination of extracting resources outlined in the SDC Workflow
+        <a rel="nofollow" class="external text" href="http://build.fhir.org/ig/HL7/sdc/workflow.html">10.1 Optional EHR
+            extracts information from Questionnaire Response</a> and sending a Bundle including the extracted
+        information according to Volume 3 and Questionnaire Response to the Questionnaire Receiver.
+    </p>
+    <h5><span class="mw-headline" id="Scope">Scope</span></h5>
+    <p>This transaction is used to submit a filled in questionnaire together with required additional resources and
+        attachments in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
+    </p>
+    <h5><span class="mw-headline" id="Actor_Roles">Actor Roles</span></h5>
+    <div style="max-width:40%;">
+        <img src="ChOrfActorsRoleSubmitBundle.svg" width="620" height="300"/>
+    </div>
+    <p>
+        <sup id="cite_ref-Figure11_9-0" class="reference">&#91;Figure 3&#93;</sup>
+        <i>Use Case Diagram</i>
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th><b>Actor</b>
+                </th>
+                <th><b>Role</b>
+                </th>
+            </tr>
+            <tr>
+                <td>Questionnaire Filler
+                </td>
+                <td>A system that allows querying a SDC Form Manager in order to fill in the elements for a
+                    Questionnaire
+                    Response. Upon completion, a corresponding bundle will be submitted to the Questionnaire Receiver.
+                </td>
+            </tr>
+            <tr>
+                <td>Questionnaire Receiver
+                </td>
+                <td>A system that receives bundles and processes them compliant to the ORF Profile.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><sup id="cite_ref-Table9_10-0" class="reference">&#91;Table
+            6&#93;</sup><i>Actor
+            Roles</i>
+    </p>
+    <h5><span class="mw-headline" id="Referenced_Standard">Referenced Standard</span></h5>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <td>HL7 FHIR
+                </td>
+                <td>Fast Healthcare Interoperability Resources <a rel="nofollow" class="external free"
+                        href="http://hl7.org/fhir/r4/index.html">http://hl7.org/fhir/r4/index.html</a>
+                </td>
+            </tr>
+            <tr>
+                <td>HL7 SDC IG
+                </td>
+                <td>Structured Data Capture Implementation Guide <a rel="nofollow" class="external free"
+                        href="http://build.fhir.org/ig/HL7/sdc/index.html">http://build.fhir.org/ig/HL7/sdc/index.html</a>
+                </td>
+            </tr>
+            <tr>
+                <td>IETF RFC 2616
+                </td>
+                <td>Hypertext Transfer Protocol – HTTP/1.1
+                </td>
+            </tr>
+            <tr>
+                <td>IETF RFC 7540
+                </td>
+                <td>Hypertext Transfer Protocol – HTTP/2
+                </td>
+            </tr>
+            <tr>
+                <td>IETF RFC 3986
+                </td>
+                <td>Uniform Resource Identifier (URI): Generic Syntax
+                </td>
+            </tr>
+            <tr>
+                <td>IETF RFC 4627
+                </td>
+                <td>The application/json Media Type for JavaScript Object Notation (JSON)
+                </td>
+            </tr>
+            <tr>
+                <td>IETF RFC 6585
+                </td>
+                <td>Additional HTTP Status Codes
+                </td>
+            </tr>
+            <tr>
+                <td>IHE Appendix on HL7 FHIR
+                </td>
+                <td><a rel="nofollow" class="external free"
+                        href="https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_Appx-Z.pdf">https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_Appx-Z.pdf</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5><span class="mw-headline" id="Interaction_Diagram">Interaction Diagram</span></h5>
+    <p>
+        <div style="max-width:40%;"><img alt="ChOrfInteractionDiagramSubmitBundle.svg"
+                src="ChOrfInteractionDiagramSubmitBundle.svg" width="400" height="210"
+                class="img-on-screen" /></div>
+    </p>
+    <p><sup id="cite_ref-Figure12_11-0" class="reference">&#91;Figure 4&#93;</sup>
+        <i>Interaction Diagram</i>
+    </p>
+    <h6><span class="mw-headline" id="Submit_Bundle">Submit Bundle</span></h6>
+    <p>The transaction uses the HTTP POST method on the target Questionnaire Receiver endpoint to convey the
+        questionnaire
+        bundle as a FHIR transaction.
+    </p>
+    <h7><span class="mw-headline" id="Trigger_Events">Trigger Events</span></h7>
+    <p>After the Questionnaire is completed by the Questionnaire filler user, the Questionnaire Filler submits a the
+        corresponding bundle to the Questionnaire receiver.
+    </p>
+    <h7><span class="mw-headline" id="Message_Semantics">Message Semantics</span></h7>
+    <p>The Questionnaire Filler shall initiate a FHIR “transaction” using a “create” action by sending an HTTP POST
+        request method composed of a FHIR Bundle Resource containing the Composition resource and all resources referenced in,
+        in particular one Questionnaire Resource, one QuestionnaireResponse Resource and additional resources according to
+        the Questionnaire Profile.
+    </p>
+    <p>The media type of the HTTP body shall be either <code>“application/json+fhir”</code> or
+        <code>“application/xml+fhir”</code>.
+    </p>
+    <p>See <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/http.html#transaction">http://hl7.org/fhir/http.html#transaction</a> for complete
+        requirements of a transaction. See <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/bundle-transaction.html">http://hl7.org/fhir/bundle-transaction.html</a> for
+        example of a transaction bundle.
+    </p>
+    <p>Submit Bundle is sent to the base URI as defined in FHIR. See <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/r4/http.html">http://hl7.org/fhir/r4/http.html</a> for the definition of “http”
+        access methods and “base”.
+    </p>
+    <h8><span class="mw-headline" id="Bundle_Resources">Bundle Resources</span></h8>
+    <p>For complete information on constructing a FHIR Bundle Resource, see: <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/r4/bundle.html">http://hl7.org/fhir/r4/bundle.html</a>
+    </p>
+    <p>The FHIR <code>Bundle.meta.profile</code> shall include the value
+        <code>“<a rel="nofollow" class="external free" href="http://fhir.ch/ig/ch-orf/StructureDefinition/ORFDocumentProfile”">http://fhir.ch/ig/ch-orf/StructureDefinition/ORFDocumentProfile”</a></code>.
+    </p>
+    <h7><span class="mw-headline" id="Expected_Actions">Expected Actions</span></h7>
+    <p>The Questionnaire Receiver shall accept both media types <code>application/json+fhir</code> and
+        <code>application/xml+fhir</code>.
+    </p>
+    <p>On receipt of the submission, the Questionnaire Receiver shall validate the resources and respond with one of the
+        HTTP codes defined in Section 3.4.4.2.2 Message Semantics.
+    </p>
+    <h6><span class="mw-headline" id="Status_Message">Status Message</span></h6>
+    <p>The Questionnaire receiver returns a HTTP Status code appropriate to the processing, conforming to the
+        transaction
+        specification requirements as specified in <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/r4/http.html#transaction">http://hl7.org/fhir/r4/http.html#transaction</a>
+    </p>
+    <h7><span class="mw-headline" id="Trigger_Events_2">Trigger Events</span></h7>
+    <p>This message shall be sent once the questionnaire bundle is received and completely processed.
+    </p>
+    <h7><span class="mw-headline" id="Message_Semantics_2">Message Semantics</span></h7>
+    <p>When the Questionnaire Receiver has successfully processed the POST transaction, then the Questionnaire Receiver
+        shall return an HTTP response with an overall status code.
+    </p>
+    <p>In order to allow the Questionnaire Filler to know the outcomes of processing the transaction, and the identities
+        assigned to the resources by the Questionnaire Receiver, the Questionnaire Receiver shall return a Bundle, with
+        type set to transaction-response, that contains one entry for each entry in the request, in the same order, with the
+        outcome of processing the entry. See FHIR <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/r4/bundle.html#transaction-response">http://hl7.org/fhir/r4/bundle.html#transaction-response</a>
+    </p>
+    <p>Each entry element shall contain a response element which details the outcome of processing the entry - the HTTP
+        status code. All other elements are not required.
+    </p>
+    <p>On success, the Questionnaire Receiver shall return the HTTP status code 200 – OK.
+    </p>
+    <p>Guidance on handling Access Denied related to use of 403 and 404 can be found in IHE Appendix on HL7 FHIR Z.7.
+    </p>
+    <p>On failure, the Questionnaire Receiver shall return the HTTP status codes as follows:
+    </p>
+    <ul>
+        <li>400 Bad Request - resource could not be parsed or failed basic FHIR validation rules like reference
+            inconsistencies, schema violations, etc.</li>
+        <li>404 Not Found - resource type not supported.</li>
+        <li>422 Unprocessable Entity - one or more proposed resources violated applicable FHIR profiles or server
+            business
+            rules.</li>
+    </ul>
+    <p>In addition, the Questionnaire Receiver may also send 5xx HTTP status codes to indicate non-transaction related
+        failures. Note that the Questionnaire Filler may also encounter non-FHIR endpoints which will not return an
+        Bundle in the response.
+    </p>
+    <p>The Questionnaire Receiver may return HTTP redirect responses (responses with HTTP status codes 301, 302, 303 or
+        307) in response to a request.
+    </p>
+    <h7><span class="mw-headline" id="Expected_Actions_2">Expected Actions</span></h7>
+    <p>If the Questionnaire Receiver returns an HTTP redirect response (HTTP status codes 301, 302, 303, or 307), the
+        Questionnaire Filler shall follow that redirection, although it may stop processing if it detects a loop.
+    </p>
+    <p>The Questionnaire Receiver processes the results according to application-defined rules.
+    </p>
+    <p>If a Questionnaire Receiver cannot automatically recover from an error condition, at a minimum, it should display
+        the error to the user.
+    </p>
+    <h6><span class="mw-headline" id="Conformance_Resource">Conformance Resource</span></h6>
+    <p>Questionnaire Receiver implementing this transaction should provide a Conformance Resource as described in IHE
+        Appendix on HL7 FHIR Z.3 indicating the operation has been implemented.
+    </p>
+
+
+    <h3><span id="Volume_3_–_Content_Modules"></span><span class="mw-headline"
+        id="Volume_3_.E2.80.93_Content_Modules">Volume 3 – Content Modules</span></h3>
+
+    <h4><span class="mw-headline" id="Questionnaire_Content">Questionnaire Content</span></h4>
+    <p>This section describes the content of a form. The following definitions apply:
+    </p>
+    <p>Request and responses consist of filled in questionnaires. Some elements of the questionnaire are mandatory given
+        elements (such as author, data entry person, receiver etc. are always present in a questionnaire compliant to
+        the ORF Implementation Guide. In addition, a questionnaire will contain elements which are use case specific. The
+        ORF Implementation Guide makes no assumptions about the nature of such elements: structure and content (including
+        coding of codes elements) are in the responsibility of those creating a form for a particular use case.
+    </p>
+    <p>As this Implementation Guide is based on FHIR, the following rules apply:
+    </p>
+    <p>Items, grouping of items, order of groups and order of elements within groups of a questionnaire shall be defined
+        in a Questionnaire Resource. The Questionnaire Resource is defined by means of the SDC From Designer and made
+        available by the SDC Form Manager.
+    </p>
+    <p>Based on the Questionnaire, a Questionnaire Filler defines a QuestionnaireResponse and appropriate additional
+        resources aimed at transmitting the information provided by the Questionnaire filler in a standardized
+        structured form. Upon completion of the questionnaire, the Questionnaire Filler shall create a bundle with all resources
+        mentioned above.
+    </p>
+    <p>Questionnaires may be accompanied by additional material which can be attached or sent by postal mail (e.g.
+        xray-films or paper documents). The use case may require some references between attached objects (e.g. which
+        pdf-reports belongs to which imaging study).
+    </p>
+
+
+    <h4><span class="mw-headline" id="Mandatory_given_elements_of_a_questionnaire">Mandatory given elements of a
+        questionnaire</span></h4>
+    <p>A questionnaire shall have a set of mandatory given elements (e.g. author, data entry person, receiver etc. <sup id="cite_ref-TableQ_12-0" class="reference">&#91;Table 7&#93;</sup> lists
+        the mandatory given elements
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th><b>Name</b>
+                </th>
+                <th colspan="2"><b>Role taker</b>
+                </th>
+                <th><b>HL 7 V3R<br /> Equivalent</b>
+                </th>
+                <th><b>FHIR<br /></b>
+                    <p>Representation<b></b>
+                    </p>
+                </th>
+                <th><b>Comment</b>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                </th>
+                <th><b>Human</b>
+                </th>
+                <th><b>Organization</b>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <td>Author
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>Author
+                </td>
+                <td>Practitioner
+                </td>
+                <td>The person responsible for Form Content
+                </td>
+            </tr>
+            <tr>
+                <td>Date Entry Person
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>DataEnterer
+                </td>
+                <td>Practitioner
+                </td>
+                <td>The person who has typed/filled in the Form Content.
+                </td>
+            </tr>
+            <tr>
+                <td>Urgent Notification Contact for this document
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>PrimaryInformationRecipient
+                </td>
+                <td>Practitioner
+                </td>
+                <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the Radiologist
+                    has
+                    to be called by phone right away at the time the images arrive.
+                </td>
+            </tr>
+            <tr>
+                <td>Urgent Notification Contact for the Response to this document
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>PrimaryInformationRecipient
+                </td>
+                <td>Practitioner
+                </td>
+                <td>
+                    <p>An information recipient to notify for urgent matters about the response. (e.g. in a clinical
+                        setting, the referring doctor has to be called by phone right away at the time the images and
+                        reports arrive.
+                    </p>
+                    <p>The Urgent Notification Contact for the Response can be specified already in the request. At the
+                        time
+                        the response is written, this element shall be populated to the Urgent Notification Contact
+                        element
+                        in the response
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>Receiver
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>
+                </td>
+                <td>Practitioner
+                </td>
+                <td>Person and/or institution who receives the Bundle
+                </td>
+            </tr>
+            <tr>
+                <td>Patient
+                </td>
+                <td>X
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Patient
+                </td>
+                <td>The principle target of a particular Form Content is one patient (for obstetrical and neonatal use
+                    cases
+                    see….).
+                </td>
+            </tr>
+            <tr>
+                <td>PrecedentDocumentId
+                </td>
+                <td>na
+                </td>
+                <td>na
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>This element provides a link to the preceding document in a thread (e.g. from a response to the
+                    request
+                </td>
+            </tr>
+            <tr>
+                <td>Date
+                </td>
+                <td>na
+                </td>
+                <td>na
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Date, the document was created
+                </td>
+            </tr>
+            <tr>
+                <td>Priority
+                </td>
+                <td>na
+                </td>
+                <td>na
+                </td>
+                <td>
+                </td>
+                <td>DiagnosticOrderPriority
+                </td>
+                <td>The priority shall be indicated in the one of the resources in the table “Optional given elements of
+                    a
+                    questionnaire”
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><sup id="cite_ref-TableQ_12-1" class="reference">
+            &#91;Table 7&#93;</sup> <i>Generic elements in Questionnaires compliant to the ORF Implementation Guide</i>
+    </p>
+
+
+    <h4><span id="Optional_given_elements_of_a_questionnaire_(One_of_them_shall_be_provided)"></span><span
+        class="mw-headline" id="Optional_given_elements_of_a_questionnaire_.28One_of_them_shall_be_provided.29">Healthcare domain specific elements of a questionnaire</span></h4>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Resource
+                </th>
+                <th>Description
+                </th>
+            </tr>
+            <tr>
+                <td>ServiceRequest
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>There may be the need to provide a linkage between a particular files or between a particular file and an imaging
+        study (e.g. a link between a PDF-File containing a report and a DICOM study). Such links shall be expressed with
+        a DocumentReference as follows:
+    </p>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th>Resource
+                </th>
+                <th colspan="3">Elements
+                </th>
+                <th>Description
+                </th>
+            </tr>
+            <tr>
+                <td>DocumentReference
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>type
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>(e.g. LOINC 18748-4 for Diagnostic Imaging Study)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>content
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>attachment
+                </td>
+                <td>
+                </td>
+                <td>Attachment
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>contentType
+                </td>
+                <td>Mime Type
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>data
+                </td>
+                <td>Data inline, base64ed (contains the file; e.g. a PDF-Report)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>context
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>related
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Reference (ImagingStudy)
+                </td>
+                <td>ImagingStudyResource provides StudyInstanceUID etc.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h4><span class="mw-headline" id="FHIR_Representation">FHIR Representation</span></h4>
+    <p>FHIR depicts forms (questionnaires) in a Questionnaire Resource. A Questionnaire Resource can be conceived as an
+        empty questionnaire where as the filled in questionnaire refers to the QuestionnaireResponse Resource.
+        QuestionnaireResponse Resources are certainly structured but due to their flexibility in design not in a
+        standardized manner. FHIR addresses this issue by means of its standardized resources.
+    </p>
+    <p>The Order &amp; Referral by Form Implementation Guide is based on two FHIR Resources profiles. For details on
+        profiling FHIR see HL7 FHIR <a rel="nofollow" class="external free"
+            href="http://www.hl7.org/fhir/profiling.html">http://www.hl7.org/fhir/profiling.html</a>. For details on
+        FHIR resources and data-types see HL7 FHIR <a rel="nofollow" class="external free"
+            href="http://hl7.org/fhir/">http://hl7.org/fhir/</a>.
+    </p>
+    <ol>
+        <li>The Order &amp; Referral by Form Questionnaire (ORF) Implementation Guide defines the usage of the FHIR
+            Questionnaire Resource within the Order &amp; Referral by Form. The Questionnaire Resource is an organized
+            collection of questions intended to solicit information from patients, providers or other individuals
+            involved in the healthcare domain. They may be simple flat lists of questions or can be hierarchically organized in
+            groups and sub-groups, each containing questions. The Questionnaire defines the questions to be asked, how
+            they are ordered and grouped and what the constraints are on the allowed answers. The results of a Questionnaire
+            can be communicated using the QuestionnaireResponse resource (see <a rel="nofollow" class="external free"
+                href="http://www.hl7.org/fhir/questionnaire.html">http://www.hl7.org/fhir/questionnaire.html</a>).</li>
+        <li>The Order &amp; Referral by Form Document (ORF) Profile defines the usage of the FHIR Bundle within the
+            Order &amp; Referral by Form (ORF) Implementation Guide. The ORFDocumentProfile consist of a FHIR document
+            (bundle) that contains the results of a filled in Questionnaire (QuestionnaireResponse Resource) together with the
+            structured resources which map all information filled in the questionnaire. The <a rel="nofollow"
+                class="external text" href="http://hl7.org/fhir/bundle.html">Bundle</a> is of <a rel="nofollow"
+                class="external text" href="http://hl7.org/fhir/bundle-definitions.html#Bundle.type">type</a>
+            &quot;document&quot; and has a <a rel="nofollow" class="external text"
+                href="http://hl7.org/fhir/composition.html">Composition</a> resource as the first resource in the
+            bundle, followed by a series of other resources, referenced from the Composition resource. The bundle gathers all
+            the content of the document into a single XML document which may be signed and managed as required. The
+            resources include both human readable and computer processable sections. In addition, a bundle as defined in this
+            profile shall include a CSS stylesheets and optionally it may include a signature.<br /><br />Any resource
+            referenced directly in the Composition Resource shall be included in the bundle. Other resources that these referenced
+            resources refer to shall also be included in the bundle. Including these additional resources will make the
+            document bigger, but will save applications from needing to retrieve the linked resources.</li>
+    </ol>
+    <h5><span class="mw-headline" id="FHIR_Resources_Constraints">FHIR Resources Constraints</span></h5>
+    <p>This section lists FHIR resources where this profile provides additional information. Resources not listed here
+        follow the specifications of FHIR. For details refer to <a rel="nofollow" class="external free"
+            href="https://www.hl7.org/fhir/resourcelist.html">https://www.hl7.org/fhir/resourcelist.html</a>.
+    </p>
+    <h6><span class="mw-headline" id="Composition_resource">Composition resource</span></h6>
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th colspan="4">FHIR Composition Resource
+                </th>
+                <th>FHIR Type
+                </th>
+                <th colspan="2">ORF Constraint
+                </th>
+                <th>Notes
+                </th>
+            </tr>
+            <tr>
+                <th>Element
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>Cardinality
+                </th>
+                <th>Optionality
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <td>text
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Narrative Text of the composition.
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFPrecedentDocument
+                </td>
+                <td>Identifier
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Identifier of the document which precedes this document in a thread.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFDataEntryPerson
+                </td>
+                <td>Practitioner
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFUrgentNotificiationContactForRequest
+                </td>
+                <td>Practitioner
+                </td>
+                <td>0..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFUrgentNotificiationContactForResponse
+                </td>
+                <td>Practitioner
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFRequestReceiver
+                </td>
+                <td>Practitioner
+                </td>
+                <td>0..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFResponseReceiver
+                </td>
+                <td>Practitioner
+                </td>
+                <td>0..*
+                </td>
+                <td>O
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFVisitNumber
+                </td>
+                <td>Identifier
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>identifier
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Identifier
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Identifier for this composition.
+                </td>
+            </tr>
+            <tr>
+                <td>status
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>code
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>type
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Codeable<br />
+                    <p>Concept
+                    </p>
+                </td>
+                <td>1..1
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>category
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Codeable<br />
+                    <p>Concept
+                    </p>
+                </td>
+                <td>1..1
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>subject
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Reference(Patient)
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>date
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>dateTime
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Composition editing time
+                </td>
+            </tr>
+            <tr>
+                <td>author
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Reference (Practitioner)
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>title
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>string
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Meaningful title
+                </td>
+            </tr>
+            <tr>
+                <td>section
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td colspan="5">QA section must at least one of text, entries, or sub-sections.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>title
+                </td>
+                <td>
+                </td>
+                <td>string
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>entry
+                </td>
+                <td>
+                </td>
+                <td>Reference (Questionnaire)
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Questionnaire
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Reference (QuestionnaireResponse)
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>QuestionnaireResponse
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Reference (ANY)
+                </td>
+                <td>0..n
+                </td>
+                <td>R
+                </td>
+                <td>
+                    <p>Additionally structured entries like ServiceRequest
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h6><span class="mw-headline" id="Questionnaire_resource">Questionnaire resource</span></h6>
+    <p>The intention of the ORF Implementation Guide is to provide a standardized representation of forms at sender and
+        receiver site as well. This is achieved with the Questionnaire Resource, which defines representation of all
+        elements for the user (with the help of a CSS) and user interaction as well (e.g. with drop down lists).
+    </p>
+    <p>This approach requires two things:
+    </p>
+    <ol>
+        <li>Precise definition of all questions</li>
+        <li>Mapping between elements of the Questionnaire Resource and the corresponding elements of the other resources
+            in the bundle</li>
+    </ol>
+    <p>Both is achieved by assigning meaningful concepts to all elements concerned. For codes refer to Appendix A.
+    </p>
+
+    <table class="doc">
+        <tbody>
+            <tr>
+                <th colspan="3" rowspan="2">FHIR Questionnaire<br /> Resource
+                </th>
+                <th>FHIR Type
+                </th>
+                <th colspan="2">ORF Constraint
+                </th>
+                <th rowspan="2">Notes
+                </th>
+            </tr>
+            <tr>
+                <th>
+                </th>
+                <th>Cardinality
+                </th>
+                <th>Optionality
+                </th>
+            </tr>
+            <tr>
+                <td>identifier
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>Identifier
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>version
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>string
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>status
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>code
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>item
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>0..*
+                </td>
+                <td>R
+                </td>
+                <td>Questions and sections within the Questionnaire
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>linkId
+                </td>
+                <td>
+                </td>
+                <td>string
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>Unique id for item in questionnaire
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>text
+                </td>
+                <td>
+                </td>
+                <td>string
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>type
+                </td>
+                <td>
+                </td>
+                <td>code
+                </td>
+                <td>1..1
+                </td>
+                <td>R
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>required
+                </td>
+                <td>
+                </td>
+                <td>boolean
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><br />
+                    </p>
+                </td>
+                <td>repeats
+                </td>
+                <td>
+                </td>
+                <td>boolean
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>Whether the question can have multiple answers
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><br />
+                    </p>
+                </td>
+                <td>answerValueSet
+                </td>
+                <td>
+                </td>
+                <td>canonical(ValueSet)
+                </td>
+                <td>0..1
+                </td>
+                <td>(R)
+                </td>
+                <td>Valueset containing permitted answers
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><br />
+                    </p>
+                </td>
+                <td>answerOption
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>0..*
+                </td>
+                <td>(R)
+                </td>
+                <td>Permitted answers
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>item
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>0..*
+                </td>
+                <td>
+                </td>
+                <td>Nested questionnaire items
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><sup id="cite_ref-Table15_13-0" class="reference">&#91;Table8&#93;</sup><i>Content of the Questionnaire resource</i>
+    </p>
+    <h6><span class="mw-headline" id="QuestionnaireResponse_resource">QuestionnaireResponse resource</span></h6>
+    <p>The QuestionnaireResponse Resource depends of the definition of the Questionnaire Resource and is therefore use
+        case specific. For deriving QuestionnaireResponse Resources from the Questionnaire Resources refer to <a rel="nofollow"
+            class="external free"
+            href="https://www.hl7.org/fhir/r4/questionnaireresponse.html">https://www.hl7.org/fhir/r4/questionnaireresponse.html</a>.
+    </p>
+</div>
