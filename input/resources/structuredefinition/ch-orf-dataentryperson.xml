@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="Extension for Data Entry Personfor CH-ORF"/>
+    <description value="Extension for Data Entry Person for CH ORF"/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>

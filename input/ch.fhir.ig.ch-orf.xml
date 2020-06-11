@@ -53,7 +53,7 @@
   </dependsOn>
   <definition>
     <grouping>
-      <name value="CH-ORF"/>
+      <name value="CH ORF"/>
     </grouping>
     <resource>
       <reference>

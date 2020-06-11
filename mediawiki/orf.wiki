@@ -46,7 +46,7 @@ This Implementation Guide depends on the [http://www.hl7.org/fhir/uv/sdc/history
 
 Questionnaires and forms permeate healthcare. They are used to capture administrative data, claims data, clinical information, research information, for public health reporting - every type of data that is manipulated by healthcare systems. They provide a user-friendly mechanism for capturing data in a consistent way. In FHIR, forms are represented using the Questionnaire resource and completed forms are represented using the QuestionnaireResponse resource. The base FHIR specification defines these resources but doesn't provide much guidance around how they should be used, nor does it set minimal expectations for interoperation. The [http://build.fhir.org/ig/HL7/sdc/ SDC Implementation Guide] provides a set of guidance around the use of Questionnaire and QuestionnaireResponse.
 
-=== SDC Specification relevant to CH-ORF ===
+=== SDC Specification relevant to CH ORF ===
 These sections define the different use-cases supported by SDC, specify the profile(s) needed to meet the use-cases.
 
 # [http://build.fhir.org/ig/HL7/sdc/search.html Finding a Questionnaire] describes expectations for systems serving as form repositories as well as clients who will need to search for forms.
@@ -56,7 +56,7 @@ These sections define the different use-cases supported by SDC, specify the prof
 # [http://build.fhir.org/ig/HL7/sdc/populate.html Questionnaire Population] describes how to design questionnaires to support pre-population of answers and how to use services that support pre-populating forms
 # [http://build.fhir.org/ig/HL7/sdc/extraction.html Data Extraction] describes how to design questionnaires to support converting completed forms into a FHIR resource or Bundle of FHIR resources for subsequent analysis
 
-=== SDC Actors and workflow relevant to CH-ORF ===
+=== SDC Actors and workflow relevant to CH ORF ===
 
 To be considered SDC-conformant, a system must adhere to the requirements defined by at least one of these statements. Some systems might choose to comply with more than one.
 
@@ -71,7 +71,7 @@ The relationship between these roles and a summary of how they can interact is s
 {{HL7img|sdc-form-operations.png||40%}}
 <ref name="Figure0" group="Figure">SDC Role operations</ref> ''SDC Role operations''
 
-=== CH-ORF ===
+=== CH ORF ===
 
 This section defines the actors, transactions, and/or content modules specific to this Implementation Guide.
 
