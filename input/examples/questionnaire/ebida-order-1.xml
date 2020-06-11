@@ -19,7 +19,7 @@
     <experimental value="true" />
     <subjectType value="Patient"/>
     <date value="2018-03-31"/>
-    <publisher value="ahdis" />
+    <publisher value="eHealth Suisse"/>
     <item>
         <linkId value="orf.ch.order"/>
         <text value="Auftrag"/>

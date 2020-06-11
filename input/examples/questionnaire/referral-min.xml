@@ -22,7 +22,7 @@
     <experimental value="true" />
     <subjectType value="Patient" />
     <date value="2019-03-28" />
-    <publisher value="ahdis" />
+    <publisher value="eHealth Suisse"/>
     <item>
         <linkId value="order" />
         <text value="Auftrag" />
