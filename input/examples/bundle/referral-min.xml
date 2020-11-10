@@ -68,7 +68,7 @@
                         </div>
                     </text>
                     <entry>
-                        <reference value="Questionnaire/referral-min"/>
+                        <reference value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
                     </entry>
                     <entry>
                         <reference value="QuestionnaireResponse/referral-min"/>
@@ -529,7 +529,7 @@
                     <lastUpdated value="2019-04-01T20:17:53.340+00:00"/>
                     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
                 </meta>
-                <questionnaire value="Questionnaire/referral-min"/>
+                <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
                 <status value="completed"/>
                 <item>
                     <linkId value="order"/>
