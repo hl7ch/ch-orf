@@ -6,7 +6,7 @@
       "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"
     ]
   },
-  "questionnaire": "Questionnaire/referral-min",
+  "questionnaire": "http://fhir.ch/ig/ch-orf/StructureDefinition/Questionnaire/referral-min",
   "status": "completed",
   "item": [
     {

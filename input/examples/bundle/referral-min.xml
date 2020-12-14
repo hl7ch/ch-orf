@@ -44,7 +44,7 @@
                     <text value="Referral min"/>
                 </type>
                 <subject>
-                    <reference value="http://test.fhir.ch/r4/Patient/FranzMuster"/>
+                    <reference value="Patient/FranzMuster"/>
                 </subject>
                 <date value="2019-03-31T11:46:09+02:00"/>
                 <author>
@@ -68,7 +68,7 @@
                         </div>
                     </text>
                     <entry>
-                        <reference value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+                        <reference value="Questionnaire/referral-min"/>
                     </entry>
                     <entry>
                         <reference value="QuestionnaireResponse/referral-min"/>
@@ -158,30 +158,26 @@
                         </table>
                     </div>
                 </text>
-                <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-ech-11-placeofbirth">
+                <extension url="http://hl7.org/fhir/StructureDefinition/patient-birthPlace">
                     <valueAddress>
-                        <city value="Paris"/>
-                        <country value="Frankreich"/>
+                      <city value="Paris"/>
+                      <country value="Frankreich"/>
                     </valueAddress>
-                </extension>
+                  </extension>
                 <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-ech-11-placeoforigin">
                     <valueAddress>
                         <city value="Köniz"/>
                         <state value="BE"/>
                     </valueAddress>
                 </extension>
-                <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient-religion">
+                <extension url="http://hl7.org/fhir/StructureDefinition/patient-religion">
                     <valueCodeableConcept>
-                        <coding>
-                            <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-religion"/>
-                            <code value="111"/>
-                            <display value="evangelisch-reformierte (protestantische) Kirche"/>
-                        </coding>
-                        <coding>
-                            <system value="http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation"/>
-                            <code value="1077"/>
-                            <display value="Protestant"/>
-                        </coding>
+                      <coding>
+                        <system
+                                value="http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation"/>
+                        <code value="1077"/>
+                        <display value="Protestant"/>
+                      </coding>
                     </valueCodeableConcept>
                 </extension>
                 <identifier>
@@ -196,9 +192,9 @@
                 <birthDate value="1995-01-27"/>
                 <maritalStatus>
                     <coding>
-                        <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
-                        <code value="6"/>
-                        <display value="in eingetragener Partnerschaft"/>
+                      <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                      <code value="6"/>
+                      <display value="in eingetragener Partnerschaft"/>
                     </coding>
                 </maritalStatus>
                 <communication>
@@ -529,7 +525,7 @@
                     <lastUpdated value="2019-04-01T20:17:53.340+00:00"/>
                     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
                 </meta>
-                <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+                <questionnaire value="http://test.fhir.ch/r4/Questionnaire/referral-min"/>
                 <status value="completed"/>
                 <item>
                     <linkId value="order"/>
