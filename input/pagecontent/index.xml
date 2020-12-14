@@ -55,7 +55,7 @@
     prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the
     receiver may want to have the content of the form ready for further processing in his applications. Obviously the
     two aims – semantic interoperability and flexibility in the definition of Questionnaires – are contradictory. The
-    ORF Implementation Guide addresses this problem by a mandatory set of mandatory given elements and codes with
+    ORF Implementation Guide addresses this problem by a mandatory set of generic elements and codes with
     defined meaning which are part of every Questionnaire in the ORF Implementation Guide. It is up to a SDC Form
     Designer to create Questionnaires with additional use case specific elements.
     </p>
@@ -65,13 +65,13 @@
         <li>Render (and in case of the Questionnaire filler allow for data entry) all elements of a questionnaire in the
         user interface (e.g. on screen, in print). Grouping of items and the order of items within shall be adequately
         reproduced according to the Questionnaire.</li>
-        <li>Be able to process all codes related to the mandatory given elements in a Questionnaire.</li>
+        <li>Be able to process all codes related to the generic elements in a Questionnaire.</li>
     </ul>
     <p>Venders of applications with Questionnaire Filler/Questionnaire Receiver Actors are strongly recommended to implement
-    interfaces to other applications (such as HIS and PACS) for all data in the mandatory given elements of
+    interfaces to other applications (such as HIS and PACS) for all data in the generics elements of
     Questionnaires.
     </p>
-    <p>Applications designed like this will provide out-of-the-box interconnectivity for mandatory given elements as well as
+    <p>Applications designed like this will provide out-of-the-box interconnectivity for generic elements as well as
     out-of-the-box interoperability for all questionnaires as far it concerns user interfaces at filler and receiver
     site.
     </p>
@@ -83,7 +83,7 @@
     particular the FHIR Questionnaire resource. FHIR specifies RESTful Web services as a mean for transport.&#160; An
     implementation based on RESTful Web services is strongly recommended however not mandatory to comply with the ORF
     Implementation Guide. Workflow is addressed by the scope of ORF Implementation Guide which addresses directional
-    information exchange with request and response. Content is defined by a set of mandatory mandatory given elements
+    information exchange with request and response. Content is defined by a set of generic given elements
     and codes and the possibility to extend both as required by the use cases addressed.
     </p>
 
@@ -671,7 +671,7 @@
     <a name="volume3"></a><h4>Questionnaire Content</h4>
     <p>This section describes the content of a form. The following definitions apply:
     </p>
-    <p>Request and responses consist of filled in questionnaires. Some elements of the questionnaire are mandatory given
+    <p>Request and responses consist of filled in questionnaires. Some elements of the questionnaire are generic given
         elements (such as author, data entry person, receiver etc. are always present in a questionnaire compliant to
         the ORF Implementation Guide. In addition, a questionnaire will contain elements which are use case specific. The
         ORF Implementation Guide makes no assumptions about the nature of such elements: structure and content (including
@@ -694,9 +694,9 @@
     </p>
 
 
-    <a name="volume3"></a><h4>Mandatory given elements of a questionnaire</h4>
-    <p>A questionnaire shall have a set of mandatory given elements (e.g. author, data entry person, receiver etc. 
-        <sup>&#91;Table 7&#93;</sup> lists the mandatory given elements
+    <a name="volume3"></a><h4>Generic elements of a questionnaire</h4>
+    <p>A questionnaire shall have a set of generice elements (e.g. author, data entry person, receiver etc. 
+        <sup>&#91;Table 7&#93;</sup> lists the generic given elements
     </p>
      <table>
         <tbody>
