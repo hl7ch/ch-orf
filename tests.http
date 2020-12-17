@@ -6,11 +6,11 @@ Content-Type: application/fhir+xml
 
 < ./examples/patient/FranzMuster.xml
 
-### AgparMarc
-PUT {{host}}/Practitioner/AgparMarc HTTP/1.1
+### MarcAgpar
+PUT {{host}}/Practitioner/MarcAgpar HTTP/1.1
 Content-Type: application/fhir+xml
 
-< ./examples/practitioner/AgparMarc.xml
+< ./examples/practitioner/MarcAgpar.xml
 
 ### Questionnaire Referral-min
 PUT {{host}}/Questionnaire/referral-min HTTP/1.1

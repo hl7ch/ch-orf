@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Practitioner xmlns="http://hl7.org/fhir">
-    <id value="AgparMarc"/>
+    <id value="MarcAgpar"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
     </meta>
@@ -12,4 +12,9 @@
         <family value="Agpar"/>
         <given value="Marc"/>
     </name>
+    <telecom>
+        <system value="email"/>
+        <value value="agpar.marc@spitalseeblick.ch"/>
+        <use value="work"/>
+    </telecom>
 </Practitioner> 

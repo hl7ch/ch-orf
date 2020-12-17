@@ -17,3 +17,4 @@ output/**
 temp/**
 template/**
 .vscode/**
+*.jar

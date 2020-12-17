@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuestionnaireResponse xmlns="http://hl7.org/fhir">
+    <id value="referral-min"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </meta>
+    <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+    <status value="completed"/>
+    <item>
+        <linkId value="order"/>
+        <text value="Auftrag"/>
+        <item>
+            <linkId value="order.number"/>
+            <text value="Auftrags-Nummer"/>
+            <answer>
+                <valueString value="123"/>
+            </answer>
+        </item>
+    </item>
+    <item>
+        <linkId value="patient"/>
+        <text value="Patient"/>
+        <item>
+            <linkId value="patient.familyname"/>
+            <text value="Name"/>
+            <answer>
+                <valueString value="Muster"/>
+            </answer>
+        </item>
+        <item>
+            <linkId value="patient.givenname"/>
+            <text value="Vorname"/>
+            <answer>
+                <valueString value="Franz"/>
+            </answer>
+        </item>
+        <item>
+            <linkId value="patient.birthdate"/>
+            <text value="Geburtsdatum"/>
+            <answer>
+                <valueDate value="1995-01-27"/>
+            </answer>
+        </item>
+    </item>
+    <item>
+        <linkId value="orderer"/>
+        <text value="Auftraggeber"/>
+        <item>
+            <linkId value="orderer.author"/>
+            <text value="Verantwortlicher"/>
+            <item>
+                <linkId value="orderer.author.organization"/>
+                <text value="Organisation"/>
+                <answer>
+                    <valueString value="Spital Seeblick"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="orderer.author.familyname"/>
+                <text value="Name"/>
+                <answer>
+                    <valueString value="Agpar"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="orderer.author.givenname"/>
+                <text value="Vorname"/>
+                <answer>
+                    <valueString value="Marc"/>
+                </answer>
+            </item>
+        </item>
+    </item>
+</QuestionnaireResponse>

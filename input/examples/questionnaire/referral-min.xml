@@ -6,9 +6,8 @@
         <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract" />
     </meta>
     <text>
-        <status value="generated"/>
-        <div
-            xmlns="http://www.w3.org/1999/xhtml">
+        <status value="additional"/>
+        <div xmlns="http://www.w3.org/1999/xhtml">
             <pre>radio button für geschlecht horizontal, required Element, textbox für untersuchung, Checkboxen mit optional Textangaben, Angabe von mehreren Beilagen</pre>
         </div>
     </text>
@@ -21,8 +20,9 @@
     <status value="draft" />
     <experimental value="true" />
     <subjectType value="Patient" />
-    <date value="2019-03-28" />
+    <date value="2020-12-17" />
     <publisher value="eHealth Suisse"/>
+    
     <item>
         <linkId value="order" />
         <text value="Auftrag" />
@@ -34,13 +34,14 @@
             <required value="true" />
         </item>
     </item>
+
     <item>
         <linkId value="patient" />
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient" />
         <text value="Patient" />
         <type value="group" />
         <item>
-            <linkId value="patient.lastname" />
+            <linkId value="patient.familyname" />
             <!-- don't know how to go deeper (Patient name coud repeat and HumanName is a type should reference something like #Patient.name[use="offical"].family -->
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
             <code>
@@ -52,7 +53,7 @@
             <required value="true" />
         </item>
         <item>
-            <linkId value="patient.firstname" />
+            <linkId value="patient.givenname" />
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
             <code>
                 <system value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset" />
@@ -63,221 +64,34 @@
             <required value="true" />
         </item>
         <item>
-            <linkId value="patient.pid" />
-            <text value="PID (sendendes System)" />
-            <type value="string" />
-        </item>
-        <item>
             <linkId value="patient.birthdate" />
             <text value="Geburtsdatum" />
             <type value="date" />
             <required value="true" />
         </item>
-        <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation">
-                <valueCode value="horizontal" />
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-                <valueCodeableConcept>
-                    <coding>
-                        <system value="http://hl7.org/fhir/questionnaire-item-control" />
-                        <code value="radio-button" />
-                        <display value="Radio Button" />
-                    </coding>
-                    <text value="A control where choices are listed with a button beside them. The button can be toggled to select or de-select a given choice. Selecting one item deselects all others." />
-                </valueCodeableConcept>
-            </extension>
-            <linkId value="patient.sex" />
-            <text value="Geschlecht" />
-            <type value="choice" />
-            <required value="true" />
-            <answerOption>
-                <valueCoding>
-                    <code value="F" />
-                    <display value="Weiblich" />
-                </valueCoding>
-                <initialSelected value="true" />
-            </answerOption>
-            <answerOption>
-                <valueCoding>
-                    <code value="M" />
-                    <display value="Männlich" />
-                </valueCoding>
-            </answerOption>
-        </item>
-        <item>
-            <linkId value="patient.zip" />
-            <text value="PLZ" />
-            <type value="string" />
-            <required value="true" />
-            <maxLength value="6" />
-        </item>
     </item>
-    <item>
-        <linkId value="examiniation" />
-        <text value="Untersuch" />
-        <type value="group" />
-        <item>
-            <linkId value="examiniation.reason" />
-            <text value="Grund Überweisung" />
-            <type value="text" />
-            <required value="true" />
-        </item>
-        <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation">
-                <valueCode value="horizontal" />
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-                <valueCodeableConcept>
-                    <coding>
-                        <system value="http://hl7.org/fhir/questionnaire-item-control" />
-                        <code value="check-box" />
-                    </coding>
-                </valueCodeableConcept>
-            </extension>
-            <linkId value="chemogramm" />
-            <text value="Chemogramm" />
-            <type value="open-choice" />
-            <item>
-                <linkId value="lab" />
-                <text value="Laborwerte" />
-                <type value="string" />
-                <answerOption>
-                    <valueCoding>
-                        <system value="http://loinc.org" />
-                        <code value="27353-2" />
-                        <display value="Glucose" />
-                    </valueCoding>
-                </answerOption>
-                <answerOption>
-                    <valueCoding>
-                        <system value="http://loinc.org" />
-                        <code value="33898-8" />
-                        <display value="Bilirubin" />
-                    </valueCoding>
-                </answerOption>
-                <answerOption>
-                    <valueCoding>
-                        <system value="http://loinc.org" />
-                        <code value="3094-0" />
-                        <display value="Harnstoff" />
-                    </valueCoding>
-                </answerOption>
-            </item>
-        </item>
-        <item>
-            <linkId value="examiniation.attachments" />
-            <text value="Beilage" />
-            <type value="attachment" />
-            <repeats value="true" />
-        </item>
-    </item>
-    <item>
-        <linkId value="receiver" />
-        <text value="Receiver" />
-        <type value="group" />
-        <item>
-            <linkId value="receiver.lastname" />
-            <text value="Name" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.firstname" />
-            <text value="Vorname" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.organization" />
-            <text value="Organisation" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.street" />
-            <text value="Strasse" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.postfach" />
-            <text value="Postfach" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.zip" />
-            <text value="PLZ" />
-            <type value="string" />
-        </item>
-        <item>
-            <linkId value="receiver.city" />
-            <text value="Ort" />
-            <type value="string" />
-        </item>
-    </item>
+    
     <item>
         <linkId value="orderer" />
-        <text value="Sender" />
+        <text value="Auftraggeber" />
         <type value="group" />
         <item>
-            <linkId value="orderer.sender" />
-            <text value="Sender" />
+            <linkId value="orderer.author" />
+            <text value="Verantwortlicher" />
             <type value="group" />
             <item>
-                <linkId value="orderer.sender.visum" />
-                <text value="Visum" />
+                <linkId value="orderer.author.organization" />
+                <text value="Organisation" />
                 <type value="string" />
             </item>
             <item>
-                <linkId value="orderer.sender.bereich" />
-                <text value="Bereich" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.abt" />
-                <text value="Bereich" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.lastname" />
+                <linkId value="orderer.author.familyname" />
                 <text value="Name" />
                 <type value="string" />
             </item>
             <item>
-                <linkId value="orderer.sender.firstname" />
+                <linkId value="orderer.author.givenname" />
                 <text value="Vorname" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.organization" />
-                <text value="Organisastion" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.tel" />
-                <text value="Telefon" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.e-mail" />
-                <text value="E-Mail" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.street" />
-                <text value="Strasse" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.postfach" />
-                <text value="Postfach" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.zip" />
-                <text value="PLZ" />
-                <type value="string" />
-            </item>
-            <item>
-                <linkId value="orderer.sender.city" />
-                <text value="Ort" />
                 <type value="string" />
             </item>
         </item>

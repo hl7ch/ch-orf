@@ -5,7 +5,7 @@
   <text>
     <status value="additional"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      ImplementationGuide for CH ORF
+      Implementation Guide for CH ORF
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
@@ -30,7 +30,7 @@
       <value value="oliver.egger@ahdis.ch"/>
     </telecom>
   </contact>
-  <description value="ImplementationGuide for CH:ORF"/>
+  <description value="Implementation Guide for CH ORF"/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -55,130 +55,17 @@
     <grouping>
       <name value="CH ORF"/>
     </grouping>
+
+    <!-- Resource Profiles -->
     <resource>
       <reference>
-        <reference value="Bundle/referral-min"/>
+        <reference value="StructureDefinition/ch-orf-document"/>
       </reference>
-      <name value="Referral minimal"/>
-      <description value="Example for Bundle"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="CodeSystem/minimaldataset"/>
-      </reference>
-      <name value="Minimal Data Set for questionnaires"/>
       <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Composition/referral-min"/>
-      </reference>
-      <name value="Referral minimal"/>
-      <description value="Example for Composition"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Patient/FranzMuster"/>
-      </reference>
-      <name value="Franz Muster"/>
-      <description value="Example for Patient"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Practitioner/AgparMarc"/>
-      </reference>
-      <name value="Agpar Marc"/>
-      <description value="Example for Practitioner"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Questionnaire/ebida-order-1"/>
-      </reference>
-      <name value="Ebida Order"/>
-      <description value="Example for Questionnaire"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Questionnaire/lab-order-chemogram"/>
-      </reference>
-      <name value="Lab Order Chemogram"/>
-      <description value="Example for Questionnaire"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Questionnaire/referral-min"/>
-      </reference>
-      <name value="Referral minimal"/>
-      <description value="Example for Questionnaire"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="QuestionnaireResponse/referral-min"/>
-      </reference>
-      <name value="Referral Response minimal"/>
-      <description value="Example for Questionnaire Response"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="ServiceRequest/referral-min"/>
-      </reference>
-      <name value="Referral Response minimal"/>
-      <description value="Example for Service Request"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
     </resource>
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-composition"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-dataentryperson"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-precedentdocument"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-requestreceiver"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-responsereceiver"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforrequest"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforresponse"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-document"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
@@ -200,20 +87,52 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <!-- Extension Definitions -->
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-precedentdocument"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-dataentryperson"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforrequest"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforresponse"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-requestreceiver"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-responsereceiver"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-visitnumber"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="StructureMap/map-orf"/>
-      </reference>
-      <name value="Map ORF"/>
-      <description value="Mapping ORF Questionnaire Response to Bundle"/>
-      <exampleBoolean value="false"/>
-    </resource>
+
+    <!-- Value Sets-->
     <resource>
       <reference>
         <reference value="ValueSet/minimaldataset"/>
@@ -222,6 +141,123 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <!-- Code Systems -->
+    <resource>
+      <reference>
+        <reference value="CodeSystem/minimaldataset"/>
+      </reference>
+      <name value="Minimal Data Set for questionnaires"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+    <!-- Structure Maps -->
+    <resource>
+      <reference>
+        <reference value="StructureMap/map-orf"/>
+      </reference>
+      <name value="Map ORF"/>
+      <description value="Mapping ORF Questionnaire Response to Bundle"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    
+    <!-- Example Instances-->
+    <resource>
+      <reference>
+        <reference value="Bundle/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Composition/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <description value="Example for Composition"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Questionnaire/referral-min"/>
+      </reference>
+      <name value="Referral minimal"/>
+      <description value="Example for Questionnaire"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ebida-order-1"/>
+      </reference>
+      <name value="Ebida Order"/>
+      <description value="Example for Questionnaire"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Questionnaire/lab-order-chemogram"/>
+      </reference>
+      <name value="Lab Order Chemogram"/>
+      <description value="Example for Questionnaire"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/referral-min"/>
+      </reference>
+      <name value="Referral Response minimal"/>
+      <description value="Example for Questionnaire Response"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="ServiceRequest/referral-min"/>
+      </reference>
+      <name value="Referral Response minimal"/>
+      <description value="Example for Service Request"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Patient/ErikaMusterfrau"/>
+      </reference>
+      <name value="Erika Musterfrau"/>
+      <description value="Example for Patient (Referral min)"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Patient/FranzMuster"/>
+      </reference>
+      <name value="Franz Muster"/>
+      <description value="Example for Patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/SabineMeier"/>
+      </reference>
+      <name value="Sabine Meier"/>
+      <description value="Example for Practitioner (Referral min)"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/MarcAgpar"/>
+      </reference>
+      <name value="Marc Agpar"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Organization/PraxisSeeblick"/>
+      </reference>
+      <name value="Praxis Seeblick"/>
+      <description value="Example for Organization (Referral min)"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    
     <!-- pages -->
     <page>
       <nameUrl value="toc.html"/>
