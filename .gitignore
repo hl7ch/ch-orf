@@ -12,7 +12,7 @@ var
 template
 c:\\temp\\json.json
 org.hl7.fhir.igpublisher.jar
-#input-cache/**
+input-cache/**
 output/**
 temp/**
 template/**
