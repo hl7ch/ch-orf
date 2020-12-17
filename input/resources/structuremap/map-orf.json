@@ -1,7 +1,7 @@
 {
     "resourceType": "StructureMap",
     "url": "http://fhir.ch/ig/ch-orf/StructureMap/map-orf",
-    "name": "mapping orf questionnaireresponse to bundle",
+    "name": "MappingOrfQuestionnaireResponseToBundle",
     "status": "draft",
     "structure": [
       {
