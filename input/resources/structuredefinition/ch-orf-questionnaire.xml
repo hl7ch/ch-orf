@@ -39,21 +39,17 @@
     <differential>
         <element id="Questionnaire">
             <path value="Questionnaire"/>
-            <short value="A structured set of questions"/>
         </element>
         <element id="Questionnaire.extension:targetStructureMap">
             <path value="Questionnaire.extension"/>
             <sliceName value="targetStructureMap"/>
-            <short
-                value="Map to artifacts that can be populated from this Questionnaire"/>
-            <definition
-                value="StructureMaps that have QuestionnaireResponses of this Questionnaire as &#39;source&#39;- i.e. that can be used to create other artifacts from QuestionnaireResponses that are valid against this Questionnaire."/>
+            <short value="Map to artifacts that can be populated from this Questionnaire"/>
+            <definition value="StructureMaps that have QuestionnaireResponses of this Questionnaire as &#39;source&#39;- i.e. that can be used to create other artifacts from QuestionnaireResponses that are valid against this Questionnaire."/>
             <min value="1"/>
             <max value="1"/>
             <type>
                 <code value="Extension"/>
-                <profile
-                    value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"/>
+                <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"/>
             </type>
             <mustSupport value="false"/>
             <isModifier value="false"/>
@@ -68,7 +64,7 @@
             <short value="Unique id for item in questionnaire"/>
             <definition value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource."/>
             <comment value="This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
-            <requirements value="[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
+            <requirements value="[QuestionnaireResponse](http://hl7.org/fhir/R4/questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
             <min value="1"/>
             <max value="1"/>
             <type>
