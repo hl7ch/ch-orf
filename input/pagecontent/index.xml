@@ -705,11 +705,9 @@
                 </th>
                 <th colspan="2"><b>Role taker</b>
                 </th>
-                <th><b>HL 7 V3R<br /> Equivalent</b>
+                <th><b>HL7 V3<br /> Equivalent</b>
                 </th>
-                <th><b>FHIR<br /></b>
-                    <p>Representation<b></b>
-                    </p>
+                <th><b>FHIR<br /> Representation</b>
                 </th>
                 <th><b>Comment</b>
                 </th>
@@ -739,11 +737,11 @@
                 </td>
                 <td>Practitioner
                 </td>
-                <td>The person responsible for Form Content
+                <td>The person responsible for Form Content.
                 </td>
             </tr>
             <tr>
-                <td>Date Entry Person
+                <td>Data Entry Person
                 </td>
                 <td>X
                 </td>
@@ -768,8 +766,7 @@
                 <td>Practitioner
                 </td>
                 <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the Radiologist
-                    has
-                    to be called by phone right away at the time the images arrive.
+                    has to be called by phone right away at the time the images arrive.
                 </td>
             </tr>
             <tr>
@@ -784,15 +781,13 @@
                 <td>Practitioner
                 </td>
                 <td>
-                    <p>An information recipient to notify for urgent matters about the response. (e.g. in a clinical
+                    <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical
                         setting, the referring doctor has to be called by phone right away at the time the images and
-                        reports arrive.
+                        reports arrive).
                     </p>
                     <p>The Urgent Notification Contact for the Response can be specified already in the request. At the
-                        time
-                        the response is written, this element shall be populated to the Urgent Notification Contact
-                        element
-                        in the response
+                        time the response is written, this element shall be populated to the Urgent Notification Contact
+                        element in the response.
                     </p>
                 </td>
             </tr>
@@ -807,7 +802,7 @@
                 </td>
                 <td>Practitioner
                 </td>
-                <td>Person and/or institution who receives the Bundle
+                <td>Person and/or institution who receives the Bundle.
                 </td>
             </tr>
             <tr>
@@ -822,8 +817,7 @@
                 <td>Patient
                 </td>
                 <td>The principle target of a particular Form Content is one patient (for obstetrical and neonatal use
-                    cases
-                    see….).
+                    cases see...).
                 </td>
             </tr>
             <tr>
@@ -838,7 +832,7 @@
                 <td>
                 </td>
                 <td>This element provides a link to the preceding document in a thread (e.g. from a response to the
-                    request
+                    request).
                 </td>
             </tr>
             <tr>
@@ -852,7 +846,7 @@
                 </td>
                 <td>
                 </td>
-                <td>Date, the document was created
+                <td>Date, the document was created.
                 </td>
             </tr>
             <tr>
@@ -867,8 +861,7 @@
                 <td>DiagnosticOrderPriority
                 </td>
                 <td>The priority shall be indicated in the one of the resources in the table “Optional given elements of
-                    a
-                    questionnaire”
+                    a questionnaire”.
                 </td>
             </tr>
         </tbody>

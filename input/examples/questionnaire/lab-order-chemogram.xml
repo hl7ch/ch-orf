@@ -308,7 +308,7 @@
             <type value="string"/>
         </item>
         <item>
-            <linkId value="receiver.cstreet"/>
+            <linkId value="receiver.street"/>
             <text value="Strasse"/>
             <type value="string"/>
         </item>
