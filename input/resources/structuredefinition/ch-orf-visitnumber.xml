@@ -3,8 +3,8 @@
     <id value="ch-orf-visitnumber"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber"/>
     <version value="0.9.0"/>
-    <name value="ORFVisitNumber"/>
-    <title value="Visit Number"/>
+    <name value="CHORFVisitNumber"/>
+    <title value="CH ORF Visit Number Extension"/>
     <status value="draft"/>
     <date value="2019-02-05"/>
     <publisher value="eHealth Suisse"/>
@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="Identifier of the document which precedes this document in a thread."/>
+    <description value="Visit Number"/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>

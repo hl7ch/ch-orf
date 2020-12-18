@@ -3,8 +3,8 @@
     <id value="ch-orf-urgentnoficationcontactforresponse"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse"/>
     <version value="0.9.0"/>
-    <name value="ORFUrgentNotificiationContactForResponse"/>
-    <title value="Urgent Notification Contact for the Response to this document"/>
+    <name value="CHORFUrgentNotificiationContactForResponse"/>
+    <title value="CH ORF Urgent Notification Contact For Response Extension"/>
     <status value="draft"/>
     <date value="2019-02-05"/>
     <publisher value="eHealth Suisse"/>
@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="An information recipient to notify for urgent matters about the response. (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive. The Urgent Notification Contact for the Response can be specified already in the request. At the time the response is written, this element shall be populated to the Urgent Notification Contact element in the response"/>
+    <description value="An information recipient to notify for urgent matters about the response. (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive. The Urgent Notification Contact for the Response can be specified already in the request. At the time the response is written, this element shall be populated to the Urgent Notification Contact element in the response.)"/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>

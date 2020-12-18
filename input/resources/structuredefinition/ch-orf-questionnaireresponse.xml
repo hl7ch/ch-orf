@@ -3,8 +3,8 @@
     <id value="ch-orf-questionnaireresponse"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     <version value="0.9.0"/>
-    <name value="ORFQuestionnaireResponse"/>
-    <title value="QuestionnaireResponse"/>
+    <name value="CHORFQuestionnaireResponse"/>
+    <title value="CH ORF QuestionnaireResponse"/>
     <status value="draft"/>
     <date value="2019-01-30"/>
     <publisher value="eHealth Suisse"/>

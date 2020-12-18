@@ -3,8 +3,8 @@
     <id value="ch-orf-document"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     <version value="0.9.0"/>
-    <name value="ORFDocument"/>
-    <title value="Document"/>
+    <name value="CHORFDocument"/>
+    <title value="CH ORF Document"/>
     <status value="draft"/>
     <date value="2019-01-30"/>
     <publisher value="eHealth Suisse"/>

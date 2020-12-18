@@ -3,8 +3,8 @@
     <id value="ch-orf-composition"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     <version value="0.9.0"/>
-    <name value="ORFComposition"/>
-    <title value="Composition"/>
+    <name value="CHORFComposition"/>
+    <title value="CH ORF Composition"/>
     <status value="draft"/>
     <date value="2019-01-30"/>
     <publisher value="eHealth Suisse"/>

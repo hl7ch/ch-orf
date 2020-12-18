@@ -3,8 +3,8 @@
     <id value="ch-orf-dataentryperson"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-dataentryperson"/>
     <version value="0.9.0"/>
-    <name value="ORFDataEntryPerson"/>
-    <title value="Data Entry Person Extension"/>
+    <name value="CHORFDataEntryPerson"/>
+    <title value="CH ORF Data Entry Person Extension"/>
     <status value="draft"/>
     <date value="2019-02-04"/>
     <publisher value="eHealth Suisse"/>

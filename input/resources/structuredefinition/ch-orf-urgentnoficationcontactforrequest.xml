@@ -3,8 +3,8 @@
     <id value="ch-orf-urgentnoficationcontactforrequest"/>
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforrequest"/>
     <version value="0.9.0"/>
-    <name value="ORFUrgentNotificiationContactForRequest"/>
-    <title value="Urgent Notification Contact for this document"/>
+    <name value="CHORFUrgentNotificiationContactForRequest"/>
+    <title value="CH ORF Urgent Notification Contact For Request Extension"/>
     <status value="draft"/>
     <date value="2019-02-05"/>
     <publisher value="eHealth Suisse"/>
@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="An information recipient to notify for urgent matters (e.g. in a radiology service, the Radiologist has to be called by phone right away at the time the images arrive."/>
+    <description value="An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the images arrive)."/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>
