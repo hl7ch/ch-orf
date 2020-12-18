@@ -40,6 +40,11 @@
         <element id="Composition">
             <path value="Composition"/>
         </element>
+        <element id="Composition.text">
+            <path value="Composition.text"/>
+            <short value="Narrative text of the composition"/>
+            <min value="1"/>
+        </element>
         <element id="Composition.extension">
             <path value="Composition.extension" />
             <slicing>
@@ -53,6 +58,7 @@
         <element id="Composition.extension:precedentDocument">
             <path value="Composition.extension" />
             <sliceName value="precedentDocument" />
+            <short value="Identifier of the document which precedes this document in a thread"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -63,6 +69,7 @@
         <element id="Composition.extension:dataEntryPerson">
             <path value="Composition.extension" />
             <sliceName value="dataEntryPerson" />
+            <short value="The person who has typed/filled in the form content"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -73,6 +80,7 @@
         <element id="Composition.extension:urgentNoficationContactForRequest">
             <path value="Composition.extension" />
             <sliceName value="urgentNoficationContactForRequest" />
+            <short value="An information recipient to notify for urgent matters"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -83,6 +91,7 @@
         <element id="Composition.extension:urgentNoficationContactForResponse">
             <path value="Composition.extension" />
             <sliceName value="urgentNoficationContactForResponse" />
+            <short value="An information recipient to notify for urgent matters about the response"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -93,6 +102,7 @@
         <element id="Composition.extension:requestReceiver">
             <path value="Composition.extension" />
             <sliceName value="requestReceiver" />
+            <short value="Person who receives the request"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -103,6 +113,7 @@
         <element id="Composition.extension:responseReceiver">
             <path value="Composition.extension" />
             <sliceName value="responseReceiver" />
+            <short value="Person who receives the response"/>
             <min value="0"/>
             <max value="*"/>
             <type>
@@ -122,6 +133,7 @@
         </element>
         <element id="Composition.identifier">
             <path value="Composition.identifier"/>
+            <short value="Identifier for this composition"/>
             <min value="1"/>
         </element>
         <element id="Composition.status">
@@ -132,9 +144,12 @@
         </element>
         <element id="Composition.category">
             <path value="Composition.category"/>
+            <min value="1"/>
+            <max value="1"/>
         </element>
         <element id="Composition.subject">
             <path value="Composition.subject"/>
+            <short value="Patient as the principle target of a particular form content"/>
             <min value="1"/>
             <type>
                 <code value="Reference"/>
@@ -143,6 +158,7 @@
         </element>
         <element id="Composition.date">
             <path value="Composition.date"/>
+            <short value="Composition editing time"/>
         </element>
         <element id="Composition.author">
             <path value="Composition.author"/>
@@ -159,6 +175,7 @@
         </element>
         <element id="Composition.section">
             <path value="Composition.section"/>
+            <min value="1"/>
         </element>
         <element id="Composition.section.title">
             <path value="Composition.section.title"/>

@@ -737,7 +737,7 @@
                 </td>
                 <td>Practitioner
                 </td>
-                <td>The person responsible for Form Content.
+                <td>The person responsible for the form content.
                 </td>
             </tr>
             <tr>
@@ -751,7 +751,7 @@
                 </td>
                 <td>Practitioner
                 </td>
-                <td>The person who has typed/filled in the Form Content.
+                <td>The person who has typed/filled in the form content.
                 </td>
             </tr>
             <tr>
@@ -765,8 +765,8 @@
                 </td>
                 <td>Practitioner
                 </td>
-                <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the Radiologist
-                    has to be called by phone right away at the time the images arrive.
+                <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist
+                    has to be called by phone right away at the time the images arrive).
                 </td>
             </tr>
             <tr>
@@ -816,7 +816,7 @@
                 </td>
                 <td>Patient
                 </td>
-                <td>The principle target of a particular Form Content is one patient (for obstetrical and neonatal use
+                <td>The principle target of a particular form content is one patient (for obstetrical and neonatal use
                     cases see...).
                 </td>
             </tr>
@@ -1098,7 +1098,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>Narrative Text of the composition.
+                <td>Narrative text of the composition.
                 </td>
             </tr>
             <tr>
@@ -1126,9 +1126,9 @@
                 </td>
                 <td>Identifier
                 </td>
-                <td>
+                <td>0..1
                 </td>
-                <td>
+                <td>O
                 </td>
                 <td>Identifier of the document which precedes this document in a thread.
                 </td>
@@ -1146,7 +1146,7 @@
                 </td>
                 <td>O
                 </td>
-                <td>
+                <td>The person who has typed/filled in the form content.
                 </td>
             </tr>
             <tr>
@@ -1160,7 +1160,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>
+                <td>An information recipient to notify for urgent matters.
                 </td>
             </tr>
             <tr>
@@ -1174,7 +1174,7 @@
                 </td>
                 <td>O
                 </td>
-                <td>
+                <td>An information recipient to notify for urgent matters about the response.
                 </td>
             </tr>
             <tr>
@@ -1188,7 +1188,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>
+                <td>Person who receives the request.
                 </td>
             </tr>
             <tr>
@@ -1202,7 +1202,7 @@
                 </td>
                 <td>O
                 </td>
-                <td>
+                <td>Person who receives the response.
                 </td>
             </tr>
             <tr>
@@ -1310,7 +1310,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>
+                <td>Patient as the principle target of a particular form content.
                 </td>
             </tr>
             <tr>
@@ -1328,7 +1328,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>Composition editing time
+                <td>Composition editing time.
                 </td>
             </tr>
             <tr>
@@ -1346,7 +1346,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>
+                <td>The person responsible for the form content.
                 </td>
             </tr>
             <tr>
@@ -1364,7 +1364,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>Meaningful title
+                <td>Meaningful title.
                 </td>
             </tr>
             <tr>
@@ -1374,7 +1374,7 @@
                 </td>
                 <td>
                 </td>
-                <td colspan="5">QA section must at least one of text, entries, or sub-sections.
+                <td colspan="5">QA section must contain at least one of text, entries, or sub-sections.
                 </td>
             </tr>
             <tr>
@@ -1442,7 +1442,7 @@
                 </td>
                 <td>Reference (ANY)
                 </td>
-                <td>0..n
+                <td>0..*
                 </td>
                 <td>R
                 </td>
