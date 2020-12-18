@@ -56,7 +56,7 @@
             <type>
                 <code value="uri"/>
             </type>
-            <fixedUri value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-visitnumber"/>
+            <fixedUri value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber"/>
         </element>
         <element id="Extension.valueIdentifier">
             <path value="Extension.valueIdentifier"/>
