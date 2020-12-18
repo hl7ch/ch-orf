@@ -34,7 +34,7 @@
     <kind value="resource"/>
     <abstract value="false"/>
     <type value="Bundle"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <baseDefinition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-document"/>
     <derivation value="constraint" />
     <differential>
         <element id="Bundle">
@@ -42,8 +42,6 @@
         </element>
         <element id="Bundle.type">
             <path value="Bundle.type"/>
-            <short value="document"/>
-            <definition value="Bundle is a document."/>
             <fixedCode value="document"/>
         </element>
         <element id="Bundle.total">
@@ -60,24 +58,24 @@
             <path value="Bundle.entry"/>
             <slicing>
                 <discriminator>
-                    <type value="type"/>
+                    <type value="profile"/>
                     <path value="resource"/>
                 </discriminator>
                 <rules value="open"/>
             </slicing>
+            <min value="4"/>
         </element>
-        <element id="Bundle.entry:ChfOrfComposition">
+        <element id="Bundle.entry:ChOrfComposition">
             <path value="Bundle.entry"/>
-            <sliceName value="ChfOrfComposition"/>
+            <sliceName value="ChOrfComposition"/>
             <short value="Composition"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChfOrfComposition.fullUrl">
+        <element id="Bundle.entry:ChOrfComposition.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
-            <min value="0"/>
         </element>
-        <element id="Bundle.entry:ChfOrfComposition.resource">
+        <element id="Bundle.entry:ChOrfComposition.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
@@ -86,18 +84,17 @@
             </type>
             <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaire">
+        <element id="Bundle.entry:ChOrfQuestionnaire">
             <path value="Bundle.entry"/>
-            <sliceName value="ChfOrfQuestionnaire"/>
-            <short value="Composition"/>
+            <sliceName value="ChOrfQuestionnaire"/>
+            <short value="Questionnaire"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaire.fullUrl">
+        <element id="Bundle.entry:ChOrfQuestionnaire.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
-            <min value="0"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaire.resource">
+        <element id="Bundle.entry:ChOrfQuestionnaire.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
@@ -106,18 +103,17 @@
             </type>
             <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaireResponse">
+        <element id="Bundle.entry:ChOrfQuestionnaireResponse">
             <path value="Bundle.entry"/>
-            <sliceName value="ChfOrfQuestionnaireResponse"/>
-            <short value="Composition"/>
+            <sliceName value="ChOrfQuestionnaireResponse"/>
+            <short value="QuestionnaireResponse"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaireResponse.fullUrl">
+        <element id="Bundle.entry:ChOrfQuestionnaireResponse.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
-            <min value="0"/>
         </element>
-        <element id="Bundle.entry:ChfOrfQuestionnaireResponse.resource">
+        <element id="Bundle.entry:ChOrfQuestionnaireResponse.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
@@ -126,18 +122,17 @@
             </type>
             <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChfOrfServiceRequest">
+        <element id="Bundle.entry:ChOrfServiceRequest">
             <path value="Bundle.entry"/>
-            <sliceName value="ChfOrfServiceRequest"/>
-            <short value="Composition"/>
+            <sliceName value="ChOrfServiceRequest"/>
+            <short value="ServiceRequest"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChfOrfServiceRequest.fullUrl">
+        <element id="Bundle.entry:ChOrfServiceRequest.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
-            <min value="0"/>
         </element>
-        <element id="Bundle.entry:ChfOrfServiceRequest.resource">
+        <element id="Bundle.entry:ChOrfServiceRequest.resource">
             <path value="Bundle.entry.resource"/>
             <max value="1"/>
             <type>

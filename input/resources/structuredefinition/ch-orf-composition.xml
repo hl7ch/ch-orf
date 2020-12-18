@@ -34,7 +34,7 @@
     <kind value="resource"/>
     <abstract value="false"/>
     <type value="Composition"/>
-    <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Composition"/>
+    <baseDefinition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-composition"/>
     <derivation value="constraint" />
     <differential>
         <element id="Composition">
@@ -151,10 +151,6 @@
             <path value="Composition.subject"/>
             <short value="Patient as the principle target of a particular form content"/>
             <min value="1"/>
-            <type>
-                <code value="Reference"/>
-                <targetProfile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
-            </type>
         </element>
         <element id="Composition.date">
             <path value="Composition.date"/>
@@ -179,10 +175,67 @@
         </element>
         <element id="Composition.section.title">
             <path value="Composition.section.title"/>
-            <min value="1"/>            
+            <min value="1"/>
         </element>
+
         <element id="Composition.section.entry">
             <path value="Composition.section.entry"/>
+            <slicing>
+                <discriminator>
+                    <type value="profile"/>
+                    <path value="resolve()"/>
+                </discriminator>
+                <rules value="open"/>
+            </slicing>
+            <min value="3"/>
+        </element>
+
+        <element id="Composition.section.entry:ChOrfQuestionnaire">
+            <path value="Composition.section.entry"/>
+            <sliceName value="ChOrfQuestionnaire"/>
+            <short value="Questionnaire"/>
+            <min value="1"/>
+            <max value="1"/>
+            <type>
+                <code value="Reference"/>
+                <targetProfile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+            </type>
+        </element>
+        <element id="Composition.section.entry:ChOrfQuestionnaire.reference">
+            <path value="Composition.section.entry.reference"/>
+            <min value="1"/>
+        </element>
+
+        <element id="Composition.section.entry:ChOrfQuestionnaireResponse">
+            <path value="Composition.section.entry"/>
+            <sliceName value="ChOrfQuestionnaireResponse"/>
+            <short value="QuestionnaireResponse"/>
+            <min value="1"/>
+            <max value="1"/>
+            <type>
+                <code value="Reference"/>
+                <targetProfile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+            </type>
+        </element>
+        <element id="Composition.section.entry:ChOrfQuestionnaireResponse.reference">
+            <path value="Composition.section.entry.reference"/>
+            <min value="1"/>
+        </element>
+
+        <element id="Composition.section.entry:ChOrfServiceRequest">
+            <path value="Composition.section.entry"/>
+            <sliceName value="ChOrfServiceRequest"/>
+            <short value="ServiceRequest"/>
+            <min value="1"/>
+            <max value="1"/>
+            <type>
+                <code value="Reference"/>
+                <targetProfile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
+            </type>
+        </element>
+        <element id="Composition.section.entry:ChOrfServiceRequest.reference">
+            <path value="Composition.section.entry.reference"/>
+            <min value="1"/>
         </element>
     </differential>
 </StructureDefinition>
