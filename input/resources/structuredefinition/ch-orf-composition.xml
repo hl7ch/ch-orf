@@ -141,9 +141,11 @@
         </element>
         <element id="Composition.type">
             <path value="Composition.type"/>
+            <short value="Precise type of clinical document"/>
         </element>
         <element id="Composition.category">
             <path value="Composition.category"/>
+            <short value="High-level kind of a clinical document at a macro level"/>
             <min value="1"/>
             <max value="1"/>
         </element>

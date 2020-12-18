@@ -1272,7 +1272,7 @@
                 </td>
                 <td>
                 </td>
-                <td>
+                <td>Precise type of clinical document.
                 </td>
             </tr>
             <tr>
@@ -1292,7 +1292,7 @@
                 </td>
                 <td>
                 </td>
-                <td>
+                <td>High-level kind of a clinical document at a macro level.
                 </td>
             </tr>
             <tr>

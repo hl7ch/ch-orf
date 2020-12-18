@@ -27,9 +27,19 @@
                 </identifier>
                 <status value="final"/>
                 <type>
-                    <!--<coding><system value="" /><code value="" /></coding>-->
-                    <text value="Referral min"/>
+                    <coding>
+                        <system value="urn:oid:2.16.756.5.30.1.127.3.4" />
+                        <code value="2161000195103"/>
+                        <display value="Imaging order (record articact)"/>
+                    </coding>
                 </type>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct" />
+                        <code value="721963009"/>
+                        <display value="Order (record artifact)"/>
+                    </coding>
+                </category>
                 <subject>
                     <reference value="Patient/ErikaMusterfrau"/>
                 </subject>
@@ -38,13 +48,6 @@
                     <reference value="Practitioner/SabineMeier"/>
                 </author>
                 <title value="Referral min"/>
-                <!--<attester>
-                    <mode value="professional"/>
-                    <time value="2010-03-12T11:46:09+02:00"/>
-                    <party>
-                        <reference value="Practitioner/SabineMeier"/>
-                    </party>
-                </attester>-->
                 <section>
                     <title value="Referral"/>
                     <text>
