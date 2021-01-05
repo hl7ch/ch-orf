@@ -24,21 +24,21 @@
             <linkId value="patient.familyname"/>
             <text value="Name"/>
             <answer>
-                <valueString value="Muster"/>
+                <valueString value="Musterfrau"/>
             </answer>
         </item>
         <item>
             <linkId value="patient.givenname"/>
             <text value="Vorname"/>
             <answer>
-                <valueString value="Franz"/>
+                <valueString value="Erika"/>
             </answer>
         </item>
         <item>
             <linkId value="patient.birthdate"/>
             <text value="Geburtsdatum"/>
             <answer>
-                <valueDate value="1995-01-27"/>
+                <valueDate value="1970-03-14"/>
             </answer>
         </item>
     </item>
@@ -52,21 +52,21 @@
                 <linkId value="orderer.author.organization"/>
                 <text value="Organisation"/>
                 <answer>
-                    <valueString value="Spital Seeblick"/>
+                    <valueString value="Praxis Seeblick"/>
                 </answer>
             </item>
             <item>
                 <linkId value="orderer.author.familyname"/>
                 <text value="Name"/>
                 <answer>
-                    <valueString value="Agpar"/>
+                    <valueString value="Meier"/>
                 </answer>
             </item>
             <item>
                 <linkId value="orderer.author.givenname"/>
                 <text value="Vorname"/>
                 <answer>
-                    <valueString value="Marc"/>
+                    <valueString value="Sabine"/>
                 </answer>
             </item>
         </item>

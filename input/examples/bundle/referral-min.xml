@@ -21,6 +21,11 @@
                         Referral min
                     </div>
                 </text>
+                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber">
+                    <valueIdentifier>
+                        <value value="123" />
+                    </valueIdentifier>
+                </extension>
                 <identifier>
                     <system value="http://test.fhir.ch/id/uuid"/>
                     <value value="26d3dff7-ab05-4737-a49c-5eccd33595f7"/>
@@ -95,6 +100,11 @@
                 <name>
                     <family value="Meier"/>
                     <given value="Sabine"/>
+                    <prefix value="Praxis Seeblick">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="LS"/>
+                        </extension>
+                    </prefix>
                 </name>
             </Practitioner>
         </resource>
@@ -228,21 +238,21 @@
                         <linkId value="patient.familyname"/>
                         <text value="Name"/>
                         <answer>
-                            <valueString value="Muster"/>
+                            <valueString value="Musterfrau"/>
                         </answer>
                     </item>
                     <item>
                         <linkId value="patient.givenname"/>
                         <text value="Vorname"/>
                         <answer>
-                            <valueString value="Franz"/>
+                            <valueString value="Erika"/>
                         </answer>
                     </item>
                     <item>
                         <linkId value="patient.birthdate"/>
                         <text value="Geburtsdatum"/>
                         <answer>
-                            <valueDate value="1995-01-27"/>
+                            <valueDate value="1970-03-14"/>
                         </answer>
                     </item>
                 </item>
@@ -256,21 +266,21 @@
                             <linkId value="orderer.author.organization"/>
                             <text value="Organisation"/>
                             <answer>
-                                <valueString value="Spital Seeblick"/>
+                                <valueString value="Praxis Seeblick"/>
                             </answer>
                         </item>
                         <item>
                             <linkId value="orderer.author.familyname"/>
                             <text value="Name"/>
                             <answer>
-                                <valueString value="Agpar"/>
+                                <valueString value="Meier"/>
                             </answer>
                         </item>
                         <item>
                             <linkId value="orderer.author.givenname"/>
                             <text value="Vorname"/>
                             <answer>
-                                <valueString value="Marc"/>
+                                <valueString value="Sabine"/>
                             </answer>
                         </item>
                     </item>

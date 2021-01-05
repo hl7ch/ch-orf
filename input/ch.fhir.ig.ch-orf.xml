@@ -165,7 +165,7 @@
       <reference>
         <reference value="Bundle/referral-min"/>
       </reference>
-      <name value="Referral minimal"/>
+      <name value="Bundle Referral minimal"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
@@ -173,15 +173,16 @@
       <reference>
         <reference value="Composition/referral-min"/>
       </reference>
-      <name value="Referral minimal"/>
+      <name value="Composition Referral minimal"/>
       <description value="Example for Composition"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
+
     <resource>
       <reference>
         <reference value="Questionnaire/referral-min"/>
       </reference>
-      <name value="Referral minimal"/>
+      <name value="Questionnaire Referral minimal"/>
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
@@ -189,7 +190,7 @@
       <reference>
         <reference value="Questionnaire/ebida-order-1"/>
       </reference>
-      <name value="Ebida Order"/>
+      <name value="Questionnaire Ebida Order"/>
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
@@ -197,48 +198,35 @@
       <reference>
         <reference value="Questionnaire/lab-order-chemogram"/>
       </reference>
-      <name value="Lab Order Chemogram"/>
+      <name value="Questionnaire Lab Order Chemogram"/>
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
+
     <resource>
       <reference>
         <reference value="QuestionnaireResponse/referral-min"/>
       </reference>
-      <name value="Referral Response minimal"/>
+      <name value="Questionnaire Response Referral minimal"/>
       <description value="Example for Questionnaire Response"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
+
     <resource>
       <reference>
         <reference value="ServiceRequest/referral-min"/>
       </reference>
-      <name value="Referral Response minimal"/>
+      <name value="Service Request Referral minimal"/>
       <description value="Example for Service Request"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="Patient/ErikaMusterfrau"/>
-      </reference>
-      <name value="Erika Musterfrau"/>
-      <description value="Example for Patient (Referral min)"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Patient/FranzMuster"/>
-      </reference>
-      <name value="Franz Muster"/>
-      <description value="Example for Patient"/>
-      <exampleBoolean value="true"/>
-    </resource>
+
     <resource>
       <reference>
         <reference value="Practitioner/SabineMeier"/>
       </reference>
-      <name value="Sabine Meier"/>
-      <description value="Example for Practitioner (Referral min)"/>
+      <name value="Sabine Meier (Referral minimal)"/>
+      <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
@@ -249,12 +237,21 @@
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
+    
     <resource>
       <reference>
-        <reference value="Organization/PraxisSeeblick"/>
+        <reference value="Patient/ErikaMusterfrau"/>
       </reference>
-      <name value="Praxis Seeblick"/>
-      <description value="Example for Organization (Referral min)"/>
+      <name value="Erika Musterfrau (Referral minimal)"/>
+      <description value="Example for Patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Patient/FranzMuster"/>
+      </reference>
+      <name value="Franz Muster"/>
+      <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
     

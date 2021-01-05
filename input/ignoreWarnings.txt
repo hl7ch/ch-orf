@@ -6,3 +6,4 @@ Display Name for http://hl7.org/fhir/administrative-gender#male should be one of
 
 # No examples for extensions
 The Implementation Guide contains no examples for this profile
+The Implementation Guide contains no explicitly linked examples for this profile
