@@ -65,81 +65,77 @@
             </slicing>
             <min value="4"/>
         </element>
-        <element id="Bundle.entry:ChOrfComposition">
+        <element id="Bundle.entry:Composition">
             <path value="Bundle.entry"/>
-            <sliceName value="ChOrfComposition"/>
+            <sliceName value="Composition"/>
             <short value="Composition"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChOrfComposition.fullUrl">
+        <element id="Bundle.entry:Composition.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
         </element>
-        <element id="Bundle.entry:ChOrfComposition.resource">
+        <element id="Bundle.entry:Composition.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
-                <code value="Composition"/>
+                <code value="Resource"/>
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
             </type>
-            <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaire">
+        <element id="Bundle.entry:Questionnaire">
             <path value="Bundle.entry"/>
             <sliceName value="ChOrfQuestionnaire"/>
             <short value="Questionnaire"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaire.fullUrl">
+        <element id="Bundle.entry:Questionnaire.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaire.resource">
+        <element id="Bundle.entry:Questionnaire.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
-                <code value="Questionnaire"/>
+                <code value="Resource"/>
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
             </type>
-            <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaireResponse">
+        <element id="Bundle.entry:QuestionnaireResponse">
             <path value="Bundle.entry"/>
             <sliceName value="ChOrfQuestionnaireResponse"/>
             <short value="QuestionnaireResponse"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaireResponse.fullUrl">
+        <element id="Bundle.entry:QuestionnaireResponse.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
         </element>
-        <element id="Bundle.entry:ChOrfQuestionnaireResponse.resource">
+        <element id="Bundle.entry:QuestionnaireResponse.resource">
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
-                <code value="QuestionnaireResponse"/>
+                <code value="Resource"/>
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
             </type>
-            <mustSupport value="true"/>
         </element>
-        <element id="Bundle.entry:ChOrfServiceRequest">
+        <element id="Bundle.entry:ServiceRequest">
             <path value="Bundle.entry"/>
             <sliceName value="ChOrfServiceRequest"/>
             <short value="ServiceRequest"/>
             <min value="1"/>
             <max value="1"/>
         </element>
-        <element id="Bundle.entry:ChOrfServiceRequest.fullUrl">
+        <element id="Bundle.entry:ServiceRequest.fullUrl">
             <path value="Bundle.entry.fullUrl"/>
         </element>
-        <element id="Bundle.entry:ChOrfServiceRequest.resource">
+        <element id="Bundle.entry:ServiceRequest.resource">
             <path value="Bundle.entry.resource"/>
             <max value="1"/>
             <type>
-                <code value="ServiceRequest"/>
+                <code value="Resource"/>
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
             </type>
-            <mustSupport value="true"/>
         </element>
     </differential>
 </StructureDefinition>
