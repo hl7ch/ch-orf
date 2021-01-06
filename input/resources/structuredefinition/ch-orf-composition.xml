@@ -142,12 +142,20 @@
         <element id="Composition.type">
             <path value="Composition.type"/>
             <short value="Precise type of clinical document"/>
+            <binding>
+                <strength value="preferred"/>
+                <valueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"/>
+            </binding>
         </element>
         <element id="Composition.category">
             <path value="Composition.category"/>
             <short value="High-level kind of a clinical document at a macro level"/>
             <min value="1"/>
             <max value="1"/>
+            <binding>
+                <strength value="preferred"/>
+                <valueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"/>
+            </binding>
         </element>
         <element id="Composition.subject">
             <path value="Composition.subject"/>
