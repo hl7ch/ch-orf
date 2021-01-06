@@ -11,10 +11,13 @@
     <timestamp value="2019-04-01T20:18:41.341+00:00"/>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/Composition/referral-min"/>
+        <fullUrl value="http://example.com/fhir/Composition/referral-min"/>
         <resource>
             <Composition xmlns="http://hl7.org/fhir">
                 <id value="referral-min"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition" />
+                </meta>
                 <text>
                     <status value="generated"/>
                     <div xmlns="http://www.w3.org/1999/xhtml">
@@ -76,10 +79,13 @@
     </entry>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/Patient/ErikaMusterfrau"/>
+        <fullUrl value="http://example.com/fhir/Patient/ErikaMusterfrau"/>
         <resource>
             <Patient xmlns="http://hl7.org/fhir">
                 <id value="ErikaMusterfrau"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
+                </meta>
                 <name>
                     <family value="Musterfrau"/>
                     <given value="Erika"/>
@@ -90,7 +96,7 @@
     </entry>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/Practitioner/SabineMeier"/>
+        <fullUrl value="http://example.com/fhir/Practitioner/SabineMeier"/>
         <resource>
             <Practitioner xmlns="http://hl7.org/fhir">
                 <id value="SabineMeier"/>
@@ -111,10 +117,13 @@
     </entry>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/Questionnaire/referral-min"/>
+        <fullUrl value="http://example.com/fhir/Questionnaire/referral-min"/>
         <resource>
             <Questionnaire xmlns="http://hl7.org/fhir">
                 <id value="referral-min" />
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
+                </meta>
                 <text>
                     <status value="additional"/>
                     <div xmlns="http://www.w3.org/1999/xhtml">
@@ -211,7 +220,7 @@
     </entry>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/QuestionnaireResponse/referral-min"/>
+        <fullUrl value="http://example.com/fhir/QuestionnaireResponse/referral-min"/>
         <resource>
             <QuestionnaireResponse xmlns="http://hl7.org/fhir">
                 <id value="referral-min"/>
@@ -290,10 +299,13 @@
     </entry>
 
     <entry>
-        <fullUrl value="http://test.fhir.ch/r4/ServiceRequest/referral-min"/>
+        <fullUrl value="http://example.com/fhir/ServiceRequest/referral-min"/>
         <resource>
             <ServiceRequest xmlns="http://hl7.org/fhir">
                 <id value="referral-min"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
+                </meta>
                 <status value="active"/>
                 <intent value="original-order"/>
                 <subject>
