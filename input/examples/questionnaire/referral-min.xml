@@ -5,14 +5,8 @@
         <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire" />
         <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract" />
     </meta>
-    <text>
-        <status value="additional"/>
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <pre>radio button für geschlecht horizontal, required Element, textbox für untersuchung, Checkboxen mit optional Textangaben, Angabe von mehreren Beilagen</pre>
-        </div>
-    </text>
     <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
-        <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/map-orf" />
+        <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" />
     </extension>
     <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
     <name value="ORFReferralMinimial" />

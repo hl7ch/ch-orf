@@ -131,7 +131,7 @@
                     </div>
                 </text>
                 <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
-                    <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/map-orf" />
+                    <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" />
                 </extension>
                 <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
                 <name value="ORFReferralMinimial" />

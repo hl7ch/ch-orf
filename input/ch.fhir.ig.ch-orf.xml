@@ -153,7 +153,7 @@
     <!-- Structure Maps -->
     <resource>
       <reference>
-        <reference value="StructureMap/map-orf"/>
+        <reference value="StructureMap/OrfQrToBundle"/>
       </reference>
       <name value="Map ORF"/>
       <description value="Mapping ORF Questionnaire Response to Bundle"/>

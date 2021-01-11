@@ -1,0 +1,1050 @@
+<StructureMap xmlns="http://hl7.org/fhir">
+   <id value="OrfQrToBundle"></id>
+   <text>
+      <status value="generated"></status>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <pre>map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
+
+// ORF Questionnaire Response to Bundle
+// 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
+// QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-referral-min.html
+// QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+// Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
+uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as target
+
+group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle) {
+  qr as qrcp -&gt;  bundle.entry as e,  e.resource = create('Composition') as composition,  composition.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Patient') as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  bundle.entry as e4,  e4.resource = qrcp as questionnaireresp,  questionnaireresp.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  bundle.entry as e5,  e5.resource = create('ServiceRequest') as servicerequest,  servicerequest.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5) then {
+    qr then QrToBundle(qr, patient, practitioner, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+  } "orfbundle";
+}
+
+group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, target practitioner : Practitioner, target composition : Composition) {
+  qr.item as grp where linkId = 'order' then OrderItems(grp, composition) "grporderer";
+  qr.item as grp where linkId = 'patient' then PatientItems(grp, patient) "grppatient";
+  qr.item as grp where linkId = 'orderer' then OrdererItems(grp, practitioner) "grporderer";
+}
+
+group OrderItems(source src : BackboneElement, target composition : Composition) {
+  src.item as item then OrderItems(item, composition);
+  src.item as item where linkId.value = 'order.number' -&gt;  composition.extension as ext,  ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber',  ext.value = create('Identifier') as value,  value.value = (item.answer.valueString) "ordernumber";
+}
+
+group PatientItems(source src : BackboneElement, target tgt : Patient) {
+  src.item as item then PatientItems(item, tgt);
+  src.item as item where linkId.value = 'patient.familyname' -&gt;  tgt.name as name share patientName,  name.family = (item.answer.valueString);
+  src.item as item where linkId.value = 'patient.givenname' -&gt;  tgt.name as name share patientName,  name.given = (item.answer.valueString);
+  src.item as item where linkId.value = 'patient.birthdate' -&gt; tgt.birthDate = (item.answer.valueDate);
+}
+
+group OrdererItems(source src : BackboneElement, target tgt : Practitioner) {
+  src.item as item then OrdererItems(item, tgt);
+  src.item as item where linkId.value = 'orderer.author.familyname' -&gt;  tgt.name as name share patientName,  name.family = (item.answer.valueString);
+  src.item as item where linkId.value = 'orderer.author.givenname' -&gt;  tgt.name as name share patientName,  name.given = (item.answer.valueString);
+  src.item as item where linkId.value = 'orderer.author.organization' -&gt;  tgt.name as name share patientName,  name.prefix = (item.answer.valueString) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'LS' "LS";
+}
+
+group QrToBundle(source qr : QuestionnaireResponse, target patient : Patient, target practitioner : Practitioner, target questionnaireresp : QuestionnaireResponse, target servicerequest : ServiceRequest, target composition : Composition, target bundle : Bundle) {
+  qr -&gt; bundle.id = uuid() "id";
+  qr -&gt; bundle.type = 'document' "type";
+  qr then OrfComposition(qr, composition, patient, practitioner, questionnaireresp, servicerequest, bundle) "composition";
+  qr then QrToGroups(qr, patient, practitioner, composition) "qrgroups";
+}
+
+group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition, target patient : Patient, target practitioner : Practitioner, target questionnaireresp : QuestionnaireResponse, target servicerequest : ServiceRequest, target bundle : Bundle) {
+  qr -&gt; tgt.status = 'final' "status";
+  qr -&gt;  tgt.subject = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id) "subject";
+  qr -&gt;  tgt.author = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = ('urn:uuid:' + %practitioner.id) "author";
+  qr -&gt;  tgt.section as tgtSection,  tgtSection.entry = create('Reference') as reference,  reference.type = 'QuestionnaireResponse',  reference.reference = ('urn:uuid:' + %questionnaireresp.id),  tgtSection.entry = create('Reference') as reference,  reference.type = 'ServiceRequest',  reference.reference = ('urn:uuid:' + %servicerequest.id) "sections";
+  qr -&gt;  servicerequest.status = 'active',  servicerequest.intent = 'original-order',  servicerequest.subject = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id),  servicerequest.requester = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = ('urn:uuid:' + %practitioner.id) "servicerequest";
+}
+
+</pre>
+      </div>
+   </text>
+   <url value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"></url>
+   <name value="OrfQrToBundle"></name>
+   <description value="ORF Questionnaire Response to Bundle
+2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
+QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-referral-min.html
+QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html"></description>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"></url>
+      <mode value="source"></mode>
+      <alias value="QuestionnaireResponse"></alias>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/Bundle"></url>
+      <mode value="target"></mode>
+      <alias value="Bundle"></alias>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/Patient"></url>
+      <mode value="target"></mode>
+      <alias value="Patient"></alias>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/Practitioner"></url>
+      <mode value="target"></mode>
+      <alias value="Practitioner"></alias>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/ServiceRequest"></url>
+      <mode value="target"></mode>
+      <alias value="ServiceRequest"></alias>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/BackboneElement"></url>
+      <mode value="target"></mode>
+      <alias value="BackboneElement"></alias>
+   </structure>
+   <group>
+      <name value="OrfQrToBundle"></name>
+      <input>
+         <name value="qr"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="bundle"></name>
+         <type value="Bundle"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="orfbundle"></name>
+         <source>
+            <context value="qr"></context>
+            <variable value="qrcp"></variable>
+         </source>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e"></variable>
+         </target>
+         <target>
+            <context value="e"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="composition"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Composition"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="composition"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="e"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e2"></variable>
+         </target>
+         <target>
+            <context value="e2"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="patient"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Patient"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="patient"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid2"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="e2"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid2"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e3"></variable>
+         </target>
+         <target>
+            <context value="e3"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="practitioner"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Practitioner"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="practitioner"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid3"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="e3"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid3"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e4"></variable>
+         </target>
+         <target>
+            <context value="e4"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="questionnaireresp"></variable>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueId value="qrcp"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="questionnaireresp"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid4"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="e4"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid4"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e5"></variable>
+         </target>
+         <target>
+            <context value="e5"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="servicerequest"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="ServiceRequest"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="servicerequest"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid5"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="e5"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid5"></valueId>
+            </parameter>
+         </target>
+         <rule>
+            <name value="orfbundle"></name>
+            <source>
+               <context value="qr"></context>
+            </source>
+            <dependent>
+               <name value="QrToBundle"></name>
+               <variable value="qr"></variable>
+               <variable value="patient"></variable>
+               <variable value="practitioner"></variable>
+               <variable value="questionnaireresp"></variable>
+               <variable value="servicerequest"></variable>
+               <variable value="composition"></variable>
+               <variable value="bundle"></variable>
+            </dependent>
+         </rule>
+      </rule>
+   </group>
+   <group>
+      <name value="QrToGroups"></name>
+      <input>
+         <name value="qr"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="patient"></name>
+         <type value="Patient"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="practitioner"></name>
+         <type value="Practitioner"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="composition"></name>
+         <type value="Composition"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="grporderer"></name>
+         <source>
+            <context value="qr"></context>
+            <element value="item"></element>
+            <variable value="grp"></variable>
+            <condition value="linkId = 'order'"></condition>
+         </source>
+         <dependent>
+            <name value="OrderItems"></name>
+            <variable value="grp"></variable>
+            <variable value="composition"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="grppatient"></name>
+         <source>
+            <context value="qr"></context>
+            <element value="item"></element>
+            <variable value="grp"></variable>
+            <condition value="linkId = 'patient'"></condition>
+         </source>
+         <dependent>
+            <name value="PatientItems"></name>
+            <variable value="grp"></variable>
+            <variable value="patient"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="grporderer"></name>
+         <source>
+            <context value="qr"></context>
+            <element value="item"></element>
+            <variable value="grp"></variable>
+            <condition value="linkId = 'orderer'"></condition>
+         </source>
+         <dependent>
+            <name value="OrdererItems"></name>
+            <variable value="grp"></variable>
+            <variable value="practitioner"></variable>
+         </dependent>
+      </rule>
+   </group>
+   <group>
+      <name value="OrderItems"></name>
+      <input>
+         <name value="src"></name>
+         <type value="BackboneElement"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="composition"></name>
+         <type value="Composition"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+         </source>
+         <dependent>
+            <name value="OrderItems"></name>
+            <variable value="item"></variable>
+            <variable value="composition"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="ordernumber"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'order.number'"></condition>
+         </source>
+         <target>
+            <context value="composition"></context>
+            <contextType value="variable"></contextType>
+            <element value="extension"></element>
+            <variable value="ext"></variable>
+         </target>
+         <target>
+            <context value="ext"></context>
+            <contextType value="variable"></contextType>
+            <element value="url"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="ext"></context>
+            <contextType value="variable"></contextType>
+            <element value="value"></element>
+            <variable value="value"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Identifier"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"></context>
+            <contextType value="variable"></contextType>
+            <element value="value"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+      </rule>
+   </group>
+   <group>
+      <name value="PatientItems"></name>
+      <input>
+         <name value="src"></name>
+         <type value="BackboneElement"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="tgt"></name>
+         <type value="Patient"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+         </source>
+         <dependent>
+            <name value="PatientItems"></name>
+            <variable value="item"></variable>
+            <variable value="tgt"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'patient.familyname'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="name"></element>
+            <variable value="name"></variable>
+            <listMode value="share"></listMode>
+            <listRuleId value="patientName"></listRuleId>
+         </target>
+         <target>
+            <context value="name"></context>
+            <contextType value="variable"></contextType>
+            <element value="family"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'patient.givenname'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="name"></element>
+            <variable value="name"></variable>
+            <listMode value="share"></listMode>
+            <listRuleId value="patientName"></listRuleId>
+         </target>
+         <target>
+            <context value="name"></context>
+            <contextType value="variable"></contextType>
+            <element value="given"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'patient.birthdate'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="birthDate"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueDate"></valueString>
+            </parameter>
+         </target>
+      </rule>
+   </group>
+   <group>
+      <name value="OrdererItems"></name>
+      <input>
+         <name value="src"></name>
+         <type value="BackboneElement"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="tgt"></name>
+         <type value="Practitioner"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+         </source>
+         <dependent>
+            <name value="OrdererItems"></name>
+            <variable value="item"></variable>
+            <variable value="tgt"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'orderer.author.familyname'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="name"></element>
+            <variable value="name"></variable>
+            <listMode value="share"></listMode>
+            <listRuleId value="patientName"></listRuleId>
+         </target>
+         <target>
+            <context value="name"></context>
+            <contextType value="variable"></contextType>
+            <element value="family"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'orderer.author.givenname'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="name"></element>
+            <variable value="name"></variable>
+            <listMode value="share"></listMode>
+            <listRuleId value="patientName"></listRuleId>
+         </target>
+         <target>
+            <context value="name"></context>
+            <contextType value="variable"></contextType>
+            <element value="given"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="LS"></name>
+         <source>
+            <context value="src"></context>
+            <element value="item"></element>
+            <variable value="item"></variable>
+            <condition value="linkId.value = 'orderer.author.organization'"></condition>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="name"></element>
+            <variable value="name"></variable>
+            <listMode value="share"></listMode>
+            <listRuleId value="patientName"></listRuleId>
+         </target>
+         <target>
+            <context value="name"></context>
+            <contextType value="variable"></contextType>
+            <element value="prefix"></element>
+            <variable value="prefix"></variable>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="item.answer.valueString"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="prefix"></context>
+            <contextType value="variable"></contextType>
+            <element value="extension"></element>
+            <variable value="ext"></variable>
+         </target>
+         <target>
+            <context value="ext"></context>
+            <contextType value="variable"></contextType>
+            <element value="url"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="ext"></context>
+            <contextType value="variable"></contextType>
+            <element value="value"></element>
+            <variable value="value"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="code"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"></context>
+            <contextType value="variable"></contextType>
+            <element value="value"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="LS"></valueString>
+            </parameter>
+         </target>
+      </rule>
+   </group>
+   <group>
+      <name value="QrToBundle"></name>
+      <input>
+         <name value="qr"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="patient"></name>
+         <type value="Patient"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="practitioner"></name>
+         <type value="Practitioner"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="questionnaireresp"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="servicerequest"></name>
+         <type value="ServiceRequest"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="composition"></name>
+         <type value="Composition"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="bundle"></name>
+         <type value="Bundle"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="id"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <transform value="uuid"></transform>
+         </target>
+      </rule>
+      <rule>
+         <name value="type"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="document"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="composition"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <dependent>
+            <name value="OrfComposition"></name>
+            <variable value="qr"></variable>
+            <variable value="composition"></variable>
+            <variable value="patient"></variable>
+            <variable value="practitioner"></variable>
+            <variable value="questionnaireresp"></variable>
+            <variable value="servicerequest"></variable>
+            <variable value="bundle"></variable>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="qrgroups"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <dependent>
+            <name value="QrToGroups"></name>
+            <variable value="qr"></variable>
+            <variable value="patient"></variable>
+            <variable value="practitioner"></variable>
+            <variable value="composition"></variable>
+         </dependent>
+      </rule>
+   </group>
+   <group>
+      <name value="OrfComposition"></name>
+      <input>
+         <name value="qr"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="source"></mode>
+      </input>
+      <input>
+         <name value="tgt"></name>
+         <type value="Composition"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="patient"></name>
+         <type value="Patient"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="practitioner"></name>
+         <type value="Practitioner"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="questionnaireresp"></name>
+         <type value="QuestionnaireResponse"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="servicerequest"></name>
+         <type value="ServiceRequest"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
+         <name value="bundle"></name>
+         <type value="Bundle"></type>
+         <mode value="target"></mode>
+      </input>
+      <rule>
+         <name value="status"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="status"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="final"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="subject"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="subject"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="Patient"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %patient.id"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="author"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="author"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="Practitioner"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %practitioner.id"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="sections"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="tgt"></context>
+            <contextType value="variable"></contextType>
+            <element value="section"></element>
+            <variable value="tgtSection"></variable>
+         </target>
+         <target>
+            <context value="tgtSection"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="QuestionnaireResponse"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %questionnaireresp.id"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="tgtSection"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="ServiceRequest"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %servicerequest.id"></valueString>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="servicerequest"></name>
+         <source>
+            <context value="qr"></context>
+         </source>
+         <target>
+            <context value="servicerequest"></context>
+            <contextType value="variable"></contextType>
+            <element value="status"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="active"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="servicerequest"></context>
+            <contextType value="variable"></contextType>
+            <element value="intent"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="original-order"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="servicerequest"></context>
+            <contextType value="variable"></contextType>
+            <element value="subject"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="Patient"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %patient.id"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="servicerequest"></context>
+            <contextType value="variable"></contextType>
+            <element value="requester"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="type"></element>
+            <transform value="copy"></transform>
+            <parameter>
+               <valueString value="Practitioner"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="evaluate"></transform>
+            <parameter>
+               <valueString value="'urn:uuid:' + %practitioner.id"></valueString>
+            </parameter>
+         </target>
+      </rule>
+   </group>
+</StructureMap>

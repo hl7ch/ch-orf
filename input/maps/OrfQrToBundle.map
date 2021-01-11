@@ -1,0 +1,89 @@
+map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
+
+//
+// ORF Questionnaire Response to Bundle
+// 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License 
+// QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-referral-min.html
+// QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+// Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
+uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as target
+
+
+group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) {
+      qr as qrcp -> bundle.entry as e, 
+             e.resource = create('Composition') as composition, 
+             composition.id = uuid() as uuid,
+             e.fullUrl = append('urn:uuid:',uuid),
+             bundle.entry as e2, 
+             e2.resource = create('Patient') as patient,
+             patient.id = uuid() as uuid2,
+             e2.fullUrl = append('urn:uuid:',uuid2),
+             bundle.entry as e3, 
+             e3.resource = create('Practitioner') as practitioner, 
+             practitioner.id = uuid() as uuid3,
+             e3.fullUrl = append('urn:uuid:',uuid3),
+             bundle.entry as e4, 
+             e4.resource = qrcp as questionnaireresp,
+             questionnaireresp.id = uuid() as uuid4,
+             e4.fullUrl = append('urn:uuid:',uuid4),
+             bundle.entry as e5, 
+             e5.resource = create('ServiceRequest') as servicerequest, 
+             servicerequest.id = uuid() as uuid5,
+             e5.fullUrl = append('urn:uuid:',uuid5) then {
+               qr then QrToBundle(qr, patient, practitioner, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+             } "orfbundle";
+}
+
+group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, target practitioner: Practitioner, target composition : Composition) {
+    qr.item as grp where linkId='order' then OrderItems(grp, composition) "grporderer";
+    qr.item as grp where linkId='patient' then PatientItems(grp, patient) "grppatient";
+    qr.item as grp where linkId='orderer' then OrdererItems(grp, practitioner) "grporderer";
+}
+
+group OrderItems(source src : BackboneElement, target composition : Composition) {
+  src.item as item then OrderItems(item, composition);
+  src.item as item where linkId.value = 'order.number' -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber',
+                                                                        ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "ordernumber"; 
+}
+
+group PatientItems(source src : BackboneElement, target tgt:Patient) {
+  src.item as item then PatientItems(item, tgt);
+  src.item as item where linkId.value = 'patient.familyname' -> tgt.name as name share patientName, name.family = (item.answer.valueString);
+  src.item as item where linkId.value = 'patient.givenname' -> tgt.name as name share patientName, name.given = (item.answer.valueString);
+  src.item as item where linkId.value = 'patient.birthdate' -> tgt.birthDate = (item.answer.valueDate);
+}
+
+group OrdererItems(source src : BackboneElement, target tgt: Practitioner) {
+  src.item as item then OrdererItems(item, tgt);
+  src.item as item where linkId.value = 'orderer.author.familyname' -> tgt.name as name share patientName, name.family = (item.answer.valueString);
+  src.item as item where linkId.value = 'orderer.author.givenname' -> tgt.name as name share patientName, name.given = (item.answer.valueString);
+  src.item as item where linkId.value = 'orderer.author.organization' -> tgt.name as name share patientName, 
+                                                                        name.prefix = (item.answer.valueString) as prefix,
+                                                                        prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
+                                                                        ext.value = create('code') as value, value.value='LS' "LS"; 
+}
+
+group QrToBundle(source qr : QuestionnaireResponse, target patient : Patient, target practitioner: Practitioner, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
+  qr -> bundle.id = uuid() "id";
+  qr -> bundle.type = 'document' "type";
+  qr then OrfComposition(qr, composition, patient, practitioner, questionnaireresp, servicerequest, bundle) "composition";
+  qr then QrToGroups(qr, patient, practitioner, composition) "qrgroups";
+}
+
+group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition, target patient: Patient, target practitioner: Practitioner, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
+  qr -> tgt.status = 'final' "status";
+  qr -> tgt.subject = create('Reference') as reference, reference.type='Patient', reference.reference = ('urn:uuid:'+%patient.id) "subject";
+  qr -> tgt.author = create('Reference') as reference, reference.type='Practitioner', reference.reference = ('urn:uuid:'+%practitioner.id) "author";
+  qr -> tgt.section as tgtSection, tgtSection.entry = create('Reference') as reference, reference.type='QuestionnaireResponse', reference.reference = ('urn:uuid:'+%questionnaireresp.id),
+                                   tgtSection.entry = create('Reference') as reference, reference.type='ServiceRequest', reference.reference = ('urn:uuid:'+%servicerequest.id) "sections";
+  qr -> servicerequest.status = 'active',
+      servicerequest.intent = 'original-order',
+      servicerequest.subject = create('Reference') as reference, reference.type='Patient', reference.reference = ('urn:uuid:'+%patient.id),
+      servicerequest.requester = create('Reference') as reference, reference.type='Practitioner', reference.reference = ('urn:uuid:'+%practitioner.id) "servicerequest";
+}
