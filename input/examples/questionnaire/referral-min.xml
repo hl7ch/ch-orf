@@ -16,12 +16,43 @@
     <subjectType value="Patient" />
     <date value="2020-12-17" />
     <publisher value="eHealth Suisse"/>
-    
+
+    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext">
+        <extension url="name">
+            <valueId value="Bundle"/>
+        </extension>
+        <extension url="type">
+            <valueCode value="Bundle"/>
+        </extension>
+        <extension url="description">
+            <valueString value="The Bundle that is to be used to pre-populate the form"/>
+        </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/variable">
+        <valueExpression>
+            <name value="Patient"/>
+            <language value="text/fhirpath"/>
+            <expression value="%Bundle.entry[0].resource.subject.resolve()"/>
+        </valueExpression>
+    </extension>
+    <extension url="http://hl7.org/fhir/StructureDefinition/variable">
+        <valueExpression>
+            <name value="Orderer"/>
+            <language value="text/fhirpath"/>
+            <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
+        </valueExpression>
+    </extension>
     <item>
         <linkId value="order" />
         <text value="Auftrag" />
         <type value="group" />
         <item>
+            <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="%Bundle.entry[0].resource.extension.where(url=&#39;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber&#39;).valueIdentifier.value" />
+                </valueExpression>
+            </extension>
             <linkId value="order.number" />
             <text value="Auftrags-Nummer" />
             <type value="string" />
@@ -35,36 +66,46 @@
         <text value="Patient" />
         <type value="group" />
         <item>
+            <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <!--  %Bundle.entry[0].resource.subject.resolve().name.family -->
+                    <expression value="%Patient.name.family" />
+                </valueExpression>
+            </extension>
             <linkId value="patient.familyname" />
-            <!-- don't know how to go deeper (Patient name coud repeat and HumanName is a type should reference something like #Patient.name[use="offical"].family -->
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
-            <code>
-                <system value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset" />
-                <code value="Patient.name.family" />
-            </code>
             <text value="Name" />
             <type value="string" />
             <required value="true" />
         </item>
         <item>
+            <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <!-- %Bundle.entry[0].resource.subject.resolve().name.given" -->
+                    <expression value="%Patient.name.given" />
+                </valueExpression>
+            </extension>
             <linkId value="patient.givenname" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name" />
-            <code>
-                <system value="http://fhir.ch/ig/ch-orf/CodeSystem/minimaldataset" />
-                <code value="Patient.name.given" />
-            </code>
             <text value="Vorname" />
             <type value="string" />
             <required value="true" />
         </item>
         <item>
+            <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <!--  %Bundle.entry[0].resource.subject.resolve().birthDate" -->
+                    <expression value="%Patient.birthDate" />
+                </valueExpression>
+            </extension>
             <linkId value="patient.birthdate" />
             <text value="Geburtsdatum" />
             <type value="date" />
             <required value="true" />
         </item>
     </item>
-    
+
     <item>
         <linkId value="orderer" />
         <text value="Auftraggeber" />
@@ -74,16 +115,37 @@
             <text value="Verantwortlicher" />
             <type value="group" />
             <item>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                    <valueExpression>
+                        <language value="text/fhirpath"/>
+                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.prefix.where(extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and value='LS')) -->
+                        <expression value="%Orderer.name.prefix.where(extension.where(url=&#39;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&#39; and value=&#39;LS&#39;))" />
+                    </valueExpression>
+                </extension>
                 <linkId value="orderer.author.organization" />
                 <text value="Organisation" />
                 <type value="string" />
             </item>
             <item>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                    <valueExpression>
+                        <language value="text/fhirpath"/>
+                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.family -->
+                        <expression value="%Orderer.name.family" />
+                    </valueExpression>
+                </extension>
                 <linkId value="orderer.author.familyname" />
                 <text value="Name" />
                 <type value="string" />
             </item>
             <item>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                    <valueExpression>
+                        <language value="text/fhirpath"/>
+                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.given -->
+                        <expression value="%Orderer.name.given" />
+                    </valueExpression>
+                </extension>
                 <linkId value="orderer.author.givenname" />
                 <text value="Vorname" />
                 <type value="string" />
