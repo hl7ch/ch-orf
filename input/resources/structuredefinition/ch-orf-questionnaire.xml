@@ -39,6 +39,7 @@
     <differential>
         <element id="Questionnaire">
             <path value="Questionnaire"/>
+            <short value="CH ORF Questionnaire"/>
         </element>
         <element id="Questionnaire.extension:targetStructureMap">
             <path value="Questionnaire.extension"/>

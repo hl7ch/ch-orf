@@ -39,6 +39,7 @@
     <differential>
         <element id="Composition">
             <path value="Composition"/>
+            <short value="CH ORF Composition"/>
         </element>
         <element id="Composition.text">
             <path value="Composition.text"/>
@@ -69,7 +70,7 @@
         <element id="Composition.extension:dataEntryPerson">
             <path value="Composition.extension" />
             <sliceName value="dataEntryPerson" />
-            <short value="The person who has typed/filled in the form content"/>
+            <short value="The person/organization who has typed/filled in the form content"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -102,7 +103,7 @@
         <element id="Composition.extension:requestReceiver">
             <path value="Composition.extension" />
             <sliceName value="requestReceiver" />
-            <short value="Person who receives the request"/>
+            <short value="Person/organization who receives the request"/>
             <min value="0"/>
             <max value="1"/>
             <type>
@@ -113,7 +114,7 @@
         <element id="Composition.extension:responseReceiver">
             <path value="Composition.extension" />
             <sliceName value="responseReceiver" />
-            <short value="Person who receives the response"/>
+            <short value="Person/organization who receives the response"/>
             <min value="0"/>
             <max value="*"/>
             <type>
@@ -160,7 +161,6 @@
         <element id="Composition.subject">
             <path value="Composition.subject"/>
             <short value="Patient as the principle target of a particular form content"/>
-            <min value="1"/>
         </element>
         <element id="Composition.date">
             <path value="Composition.date"/>
@@ -168,7 +168,7 @@
         </element>
         <element id="Composition.author">
             <path value="Composition.author"/>
-            <short value="The person responsible for the form content"/>
+            <short value="The person/organization responsible for the form content"/>
             <max value="1"/>
             <type>
                 <code value="Reference"/>
@@ -237,7 +237,6 @@
             <sliceName value="ChOrfServiceRequest"/>
             <short value="ServiceRequest"/>
             <min value="1"/>
-            <max value="1"/>
             <type>
                 <code value="Reference"/>
                 <targetProfile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
