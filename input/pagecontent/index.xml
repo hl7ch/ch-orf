@@ -737,7 +737,7 @@
                 </td>
                 <td>PractitionerRole
                 </td>
-                <td>The person responsible for the form content.
+                <td>The person/organization responsible for the form content.
                 </td>
             </tr>
             <tr>
@@ -751,7 +751,7 @@
                 </td>
                 <td>PractitionerRole
                 </td>
-                <td>The person who has typed/filled in the form content.
+                <td>The person/organization who has typed/filled in the form content.
                 </td>
             </tr>
             <tr>
@@ -802,7 +802,7 @@
                 </td>
                 <td>PractitionerRole
                 </td>
-                <td>Person and/or institution who receives the Bundle.
+                <td>Person/organization who receives the Bundle.
                 </td>
             </tr>
             <tr>
@@ -1146,7 +1146,7 @@
                 </td>
                 <td>O
                 </td>
-                <td>The person who has typed/filled in the form content.
+                <td>The person/organization who has typed/filled in the form content.
                 </td>
             </tr>
             <tr>
@@ -1188,7 +1188,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>Person who receives the request.
+                <td>Person/organization who receives the request.
                 </td>
             </tr>
             <tr>
@@ -1202,7 +1202,7 @@
                 </td>
                 <td>O
                 </td>
-                <td>Person who receives the response.
+                <td>Person/organization who receives the response.
                 </td>
             </tr>
             <tr>
@@ -1306,7 +1306,7 @@
                 </td>
                 <td>Reference(Patient)
                 </td>
-                <td>1..1
+                <td>0..1
                 </td>
                 <td>R
                 </td>
@@ -1346,7 +1346,7 @@
                 </td>
                 <td>R
                 </td>
-                <td>The person responsible for the form content.
+                <td>The person/organization responsible for the form content.
                 </td>
             </tr>
             <tr>
@@ -1440,6 +1440,24 @@
                 </td>
                 <td>
                 </td>
+                <td>Reference (ServiceRequest)
+                </td>
+                <td>1..*
+                </td>
+                <td>R
+                </td>
+                <td>ServiceRequest
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
                 <td>Reference (ANY)
                 </td>
                 <td>0..*
@@ -1447,7 +1465,7 @@
                 <td>R
                 </td>
                 <td>
-                    <p>Additionally structured entries like ServiceRequest
+                    <p>Additionally structured entries
                     </p>
                 </td>
             </tr>
