@@ -42,23 +42,37 @@
             <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
         </valueExpression>
     </extension>
+
     <item>
         <linkId value="order" />
         <text value="Auftrag" />
         <type value="group" />
+        <required value="true" />
         <item>
-            <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
                 <valueExpression>
                     <language value="text/fhirpath"/>
                     <expression value="%Bundle.entry[0].resource.extension.where(url=&#39;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber&#39;).valueIdentifier.value" />
                 </valueExpression>
-            </extension>
-            <linkId value="order.number" />
-            <text value="Auftrags-Nummer" />
+            </extension>-->
+            <linkId value="order.placerOrderId" />
+            <text value="Auftragsnummer des Auftraggebers" />
             <type value="string" />
-            <required value="true" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="order.fillerOrderId" />
+            <text value="Auftragsnummer des Empfängers" />
+            <type value="string" />
         </item>
     </item>
+
+    <!-- TBD receiver -->
 
     <item>
         <linkId value="patient" />
@@ -73,10 +87,9 @@
                     <expression value="%Patient.name.family" />
                 </valueExpression>
             </extension>
-            <linkId value="patient.familyname" />
+            <linkId value="patient.familyName" />
             <text value="Name" />
             <type value="string" />
-            <required value="true" />
         </item>
         <item>
             <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
@@ -86,10 +99,20 @@
                     <expression value="%Patient.name.given" />
                 </valueExpression>
             </extension>
-            <linkId value="patient.givenname" />
+            <linkId value="patient.givenName" />
             <text value="Vorname" />
             <type value="string" />
-            <required value="true" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.localPid" />
+            <text value="Lokale Patienten-ID" />
+            <type value="string" />
         </item>
         <item>
             <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
@@ -99,10 +122,93 @@
                     <expression value="%Patient.birthDate" />
                 </valueExpression>
             </extension>
-            <linkId value="patient.birthdate" />
+            <linkId value="patient.birthDate" />
             <text value="Geburtsdatum" />
             <type value="date" />
-            <required value="true" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.gender" />
+            <text value="Geschlecht" />
+            <type value="choice"/>
+            <answerOption>
+                <valueString value="M" />
+            </answerOption>
+            <answerOption>
+                <valueString value="F" />
+            </answerOption>
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.phone" />
+            <text value="Telefon" />
+            <type value="string" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.email" />
+            <text value="E-Mail" />
+            <type value="string" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.streetAddressLine" />
+            <text value="Strasse, Hausnummer, Postfach etc." />
+            <type value="string" />
+            <repeats value="true" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.postalCode" />
+            <text value="PLZ" />
+            <type value="string" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.city" />
+            <text value="Ort" />
+            <type value="string" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="patient.country" />
+            <text value="Land" />
+            <type value="string" />
         </item>
     </item>
 
@@ -110,45 +216,145 @@
         <linkId value="orderer" />
         <text value="Auftraggeber" />
         <type value="group" />
+        <required value="true" />
         <item>
             <linkId value="orderer.author" />
             <text value="Verantwortlicher" />
             <type value="group" />
+            <required value="true" />
             <item>
-                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                    <valueExpression>
-                        <language value="text/fhirpath"/>
-                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.prefix.where(extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and value='LS')) -->
-                        <expression value="%Orderer.name.prefix.where(extension.where(url=&#39;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&#39; and value=&#39;LS&#39;))" />
-                    </valueExpression>
-                </extension>
+                <linkId value="orderer.author.practitioner" />
+                <text value="Verantwortliche Person" />
+                <type value="group" />
+                <item>
+                    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.family -->
+                            <expression value="%Orderer.name.family" />
+                        </valueExpression>
+                    </extension>
+                    <linkId value="orderer.author.practitioner.familyName" />
+                    <text value="Name" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.given -->
+                            <expression value="%Orderer.name.given" />
+                        </valueExpression>
+                    </extension>
+                    <linkId value="orderer.author.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.practitioner.title" />
+                    <text value="Titel" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.practitioner.gln" />
+                    <text value="GLN" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.practitioner.phone" />
+                    <text value="Telefon" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.practitioner.email" />
+                    <text value="E-Mail" />
+                    <type value="string" />
+                </item>
+            </item>
+            <item>
                 <linkId value="orderer.author.organization" />
-                <text value="Organisation" />
-                <type value="string" />
-            </item>
-            <item>
-                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                    <valueExpression>
-                        <language value="text/fhirpath"/>
-                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.family -->
-                        <expression value="%Orderer.name.family" />
-                    </valueExpression>
-                </extension>
-                <linkId value="orderer.author.familyname" />
-                <text value="Name" />
-                <type value="string" />
-            </item>
-            <item>
-                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                    <valueExpression>
-                        <language value="text/fhirpath"/>
-                        <!--  %Bundle.entry[0].resource.author.resolve().ofType(Practitioner).name.given -->
-                        <expression value="%Orderer.name.given" />
-                    </valueExpression>
-                </extension>
-                <linkId value="orderer.author.givenname" />
-                <text value="Vorname" />
-                <type value="string" />
+                <text value="Verantwortliche Organisation" />
+                <type value="group" />
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.organization.name" />
+                    <text value="Name der Organisation" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.organization.streetAddressLine" />
+                    <text value="Strasse, Hausnummer, Postfach etc." />
+                    <type value="string" />
+                    <repeats value="true" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.organization.postalCode" />
+                    <text value="PLZ" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.organization.city" />
+                    <text value="Ort" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.author.organization.country" />
+                    <text value="Land" />
+                    <type value="string" />
+                </item>
             </item>
         </item>
     </item>
