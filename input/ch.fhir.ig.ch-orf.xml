@@ -223,6 +223,24 @@
 
     <resource>
       <reference>
+        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
+      </reference>
+      <name value="Sabine Meier at Praxis Seeblick (Referral minimal)"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Organization/PraxisSeeblick"/>
+      </reference>
+      <name value="Praxis Seeblick (Referral minimal)"/>
+      <description value="Example for Organization"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
         <reference value="Practitioner/SabineMeier"/>
       </reference>
       <name value="Sabine Meier (Referral minimal)"/>

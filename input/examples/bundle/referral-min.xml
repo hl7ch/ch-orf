@@ -53,7 +53,7 @@
                 </subject>
                 <date value="2019-03-31T11:46:09+02:00"/>
                 <author>
-                    <reference value="Practitioner/SabineMeier"/>
+                    <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
                 </author>
                 <title value="Referral min"/>
                 <section>
@@ -96,6 +96,37 @@
     </entry>
 
     <entry>
+        <fullUrl value="http://example.com/fhir/PractitionerRole/SabineMeierPraxisSeeblick"/>
+        <resource>
+            <PractitionerRole xmlns="http://hl7.org/fhir">
+                <id value="SabineMeierPraxisSeeblick"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+                </meta>
+                <practitioner>
+                    <reference value="Practitioner/SabineMeier"/>
+                </practitioner>
+                <organization>
+                    <reference value="Organization/PraxisSeeblick"/>
+                </organization>
+            </PractitionerRole>
+        </resource>
+    </entry>
+
+    <entry>
+        <fullUrl value="http://example.com/fhir/Organization/PraxisSeeblick"/>
+        <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+                <id value="PraxisSeeblick"/>
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization"/>
+                </meta>
+                <name value="Praxis Seeblick"/>
+            </Organization>
+        </resource>
+    </entry>
+
+    <entry>
         <fullUrl value="http://example.com/fhir/Practitioner/SabineMeier"/>
         <resource>
             <Practitioner xmlns="http://hl7.org/fhir">
@@ -106,11 +137,6 @@
                 <name>
                     <family value="Meier"/>
                     <given value="Sabine"/>
-                    <prefix value="Praxis Seeblick">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="LS"/>
-                        </extension>
-                    </prefix>
                 </name>
             </Practitioner>
         </resource>
@@ -312,7 +338,7 @@
                     <reference value="Patient/ErikaMusterfrau"/>
                 </subject>
                 <requester>
-                    <reference value="Practitioner/SabineMeier"/>
+                    <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
                 </requester>
             </ServiceRequest>
         </resource>

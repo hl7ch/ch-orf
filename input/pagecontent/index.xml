@@ -3,7 +3,7 @@
 
 
     <p>This Implementation Guide uses FHIR defined resources – Composition Resource, Questionnaire Resource,
-    QuestionnaireResponse Resource, Patient Resource, Practitioner Resource, ServiceRequest Resource and Bundle from
+    QuestionnaireResponse Resource, Patient Resource, PractitionerRole Resource, Practitioner Resource, Organization Resource, ServiceRequest Resource and Bundle Resource from
     FHIR R4. For details on HL7 FHIR R4 see <a href="http://hl7.org/fhir/r4">http://hl7.org/fhir/r4</a>.
     </p>
     <p>The Order &amp; Referral by Form (ORF) Implementation Guide describes how forms for eReferrals, requests for
@@ -735,7 +735,7 @@
                 </td>
                 <td>Author
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>The person responsible for the form content.
                 </td>
@@ -749,7 +749,7 @@
                 </td>
                 <td>DataEnterer
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>The person who has typed/filled in the form content.
                 </td>
@@ -763,7 +763,7 @@
                 </td>
                 <td>PrimaryInformationRecipient
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist
                     has to be called by phone right away at the time the images arrive).
@@ -778,7 +778,7 @@
                 </td>
                 <td>PrimaryInformationRecipient
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>
                     <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical
@@ -800,7 +800,7 @@
                 </td>
                 <td>
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>Person and/or institution who receives the Bundle.
                 </td>
@@ -1140,7 +1140,7 @@
                 </td>
                 <td colspan="3">ORFDataEntryPerson
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>0..1
                 </td>
@@ -1154,7 +1154,7 @@
                 </td>
                 <td colspan="3">ORFUrgentNotificiationContactForRequest
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>0..1
                 </td>
@@ -1168,7 +1168,7 @@
                 </td>
                 <td colspan="3">ORFUrgentNotificiationContactForResponse
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>0..1
                 </td>
@@ -1182,7 +1182,7 @@
                 </td>
                 <td colspan="3">ORFRequestReceiver
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>0..1
                 </td>
@@ -1196,7 +1196,7 @@
                 </td>
                 <td colspan="3">ORFResponseReceiver
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>0..*
                 </td>
@@ -1340,7 +1340,7 @@
                 </td>
                 <td>
                 </td>
-                <td>Reference (Practitioner)
+                <td>Reference (PractitionerRole)
                 </td>
                 <td>1..1
                 </td>

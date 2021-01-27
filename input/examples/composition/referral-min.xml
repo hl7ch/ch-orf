@@ -38,7 +38,7 @@
     </subject>
     <date value="2019-03-31T11:46:09+02:00"/>
     <author>
-        <reference value="Practitioner/SabineMeier"/>
+        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
     </author>
     <title value="Referral min"/>
     <section>

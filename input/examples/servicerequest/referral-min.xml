@@ -9,6 +9,6 @@
         <reference value="Patient/ErikaMusterfrau"/>
     </subject>
     <requester>
-        <reference value="Practitioner/SabineMeier"/>
+        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
     </requester>
 </ServiceRequest>
