@@ -537,5 +537,93 @@
                 </item>
             </item>
         </item>
+        <!-- Urgent Notification Contact for this document (request) -->
+        <item>
+            <linkId value="orderer.notificationContactRequest" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+            <text value="Benachrichtigungskontakt für die Anfrage" />
+            <type value="group" />
+            <item>
+                <linkId value="orderer.notificationContactRequest.practitioner" />
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
+                <text value="Zu benachrichtigende Person" />
+                <type value="group" />
+                <item>
+                    <linkId value="orderer.notificationContactRequest.practitioner.familyName" />
+                    <text value="Name" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactRequest.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.notificationContactRequest.practitioner.title" />
+                    <text value="Titel" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactRequest.practitioner.phone" />
+                    <text value="Telefon" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactRequest.practitioner.email" />
+                    <text value="E-Mail" />
+                    <type value="string" />
+                </item>
+            </item>
+        </item>
+        <!-- Urgent Notification Contact for the Response to this document -->
+        <item>
+            <linkId value="orderer.notificationContactResponse" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+            <text value="Benachrichtigungskontakt für die Antwort" />
+            <type value="group" />
+            <item>
+                <linkId value="orderer.notificationContactResponse.practitioner" />
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
+                <text value="Zu benachrichtigende Person" />
+                <type value="group" />
+                <item>
+                    <linkId value="orderer.notificationContactResponse.practitioner.familyName" />
+                    <text value="Name" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactResponse.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                        <valueExpression>
+                            <language value="text/fhirpath"/>
+                            <expression value="" />
+                        </valueExpression>
+                    </extension>-->
+                    <linkId value="orderer.notificationContactResponse.practitioner.title" />
+                    <text value="Titel" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactResponse.practitioner.phone" />
+                    <text value="Telefon" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.notificationContactResponse.practitioner.email" />
+                    <text value="E-Mail" />
+                    <type value="string" />
+                </item>
+            </item>
+        </item>
     </item>
 </Questionnaire>
