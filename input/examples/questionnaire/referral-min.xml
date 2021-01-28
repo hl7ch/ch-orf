@@ -91,7 +91,7 @@
             </extension>-->
             <linkId value="order.dateTime" />
             <text value="Auftragszeitpunkt" />
-            <type value="date" />
+            <type value="dateTime" />
             <required value="true" />
         </item>
     </item>
@@ -302,10 +302,26 @@
             <text value="Geschlecht" />
             <type value="choice"/>
             <answerOption>
-                <valueString value="M" />
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/administrative-gender"/>
+                    <code value="male"/>
+                    <display value="Männlich"/>
+                </valueCoding>
+                <initialSelected value="true"/>
             </answerOption>
             <answerOption>
-                <valueString value="F" />
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/administrative-gender"/>
+                    <code value="female"/>
+                    <display value="Weiblich"/>
+                </valueCoding>
+            </answerOption>
+            <answerOption>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/administrative-gender"/>
+                    <code value="other"/>
+                    <display value="Anderes"/>
+                </valueCoding>
             </answerOption>
         </item>
         <item>
