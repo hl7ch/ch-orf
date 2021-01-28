@@ -49,6 +49,13 @@
                 <targetProfile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
             </type>
         </element>
+        <element id="ServiceRequest.requester">
+            <path value="ServiceRequest.requester"/>
+            <type>
+                <code value="Reference"/>
+                <targetProfile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+            </type>
+        </element>
         <element id="ServiceRequest.performer">
             <path value="ServiceRequest.performer"/>
             <type>

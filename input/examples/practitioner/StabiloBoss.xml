@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practitioner xmlns="http://hl7.org/fhir">
+    <id value="StabiloBoss"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+    </meta>
+    <name>
+        <use value="official"/>
+        <family value="Boss"/>
+        <given value="Stabilo"/>
+    </name>
+    <telecom>
+        <system value="phone"/>
+        <value value="044 333 22 12"/>
+        <use value="work"/>
+    </telecom>
+    <telecom>
+        <system value="email"/>
+        <value value="stabilo.boss@praxisseeblick.ch"/>
+        <use value="work"/>
+    </telecom>
+</Practitioner> 

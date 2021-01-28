@@ -8,15 +8,6 @@
     <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
         <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" />
     </extension>
-    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
-    <name value="ORFReferralMinimial" />
-    <title value="ORF Referral Minimial" />
-    <status value="draft" />
-    <experimental value="true" />
-    <subjectType value="Patient" />
-    <date value="2020-12-17" />
-    <publisher value="eHealth Suisse"/>
-
     <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext">
         <extension url="name">
             <valueId value="Bundle"/>
@@ -42,6 +33,14 @@
             <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
         </valueExpression>
     </extension>
+    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+    <name value="ORFReferralMinimial" />
+    <title value="ORF Referral Minimial" />
+    <status value="draft" />
+    <experimental value="true" />
+    <subjectType value="Patient" />
+    <date value="2020-12-17" />
+    <publisher value="eHealth Suisse"/>
 
     <!-- Auftrag -->
     <item>

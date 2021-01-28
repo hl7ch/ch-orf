@@ -81,7 +81,7 @@
                 <linkId value="receiverRequest.practitioner.email" />
                 <text value="E-Mail" />
                 <answer>
-                    <valueString value="hans.röntgen@kantonsspital.ch"/>
+                    <valueString value="hans.roentgen@kantonsspital.ch"/>
                 </answer>
             </item>
         </item>
@@ -403,14 +403,14 @@
                     <linkId value="orderer.notificationContactResponse.practitioner.familyName" />
                     <text value="Name" />
                     <answer>
-                        <valueString value="Meier"/>
+                        <valueString value="Müller"/>
                     </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactResponse.practitioner.givenName" />
                     <text value="Vorname" />
                     <answer>
-                        <valueString value="Sabine"/>
+                        <valueString value="Peter"/>
                     </answer>
                 </item>
                 <item>
@@ -424,14 +424,14 @@
                     <linkId value="orderer.notificationContactResponse.practitioner.phone" />
                     <text value="Telefon" />
                     <answer>
-                        <valueString value="044 333 22 11"/>
+                        <valueString value="044 333 22 13"/>
                     </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactResponse.practitioner.email" />
                     <text value="E-Mail" />
                     <answer>
-                        <valueString value="sabine.meier@praxisseeblick.ch"/>
+                        <valueString value="peter.mueller@praxisseeblick.ch"/>
                     </answer>
                 </item>
             </item>

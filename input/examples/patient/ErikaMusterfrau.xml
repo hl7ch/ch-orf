@@ -1,11 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Patient xmlns="http://hl7.org/fhir">
   <id value="ErikaMusterfrau"/>
   <meta>
     <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
   </meta>
+  <identifier>
+    <type>
+      <coding>
+        <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+        <code value="MR" />
+      </coding>
+    </type>
+    <system value="urn:oid:2.16.756.5.30.999999.1"/>
+    <value value="11.22.33.4567"/>
+  </identifier>
   <name>
     <family value="Musterfrau"/>
     <given value="Erika"/>
   </name>
+  <telecom>
+    <system value="phone"/>
+    <value value="079 979 79 79"/>
+    <use value="mobile"/>
+  </telecom>
+  <telecom>
+    <system value="email"/>
+    <value value="erika@musterfrau.ch"/>
+  </telecom>
+  <gender value="female"/>
   <birthDate value="1970-03-14"/>
+  <address>
+    <use value="home"/>
+    <line value="Musterweg"/>
+    <line value="6a"/>
+    <city value="Zürich"/>
+    <postalCode value="8000"/>
+    <country value="Schweiz"/>
+  </address>
 </Patient>

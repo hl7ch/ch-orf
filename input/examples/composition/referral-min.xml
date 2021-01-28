@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Composition xmlns="http://hl7.org/fhir">
     <id value="referral-min"/>
     <meta>
@@ -14,6 +15,26 @@
             <system value="http://www.example.ch/orderiddomain"/>
             <value value="123" />
         </valueIdentifier>
+    </extension>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-dataentryperson">
+        <valueReference>
+            <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
+        </valueReference>
+    </extension>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse">
+        <valueReference>
+            <reference value="PractitionerRole/PeterMuellerPraxisSeeblick"/>
+        </valueReference>
+    </extension>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+        <valueReference>
+            <reference value="PractitionerRole/PeterMuellerPraxisSeeblick"/>
+        </valueReference>
+    </extension>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+        <valueReference>
+            <reference value="PractitionerRole/GianLucaSpezialistGruppenpraxis"/>
+        </valueReference>
     </extension>
     <identifier>
         <system value="http://test.fhir.ch/id/uuid"/>

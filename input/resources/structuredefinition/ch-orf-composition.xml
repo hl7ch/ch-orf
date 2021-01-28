@@ -146,7 +146,7 @@
         </element>
         <element id="Composition.identifier">
             <path value="Composition.identifier"/>
-            <short value="Identifier for this composition"/>
+            <short value="Document Id"/>
             <min value="1"/>
         </element>
         <element id="Composition.status">

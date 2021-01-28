@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Practitioner xmlns="http://hl7.org/fhir">
-    <id value="SabineMeier"/>
+    <id value="PeterMueller"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
     </meta>
-    <identifier>
-        <system value="urn:oid:2.51.1.3"/>
-        <value value="7601000034321"/>
-    </identifier>
     <name>
         <use value="official"/>
-        <family value="Meier"/>
-        <given value="Sabine"/>
+        <family value="Müller"/>
+        <given value="Peter"/>
         <prefix value="Dr. med.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                 <valueCode value="AC"/>
@@ -20,12 +16,12 @@
     </name>
     <telecom>
         <system value="phone"/>
-        <value value="044 333 22 11"/>
+        <value value="044 333 22 13"/>
         <use value="work"/>
     </telecom>
     <telecom>
         <system value="email"/>
-        <value value="sabine.meier@praxisseeblick.ch"/>
+        <value value="peter.mueller@praxisseeblick.ch"/>
         <use value="work"/>
     </telecom>
 </Practitioner> 
