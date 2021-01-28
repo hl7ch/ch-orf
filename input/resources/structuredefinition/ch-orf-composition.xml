@@ -56,6 +56,28 @@
                 <rules value="open" />
             </slicing>
         </element>
+        <element id="Composition.extension:placerOrderId">
+            <path value="Composition.extension" />
+            <sliceName value="placerOrderId" />
+            <short value="Order number of the orderer"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type>
+                <code value="Extension" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-placerorderid" />
+            </type>
+        </element>
+        <element id="Composition.extension:fillerOrderId">
+            <path value="Composition.extension" />
+            <sliceName value="fillerOrderId" />
+            <short value="Order number of the recipient"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type>
+                <code value="Extension" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-fillerorderid" />
+            </type>
+        </element>
         <element id="Composition.extension:precedentDocument">
             <path value="Composition.extension" />
             <sliceName value="precedentDocument" />
@@ -120,16 +142,6 @@
             <type>
                 <code value="Extension" />
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver" />
-            </type>
-        </element>
-        <element id="Composition.extension:visitNumber">
-            <path value="Composition.extension" />
-            <sliceName value="visitNumber" />
-            <min value="0"/>
-            <max value="1"/>
-            <type>
-                <code value="Extension" />
-                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber" />
             </type>
         </element>
         <element id="Composition.identifier">

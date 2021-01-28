@@ -1122,6 +1122,38 @@
             <tr>
                 <td>extension
                 </td>
+                <td colspan="3">ORFPlacerOrderId
+                </td>
+                <td>Identifier
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>Order number of the orderer.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
+                <td colspan="3">ORFFillerOrderId
+                </td>
+                <td>Identifier
+                </td>
+                <td>0..1
+                </td>
+                <td>O
+                </td>
+                <td>Order number of the recipient.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>extension
+                </td>
                 <td colspan="3">ORFPrecedentDocument
                 </td>
                 <td>Identifier
@@ -1203,20 +1235,6 @@
                 <td>O
                 </td>
                 <td>Person/organization who receives the response.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFVisitNumber
-                </td>
-                <td>Identifier
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>
                 </td>
             </tr>
             <tr>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="ch-orf-visitnumber"/>
-    <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber"/>
+    <id value="ch-orf-fillerorderid"/>
+    <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-fillerorderid"/>
     <version value="0.9.0"/>
-    <name value="CHORFVisitNumber"/>
-    <title value="CH ORF Visit Number Extension"/>
+    <name value="CHORFFillerOrderId"/>
+    <title value="CH ORF Filler Order Id Extension"/>
     <status value="draft"/>
-    <date value="2019-02-05"/>
+    <date value="2021-01-28"/>
     <publisher value="eHealth Suisse"/>
     <contact>
         <name value="eHealth Suisse"/>
@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="Visit Number"/>
+    <description value="Order number of the recipient"/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -56,12 +56,12 @@
             <type>
                 <code value="uri"/>
             </type>
-            <fixedUri value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber"/>
+            <fixedUri value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-fillerorderid"/>
         </element>
         <element id="Extension.valueIdentifier">
             <path value="Extension.valueIdentifier"/>
             <short value="valueIdentifier"/>
-            <definition value="Encounter Identifier"/>
+            <definition value="Filler Order Id"/>
             <min value="1"/>
             <max value="1"/>
             <type>
