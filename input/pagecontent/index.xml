@@ -792,7 +792,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Receiver
+                <td>Request Receiver
                 </td>
                 <td>X
                 </td>
@@ -802,7 +802,21 @@
                 </td>
                 <td>PractitionerRole
                 </td>
-                <td>Person/organization who receives the Bundle.
+                <td>Person/organization who receives the request.
+                </td>
+            </tr>
+            <tr>
+                <td>Response Receiver
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>
+                </td>
+                <td>PractitionerRole
+                </td>
+                <td>Person/organization who receives the response.
                 </td>
             </tr>
             <tr>
@@ -821,7 +835,7 @@
                 </td>
             </tr>
             <tr>
-                <td>PrecedentDocumentId
+                <td>Precedent Document Id
                 </td>
                 <td>na
                 </td>
