@@ -43,6 +43,7 @@
         </valueExpression>
     </extension>
 
+    <!-- Auftrag -->
     <item>
         <linkId value="order" />
         <text value="Auftrag" />
@@ -72,6 +73,7 @@
         </item>
     </item>
 
+    <!-- Receiver: Person and/or institution who receives the Bundle -->
     <item>
         <linkId value="receiver" />
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
@@ -214,6 +216,7 @@
         </item>
     </item>
 
+    <!-- Patient: The principle target of a particular Form Content is one patient -->
     <item>
         <linkId value="patient" />
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient" />
@@ -358,6 +361,7 @@
         <text value="Auftraggeber" />
         <type value="group" />
         <required value="true" />
+        <!-- Author: The person/organization responsible for Form Content -->
         <item>
             <linkId value="orderer.author" />
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
@@ -496,6 +500,39 @@
                     </extension>-->
                     <linkId value="orderer.author.organization.country" />
                     <text value="Land" />
+                    <type value="string" />
+                </item>
+            </item>
+        </item>
+        <!-- Data Entry Person: The person who has typed/filled in the Form Content. -->
+        <item>
+            <linkId value="orderer.dataenterer" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+            <text value="Erfasser" />
+            <type value="group" />
+            <item>
+                <linkId value="orderer.dataenterer.practitioner" />
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
+                <text value="Erfassende Person" />
+                <type value="group" />
+                <item>
+                    <linkId value="orderer.dataenterer.practitioner.familyName" />
+                    <text value="Name" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.dataenterer.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.dataenterer.practitioner.phone" />
+                    <text value="Telefon" />
+                    <type value="string" />
+                </item>
+                <item>
+                    <linkId value="orderer.dataenterer.practitioner.email" />
+                    <text value="E-Mail" />
                     <type value="string" />
                 </item>
             </item>
