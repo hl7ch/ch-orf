@@ -71,6 +71,29 @@
             <text value="Auftragsnummer des Auftragsempfängers" />
             <type value="string" />
         </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="order.precedentDocumentId" />
+            <text value="ID des Vorgängerdokuments" />
+            <type value="string" />
+        </item>
+        <item>
+            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
+                <valueExpression>
+                    <language value="text/fhirpath"/>
+                    <expression value="" />
+                </valueExpression>
+            </extension>-->
+            <linkId value="order.dateTime" />
+            <text value="Auftragszeitpunkt" />
+            <type value="date" />
+            <required value="true" />
+        </item>
     </item>
 
     <!-- Request Receiver: Person/organization who receives the request -->
