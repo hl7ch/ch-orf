@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-    <id value="ch-orf-requestreceiver"/>
-    <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestreceiver"/>
+    <id value="ch-orf-placerorderid"/>
+    <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-placerorderid"/>
     <version value="0.9.0"/>
-    <name value="CHORFRequestReceiver"/>
-    <title value="CH ORF Request Receiver Extension"/>
+    <name value="CHORFPlacerOrderId"/>
+    <title value="CH ORF Placer Order Id Extension"/>
     <status value="draft"/>
-    <date value="2019-03-19"/>
+    <date value="2021-01-28"/>
     <publisher value="eHealth Suisse"/>
     <contact>
         <name value="eHealth Suisse"/>
@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="Receiver of the request"/>
+    <description value="Order number of the orderer"/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -56,18 +56,16 @@
             <type>
                 <code value="uri"/>
             </type>
-            <fixedUri value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestreceiver"/>
+            <fixedUri value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-placerorderid"/>
         </element>
-        <element id="Extension.valueReference">
-            <path value="Extension.valueReference"/>
-            <short value="valueReference"/>
-            <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see
-       Extensibility in the spec for list)."/>
+        <element id="Extension.valueIdentifier">
+            <path value="Extension.valueIdentifier"/>
+            <short value="valueIdentifier"/>
+            <definition value="Placer Order Id"/>
             <min value="1"/>
             <max value="1"/>
             <type>
-                <code value="Reference"/>
-                <targetProfile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+                <code value="Identifier"/>
             </type>
         </element>
     </differential>

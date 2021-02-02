@@ -3,7 +3,7 @@
 
 
     <p>This Implementation Guide uses FHIR defined resources – Composition Resource, Questionnaire Resource,
-    QuestionnaireResponse Resource, Patient Resource, Practitioner Resource, ServiceRequest Resource and Bundle from
+    QuestionnaireResponse Resource, Patient Resource, PractitionerRole Resource, Practitioner Resource, Organization Resource, ServiceRequest Resource and Bundle Resource from
     FHIR R4. For details on HL7 FHIR R4 see <a href="http://hl7.org/fhir/r4">http://hl7.org/fhir/r4</a>.
     </p>
     <p>The Order &amp; Referral by Form (ORF) Implementation Guide describes how forms for eReferrals, requests for
@@ -735,9 +735,9 @@
                 </td>
                 <td>Author
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
-                <td>The person responsible for the form content.
+                <td>The person/organization responsible for the form content.
                 </td>
             </tr>
             <tr>
@@ -749,9 +749,9 @@
                 </td>
                 <td>DataEnterer
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
-                <td>The person who has typed/filled in the form content.
+                <td>The person/organization who has typed/filled in the form content.
                 </td>
             </tr>
             <tr>
@@ -763,7 +763,7 @@
                 </td>
                 <td>PrimaryInformationRecipient
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist
                     has to be called by phone right away at the time the images arrive).
@@ -778,7 +778,7 @@
                 </td>
                 <td>PrimaryInformationRecipient
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
                 <td>
                     <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical
@@ -792,7 +792,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Receiver
+                <td>Request Receiver
                 </td>
                 <td>X
                 </td>
@@ -800,9 +800,23 @@
                 </td>
                 <td>
                 </td>
-                <td>Practitioner
+                <td>PractitionerRole
                 </td>
-                <td>Person and/or institution who receives the Bundle.
+                <td>Person/organization who receives the request.
+                </td>
+            </tr>
+            <tr>
+                <td>Response Receiver
+                </td>
+                <td>X
+                </td>
+                <td>X
+                </td>
+                <td>
+                </td>
+                <td>PractitionerRole
+                </td>
+                <td>Person/organization who receives the response.
                 </td>
             </tr>
             <tr>
@@ -821,7 +835,7 @@
                 </td>
             </tr>
             <tr>
-                <td>PrecedentDocumentId
+                <td>Precedent Document Id
                 </td>
                 <td>na
                 </td>
@@ -1053,406 +1067,10 @@
         <a href="https://www.hl7.org/fhir/resourcelist.html">https://www.hl7.org/fhir/resourcelist.html</a>.
     </p>
     <a name="volume3"></a><h6>Composition resource</h6>
-     <table>
-        <tbody>
-            <tr>
-                <th colspan="4">FHIR Composition Resource
-                </th>
-                <th>FHIR Type
-                </th>
-                <th colspan="2">ORF Constraint
-                </th>
-                <th>Notes
-                </th>
-            </tr>
-            <tr>
-                <th>Element
-                </th>
-                <th>
-                </th>
-                <th>
-                </th>
-                <th>
-                </th>
-                <th>
-                </th>
-                <th>Cardinality
-                </th>
-                <th>Optionality
-                </th>
-                <th>
-                </th>
-            </tr>
-            <tr>
-                <td>text
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Narrative text of the composition.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFPrecedentDocument
-                </td>
-                <td>Identifier
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>Identifier of the document which precedes this document in a thread.
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFDataEntryPerson
-                </td>
-                <td>Practitioner
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>The person who has typed/filled in the form content.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFUrgentNotificiationContactForRequest
-                </td>
-                <td>Practitioner
-                </td>
-                <td>0..1
-                </td>
-                <td>R
-                </td>
-                <td>An information recipient to notify for urgent matters.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFUrgentNotificiationContactForResponse
-                </td>
-                <td>Practitioner
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>An information recipient to notify for urgent matters about the response.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFRequestReceiver
-                </td>
-                <td>Practitioner
-                </td>
-                <td>0..1
-                </td>
-                <td>R
-                </td>
-                <td>Person who receives the request.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFResponseReceiver
-                </td>
-                <td>Practitioner
-                </td>
-                <td>0..*
-                </td>
-                <td>O
-                </td>
-                <td>Person who receives the response.
-                </td>
-            </tr>
-            <tr>
-                <td>extension
-                </td>
-                <td colspan="3">ORFVisitNumber
-                </td>
-                <td>Identifier
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>identifier
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Identifier
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Identifier for this composition.
-                </td>
-            </tr>
-            <tr>
-                <td>status
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>code
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>type
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Codeable<br />
-                    <p>Concept
-                    </p>
-                </td>
-                <td>1..1
-                </td>
-                <td>
-                </td>
-                <td>Precise type of clinical document.
-                </td>
-            </tr>
-            <tr>
-                <td>category
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Codeable<br />
-                    <p>Concept
-                    </p>
-                </td>
-                <td>1..1
-                </td>
-                <td>
-                </td>
-                <td>High-level kind of a clinical document at a macro level.
-                </td>
-            </tr>
-            <tr>
-                <td>subject
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Reference(Patient)
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Patient as the principle target of a particular form content.
-                </td>
-            </tr>
-            <tr>
-                <td>date
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>dateTime
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Composition editing time.
-                </td>
-            </tr>
-            <tr>
-                <td>author
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Reference (Practitioner)
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>The person responsible for the form content.
-                </td>
-            </tr>
-            <tr>
-                <td>title
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>string
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Meaningful title.
-                </td>
-            </tr>
-            <tr>
-                <td>section
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td colspan="5">QA section must contain at least one of text, entries, or sub-sections.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>title
-                </td>
-                <td>
-                </td>
-                <td>string
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>entry
-                </td>
-                <td>
-                </td>
-                <td>Reference (Questionnaire)
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Questionnaire
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Reference (QuestionnaireResponse)
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>QuestionnaireResponse
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Reference (ANY)
-                </td>
-                <td>0..*
-                </td>
-                <td>R
-                </td>
-                <td>
-                    <p>Additionally structured entries like ServiceRequest
-                    </p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <body>
+        {% include StructureDefinition-ch-orf-composition-diff.xhtml %}
+    </body>
+
     <a name="volume3"></a><h6>Questionnaire resource</h6>
     <p>The intention of the ORF Implementation Guide is to provide a standardized representation of forms at sender and
         receiver site as well. This is achieved with the Questionnaire Resource, which defines representation of all
@@ -1468,231 +1086,17 @@
     <p>Both is achieved by assigning meaningful concepts to all elements concerned. For codes refer to Appendix A.
     </p>
 
-     <table>
-        <tbody>
-            <tr>
-                <th colspan="3" rowspan="2">FHIR Questionnaire<br /> Resource
-                </th>
-                <th>FHIR Type
-                </th>
-                <th colspan="2">ORF Constraint
-                </th>
-                <th rowspan="2">Notes
-                </th>
-            </tr>
-            <tr>
-                <th>
-                </th>
-                <th>Cardinality
-                </th>
-                <th>Optionality
-                </th>
-            </tr>
-            <tr>
-                <td>identifier
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Identifier
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>version
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>string
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>status
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>code
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>item
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>0..*
-                </td>
-                <td>R
-                </td>
-                <td>Questions and sections within the Questionnaire
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>linkId
-                </td>
-                <td>
-                </td>
-                <td>string
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>Unique id for item in questionnaire
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>text
-                </td>
-                <td>
-                </td>
-                <td>string
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>type
-                </td>
-                <td>
-                </td>
-                <td>code
-                </td>
-                <td>1..1
-                </td>
-                <td>R
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>required
-                </td>
-                <td>
-                </td>
-                <td>boolean
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><br />
-                    </p>
-                </td>
-                <td>repeats
-                </td>
-                <td>
-                </td>
-                <td>boolean
-                </td>
-                <td>0..1
-                </td>
-                <td>O
-                </td>
-                <td>Whether the question can have multiple answers
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><br />
-                    </p>
-                </td>
-                <td>answerValueSet
-                </td>
-                <td>
-                </td>
-                <td>canonical(ValueSet)
-                </td>
-                <td>0..1
-                </td>
-                <td>(R)
-                </td>
-                <td>Valueset containing permitted answers
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><br />
-                    </p>
-                </td>
-                <td>answerOption
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>0..*
-                </td>
-                <td>(R)
-                </td>
-                <td>Permitted answers
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>item
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>0..*
-                </td>
-                <td>
-                </td>
-                <td>Nested questionnaire items
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p><sup>&#91;Table 8&#93;</sup><i>Content of the Questionnaire resource</i>
-    </p>
+    <body>
+        {% include StructureDefinition-ch-orf-questionnaire-diff.xhtml %}
+    </body>
+     
     <a name="volume3"></a><h6>QuestionnaireResponse resource</h6>
     <p>The QuestionnaireResponse Resource depends of the definition of the Questionnaire Resource and is therefore use
         case specific. For deriving QuestionnaireResponse Resources from the Questionnaire Resources refer to 
         <a href="https://www.hl7.org/fhir/r4/questionnaireresponse.html">https://www.hl7.org/fhir/r4/questionnaireresponse.html</a>.
     </p>
+
+    <body>
+        {% include StructureDefinition-ch-orf-questionnaireresponse-diff.xhtml %}
+    </body>
 </div>

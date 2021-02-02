@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization xmlns="http://hl7.org/fhir">
+    <id value="PraxisSeeblick"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization"/>
+    </meta>
+    <name value="Praxis Seeblick"/>
+    <address>
+        <use value="work"/>
+        <line value="Seestrasse 133"/>
+        <line value="Haus C"/>
+        <city value="Zürich"/>
+        <postalCode value="8000"/>
+        <country value="Schweiz"/>
+    </address>
+</Organization> 
