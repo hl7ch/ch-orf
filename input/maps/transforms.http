@@ -21,3 +21,24 @@ Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
 
 < ./input/examples/questionnaireresponse/referral-min.xml
+
+
+
+#### Put questionnaire to Brians server
+PUT https://sqlonfhir-r4.azurewebsites.net/fhir/Questionnaire/referral-min HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./input/examples/questionnaire/referral-min.xml
+
+#### Put prepopulation data to Brians server
+PUT https://sqlonfhir-r4.azurewebsites.net/fhir/Bundle/referral-min HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./input/examples/Bundle/referral-min.xml
+
+
+
+
+
