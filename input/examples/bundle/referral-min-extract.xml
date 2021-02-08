@@ -1,0 +1,971 @@
+<Bundle 
+  xmlns="http://hl7.org/fhir">
+  <type value="document"/>
+  <entry>
+    <fullUrl value="urn:uuid:f7312953-4abb-48d5-9b5a-e60471a451c3"/>
+    <resource>
+      <Composition>
+        <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
+          <extension url="enterer">
+            <valueReference>
+              <reference value="urn:uuid:fc574fb0-db61-4673-8818-02aff7317792"/>
+              <type value="PractitionerRole"/>
+            </valueReference>
+          </extension>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforrequest">
+          <valueReference>
+            <reference value="urn:uuid:602399e6-8638-4f41-9667-1f33208be770"/>
+            <type value="PractitionerRole"/>
+          </valueReference>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse">
+          <valueReference>
+            <reference value="urn:uuid:d4a7d81c-3c7a-44fd-bdf8-4559c306154e"/>
+            <type value="PractitionerRole"/>
+          </valueReference>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+          <valueReference>
+            <reference value="urn:uuid:0884e4a2-03de-4c6a-ba0f-64a4e56a1ddd"/>
+            <type value="PractitionerRole"/>
+          </valueReference>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+          <valueReference>
+            <reference value="urn:uuid:9cc2fc81-8255-48b4-be4d-7f0f80cecbb7"/>
+            <type value="PractitionerRole"/>
+          </valueReference>
+        </extension>
+        <status value="final"/>
+        <subject>
+          <reference value="urn:uuid:01d71b46-08f3-442d-9a49-6f8004117909"/>
+          <type value="Patient"/>
+        </subject>
+        <author>
+          <reference value="urn:uuid:2712a59b-18e3-4dbc-93fe-f4b3b98fd51b"/>
+          <type value="PractitionerRole"/>
+        </author>
+        <section>
+          <entry>
+            <reference value="urn:uuid:d991e4e5-bb5f-4bc8-8a31-60fbbf13f2c9"/>
+            <type value="QuestionnaireResponse"/>
+          </entry>
+          <entry>
+            <reference value="urn:uuid:7b943764-0b76-427d-a0a2-fbdbc21130c0"/>
+            <type value="ServiceRequest"/>
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:01d71b46-08f3-442d-9a49-6f8004117909"/>
+    <resource>
+      <Patient>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="MR"/>
+            </coding>
+          </type>
+          <value value="11.22.33.4567"/>
+        </identifier>
+        <name>
+          <family value="Musterfrau"/>
+          <given value="Erika"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="079 979 79 79"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="erika@musterfrau.ch"/>
+        </telecom>
+        <gender value="female"/>
+        <birthDate value="1970-03-14"/>
+        <address>
+          <line value="Musterweg"/>
+          <line value="6a"/>
+          <city value="Z&#xFC;rich"/>
+          <postalCode value="8000"/>
+          <country value="Schweiz"/>
+        </address>
+      </Patient>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:d991e4e5-bb5f-4bc8-8a31-60fbbf13f2c9"/>
+    <resource>
+      <QuestionnaireResponse>
+        <meta>
+          <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+        </meta>
+        <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+        <status value="completed"/>
+        <item>
+          <linkId value="order"/>
+          <text value="Auftrag"/>
+          <item>
+            <linkId value="order.placerOrderId"/>
+            <text value="Auftragsnummer des Auftraggebers"/>
+            <answer>
+              <valueString value="123"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="order.fillerOrderId"/>
+            <text value="Auftragsnummer des Auftragsempf&#xE4;ngers"/>
+          </item>
+          <item>
+            <linkId value="order.precedentDocumentId"/>
+            <text value="ID des Vorg&#xE4;ngerdokuments"/>
+          </item>
+          <item>
+            <linkId value="order.dateTime"/>
+            <text value="Auftragszeitpunkt"/>
+            <answer>
+              <valueDateTime value="2019-03-31T11:46:09+02:00"/>
+            </answer>
+          </item>
+        </item>
+        <!--  Request Receiver: Person/organization who receives the request  -->
+        <item>
+          <linkId value="receiverRequest"/>
+          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+          <text value="Auftragsempf&#xE4;nger"/>
+          <item>
+            <linkId value="receiverRequest.practitioner"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+            <text value="Auftragsempfangende Person"/>
+            <item>
+              <linkId value="receiverRequest.practitioner.familyName"/>
+              <text value="Name"/>
+              <answer>
+                <valueString value="R&#xF6;ntgen"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.practitioner.givenName"/>
+              <text value="Vorname"/>
+              <answer>
+                <valueString value="Hans"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.practitioner.title"/>
+              <text value="Titel"/>
+              <answer>
+                <valueString value="Dr. med."/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.practitioner.gln"/>
+              <text value="GLN"/>
+              <answer>
+                <valueString value="7601000066878"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.practitioner.phone"/>
+              <text value="Telefon"/>
+              <answer>
+                <valueString value="044 412 00 99"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.practitioner.email"/>
+              <text value="E-Mail"/>
+              <answer>
+                <valueString value="hans.roentgen@kantonsspital.ch"/>
+              </answer>
+            </item>
+          </item>
+          <item>
+            <linkId value="receiverRequest.organization"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization"/>
+            <text value="Auftragsempfangende Organisation"/>
+            <item>
+              <linkId value="receiverRequest.organization.name"/>
+              <text value="Name der Organisation"/>
+              <answer>
+                <valueString value="Kantonsspital"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.organization.streetAddressLine"/>
+              <text value="Strasse, Hausnummer, Postfach etc."/>
+              <answer>
+                <valueString value="Kantonsstrasse 14"/>
+              </answer>
+              <answer>
+                <valueString value="Postfach 14"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.organization.postalCode"/>
+              <text value="PLZ"/>
+              <answer>
+                <valueString value="8000"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.organization.city"/>
+              <text value="Ort"/>
+              <answer>
+                <valueString value="Z&#xFC;rich"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverRequest.organization.country"/>
+              <text value="Land"/>
+              <answer>
+                <valueString value="Schweiz"/>
+              </answer>
+            </item>
+          </item>
+        </item>
+        <!--  Patient: The principle target of a particular Form Content is one patient  -->
+        <item>
+          <linkId value="patient"/>
+          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
+          <text value="Patient"/>
+          <item>
+            <linkId value="patient.familyName"/>
+            <text value="Name"/>
+            <answer>
+              <valueString value="Musterfrau"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.givenName"/>
+            <text value="Vorname"/>
+            <answer>
+              <valueString value="Erika"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.localPid"/>
+            <text value="Lokale Patienten-ID"/>
+            <answer>
+              <valueString value="11.22.33.4567"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.birthDate"/>
+            <text value="Geburtsdatum"/>
+            <answer>
+              <valueDate value="1970-03-14"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.gender"/>
+            <text value="Geschlecht"/>
+            <answer>
+              <valueCoding>
+                <system value="http://hl7.org/fhir/administrative-gender"/>
+                <code value="female"/>
+                <display value="Weiblich"/>
+              </valueCoding>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.phone"/>
+            <text value="Telefon"/>
+            <answer>
+              <valueString value="079 979 79 79"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.email"/>
+            <text value="E-Mail"/>
+            <answer>
+              <valueString value="erika@musterfrau.ch"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.streetAddressLine"/>
+            <text value="Strasse, Hausnummer, Postfach etc."/>
+            <answer>
+              <valueString value="Musterweg"/>
+            </answer>
+            <answer>
+              <valueString value="6a"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.postalCode"/>
+            <text value="PLZ"/>
+            <answer>
+              <valueString value="8000"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.city"/>
+            <text value="Ort"/>
+            <answer>
+              <valueString value="Z&#xFC;rich"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.country"/>
+            <text value="Land"/>
+            <answer>
+              <valueString value="Schweiz"/>
+            </answer>
+          </item>
+        </item>
+        <item>
+          <linkId value="orderer"/>
+          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+          <text value="Auftraggeber"/>
+          <!--  Author: The person/organization responsible for Form Content  -->
+          <item>
+            <linkId value="orderer.author"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+            <text value="Verantwortlicher"/>
+            <item>
+              <linkId value="orderer.author.practitioner"/>
+              <text value="Verantwortliche Person"/>
+              <item>
+                <linkId value="orderer.author.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="Meier"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Sabine"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.practitioner.gln"/>
+                <text value="GLN"/>
+                <answer>
+                  <valueString value="7601000034321"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="044 333 22 11"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="sabine.meier@praxisseeblick.ch"/>
+                </answer>
+              </item>
+            </item>
+            <item>
+              <linkId value="orderer.author.organization"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization"/>
+              <text value="Verantwortliche Organisation"/>
+              <item>
+                <linkId value="orderer.author.organization.name"/>
+                <text value="Name der Organisation"/>
+                <answer>
+                  <valueString value="Praxis Seeblick"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.organization.streetAddressLine"/>
+                <text value="Strasse, Hausnummer, Postfach etc."/>
+                <answer>
+                  <valueString value="Seestrasse 133"/>
+                </answer>
+                <answer>
+                  <valueString value="Haus C"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.organization.postalCode"/>
+                <text value="PLZ"/>
+                <answer>
+                  <valueString value="8000"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.organization.city"/>
+                <text value="Ort"/>
+                <answer>
+                  <valueString value="Z&#xFC;rich"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.author.organization.country"/>
+                <text value="Land"/>
+                <answer>
+                  <valueString value="Schweiz"/>
+                </answer>
+              </item>
+            </item>
+          </item>
+          <!--  Data Entry Person: The person who has typed/filled in the Form Content.  -->
+          <item>
+            <linkId value="orderer.dataenterer"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+            <text value="Erfasser"/>
+            <item>
+              <linkId value="orderer.dataenterer.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+              <text value="Erfassende Person"/>
+              <item>
+                <linkId value="orderer.dataenterer.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="Boss"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.dataenterer.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Stabilo"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.dataenterer.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="044 333 22 12"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.dataenterer.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="stabilo.boss@praxisseeblick.ch"/>
+                </answer>
+              </item>
+            </item>
+          </item>
+          <!--  Urgent Notification Contact for this document (request)  -->
+          <item>
+            <linkId value="orderer.notificationContactRequest"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+            <text value="Benachrichtigungskontakt f&#xFC;r die Anfrage"/>
+            <item>
+              <linkId value="orderer.notificationContactRequest.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+              <text value="Zu benachrichtigende Person"/>
+              <item>
+                <linkId value="orderer.notificationContactRequest.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="UNCD familyName"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactRequest.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="UNCD givenName"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactRequest.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="UNCD title"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactRequest.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="UNCD phone"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactRequest.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="UNCD email"/>
+                </answer>
+              </item>
+            </item>
+          </item>
+          <!--  Urgent Notification Contact for the Response to this document  -->
+          <item>
+            <linkId value="orderer.notificationContactResponse"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+            <text value="Benachrichtigungskontakt f&#xFC;r die Antwort"/>
+            <item>
+              <linkId value="orderer.notificationContactResponse.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+              <text value="Zu benachrichtigende Person"/>
+              <item>
+                <linkId value="orderer.notificationContactResponse.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="M&#xFC;ller"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactResponse.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Peter"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactResponse.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactResponse.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="044 333 22 13"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="orderer.notificationContactResponse.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="peter.mueller@praxisseeblick.ch"/>
+                </answer>
+              </item>
+            </item>
+          </item>
+        </item>
+        <!--  Response Receiver: Person/organization who receives the response  -->
+        <item>
+          <linkId value="receiverResponse"/>
+          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+          <text value="R&#xFC;ckmeldungsempf&#xE4;nger"/>
+          <item>
+            <linkId value="receiverResponse.practitioner"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+            <text value="R&#xFC;ckmeldungsempfangende Person"/>
+            <item>
+              <linkId value="receiverResponse.practitioner.familyName"/>
+              <text value="Name"/>
+              <answer>
+                <valueString value="Meier"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.givenName"/>
+              <text value="Vorname"/>
+              <answer>
+                <valueString value="Sabine"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.title"/>
+              <text value="Titel"/>
+              <answer>
+                <valueString value="Dr. med."/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.phone"/>
+              <text value="Telefon"/>
+              <answer>
+                <valueString value="044 333 22 11"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.email"/>
+              <text value="E-Mail"/>
+              <answer>
+                <valueString value="sabine.meier@praxisseeblick.ch"/>
+              </answer>
+            </item>
+          </item>
+        </item>
+        <!--  Response Receiver: Person/organization who receives the response  -->
+        <item>
+          <linkId value="receiverResponse"/>
+          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+          <text value="R&#xFC;ckmeldungsempf&#xE4;nger"/>
+          <item>
+            <linkId value="receiverResponse.practitioner"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
+            <text value="R&#xFC;ckmeldungsempfangende Person"/>
+            <item>
+              <linkId value="receiverResponse.practitioner.familyName"/>
+              <text value="Name"/>
+              <answer>
+                <valueString value="Spezialist"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.givenName"/>
+              <text value="Vorname"/>
+              <answer>
+                <valueString value="Gian Luca"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.title"/>
+              <text value="Titel"/>
+              <answer>
+                <valueString value="Prof. Dr. med."/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.phone"/>
+              <text value="Telefon"/>
+              <answer>
+                <valueString value="044 987 65 21"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.practitioner.email"/>
+              <text value="E-Mail"/>
+              <answer>
+                <valueString value="gian-luca.spezialist@gruppenpraxis.ch"/>
+              </answer>
+            </item>
+          </item>
+        </item>
+      </QuestionnaireResponse>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:7b943764-0b76-427d-a0a2-fbdbc21130c0"/>
+    <resource>
+      <ServiceRequest>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="PLAC"/>
+            </coding>
+          </type>
+          <value value="123"/>
+        </identifier>
+        <status value="active"/>
+        <intent value="original-order"/>
+        <subject>
+          <reference value="urn:uuid:01d71b46-08f3-442d-9a49-6f8004117909"/>
+          <type value="Patient"/>
+        </subject>
+        <authoredOn value="2019-03-31T11:46:09+02:00"/>
+        <performer>
+          <reference value="urn:uuid:602f3360-c4ea-4882-a2f1-f9fcd60e892b"/>
+          <type value="PractitionerRole"/>
+        </performer>
+      </ServiceRequest>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:602f3360-c4ea-4882-a2f1-f9fcd60e892b"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:488292a3-084f-4802-a091-5bccb3913785"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:8c907804-f51d-43e6-b8ea-dc756bd8c691"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:488292a3-084f-4802-a091-5bccb3913785"/>
+    <resource>
+      <Practitioner>
+        <identifier>
+          <system value="urn:oid:2.51.1.3"/>
+          <value value="7601000066878"/>
+        </identifier>
+        <name>
+          <family value="R&#xF6;ntgen"/>
+          <given value="Hans"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 412 00 99"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="hans.roentgen@kantonsspital.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:8c907804-f51d-43e6-b8ea-dc756bd8c691"/>
+    <resource>
+      <Organization>
+        <name value="Kantonsspital"/>
+        <address>
+          <line value="Kantonsstrasse 14"/>
+          <line value="Postfach 14"/>
+          <city value="Z&#xFC;rich"/>
+          <postalCode value="8000"/>
+          <country value="Schweiz"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:2712a59b-18e3-4dbc-93fe-f4b3b98fd51b"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:88941a06-5764-459f-98bd-84c3887aa62f"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:499f5b18-eb45-49a3-b3f8-5040c1e6c804"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:88941a06-5764-459f-98bd-84c3887aa62f"/>
+    <resource>
+      <Practitioner>
+        <identifier>
+          <system value="urn:oid:2.51.1.3"/>
+          <value value="7601000034321"/>
+        </identifier>
+        <name>
+          <family value="Meier"/>
+          <given value="Sabine"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 333 22 11"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="sabine.meier@praxisseeblick.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:499f5b18-eb45-49a3-b3f8-5040c1e6c804"/>
+    <resource>
+      <Organization>
+        <name value="Praxis Seeblick"/>
+        <address>
+          <line value="Seestrasse 133"/>
+          <line value="Haus C"/>
+          <city value="Z&#xFC;rich"/>
+          <postalCode value="8000"/>
+          <country value="Schweiz"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:fc574fb0-db61-4673-8818-02aff7317792"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:8e99ea3e-7daf-44c9-a45a-3775bae0af2b"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:499f5b18-eb45-49a3-b3f8-5040c1e6c804"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:8e99ea3e-7daf-44c9-a45a-3775bae0af2b"/>
+    <resource>
+      <Practitioner>
+        <name>
+          <family value="Boss"/>
+          <given value="Stabilo"/>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 333 22 12"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="stabilo.boss@praxisseeblick.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:602399e6-8638-4f41-9667-1f33208be770"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:a0ac702d-c172-4f32-95a2-98fa898efaa7"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:499f5b18-eb45-49a3-b3f8-5040c1e6c804"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:a0ac702d-c172-4f32-95a2-98fa898efaa7"/>
+    <resource>
+      <Practitioner>
+        <name>
+          <family value="UNCD familyName"/>
+          <given value="UNCD givenName"/>
+          <prefix value="UNCD title">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="UNCD phone"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="UNCD email"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:d4a7d81c-3c7a-44fd-bdf8-4559c306154e"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:fb01818a-1dcb-4f60-91df-5ccf5e91cec5"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:499f5b18-eb45-49a3-b3f8-5040c1e6c804"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:fb01818a-1dcb-4f60-91df-5ccf5e91cec5"/>
+    <resource>
+      <Practitioner>
+        <name>
+          <family value="M&#xFC;ller"/>
+          <given value="Peter"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 333 22 13"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="peter.mueller@praxisseeblick.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:0884e4a2-03de-4c6a-ba0f-64a4e56a1ddd"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:79212bc1-0226-479c-8038-c842d74e4439"/>
+          <type value="Practitioner"/>
+        </practitioner>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:79212bc1-0226-479c-8038-c842d74e4439"/>
+    <resource>
+      <Practitioner>
+        <name>
+          <family value="Meier"/>
+          <given value="Sabine"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 333 22 11"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="sabine.meier@praxisseeblick.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:9cc2fc81-8255-48b4-be4d-7f0f80cecbb7"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:ecf7d9f4-1fce-4661-9042-4c10aa52b309"/>
+          <type value="Practitioner"/>
+        </practitioner>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:ecf7d9f4-1fce-4661-9042-4c10aa52b309"/>
+    <resource>
+      <Practitioner>
+        <name>
+          <family value="Spezialist"/>
+          <given value="Gian Luca"/>
+          <prefix value="Prof. Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 987 65 21"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="gian-luca.spezialist@gruppenpraxis.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+</Bundle>

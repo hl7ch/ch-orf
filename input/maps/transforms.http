@@ -15,7 +15,7 @@ Content-Type: text/fhir-mapping
 < ./input/maps/OrfQrToBundle.map
 
 
-### 2. Transform referra-min to ORF Bunlde
+### 2. Transform referra-min to ORF Bundle
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
@@ -39,6 +39,9 @@ Content-Type: application/fhir+xml;fhirVersion=4.0
 < ./input/examples/Bundle/referral-min.xml
 
 
+
+# see rendering
+http://smartqedit4.azurewebsites.net/Questionnaire/Index
 
 
 

@@ -226,7 +226,7 @@
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
         <text value="Auftraggeber" />
         <!-- Author: The person/organization responsible for Form Content -->
-        <item>
+        <item> 
             <linkId value="orderer.author" />
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
             <text value="Verantwortlicher" />
@@ -371,22 +371,37 @@
                 <item>
                     <linkId value="orderer.notificationContactRequest.practitioner.familyName" />
                     <text value="Name" />
+                    <answer>
+                        <valueString value="UNCD familyName"/>
+                    </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactRequest.practitioner.givenName" />
                     <text value="Vorname" />
+                    <answer>
+                        <valueString value="UNCD givenName"/>
+                    </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactRequest.practitioner.title" />
                     <text value="Titel" />
+                    <answer>
+                        <valueString value="UNCD title"/>
+                    </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactRequest.practitioner.phone" />
                     <text value="Telefon" />
+                    <answer>
+                        <valueString value="UNCD phone"/>
+                    </answer>
                 </item>
                 <item>
                     <linkId value="orderer.notificationContactRequest.practitioner.email" />
                     <text value="E-Mail" />
+                    <answer>
+                        <valueString value="UNCD email"/>
+                    </answer>
                 </item>
             </item>
         </item>
