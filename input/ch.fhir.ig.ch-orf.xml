@@ -109,12 +109,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-requestreceiver"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="StructureDefinition/ch-orf-responsereceiver"/>
       </reference>
       <exampleBoolean value="false"/>
