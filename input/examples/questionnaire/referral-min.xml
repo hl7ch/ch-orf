@@ -94,6 +94,40 @@
             <text value="ID des Vorgängerdokuments" />
             <type value="string" />
         </item>
+        <item>
+            <linkId value="order.priority" />
+            <text value="Auftragspriorität" />
+            <type value="choice"/>
+            <answerOption>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/request-priority"/>
+                    <code value="routine"/>
+                    <display value="Die Anfrage hat normale Priorität."/>
+                </valueCoding>
+                <initialSelected value="true"/>
+            </answerOption>
+            <answerOption>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/request-priority"/>
+                    <code value="urgent"/>
+                    <display value="Die Anfrage sollte dringend bearbeitet werden - höhere Priorität als normal."/>
+                </valueCoding>
+            </answerOption>
+            <answerOption>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/request-priority"/>
+                    <code value="asap"/>
+                    <display value="Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend."/>
+                </valueCoding>
+            </answerOption>
+            <answerOption>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/request-priority"/>
+                    <code value="stat"/>
+                    <display value="Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall."/>
+                </valueCoding>
+            </answerOption>
+        </item>
     </item>
 
     <!-- Request Receiver: Person/organization who receives the request -->

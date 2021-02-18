@@ -35,6 +35,17 @@
             <linkId value="order.precedentDocumentId" />
             <text value="ID des Vorgängerdokuments" />
         </item>
+        <item>
+            <linkId value="order.priority" />
+            <text value="Auftragspriorität" />
+            <answer>
+                <valueCoding>
+                    <system value="http://hl7.org/fhir/request-priority"/>
+                    <code value="routine"/>
+                    <display value="Die Anfrage hat normale Priorität."/>
+                </valueCoding>
+            </answer>
+        </item>
     </item>
 
     <!-- Request Receiver: Person/organization who receives the request -->

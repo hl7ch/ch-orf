@@ -27,6 +27,7 @@
     </identifier>-->
     <status value="active"/>
     <intent value="original-order"/>
+    <priority value="routine"/>
     <subject>
         <reference value="Patient/ErikaMusterfrau"/>
     </subject>

@@ -872,10 +872,9 @@
                 </td>
                 <td>
                 </td>
-                <td>DiagnosticOrderPriority
+                <td>
                 </td>
-                <td>The priority shall be indicated in the one of the resources in the table “Optional given elements of
-                    a questionnaire”.
+                <td>Order priority.
                 </td>
             </tr>
         </tbody>

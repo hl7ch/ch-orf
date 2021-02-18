@@ -90,6 +90,10 @@
             <path value="ServiceRequest.identifier.value" />
             <min value="1" />
         </element>
+        <element id="ServiceRequest.priority">
+            <path value="ServiceRequest.priority"/>
+            <short value="Order priority"/>
+        </element>
         <element id="ServiceRequest.subject">
             <path value="ServiceRequest.subject"/>
             <short value="Patient"/>
