@@ -3,6 +3,28 @@
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
     </meta>
+    <identifier>
+        <type>
+            <coding>
+                <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                <code value="PLAC"/>
+                <display value="Placer Identifier"/>
+            </coding>
+        </type>
+        <system value="urn:oid:1.3.4.5.6.7"/>
+        <value value="123"/>
+    </identifier>
+    <!--<identifier>
+        <type>
+            <coding>
+                <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                <code value="FILL"/>
+                <display value="Filler Identifier"/>
+            </coding>
+        </type>
+        <system value="urn:oid:7.6.5.4.3.2"/>
+        <value value="765432"/>
+    </identifier>-->
     <status value="active"/>
     <intent value="original-order"/>
     <subject>

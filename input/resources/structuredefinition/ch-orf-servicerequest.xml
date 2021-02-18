@@ -40,6 +40,56 @@
         <element id="ServiceRequest">
             <path value="ServiceRequest"/>
         </element>
+        <element id="ServiceRequest.identifier">
+            <path value="ServiceRequest.identifier"/>
+            <slicing>
+                <discriminator>
+                    <type value="pattern" />
+                    <path value="$this" />
+                </discriminator>
+                <rules value="open" />
+            </slicing>
+        </element>
+        <element id="ServiceRequest.identifier:placerOrderId">
+            <path value="ServiceRequest.identifier" />
+            <sliceName value="placerOrderId" />
+            <short value="Placer Order Id"/>
+            <patternIdentifier>
+                <type>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+                        <code value="PLAC" />
+                    </coding>
+                </type>
+            </patternIdentifier>
+        </element>
+        <element id="ServiceRequest.identifier:placerOrderId.system">
+            <path value="ServiceRequest.identifier.system" />
+        </element>
+        <element id="ServiceRequest.identifier:placerOrderId.value">
+            <path value="ServiceRequest.identifier.value" />
+            <min value="1" />
+        </element>
+        <element id="ServiceRequest.identifier:fillerOrderId">
+            <path value="ServiceRequest.identifier" />
+            <sliceName value="fillerOrderId" />
+            <short value="Filler Order Id"/>
+            <patternIdentifier>
+                <type>
+                    <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203" />
+                        <code value="FILL" />
+                    </coding>
+                </type>
+            </patternIdentifier>
+        </element>
+        <element id="ServiceRequest.identifier:fillerOrderId.system">
+            <path value="ServiceRequest.identifier.system" />
+        </element>
+        <element id="ServiceRequest.identifier:fillerOrderId.value">
+            <path value="ServiceRequest.identifier.value" />
+            <min value="1" />
+        </element>
         <element id="ServiceRequest.subject">
             <path value="ServiceRequest.subject"/>
             <short value="Patient"/>

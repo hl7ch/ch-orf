@@ -91,18 +91,6 @@
     <!-- Extension Definitions -->
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-placerorderid"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-fillerorderid"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="StructureDefinition/ch-orf-precedentdocument"/>
       </reference>
       <exampleBoolean value="false"/>

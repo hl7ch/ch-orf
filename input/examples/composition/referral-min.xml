@@ -10,12 +10,6 @@
             Referral min
         </div>
     </text>
-    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-placerorderid">
-        <valueIdentifier>
-            <system value="http://www.example.ch/orderiddomain"/>
-            <value value="123" />
-        </valueIdentifier>
-    </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-dataentryperson">
         <valueReference>
             <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
