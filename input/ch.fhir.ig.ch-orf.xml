@@ -97,13 +97,13 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforrequest"/>
+        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforresponse"/>
+        <reference value="StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
@@ -213,17 +213,25 @@
     </resource>
     <resource>
       <reference>
-        <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
+        <reference value="PractitionerRole/NotificationContactPraxisSeeblick"/>
       </reference>
-      <name value="Stabilo Boss at Praxis Seeblick (Referral minimal)"/>
+      <name value="Notification Contact at Praxis Seeblick (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
       <reference>
-        <reference value="PractitionerRole/PeterMuellerPraxisSeeblick"/>
+        <reference value="PractitionerRole/ResponseReceiverPraxisSeeblick"/>
       </reference>
-      <name value="Peter Müller at Praxis Seeblick (Referral minimal)"/>
+      <name value="Response Receiver at Praxis Seeblick (Referral minimal)"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
+      </reference>
+      <name value="Stabilo Boss at Praxis Seeblick (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -237,9 +245,17 @@
     </resource>
     <resource>
       <reference>
-        <reference value="PractitionerRole/GianLucaSpezialistGruppenpraxis"/>
+        <reference value="PractitionerRole/NotificationContactKantonsspital"/>
       </reference>
-      <name value="Gian Luca Spezialist at Gruppenpraxis (Referral minimal)"/>
+      <name value="Hans Röntgen at Kantonsspital (Referral minimal)"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/ResponseReceiverGruppenpraxis"/>
+      </reference>
+      <name value="Response Receiver at Gruppenpraxis (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -271,17 +287,25 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Practitioner/StabiloBoss"/>
+        <reference value="Practitioner/NotificationContactSabineMeier"/>
       </reference>
-      <name value="Stabilo Boss (Referral minimal)"/>
+      <name value="Notification Contact Sabine Meier (Referral minimal)"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
       <reference>
-        <reference value="Practitioner/PeterMueller"/>
+        <reference value="Practitioner/ResponseReceiverSabineMeier"/>
       </reference>
-      <name value="Peter Müller (Referral minimal)"/>
+      <name value="Response Receiver Sabine Meier (Referral minimal)"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/StabiloBoss"/>
+      </reference>
+      <name value="Stabilo Boss (Referral minimal)"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -295,9 +319,17 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Practitioner/GianLucaSpezialist"/>
+        <reference value="Practitioner/NotificationContactHansRoentgen"/>
       </reference>
-      <name value="Gian Luca Spezialist (Referral minimal)"/>
+      <name value="Notification Contact Hans Röntgen (Referral minimal)"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/ResponseReceiverGianLucaSpezialist"/>
+      </reference>
+      <name value="Response Receiver Gian Luca Spezialist (Referral minimal)"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>

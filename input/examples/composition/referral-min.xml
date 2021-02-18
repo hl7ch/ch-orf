@@ -22,19 +22,24 @@
             </valueReference>
         </extension>
     </extension>
-    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse">
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
         <valueReference>
-            <reference value="PractitionerRole/PeterMuellerPraxisSeeblick"/>
+            <reference value="PractitionerRole/NotificationContactKantonsspital"/>
+        </valueReference>
+    </extension>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
+        <valueReference>
+            <reference value="PractitionerRole/NotificationContactPraxisSeeblick"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="PractitionerRole/PeterMuellerPraxisSeeblick"/>
+            <reference value="PractitionerRole/ResponseReceiverPraxisSeeblick"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="PractitionerRole/GianLucaSpezialistGruppenpraxis"/>
+            <reference value="PractitionerRole/ResponseReceiverGruppenpraxis"/>
         </valueReference>
     </extension>
     <identifier>

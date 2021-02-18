@@ -1,36 +1,163 @@
-@host = http://test.fhir.ch/r4
+###@host = http://test.ahdis.ch/r4
+
+@host = http://hapi.fhir.org/baseR4
+
+
+### ErikaMusterfrau
+PUT {{host}}/Patient/ErikaMusterfrau HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/patient/ErikaMusterfrau.xml
 
 ### FranzMuster
 PUT {{host}}/Patient/FranzMuster HTTP/1.1
 Content-Type: application/fhir+xml
 
-< ./examples/patient/FranzMuster.xml
+< input/examples/patient/FranzMuster.xml
+
+
+
+### Kantonsspital
+PUT {{host}}/Organization/Kantonsspital HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/organization/Kantonsspital.xml
+
+### PraxisSeeblick
+PUT {{host}}/Organization/PraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/organization/PraxisSeeblick.xml
+
+
+
+### HansRoentgen
+PUT {{host}}/Practitioner/HansRoentgen HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/HansRoentgen.xml
 
 ### MarcAgpar
 PUT {{host}}/Practitioner/MarcAgpar HTTP/1.1
 Content-Type: application/fhir+xml
 
-< ./examples/practitioner/MarcAgpar.xml
+< input/examples/practitioner/MarcAgpar.xml
 
-### Questionnaire Referral-min
+### NotificationContactHansRoentgen
+PUT {{host}}/Practitioner/NotificationContactHansRoentgen HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/NotificationContactHansRoentgen.xml
+
+### NotificationContactSabineMeier
+PUT {{host}}/Practitioner/NotificationContactSabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/NotificationContactSabineMeier.xml
+
+### ResponseReceiverGianLucaSpezialist
+PUT {{host}}/Practitioner/ResponseReceiverGianLucaSpezialist HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/ResponseReceiverGianLucaSpezialist.xml
+
+### ResponseReceiverSabineMeier
+PUT {{host}}/Practitioner/ResponseReceiverSabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/ResponseReceiverSabineMeier.xml
+
+### SabineMeier
+PUT {{host}}/Practitioner/SabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/SabineMeier.xml
+
+### StabiloBoss
+PUT {{host}}/Practitioner/StabiloBoss HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/StabiloBoss.xml
+
+
+
+### HansRoentgenKantonsspital
+PUT {{host}}/PractitionerRole/HansRoentgenKantonsspital HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/HansRoentgenKantonsspital.xml
+
+### NotificationContactKantonsspital
+PUT {{host}}/PractitionerRole/NotificationContactKantonsspital HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/NotificationContactKantonsspital.xml
+
+### NotificationContactPraxisSeeblick
+PUT {{host}}/PractitionerRole/NotificationContactPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/NotificationContactPraxisSeeblick.xml
+
+### ResponseReceiverGruppenpraxis
+PUT {{host}}/PractitionerRole/ResponseReceiverGruppenpraxis HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/ResponseReceiverGruppenpraxis.xml
+
+### ResponseReceiverPraxisSeeblick
+PUT {{host}}/PractitionerRole/ResponseReceiverPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/ResponseReceiverPraxisSeeblick.xml
+
+### SabineMeierPraxisSeeblick
+PUT {{host}}/PractitionerRole/SabineMeierPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/SabineMeierPraxisSeeblick.xml
+
+### StabiloBossPraxisSeeblick
+PUT {{host}}/PractitionerRole/StabiloBossPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/StabiloBossPraxisSeeblick.xml
+
+
+
+### referral-min
+PUT {{host}}/ServiceRequest/referral-min HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/servicerequest/referral-min.xml
+
+
+
+### referral-min
 PUT {{host}}/Questionnaire/referral-min HTTP/1.1
 Content-Type: application/fhir+xml
 
-< ./examples/questionnaire/referral-min.xml
+< input/examples/questionnaire/referral-min.xml
 
-### QuestionnaireResponse Referral-min
+
+
+### referral-min
 PUT {{host}}/QuestionnaireResponse/referral-min HTTP/1.1
-Content-Type: application/fhir+json
+Content-Type: application/fhir+xml
 
-< ./examples/questionnaireresponse/referral-min.json
+< input/examples/questionnaireresponse/referral-min.xml
 
-### Composition referral-min
+
+
+### referral-min
 PUT {{host}}/Composition/referral-min HTTP/1.1
 Content-Type: application/fhir+xml
 
-< ./examples/composition/referral-min.xml
+< input/examples/composition/referral-min.xml
 
-### Composition referral-min
 
+
+
+### $document referral-min
 GET {{host}}/Composition/referral-min/$document HTTP/1.1
 Content-Type: application/fhir+xml

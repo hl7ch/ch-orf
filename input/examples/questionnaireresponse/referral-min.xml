@@ -35,6 +35,98 @@
             <linkId value="order.precedentDocumentId" />
             <text value="ID des Vorgängerdokuments" />
         </item>
+        <!-- Urgent Notification Contact for this document -->
+        <item>
+            <linkId value="order.notificationContactDocument" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+            <text value="Dringender Benachrichtigungskontakt für dieses Dokument" />
+            <item>
+                <linkId value="order.notificationContactDocument.practitioner" />
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
+                <text value="Zu benachrichtigende Person" />
+                <item>
+                    <linkId value="order.notificationContactDocument.practitioner.familyName" />
+                    <text value="Name" />
+                    <answer>
+                        <valueString value="Röntgen"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocument.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <answer>
+                        <valueString value="Hans"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocument.practitioner.title" />
+                    <text value="Titel" />
+                    <answer>
+                        <valueString value="Dr. med."/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocument.practitioner.phone" />
+                    <text value="Telefon" />
+                    <answer>
+                        <valueString value="044 412 00 99"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocument.practitioner.email" />
+                    <text value="E-Mail" />
+                    <answer>
+                        <valueString value="hans.roentgen@kantonsspital.ch"/>
+                    </answer>
+                </item>
+            </item>
+        </item>
+        <!-- Urgent Notification Contact for the Response to this document -->
+        <item>
+            <linkId value="order.notificationContactDocumentResponse" />
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+            <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument" />
+            <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner" />
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
+                <text value="Zu benachrichtigende Person" />
+                <item>
+                    <linkId value="order.notificationContactDocumentResponse.practitioner.familyName" />
+                    <text value="Name" />
+                    <answer>
+                        <valueString value="Meier"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocumentResponse.practitioner.givenName" />
+                    <text value="Vorname" />
+                    <answer>
+                        <valueString value="Sabine"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocumentResponse.practitioner.title" />
+                    <text value="Titel" />
+                    <answer>
+                        <valueString value="Dr. med."/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocumentResponse.practitioner.phone" />
+                    <text value="Telefon" />
+                    <answer>
+                        <valueString value="044 333 22 11"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="order.notificationContactDocumentResponse.practitioner.email" />
+                    <text value="E-Mail" />
+                    <answer>
+                        <valueString value="sabine.meier@praxisseeblick.ch"/>
+                    </answer>
+                </item>
+            </item>
+        </item>
         <item>
             <linkId value="order.priority" />
             <text value="Auftragspriorität" />
@@ -241,7 +333,7 @@
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
         <text value="Auftraggeber" />
         <!-- Author: The person/organization responsible for Form Content -->
-        <item> 
+        <item>
             <linkId value="orderer.author" />
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
             <text value="Verantwortlicher" />
@@ -370,98 +462,6 @@
                     <text value="E-Mail" />
                     <answer>
                         <valueString value="stabilo.boss@praxisseeblick.ch"/>
-                    </answer>
-                </item>
-            </item>
-        </item>
-        <!-- Urgent Notification Contact for this document (request) -->
-        <item>
-            <linkId value="orderer.notificationContactRequest" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
-            <text value="Benachrichtigungskontakt für die Anfrage" />
-            <item>
-                <linkId value="orderer.notificationContactRequest.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
-                <text value="Zu benachrichtigende Person" />
-                <item>
-                    <linkId value="orderer.notificationContactRequest.practitioner.familyName" />
-                    <text value="Name" />
-                    <answer>
-                        <valueString value="UNCD familyName"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactRequest.practitioner.givenName" />
-                    <text value="Vorname" />
-                    <answer>
-                        <valueString value="UNCD givenName"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactRequest.practitioner.title" />
-                    <text value="Titel" />
-                    <answer>
-                        <valueString value="UNCD title"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactRequest.practitioner.phone" />
-                    <text value="Telefon" />
-                    <answer>
-                        <valueString value="UNCD phone"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactRequest.practitioner.email" />
-                    <text value="E-Mail" />
-                    <answer>
-                        <valueString value="UNCD email"/>
-                    </answer>
-                </item>
-            </item>
-        </item>
-        <!-- Urgent Notification Contact for the Response to this document -->
-        <item>
-            <linkId value="orderer.notificationContactResponse" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
-            <text value="Benachrichtigungskontakt für die Antwort" />
-            <item>
-                <linkId value="orderer.notificationContactResponse.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
-                <text value="Zu benachrichtigende Person" />
-                <item>
-                    <linkId value="orderer.notificationContactResponse.practitioner.familyName" />
-                    <text value="Name" />
-                    <answer>
-                        <valueString value="Müller"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactResponse.practitioner.givenName" />
-                    <text value="Vorname" />
-                    <answer>
-                        <valueString value="Peter"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactResponse.practitioner.title" />
-                    <text value="Titel" />
-                    <answer>
-                        <valueString value="Dr. med."/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactResponse.practitioner.phone" />
-                    <text value="Telefon" />
-                    <answer>
-                        <valueString value="044 333 22 13"/>
-                    </answer>
-                </item>
-                <item>
-                    <linkId value="orderer.notificationContactResponse.practitioner.email" />
-                    <text value="E-Mail" />
-                    <answer>
-                        <valueString value="peter.mueller@praxisseeblick.ch"/>
                     </answer>
                 </item>
             </item>

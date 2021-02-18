@@ -76,26 +76,26 @@
                 <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer"/>
             </type>
         </element>
-        <element id="Composition.extension:urgentNoficationContactForRequest">
+        <element id="Composition.extension:urgentNoficationContactForThisDocument">
             <path value="Composition.extension" />
-            <sliceName value="urgentNoficationContactForRequest" />
+            <sliceName value="urgentNoficationContactForThisDocument" />
             <short value="An information recipient to notify for urgent matters"/>
             <min value="0"/>
             <max value="1"/>
             <type>
                 <code value="Extension" />
-                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforrequest" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument" />
             </type>
         </element>
-        <element id="Composition.extension:urgentNoficationContactForResponse">
+        <element id="Composition.extension:urgentNoficationContactForTheResponseToThisDocument">
             <path value="Composition.extension" />
-            <sliceName value="urgentNoficationContactForResponse" />
+            <sliceName value="urgentNoficationContactForTheResponseToThisDocument" />
             <short value="An information recipient to notify for urgent matters about the response"/>
             <min value="0"/>
             <max value="1"/>
             <type>
                 <code value="Extension" />
-                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse" />
+                <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument" />
             </type>
         </element>
         <element id="Composition.extension:responseReceiver">

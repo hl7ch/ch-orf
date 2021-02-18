@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Practitioner xmlns="http://hl7.org/fhir">
-    <id value="PeterMueller"/>
+    <id value="ResponseReceiverGianLucaSpezialist"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
     </meta>
     <name>
         <use value="official"/>
-        <family value="Müller"/>
-        <given value="Peter"/>
-        <prefix value="Dr. med.">
+        <family value="Spezialist"/>
+        <given value="Gian Luca"/>
+        <prefix value="Prof. Dr. med.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                 <valueCode value="AC"/>
             </extension>
@@ -16,12 +16,12 @@
     </name>
     <telecom>
         <system value="phone"/>
-        <value value="044 333 22 13"/>
+        <value value="044 987 65 21"/>
         <use value="work"/>
     </telecom>
     <telecom>
         <system value="email"/>
-        <value value="peter.mueller@praxisseeblick.ch"/>
+        <value value="gian-luca.spezialist@gruppenpraxis.ch"/>
         <use value="work"/>
     </telecom>
 </Practitioner> 
