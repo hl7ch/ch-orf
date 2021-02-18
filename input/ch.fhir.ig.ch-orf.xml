@@ -97,12 +97,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-dataentryperson"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforrequest"/>
       </reference>
       <exampleBoolean value="false"/>
