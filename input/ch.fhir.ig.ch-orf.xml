@@ -141,7 +141,7 @@
       <description value="Mapping ORF Questionnaire Response to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
-    
+
     <!-- Example Instances-->
     <resource>
       <reference>
@@ -341,7 +341,7 @@
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
-    
+
     <resource>
       <reference>
         <reference value="Patient/ErikaMusterfrau"/>
@@ -358,7 +358,7 @@
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
-    
+
     <!-- pages -->
     <page>
       <nameUrl value="toc.html"/>
@@ -368,6 +368,11 @@
         <nameUrl value="index.html"/>
         <title value="Home"/>
         <generation value="html"/>
+      </page>
+      <page>
+        <nameUrl value="usecase-german.html"/>
+        <title value="Anwendungsfälle"/>
+        <generation value="markdown"/>
       </page>
       <page>
         <nameUrl value="profiles.html"/>
