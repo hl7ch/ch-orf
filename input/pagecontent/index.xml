@@ -765,8 +765,8 @@
                 </td>
                 <td>PractitionerRole
                 </td>
-                <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist
-                    has to be called by phone right away at the time the images arrive).
+                <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist 
+                    has to be called by phone right away at the time the doucment is received.)
                 </td>
             </tr>
             <tr>

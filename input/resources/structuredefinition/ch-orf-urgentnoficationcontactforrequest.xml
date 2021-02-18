@@ -22,7 +22,7 @@
             <value value="oliver.egger@ahdis.ch"/>
         </telecom>
     </contact>
-    <description value="An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the images arrive)."/>
+    <description value="An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the doucment is received)."/>
     <jurisdiction>
         <coding>
             <system value="urn:iso:std:iso:3166"/>
