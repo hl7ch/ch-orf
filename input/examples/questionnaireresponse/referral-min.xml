@@ -35,13 +35,6 @@
             <linkId value="order.precedentDocumentId" />
             <text value="ID des Vorgängerdokuments" />
         </item>
-        <item>
-            <linkId value="order.dateTime" />
-            <text value="Auftragszeitpunkt" />
-            <answer>
-                <valueDateTime value="2019-03-31T11:46:09+02:00"/>
-            </answer>
-        </item>
     </item>
 
     <!-- Request Receiver: Person/organization who receives the request -->

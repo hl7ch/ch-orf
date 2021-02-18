@@ -87,27 +87,12 @@
             <type value="string" />
         </item>
         <item>
-            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                <valueExpression>
-                    <language value="text/fhirpath"/>
-                    <expression value="" />
-                </valueExpression>
-            </extension>-->
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-hidden">
+                <valueBoolean value="true"/>
+            </extension>
             <linkId value="order.precedentDocumentId" />
             <text value="ID des Vorgängerdokuments" />
             <type value="string" />
-        </item>
-        <item>
-            <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                <valueExpression>
-                    <language value="text/fhirpath"/>
-                    <expression value="" />
-                </valueExpression>
-            </extension>-->
-            <linkId value="order.dateTime" />
-            <text value="Auftragszeitpunkt" />
-            <type value="dateTime" />
-            <required value="true" />
         </item>
     </item>
 
