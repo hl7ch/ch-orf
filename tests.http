@@ -1,6 +1,6 @@
-###@host = http://test.ahdis.ch/r4
+@host = http://test.ahdis.ch/hapi-fhir-jpavalidator/fhir
 
-@host = http://hapi.fhir.org/baseR4
+###@host = http://hapi.fhir.org/baseR4
 
 
 ### ErikaMusterfrau
