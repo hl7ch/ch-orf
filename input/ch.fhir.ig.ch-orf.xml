@@ -46,6 +46,11 @@
     <packageId value="ch.fhir.ig.ch-core"/>
     <version value="1.2.0"/>
   </dependsOn>
+  <dependsOn id="cheprterm">
+    <uri value="http://fhir.ch/ig/ch-epr-term/ImplementationGuide/ch.fhir.ig.ch-epr-term"/>
+    <packageId value="ch.fhir.ig.ch-epr-term"/>
+    <version value="2.0.4"/>
+  </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/sdc"/>
     <packageId value="hl7.fhir.uv.sdc"/>
