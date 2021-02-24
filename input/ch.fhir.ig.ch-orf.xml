@@ -252,7 +252,7 @@
       <reference>
         <reference value="PractitionerRole/NotificationContactKantonsspital"/>
       </reference>
-      <name value="Hans Röntgen at Kantonsspital (Referral minimal)"/>
+      <name value="Notification Contact at Kantonsspital (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
