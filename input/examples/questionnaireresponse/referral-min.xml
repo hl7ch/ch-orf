@@ -32,8 +32,8 @@
             <text value="Identifier Domain der Auftragsnummer des Auftragsempfängers" />
         </item>
         <item>
-            <linkId value="order.precedentDocumentId" />
-            <text value="ID des Vorgängerdokuments" />
+            <linkId value="order.precedentDocumentIdentifier" />
+            <text value="Identifier des Vorgängerdokuments" />
         </item>
         <!-- Urgent Notification Contact for this document -->
         <item>

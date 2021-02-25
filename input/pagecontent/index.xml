@@ -835,7 +835,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Precedent Document Id
+                <td>Precedent Document Identifier
                 </td>
                 <td>na
                 </td>
@@ -845,8 +845,8 @@
                 </td>
                 <td>
                 </td>
-                <td>This element provides a link to the preceding document in a thread (e.g. from a response to the
-                    request).
+                <td>This element provides a link to the preceding document (Bundle.identifier) in a thread (e.g. from a response to the
+                    request). 
                 </td>
             </tr>
             <tr>
