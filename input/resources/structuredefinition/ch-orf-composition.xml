@@ -109,11 +109,6 @@
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver" />
             </type>
         </element>
-        <element id="Composition.identifier">
-            <path value="Composition.identifier"/>
-            <short value="Document Id"/>
-            <min value="1"/>
-        </element>
         <element id="Composition.status">
             <path value="Composition.status"/>
         </element>

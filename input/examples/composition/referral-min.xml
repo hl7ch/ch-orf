@@ -42,10 +42,6 @@
             <reference value="PractitionerRole/ResponseReceiverGruppenpraxis"/>
         </valueReference>
     </extension>
-    <identifier>
-        <system value="http://test.fhir.ch/id/uuid"/>
-        <value value="26d3dff7-ab05-4737-a49c-5eccd33595f7"/>
-    </identifier>
     <status value="final"/>
     <type>
         <coding>
