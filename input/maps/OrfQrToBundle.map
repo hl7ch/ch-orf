@@ -38,18 +38,16 @@ group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) 
 }
 
 group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
-    qr.item as grp where linkId='order' then OrderItems(grp, composition, serviceRequest) "grporderer";
+    qr.item as grp where linkId='order' then OrderItems(grp, bundle, composition, serviceRequest) "grporder";
     qr.item as grp where linkId='receiverRequest' then ReceiverRequestInit(grp, bundle, composition, serviceRequest) "receiverRequest";
     qr.item as grp where linkId='patient' then PatientItems(grp, patient) "grppatient";
     qr.item as grp where linkId='orderer' then OrdererAuthorInit(grp, bundle, composition, serviceRequest) "grporderer";
     qr.item as grp where linkId='receiverResponse' then ReceiverResponseInit(grp, bundle, composition, serviceRequest) "grporderer";
 }
 
-group OrderItems(source src : BackboneElement, target composition, target serviceRequest : ServiceRequest) {
-  src.item as item then OrderItems(item, composition, serviceRequest) "orderitems";
-
-  src.item as item where (linkId.value = 'order.precedentDocumentId' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
-                                                                        ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "order.precedentDocumentId"; 
+group OrderItems(source src : BackboneElement, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
+  src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
+                                                                        ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "order.precedentDocumentIdentifier"; 
 
   src.item as item where (linkId.value = 'order.placerOrderId' and answer.exists()) -> serviceRequest.identifier as value, 
                                                                                    value.type as type, type.coding as coding,
@@ -62,7 +60,96 @@ group OrderItems(source src : BackboneElement, target composition, target servic
                                                                                    coding.code = 'FILL',
                                                                                    value.value=(item.answer.valueString) "order.fillerOrderId"; 
   src.item as item where (linkId.value = 'order.dateTime' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
+
+  src.item as item where (linkId.value = 'order.notificationContactDocument') then {
+      item -> bundle.entry as e4, 
+               e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
+               practitionerRoleDataEnterer.id = uuid() as uuid4,
+               e4.fullUrl = append('urn:uuid:',uuid4),
+               composition.extension as extension,
+               bundle.entry as e5, 
+               e5.resource = create('Practitioner') as practitionerDataEnterer, 
+               practitionerDataEnterer.id = uuid() as uuid5,
+               e5.fullUrl = append('urn:uuid:',uuid5),
+               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5)
+//   ,
+// FIXME not known here               practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
+               then {
+                     item then UrgentNotificationContactForRequestItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
+                     item then ExtOrfUrgentNotificationContactForRequest(item, practitionerRoleDataEnterer, extension) "extension";
+                  } "order.notificationContactDocument.items";
+      } "order.notificationContactDocument";
+   
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse') then {
+      item -> bundle.entry as e4, 
+               e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
+               practitionerRoleDataEnterer.id = uuid() as uuid4,
+               e4.fullUrl = append('urn:uuid:',uuid4),
+               composition.extension as extension,
+               bundle.entry as e5, 
+               e5.resource = create('Practitioner') as practitionerDataEnterer, 
+               practitionerDataEnterer.id = uuid() as uuid5,
+               e5.fullUrl = append('urn:uuid:',uuid5),
+               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5)
+// ,
+// FIXME not known here practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
+               then {
+                     item then UrgentNotificationContactForResponseItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
+                     item then ExtOrfUrgentNotificationContactForResponse(item, practitionerRoleDataEnterer, extension) "extension";
+                  } "order.notificationContactDocumentResponse.items";
+      } "order.notificationContactDocumentResponse";
 }
+
+group UrgentNotificationContactForRequestPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
+                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
+                                                                        ext.value = create('code') as value, value.value='AC' "orderer.author.practitioner.title"; 
+     src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
+                                                                                   value.system = 'phone',
+                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.phone"; 
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
+                                                                                   value.system = 'email',
+                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.email"; 
+}
+
+group UrgentNotificationContactForRequestItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner') then UrgentNotificationContactForRequestPractitionerItems(item, practitioner);
+}
+
+group ExtOrfUrgentNotificationContactForRequest(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
+  src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument' "url";
+  src -> ext.value = create('Reference') as reference, 
+                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
+}
+
+group UrgentNotificationContactForResponsePractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
+                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
+                                                                        ext.value = create('code') as value, value.value='AC' "orderer.author.practitioner.title"; 
+     src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
+                                                                                   value.system = 'phone',
+                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.phone"; 
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
+                                                                                   value.system = 'email',
+                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.email"; 
+}
+
+group UrgentNotificationContactForResponseItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner') then UrgentNotificationContactForResponsePractitionerItems(item, practitioner);
+}
+
+group ExtOrfUrgentNotificationContactForResponse(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
+  src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument' "url";
+  src -> ext.value = create('Reference') as reference, 
+                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
+}
+
 
 group ReceiverRequestPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
    src.item as item where (linkId.value = 'receiverRequest.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
@@ -195,56 +282,6 @@ group ChExtEprDataEnterer(source src: BackboneElement, target practitionerRole: 
                 reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
-group UrgentNotificationContactForRequestPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
-   src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
-                                                                        prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "orderer.author.practitioner.title"; 
-     src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
-                                                                                   value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.phone"; 
-   src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
-                                                                                   value.system = 'email',
-                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.email"; 
-}
-
-group UrgentNotificationContactForRequestItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner, target organization: Organization) {
-   src.item as item where (linkId.value = 'orderer.notificationContactRequest.practitioner') then UrgentNotificationContactForRequestPractitionerItems(item, practitioner);
-}
-
-group ExtOrfUrgentNotificationContactForRequest(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforrequest' "url";
-  src -> ext.value = create('Reference') as reference, 
-                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
-}
-
-group UrgentNotificationContactForResponsePractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
-   src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
-                                                                        prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "orderer.author.practitioner.title"; 
-     src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
-                                                                                   value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.phone"; 
-   src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
-                                                                                   value.system = 'email',
-                                                                                   value.value=(item.answer.value) "orderer.author.practitioner.email"; 
-}
-
-group UrgentNotificationContactForResponseItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner, target organization: Organization) {
-   src.item as item where (linkId.value = 'orderer.notificationContactResponse.practitioner') then UrgentNotificationContactForResponsePractitionerItems(item, practitioner);
-}
-
-group ExtOrfUrgentNotificationContactForResponse(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
-  src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforresponse' "url";
-  src -> ext.value = create('Reference') as reference, 
-                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
-}
-
 group OrdererAuthorInit(source src : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
    src -> bundle.entry as e, 
           e.resource = create('PractitionerRole') as practitionerRole, 
@@ -279,40 +316,6 @@ group OrdererAuthorInit(source src : BackboneElement, target bundle: Bundle, tar
                             item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) "extension";
                          } "orderer.dataenterer.items";
              } "orderer.dataenterer";
-             src.item as item where (linkId.value = 'orderer.notificationContactRequest') then {
-               item -> bundle.entry as e4, 
-                      e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
-                      practitionerRoleDataEnterer.id = uuid() as uuid4,
-                      e4.fullUrl = append('urn:uuid:',uuid4),
-                      composition.extension as extension,
-                      bundle.entry as e5, 
-                      e5.resource = create('Practitioner') as practitionerDataEnterer, 
-                      practitionerDataEnterer.id = uuid() as uuid5,
-                      e5.fullUrl = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
-                      then {
-                            item then UrgentNotificationContactForRequestItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
-                            item then ExtOrfUrgentNotificationContactForRequest(item, practitionerRoleDataEnterer, extension) "extension";
-                         } "orderer.notificationContactRequest.items";
-             } "orderer.notificationContactRequest";
-             src.item as item where (linkId.value = 'orderer.notificationContactResponse') then {
-               item -> bundle.entry as e4, 
-                      e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
-                      practitionerRoleDataEnterer.id = uuid() as uuid4,
-                      e4.fullUrl = append('urn:uuid:',uuid4),
-                      composition.extension as extension,
-                      bundle.entry as e5, 
-                      e5.resource = create('Practitioner') as practitionerDataEnterer, 
-                      practitionerDataEnterer.id = uuid() as uuid5,
-                      e5.fullUrl = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
-                      then {
-                            item then UrgentNotificationContactForResponseItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
-                            item then ExtOrfUrgentNotificationContactForResponse(item, practitionerRoleDataEnterer, extension) "extension";
-                         } "orderer.notificationContactResponse.items";
-             } "orderer.notificationContactResponse";
           } "orderer";
 }
 

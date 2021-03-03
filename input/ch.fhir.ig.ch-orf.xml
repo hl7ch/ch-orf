@@ -158,6 +158,14 @@
     </resource>
     <resource>
       <reference>
+        <reference value="Bundle/referral-min-mapped"/>
+      </reference>
+      <name value="Bundle Referral minimal"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Composition/referral-min"/>
       </reference>
       <name value="Composition Referral minimal"/>
