@@ -26,14 +26,23 @@
         <item>
             <linkId value="order.fillerOrderId" />
             <text value="Auftragsnummer des Auftragsempfängers" />
+            <answer>
+                <valueString value="456"/>
+            </answer>
         </item>
         <item>
             <linkId value="order.fillerOrderIdDomain" />
             <text value="Identifier Domain der Auftragsnummer des Auftragsempfängers" />
+            <answer>
+                <valueString value="urn:oid:7.8.9.10.11"/>
+            </answer>
         </item>
         <item>
             <linkId value="order.precedentDocumentIdentifier" />
             <text value="Identifier des Vorgängerdokuments" />
+            <answer>
+                <valueString value="1622f2fb-6ba3-4532-9aed-35b158def187"/>
+            </answer>
         </item>
         <!-- Urgent Notification Contact for this document -->
         <item>

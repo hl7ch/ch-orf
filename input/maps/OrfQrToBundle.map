@@ -17,6 +17,7 @@ uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceReque
 uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as target
 
 group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) {
+      qr -> bundle.identifier as documentIdentifier, documentIdentifier.system = 'urn:ietf:rfc:3986',  uuid() as uuidDoc, documentIdentifier.value = append('urn:uuid:', uuidDoc) "documentIdentifier";
       qr as qrcp -> bundle.entry as e, 
              e.resource = create('Composition') as composition, 
              composition.id = uuid() as uuid,
@@ -49,16 +50,21 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
   src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
                                                                         ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "order.precedentDocumentIdentifier"; 
 
-  src.item as item where (linkId.value = 'order.placerOrderId' and answer.exists()) -> serviceRequest.identifier as value, 
+  src.item as item where (linkId.value = 'order.placerOrderId' and answer.exists()) -> serviceRequest.identifier as value share placer, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'PLAC',
                                                                                    value.value=(item.answer.valueString) "order.placerOrderId"; 
-  src.item as item where (linkId.value = 'order.fillerOrderId' and answer.exists()) -> serviceRequest.identifier as value, 
+  src.item as item where (linkId.value = 'order.placerOrderIdDomain' and answer.exists()) -> serviceRequest.identifier as value share placer, 
+                                                                                   value.system=(item.answer.valueString) "order.placerOrderIdDomain"; 
+  src.item as item where (linkId.value = 'order.fillerOrderId' and answer.exists()) -> serviceRequest.identifier as value share filler, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'FILL',
                                                                                    value.value=(item.answer.valueString) "order.fillerOrderId"; 
+  src.item as item where (linkId.value = 'order.fillerOrderIdDomain' and answer.exists()) -> serviceRequest.identifier as value share filler, 
+                                                                                   value.system=(item.answer.valueString) "order.fillerOrderIdDomain"; 
+
   src.item as item where (linkId.value = 'order.dateTime' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
 
   src.item as item where (linkId.value = 'order.notificationContactDocument') then {
