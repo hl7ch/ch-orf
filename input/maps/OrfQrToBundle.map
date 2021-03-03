@@ -68,6 +68,8 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
 
   src.item as item where (linkId.value = 'order.dateTime' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
 
+  src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (item.answer.value.code);
+
   src.item as item where (linkId.value = 'order.notificationContactDocument') then {
       item -> bundle.entry as e4, 
                e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
