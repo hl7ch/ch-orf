@@ -302,6 +302,7 @@ group OrdererAuthorInit(source src : BackboneElement, target bundle: Bundle, tar
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
           composition.author = create('Reference') as reference, reference.type='PractitionerRole', reference.reference = append('urn:uuid:',uuid),
+          serviceRequest.requester = create('Reference') as reference, reference.type='PractitionerRole', reference.reference = append('urn:uuid:',uuid),
           practitionerRole.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid2),
           practitionerRole.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) then {
              src.item as item where (linkId.value = 'orderer.author') then OrdererAuthorItems(item, practitionerRole, practitioner, organization) "orderer.author";
