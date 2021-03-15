@@ -150,7 +150,7 @@
             <path value="Bundle.entry.resource"/>
             <min value="1"/>
             <type>
-                <code value="Resource"/>
+                <code value="ServiceRequest"/>
                 <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
             </type>
         </element>
