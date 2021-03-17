@@ -98,12 +98,10 @@
         <!-- Urgent Notification Contact for this document -->
         <item>
             <linkId value="order.notificationContactDocument" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
             <text value="Dringender Benachrichtigungskontakt für dieses Dokument" />
             <type value="group" />
             <item>
                 <linkId value="order.notificationContactDocument.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
                 <text value="Zu benachrichtigende Person" />
                 <type value="group" />
                 <item>
@@ -136,12 +134,10 @@
         <!-- Urgent Notification Contact for the Response to this document -->
         <item>
             <linkId value="order.notificationContactDocumentResponse" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
             <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument" />
             <type value="group" />
             <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
                 <text value="Zu benachrichtigende Person" />
                 <type value="group" />
                 <item>
@@ -210,12 +206,10 @@
     <!-- Request Receiver: Person/organization who receives the request -->
     <item>
         <linkId value="receiverRequest" />
-        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
         <text value="Auftragsempfänger" />
         <type value="group" />
         <item>
             <linkId value="receiverRequest.practitioner" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
             <text value="Auftragsempfangende Person" />
             <type value="group" />
             <item>
@@ -287,7 +281,6 @@
         </item>
         <item>
             <linkId value="receiverRequest.organization" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization" />
             <text value="Auftragsempfangende Organisation" />
             <type value="group" />
             <item>
@@ -352,7 +345,6 @@
     <!-- Patient: The principle target of a particular Form Content is one patient -->
     <item>
         <linkId value="patient" />
-        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient" />
         <text value="Patient" />
         <type value="group" />
         <item>
@@ -506,20 +498,17 @@
 
     <item>
         <linkId value="orderer" />
-        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
         <text value="Auftraggeber" />
         <type value="group" />
         <required value="true" />
         <!-- Author: The person/organization responsible for Form Content -->
         <item>
             <linkId value="orderer.author" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
             <text value="Verantwortlicher" />
             <type value="group" />
             <required value="true" />
             <item>
                 <linkId value="orderer.author.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
                 <text value="Verantwortliche Person" />
                 <type value="group" />
                 <item>
@@ -593,7 +582,6 @@
             </item>
             <item>
                 <linkId value="orderer.author.organization" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization" />
                 <text value="Verantwortliche Organisation" />
                 <type value="group" />
                 <item>
@@ -657,12 +645,10 @@
         <!-- Data Entry Person: The person who has typed/filled in the Form Content. -->
         <item>
             <linkId value="orderer.dataenterer" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
             <text value="Erfasser" />
             <type value="group" />
             <item>
                 <linkId value="orderer.dataenterer.practitioner" />
-                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
                 <text value="Erfassende Person" />
                 <type value="group" />
                 <item>
@@ -689,73 +675,66 @@
         </item>
     </item>
 
-    <!-- Response Receiver: Person/organization who receives the response -->
     <item>
-        <linkId value="receiverResponse" />
-        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
+        <linkId value="receiverResponses" />
         <text value="Rückmeldungsempfänger" />
         <type value="group" />
-        <repeats value="true" />
         <item>
-            <linkId value="receiverResponse.practitioner" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
-            <text value="Rückmeldungsempfangende Person" />
+            <linkId value="receiverResponse" />
+            <text value="Rückmeldungsempfangende Organizsation oder Person" />
             <type value="group" />
+            <repeats value="true" />
             <item>
-                <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                    <valueExpression>
-                        <language value="text/fhirpath"/>
-                        <expression value="" />
-                    </valueExpression>
-                </extension>-->
-                <linkId value="receiverResponse.practitioner.familyName" />
+                <linkId value="receiverResponse.organization.name" />
+                <text value="Name der Organisation" />
+                <type value="string" />
+            </item>
+            <item>
+                <linkId value="receiverResponse.familyName" />
                 <text value="Name" />
                 <type value="string" />
             </item>
             <item>
-                <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                    <valueExpression>
-                        <language value="text/fhirpath"/>
-                        <expression value="%Orderer.name.given" />
-                    </valueExpression>
-                </extension>-->
-                <linkId value="receiverResponse.practitioner.givenName" />
+                <linkId value="receiverResponse.givenName" />
                 <text value="Vorname" />
                 <type value="string" />
             </item>
             <item>
-                <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                        <valueExpression>
-                            <language value="text/fhirpath"/>
-                            <expression value="" />
-                        </valueExpression>
-                    </extension>-->
-                <linkId value="receiverResponse.practitioner.title" />
+                <linkId value="receiverResponse.title" />
                 <text value="Titel" />
                 <type value="string" />
             </item>
             <item>
-                <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                        <valueExpression>
-                            <language value="text/fhirpath"/>
-                            <expression value="" />
-                        </valueExpression>
-                    </extension>-->
-                <linkId value="receiverResponse.practitioner.phone" />
+                <linkId value="receiverResponse.phone" />
                 <text value="Telefon" />
                 <type value="string" />
             </item>
             <item>
-                <!--<extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression">
-                        <valueExpression>
-                            <language value="text/fhirpath"/>
-                            <expression value="" />
-                        </valueExpression>
-                    </extension>-->
-                <linkId value="receiverResponse.practitioner.email" />
+                <linkId value="receiverResponse.email" />
                 <text value="E-Mail" />
                 <type value="string" />
             </item>
-        </item>
+            <item>
+                <linkId value="receiverResponse.streetAddressLine" />
+                <text value="Strasse, Hausnummer, Postfach etc." />
+                <type value="string" />
+                <repeats value="true" />
+            </item>
+            <item>
+                <linkId value="receiverResponse.postalCode" />
+                <text value="PLZ" />
+                <type value="string" />
+            </item>
+            <item>
+                <linkId value="receiverResponse.city" />
+                <text value="Ort" />
+                <type value="string" />
+            </item>
+            <item>
+                <linkId value="receiverResponse.country" />
+                <text value="Land" />
+                <type value="string" />
+            </item>
+        </item> 
     </item>
 </Questionnaire>

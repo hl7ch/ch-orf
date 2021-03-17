@@ -479,93 +479,115 @@
 
     <!-- Response Receiver: Person/organization who receives the response -->
     <item>
-        <linkId value="receiverResponse" />
+        <linkId value="receiverResponses" />
         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
         <text value="Rückmeldungsempfänger" />
         <item>
-            <linkId value="receiverResponse.practitioner" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
-            <text value="Rückmeldungsempfangende Person" />
+            <linkId value="receiverResponse" />
+            <text value="Rückmeldungsempfangende Organizsation oder Person" />
             <item>
-                <linkId value="receiverResponse.practitioner.familyName" />
+                <linkId value="receiverResponse.organization.name" />
+                <text value="Name der Organisation" />
+                <answer>
+                    <valueString value="Praxis Seeblick"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="receiverResponse.familyName" />
                 <text value="Name" />
                 <answer>
                     <valueString value="Meier"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.givenName" />
+                <linkId value="receiverResponse.givenName" />
                 <text value="Vorname" />
                 <answer>
                     <valueString value="Sabine"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.title" />
+                <linkId value="receiverResponse.title" />
                 <text value="Titel" />
                 <answer>
                     <valueString value="Dr. med."/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.phone" />
+                <linkId value="receiverResponse.phone" />
                 <text value="Telefon" />
                 <answer>
                     <valueString value="044 333 22 11"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.email" />
+                <linkId value="receiverResponse.email" />
                 <text value="E-Mail" />
                 <answer>
                     <valueString value="sabine.meier@praxisseeblick.ch"/>
                 </answer>
             </item>
         </item>
-    </item>
-
-    <!-- Response Receiver: Person/organization who receives the response -->
-    <item>
-        <linkId value="receiverResponse" />
-        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole" />
-        <text value="Rückmeldungsempfänger" />
         <item>
-            <linkId value="receiverResponse.practitioner" />
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner" />
-            <text value="Rückmeldungsempfangende Person" />
+            <linkId value="receiverResponse" />
+            <text value="Rückmeldungsempfangende Organizsation oder Person" />
             <item>
-                <linkId value="receiverResponse.practitioner.familyName" />
+                <linkId value="receiverResponse.familyName" />
                 <text value="Name" />
                 <answer>
-                    <valueString value="Spezialist"/>
+                    <valueString value="Musterfrau"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.givenName" />
+                <linkId value="receiverResponse.givenName" />
                 <text value="Vorname" />
                 <answer>
-                    <valueString value="Gian Luca"/>
+                    <valueString value="Erika"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.title" />
-                <text value="Titel" />
-                <answer>
-                    <valueString value="Prof. Dr. med."/>
-                </answer>
-            </item>
-            <item>
-                <linkId value="receiverResponse.practitioner.phone" />
+                <linkId value="receiverResponse.phone" />
                 <text value="Telefon" />
                 <answer>
-                    <valueString value="044 987 65 21"/>
+                    <valueString value="079 979 79 79"/>
                 </answer>
             </item>
             <item>
-                <linkId value="receiverResponse.practitioner.email" />
+                <linkId value="receiverResponse.email" />
                 <text value="E-Mail" />
                 <answer>
-                    <valueString value="gian-luca.spezialist@gruppenpraxis.ch"/>
+                    <valueString value="erika@musterfrau.ch"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="receiverResponse.streetAddressLine" />
+                <text value="Strasse, Hausnummer, Postfach etc." />
+                <answer>
+                    <valueString value="Musterweg"/>
+                </answer>
+                <answer>
+                    <valueString value="6a"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="receiverResponse.postalCode" />
+                <text value="PLZ" />
+                <answer>
+                    <valueString value="8000"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="receiverResponse.city" />
+                <text value="Ort" />
+                <answer>
+                    <valueString value="Zürich"/>
+                </answer>
+            </item>
+            <item>
+                <linkId value="receiverResponse.country" />
+                <text value="Land" />
+                <answer>
+                    <valueString value="Schweiz"/>
                 </answer>
             </item>
         </item>
