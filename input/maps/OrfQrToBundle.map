@@ -51,20 +51,20 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
   src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
                                                                         ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "order.precedentDocumentIdentifier"; 
 
-  src.item as item where (linkId.value = 'order.placerOrderId' and answer.exists()) -> serviceRequest.identifier as value share placer, 
+  src.item as item where (linkId.value = 'order.placerOrderIdentifier' and answer.exists()) -> serviceRequest.identifier as value share placer, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'PLAC',
-                                                                                   value.value=(item.answer.valueString) "order.placerOrderId"; 
-  src.item as item where (linkId.value = 'order.placerOrderIdDomain' and answer.exists()) -> serviceRequest.identifier as value share placer, 
-                                                                                   value.system=(item.answer.valueString) "order.placerOrderIdDomain"; 
-  src.item as item where (linkId.value = 'order.fillerOrderId' and answer.exists()) -> serviceRequest.identifier as value share filler, 
+                                                                                   value.value=(item.answer.valueString) "order.placerOrderIdentifier"; 
+  src.item as item where (linkId.value = 'order.placerOrderIdentifierDomain' and answer.exists()) -> serviceRequest.identifier as value share placer, 
+                                                                                   value.system=(item.answer.valueString) "order.placerOrderIdentifierDomain"; 
+  src.item as item where (linkId.value = 'order.fillerOrderIdentifier' and answer.exists()) -> serviceRequest.identifier as value share filler, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'FILL',
-                                                                                   value.value=(item.answer.valueString) "order.fillerOrderId"; 
-  src.item as item where (linkId.value = 'order.fillerOrderIdDomain' and answer.exists()) -> serviceRequest.identifier as value share filler, 
-                                                                                   value.system=(item.answer.valueString) "order.fillerOrderIdDomain"; 
+                                                                                   value.value=(item.answer.valueString) "order.fillerOrderIdentifier"; 
+  src.item as item where (linkId.value = 'order.fillerOrderIdentifierDomain' and answer.exists()) -> serviceRequest.identifier as value share filler, 
+                                                                                   value.system=(item.answer.valueString) "order.fillerOrderIdentifierDomain"; 
 
   src.item as item where (linkId.value = 'order.dateTime' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
 

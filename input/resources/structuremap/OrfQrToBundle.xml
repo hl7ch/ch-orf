@@ -38,8 +38,8 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
 
 group OrderItems(source src : BackboneElement, target bundle : Bundle, target composition, target serviceRequest : ServiceRequest) {
   src.item as item where ((linkId.value = 'order.precedentDocumentIdentifier') and answer.exists()) -&gt;  composition.extension as ext,  ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',  ext.value = create('Identifier') as value,  value.value = (item.answer.valueString) "precedentDocumentIdentifier";
-  src.item as item where ((linkId.value = 'order.placerOrderId') and answer.exists()) -&gt;  serviceRequest.identifier as value,  value.type as type,  type.coding as coding,  coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',  coding.code = 'PLAC',  value.value = (item.answer.valueString) "placerOrderId";
-  src.item as item where ((linkId.value = 'order.fillerOrderId') and answer.exists()) -&gt;  serviceRequest.identifier as value,  value.type as type,  type.coding as coding,  coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',  coding.code = 'FILL',  value.value = (item.answer.valueString) "fillerOrderId";
+  src.item as item where ((linkId.value = 'order.placerOrderIdentifier') and answer.exists()) -&gt;  serviceRequest.identifier as value,  value.type as type,  type.coding as coding,  coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',  coding.code = 'PLAC',  value.value = (item.answer.valueString) "placerOrderIdentifier";
+  src.item as item where ((linkId.value = 'order.fillerOrderIdentifier') and answer.exists()) -&gt;  serviceRequest.identifier as value,  value.type as type,  type.coding as coding,  coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',  coding.code = 'FILL',  value.value = (item.answer.valueString) "fillerOrderIdentifier";
   src.item as item where ((linkId.value = 'order.dateTime') and answer.exists()) -&gt; serviceRequest.authoredOn = (item.answer.value);
   src.item as item where (linkId.value = 'order.notificationContactDocument') then {
     item -&gt;  bundle.entry as e4,  e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = append('urn:uuid:', uuid5) then {
@@ -624,12 +624,12 @@ Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf
       </target>
     </rule>
     <rule>
-      <name value="order.placerOrderId"></name>
+      <name value="order.placerOrderIdentifier"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'order.placerOrderId') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'order.placerOrderIdentifier') and answer.exists())"></condition>
       </source>
       <target>
         <context value="serviceRequest"></context>
@@ -678,12 +678,12 @@ Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf
       </target>
     </rule>
     <rule>
-      <name value="order.fillerOrderId"></name>
+      <name value="order.fillerOrderIdentifier"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'order.fillerOrderId') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'order.fillerOrderIdentifier') and answer.exists())"></condition>
       </source>
       <target>
         <context value="serviceRequest"></context>

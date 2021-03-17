@@ -50,10 +50,10 @@
                 <rules value="open" />
             </slicing>
         </element>
-        <element id="ServiceRequest.identifier:placerOrderId">
+        <element id="ServiceRequest.identifier:placerOrderIdentifier">
             <path value="ServiceRequest.identifier" />
-            <sliceName value="placerOrderId" />
-            <short value="Placer Order Id"/>
+            <sliceName value="placerOrderIdentifier" />
+            <short value="Placer Order Identifier"/>
             <patternIdentifier>
                 <type>
                     <coding>
@@ -63,16 +63,16 @@
                 </type>
             </patternIdentifier>
         </element>
-        <element id="ServiceRequest.identifier:placerOrderId.system">
+        <element id="ServiceRequest.identifier:placerOrderIdentifier.system">
             <path value="ServiceRequest.identifier.system" />
         </element>
-        <element id="ServiceRequest.identifier:placerOrderId.value">
+        <element id="ServiceRequest.identifier:placerOrderIdentifier.value">
             <path value="ServiceRequest.identifier.value" />
             <min value="1" />
         </element>
-        <element id="ServiceRequest.identifier:fillerOrderId">
+        <element id="ServiceRequest.identifier:fillerOrderIdentifier">
             <path value="ServiceRequest.identifier" />
-            <sliceName value="fillerOrderId" />
+            <sliceName value="fillerOrderIdentifier" />
             <short value="Filler Order Id"/>
             <patternIdentifier>
                 <type>
@@ -83,10 +83,10 @@
                 </type>
             </patternIdentifier>
         </element>
-        <element id="ServiceRequest.identifier:fillerOrderId.system">
+        <element id="ServiceRequest.identifier:fillerOrderIdentifier.system">
             <path value="ServiceRequest.identifier.system" />
         </element>
-        <element id="ServiceRequest.identifier:fillerOrderId.value">
+        <element id="ServiceRequest.identifier:fillerOrderIdentifier.value">
             <path value="ServiceRequest.identifier.value" />
             <min value="1" />
         </element>

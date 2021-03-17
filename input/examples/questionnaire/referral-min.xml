@@ -55,7 +55,7 @@
                     <expression value="%Bundle.entry[0].resource.extension.where(url=&#39;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-visitnumber&#39;).valueIdentifier.value" />
                 </valueExpression>
             </extension>-->
-            <linkId value="order.placerOrderId" />
+            <linkId value="order.placerOrderIdentifier" />
             <text value="Auftragsnummer des Auftraggebers" />
             <type value="string" />
         </item>
@@ -63,7 +63,7 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-hidden">
                 <valueBoolean value="true"/>
             </extension>
-            <linkId value="order.placerOrderIdDomain" />
+            <linkId value="order.placerOrderIdentifierDomain" />
             <text value="Identifier Domain der Auftragsnummer des Auftraggebers" />
             <type value="string" />
         </item>
@@ -74,7 +74,7 @@
                     <expression value="" />
                 </valueExpression>
             </extension>-->
-            <linkId value="order.fillerOrderId" />
+            <linkId value="order.fillerOrderIdentifier" />
             <text value="Auftragsnummer des Auftragsempfängers" />
             <type value="string" />
         </item>
@@ -82,7 +82,7 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-hidden">
                 <valueBoolean value="true"/>
             </extension>
-            <linkId value="order.fillerOrderIdDomain" />
+            <linkId value="order.fillerOrderIdentifierDomain" />
             <text value="Identifier Domain der Auftragsnummer des Auftragsempfängers" />
             <type value="string" />
         </item>
