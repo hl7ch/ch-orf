@@ -60,6 +60,10 @@
             <path value="Bundle.type"/>
             <fixedCode value="document"/>
         </element>
+        <element id="Bundle.timestamp">
+            <path value="Bundle.timestamp"/>
+            <short value="Date, the document was created"/>
+        </element>
         <element id="Bundle.total">
             <path value="Bundle.total"/>
             <min value="0"/>

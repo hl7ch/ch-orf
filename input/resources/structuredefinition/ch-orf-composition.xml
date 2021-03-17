@@ -134,10 +134,6 @@
             <path value="Composition.subject"/>
             <short value="Patient as the principle target of a particular form content"/>
         </element>
-        <element id="Composition.date">
-            <path value="Composition.date"/>
-            <short value="Composition editing time"/>
-        </element>
         <element id="Composition.author">
             <path value="Composition.author"/>
             <short value="The person/organization responsible for the form content"/>
