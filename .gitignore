@@ -18,4 +18,5 @@ temp/**
 template/**
 .vscode/**
 *.jar
+fsh-generated/**
 
