@@ -34,12 +34,12 @@
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="PractitionerRole/ResponseReceiverPraxisSeeblick"/>
+            <reference value="Organization/Kantonsspital"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="PractitionerRole/ResponseReceiverGruppenpraxis"/>
+            <reference value="Patient/ErikaMusterfrau"/>
         </valueReference>
     </extension>
     <status value="final"/>

@@ -1,62 +1,64 @@
 <Bundle 
   xmlns="http://hl7.org/fhir">
-  <id value="referral-min-mapped"/>
-  <meta>
-    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
-  </meta>
+  <id value="referral-min-mapped" />
+  <identifier>
+    <system value="urn:ietf:rfc:3986"/>
+    <value value="urn:uuid:5fae9f07-7d77-4693-a6eb-fb6e5ab17307"/>
+  </identifier>
   <type value="document"/>
+  <timestamp value="2021-03-23T19:48:08+00:00"/>
   <entry>
-    <fullUrl value="urn:uuid:e7ea7e7e-1f5d-4072-95bb-c8581cf85a26"/>
+    <fullUrl value="urn:uuid:ed1e6e81-9e02-4402-8daa-248337669806"/>
     <resource>
       <Composition>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument">
+          <valueIdentifier>
+            <value value="1622f2fb-6ba3-4532-9aed-35b158def187"/>
+          </valueIdentifier>
+        </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
           <valueReference>
-            <reference value="urn:uuid:2f20d1d7-7496-4b17-9cbc-9e64b0296d27"/>
-            <type value="PractitionerRole"/>
+            <reference value="urn:uuid:cef540ba-ee16-4579-9577-289ab1e563df"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
           <valueReference>
-            <reference value="urn:uuid:69da5b92-e51f-49f7-9751-b6fd6183d117"/>
-            <type value="PractitionerRole"/>
+            <reference value="urn:uuid:ff528cfa-30cc-43eb-9eeb-ae295c2dc9e9"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
           <extension url="enterer">
             <valueReference>
-              <reference value="urn:uuid:671ccce8-ac21-4dfe-822d-9f704cc9a0b4"/>
-              <type value="PractitionerRole"/>
+              <reference value="urn:uuid:8de0feee-a1f4-41db-8086-06dc6a2b1bb8"/>
             </valueReference>
           </extension>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
           <valueReference>
-            <reference value="urn:uuid:221f924f-c679-4241-9931-0b8f047aac15"/>
-            <type value="PractitionerRole"/>
+            <reference value="urn:uuid:55652158-d3e1-4647-926c-a79739e8b64d"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
           <valueReference>
-            <reference value="urn:uuid:78b62651-473f-431e-beaa-f9ff17c84f6b"/>
-            <type value="PractitionerRole"/>
+            <reference value="urn:uuid:9c70192d-84be-4d1c-aeb6-8897d2450c0a"/>
           </valueReference>
         </extension>
         <status value="final"/>
         <subject>
-          <reference value="urn:uuid:d0de7058-11a7-4125-8c27-ab71331a5607"/>
+          <reference value="urn:uuid:c200d853-0f0f-4987-a546-f85bbbeb5feb"/>
           <type value="Patient"/>
         </subject>
         <author>
-          <reference value="urn:uuid:6e54a17a-a59e-4282-bcad-e374f480982a"/>
+          <reference value="urn:uuid:da055b47-4ec3-40a6-ab6d-5ab44013f4b1"/>
           <type value="PractitionerRole"/>
         </author>
         <section>
           <entry>
-            <reference value="urn:uuid:8e93bcbf-605c-44f6-af36-41cf2b9d6b6b"/>
+            <reference value="urn:uuid:c6ecf14a-4567-4b75-a675-0b3da63b4520"/>
             <type value="QuestionnaireResponse"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:fa65ceb5-7e23-4dd0-87a1-cad484788e36"/>
+            <reference value="urn:uuid:6e9c9eec-3c91-4b1b-bf7a-fc4657e4aeb5"/>
             <type value="ServiceRequest"/>
           </entry>
         </section>
@@ -64,7 +66,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:d0de7058-11a7-4125-8c27-ab71331a5607"/>
+    <fullUrl value="urn:uuid:c200d853-0f0f-4987-a546-f85bbbeb5feb"/>
     <resource>
       <Patient>
         <identifier>
@@ -101,7 +103,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:8e93bcbf-605c-44f6-af36-41cf2b9d6b6b"/>
+    <fullUrl value="urn:uuid:c6ecf14a-4567-4b75-a675-0b3da63b4520"/>
     <resource>
       <QuestionnaireResponse>
         <meta>
@@ -129,14 +131,23 @@
           <item>
             <linkId value="order.fillerOrderIdentifier"/>
             <text value="Auftragsnummer des Auftragsempfängers"/>
+            <answer>
+              <valueString value="456"/>
+            </answer>
           </item>
           <item>
             <linkId value="order.fillerOrderIdentifierDomain"/>
             <text value="Identifier Domain der Auftragsnummer des Auftragsempfängers"/>
+            <answer>
+              <valueString value="urn:oid:7.8.9.10.11"/>
+            </answer>
           </item>
           <item>
             <linkId value="order.precedentDocumentIdentifier"/>
             <text value="Identifier des Vorgängerdokuments"/>
+            <answer>
+              <valueString value="1622f2fb-6ba3-4532-9aed-35b158def187"/>
+            </answer>
           </item>
           <!--  Urgent Notification Contact for this document  -->
           <item>
@@ -569,92 +580,115 @@
         </item>
         <!--  Response Receiver: Person/organization who receives the response  -->
         <item>
-          <linkId value="receiverResponse"/>
+          <linkId value="receiverResponses"/>
           <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
           <text value="Rückmeldungsempfänger"/>
           <item>
-            <linkId value="receiverResponse.practitioner"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
-            <text value="Rückmeldungsempfangende Person"/>
+            <linkId value="receiverResponse"/>
+            <text value="Rückmeldungsempfangende Organizsation oder Person"/>
             <item>
-              <linkId value="receiverResponse.practitioner.familyName"/>
+              <linkId value="receiverResponse.organization.name"/>
+              <text value="Name der Organisation"/>
+              <answer>
+                <valueString value="Praxis Seeblick"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.familyName"/>
               <text value="Name"/>
               <answer>
                 <valueString value="Meier"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.givenName"/>
+              <linkId value="receiverResponse.givenName"/>
               <text value="Vorname"/>
               <answer>
                 <valueString value="Sabine"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.title"/>
+              <linkId value="receiverResponse.title"/>
               <text value="Titel"/>
               <answer>
                 <valueString value="Dr. med."/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.phone"/>
+              <linkId value="receiverResponse.phone"/>
               <text value="Telefon"/>
               <answer>
                 <valueString value="044 333 22 11"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.email"/>
+              <linkId value="receiverResponse.email"/>
               <text value="E-Mail"/>
               <answer>
                 <valueString value="sabine.meier@praxisseeblick.ch"/>
               </answer>
             </item>
           </item>
-        </item>
-        <!--  Response Receiver: Person/organization who receives the response  -->
-        <item>
-          <linkId value="receiverResponse"/>
-          <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
-          <text value="Rückmeldungsempfänger"/>
           <item>
-            <linkId value="receiverResponse.practitioner"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
-            <text value="Rückmeldungsempfangende Person"/>
+            <linkId value="receiverResponse"/>
+            <text value="Rückmeldungsempfangende Organizsation oder Person"/>
             <item>
-              <linkId value="receiverResponse.practitioner.familyName"/>
+              <linkId value="receiverResponse.familyName"/>
               <text value="Name"/>
               <answer>
-                <valueString value="Spezialist"/>
+                <valueString value="Musterfrau"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.givenName"/>
+              <linkId value="receiverResponse.givenName"/>
               <text value="Vorname"/>
               <answer>
-                <valueString value="Gian Luca"/>
+                <valueString value="Erika"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.title"/>
-              <text value="Titel"/>
-              <answer>
-                <valueString value="Prof. Dr. med."/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.practitioner.phone"/>
+              <linkId value="receiverResponse.phone"/>
               <text value="Telefon"/>
               <answer>
-                <valueString value="044 987 65 21"/>
+                <valueString value="079 979 79 79"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.practitioner.email"/>
+              <linkId value="receiverResponse.email"/>
               <text value="E-Mail"/>
               <answer>
-                <valueString value="gian-luca.spezialist@gruppenpraxis.ch"/>
+                <valueString value="erika@musterfrau.ch"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.streetAddressLine"/>
+              <text value="Strasse, Hausnummer, Postfach etc."/>
+              <answer>
+                <valueString value="Musterweg"/>
+              </answer>
+              <answer>
+                <valueString value="6a"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.postalCode"/>
+              <text value="PLZ"/>
+              <answer>
+                <valueString value="8000"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.city"/>
+              <text value="Ort"/>
+              <answer>
+                <valueString value="Zürich"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiverResponse.country"/>
+              <text value="Land"/>
+              <answer>
+                <valueString value="Schweiz"/>
               </answer>
             </item>
           </item>
@@ -663,7 +697,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:fa65ceb5-7e23-4dd0-87a1-cad484788e36"/>
+    <fullUrl value="urn:uuid:6e9c9eec-3c91-4b1b-bf7a-fc4657e4aeb5"/>
     <resource>
       <ServiceRequest>
         <identifier>
@@ -673,34 +707,50 @@
               <code value="PLAC"/>
             </coding>
           </type>
+          <system value="urn:oid:1.3.4.5.6.7"/>
           <value value="123"/>
+        </identifier>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="FILL"/>
+            </coding>
+          </type>
+          <system value="urn:oid:7.8.9.10.11"/>
+          <value value="456"/>
         </identifier>
         <status value="active"/>
         <intent value="original-order"/>
+        <priority value="routine"/>
         <subject>
-          <reference value="urn:uuid:d0de7058-11a7-4125-8c27-ab71331a5607"/>
+          <reference value="urn:uuid:c200d853-0f0f-4987-a546-f85bbbeb5feb"/>
           <type value="Patient"/>
         </subject>
+        <requester>
+          <reference value="urn:uuid:da055b47-4ec3-40a6-ab6d-5ab44013f4b1"/>
+          <type value="PractitionerRole"/>
+        </requester>
         <performer>
-          <reference value="urn:uuid:cea94ab7-fe82-4908-a420-a8f0ebf63ac8"/>
+          <reference value="urn:uuid:c94c36b1-da13-4803-b3ce-4e0ba7182033"/>
           <type value="PractitionerRole"/>
         </performer>
       </ServiceRequest>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:2f20d1d7-7496-4b17-9cbc-9e64b0296d27"/>
+    <fullUrl value="urn:uuid:cef540ba-ee16-4579-9577-289ab1e563df"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:aaab6a2a-cea7-49da-8adf-05ebe6e137c2"/>
+          <reference value="urn:uuid:0a218c1d-ec19-4d44-b5d4-a0dc76fe84d5"/>
           <type value="Practitioner"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:aaab6a2a-cea7-49da-8adf-05ebe6e137c2"/>
+    <fullUrl value="urn:uuid:0a218c1d-ec19-4d44-b5d4-a0dc76fe84d5"/>
     <resource>
       <Practitioner>
         <name>
@@ -724,18 +774,18 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:69da5b92-e51f-49f7-9751-b6fd6183d117"/>
+    <fullUrl value="urn:uuid:ff528cfa-30cc-43eb-9eeb-ae295c2dc9e9"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:c842ec98-f778-4eb1-b5ec-3bcc5e37541d"/>
+          <reference value="urn:uuid:f86893b0-ee10-4d21-97d5-a6f21568c62d"/>
           <type value="Practitioner"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:c842ec98-f778-4eb1-b5ec-3bcc5e37541d"/>
+    <fullUrl value="urn:uuid:f86893b0-ee10-4d21-97d5-a6f21568c62d"/>
     <resource>
       <Practitioner>
         <name>
@@ -759,22 +809,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:cea94ab7-fe82-4908-a420-a8f0ebf63ac8"/>
+    <fullUrl value="urn:uuid:c94c36b1-da13-4803-b3ce-4e0ba7182033"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:af08fa64-34ad-44a2-89ed-ff0a3e9744bb"/>
+          <reference value="urn:uuid:5dce0dca-b6c2-4123-80d4-9848cfa68c78"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:bf01b049-ffc3-4a51-a547-5904f6f208c4"/>
+          <reference value="urn:uuid:1b5441e7-0454-4793-a090-614c29d07cd8"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:af08fa64-34ad-44a2-89ed-ff0a3e9744bb"/>
+    <fullUrl value="urn:uuid:5dce0dca-b6c2-4123-80d4-9848cfa68c78"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -802,7 +852,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:bf01b049-ffc3-4a51-a547-5904f6f208c4"/>
+    <fullUrl value="urn:uuid:1b5441e7-0454-4793-a090-614c29d07cd8"/>
     <resource>
       <Organization>
         <name value="Kantonsspital"/>
@@ -817,22 +867,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6e54a17a-a59e-4282-bcad-e374f480982a"/>
+    <fullUrl value="urn:uuid:da055b47-4ec3-40a6-ab6d-5ab44013f4b1"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:87263d48-ac42-4b4d-af23-7606e40579c7"/>
+          <reference value="urn:uuid:b43c51a9-a8a4-4f94-99c7-1b1bcd882348"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:59f96a98-de62-40f0-8d59-f168e0812d16"/>
+          <reference value="urn:uuid:16ef547d-a58f-49fe-a9a0-76b4ebdc439c"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:87263d48-ac42-4b4d-af23-7606e40579c7"/>
+    <fullUrl value="urn:uuid:b43c51a9-a8a4-4f94-99c7-1b1bcd882348"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -860,7 +910,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:59f96a98-de62-40f0-8d59-f168e0812d16"/>
+    <fullUrl value="urn:uuid:16ef547d-a58f-49fe-a9a0-76b4ebdc439c"/>
     <resource>
       <Organization>
         <name value="Praxis Seeblick"/>
@@ -875,22 +925,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:671ccce8-ac21-4dfe-822d-9f704cc9a0b4"/>
+    <fullUrl value="urn:uuid:8de0feee-a1f4-41db-8086-06dc6a2b1bb8"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:d1baefde-7efd-4b24-bc38-6ed30fdf8137"/>
+          <reference value="urn:uuid:41ab41d5-9242-4278-8af5-c20c33ec2239"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:59f96a98-de62-40f0-8d59-f168e0812d16"/>
+          <reference value="urn:uuid:16ef547d-a58f-49fe-a9a0-76b4ebdc439c"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:d1baefde-7efd-4b24-bc38-6ed30fdf8137"/>
+    <fullUrl value="urn:uuid:41ab41d5-9242-4278-8af5-c20c33ec2239"/>
     <resource>
       <Practitioner>
         <name>
@@ -909,29 +959,10 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:221f924f-c679-4241-9931-0b8f047aac15"/>
+    <fullUrl value="urn:uuid:55652158-d3e1-4647-926c-a79739e8b64d"/>
     <resource>
-      <PractitionerRole>
-        <practitioner>
-          <reference value="urn:uuid:b399f71b-5eff-4cce-85e0-df1617164a28"/>
-          <type value="Practitioner"/>
-        </practitioner>
-      </PractitionerRole>
-    </resource>
-  </entry>
-  <entry>
-    <fullUrl value="urn:uuid:b399f71b-5eff-4cce-85e0-df1617164a28"/>
-    <resource>
-      <Practitioner>
-        <name>
-          <family value="Meier"/>
-          <given value="Sabine"/>
-          <prefix value="Dr. med.">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-              <valueCode value="AC"/>
-            </extension>
-          </prefix>
-        </name>
+      <Organization>
+        <name value="Praxis Seeblick"/>
         <telecom>
           <system value="phone"/>
           <value value="044 333 22 11"/>
@@ -940,42 +971,44 @@
           <system value="email"/>
           <value value="sabine.meier@praxisseeblick.ch"/>
         </telecom>
-      </Practitioner>
+        <contact>
+          <name>
+            <family value="Meier"/>
+            <given value="Sabine"/>
+            <prefix value="Dr. med.">
+              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                <valueCode value="AC"/>
+              </extension>
+            </prefix>
+          </name>
+        </contact>
+      </Organization>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:78b62651-473f-431e-beaa-f9ff17c84f6b"/>
+    <fullUrl value="urn:uuid:9c70192d-84be-4d1c-aeb6-8897d2450c0a"/>
     <resource>
-      <PractitionerRole>
-        <practitioner>
-          <reference value="urn:uuid:d9e5bee4-ac2a-438e-888d-ec83dab67a04"/>
-          <type value="Practitioner"/>
-        </practitioner>
-      </PractitionerRole>
-    </resource>
-  </entry>
-  <entry>
-    <fullUrl value="urn:uuid:d9e5bee4-ac2a-438e-888d-ec83dab67a04"/>
-    <resource>
-      <Practitioner>
+      <Patient>
         <name>
-          <family value="Spezialist"/>
-          <given value="Gian Luca"/>
-          <prefix value="Prof. Dr. med.">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-              <valueCode value="AC"/>
-            </extension>
-          </prefix>
+          <family value="Musterfrau"/>
+          <given value="Erika"/>
         </name>
         <telecom>
           <system value="phone"/>
-          <value value="044 987 65 21"/>
+          <value value="079 979 79 79"/>
         </telecom>
         <telecom>
           <system value="email"/>
-          <value value="gian-luca.spezialist@gruppenpraxis.ch"/>
+          <value value="erika@musterfrau.ch"/>
         </telecom>
-      </Practitioner>
+        <address>
+          <line value="Musterweg"/>
+          <line value="6a"/>
+          <city value="Zürich"/>
+          <postalCode value="8000"/>
+          <country value="Schweiz"/>
+        </address>
+      </Patient>
     </resource>
   </entry>
 </Bundle>
