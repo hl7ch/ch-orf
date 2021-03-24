@@ -681,7 +681,7 @@
         <type value="group" />
         <item>
             <linkId value="receiverResponse" />
-            <text value="Rückmeldungsempfangende Organizsation oder Person" />
+            <text value="Rückmeldungsempfangende Organisation oder Person" />
             <type value="group" />
             <repeats value="true" />
             <item>

@@ -484,7 +484,7 @@
         <text value="Rückmeldungsempfänger" />
         <item>
             <linkId value="receiverResponse" />
-            <text value="Rückmeldungsempfangende Organizsation oder Person" />
+            <text value="Rückmeldungsempfangende Organisation oder Person" />
             <item>
                 <linkId value="receiverResponse.organization.name" />
                 <text value="Name der Organisation" />
@@ -530,7 +530,7 @@
         </item>
         <item>
             <linkId value="receiverResponse" />
-            <text value="Rückmeldungsempfangende Organizsation oder Person" />
+            <text value="Rückmeldungsempfangende Organisation oder Person" />
             <item>
                 <linkId value="receiverResponse.familyName" />
                 <text value="Name" />

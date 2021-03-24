@@ -18,7 +18,7 @@ uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneEle
 
 group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) {
       qr -> bundle.identifier as documentIdentifier, documentIdentifier.system = 'urn:ietf:rfc:3986',  uuid() as uuidDoc, documentIdentifier.value = append('urn:uuid:', uuidDoc) "documentIdentifier";
-      qr -> bundle.timestamp = (now()) "assembling time";
+      qr -> bundle.timestamp = (now()) "assemblingTime";
       qr as qrcp -> bundle.entry as e, 
              e.resource = create('Composition') as composition, 
              composition.id = uuid() as uuid,

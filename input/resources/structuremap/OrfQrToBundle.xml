@@ -24,7 +24,7 @@ uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneEle
 
 group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle) {
   qr -&gt;  bundle.identifier as documentIdentifier,  documentIdentifier.system = 'urn:ietf:rfc:3986',  uuid() as uuidDoc,  documentIdentifier.value = append('urn:uuid:', uuidDoc) "documentIdentifier";
-  qr -&gt; bundle.timestamp = (now()) "assembling time";
+  qr -&gt; bundle.timestamp = (now()) "assemblingTime";
   qr as qrcp -&gt;  bundle.entry as e,  e.resource = create('Composition') as composition,  composition.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Patient') as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e4,  e4.resource = qrcp as questionnaireresp,  questionnaireresp.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  bundle.entry as e5,  e5.resource = create('ServiceRequest') as servicerequest,  servicerequest.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5) then {
     qr then QrToBundle(qr, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
   } "orfbundle";
@@ -356,7 +356,7 @@ Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf
       </target>
     </rule>
     <rule>
-      <name value="assembling time"></name>
+      <name value="assemblingTime"></name>
       <source>
         <context value="qr"></context>
       </source>
