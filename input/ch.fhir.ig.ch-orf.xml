@@ -166,7 +166,7 @@
       <reference>
         <reference value="Bundle/referral-min-mapped"/>
       </reference>
-      <name value="Bundle Referral minimal"/>
+      <name value="Bundle Referral minimal (mapped)"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
@@ -232,17 +232,9 @@
     </resource>
     <resource>
       <reference>
-        <reference value="PractitionerRole/NotificationContactPraxisSeeblick"/>
+        <reference value="PractitionerRole/NotificationContactSabineMeier"/>
       </reference>
-      <name value="Notification Contact at Praxis Seeblick (Referral minimal)"/>
-      <description value="Example for PractitionerRole"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="PractitionerRole/ResponseReceiverPraxisSeeblick"/>
-      </reference>
-      <name value="Response Receiver at Praxis Seeblick (Referral minimal)"/>
+      <name value="Notification Contact Sabine Meier (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -264,17 +256,9 @@
     </resource>
     <resource>
       <reference>
-        <reference value="PractitionerRole/NotificationContactKantonsspital"/>
+        <reference value="PractitionerRole/NotificationContactHansRoentgen"/>
       </reference>
-      <name value="Notification Contact at Kantonsspital (Referral minimal)"/>
-      <description value="Example for PractitionerRole"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="PractitionerRole/ResponseReceiverGruppenpraxis"/>
-      </reference>
-      <name value="Response Receiver at Gruppenpraxis (Referral minimal)"/>
+      <name value="Notification Contact Hans Röntgen (Referral minimal)"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -284,6 +268,14 @@
         <reference value="Organization/PraxisSeeblick"/>
       </reference>
       <name value="Praxis Seeblick (Referral minimal)"/>
+      <description value="Example for Organization"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
+      </reference>
+      <name value="Response Receiver Praxis Seeblick (Referral minimal)"/>
       <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -314,14 +306,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Practitioner/ResponseReceiverSabineMeier"/>
-      </reference>
-      <name value="Response Receiver Sabine Meier (Referral minimal)"/>
-      <description value="Example for Practitioner"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="Practitioner/StabiloBoss"/>
       </reference>
       <name value="Stabilo Boss (Referral minimal)"/>
@@ -346,14 +330,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Practitioner/ResponseReceiverGianLucaSpezialist"/>
-      </reference>
-      <name value="Response Receiver Gian Luca Spezialist (Referral minimal)"/>
-      <description value="Example for Practitioner"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="Practitioner/MarcAgpar"/>
       </reference>
       <name value="Marc Agpar"/>
@@ -366,6 +342,14 @@
         <reference value="Patient/ErikaMusterfrau"/>
       </reference>
       <name value="Erika Musterfrau (Referral minimal)"/>
+      <description value="Example for Patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
+      </reference>
+      <name value="Response Receiver Erika Musterfrau (Referral minimal)"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>

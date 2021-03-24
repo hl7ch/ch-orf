@@ -6,7 +6,6 @@
     </meta>
     <name value="Kantonsspital"/>
     <address>
-        <use value="work"/>
         <line value="Kantonsstrasse 14"/>
         <line value="Postfach 14"/>
         <city value="Zürich"/>

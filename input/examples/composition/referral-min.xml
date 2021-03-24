@@ -24,22 +24,22 @@
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
         <valueReference>
-            <reference value="PractitionerRole/NotificationContactKantonsspital"/>
+            <reference value="PractitionerRole/NotificationContactHansRoentgen"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
         <valueReference>
-            <reference value="PractitionerRole/NotificationContactPraxisSeeblick"/>
+            <reference value="PractitionerRole/NotificationContactSabineMeier"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="Organization/Kantonsspital"/>
+            <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
         </valueReference>
     </extension>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
         <valueReference>
-            <reference value="Patient/ErikaMusterfrau"/>
+            <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
         </valueReference>
     </extension>
     <status value="final"/>

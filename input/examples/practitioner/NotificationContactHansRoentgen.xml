@@ -5,7 +5,6 @@
         <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner"/>
     </meta>
     <name>
-        <use value="official"/>
         <family value="Röntgen"/>
         <given value="Hans"/>
         <prefix value="Dr. med.">
@@ -17,11 +16,9 @@
     <telecom>
         <system value="phone"/>
         <value value="044 412 00 99"/>
-        <use value="work"/>
     </telecom>
     <telecom>
         <system value="email"/>
         <value value="hans.roentgen@kantonsspital.ch"/>
-        <use value="work"/>
     </telecom>
 </Practitioner> 

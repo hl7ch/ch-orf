@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PractitionerRole xmlns="http://hl7.org/fhir">
-    <id value="ResponseReceiverGruppenpraxis"/>
+    <id value="NotificationContactSabineMeier"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
     </meta>
     <practitioner>
-        <reference value="Practitioner/ResponseReceiverGianLucaSpezialist"/>
+        <reference value="Practitioner/NotificationContactSabineMeier"/>
     </practitioner>
 </PractitionerRole> 

@@ -7,4 +7,7 @@
     <practitioner>
         <reference value="Practitioner/StabiloBoss"/>
     </practitioner>
+    <organization>
+        <reference value="Organization/PraxisSeeblick"/>
+    </organization>
 </PractitionerRole> 
