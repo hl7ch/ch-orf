@@ -18,6 +18,8 @@ uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneEle
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as target
 
 group OrfBundleToQr(source bundle : Bundle, target qr : QuestionnaireResponse ) {
+  bundle -> qr.questionnaire = 'http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form' "questionnaire"; 
+  bundle -> qr.status = 'completed' "status";
   bundle.entry first as entry then {
     entry.resource as composition then {
       composition.section as section then {
@@ -44,14 +46,14 @@ group OrderToQr(source bundle : Bundle, source composition: Composition, source 
 //            <linkId value="order.placerOrderIdentifierDomain" />
 //            <linkId value="order.fillerOrderIdentifier" />
   serviceRequest.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='PLAC')) 
-      -> item.item as item, item.linkId = 'order.placerOrderIdentifier', item.answer as answer, answer.value = (identifier.value) then {
-         identifier.system as system -> item.item as item, item.linkId = 'order.placerOrderIdentifierDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
+      -> item.item as itemfirst, itemfirst.linkId = 'order.placerOrderIdentifier', itemfirst.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as itemsecond, itemsecond.linkId = 'order.placerOrderIdentifierDomain', itemsecond.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
   } "order.placerOrderIdentifierDomain";
 //            <linkId value="order.fillerOrderIdentifier" />
 //            <linkId value="order.fillerOrderIdentifierDomain" />
   serviceRequest.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='FILL')) 
-      -> item.item as item, item.linkId = 'order.fillerOrderIdentifier', item.answer as answer, answer.value = (identifier.value) then {
-         identifier.system as system -> item.item as item, item.linkId = 'order.fillerOrderIdentifierDomain', item.answer as answer, answer.value = cast(system, 'string') "order.fillerOrderIdentifier"; 
+      -> item.item as itemfirst, itemfirst.linkId = 'order.fillerOrderIdentifier', itemfirst.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as itemsecond, itemsecond.linkId = 'order.fillerOrderIdentifierDomain', itemsecond.answer as answer, answer.value = cast(system, 'string') "order.fillerOrderIdentifier"; 
   } "order.fillerOrderIdentifierDomain";
 //            <linkId value="order.precedentDocumentIdentifier" />
 
@@ -59,10 +61,10 @@ group OrderToQr(source bundle : Bundle, source composition: Composition, source 
      extension.value as value -> item.item as item, item.linkId = 'order.precedentDocumentIdentifier', item.answer as answer, answer.value = (value.value) "order.precedentDocumentIdentifier";
   } "composition";
 
-// 'order.dateTime'
+// 'order.dateTime'- currently not mapped in qr response
 //  FIMXE: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Exception executing transform answer.value = cast(timestamp, 'dateTime') on Rule &quot;order.dateTime&quot;: cast to dateTime not yet supported"
 //  bundle.timestamp as timestamp -> item.item as item, item.linkId = 'order.dateTime', item.answer as answer, answer.value = cast(timestamp, 'dateTime') "order.dateTime";
-  bundle.timestamp as timestamp -> item.item as item, item.linkId = 'order.dateTime', item.answer as answer, answer.value = timestamp "order.dateTime";
+//  bundle.timestamp as timestamp -> item.item as item, item.linkId = 'order.dateTime', item.answer as answer, answer.value = timestamp "order.dateTime";
 
 // urgent notifcation for this contact  
   composition.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument' then {
@@ -235,7 +237,7 @@ group PatientDetailsToQr(source bundle : Bundle, source composition: Composition
    } "name";
 // patient.localPid
   patient.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='MR')) 
-      -> item.item as item, item.linkId = 'atient.localPid', item.answer as answer, answer.value = (identifier.value) then {
+      -> item.item as item, item.linkId = 'patient.localPid', item.answer as answer, answer.value = (identifier.value) then {
          identifier.system as system -> item.item as item, item.linkId = 'patient.localPidIdentifierDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
   } "patient.localPid";
 // patient.birthDate
