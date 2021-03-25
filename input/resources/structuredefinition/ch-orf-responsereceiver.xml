@@ -4,7 +4,7 @@
     <url value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver"/>
     <version value="0.9.0"/>
     <name value="CHORFResponseReceiver"/>
-    <title value="CH ORF Response Receiver Extension"/>
+    <title value="CH ORF Response Receiver"/>
     <status value="draft"/>
     <date value="2019-03-19"/>
     <publisher value="eHealth Suisse"/>
