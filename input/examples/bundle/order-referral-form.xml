@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-    <id value="referral-min"/>
+    <id value="order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
     </meta>
@@ -10,10 +10,10 @@
     <type value="document"/>
     <timestamp value="2019-04-01T20:18:41.341+00:00"/>
     <entry>
-        <fullUrl value="http://example.com/fhir/Composition/referral-min"/>
+        <fullUrl value="http://example.com/fhir/Composition/order-referral-form"/>
         <resource>
             <Composition xmlns="http://hl7.org/fhir">
-                <id value="referral-min"/>
+                <id value="order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:54.018+00:00"/>
@@ -22,7 +22,7 @@
                 </meta>
                 <text>
                     <status value="generated"/>
-                    <div xmlns="http://www.w3.org/1999/xhtml"> Referral min </div>
+                    <div xmlns="http://www.w3.org/1999/xhtml"> Order-Referral-Form </div>
                 </text>
                 <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
                     <extension url="enterer">
@@ -78,21 +78,21 @@
                 <author>
                     <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
                 </author>
-                <title value="Referral min"/>
+                <title value="Order-Referral-Form"/>
                 <section>
                     <title value="Referral"/>
                     <text>
                         <status value="generated"/>
-                        <div xmlns="http://www.w3.org/1999/xhtml"> Referral min </div>
+                        <div xmlns="http://www.w3.org/1999/xhtml"> Order-Referral-Form </div>
                     </text>
                     <entry>
-                        <reference value="Questionnaire/referral-min"/>
+                        <reference value="Questionnaire/order-referral-form"/>
                     </entry>
                     <entry>
-                        <reference value="QuestionnaireResponse/referral-min"/>
+                        <reference value="QuestionnaireResponse/order-referral-form"/>
                     </entry>
                     <entry>
-                        <reference value="ServiceRequest/referral-min"/>
+                        <reference value="ServiceRequest/order-referral-form"/>
                     </entry>
                 </section>
             </Composition>
@@ -119,10 +119,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://example.com/fhir/ServiceRequest/referral-min"/>
+        <fullUrl value="http://example.com/fhir/ServiceRequest/order-referral-form"/>
         <resource>
             <ServiceRequest xmlns="http://hl7.org/fhir">
-                <id value="referral-min"/>
+                <id value="order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:17.147+00:00"/>
@@ -165,10 +165,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://example.com/fhir/Questionnaire/referral-min"/>
+        <fullUrl value="http://example.com/fhir/Questionnaire/order-referral-form"/>
         <resource>
             <Questionnaire xmlns="http://hl7.org/fhir">
-                <id value="referral-min"/>
+                <id value="order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:31.707+00:00"/>
@@ -205,9 +205,9 @@
                         <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
                     </valueExpression>
                 </extension>
-                <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
-                <name value="ORFReferralMinimial"/>
-                <title value="ORF Referral Minimial"/>
+                <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+                <name value="OrderReferralForm"/>
+                <title value="Order-Referral-Form"/>
                 <status value="draft"/>
                 <experimental value="true"/>
                 <subjectType value="Patient"/>
@@ -985,17 +985,17 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://example.com/fhir/QuestionnaireResponse/referral-min"/>
+        <fullUrl value="http://example.com/fhir/QuestionnaireResponse/order-referral-form"/>
         <resource>
             <QuestionnaireResponse xmlns="http://hl7.org/fhir">
-                <id value="referral-min"/>
+                <id value="order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:35.866+00:00"/>
                     <source value="#JkbtKug1uPk7xKqd"/>
                     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
                 </meta>
-                <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+                <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
                 <status value="completed"/>
                 <item>
                     <linkId value="order"/>

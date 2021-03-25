@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuestionnaireResponse xmlns="http://hl7.org/fhir">
-    <id value="referral-min"/>
+    <id value="order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </meta>
-    <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+    <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
     <status value="completed"/>
     <item>
         <linkId value="order" />

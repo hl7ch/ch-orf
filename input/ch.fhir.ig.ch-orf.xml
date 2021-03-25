@@ -125,7 +125,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Value Sets-->
+    <!-- ValueSets-->
     <resource>
       <reference>
         <reference value="ValueSet/minimaldataset"/>
@@ -134,7 +134,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Code Systems -->
+    <!-- CodeSystems -->
     <resource>
       <reference>
         <reference value="CodeSystem/minimaldataset"/>
@@ -149,41 +149,41 @@
         <reference value="StructureMap/OrfQrToBundle"/>
       </reference>
       <name value="Map ORF"/>
-      <description value="Mapping ORF Questionnaire Response to Bundle"/>
+      <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
 
     <!-- Example Instances-->
     <resource>
       <reference>
-        <reference value="Bundle/referral-min"/>
+        <reference value="Bundle/order-referral-form"/>
       </reference>
-      <name value="Bundle Referral minimal"/>
+      <name value="Bundle Order-Referral-Form"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
     <resource>
       <reference>
-        <reference value="Bundle/referral-min-mapped"/>
+        <reference value="Bundle/order-referral-form-mapped"/>
       </reference>
-      <name value="Bundle Referral minimal (mapped)"/>
+      <name value="Bundle Order-Referral-Form (mapped)"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
     <resource>
       <reference>
-        <reference value="Composition/referral-min"/>
+        <reference value="Composition/order-referral-form"/>
       </reference>
-      <name value="Composition Referral minimal"/>
+      <name value="Composition Order-Referral-Form"/>
       <description value="Example for Composition"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
 
     <resource>
       <reference>
-        <reference value="Questionnaire/referral-min"/>
+        <reference value="Questionnaire/order-referral-form"/>
       </reference>
-      <name value="Questionnaire Referral minimal"/>
+      <name value="Questionnaire Order-Referral-Form"/>
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
@@ -206,19 +206,19 @@
 
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/referral-min"/>
+        <reference value="QuestionnaireResponse/order-referral-form"/>
       </reference>
-      <name value="Questionnaire Response Referral minimal"/>
-      <description value="Example for Questionnaire Response"/>
+      <name value="QuestionnaireResponse Order-Referral-Form"/>
+      <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
 
     <resource>
       <reference>
-        <reference value="ServiceRequest/referral-min"/>
+        <reference value="ServiceRequest/order-referral-form"/>
       </reference>
-      <name value="Service Request Referral minimal"/>
-      <description value="Example for Service Request"/>
+      <name value="ServiceRequest Order-Referral-Form"/>
+      <description value="Example for ServiceRequest"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
     </resource>
 
@@ -226,7 +226,7 @@
       <reference>
         <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
       </reference>
-      <name value="Sabine Meier at Praxis Seeblick (Referral minimal)"/>
+      <name value="Sabine Meier @ Praxis Seeblick"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -234,7 +234,7 @@
       <reference>
         <reference value="PractitionerRole/NotificationContactSabineMeier"/>
       </reference>
-      <name value="Notification Contact Sabine Meier (Referral minimal)"/>
+      <name value="Notification Contact Sabine Meier"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -242,7 +242,7 @@
       <reference>
         <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
       </reference>
-      <name value="Stabilo Boss at Praxis Seeblick (Referral minimal)"/>
+      <name value="Stabilo Boss @ Praxis Seeblick"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -250,7 +250,7 @@
       <reference>
         <reference value="PractitionerRole/HansRoentgenKantonsspital"/>
       </reference>
-      <name value="Hans Röntgen at Kantonsspital (Referral minimal)"/>
+      <name value="Hans Röntgen @ Kantonsspital"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -258,7 +258,7 @@
       <reference>
         <reference value="PractitionerRole/NotificationContactHansRoentgen"/>
       </reference>
-      <name value="Notification Contact Hans Röntgen (Referral minimal)"/>
+      <name value="Notification Contact Hans Röntgen"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -267,7 +267,7 @@
       <reference>
         <reference value="Organization/PraxisSeeblick"/>
       </reference>
-      <name value="Praxis Seeblick (Referral minimal)"/>
+      <name value="Praxis Seeblick"/>
       <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -275,7 +275,7 @@
       <reference>
         <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
       </reference>
-      <name value="Response Receiver Praxis Seeblick (Referral minimal)"/>
+      <name value="Response Receiver Praxis Seeblick"/>
       <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -283,7 +283,7 @@
       <reference>
         <reference value="Organization/Kantonsspital"/>
       </reference>
-      <name value="Kantonsspital (Referral minimal)"/>
+      <name value="Kantonsspital"/>
       <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -292,7 +292,7 @@
       <reference>
         <reference value="Practitioner/SabineMeier"/>
       </reference>
-      <name value="Sabine Meier (Referral minimal)"/>
+      <name value="Sabine Meier"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -300,7 +300,7 @@
       <reference>
         <reference value="Practitioner/NotificationContactSabineMeier"/>
       </reference>
-      <name value="Notification Contact Sabine Meier (Referral minimal)"/>
+      <name value="Notification Contact Sabine Meier"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -308,7 +308,7 @@
       <reference>
         <reference value="Practitioner/StabiloBoss"/>
       </reference>
-      <name value="Stabilo Boss (Referral minimal)"/>
+      <name value="Stabilo Boss"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -316,7 +316,7 @@
       <reference>
         <reference value="Practitioner/HansRoentgen"/>
       </reference>
-      <name value="Hans Röntgen (Referral minimal)"/>
+      <name value="Hans Röntgen"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -324,7 +324,7 @@
       <reference>
         <reference value="Practitioner/NotificationContactHansRoentgen"/>
       </reference>
-      <name value="Notification Contact Hans Röntgen (Referral minimal)"/>
+      <name value="Notification Contact Hans Röntgen"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -341,7 +341,7 @@
       <reference>
         <reference value="Patient/ErikaMusterfrau"/>
       </reference>
-      <name value="Erika Musterfrau (Referral minimal)"/>
+      <name value="Erika Musterfrau"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -349,7 +349,7 @@
       <reference>
         <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
       </reference>
-      <name value="Response Receiver Erika Musterfrau (Referral minimal)"/>
+      <name value="Response Receiver Erika Musterfrau"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>

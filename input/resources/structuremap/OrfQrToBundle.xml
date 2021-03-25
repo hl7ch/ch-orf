@@ -7,10 +7,10 @@
       xmlns="http://www.w3.org/1999/xhtml">
       <pre>map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
 
-// ORF Questionnaire Response to Bundle
+// ORF QuestionnaireResponse to Bundle
 // 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
-// QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-referral-min.html
-// QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+// QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-order-referral-form.html
+// QRF QuestionnaireResponse: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
 // Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
@@ -260,10 +260,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition
   </text>
   <url value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"></url>
   <name value="OrfQrToBundle"></name>
-  <description value="ORF Questionnaire Response to Bundle
+  <description value="ORF QuestionnaireResponse to Bundle
 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
-QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-referral-min.html
-QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-order-referral-form.html
+QRF QuestionnaireResponse: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
 Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html"></description>
   <structure>
     <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"></url>

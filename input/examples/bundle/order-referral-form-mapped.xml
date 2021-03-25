@@ -1,6 +1,6 @@
 <Bundle 
   xmlns="http://hl7.org/fhir">
-  <id value="referral-min-mapped" />
+  <id value="order-referral-form-mapped" />
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:uuid:5fae9f07-7d77-4693-a6eb-fb6e5ab17307"/>
@@ -109,7 +109,7 @@
         <meta>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
         </meta>
-        <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
+        <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <status value="completed"/>
         <item>
           <linkId value="order"/>

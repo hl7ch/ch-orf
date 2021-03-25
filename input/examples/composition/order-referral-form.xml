@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composition xmlns="http://hl7.org/fhir">
-    <id value="referral-min"/>
+    <id value="order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </meta>
     <text>
         <status value="generated"/>
         <div xmlns="http://www.w3.org/1999/xhtml">
-            Referral min
+            Order-Referral-Form
         </div>
     </text>
     <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
@@ -64,23 +64,23 @@
     <author>
         <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
     </author>
-    <title value="Referral min"/>
+    <title value="Order-Referral-Form"/>
     <section>
-        <title value="Referral"/>
+        <title value="Order-Referral-Form"/>
         <text>
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
-                            Referral min
+                Order-Referral-Form
             </div>
         </text>
         <entry>
-            <reference value="Questionnaire/referral-min"/>
+            <reference value="Questionnaire/order-referral-form"/>
         </entry>
         <entry>
-            <reference value="QuestionnaireResponse/referral-min"/>
+            <reference value="QuestionnaireResponse/order-referral-form"/>
         </entry>
         <entry>
-            <reference value="ServiceRequest/referral-min"/>
+            <reference value="ServiceRequest/order-referral-form"/>
         </entry>
     </section>
 </Composition>

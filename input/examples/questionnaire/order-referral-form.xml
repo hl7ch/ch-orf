@@ -1,5 +1,5 @@
 <Questionnaire xmlns="http://hl7.org/fhir">
-    <id value="referral-min" />
+    <id value="order-referral-form" />
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
         <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire" />
@@ -33,9 +33,9 @@
             <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
         </valueExpression>
     </extension>
-    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/referral-min"/>
-    <name value="ORFReferralMinimial" />
-    <title value="ORF Referral Minimial" />
+    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+    <name value="OrderReferralForm" />
+    <title value="Order-Referral-Form" />
     <status value="draft" />
     <experimental value="true" />
     <subjectType value="Patient" />
