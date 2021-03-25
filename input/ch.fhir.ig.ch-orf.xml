@@ -152,6 +152,14 @@
       <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureMap/OrfBundleToQr"/>
+      </reference>
+      <name value="Map ORF"/>
+      <description value="Mapping ORF Bundle to Questionnaire Response"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Example Instances-->
     <resource>
