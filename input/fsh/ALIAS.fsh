@@ -1,0 +1,1 @@
+//Alias:   ChOrfDocument = http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document
