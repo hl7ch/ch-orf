@@ -1,5 +1,5 @@
 <ServiceRequest xmlns="http://hl7.org/fhir">
-    <id value="order-referral-form"/>
+    <id value="sr-order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
     </meta>
