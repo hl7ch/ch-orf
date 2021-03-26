@@ -1,46 +1,5 @@
 <Questionnaire xmlns="http://hl7.org/fhir">
-    <id value="order-referral-form" />
-    <meta>
-        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire" />
-        <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire" />
-        <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract" />
-    </meta>
-    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
-        <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" />
-    </extension>
-    <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext">
-        <extension url="name">
-            <valueId value="Bundle"/>
-        </extension>
-        <extension url="type">
-            <valueCode value="Bundle"/>
-        </extension>
-        <extension url="description">
-            <valueString value="The Bundle that is to be used to pre-populate the form"/>
-        </extension>
-    </extension>
-    <extension url="http://hl7.org/fhir/StructureDefinition/variable">
-        <valueExpression>
-            <name value="Patient"/>
-            <language value="text/fhirpath"/>
-            <expression value="%Bundle.entry[0].resource.subject.resolve()"/>
-        </valueExpression>
-    </extension>
-    <extension url="http://hl7.org/fhir/StructureDefinition/variable">
-        <valueExpression>
-            <name value="Orderer"/>
-            <language value="text/fhirpath"/>
-            <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
-        </valueExpression>
-    </extension>
-    <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-    <name value="OrderReferralForm" />
-    <title value="Order-Referral-Form" />
-    <status value="draft" />
-    <experimental value="true" />
-    <subjectType value="Patient" />
-    <date value="2020-12-17" />
-    <publisher value="eHealth Suisse"/>
+    
 
     <!-- Auftrag -->
     <item>

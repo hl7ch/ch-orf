@@ -15,19 +15,12 @@
   <status value="active"/>
   <experimental value="false"/>
   <date value="2018-05-14"/>
-  <publisher value="eHealth Suisse"/>
+  <publisher value="HL7 Switzerland"/>
   <contact>
-    <name value="eHealth Suisse"/>
+    <name value="HL7 Switzerland"/>
     <telecom>
       <system value="url"/>
-      <value value="https://www.e-health-suisse.ch/"/>
-    </telecom>
-  </contact>
-  <contact>
-    <name value="Oliver Egger"/>
-    <telecom>
-      <system value="email"/>
-      <value value="oliver.egger@ahdis.ch"/>
+      <value value="https://www.hl7.ch/"/>
     </telecom>
   </contact>
   <description value="Implementation Guide for CH ORF"/>
@@ -214,7 +207,7 @@
 
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/order-referral-form"/>
+        <reference value="QuestionnaireResponse/qr-order-referral-form"/>
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form"/>
       <description value="Example for QuestionnaireResponse"/>
