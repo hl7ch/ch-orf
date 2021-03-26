@@ -1,44 +1,28 @@
-### Order-Referral-Form
-
+### Anwendungsfall einfach
 #### Akteure
-* Patient: [Erika Musterfrau](Patient-ErikaMusterfrau.html)
+* Patient: Frau S. Ufferer
 * Auftraggeber: 
-   * Verantwortlicher: [Sabine Meier @ Praxis Seeblick](PractitionerRole-SabineMeierPraxisSeeblick.html)
-      * Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument: [Sabine Meier](PractitionerRole-NotificationContactSabineMeier.html)
-   * Erfasser: [Stabilo Boss](PractitionerRole-StabiloBossPraxisSeeblick.html)
-* Auftragsempfänger: [Hans Röntgen @ Kantonsspital](PractitionerRole-HansRoentgenKantonsspital.html)
-   * Dringender Benachrichtigungskontakt für dieses Dokument: [Hans Röntgen](PractitionerRole-NotificationContactHansRoentgen.html)
-* Rückmeldungsempfänger: 
-   * [Praxis Seeblick (Organisation)](Organization-PraxisSeeblick.html)
-   * [Erika Musterfrau (Patient)](Patient-ErikaMusterfrau.html)
+   * Verantwortlicher: Dr. O. Rderplacer, Hausarzt in der Gemeinschaftspraxis Happy Doctors
+   * Erfasser: W. Riter, Medizinische Praxisassistentin in der Gemeinschaftspraxis Happy Doctors
+* Auftragsempfänger: Dr. O. Rderfiller, Radiologe am Institut für Radiologie des Happy Hospital
+* Rückmeldungsempfänger:
+   * Gemeinschaftspraxis Happy Doctors
+   * Frau S. Ufferer
 
-#### Ablauf
-Die Patientin Erika Musterfrau hat am 1. April 2019 einen Termin in der Praxis Seeblick bei ihrer Hausärztin Dr. med. Sabine Meier. Erika Musterfrau klagt über rezidivierende Knieschmerzen mit aktuell massiver Schwellung. Aufgrund der Anamnese und der Untersuchung entscheidet sich die Ärztin ein Röntgen anzuordnen, welches in der Radiologie des Kantonsspitals durchgeführt werden soll.
+#### Auftrag
+Frau S. Ufferer hat am 15. März 2021 einen Termin in der Gemeinschaftspraxis Happy Doctors bei ihrem Hausarzt Dr. O. Rderplacer. Die Patientin klagt über rezidivierende Knieschmerzen. Aufgrund der Anamnese und der Untersuchung entscheidet sich der Arzt ein Röntgen anzuordnen, welches im Institut für Radiologie des Happy Hospitals durch Dr. O. Rderfiller durchgeführt werden soll.
 
-Der medizininsche Praxisassistent Stabilo Boss erfasst den Radiologie-Auftrag im Praxisinformationssystem. Dazu befüllt er das [Auftragsformular](Questionnaire-order-referral-form.html) mit den entsprechenden [Antworten](QuestionnaireResponse-order-referral-form.html).
+Die medizinische Praxisassistentin W. Riter erfasst den Radiologie-Auftrag und sendet ihn an das Institut für Radiologie. Im Auftrag wird ebenfalls angegeben, dass der Bericht der Gemeinschaftspraxis und eine Kopie davon der Patientin gesendet werden soll.
 
-Während dessen telefoniert Dr. med. Sabine Meier noch mit dem auftragsempfangenden Arzt Dr. med. Hans Röntgen vom Kantonsspital. Die Hausärztin hat den Verdacht einer Kniegelenksarthrose und möchte sich beim Radiologen absichern, dass das konventionelle Röntgen das optimale bildgebende Verfahren ist. Dr. med. Hans Röntgen möchte sich vor der radiologischen Untersuchung selbst einen Eindruck der aktuellen Knieschwellung machen. Er soll deshalb beim Eingang des Radiologie-Auftrags kontaktiert werden, dass er den Termin so legen kann, dass ihm das möglich ist.
+* Auftrag Radiologie: [XML], [JSON]
 
-Dr. med. Sabine Meier der Praxis Seeblick erstellt einen Radiologieauftrag an Dr. med. Röntgen vom Kantonsspital.
-* Im Vorfeld telefoniert Dr. Meier mit Dr. Röntgen
-* Dr. Röntgen soll beim Eingang des Radiologieauftrags dringend kontaktiert werden
-* Dr. Meier soll sofort kontaktiert werden, wenn das Resultat der Untersuchung vorliegt.
+#### Bericht
+Am 22. März 2021 wird das Knie von Frau S. Ufferer im Institut für Radiologie des Happy Hospitals geröntgt. Der Radiologe schreibt seinen Bericht am 23. März 2021 dazu und sendet ihn wie gewünscht an die Gemeinschaftspraxis Happy Doctors und die Patientin S. Ufferer.
 
+* Bericht Radiologie: [XML], [JSON]
 
-{% include img.html img="use-case.png" caption="Fig.: Use Case" width="800%" %}
+{% include img.html img="usecase-simple.png" caption="Fig.: Anwendungsfall einfach" width="100%" %}
 
-
-
-
-#### Vorschlag Juerg
+### TBD: Anwendungsfall komplex
+Vorschlag Juerg:   
 Notfall in der Nacht von Samstag auf Sonntag. Hausarzt weist in peripheres Sptital ein, das aber keinen Dienstradiologen hat. Dienstarzt hat im Thorax-CT Verdacht auf ein Aortenaneurysma. Er telefoniert mit dem Radiologen im Unispital und schickt die Bilder. Die Zeit läuft: Der Radiologe will sich die Bilder sofoft nach Erhalt ansehen; der Vedacht erhärtet sich und er meldet das sofort zurück; anschliessend wird Patient notfallmässig verlegt auf die Thoraxchirurgie und umgehend operiert.
-
-Kommentar MZ:   
-* CT wird im peripheren Spital gemacht?
-* Dann füllt der Dienstarzt aber keinen Radiologie-Auftrag für das Unispital aus oder? 
-
-
-[Bundle](Bundle-order-referral-form.html)
-
-[ServiceRequest](ServiceRequest-order-referral-form.html)
-
