@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuestionnaireResponse 
+  xmlns="http://hl7.org/fhir">
+  <id value="order-referal-form-mappedback"/>
+  <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+  <status value="completed"/>
+  <item>
+    <linkId value="order"/>
+    <item>
+      <linkId value="order.placerOrderIdentifier"/>
+      <answer>
+        <valueString value="123"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.placerOrderIdentifierDomain"/>
+      <answer>
+        <valueString value="urn:oid:1.3.4.5.6.7"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.fillerOrderIdentifier"/>
+      <answer>
+        <valueString value="456"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.fillerOrderIdentifierDomain"/>
+      <answer>
+        <valueString value="urn:oid:7.8.9.10.11"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.precedentDocumentIdentifier"/>
+      <answer>
+        <valueString value="1622f2fb-6ba3-4532-9aed-35b158def187"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.notificationContactDocument"/>
+      <item>
+        <linkId value="order.notificationContactDocument.practitioner"/>
+        <item>
+          <linkId value="order.notificationContactDocument.practitioner.familyName"/>
+          <answer>
+            <valueString value="Röntgen"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocument.practitioner.givenName"/>
+          <answer>
+            <valueString value="Hans"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocument.practitioner.title"/>
+          <answer>
+            <valueString value="Dr. med."/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocument.practitioner.phone"/>
+          <answer>
+            <valueString value="044 412 00 99"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocument.practitioner.email"/>
+          <answer>
+            <valueString value="hans.roentgen@kantonsspital.ch"/>
+          </answer>
+        </item>
+      </item>
+    </item>
+    <item>
+      <linkId value="order.notificationContactDocumentResponse"/>
+      <item>
+        <linkId value="order.notificationContactDocumentResponse.practitioner"/>
+        <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
+          <answer>
+            <valueString value="Meier"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.givenName"/>
+          <answer>
+            <valueString value="Sabine"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+          <answer>
+            <valueString value="Dr. med."/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.phone"/>
+          <answer>
+            <valueString value="044 333 22 11"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.email"/>
+          <answer>
+            <valueString value="sabine.meier@praxisseeblick.ch"/>
+          </answer>
+        </item>
+      </item>
+    </item>
+    <item>
+      <linkId value="order.priority"/>
+      <answer>
+        <valueCoding>
+          <system value="http://hl7.org/fhir/request-priority"/>
+          <code value="routine"/>
+        </valueCoding>
+      </answer>
+    </item>
+  </item>
+  <item>
+    <linkId value="receiverRequest"/>
+    <item>
+      <linkId value="receiverRequest.practitioner"/>
+      <item>
+        <linkId value="receiverRequest.practitioner.familyName"/>
+        <answer>
+          <valueString value="Röntgen"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.practitioner.givenName"/>
+        <answer>
+          <valueString value="Hans"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.practitioner.title"/>
+        <answer>
+          <valueString value="Dr. med."/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.practitioner.gln"/>
+        <answer>
+          <valueString value="7601000066878"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.practitioner.phone"/>
+        <answer>
+          <valueString value="044 412 00 99"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.practitioner.email"/>
+        <answer>
+          <valueString value="hans.roentgen@kantonsspital.ch"/>
+        </answer>
+      </item>
+    </item>
+    <item>
+      <linkId value="receiverRequest.organization"/>
+      <item>
+        <linkId value="receiverRequest.organization.name"/>
+        <answer>
+          <valueString value="Kantonsspital"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.organization.streetAddressLine"/>
+        <answer>
+          <valueString value="Kantonsstrasse 14"/>
+        </answer>
+        <answer>
+          <valueString value="Postfach 14"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.organization.postalCode"/>
+        <answer>
+          <valueString value="8000"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.organization.city"/>
+        <answer>
+          <valueString value="Zürich"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverRequest.organization.country"/>
+        <answer>
+          <valueString value="Schweiz"/>
+        </answer>
+      </item>
+    </item>
+  </item>
+  <item>
+    <linkId value="patient"/>
+    <item>
+      <linkId value="patient.familyName"/>
+      <answer>
+        <valueString value="Musterfrau"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.givenName"/>
+      <answer>
+        <valueString value="Erika"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.localPid"/>
+      <answer>
+        <valueString value="11.22.33.4567"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.birthDate"/>
+      <answer>
+        <valueDate value="1970-03-14"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.gender"/>
+      <answer>
+        <valueCoding>
+          <system value="http://hl7.org/fhir/administrative-gender"/>
+          <code value="female"/>
+        </valueCoding>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.phone"/>
+      <answer>
+        <valueString value="079 979 79 79"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.email"/>
+      <answer>
+        <valueString value="erika@musterfrau.ch"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.streetAddressLine"/>
+      <answer>
+        <valueString value="Musterweg"/>
+      </answer>
+      <answer>
+        <valueString value="6a"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.postalCode"/>
+      <answer>
+        <valueString value="8000"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.city"/>
+      <answer>
+        <valueString value="Zürich"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.country"/>
+      <answer>
+        <valueString value="Schweiz"/>
+      </answer>
+    </item>
+  </item>
+  <item>
+    <linkId value="orderer"/>
+    <item>
+      <linkId value="orderer.author"/>
+      <item>
+        <linkId value="orderer.author.practitioner"/>
+        <item>
+          <linkId value="orderer.author.practitioner.familyName"/>
+          <answer>
+            <valueString value="Meier"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.practitioner.givenName"/>
+          <answer>
+            <valueString value="Sabine"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.practitioner.title"/>
+          <answer>
+            <valueString value="Dr. med."/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.practitioner.gln"/>
+          <answer>
+            <valueString value="7601000034321"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.practitioner.phone"/>
+          <answer>
+            <valueString value="044 333 22 11"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.practitioner.email"/>
+          <answer>
+            <valueString value="sabine.meier@praxisseeblick.ch"/>
+          </answer>
+        </item>
+      </item>
+      <item>
+        <linkId value="orderer.author.organization"/>
+        <item>
+          <linkId value="orderer.author.organization.name"/>
+          <answer>
+            <valueString value="Praxis Seeblick"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.organization.streetAddressLine"/>
+          <answer>
+            <valueString value="Seestrasse 133"/>
+          </answer>
+          <answer>
+            <valueString value="Haus C"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.organization.postalCode"/>
+          <answer>
+            <valueString value="8000"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.organization.city"/>
+          <answer>
+            <valueString value="Zürich"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.author.organization.country"/>
+          <answer>
+            <valueString value="Schweiz"/>
+          </answer>
+        </item>
+      </item>
+    </item>
+    <item>
+      <linkId value="orderer.dataenterer"/>
+      <item>
+        <linkId value="orderer.dataenterer.practitioner"/>
+        <item>
+          <linkId value="orderer.dataenterer.practitioner.familyName"/>
+          <answer>
+            <valueString value="Boss"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.dataenterer.practitioner.givenName"/>
+          <answer>
+            <valueString value="Stabilo"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.dataenterer.practitioner.phone"/>
+          <answer>
+            <valueString value="044 333 22 12"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="orderer.dataenterer.practitioner.email"/>
+          <answer>
+            <valueString value="stabilo.boss@praxisseeblick.ch"/>
+          </answer>
+        </item>
+      </item>
+    </item>
+  </item>
+  <item>
+    <linkId value="receiverResponses"/>
+    <item>
+      <linkId value="receiverResponse"/>
+      <item>
+        <linkId value="receiverResponse.organization.name"/>
+        <answer>
+          <valueString value="Praxis Seeblick"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.familyName"/>
+        <answer>
+          <valueString value="Meier"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.givenName"/>
+        <answer>
+          <valueString value="Sabine"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.title"/>
+        <answer>
+          <valueString value="Dr. med."/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.phone"/>
+        <answer>
+          <valueString value="044 333 22 11"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.email"/>
+        <answer>
+          <valueString value="sabine.meier@praxisseeblick.ch"/>
+        </answer>
+      </item>
+    </item>
+    <item>
+      <linkId value="receiverResponse"/>
+      <item>
+        <linkId value="receiverResponse.familyName"/>
+        <answer>
+          <valueString value="Musterfrau"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.givenName"/>
+        <answer>
+          <valueString value="Erika"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.phone"/>
+        <answer>
+          <valueString value="079 979 79 79"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.email"/>
+        <answer>
+          <valueString value="erika@musterfrau.ch"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.streetAddressLine"/>
+        <answer>
+          <valueString value="Musterweg"/>
+        </answer>
+        <answer>
+          <valueString value="6a"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.postalCode"/>
+        <answer>
+          <valueString value="8000"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.city"/>
+        <answer>
+          <valueString value="Zürich"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiverResponse.country"/>
+        <answer>
+          <valueString value="Schweiz"/>
+        </answer>
+      </item>
+    </item>
+  </item>
+</QuestionnaireResponse>

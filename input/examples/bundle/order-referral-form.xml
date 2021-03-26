@@ -24,6 +24,11 @@
                     <status value="generated"/>
                     <div xmlns="http://www.w3.org/1999/xhtml"> Order-Referral-Form </div>
                 </text>
+                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument">
+                    <valueIdentifier>
+                      <value value="1622f2fb-6ba3-4532-9aed-35b158def187"/>
+                    </valueIdentifier>
+                </extension>
                 <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
                     <extension url="enterer">
                         <!-- https://github.com/hl7ch/ch-core/issues/91 Reference to PractitionerRole, not only Practitioner

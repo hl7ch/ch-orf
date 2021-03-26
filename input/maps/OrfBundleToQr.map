@@ -1,0 +1,450 @@
+map "http://fhir.ch/ig/ch-orf/StructureMap/OrfBundleToQr" = "OrfBundleToQr"
+
+//
+// ORF Bundle To QuestionnaireResonse
+// 2021-03-23 Oliver Egger, copyright ahdis ag, Apache License 
+// Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html
+// QRF Questionnaire Response: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-referral-min.xml.html
+
+uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as source
+uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as source
+uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as source
+uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as source
+uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as source
+uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias PractitionerRole as source
+uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as source
+uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as source
+
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as target
+
+group OrfBundleToQr(source bundle : Bundle, target qr : QuestionnaireResponse ) {
+  bundle -> qr.questionnaire = 'http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form' "questionnaire"; 
+  bundle -> qr.status = 'completed' "status";
+  bundle.entry first as entry then {
+    entry.resource as composition then {
+      composition.section as section then {
+        bundle.entry as entry then {
+          entry.fullUrl where ($this in %section.entry.reference) and $this.startsWith('urn:uuid')  then {
+            entry.resource : ServiceRequest as serviceRequest then CompositionToQr(bundle, composition, serviceRequest, qr) "servicerequest";
+          } "fullUrlAsUuid";
+          entry.resource: ServiceRequest as serviceRequest where ('ServiceRequest'+'/'+$this.id) in %section.entry.reference then CompositionToQr(bundle, composition, serviceRequest, qr) "servicerequest";
+        } "bundle.entry";
+     } "composition.section"; 
+    } "entry.resource";
+  } "bundle.entry";
+}
+
+group CompositionToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target qr : QuestionnaireResponse ) {
+   composition -> qr.item as item, item.linkId = 'order' then OrderToQr(bundle, composition, serviceRequest, item) "order"; 
+   serviceRequest.performer -> qr.item as item, item.linkId = 'receiverRequest' then ReceiverRequestToQr(bundle, composition, serviceRequest, item) "receiverRequest"; 
+   composition.subject -> qr.item as item, item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient"; 
+   composition.author -> qr.item as item, item.linkId = 'orderer' then OrdererToQr(bundle, composition, serviceRequest, item) "orderer"; 
+   composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') -> qr.item as item, item.linkId = 'receiverResponses' then ReceiverResponseToQr(bundle, composition, serviceRequest, item) "receiverResponses"; 
+}
+
+group OrderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+//            <linkId value="order.placerOrderIdentifierDomain" />
+//            <linkId value="order.fillerOrderIdentifier" />
+  serviceRequest.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='PLAC')) 
+      -> item.item as itemfirst, itemfirst.linkId = 'order.placerOrderIdentifier', itemfirst.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as itemsecond, itemsecond.linkId = 'order.placerOrderIdentifierDomain', itemsecond.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
+  } "order.placerOrderIdentifierDomain";
+//            <linkId value="order.fillerOrderIdentifier" />
+//            <linkId value="order.fillerOrderIdentifierDomain" />
+  serviceRequest.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='FILL')) 
+      -> item.item as itemfirst, itemfirst.linkId = 'order.fillerOrderIdentifier', itemfirst.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as itemsecond, itemsecond.linkId = 'order.fillerOrderIdentifierDomain', itemsecond.answer as answer, answer.value = cast(system, 'string') "order.fillerOrderIdentifier"; 
+  } "order.fillerOrderIdentifierDomain";
+//            <linkId value="order.precedentDocumentIdentifier" />
+
+  composition.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument' then {
+     extension.value as value -> item.item as item, item.linkId = 'order.precedentDocumentIdentifier', item.answer as answer, answer.value = (value.value) "order.precedentDocumentIdentifier";
+  } "composition";
+
+// 'order.dateTime'- currently not mapped in qr response
+//  FIMXE: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Exception executing transform answer.value = cast(timestamp, 'dateTime') on Rule &quot;order.dateTime&quot;: cast to dateTime not yet supported"
+//  bundle.timestamp as timestamp -> item.item as item, item.linkId = 'order.dateTime', item.answer as answer, answer.value = cast(timestamp, 'dateTime') "order.dateTime";
+//  bundle.timestamp as timestamp -> item.item as item, item.linkId = 'order.dateTime', item.answer as answer, answer.value = timestamp "order.dateTime";
+
+// urgent notifcation for this contact  
+  composition.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument' then {
+    extension.value as value then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : PractitionerRole as practitionerRole then UrgentNotificationToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+        } "fullUrlAsUuid";
+        entry.resource: PractitionerRole as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %value.reference then UrgentNotificationToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+      } "bundle.entry";
+    } "extension.value";
+  } "composition";
+
+// Urgent Notification Contact for the Response to this document
+  composition.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument' then {
+    extension.value as value then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : PractitionerRole as practitionerRole then UrgentNotificationResponseToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+        } "fullUrlAsUuid";
+        entry.resource: PractitionerRole as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %value.reference then UrgentNotificationResponseToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+      } "bundle.entry";
+    } "extension.value";
+  } "composition";
+
+// order.priority
+   serviceRequest.priority as priority -> item.item as item, item.linkId = 'order.priority', item.answer as answer, answer.value = create('Coding') as coding, coding.system ='http://hl7.org/fhir/request-priority', coding.code = priority "order.priority";
+}
+
+group UrgentNotificationToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target item : BackboneElement ) {
+   composition -> item.item as itemgroup, itemgroup.linkId = 'order.notificationContactDocument', itemgroup.item as item, item.linkId='order.notificationContactDocument.practitioner' then {  
+     practitionerRole.practitioner as practitioner then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %practitioner.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : Practitioner as practitioner then UrgentNotificationPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+        } "fullUrlAsUuid";
+        entry.resource: Practitioner as practitioner where ('Practitioner'+'/'+$this.id) in %practitioner.reference then UrgentNotificationPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+      } "bundle.entry";
+     } "practitioner";
+   } "urgentnotification";
+}
+
+group UrgentNotificationPractitionerToQr(source bundle : Bundle, source composition: Composition, source practitioner: Practitioner, target item: BackboneElement ) {
+// order.notificationContactDocument.practitioner.familyNane
+   practitioner.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'order.notificationContactDocument.practitioner.familyName', item.answer as answer, answer.value = family "family";
+// order.notificationContactDocument.practitioner.givenName
+     name.given as given -> item.item as item, item.linkId = 'order.notificationContactDocument.practitioner.givenName', item.answer as answer, answer.value = given "given";
+// order.notificationContactDocument.practitioner.title
+     name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'order.notificationContactDocument.practitioner.title', item.answer as answer, answer.value = prefix "prefix";
+   } "name";
+// order.notificationContactDocument.practitioner.phone
+   practitioner.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'order.notificationContactDocument.practitioner.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// order.notificationContactDocument.practitioner.memaol
+   practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'order.notificationContactDocument.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
+}
+
+group UrgentNotificationResponseToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target item : BackboneElement ) {
+// order.notificationContactDocumentResponse
+   composition -> item.item as itemgroup, itemgroup.linkId = 'order.notificationContactDocumentResponse', itemgroup.item as item, item.linkId='order.notificationContactDocumentResponse.practitioner' then {  
+     practitionerRole.practitioner as practitioner then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %practitioner.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : Practitioner as practitioner then UrgentNotificationResponsePractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+        } "fullUrlAsUuid";
+        entry.resource: Practitioner as practitioner where ('Practitioner'+'/'+$this.id) in %practitioner.reference then UrgentNotificationResponsePractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+      } "bundle.entry";
+     } "practitioner";
+   } "urgentnotification";
+}
+
+group UrgentNotificationResponsePractitionerToQr(source bundle : Bundle, source composition: Composition, source practitioner: Practitioner, target item : BackboneElement ) {
+// order.notificationContactDocumentResponse.practitioner.familyName
+   practitioner.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.familyName', item.answer as answer, answer.value = family "family";
+// order.notificationContactDocumentResponse.practitioner.givenName
+     name.given as given -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.givenName', item.answer as answer, answer.value = given "given";
+// order.notificationContactDocumentResponse.practitioner.title
+     name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.title', item.answer as answer, answer.value = prefix "prefix";
+   } "name";
+// order.notificationContactDocumentResponse.practitioner.phone
+   practitioner.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// order.notificationContactDocumentResponse.practitioner.memaol
+   practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
+}
+
+group ReceiverRequestToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+  serviceRequest.performer as performer then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %performer.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : PractitionerRole as practitionerRole then ReceiverRequestPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+      } "fullUrlAsUuid";
+      entry.resource: PractitionerRoler as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %performer.reference then ReceiverRequestPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+    } "bundle.entry";
+  } "practitioner";
+}
+
+group ReceiverRequestPractitionerRoleToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target itemgroup : BackboneElement ) {
+  practitionerRole.practitioner as practitioner -> itemgroup.item as item, item.linkId = 'receiverRequest.practitioner' then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %practitioner.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : Practitioner as practitioner then ReceiverRequestPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+      } "fullUrlAsUuid";
+      entry.resource: Practitioner as practitioner where ('Practitioner'+'/'+$this.id) in %practitioner.reference then ReceiverRequestPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+    } "bundle.entry";
+  } "practitioner";
+  practitionerRole.organization as organization -> itemgroup.item as item, item.linkId = 'receiverRequest.organization' then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %organization.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : Organization as organization then ReceiverRequestOrganizationToQr(bundle, composition, organization, item) "organization";
+      } "fullUrlAsUuid";
+      entry.resource: Organization as organization where ('Organization'+'/'+$this.id) in %organization.reference then ReceiverRequestOrganizationToQr(bundle, composition, practitioner, item) "organization";
+    } "bundle.entry";
+  } "organization";
+}
+
+group ReceiverRequestPractitionerToQr(source bundle : Bundle, source composition: Composition, source practitioner: Practitioner, target item : BackboneElement ) {
+// receiverRequest.practitioner.familyName
+   practitioner.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'receiverRequest.practitioner.familyName', item.answer as answer, answer.value = family "family";
+// receiverRequest.practitioner.givenName
+     name.given as given -> item.item as item, item.linkId = 'receiverRequest.practitioner.givenName', item.answer as answer, answer.value = given "given";
+// receiverRequest.practitioner.title
+     name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverRequest.practitioner.title', item.answer as answer, answer.value = prefix "prefix";
+   } "name";
+// receiverRequest.practitioner.gln
+  practitioner.identifier as identifier where (system='urn:oid:2.51.1.3') then {
+    identifier.value as value -> item.item as item, item.linkId = 'receiverRequest.practitioner.gln', item.answer as answer, answer.value = cast(value, 'string') "gln";
+  } "identifier";
+// receiverRequest.practitioner.phone
+   practitioner.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverRequest.practitioner.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// receiverRequest.practitioneremila
+   practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverRequest.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
+}
+
+group ReceiverRequestOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target item : BackboneElement ) {
+// receiverRequest.organization.name
+   organization.name as name -> item.item as item, item.linkId = 'receiverRequest.organization.name', item.answer as answer, answer.value = name "name";
+// receiverRequest.organization.streetAddressLine
+   organization.address as addr then {
+      addr.line first as line1 -> item.item as item, item.linkId = 'receiverRequest.organization.streetAddressLine' then {
+        addr.line as line -> item.answer as answer, answer.value = line "line";
+      } "addrlinefirst"; 
+// receiverRequest.organization.postalCode
+      addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverRequest.organization.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+// receiverRequest.organization.city
+      addr.city as city -> item.item as item, item.linkId = 'receiverRequest.organization.city', item.answer as answer, answer.value = city "city";
+// receiverRequest.organization.country
+      addr.country as country -> item.item as item, item.linkId = 'receiverRequest.organization.country', item.answer as answer, answer.value = country "country";
+   } "addr";
+}
+
+group PatientToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+  composition.subject as subject then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %subject.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : Patient as patient then PatientDetailsToQr(bundle, composition, patient, item) "patient";
+      } "fullUrlAsUuid";
+      entry.resource: Patient as patient where ('Patient'+'/'+$this.id) in %subject.reference then PatientDetailsToQr(bundle, composition, patient, item) "patient";
+    } "bundle.entry";
+  } "practitioner";
+}
+
+group PatientDetailsToQr(source bundle : Bundle, source composition: Composition, source patient: Patient, target item : BackboneElement ) {
+// patient.familyName
+   patient.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'patient.familyName', item.answer as answer, answer.value = family "family";
+// patient.givenName
+     name.given as given -> item.item as item, item.linkId = 'patient.givenName', item.answer as answer, answer.value = given "given";
+   } "name";
+// patient.localPid
+  patient.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='MR')) 
+      -> item.item as item, item.linkId = 'patient.localPid', item.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as item, item.linkId = 'patient.localPidIdentifierDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
+  } "patient.localPid";
+// patient.birthDate
+   patient.birthDate as birthDate -> item.item as item, item.linkId = 'patient.birthDate', item.answer as answer, answer.value = birthDate "patient.birthDate";
+// patient.gender
+   patient.gender as gender -> item.item as item, item.linkId = 'patient.gender', item.answer as answer, answer.value = create('Coding') as coding, coding.system ='http://hl7.org/fhir/administrative-gender', coding.code = gender "patient.gender";
+// patient.phone
+   patient.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'patient.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// patient.email
+   patient.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'patient.email', item.answer as answer, answer.value = (telecom.value) "email";
+   patient.address as addr then {
+      addr.line first as line1 -> item.item as item, item.linkId = 'patient.streetAddressLine' then {
+        addr.line as line -> item.answer as answer, answer.value = line "line";
+      } "addrlinefirst"; 
+// patient.postalCode
+      addr.postalCode as postalCode -> item.item as item, item.linkId = 'patient.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+// patient.city
+      addr.city as city -> item.item as item, item.linkId = 'patient.city', item.answer as answer, answer.value = city "city";
+// patient.country
+      addr.country as country -> item.item as item, item.linkId = 'patient.country', item.answer as answer, answer.value = country "country";
+   } "addr";
+}
+
+group OrdererToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+  composition.author as author then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %author.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : PractitionerRole as practitionerRole then OrdererPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+      } "fullUrlAsUuid";
+      entry.resource: PractitionerRoler as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %author.reference then OrdererPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+    } "bundle.entry";
+  } "author";
+  composition.extension as ext where (url='http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer') then {
+    ext.extension as extension where (url='enterer') then {
+      extension.value as value then {
+        bundle.entry as entry then {
+          entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid')  then {
+            entry.resource : PractitionerRole as practitionerRole then DataEntererPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+          } "fullUrlAsUuid";
+          entry.resource: PractitionerRole as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %value.reference then DataEntererPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitionerRole";
+        } "bundle.entry";
+      } "extension.value";
+    } "enterer";
+  } "dataenterer";
+}
+
+group OrdererPractitionerRoleToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target itemorderer : BackboneElement ) {
+  composition -> itemorderer.item as itemgroup, itemgroup.linkId = 'orderer.author' then {  
+    practitionerRole.practitioner as practitioner -> itemgroup.item as item, item.linkId = 'orderer.author.practitioner' then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %practitioner.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : Practitioner as practitioner then OrdererPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+        } "fullUrlAsUuid";
+        entry.resource: Practitioner as practitioner where ('Practitioner'+'/'+$this.id) in %practitioner.reference then OrdererPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+      } "bundle.entry";
+    } "practitioner";
+    practitionerRole.organization as organization -> itemgroup.item as item, item.linkId = 'orderer.author.organization' then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %organization.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : Organization as organization then OrdererOrganizationToQr(bundle, composition, organization, item) "organization";
+        } "fullUrlAsUuid";
+        entry.resource: Organization as organization where ('Organization'+'/'+$this.id) in %organization.reference then OrdererOrganizationToQr(bundle, composition, practitioner, item) "organization";
+      } "bundle.entry";
+    } "organization";
+  } "orderer.author";
+}
+
+group OrdererPractitionerToQr(source bundle : Bundle, source composition: Composition, source practitioner: Practitioner, target item : BackboneElement ) {
+// orderer.author.practitioner.familyName
+   practitioner.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'orderer.author.practitioner.familyName', item.answer as answer, answer.value = family "family";
+// orderer.author.practitioner.givenName
+     name.given as given -> item.item as item, item.linkId = 'orderer.author.practitioner.givenName', item.answer as answer, answer.value = given "given";
+// orderer.author.practitioner.title
+     name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'orderer.author.practitioner.title', item.answer as answer, answer.value = prefix "prefix";
+   } "name";
+// orderer.author.practitioner.gln
+  practitioner.identifier as identifier where (system='urn:oid:2.51.1.3') then {
+    identifier.value as value -> item.item as item, item.linkId = 'orderer.author.practitioner.gln', item.answer as answer, answer.value = cast(value, 'string') "gln";
+  } "identifier";
+// orderer.author.practitioner.phone
+   practitioner.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'orderer.author.practitioner.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// orderer.author.practitioneremila
+   practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'orderer.author.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
+}
+
+group OrdererOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target item : BackboneElement ) {
+// orderer.author.organization.name
+   organization.name as name -> item.item as item, item.linkId = 'orderer.author.organization.name', item.answer as answer, answer.value = name "name";
+// orderer.author.organization.streetAddressLine
+   organization.address as addr then {
+      addr.line first as line1 -> item.item as item, item.linkId = 'orderer.author.organization.streetAddressLine' then {
+        addr.line as line -> item.answer as answer, answer.value = line "line";
+      } "addrlinefirst"; 
+// orderer.author.organization.postalCode
+      addr.postalCode as postalCode -> item.item as item, item.linkId = 'orderer.author.organization.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+// orderer.author.organization.city
+      addr.city as city -> item.item as item, item.linkId = 'orderer.author.organization.city', item.answer as answer, answer.value = city "city";
+// orderer.author.organization.country
+      addr.country as country -> item.item as item, item.linkId = 'orderer.author.organization.country', item.answer as answer, answer.value = country "country";
+   } "addr";
+}
+
+group DataEntererPractitionerRoleToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target itemorderer : BackboneElement ) {
+  composition -> itemorderer.item as itemgroup, itemgroup.linkId = 'orderer.dataenterer' then {  
+    practitionerRole.practitioner as practitioner -> itemgroup.item as item, item.linkId = 'orderer.dataenterer.practitioner' then {
+      bundle.entry as entry then {
+        entry.fullUrl where ($this in %practitioner.reference) and $this.startsWith('urn:uuid')  then {
+          entry.resource : Practitioner as practitioner then DataEntererPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+        } "fullUrlAsUuid";
+        entry.resource: Practitioner as practitioner where ('Practitioner'+'/'+$this.id) in %practitioner.reference then DataEntererPractitionerToQr(bundle, composition, practitioner, item) "practitioner";
+      } "bundle.entry";
+    } "practitioner";
+  } "orderer.dataenterer";
+}
+
+group DataEntererPractitionerToQr(source bundle : Bundle, source composition: Composition, source practitioner: Practitioner, target item : BackboneElement ) {
+// orderer.dataenterer.practitioner.familyName
+   practitioner.name as name then {
+     name.family as family -> item.item as item, item.linkId = 'orderer.dataenterer.practitioner.familyName', item.answer as answer, answer.value = family "family";
+// orderer.dataenterer.practitioner.givenName
+     name.given as given -> item.item as item, item.linkId = 'orderer.dataenterer.practitioner.givenName', item.answer as answer, answer.value = given "given";
+   } "name";
+// orderer.dataenterer.practitioner.phone
+   practitioner.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'orderer.dataenterer.practitioner.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// orderer.dataenterer.practitioner.email
+   practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'orderer.dataenterer.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
+}
+
+
+group ReceiverResponseToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+     composition.extension as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') then {
+      extension.value as value then {
+        bundle.entry as entry then {
+          entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid')  then {
+            entry.resource : Organization as organization then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
+            entry.resource : Patient as patient then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+          } "fullUrlAsUuid";
+          entry.resource: Organization as organization where ('Organization'+'/'+$this.id) in %value.reference then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
+          entry.resource: Patient as patient where ('Patient'+'/'+$this.id) in %value.reference then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+        } "bundle.entry";
+      } "extension.value";
+     } "extension";
+}
+
+group ReceiverResponseOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target itemorderer : BackboneElement ) {
+  organization -> itemorderer.item as item, item.linkId = 'receiverResponse' then {  
+  // receiverResponse.organization.name
+    organization.name as name -> item.item as item, item.linkId = 'receiverResponse.organization.name', item.answer as answer, answer.value = name "name";
+   organization.contact as contact then {
+     contact.name as name then {
+    // receiverResponse.familyName
+        name.family as family -> item.item as item, item.linkId = 'receiverResponse.familyName', item.answer as answer, answer.value = family "family";
+    // receiverResponse.givenName
+        name.given as given -> item.item as item, item.linkId = 'receiverResponse.givenName', item.answer as answer, answer.value = given "given";
+    // receiverResponse.title
+        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverResponse.title', item.answer as answer, answer.value = prefix "prefix";
+     } "name";
+  } "contact"; 
+ 
+ // receiverResponse.phone
+   organization.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverResponse.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// receiverResponse.email
+   organization.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverResponse.email', item.answer as answer, answer.value = (telecom.value) "email";
+
+  // receiverResponse.organization.streetAddressLine
+    organization.address as addr then {
+        addr.line first as line1 -> item.item as item, item.linkId = 'receiverResponse.streetAddressLine' then {
+          addr.line as line -> item.answer as answer, answer.value = line "line";
+        } "addrlinefirst"; 
+  // receiverResponse.postalCode
+        addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverResponse.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+  // receiverResponse.city
+        addr.city as city -> item.item as item, item.linkId = 'receiverResponse.city', item.answer as answer, answer.value = city "city";
+  // receiverResponse.country
+        addr.country as country -> item.item as item, item.linkId = 'receiverResponse.country', item.answer as answer, answer.value = country "country";
+    } "addr";
+  } "organization";
+}
+
+group ReceiverResponsePatientToQr(source bundle : Bundle, source composition: Composition, source patient: Patient, target itemorderer : BackboneElement ) {
+  patient -> itemorderer.item as item, item.linkId = 'receiverResponse' then {  
+    patient.name as name then {
+    // receiverResponse.familyName
+        name.family as family -> item.item as item, item.linkId = 'receiverResponse.familyName', item.answer as answer, answer.value = family "family";
+    // receiverResponse.givenName
+        name.given as given -> item.item as item, item.linkId = 'receiverResponse.givenName', item.answer as answer, answer.value = given "given";
+    // receiverResponse.title
+        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverResponse.title', item.answer as answer, answer.value = prefix "prefix";
+    } "name";
+  
+  // receiverResponse.phone
+    patient.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverResponse.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+  // receiverResponse.email
+    patient.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverResponse.email', item.answer as answer, answer.value = (telecom.value) "email";
+
+    // receiverResponse.organization.streetAddressLine
+      patient.address as addr then {
+          addr.line first as line1 -> item.item as item, item.linkId = 'receiverResponse.streetAddressLine' then {
+            addr.line as line -> item.answer as answer, answer.value = line "line";
+          } "addrlinefirst"; 
+    // receiverResponse.postalCode
+          addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverResponse.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+    // receiverResponse.city
+          addr.city as city -> item.item as item, item.linkId = 'receiverResponse.city', item.answer as answer, answer.value = city "city";
+    // receiverResponse.country
+          addr.country as country -> item.item as item, item.linkId = 'receiverResponse.country', item.answer as answer, answer.value = country "country";
+      } "addr";
+  } "patient";
+}

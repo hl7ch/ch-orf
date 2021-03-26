@@ -152,6 +152,14 @@
       <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureMap/OrfBundleToQr"/>
+      </reference>
+      <name value="Map ORF"/>
+      <description value="Mapping ORF Bundle to Questionnaire Response"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Example Instances-->
     <resource>
@@ -210,6 +218,14 @@
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form"/>
       <description value="Example for QuestionnaireResponse"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/order-referal-form-mappedback"/>
+      </reference>
+      <name value="QuestionnaireResponse Order-Referral-Form mapping result"/>
+      <description value="Example for QuestionnaireResponse mapped to Bundle and back with StructureMaps"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
 

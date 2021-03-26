@@ -15,7 +15,7 @@ Content-Type: text/fhir-mapping
 < ./input/maps/OrfQrToBundle.map
 
 
-### 2. Transform referra-min to ORF Bundle
+### 2. Transform order-referral-form to ORF Bundle
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
@@ -23,6 +23,19 @@ Content-Type: application/fhir+xml;fhirVersion=4.0
 < ./input/examples/questionnaireresponse/order-referral-form.xml
 
 
+### 3. POST OrfBundleToQr.map
+POST {{host}}/StructureMap HTTP/1.1
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: text/fhir-mapping
+
+< ./input/maps/OrfBundleToQr.map
+
+### 4. POST OrfBundleToQr.map
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfBundleToQr
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./input/examples/bundle/order-referral-form-mapped.xml
 
 #### Put questionnaire to Brians server
 PUT https://sqlonfhir-r4.azurewebsites.net/fhir/Questionnaire/order-referral-form HTTP/1.1
