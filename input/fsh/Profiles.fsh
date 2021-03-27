@@ -155,7 +155,7 @@ Description: "Profile on Document for CH ORF"
 * entry MS
 // Bundle.entry:Composition
 * entry[Composition] ^short = "CompositionTest"
-//* entry[Composition].resource only ChOrfComposition 
+* entry[Composition].resource only ChOrfComposition 
 // Sushi: error The type "ChOrfComposition" does not match any of the allowed types: http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-composition
 // Bundle.entry:ChOrfQuestionnaire
 * entry contains ChOrfQuestionnaire 1..1 MS
