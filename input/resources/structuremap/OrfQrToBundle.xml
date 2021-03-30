@@ -9,9 +9,9 @@
 
 // ORF QuestionnaireResponse to Bundle
 // 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
-// QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-order-referral-form.html
-// QRF QuestionnaireResponse: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
-// Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html
+// QRF Questionnaire: http://build.fhir.org/ig/hl7ch/ch-orf/Questionnaire-order-referral-form.html
+// QRF QuestionnaireResponse: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
+// Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
@@ -262,9 +262,9 @@ group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition
   <name value="OrfQrToBundle"></name>
   <description value="ORF QuestionnaireResponse to Bundle
 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
-QRF Questionnaire: http://build.fhir.org/ig/ehealthsuisse/ch-orf/Questionnaire-order-referral-form.html
-QRF QuestionnaireResponse: http://build.fhir.org/ig/ehealthsuisse/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
-Bundle: http://build.fhir.org/ig/ehealthsuisse/ch-orf/StructureDefinition-ch-orf-document.html"></description>
+QRF Questionnaire: http://build.fhir.org/ig/hl7ch/ch-orf/Questionnaire-order-referral-form.html
+QRF QuestionnaireResponse: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
+Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html"></description>
   <structure>
     <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"></url>
     <mode value="source"></mode>
