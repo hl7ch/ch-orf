@@ -118,17 +118,17 @@ Description: "Profile on Composition for CH ORF"
 * section.entry ^slicing.discriminator.type = #profile
 * section.entry ^slicing.discriminator.path = "resolve()"
 * section.entry ^slicing.rules = #open
-// Composition.section.entry:ChOrfQuestionnaire
+// ---------- Composition.section.entry:ChOrfQuestionnaire ----------
 * section.entry contains ChOrfQuestionnaire 1..1 MS
 * section.entry[ChOrfQuestionnaire] only Reference(ChOrfQuestionnaire)
 * section.entry[ChOrfQuestionnaire] ^short = "Questionnaire"
 * section.entry[ChOrfQuestionnaire].reference 1.. MS
-// Composition.section.entry:ChOrfQuestionnaire
+// ---------- Composition.section.entry:ChOrfQuestionnaireResponse ----------
 * section.entry contains ChOrfQuestionnaireResponse 1..1 MS
 * section.entry[ChOrfQuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
 * section.entry[ChOrfQuestionnaireResponse] ^short = "QuestionnaireResponse"
 * section.entry[ChOrfQuestionnaireResponse].reference 1.. MS
-// Composition.section.entry:ChOrfQuestionnaire
+// ---------- Composition.section.entry:ChOrfServiceRequest ----------
 * section.entry contains ChOrfServiceRequest 1..* MS
 * section.entry[ChOrfServiceRequest] only Reference(ChOrfServiceRequest)
 * section.entry[ChOrfServiceRequest] ^short = "ServiceRequest"
@@ -153,24 +153,24 @@ Description: "Profile on Document for CH ORF"
 * total 0..0
 * link 0..0
 * entry MS
-// Bundle.entry:Composition
-* entry[Composition] ^short = "CompositionTest"
-* entry[Composition].resource only ChOrfComposition 
-// Sushi: error The type "ChOrfComposition" does not match any of the allowed types: http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-composition
-// Bundle.entry:ChOrfQuestionnaire
+// ---------- Bundle.entry:Composition ----------
+* entry[Composition] MS
+* entry[Composition].resource ^type.profile = Canonical(ChOrfComposition)
+* entry[Composition].resource MS
+// ---------- Bundle.entry:ChOrfQuestionnaire ----------
 * entry contains ChOrfQuestionnaire 1..1 MS
 * entry[ChOrfQuestionnaire] ^short = "Questionnaire"
-* entry[ChOrfQuestionnaire].resource only ChOrfQuestionnaire 
+* entry[ChOrfQuestionnaire].resource ^type.profile = Canonical(ChOrfQuestionnaire)
 * entry[ChOrfQuestionnaire].resource 1.. MS
-// Bundle.entry:ChOrfQuestionnaireResponse
+// ---------- Bundle.entry:ChOrfQuestionnaireResponse ----------
 * entry contains ChOrfQuestionnaireResponse 1..1 MS
 * entry[ChOrfQuestionnaireResponse] ^short = "QuestionnaireResponse"
-* entry[ChOrfQuestionnaireResponse].resource only ChOrfQuestionnaireResponse 
+* entry[ChOrfQuestionnaireResponse].resource ^type.profile = Canonical(ChOrfQuestionnaireResponse) 
 * entry[ChOrfQuestionnaireResponse].resource 1.. MS
-// Bundle.entry:ChOrfServiceRequest
+// ---------- Bundle.entry:ChOrfServiceRequest ----------
 * entry contains ChOrfServiceRequest 1..* MS
 * entry[ChOrfServiceRequest] ^short = "ServiceRequest"
-* entry[ChOrfServiceRequest].resource only ChOrfServiceRequest
+* entry[ChOrfServiceRequest].resource ^type.profile = Canonical(ChOrfServiceRequest)
 * entry[ChOrfServiceRequest].resource 1.. MS
 
 
