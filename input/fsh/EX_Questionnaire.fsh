@@ -193,16 +193,10 @@ Description: "Example for Questionnaire"
 * item[2].text = "Patient"
 * item[2].type = #group
 
-//* item[2].item[0].extension[initialExpression].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-//* item[2].item[0].extension[initialExpression].valueExpression.language = #text/fhirpath
-//* item[2].item[0].extension[initialExpression].valueExpression.expression = "%Patient.name.family"
 * item[2].item[0].linkId = "patient.familyName"
 * item[2].item[0].text = "Name"
 * item[2].item[0].type = #string
 
-//* item[2].item[1].extension[initialExpression].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-//* item[2].item[1].extension[initialExpression].valueExpression.language = #text/fhirpath
-//* item[2].item[1].extension[initialExpression].valueExpression.expression = "%Patient.name.given"
 * item[2].item[1].linkId = "patient.givenName"
 * item[2].item[1].text = "Vorname"
 * item[2].item[1].type = #string
@@ -211,9 +205,6 @@ Description: "Example for Questionnaire"
 * item[2].item[2].text = "Lokale Patienten-ID"
 * item[2].item[2].type = #string
 
-//* item[2].item[3].extension[initialExpression].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-//* item[2].item[3].extension[initialExpression].valueExpression.language = #text/fhirpath
-//* item[2].item[3].extension[initialExpression].valueExpression.expression = "%Patient.birthDate"
 * item[2].item[3].linkId = "patient.birthDate"
 * item[2].item[3].text = "Geburtsdatum"
 * item[2].item[3].type = #date
@@ -267,16 +258,10 @@ Description: "Example for Questionnaire"
 * item[3].item[0].item[0].text = "Verantwortliche Person"
 * item[3].item[0].item[0].type = #group
 
-//* item[3].item[0].item[0].item[0].extension[initialExpression].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-//* item[3].item[0].item[0].item[0].extension[initialExpression].valueExpression.language = #text/fhirpath
-//* item[3].item[0].item[0].item[0].extension[initialExpression].valueExpression.expression = "%Orderer.name.family"
 * item[3].item[0].item[0].item[0].linkId = "orderer.author.practitioner.familyName"
 * item[3].item[0].item[0].item[0].text = "Name"
 * item[3].item[0].item[0].item[0].type = #string
 
-//* item[3].item[0].item[0].item[1].extension[initialExpression].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-//* item[3].item[0].item[0].item[1].extension[initialExpression].valueExpression.language = #text/fhirpath
-//* item[3].item[0].item[0].item[1].extension[initialExpression].valueExpression.expression = "%Orderer.name.given"
 * item[3].item[0].item[0].item[1].linkId = "orderer.author.practitioner.givenName"
 * item[3].item[0].item[0].item[1].text = "Vorname"
 * item[3].item[0].item[0].item[1].type = #string
