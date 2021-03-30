@@ -1,5 +1,5 @@
 <Bundle xmlns="http://hl7.org/fhir">
-    <id value="order-referral-form"/>
+    <id value="bundle-order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
     </meta>
@@ -10,10 +10,10 @@
     <type value="document"/>
     <timestamp value="2019-04-01T20:18:41.341+00:00"/>
     <entry>
-        <fullUrl value="http://example.com/fhir/Composition/order-referral-form"/>
+        <fullUrl value="http://example.com/fhir/Composition/comp-order-referral-form"/>
         <resource>
             <Composition xmlns="http://hl7.org/fhir">
-                <id value="order-referral-form"/>
+                <id value="comp-order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:54.018+00:00"/>
@@ -94,10 +94,10 @@
                         <reference value="Questionnaire/order-referral-form"/>
                     </entry>
                     <entry>
-                        <reference value="QuestionnaireResponse/order-referral-form"/>
+                        <reference value="QuestionnaireResponse/qr-order-referral-form"/>
                     </entry>
                     <entry>
-                        <reference value="ServiceRequest/order-referral-form"/>
+                        <reference value="ServiceRequest/sr-order-referral-form"/>
                     </entry>
                 </section>
             </Composition>
@@ -124,10 +124,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://example.com/fhir/ServiceRequest/order-referral-form"/>
+        <fullUrl value="http://example.com/fhir/ServiceRequest/sr-order-referral-form"/>
         <resource>
             <ServiceRequest xmlns="http://hl7.org/fhir">
-                <id value="order-referral-form"/>
+                <id value="sr-order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:17.147+00:00"/>
@@ -990,10 +990,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://example.com/fhir/QuestionnaireResponse/order-referral-form"/>
+        <fullUrl value="http://example.com/fhir/QuestionnaireResponse/qr-order-referral-form"/>
         <resource>
             <QuestionnaireResponse xmlns="http://hl7.org/fhir">
-                <id value="order-referral-form"/>
+                <id value="qr-order-referral-form"/>
                 <meta>
                     <versionId value="1"/>
                     <lastUpdated value="2021-03-24T14:40:35.866+00:00"/>

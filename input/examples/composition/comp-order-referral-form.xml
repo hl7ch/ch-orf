@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composition xmlns="http://hl7.org/fhir">
-    <id value="order-referral-form"/>
+    <id value="comp-order-referral-form"/>
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </meta>
@@ -77,10 +77,10 @@
             <reference value="Questionnaire/order-referral-form"/>
         </entry>
         <entry>
-            <reference value="QuestionnaireResponse/order-referral-form"/>
+            <reference value="QuestionnaireResponse/qr-order-referral-form"/>
         </entry>
         <entry>
-            <reference value="ServiceRequest/order-referral-form"/>
+            <reference value="ServiceRequest/sr-order-referral-form"/>
         </entry>
     </section>
 </Composition>
