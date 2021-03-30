@@ -86,12 +86,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-    <resource>
+    <!--<resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-consent"/>
       </reference>
       <exampleBoolean value="false"/>
-    </resource>
+    </resource>-->
 
     <!-- Extension Definitions -->
     <resource>

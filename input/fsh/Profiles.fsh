@@ -174,10 +174,11 @@ Description: "Profile on Document for CH ORF"
 * entry[ChOrfServiceRequest].resource 1.. MS
 
 
-
+/*
 Profile: CHORFConsent
 Parent: Consent
 Id: ch-orf-consent
 Title: "CH ORF Consenst"
 Description: "Profile on Consent for CH ORF"
 * . ^short = "CH ORF Consent"
+*/
