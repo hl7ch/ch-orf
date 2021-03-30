@@ -1,27 +1,27 @@
-### Anwendungsfall einfach
+### Röntgenauftrag mit Befundbericht
 #### Akteure
 * Patient: Frau S. Ufferer
 * Auftraggeber: 
    * Verantwortlicher: Dr. O. Rderplacer, Hausarzt in der Gemeinschaftspraxis Happy Doctors
-   * Erfasser: W. Riter, Medizinische Praxisassistentin in der Gemeinschaftspraxis Happy Doctors
+   * Erfasser: D. Ataenterer, Medizinische Praxisassistentin in der Gemeinschaftspraxis Happy Doctors
 * Auftragsempfänger: Dr. O. Rderfiller, Radiologe am Institut für Radiologie des Happy Hospital
 * Rückmeldungsempfänger:
    * Gemeinschaftspraxis Happy Doctors
    * Frau S. Ufferer
 
-#### Auftrag
+#### Röntgenauftrag
 Frau S. Ufferer hat am 15. März 2021 einen Termin in der Gemeinschaftspraxis Happy Doctors bei ihrem Hausarzt Dr. O. Rderplacer. Die Patientin klagt über rezidivierende Knieschmerzen. Aufgrund der Anamnese und der Untersuchung entscheidet sich der Arzt ein Röntgen anzuordnen, welches im Institut für Radiologie des Happy Hospitals durch Dr. O. Rderfiller durchgeführt werden soll.
 
-Die medizinische Praxisassistentin W. Riter erfasst den Radiologie-Auftrag und sendet ihn an das Institut für Radiologie. Im Auftrag wird ebenfalls angegeben, dass der Bericht der Gemeinschaftspraxis und eine Kopie davon der Patientin gesendet werden soll.
+Die medizinische Praxisassistentin D. Ataenterer erfasst den Röntgenauftrag und sendet ihn an das Institut für Radiologie. Im Auftrag wird ebenfalls angegeben, dass der Bericht der Gemeinschaftspraxis und eine Kopie davon der Patientin gesendet werden soll.
 
-* Auftrag Radiologie: [XML], [JSON]
+* Röntgenauftrag: [XML](Bundle-bundle-usecase-simple.xml.html), [JSON](Bundle-bundle-usecase-simple.json.html)
 
-#### Bericht
+#### Befundbericht
 Am 22. März 2021 wird das Knie von Frau S. Ufferer im Institut für Radiologie des Happy Hospitals geröntgt. Der Radiologe schreibt seinen Bericht am 23. März 2021 dazu und sendet ihn wie gewünscht an die Gemeinschaftspraxis Happy Doctors und die Patientin S. Ufferer.
 
-* Bericht Radiologie: [XML], [JSON]
+* Befundbericht: [XML], [JSON]
 
-{% include img.html img="usecase-simple.png" caption="Fig.: Anwendungsfall einfach" width="100%" %}
+{% include img.html img="usecase-simple.png" caption="Fig.: Röntgenauftrag mit Befundbericht" width="100%" %}
 
 ### TBD: Anwendungsfall komplex
 Vorschlag Juerg:   

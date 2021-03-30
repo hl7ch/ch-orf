@@ -58,3 +58,11 @@ http://smartqedit4.azurewebsites.net/Questionnaire/Index
 
 
 
+#################### further examples 
+
+### 2a. Transform order-referral-form to ORF Bundle
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ./fsh-generated/resources/QuestionnaireResponse-qr-usecase-simple.json

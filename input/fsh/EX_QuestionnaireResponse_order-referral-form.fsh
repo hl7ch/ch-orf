@@ -83,7 +83,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].answer.valueString = "sabine.meier@praxisseeblick.ch"
 
-// ---------- Urgent Notification Contact for the Response to this document ----------
+// ---------- Order Priority ----------
 * item[=].item[+].linkId = "order.priority"
 * item[=].item[=].text = "Auftragspriorität"
 * item[=].item[=].answer.valueCoding = RequestPriority#routine
@@ -353,7 +353,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "receiverResponse.email"
 * item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].answer.valueString = "erika@musterfrau.chh"
+* item[=].item[=].item[=].answer.valueString = "erika@musterfrau.ch"
 
 * item[=].item[=].item[+].linkId = "receiverResponse.streetAddressLine"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."

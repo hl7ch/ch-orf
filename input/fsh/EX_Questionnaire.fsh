@@ -125,7 +125,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
-// ---------- Urgent Notification Contact for the Response to this document ----------
+// ---------- Order Priority ----------
 * item[=].item[+].linkId = "order.priority"
 * item[=].item[=].text = "Auftragspriorität"
 * item[=].item[=].type = #choice
