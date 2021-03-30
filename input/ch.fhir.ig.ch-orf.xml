@@ -188,22 +188,6 @@
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="Questionnaire/ebida-order-1"/>
-      </reference>
-      <name value="Questionnaire Ebida Order"/>
-      <description value="Example for Questionnaire"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Questionnaire/lab-order-chemogram"/>
-      </reference>
-      <name value="Questionnaire Lab Order Chemogram"/>
-      <description value="Example for Questionnaire"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
-    </resource>
 
     <resource>
       <reference>
@@ -337,14 +321,6 @@
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="Practitioner/MarcAgpar"/>
-      </reference>
-      <name value="Marc Agpar"/>
-      <description value="Example for Practitioner"/>
-      <exampleBoolean value="true"/>
-    </resource>
 
     <resource>
       <reference>
@@ -359,14 +335,6 @@
         <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
       </reference>
       <name value="Response Receiver Erika Musterfrau"/>
-      <description value="Example for Patient"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Patient/FranzMuster"/>
-      </reference>
-      <name value="Franz Muster"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
