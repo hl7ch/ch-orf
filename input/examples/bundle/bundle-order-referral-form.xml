@@ -31,13 +31,8 @@
                 </extension>
                 <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
                     <extension url="enterer">
-                        <!-- https://github.com/hl7ch/ch-core/issues/91 Reference to PractitionerRole, not only Practitioner
-                 falls das so nicht umgesetzt werden kann, muss der Text auf der Home-Seite vom ORF noch angepasst werden -->
-                        <!--<valueReference>
-                            <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
-                        </valueReference>-->
                         <valueReference>
-                            <reference value="Practitioner/StabiloBoss"/>
+                            <reference value="PractitionerRole/StabiloBossPraxisSeeblick"/>
                         </valueReference>
                     </extension>
                 </extension>
