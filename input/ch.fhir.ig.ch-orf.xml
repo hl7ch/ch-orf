@@ -180,6 +180,14 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="Bundle/bundle-usecase-complex"/>
+      </reference>
+      <name value="Bundle Use Case complex"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
 
     <resource>
       <reference>
@@ -220,6 +228,14 @@
         <reference value="QuestionnaireResponse/qr-usecase-simple"/>
       </reference>
       <name value="QuestionnaireResponse Use Case simple"/>
+      <description value="Example for QuestionnaireResponse"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/qr-usecase-complex"/>
+      </reference>
+      <name value="QuestionnaireResponse Use Case complex"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
@@ -369,7 +385,7 @@
       </page>
       <page>
         <nameUrl value="usecase-german.html"/>
-        <title value="Anwendungsfall"/>
+        <title value="Anwendungsfälle"/>
         <generation value="markdown"/>
       </page>
       <page>
