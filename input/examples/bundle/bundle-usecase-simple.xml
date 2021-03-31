@@ -19,20 +19,17 @@
           <extension url="enterer">
             <valueReference>
               <reference value="urn:uuid:29c69399-0b5c-48c8-b613-bfa6b9f85182"/>
-              <!--<type value="PractitionerRole"/>-->
             </valueReference>
           </extension>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
           <valueReference>
             <reference value="urn:uuid:63bfa1d2-90cc-4ba9-b80e-e4978a5fe564"/>
-            <!--<type value="Organization"/>-->
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
           <valueReference>
             <reference value="urn:uuid:b2394af4-2d02-4c73-a365-e9efbd25449d"/>
-            <!--<type value="Patient"/>-->
           </valueReference>
         </extension>
         <status value="final"/>
@@ -61,13 +58,9 @@
         </author>
         <title value="Radiology Order"/>
         <section>
-          <!--<entry>
-            <reference value="urn:uuid:66b891b7-8d54-4032-96e5-1b4753efc339"/>
-            <type value="Questionnaire"/>
-          </entry>-->
-          <!-- Questionnaire.url - error - Resource id/url mismatch: null/http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form -->
           <entry>
-            <reference value="Questionnaire/order-referral-form"/>
+            <reference value="http://example.com/fhir/Questionnaire/order-referral-form"/>
+            <type value="Questionnaire"/>
           </entry>
           <entry>
             <reference value="urn:uuid:72b2f60e-d9f8-4866-8b74-3c5cc89bc284"/>
@@ -841,10 +834,8 @@
   </entry>
   <entry>
     <fullUrl value="http://example.com/fhir/Questionnaire/order-referral-form"/>
-    <!--<fullUrl value="urn:uuid:66b891b7-8d54-4032-96e5-1b4753efc339"/>-->
-    <!-- Questionnaire.url - error - Resource id/url mismatch: null/http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form -->
     <resource>
-      <Questionnaire xmlns="http://hl7.org/fhir">
+      <Questionnaire>
         <id value="order-referral-form"/>
         <meta>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
