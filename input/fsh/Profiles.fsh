@@ -113,7 +113,6 @@ Description: "Profile on Composition for CH ORF"
 * title MS
 * title ^short = "Meaningful title"
 * section 1.. MS
-* section.title 1.. MS
 * section.entry MS
 * section.entry ^slicing.discriminator.type = #profile
 * section.entry ^slicing.discriminator.path = "resolve()"

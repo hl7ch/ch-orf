@@ -61,7 +61,6 @@
         </author>
         <title value="Radiology Order"/>
         <section>
-          <title value="Radiology Order"/>
           <!--<entry>
             <reference value="urn:uuid:66b891b7-8d54-4032-96e5-1b4753efc339"/>
             <type value="Questionnaire"/>
