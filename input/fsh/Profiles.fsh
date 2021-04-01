@@ -66,6 +66,7 @@ Description: "Profile on ServiceRequest for CH ORF"
 * identifier[fillerOrderIdentifier] ^patternIdentifier.type.coding.code = #FILL
 * identifier[fillerOrderIdentifier].system MS
 * identifier[fillerOrderIdentifier].value 1.. MS
+* status MS
 * priority MS
 * priority ^short = "Order priority"
 * subject MS

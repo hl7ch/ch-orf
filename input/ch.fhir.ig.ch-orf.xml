@@ -174,20 +174,37 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Bundle/bundle-usecase-simple"/>
+        <reference value="Bundle/radiology-order"/>
       </reference>
-      <name value="Bundle Use Case simple"/>
+      <name value="Radiology order"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
     <resource>
       <reference>
-        <reference value="Bundle/bundle-usecase-complex"/>
+        <reference value="Bundle/xray-report"/>
       </reference>
-      <name value="Bundle Use Case complex"/>
+      <name value="X-ray report"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="Bundle/external-diagnostics-order"/>
+      </reference>
+      <name value="Order external diagnostics"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Bundle/findings-report"/>
+      </reference>
+      <name value="Findings report"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+
 
     <resource>
       <reference>
@@ -225,17 +242,33 @@
     </resource>
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/qr-usecase-simple"/>
+        <reference value="QuestionnaireResponse/qr-radiology-order"/>
       </reference>
-      <name value="QuestionnaireResponse Use Case simple"/>
+      <name value="QuestionnaireResponse Radiology order"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/qr-usecase-complex"/>
+        <reference value="QuestionnaireResponse/qr-xray-report"/>
       </reference>
-      <name value="QuestionnaireResponse Use Case complex"/>
+      <name value="QuestionnaireResponse X-ray report"/>
+      <description value="Example for QuestionnaireResponse"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/qr-external-diagnostics-order"/>
+      </reference>
+      <name value="QuestionnaireResponse Order external diagnostics"/>
+      <description value="Example for QuestionnaireResponse"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="QuestionnaireResponse/qr-findings-report"/>
+      </reference>
+      <name value="QuestionnaireResponse Findings report"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
@@ -384,8 +417,18 @@
         <generation value="html"/>
       </page>
       <page>
+        <nameUrl value="usecase-english.html"/>
+        <title value="Use Cases"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
         <nameUrl value="usecase-german.html"/>
         <title value="Anwendungsfälle"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="usecase-french.html"/>
+        <title value="Cas d'application"/>
         <generation value="markdown"/>
       </page>
       <page>

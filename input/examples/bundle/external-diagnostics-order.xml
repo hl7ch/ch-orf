@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="bundle-usecase-simple"/>
+  <id value="external-diagnostics-order"/>
   <meta>
     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
   </meta>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:uuid:51c7f7b5-8379-4afd-b02c-b7fe65c24a9c"/>
+    <value value="urn:uuid:f9a34cb0-1d1c-4931-937f-ef621341373c"/>
   </identifier>
   <type value="document"/>
-  <timestamp value="2021-03-15T15:42:18+00:00"/>
+  <timestamp value="2021-03-30T13:26:15+00:00"/>
   <entry>
-    <fullUrl value="urn:uuid:f6667802-5110-4222-be6f-ba9428807797"/>
+    <fullUrl value="urn:uuid:c3f4c94a-8060-42d1-8dcb-f5414edb4b4f"/>
     <resource>
       <Composition>
-        <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
-          <extension url="enterer">
-            <valueReference>
-              <reference value="urn:uuid:29c69399-0b5c-48c8-b613-bfa6b9f85182"/>
-            </valueReference>
-          </extension>
-        </extension>
-        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
           <valueReference>
-            <reference value="urn:uuid:63bfa1d2-90cc-4ba9-b80e-e4978a5fe564"/>
+            <reference value="urn:uuid:f2d6437c-af87-4bcc-a0f1-8482294ab584"/>
+          </valueReference>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
+          <valueReference>
+            <reference value="urn:uuid:541d3e34-f4a5-4953-9b5e-8ae995eb0aae"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
           <valueReference>
-            <reference value="urn:uuid:b2394af4-2d02-4c73-a365-e9efbd25449d"/>
+            <reference value="urn:uuid:296be231-e3d0-49bb-918b-eaa60f7583e8"/>
           </valueReference>
         </extension>
         <status value="final"/>
         <type>
           <coding>
-            <system value="urn:oid:2.16.756.5.30.1.127.3.4"/>
-            <code value="2161000195103"/>
-            <display value="Imaging order (record articact)"/>
+            <system value="http://snomed.info/sct"/>
+            <code value="4201000179104"/>
+            <display value="Imaging report (record artifact)"/>
           </coding>
         </type>
         <category>
@@ -48,26 +46,26 @@
           </coding>
         </category>
         <subject>
-          <reference value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+          <reference value="urn:uuid:3e57667b-c5be-4bcb-bc63-284e3b36c15e"/>
           <type value="Patient"/>
         </subject>
-        <date value="2021-03-15T15:42:18+00:00"/>
+        <date value="2021-03-30T13:26:15+00:00"/>
         <author>
-          <reference value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+          <reference value="urn:uuid:662fcfe9-fedb-4249-ac91-a6d6be4bc4b1"/>
           <type value="PractitionerRole"/>
         </author>
-        <title value="Radiology Order"/>
+        <title value="Order external diagnostics"/>
         <section>
           <entry>
             <reference value="http://example.com/fhir/Questionnaire/order-referral-form"/>
             <type value="Questionnaire"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:72b2f60e-d9f8-4866-8b74-3c5cc89bc284"/>
+            <reference value="urn:uuid:a66ec9a6-209c-415c-84ed-c09fa3b5c2e6"/>
             <type value="QuestionnaireResponse"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:6aba7b67-27b0-4c16-8749-f5e53965560a"/>
+            <reference value="urn:uuid:57319c92-2001-4973-8987-8dc29ad151fd"/>
             <type value="ServiceRequest"/>
           </entry>
         </section>
@@ -75,9 +73,19 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+    <fullUrl value="urn:uuid:3e57667b-c5be-4bcb-bc63-284e3b36c15e"/>
     <resource>
       <Patient>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+              <code value="MR"/>
+            </coding>
+          </type>
+          <system value="urn:oid:2.16.756.5.30.999999.1"/>
+          <value value="44.34.9472.1"/>
+        </identifier>
         <name>
           <family value="Ufferer Leidend"/>
           <given value="Susanna"/>
@@ -103,7 +111,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:72b2f60e-d9f8-4866-8b74-3c5cc89bc284"/>
+    <fullUrl value="urn:uuid:a66ec9a6-209c-415c-84ed-c09fa3b5c2e6"/>
     <resource>
       <QuestionnaireResponse>
         <meta>
@@ -118,15 +126,101 @@
             <linkId value="order.placerOrderIdentifier"/>
             <text value="Auftragsnummer des Auftraggebers"/>
             <answer>
-              <valueString value="2156286"/>
+              <valueString value="60823"/>
             </answer>
           </item>
           <item>
             <linkId value="order.placerOrderIdentifierDomain"/>
             <text value="Identifier Domain der Auftragsnummer des Auftraggebers"/>
             <answer>
-              <valueString value="urn:oid:1.3.4.5.6.7"/>
+              <valueString value="urn:oid:66.77.88"/>
             </answer>
+          </item>
+          <item>
+            <linkId value="order.notificationContactDocument"/>
+            <text value="Dringender Benachrichtigungskontakt für dieses Dokument"/>
+            <item>
+              <linkId value="order.notificationContactDocument.practitioner"/>
+              <text value="Zu benachrichtigende Person"/>
+              <item>
+                <linkId value="order.notificationContactDocument.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="Iller"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocument.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Frederica"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocument.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocument.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="044 503 44 44"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocument.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="f.iller@univerityhospital.ch"/>
+                </answer>
+              </item>
+            </item>
+          </item>
+          <item>
+            <linkId value="order.notificationContactDocumentResponse"/>
+            <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"/>
+            <item>
+              <linkId value="order.notificationContactDocumentResponse.practitioner"/>
+              <text value="Zu benachrichtigende Person"/>
+              <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="Lacer"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Paul"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.phone"/>
+                <text value="Telefon"/>
+                <answer>
+                  <valueString value="044 987 65 43"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.email"/>
+                <text value="E-Mail"/>
+                <answer>
+                  <valueString value="p.lacer@regionalhospital.ch"/>
+                </answer>
+              </item>
+            </item>
           </item>
           <item>
             <linkId value="order.priority"/>
@@ -134,7 +228,7 @@
             <answer>
               <valueCoding>
                 <system value="http://hl7.org/fhir/request-priority"/>
-                <code value="routine"/>
+                <code value="stat"/>
               </valueCoding>
             </answer>
           </item>
@@ -149,14 +243,14 @@
               <linkId value="receiverRequest.practitioner.familyName"/>
               <text value="Name"/>
               <answer>
-                <valueString value="Rderfiller"/>
+                <valueString value="Iller"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverRequest.practitioner.givenName"/>
               <text value="Vorname"/>
               <answer>
-                <valueString value="Otto"/>
+                <valueString value="Frederica"/>
               </answer>
             </item>
             <item>
@@ -170,21 +264,21 @@
               <linkId value="receiverRequest.practitioner.gln"/>
               <text value="GLN"/>
               <answer>
-                <valueString value="7601000066878"/>
+                <valueString value="7601000099521"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverRequest.practitioner.phone"/>
               <text value="Telefon"/>
               <answer>
-                <valueString value="044 412 00 99"/>
+                <valueString value="044 503 44 44"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverRequest.practitioner.email"/>
               <text value="E-Mail"/>
               <answer>
-                <valueString value="o.rderfiller@happyhospital.ch"/>
+                <valueString value="f.iller@universityhospital.ch"/>
               </answer>
             </item>
           </item>
@@ -195,17 +289,17 @@
               <linkId value="receiverRequest.organization.name"/>
               <text value="Name der Organisation"/>
               <answer>
-                <valueString value="Klinik Happy Hospital"/>
+                <valueString value="University Hospital"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverRequest.organization.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <answer>
-                <valueString value="Seestrasse 133"/>
+                <valueString value="Uniweg 33"/>
               </answer>
               <answer>
-                <valueString value="Haus C"/>
+                <valueString value="Radiology"/>
               </answer>
             </item>
             <item>
@@ -246,6 +340,13 @@
             <text value="Vorname"/>
             <answer>
               <valueString value="Susanna"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.localPid"/>
+            <text value="Lokale Patienten-ID"/>
+            <answer>
+              <valueString value="44.34.9472.1"/>
             </answer>
           </item>
           <item>
@@ -324,14 +425,14 @@
                 <linkId value="orderer.author.practitioner.familyName"/>
                 <text value="Name"/>
                 <answer>
-                  <valueString value="Rderplacer"/>
+                  <valueString value="Lacer"/>
                 </answer>
               </item>
               <item>
                 <linkId value="orderer.author.practitioner.givenName"/>
                 <text value="Vorname"/>
                 <answer>
-                  <valueString value="Otile"/>
+                  <valueString value="Paul"/>
                 </answer>
               </item>
               <item>
@@ -345,21 +446,21 @@
                 <linkId value="orderer.author.practitioner.gln"/>
                 <text value="GLN"/>
                 <answer>
-                  <valueString value="7601000034321"/>
+                  <valueString value="7601003334499"/>
                 </answer>
               </item>
               <item>
                 <linkId value="orderer.author.practitioner.phone"/>
                 <text value="Telefon"/>
                 <answer>
-                  <valueString value="044 333 22 11"/>
+                  <valueString value="044 987 65 43"/>
                 </answer>
               </item>
               <item>
                 <linkId value="orderer.author.practitioner.email"/>
                 <text value="E-Mail"/>
                 <answer>
-                  <valueString value="o.rderplacer@happydoctors.ch"/>
+                  <valueString value="p.lacer@regionalhospital.ch"/>
                 </answer>
               </item>
             </item>
@@ -370,17 +471,14 @@
                 <linkId value="orderer.author.organization.name"/>
                 <text value="Name der Organisation"/>
                 <answer>
-                  <valueString value="Praxis Happy Doctors"/>
+                  <valueString value="Regional Hospital"/>
                 </answer>
               </item>
               <item>
                 <linkId value="orderer.author.organization.streetAddressLine"/>
                 <text value="Strasse, Hausnummer, Postfach etc."/>
                 <answer>
-                  <valueString value="Kantonsstrasse 14"/>
-                </answer>
-                <answer>
-                  <valueString value="Postfach 14"/>
+                  <valueString value="Musterstrasse 129"/>
                 </answer>
               </item>
               <item>
@@ -406,42 +504,6 @@
               </item>
             </item>
           </item>
-          <item>
-            <linkId value="orderer.dataenterer"/>
-            <text value="Erfasser"/>
-            <item>
-              <linkId value="orderer.dataenterer.practitioner"/>
-              <text value="Erfassende Person"/>
-              <item>
-                <linkId value="orderer.dataenterer.practitioner.familyName"/>
-                <text value="Name"/>
-                <answer>
-                  <valueString value="Ataenterer"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="orderer.dataenterer.practitioner.givenName"/>
-                <text value="Vorname"/>
-                <answer>
-                  <valueString value="Doris"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="orderer.dataenterer.practitioner.phone"/>
-                <text value="Telefon"/>
-                <answer>
-                  <valueString value="044 333 22 11"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="orderer.dataenterer.practitioner.email"/>
-                <text value="E-Mail"/>
-                <answer>
-                  <valueString value="d.ataenterer@happydoctors.ch"/>
-                </answer>
-              </item>
-            </item>
-          </item>
         </item>
         <item>
           <linkId value="receiverResponses"/>
@@ -453,21 +515,21 @@
               <linkId value="receiverResponse.organization.name"/>
               <text value="Name der Organisation"/>
               <answer>
-                <valueString value="Praxis Happy Doctors"/>
+                <valueString value="Regional Hospital"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverResponse.familyName"/>
               <text value="Name"/>
               <answer>
-                <valueString value="Rderplacer"/>
+                <valueString value="Lacer"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverResponse.givenName"/>
               <text value="Vorname"/>
               <answer>
-                <valueString value="Otile"/>
+                <valueString value="Paul"/>
               </answer>
             </item>
             <item>
@@ -481,87 +543,21 @@
               <linkId value="receiverResponse.phone"/>
               <text value="Telefon"/>
               <answer>
-                <valueString value="044 333 22 11"/>
+                <valueString value="044 987 65 43"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverResponse.email"/>
               <text value="E-Mail"/>
               <answer>
-                <valueString value="o.rderplacer@happydoctors.ch"/>
+                <valueString value="p.lacer@regionalhospital.ch"/>
               </answer>
             </item>
             <item>
               <linkId value="receiverResponse.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <answer>
-                <valueString value="Kantonsstrasse 14"/>
-              </answer>
-              <answer>
-                <valueString value="Postfach 14"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.postalCode"/>
-              <text value="PLZ"/>
-              <answer>
-                <valueString value="8000"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.city"/>
-              <text value="Ort"/>
-              <answer>
-                <valueString value="Zürich"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.country"/>
-              <text value="Land"/>
-              <answer>
-                <valueString value="Schweiz"/>
-              </answer>
-            </item>
-          </item>
-          <item>
-            <linkId value="receiverResponse"/>
-            <text value="Rückmeldungsempfangende Organisation oder Person"/>
-            <item>
-              <linkId value="receiverResponse.familyName"/>
-              <text value="Name"/>
-              <answer>
-                <valueString value="Ufferer Leidend"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.givenName"/>
-              <text value="Vorname"/>
-              <answer>
-                <valueString value="Susanna"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.phone"/>
-              <text value="Telefon"/>
-              <answer>
-                <valueString value="079 979 79 79"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.email"/>
-              <text value="E-Mail"/>
-              <answer>
-                <valueString value="susanna@ufferer.ch"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.streetAddressLine"/>
-              <text value="Strasse, Hausnummer, Postfach etc."/>
-              <answer>
-                <valueString value="Musterweg"/>
-              </answer>
-              <answer>
-                <valueString value="6a"/>
+                <valueString value="Musterstrasse 129"/>
               </answer>
             </item>
             <item>
@@ -591,7 +587,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6aba7b67-27b0-4c16-8749-f5e53965560a"/>
+    <fullUrl value="urn:uuid:57319c92-2001-4973-8987-8dc29ad151fd"/>
     <resource>
       <ServiceRequest>
         <identifier>
@@ -601,53 +597,45 @@
               <code value="PLAC"/>
             </coding>
           </type>
-          <system value="urn:oid:1.3.4.5.6.7"/>
-          <value value="2156286"/>
+          <system value="urn:oid:66.77.88"/>
+          <value value="60823"/>
         </identifier>
         <status value="active"/>
         <intent value="original-order"/>
-        <priority value="routine"/>
+        <priority value="stat"/>
         <subject>
-          <reference value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+          <reference value="urn:uuid:3e57667b-c5be-4bcb-bc63-284e3b36c15e"/>
           <type value="Patient"/>
         </subject>
         <requester>
-          <reference value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+          <reference value="urn:uuid:662fcfe9-fedb-4249-ac91-a6d6be4bc4b1"/>
           <type value="PractitionerRole"/>
         </requester>
         <performer>
-          <reference value="urn:uuid:5b4b3c1c-08d5-4a54-acbc-55b54f077a1f"/>
+          <reference value="urn:uuid:d3d50f20-32da-4618-9e85-a292d6e28dbb"/>
           <type value="PractitionerRole"/>
         </performer>
       </ServiceRequest>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:5b4b3c1c-08d5-4a54-acbc-55b54f077a1f"/>
+    <fullUrl value="urn:uuid:f2d6437c-af87-4bcc-a0f1-8482294ab584"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:47c01fba-8db4-4cf0-9fdf-e0b9749a2e49"/>
+          <reference value="urn:uuid:187583fc-d014-42b8-9ee9-ed16b3c69c39"/>
           <type value="Practitioner"/>
         </practitioner>
-        <organization>
-          <reference value="urn:uuid:3a17259c-62db-422c-ad5b-1f0be9d40ff8"/>
-          <type value="Organization"/>
-        </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:47c01fba-8db4-4cf0-9fdf-e0b9749a2e49"/>
+    <fullUrl value="urn:uuid:187583fc-d014-42b8-9ee9-ed16b3c69c39"/>
     <resource>
       <Practitioner>
-        <identifier>
-          <system value="urn:oid:2.51.1.3"/>
-          <value value="7601000066878"/>
-        </identifier>
         <name>
-          <family value="Rderfiller"/>
-          <given value="Otto"/>
+          <family value="Iller"/>
+          <given value="Frederica"/>
           <prefix value="Dr. med.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
               <valueCode value="AC"/>
@@ -656,56 +644,33 @@
         </name>
         <telecom>
           <system value="phone"/>
-          <value value="044 412 00 99"/>
+          <value value="044 503 44 44"/>
         </telecom>
         <telecom>
           <system value="email"/>
-          <value value="o.rderfiller@happyhospital.ch"/>
+          <value value="f.iller@univerityhospital.ch"/>
         </telecom>
       </Practitioner>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:3a17259c-62db-422c-ad5b-1f0be9d40ff8"/>
-    <resource>
-      <Organization>
-        <name value="Klinik Happy Hospital"/>
-        <address>
-          <line value="Seestrasse 133"/>
-          <line value="Haus C"/>
-          <city value="Zürich"/>
-          <postalCode value="8000"/>
-          <country value="Schweiz"/>
-        </address>
-      </Organization>
-    </resource>
-  </entry>
-  <entry>
-    <fullUrl value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+    <fullUrl value="urn:uuid:541d3e34-f4a5-4953-9b5e-8ae995eb0aae"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:b0da0cce-aacc-4ab3-b132-157d56934295"/>
+          <reference value="urn:uuid:9203a29a-e3ec-468b-9e3c-ff082ea499f1"/>
           <type value="Practitioner"/>
         </practitioner>
-        <organization>
-          <reference value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
-          <type value="Organization"/>
-        </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:b0da0cce-aacc-4ab3-b132-157d56934295"/>
+    <fullUrl value="urn:uuid:9203a29a-e3ec-468b-9e3c-ff082ea499f1"/>
     <resource>
       <Practitioner>
-        <identifier>
-          <system value="urn:oid:2.51.1.3"/>
-          <value value="7601000034321"/>
-        </identifier>
         <name>
-          <family value="Rderplacer"/>
-          <given value="Otile"/>
+          <family value="Lacer"/>
+          <given value="Paul"/>
           <prefix value="Dr. med.">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
               <valueCode value="AC"/>
@@ -714,23 +679,66 @@
         </name>
         <telecom>
           <system value="phone"/>
-          <value value="044 333 22 11"/>
+          <value value="044 987 65 43"/>
         </telecom>
         <telecom>
           <system value="email"/>
-          <value value="o.rderplacer@happydoctors.ch"/>
+          <value value="p.lacer@regionalhospital.ch"/>
         </telecom>
       </Practitioner>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
+    <fullUrl value="urn:uuid:d3d50f20-32da-4618-9e85-a292d6e28dbb"/>
+    <resource>
+      <PractitionerRole>
+        <practitioner>
+          <reference value="urn:uuid:3bff1c9b-2ed2-4631-9b64-48a19471b768"/>
+          <type value="Practitioner"/>
+        </practitioner>
+        <organization>
+          <reference value="urn:uuid:6345dae9-50cb-43b5-893b-4b3cb1d4a044"/>
+          <type value="Organization"/>
+        </organization>
+      </PractitionerRole>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:3bff1c9b-2ed2-4631-9b64-48a19471b768"/>
+    <resource>
+      <Practitioner>
+        <identifier>
+          <system value="urn:oid:2.51.1.3"/>
+          <value value="7601000099521"/>
+        </identifier>
+        <name>
+          <family value="Iller"/>
+          <given value="Frederica"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
+        </name>
+        <telecom>
+          <system value="phone"/>
+          <value value="044 503 44 44"/>
+        </telecom>
+        <telecom>
+          <system value="email"/>
+          <value value="f.iller@universityhospital.ch"/>
+        </telecom>
+      </Practitioner>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:6345dae9-50cb-43b5-893b-4b3cb1d4a044"/>
     <resource>
       <Organization>
-        <name value="Praxis Happy Doctors"/>
+        <name value="University Hospital"/>
         <address>
-          <line value="Kantonsstrasse 14"/>
-          <line value="Postfach 14"/>
+          <line value="Uniweg 33"/>
+          <line value="Radiology"/>
           <city value="Zürich"/>
           <postalCode value="8000"/>
           <country value="Schweiz"/>
@@ -739,63 +747,85 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:29c69399-0b5c-48c8-b613-bfa6b9f85182"/>
+    <fullUrl value="urn:uuid:662fcfe9-fedb-4249-ac91-a6d6be4bc4b1"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:ecc3d54f-5f89-47be-8af7-f501d7a817da"/>
+          <reference value="urn:uuid:42310e9b-bc37-402a-9763-1581b02bc0b3"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
+          <reference value="urn:uuid:8cd1f360-6f4f-4a7a-891c-e5f89f8a914f"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:ecc3d54f-5f89-47be-8af7-f501d7a817da"/>
+    <fullUrl value="urn:uuid:42310e9b-bc37-402a-9763-1581b02bc0b3"/>
     <resource>
       <Practitioner>
+        <identifier>
+          <system value="urn:oid:2.51.1.3"/>
+          <value value="7601003334499"/>
+        </identifier>
         <name>
-          <family value="Ataenterer"/>
-          <given value="Doris"/>
+          <family value="Lacer"/>
+          <given value="Paul"/>
+          <prefix value="Dr. med.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+              <valueCode value="AC"/>
+            </extension>
+          </prefix>
         </name>
         <telecom>
           <system value="phone"/>
-          <value value="044 333 22 11"/>
+          <value value="044 987 65 43"/>
         </telecom>
         <telecom>
           <system value="email"/>
-          <value value="d.ataenterer@happydoctors.ch"/>
+          <value value="p.lacer@regionalhospital.ch"/>
         </telecom>
       </Practitioner>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:63bfa1d2-90cc-4ba9-b80e-e4978a5fe564"/>
+    <fullUrl value="urn:uuid:8cd1f360-6f4f-4a7a-891c-e5f89f8a914f"/>
     <resource>
       <Organization>
-        <name value="Praxis Happy Doctors"/>
+        <name value="Regional Hospital"/>
+        <address>
+          <line value="Musterstrasse 129"/>
+          <city value="Zürich"/>
+          <postalCode value="8000"/>
+          <country value="Schweiz"/>
+        </address>
+      </Organization>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:296be231-e3d0-49bb-918b-eaa60f7583e8"/>
+    <resource>
+      <Organization>
+        <name value="Regional Hospital"/>
         <telecom>
           <system value="phone"/>
-          <value value="044 333 22 11"/>
+          <value value="044 987 65 43"/>
         </telecom>
         <telecom>
           <system value="email"/>
-          <value value="o.rderplacer@happydoctors.ch"/>
+          <value value="p.lacer@regionalhospital.ch"/>
         </telecom>
         <address>
-          <line value="Kantonsstrasse 14"/>
-          <line value="Postfach 14"/>
+          <line value="Musterstrasse 129"/>
           <city value="Zürich"/>
           <postalCode value="8000"/>
           <country value="Schweiz"/>
         </address>
         <contact>
           <name>
-            <family value="Rderplacer"/>
-            <given value="Otile"/>
+            <family value="Lacer"/>
+            <given value="Paul"/>
             <prefix value="Dr. med.">
               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                 <valueCode value="AC"/>
@@ -804,32 +834,6 @@
           </name>
         </contact>
       </Organization>
-    </resource>
-  </entry>
-  <entry>
-    <fullUrl value="urn:uuid:b2394af4-2d02-4c73-a365-e9efbd25449d"/>
-    <resource>
-      <Patient>
-        <name>
-          <family value="Ufferer Leidend"/>
-          <given value="Susanna"/>
-        </name>
-        <telecom>
-          <system value="phone"/>
-          <value value="079 979 79 79"/>
-        </telecom>
-        <telecom>
-          <system value="email"/>
-          <value value="susanna@ufferer.ch"/>
-        </telecom>
-        <address>
-          <line value="Musterweg"/>
-          <line value="6a"/>
-          <city value="Zürich"/>
-          <postalCode value="8000"/>
-          <country value="Schweiz"/>
-        </address>
-      </Patient>
     </resource>
   </entry>
   <entry>

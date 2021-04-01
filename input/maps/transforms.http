@@ -65,11 +65,25 @@ POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureM
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ./fsh-generated/resources/QuestionnaireResponse-qr-usecase-simple.json
+< ./fsh-generated/resources/QuestionnaireResponse-qr-radiology-order.json
 
 ### 2b. Transform order-referral-form to ORF Bundle
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ./fsh-generated/resources/QuestionnaireResponse-qr-usecase-complex.json
+< ./fsh-generated/resources/QuestionnaireResponse-qr-xray-report.json
+
+### 2c. Transform order-referral-form to ORF Bundle
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ./fsh-generated/resources/QuestionnaireResponse-qr-external-diagnostics-order.json
+
+### 2d. Transform order-referral-form to ORF Bundle
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
+
+< ./fsh-generated/resources/QuestionnaireResponse-qr-findings-report.json

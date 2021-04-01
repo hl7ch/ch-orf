@@ -603,7 +603,7 @@
     <p>For complete information on constructing a FHIR Bundle Resource, see: <a href="http://hl7.org/fhir/r4/bundle.html">http://hl7.org/fhir/r4/bundle.html</a>
     </p>
     <p>The FHIR <code>Bundle.meta.profile</code> shall include the value
-        <code>“<a href="http://fhir.ch/ig/ch-orf/StructureDefinition/ORFDocumentProfile”">http://fhir.ch/ig/ch-orf/StructureDefinition/ORFDocumentProfile”</a></code>.
+        <code><a href="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document">http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document</a></code>.
     </p>
     <a name="volume2"></a><h7>Expected Actions</h7>
     <p>The Questionnaire Receiver shall accept both media types <code>application/json+fhir</code> and

@@ -6,16 +6,19 @@
     <a href="index.html">Home</a>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Use Case<b class="caret">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Use Cases<b class="caret">
       </b>
     </a>
     <ul class="dropdown-menu">
       <li>
+        <a href="usecase-english.html">English</a>
+      </li>
+      <li>
         <a href="usecase-german.html">German</a>
       </li>
-      <!--<li>
+      <li>
         <a href="usecase-french.html">French</a>
-      </li>-->
+      </li>
     </ul>
   </li>
   <li>
