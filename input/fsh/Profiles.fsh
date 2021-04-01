@@ -133,6 +133,11 @@ Description: "Profile on Composition for CH ORF"
 * section.entry[ChOrfServiceRequest] only Reference(ChOrfServiceRequest)
 * section.entry[ChOrfServiceRequest] ^short = "ServiceRequest"
 * section.entry[ChOrfServiceRequest].reference 1.. MS
+// ---------- Composition.section.entry:ChOrfDocumentReference ----------
+* section.entry contains ChOrfDocumentReference 0..* MS
+* section.entry[ChOrfDocumentReference] only Reference(ChOrfDocumentReference)
+* section.entry[ChOrfDocumentReference] ^short = "DocumentReference"
+* section.entry[ChOrfDocumentReference].reference 1.. MS
 
 
 Profile: ChOrfDocument
@@ -172,6 +177,34 @@ Description: "Profile on Document for CH ORF"
 * entry[ChOrfServiceRequest] ^short = "ServiceRequest"
 * entry[ChOrfServiceRequest].resource ^type.profile = Canonical(ChOrfServiceRequest)
 * entry[ChOrfServiceRequest].resource 1.. MS
+// ---------- Bundle.entry:ChOrfDocumentReference ----------
+* entry contains ChOrfDocumentReference 0..* MS
+* entry[ChOrfDocumentReference] ^short = "DocumentReference"
+* entry[ChOrfDocumentReference].resource ^type.profile = Canonical(ChOrfDocumentReference)
+* entry[ChOrfDocumentReference].resource 1.. MS
+
+
+Profile: ChOrfDocumentReference
+Parent: ChCoreDocumentReference
+Id: ch-orf-documentreference
+Title: "CH ORF DocumentReference"
+Description: "Profile on DocumentReference for CH ORF"
+* . ^short = "CH ORF DocumentReference"
+* status MS
+* type MS
+* type ^short = "Precise type of clinical document"
+* category MS
+* category ^short = "High-level kind of a clinical document at a macro level"
+* subject MS
+* subject only Reference(ChCorePatient)
+* author MS
+* author only Reference(ChCorePractitionerRole)
+* content MS
+* content.attachment MS
+* content.attachment.contentType MS
+* content.attachment.data MS
+* context MS
+* context.related MS
 
 
 /*

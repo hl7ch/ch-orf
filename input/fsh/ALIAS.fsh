@@ -7,6 +7,7 @@ Alias:  ChCoreOrganization =        http://fhir.ch/ig/ch-core/StructureDefinitio
 Alias:  ChCorePatient =             http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient
 Alias:  ChExtEprDataEnterer =       http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer
 Alias:  ChCoreEncounter =           http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-encounter
+Alias:  ChCoreDocumentReference =   http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-documentreference
 
 // SDC
 Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire

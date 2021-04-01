@@ -883,148 +883,23 @@
     </p>
 
     <a name="volume3"></a><h4>Healthcare domain specific elements of a questionnaire</h4>
-     <table>
-        <tbody>
-            <tr>
-                <th>Resource
-                </th>
-                <th>Description
-                </th>
-            </tr>
-            <tr>
-                <td>ServiceRequest
-                </td>
-                <td>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p>There may be the need to provide a linkage between a particular files or between a particular file and an imaging
+     
+        <a name="volume3"></a><h5>ServiceRequest resource</h5>
+
+        <body>
+        {% include StructureDefinition-ch-orf-servicerequest-diff.xhtml %}
+        </body>
+
+        <a name="volume3"></a><h5>DocumentReference resource</h5>
+        <p>There may be the need to provide a linkage between particular files or between a particular file and an imaging
         study (e.g. a link between a PDF-File containing a report and a DICOM study). Such links shall be expressed with
         a DocumentReference as follows:
-    </p>
-     <table>
-        <tbody>
-            <tr>
-                <th>Resource
-                </th>
-                <th colspan="3">Elements
-                </th>
-                <th>Description
-                </th>
-            </tr>
-            <tr>
-                <td>DocumentReference
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>type
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>(e.g. LOINC 18748-4 for Diagnostic Imaging Study)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>content
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>attachment
-                </td>
-                <td>
-                </td>
-                <td>Attachment
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>contentType
-                </td>
-                <td>Mime Type
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>data
-                </td>
-                <td>Data inline, base64ed (contains the file; e.g. a PDF-Report)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>context
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>related
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>Reference (ImagingStudy)
-                </td>
-                <td>ImagingStudyResource provides StudyInstanceUID etc.
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        </p>
+
+        <body>
+        {% include StructureDefinition-ch-orf-documentreference-diff.xhtml %}
+        </body>
+        
 
     <a name="volume3"></a><h4>FHIR Representation</h4>
     <p>FHIR depicts forms (questionnaires) in a Questionnaire Resource. A Questionnaire Resource can be conceived as an
