@@ -137,7 +137,11 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.familyName"
 * item[=].item[=].text = "Name"
-* item[=].item[=].answer.valueString = "Ufferer Leidend"
+* item[=].item[=].answer.valueString = "Ufferer"
+
+* item[=].item[+].linkId = "patient.maidenName"
+* item[=].item[=].text = "Ledigname"
+* item[=].item[=].answer.valueString = "Leidend"
 
 * item[=].item[+].linkId = "patient.givenName"
 * item[=].item[=].text = "Vorname"

@@ -15,8 +15,25 @@
     <value value="11.22.33.4567"/>
   </identifier>
   <name>
-    <family value="Musterfrau"/>
-    <given value="Erika"/>
+    <use value="official"/>
+    <family value="Musterfrau">
+      <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name">
+        <valueCode value="officialName"/>
+      </extension>
+    </family>
+    <given value="Erika">
+      <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-firstname">
+        <valueCode value="officialFirstName"/>
+      </extension>
+    </given>
+  </name>
+  <name>
+    <use value="maiden"/>
+    <family value="Ledigname">
+      <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name">
+        <valueCode value="originalName"/>
+      </extension>
+    </family>
   </name>
   <telecom>
     <system value="phone"/>

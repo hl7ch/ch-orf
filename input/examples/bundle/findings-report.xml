@@ -82,8 +82,25 @@
     <resource>
       <Patient>
         <name>
-          <family value="Ufferer Leidend"/>
-          <given value="Susanna"/>
+          <use value="official"/>
+          <family value="Ufferer">
+            <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name">
+              <valueCode value="officialName"/>
+            </extension>
+          </family>
+          <given value="Susanna">
+            <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-firstname">
+              <valueCode value="officialFirstName"/>
+            </extension>
+          </given>
+        </name>
+        <name>
+          <use value="maiden"/>
+          <family value="Leidend">
+            <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name">
+              <valueCode value="originalName"/>
+            </extension>
+          </family>
         </name>
         <telecom>
           <system value="phone"/>
@@ -345,7 +362,14 @@
             <linkId value="patient.familyName"/>
             <text value="Name"/>
             <answer>
-              <valueString value="Ufferer Leidend"/>
+              <valueString value="Ufferer"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="patient.maidenName"/>
+            <text value="Ledigname"/>
+            <answer>
+              <valueString value="Leidend"/>
             </answer>
           </item>
           <item>
@@ -1017,6 +1041,11 @@
           <item>
             <linkId value="patient.familyName"/>
             <text value="Name"/>
+            <type value="string"/>
+          </item>
+          <item>
+            <linkId value="patient.maidenName"/>
+            <text value="Ledigname"/>
             <type value="string"/>
           </item>
           <item>
