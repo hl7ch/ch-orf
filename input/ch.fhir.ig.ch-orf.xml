@@ -98,6 +98,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>-->
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-coverage"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Extension Definitions -->
     <resource>
@@ -133,6 +139,13 @@
       <name value="Minimal Data Set for questionnaires"/>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-coveragetype"/>
+      </reference>
+      <name value="Coverage Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- CodeSystems -->
     <resource>
@@ -140,6 +153,13 @@
         <reference value="CodeSystem/minimaldataset"/>
       </reference>
       <name value="Minimal Data Set for questionnaires"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="CodeSystem/ch-orf-cs-coveragetype"/>
+      </reference>
+      <name value="Coverage Type"/>
       <exampleBoolean value="false"/>
     </resource>
 

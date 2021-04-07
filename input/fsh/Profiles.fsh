@@ -215,3 +215,14 @@ Title: "CH ORF Consenst"
 Description: "Profile on Consent for CH ORF"
 * . ^short = "CH ORF Consent"
 */
+
+
+// Probably better in CH Core -> next release
+Profile: ChOrfCoverage
+Parent: ChCoreCoverage
+Id: ch-orf-coverage
+Title: "CH ORF Coverage"
+Description: "Profile on Coverage for CH ORF"
+* . ^short = "CH ORF Coverage"
+* type MS
+* type from ChOrfCoverageType (extensible)
