@@ -20,6 +20,13 @@
         <a href="http://build.fhir.org/ig/hl7ch/ch-core/index.html">CH Core</a>.
     </p>
 
+    <p>
+        <b>Download:</b>
+        You can download this Implementation Guide in 
+        <a href="https://confluence.hl7.org/display/FHIR/NPM+Package+Specification">NPM format</a> from 
+        <a href="package.tgz">here</a>.
+    </p>
+
     <a name="volume1"></a><h3>Volume 1 – Order &amp; Referral by Form (CH ORF) Implementation Guide</h3>
     <p>This Implementation Guide concerns directional information exchange between institutions such as requests for
         referral, requests for previous imaging results, requests for second opinions etc. as well as corresponding
