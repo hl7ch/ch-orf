@@ -202,14 +202,19 @@ Description: "Profile on DocumentReference for CH ORF"
 * context.related MS
 
 
-/*
-Profile: CHORFConsent
+// Probably better in CH Core??
+Profile: ChOrfConsent
 Parent: Consent
 Id: ch-orf-consent
-Title: "CH ORF Consenst"
+Title: "CH ORF Consent"
 Description: "Profile on Consent for CH ORF"
 * . ^short = "CH ORF Consent"
-*/
+* status MS
+* scope MS
+* scope from VSConsentScope (required)
+* category MS
+* patient MS
+* patient only Reference(ChCorePatient)
 
 
 // Probably better in CH Core -> next release

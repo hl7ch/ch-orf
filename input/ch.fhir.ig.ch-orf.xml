@@ -92,12 +92,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-    <!--<resource>
+    <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-consent"/>
       </reference>
       <exampleBoolean value="false"/>
-    </resource>-->
+    </resource>
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-coverage"/>
@@ -424,6 +424,14 @@
       <exampleBoolean value="true"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="Consent/ConsentMusterfrau"/>
+      </reference>
+      <name value="Consent Erika Musterfrau"/>
+      <description value="Example for Consent"/>
+      <exampleBoolean value="true"/>
+    </resource>
     <resource>
       <reference>
         <reference value="Coverage/CoverageMusterfrau"/>
