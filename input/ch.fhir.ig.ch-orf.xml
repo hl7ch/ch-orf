@@ -418,6 +418,15 @@
       <exampleBoolean value="true"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="Coverage/CoverageMusterfrau"/>
+      </reference>
+      <name value="Coverage Disorder KVG"/>
+      <description value="Example for Coverage"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
     <!-- pages -->
     <page>
       <nameUrl value="toc.html"/>
