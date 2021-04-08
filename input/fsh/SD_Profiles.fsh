@@ -113,26 +113,26 @@ Description: "Profile on Composition for CH ORF"
 * section.entry ^slicing.discriminator.type = #profile
 * section.entry ^slicing.discriminator.path = "resolve()"
 * section.entry ^slicing.rules = #open
-// ---------- Composition.section.entry:ChOrfQuestionnaire ----------
-* section.entry contains ChOrfQuestionnaire 1..1 MS
-* section.entry[ChOrfQuestionnaire] only Reference(ChOrfQuestionnaire)
-* section.entry[ChOrfQuestionnaire] ^short = "Questionnaire"
-* section.entry[ChOrfQuestionnaire].reference 1.. MS
-// ---------- Composition.section.entry:ChOrfQuestionnaireResponse ----------
-* section.entry contains ChOrfQuestionnaireResponse 1..1 MS
-* section.entry[ChOrfQuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
-* section.entry[ChOrfQuestionnaireResponse] ^short = "QuestionnaireResponse"
-* section.entry[ChOrfQuestionnaireResponse].reference 1.. MS
-// ---------- Composition.section.entry:ChOrfServiceRequest ----------
-* section.entry contains ChOrfServiceRequest 1..* MS
-* section.entry[ChOrfServiceRequest] only Reference(ChOrfServiceRequest)
-* section.entry[ChOrfServiceRequest] ^short = "ServiceRequest"
-* section.entry[ChOrfServiceRequest].reference 1.. MS
-// ---------- Composition.section.entry:ChOrfDocumentReference ----------
-* section.entry contains ChOrfDocumentReference 0..* MS
-* section.entry[ChOrfDocumentReference] only Reference(ChOrfDocumentReference)
-* section.entry[ChOrfDocumentReference] ^short = "DocumentReference"
-* section.entry[ChOrfDocumentReference].reference 1.. MS
+// ---------- Composition.section.entry:Questionnaire ----------
+* section.entry contains Questionnaire 1..1 MS
+* section.entry[Questionnaire] only Reference(ChOrfQuestionnaire)
+* section.entry[Questionnaire] ^short = "Questionnaire"
+* section.entry[Questionnaire].reference 1.. MS
+// ---------- Composition.section.entry:QuestionnaireResponse ----------
+* section.entry contains QuestionnaireResponse 1..1 MS
+* section.entry[QuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
+* section.entry[QuestionnaireResponse] ^short = "QuestionnaireResponse"
+* section.entry[QuestionnaireResponse].reference 1.. MS
+// ---------- Composition.section.entry:ServiceRequest ----------
+* section.entry contains ServiceRequest 1..* MS
+* section.entry[ServiceRequest] only Reference(ChOrfServiceRequest)
+* section.entry[ServiceRequest] ^short = "ServiceRequest"
+* section.entry[ServiceRequest].reference 1.. MS
+// ---------- Composition.section.entry:DocumentReference ----------
+* section.entry contains DocumentReference 0..* MS
+* section.entry[DocumentReference] only Reference(ChOrfDocumentReference)
+* section.entry[DocumentReference] ^short = "DocumentReference"
+* section.entry[DocumentReference].reference 1.. MS
 
 
 Profile: ChOrfDocument
@@ -157,26 +157,6 @@ Description: "Profile on Document for CH ORF"
 * entry[Composition] MS
 * entry[Composition].resource ^type.profile = Canonical(ChOrfComposition)
 * entry[Composition].resource MS
-// ---------- Bundle.entry:ChOrfQuestionnaire ----------
-* entry contains ChOrfQuestionnaire 1..1 MS
-* entry[ChOrfQuestionnaire] ^short = "Questionnaire"
-* entry[ChOrfQuestionnaire].resource ^type.profile = Canonical(ChOrfQuestionnaire)
-* entry[ChOrfQuestionnaire].resource 1.. MS
-// ---------- Bundle.entry:ChOrfQuestionnaireResponse ----------
-* entry contains ChOrfQuestionnaireResponse 1..1 MS
-* entry[ChOrfQuestionnaireResponse] ^short = "QuestionnaireResponse"
-* entry[ChOrfQuestionnaireResponse].resource ^type.profile = Canonical(ChOrfQuestionnaireResponse) 
-* entry[ChOrfQuestionnaireResponse].resource 1.. MS
-// ---------- Bundle.entry:ChOrfServiceRequest ----------
-* entry contains ChOrfServiceRequest 1..* MS
-* entry[ChOrfServiceRequest] ^short = "ServiceRequest"
-* entry[ChOrfServiceRequest].resource ^type.profile = Canonical(ChOrfServiceRequest)
-* entry[ChOrfServiceRequest].resource 1.. MS
-// ---------- Bundle.entry:ChOrfDocumentReference ----------
-* entry contains ChOrfDocumentReference 0..* MS
-* entry[ChOrfDocumentReference] ^short = "DocumentReference"
-* entry[ChOrfDocumentReference].resource ^type.profile = Canonical(ChOrfDocumentReference)
-* entry[ChOrfDocumentReference].resource 1.. MS
 
 
 Profile: ChOrfDocumentReference
