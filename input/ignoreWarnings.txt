@@ -9,6 +9,8 @@ Display Name for http://hl7.org/fhir/request-priority#urgent should be one of 'U
 Display Name for http://hl7.org/fhir/request-priority#asap should be one of 'ASAP' instead of 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for 'http://hl7.org/fhir/request-priority#asap'
 Display Name for http://hl7.org/fhir/request-priority#stat should be one of 'STAT' instead of 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for 'http://hl7.org/fhir/request-priority#stat'
 
-# No examples for extensions
-The Implementation Guide contains no examples for this profile
+# No examples of extensions themselves or resources shown in the bundle examples
 The Implementation Guide contains no explicitly linked examples for this profile
+
+# A own VS is defined
+None of the codings provided are in the value set http://hl7.org/fhir/ValueSet/coverage-type (http://hl7.org/fhir/ValueSet/coverage-type), and a coding is recommended to come from this value set) (codes = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype#DisorderKVG)
