@@ -12,7 +12,7 @@
   <type value="document"/>
   <timestamp value="2021-03-31T12:32:25+00:00"/>
   <entry>
-    <fullUrl value="urn:uuid:4c05308c-e7b3-459b-b2b6-5a8bf32e4947"/>
+    <fullUrl value="urn:uuid:c92cba17-7db4-4df9-adf2-484af28763b1"/>
     <resource>
       <Composition>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument">
@@ -23,12 +23,12 @@
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
           <valueReference>
-            <reference value="urn:uuid:7957f372-cc38-4246-850b-aec3a1c69c89"/>
+            <reference value="urn:uuid:31cedefb-dc44-495e-a497-39d060e70cc3"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
           <valueReference>
-            <reference value="urn:uuid:9a5456c8-8ed0-4663-8498-7fa4da70040e"/>
+            <reference value="urn:uuid:b1130791-962f-4a3c-ad71-c07aeb30b6c8"/>
           </valueReference>
         </extension>
         <status value="final"/>
@@ -47,12 +47,12 @@
           </coding>
         </category>
         <subject>
-          <reference value="urn:uuid:e9410429-fd14-400c-9d99-237db3a42656"/>
+          <reference value="urn:uuid:992ccf77-9a79-4b5a-9e5c-8a36f9464a62"/>
           <type value="Patient"/>
         </subject>
         <date value="2021-03-31T12:32:25+00:00"/>
         <author>
-          <reference value="urn:uuid:6e6b6557-e66d-4458-a673-07388ab12264"/>
+          <reference value="urn:uuid:9a96e73a-8c44-404e-821e-971b07bb8ee2"/>
           <type value="PractitionerRole"/>
         </author>
         <title value="Findings report"/>
@@ -62,11 +62,11 @@
             <type value="Questionnaire"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:54a44334-61c8-4b85-a0e9-b89915ccb2bd"/>
+            <reference value="urn:uuid:30c74040-bac7-4493-96b1-003334646aec"/>
             <type value="QuestionnaireResponse"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:89c7aa2e-6d4b-44b4-8d0b-459a3d6bf58c"/>
+            <reference value="urn:uuid:071ebc3c-11e9-4128-ac14-d2b258d7f003"/>
             <type value="ServiceRequest"/>
           </entry>
           <entry>
@@ -78,7 +78,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:e9410429-fd14-400c-9d99-237db3a42656"/>
+    <fullUrl value="urn:uuid:992ccf77-9a79-4b5a-9e5c-8a36f9464a62"/>
     <resource>
       <Patient>
         <name>
@@ -123,7 +123,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:54a44334-61c8-4b85-a0e9-b89915ccb2bd"/>
+    <fullUrl value="urn:uuid:30c74040-bac7-4493-96b1-003334646aec"/>
     <resource>
       <QuestionnaireResponse>
         <meta>
@@ -542,7 +542,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:89c7aa2e-6d4b-44b4-8d0b-459a3d6bf58c"/>
+    <fullUrl value="urn:uuid:071ebc3c-11e9-4128-ac14-d2b258d7f003"/>
     <resource>
       <ServiceRequest>
         <identifier>
@@ -569,33 +569,33 @@
         <intent value="original-order"/>
         <priority value="stat"/>
         <subject>
-          <reference value="urn:uuid:e9410429-fd14-400c-9d99-237db3a42656"/>
+          <reference value="urn:uuid:992ccf77-9a79-4b5a-9e5c-8a36f9464a62"/>
           <type value="Patient"/>
         </subject>
         <requester>
-          <reference value="urn:uuid:6e6b6557-e66d-4458-a673-07388ab12264"/>
+          <reference value="urn:uuid:9a96e73a-8c44-404e-821e-971b07bb8ee2"/>
           <type value="PractitionerRole"/>
         </requester>
         <performer>
-          <reference value="urn:uuid:db89b679-1a3d-439d-a433-1d0cb48f2eee"/>
+          <reference value="urn:uuid:9292032d-da37-420e-bea2-dd5665aafcf2"/>
           <type value="PractitionerRole"/>
         </performer>
       </ServiceRequest>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:7957f372-cc38-4246-850b-aec3a1c69c89"/>
+    <fullUrl value="urn:uuid:31cedefb-dc44-495e-a497-39d060e70cc3"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:7b795c4b-538f-4464-a961-f5f890a75e86"/>
+          <reference value="urn:uuid:791c1bd6-bda4-46e5-a29b-5d1b5f311268"/>
           <type value="Practitioner"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:7b795c4b-538f-4464-a961-f5f890a75e86"/>
+    <fullUrl value="urn:uuid:791c1bd6-bda4-46e5-a29b-5d1b5f311268"/>
     <resource>
       <Practitioner>
         <name>
@@ -619,18 +619,18 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:9a5456c8-8ed0-4663-8498-7fa4da70040e"/>
+    <fullUrl value="urn:uuid:b1130791-962f-4a3c-ad71-c07aeb30b6c8"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:057f72a6-9cd2-48ce-887d-c1cff2a95579"/>
+          <reference value="urn:uuid:65d01daa-447b-4b0f-abda-ff82a4f64ef1"/>
           <type value="Practitioner"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:057f72a6-9cd2-48ce-887d-c1cff2a95579"/>
+    <fullUrl value="urn:uuid:65d01daa-447b-4b0f-abda-ff82a4f64ef1"/>
     <resource>
       <Practitioner>
         <name>
@@ -654,22 +654,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:db89b679-1a3d-439d-a433-1d0cb48f2eee"/>
+    <fullUrl value="urn:uuid:9292032d-da37-420e-bea2-dd5665aafcf2"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:0dd42f21-570c-4e1a-a447-1515c4625402"/>
+          <reference value="urn:uuid:f53e93ad-9ee0-480e-a792-c3b9c4da1be0"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:509eb3ea-4f62-4360-b4e2-d7ab519fdadf"/>
+          <reference value="urn:uuid:822578f1-4d1f-4466-ada9-d0ec66299125"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:0dd42f21-570c-4e1a-a447-1515c4625402"/>
+    <fullUrl value="urn:uuid:f53e93ad-9ee0-480e-a792-c3b9c4da1be0"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -697,7 +697,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:509eb3ea-4f62-4360-b4e2-d7ab519fdadf"/>
+    <fullUrl value="urn:uuid:822578f1-4d1f-4466-ada9-d0ec66299125"/>
     <resource>
       <Organization>
         <name value="Regional Hospital"/>
@@ -711,22 +711,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6e6b6557-e66d-4458-a673-07388ab12264"/>
+    <fullUrl value="urn:uuid:9a96e73a-8c44-404e-821e-971b07bb8ee2"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:fb05db09-10fc-4e9f-8171-0688415a0a52"/>
+          <reference value="urn:uuid:d2ad4ef3-18f2-4a03-892b-37d7d45ce11f"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:81c47a5f-34dd-4347-8c61-02f450797efb"/>
+          <reference value="urn:uuid:caa4f5b8-4845-4589-9d16-ce54d6824a0e"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:fb05db09-10fc-4e9f-8171-0688415a0a52"/>
+    <fullUrl value="urn:uuid:d2ad4ef3-18f2-4a03-892b-37d7d45ce11f"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -754,7 +754,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:81c47a5f-34dd-4347-8c61-02f450797efb"/>
+    <fullUrl value="urn:uuid:caa4f5b8-4845-4589-9d16-ce54d6824a0e"/>
     <resource>
       <Organization>
         <name value="University Hospital"/>
@@ -774,9 +774,9 @@
       <Questionnaire>
         <id value="order-referral-form"/>
         <meta>
-          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
-          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
+          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
         </meta>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
@@ -809,12 +809,10 @@
         <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <name value="OrderReferralForm"/>
         <title value="Order-Referral-Form"/>
-        <status value="draft"/>
-        <experimental value="true"/>
+        <status value="active"/>
         <subjectType value="Patient"/>
-        <date value="2020-12-17"/>
+        <date value="2021-03-26"/>
         <publisher value="HL7 Switzerland"/>
-        <!-- Auftrag -->
         <item>
           <linkId value="order"/>
           <text value="Auftrag"/>
@@ -854,7 +852,6 @@
             <text value="Identifier des Vorgängerdokuments"/>
             <type value="string"/>
           </item>
-          <!-- Urgent Notification Contact for this document -->
           <item>
             <linkId value="order.notificationContactDocument"/>
             <text value="Dringender Benachrichtigungskontakt für dieses Dokument"/>
@@ -890,7 +887,6 @@
               </item>
             </item>
           </item>
-          <!-- Urgent Notification Contact for the Response to this document -->
           <item>
             <linkId value="order.notificationContactDocumentResponse"/>
             <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"/>
@@ -961,7 +957,6 @@
             </answerOption>
           </item>
         </item>
-        <!-- Request Receiver: Person/organization who receives the request -->
         <item>
           <linkId value="receiverRequest"/>
           <text value="Auftragsempfänger"/>
@@ -1033,7 +1028,6 @@
             </item>
           </item>
         </item>
-        <!-- Patient: The principle target of a particular Form Content is one patient -->
         <item>
           <linkId value="patient"/>
           <text value="Patient"/>
@@ -1127,7 +1121,6 @@
           <text value="Auftraggeber"/>
           <type value="group"/>
           <required value="true"/>
-          <!-- Author: The person/organization responsible for Form Content -->
           <item>
             <linkId value="orderer.author"/>
             <text value="Verantwortlicher"/>
@@ -1200,7 +1193,6 @@
               </item>
             </item>
           </item>
-          <!-- Data Entry Person: The person who has typed/filled in the Form Content. -->
           <item>
             <linkId value="orderer.dataenterer"/>
             <text value="Erfasser"/>
@@ -1233,62 +1225,62 @@
           </item>
         </item>
         <item>
-          <linkId value="receiverResponses"/>
-          <text value="Rückmeldungsempfänger"/>
+          <linkId value="receiverCopies"/>
+          <text value="Kopieempfänger"/>
           <type value="group"/>
           <item>
-            <linkId value="receiverResponse"/>
-            <text value="Rückmeldungsempfangende Organisation oder Person"/>
+            <linkId value="receiverCopy"/>
+            <text value="Kopieempfangende Organisation oder Person"/>
             <type value="group"/>
             <repeats value="true"/>
             <item>
-              <linkId value="receiverResponse.organization.name"/>
+              <linkId value="receiverCopy.organization.name"/>
               <text value="Name der Organisation"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.familyName"/>
+              <linkId value="receiverCopy.familyName"/>
               <text value="Name"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.givenName"/>
+              <linkId value="receiverCopy.givenName"/>
               <text value="Vorname"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.title"/>
+              <linkId value="receiverCopy.title"/>
               <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.phone"/>
+              <linkId value="receiverCopy.phone"/>
               <text value="Telefon"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.email"/>
+              <linkId value="receiverCopy.email"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.streetAddressLine"/>
+              <linkId value="receiverCopy.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
-              <linkId value="receiverResponse.postalCode"/>
+              <linkId value="receiverCopy.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.city"/>
+              <linkId value="receiverCopy.city"/>
               <text value="Ort"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.country"/>
+              <linkId value="receiverCopy.country"/>
               <text value="Land"/>
               <type value="string"/>
             </item>

@@ -39,7 +39,7 @@ group CompositionToQr(source bundle : Bundle, source composition: Composition, s
    serviceRequest.performer -> qr.item as item, item.linkId = 'receiverRequest' then ReceiverRequestToQr(bundle, composition, serviceRequest, item) "receiverRequest"; 
    composition.subject -> qr.item as item, item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient"; 
    composition.author -> qr.item as item, item.linkId = 'orderer' then OrdererToQr(bundle, composition, serviceRequest, item) "orderer"; 
-   composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') -> qr.item as item, item.linkId = 'receiverResponses' then ReceiverResponseToQr(bundle, composition, serviceRequest, item) "receiverResponses"; 
+   composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') -> qr.item as item, item.linkId = 'receiverCopies' then ReceiverCopyToQr(bundle, composition, serviceRequest, item) "receiverCopies"; 
 }
 
 group OrderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
@@ -368,83 +368,83 @@ group DataEntererPractitionerToQr(source bundle : Bundle, source composition: Co
 }
 
 
-group ReceiverResponseToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
-     composition.extension as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') then {
+group ReceiverCopyToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+     composition.extension as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') then {
       extension.value as value then {
         bundle.entry as entry then {
           entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid')  then {
-            entry.resource : Organization as organization then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
-            entry.resource : Patient as patient then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+            entry.resource : Organization as organization then ReceiverCopyOrganizationToQr(bundle, composition, organization, item) "organization";
+            entry.resource : Patient as patient then ReceiverCopyPatientToQr(bundle, composition, patient, item) "patient";
           } "fullUrlAsUuid";
-          entry.resource: Organization as organization where ('Organization'+'/'+$this.id) in %value.reference then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
-          entry.resource: Patient as patient where ('Patient'+'/'+$this.id) in %value.reference then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+          entry.resource: Organization as organization where ('Organization'+'/'+$this.id) in %value.reference then ReceiverCopyOrganizationToQr(bundle, composition, organization, item) "organization";
+          entry.resource: Patient as patient where ('Patient'+'/'+$this.id) in %value.reference then ReceiverCopyPatientToQr(bundle, composition, patient, item) "patient";
         } "bundle.entry";
       } "extension.value";
      } "extension";
 }
 
-group ReceiverResponseOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target itemorderer : BackboneElement ) {
-  organization -> itemorderer.item as item, item.linkId = 'receiverResponse' then {  
-  // receiverResponse.organization.name
-    organization.name as name -> item.item as item, item.linkId = 'receiverResponse.organization.name', item.answer as answer, answer.value = name "name";
+group ReceiverCopyOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target itemorderer : BackboneElement ) {
+  organization -> itemorderer.item as item, item.linkId = 'receiverCopy' then {  
+  // receiverCopy.organization.name
+    organization.name as name -> item.item as item, item.linkId = 'receiverCopy.organization.name', item.answer as answer, answer.value = name "name";
    organization.contact as contact then {
      contact.name as name then {
-    // receiverResponse.familyName
-        name.family as family -> item.item as item, item.linkId = 'receiverResponse.familyName', item.answer as answer, answer.value = family "family";
-    // receiverResponse.givenName
-        name.given as given -> item.item as item, item.linkId = 'receiverResponse.givenName', item.answer as answer, answer.value = given "given";
-    // receiverResponse.title
-        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverResponse.title', item.answer as answer, answer.value = prefix "prefix";
+    // receiverCopy.familyName
+        name.family as family -> item.item as item, item.linkId = 'receiverCopy.familyName', item.answer as answer, answer.value = family "family";
+    // receiverCopy.givenName
+        name.given as given -> item.item as item, item.linkId = 'receiverCopy.givenName', item.answer as answer, answer.value = given "given";
+    // receiverCopy.title
+        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverCopy.title', item.answer as answer, answer.value = prefix "prefix";
      } "name";
   } "contact"; 
  
- // receiverResponse.phone
-   organization.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverResponse.phone', item.answer as answer, answer.value = (telecom.value) "phone";
-// receiverResponse.email
-   organization.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverResponse.email', item.answer as answer, answer.value = (telecom.value) "email";
+ // receiverCopy.phone
+   organization.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverCopy.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+// receiverCopy.email
+   organization.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverCopy.email', item.answer as answer, answer.value = (telecom.value) "email";
 
-  // receiverResponse.organization.streetAddressLine
+  // receiverCopy.organization.streetAddressLine
     organization.address as addr then {
-        addr.line first as line1 -> item.item as item, item.linkId = 'receiverResponse.streetAddressLine' then {
+        addr.line first as line1 -> item.item as item, item.linkId = 'receiverCopy.streetAddressLine' then {
           addr.line as line -> item.answer as answer, answer.value = line "line";
         } "addrlinefirst"; 
-  // receiverResponse.postalCode
-        addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverResponse.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
-  // receiverResponse.city
-        addr.city as city -> item.item as item, item.linkId = 'receiverResponse.city', item.answer as answer, answer.value = city "city";
-  // receiverResponse.country
-        addr.country as country -> item.item as item, item.linkId = 'receiverResponse.country', item.answer as answer, answer.value = country "country";
+  // receiverCopy.postalCode
+        addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverCopy.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+  // receiverCopy.city
+        addr.city as city -> item.item as item, item.linkId = 'receiverCopy.city', item.answer as answer, answer.value = city "city";
+  // receiverCopy.country
+        addr.country as country -> item.item as item, item.linkId = 'receiverCopy.country', item.answer as answer, answer.value = country "country";
     } "addr";
   } "organization";
 }
 
-group ReceiverResponsePatientToQr(source bundle : Bundle, source composition: Composition, source patient: Patient, target itemorderer : BackboneElement ) {
-  patient -> itemorderer.item as item, item.linkId = 'receiverResponse' then {  
+group ReceiverCopyPatientToQr(source bundle : Bundle, source composition: Composition, source patient: Patient, target itemorderer : BackboneElement ) {
+  patient -> itemorderer.item as item, item.linkId = 'receiverCopy' then {  
     patient.name as name then {
-    // receiverResponse.familyName
-        name.family as family -> item.item as item, item.linkId = 'receiverResponse.familyName', item.answer as answer, answer.value = family "family";
-    // receiverResponse.givenName
-        name.given as given -> item.item as item, item.linkId = 'receiverResponse.givenName', item.answer as answer, answer.value = given "given";
-    // receiverResponse.title
-        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverResponse.title', item.answer as answer, answer.value = prefix "prefix";
+    // receiverCopy.familyName
+        name.family as family -> item.item as item, item.linkId = 'receiverCopy.familyName', item.answer as answer, answer.value = family "family";
+    // receiverCopy.givenName
+        name.given as given -> item.item as item, item.linkId = 'receiverCopy.givenName', item.answer as answer, answer.value = given "given";
+    // receiverCopy.title
+        name.prefix as prefix where (extension.where(url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier' and valueCode='AC')) -> item.item as item, item.linkId = 'receiverCopy.title', item.answer as answer, answer.value = prefix "prefix";
     } "name";
   
-  // receiverResponse.phone
-    patient.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverResponse.phone', item.answer as answer, answer.value = (telecom.value) "phone";
-  // receiverResponse.email
-    patient.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverResponse.email', item.answer as answer, answer.value = (telecom.value) "email";
+  // receiverCopy.phone
+    patient.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'receiverCopy.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+  // receiverCopy.email
+    patient.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'receiverCopy.email', item.answer as answer, answer.value = (telecom.value) "email";
 
-    // receiverResponse.organization.streetAddressLine
+    // receiverCopy.organization.streetAddressLine
       patient.address as addr then {
-          addr.line first as line1 -> item.item as item, item.linkId = 'receiverResponse.streetAddressLine' then {
+          addr.line first as line1 -> item.item as item, item.linkId = 'receiverCopy.streetAddressLine' then {
             addr.line as line -> item.answer as answer, answer.value = line "line";
           } "addrlinefirst"; 
-    // receiverResponse.postalCode
-          addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverResponse.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
-    // receiverResponse.city
-          addr.city as city -> item.item as item, item.linkId = 'receiverResponse.city', item.answer as answer, answer.value = city "city";
-    // receiverResponse.country
-          addr.country as country -> item.item as item, item.linkId = 'receiverResponse.country', item.answer as answer, answer.value = country "country";
+    // receiverCopy.postalCode
+          addr.postalCode as postalCode -> item.item as item, item.linkId = 'receiverCopy.postalCode', item.answer as answer, answer.value = postalCode "postalCode";
+    // receiverCopy.city
+          addr.city as city -> item.item as item, item.linkId = 'receiverCopy.city', item.answer as answer, answer.value = city "city";
+    // receiverCopy.country
+          addr.country as country -> item.item as item, item.linkId = 'receiverCopy.country', item.answer as answer, answer.value = country "country";
       } "addr";
   } "patient";
 }

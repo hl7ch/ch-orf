@@ -813,7 +813,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Response Receiver
+                <td>Copy Receiver
                 </td>
                 <td>X
                 </td>
@@ -821,9 +821,9 @@
                 </td>
                 <td>
                 </td>
-                <td>PractitionerRole
+                <td>Patient/Organization
                 </td>
-                <td>Person/organization who receives the response.
+                <td>Person/organization who receives the copy of this document.
                 </td>
             </tr>
             <tr>

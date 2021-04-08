@@ -97,8 +97,8 @@ Description: "Profile on Composition for CH ORF"
 * extension[urgentNoficationContactForThisDocument] ^short = "An information recipient to notify for urgent matters"
 * extension contains ChOrfUrgentNotificiationContactForTheResponseToThisDocument named urgentNoficationContactForTheResponseToThisDocument 0..1 MS
 * extension[urgentNoficationContactForTheResponseToThisDocument] ^short = "An information recipient to notify for urgent matters about the response"
-* extension contains ChOrfResponseReceiver named responseReceiver 0..* MS
-* extension[responseReceiver] ^short = "Person/organization who receives the response"
+* extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
+* extension[copyReceiver] ^short = "Person/organization who receives the copy of this document"
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)

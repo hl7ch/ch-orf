@@ -12,24 +12,19 @@
   <type value="document"/>
   <timestamp value="2021-03-15T15:42:18+00:00"/>
   <entry>
-    <fullUrl value="urn:uuid:f6667802-5110-4222-be6f-ba9428807797"/>
+    <fullUrl value="urn:uuid:5656e042-dbdf-4b10-a497-1a7081e2c26b"/>
     <resource>
       <Composition>
         <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
           <extension url="enterer">
             <valueReference>
-              <reference value="urn:uuid:29c69399-0b5c-48c8-b613-bfa6b9f85182"/>
+              <reference value="urn:uuid:7a6b1cb4-fed0-4151-bcb7-5a6b2fdea0fe"/>
             </valueReference>
           </extension>
         </extension>
-        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
           <valueReference>
-            <reference value="urn:uuid:63bfa1d2-90cc-4ba9-b80e-e4978a5fe564"/>
-          </valueReference>
-        </extension>
-        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
-          <valueReference>
-            <reference value="urn:uuid:b2394af4-2d02-4c73-a365-e9efbd25449d"/>
+            <reference value="urn:uuid:5cd44b1a-979c-4fd3-a327-7179a2ff91f4"/>
           </valueReference>
         </extension>
         <status value="final"/>
@@ -48,12 +43,12 @@
           </coding>
         </category>
         <subject>
-          <reference value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+          <reference value="urn:uuid:58b8af24-8a86-4c8f-9f42-74c506592d49"/>
           <type value="Patient"/>
         </subject>
         <date value="2021-03-15T15:42:18+00:00"/>
         <author>
-          <reference value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+          <reference value="urn:uuid:f03295fd-d458-4f69-9e6e-bb226e8acb3a"/>
           <type value="PractitionerRole"/>
         </author>
         <title value="Radiology Order"/>
@@ -63,11 +58,11 @@
             <type value="Questionnaire"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:72b2f60e-d9f8-4866-8b74-3c5cc89bc284"/>
+            <reference value="urn:uuid:195c2b60-0aec-4d73-9ef0-963bd13a65c1"/>
             <type value="QuestionnaireResponse"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:6aba7b67-27b0-4c16-8749-f5e53965560a"/>
+            <reference value="urn:uuid:1c35e3f9-21f8-4138-bebb-bcfa6710804e"/>
             <type value="ServiceRequest"/>
           </entry>
         </section>
@@ -75,7 +70,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+    <fullUrl value="urn:uuid:58b8af24-8a86-4c8f-9f42-74c506592d49"/>
     <resource>
       <Patient>
         <name>
@@ -120,7 +115,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:72b2f60e-d9f8-4866-8b74-3c5cc89bc284"/>
+    <fullUrl value="urn:uuid:195c2b60-0aec-4d73-9ef0-963bd13a65c1"/>
     <resource>
       <QuestionnaireResponse>
         <meta>
@@ -468,118 +463,41 @@
           </item>
         </item>
         <item>
-          <linkId value="receiverResponses"/>
-          <text value="Rückmeldungsempfänger"/>
+          <linkId value="receiverCopies"/>
+          <text value="Kopieempfänger"/>
           <item>
-            <linkId value="receiverResponse"/>
-            <text value="Rückmeldungsempfangende Organisation oder Person"/>
+            <linkId value="receiverCopy"/>
+            <text value="Kopieempfangende Organisation oder Person"/>
             <item>
-              <linkId value="receiverResponse.organization.name"/>
-              <text value="Name der Organisation"/>
-              <answer>
-                <valueString value="Praxis Happy Doctors"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.familyName"/>
-              <text value="Name"/>
-              <answer>
-                <valueString value="Rderplacer"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.givenName"/>
-              <text value="Vorname"/>
-              <answer>
-                <valueString value="Ottilie"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.title"/>
-              <text value="Titel"/>
-              <answer>
-                <valueString value="Dr. med."/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.phone"/>
-              <text value="Telefon"/>
-              <answer>
-                <valueString value="044 333 22 11"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.email"/>
-              <text value="E-Mail"/>
-              <answer>
-                <valueString value="o.rderplacer@happydoctors.ch"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.streetAddressLine"/>
-              <text value="Strasse, Hausnummer, Postfach etc."/>
-              <answer>
-                <valueString value="Kantonsstrasse 14"/>
-              </answer>
-              <answer>
-                <valueString value="Postfach 14"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.postalCode"/>
-              <text value="PLZ"/>
-              <answer>
-                <valueString value="8000"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.city"/>
-              <text value="Ort"/>
-              <answer>
-                <valueString value="Zürich"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverResponse.country"/>
-              <text value="Land"/>
-              <answer>
-                <valueString value="Schweiz"/>
-              </answer>
-            </item>
-          </item>
-          <item>
-            <linkId value="receiverResponse"/>
-            <text value="Rückmeldungsempfangende Organisation oder Person"/>
-            <item>
-              <linkId value="receiverResponse.familyName"/>
+              <linkId value="receiverCopy.familyName"/>
               <text value="Name"/>
               <answer>
                 <valueString value="Ufferer"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.givenName"/>
+              <linkId value="receiverCopy.givenName"/>
               <text value="Vorname"/>
               <answer>
                 <valueString value="Susanna"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.phone"/>
+              <linkId value="receiverCopy.phone"/>
               <text value="Telefon"/>
               <answer>
                 <valueString value="079 979 79 79"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.email"/>
+              <linkId value="receiverCopy.email"/>
               <text value="E-Mail"/>
               <answer>
                 <valueString value="susanna@ufferer.ch"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.streetAddressLine"/>
+              <linkId value="receiverCopy.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <answer>
                 <valueString value="Musterweg"/>
@@ -589,21 +507,21 @@
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.postalCode"/>
+              <linkId value="receiverCopy.postalCode"/>
               <text value="PLZ"/>
               <answer>
                 <valueString value="8000"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.city"/>
+              <linkId value="receiverCopy.city"/>
               <text value="Ort"/>
               <answer>
                 <valueString value="Zürich"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverResponse.country"/>
+              <linkId value="receiverCopy.country"/>
               <text value="Land"/>
               <answer>
                 <valueString value="Schweiz"/>
@@ -615,7 +533,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:6aba7b67-27b0-4c16-8749-f5e53965560a"/>
+    <fullUrl value="urn:uuid:1c35e3f9-21f8-4138-bebb-bcfa6710804e"/>
     <resource>
       <ServiceRequest>
         <identifier>
@@ -632,37 +550,37 @@
         <intent value="original-order"/>
         <priority value="routine"/>
         <subject>
-          <reference value="urn:uuid:6e97b85d-efb6-4660-8c3e-7c2a70d1cddc"/>
+          <reference value="urn:uuid:58b8af24-8a86-4c8f-9f42-74c506592d49"/>
           <type value="Patient"/>
         </subject>
         <requester>
-          <reference value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+          <reference value="urn:uuid:f03295fd-d458-4f69-9e6e-bb226e8acb3a"/>
           <type value="PractitionerRole"/>
         </requester>
         <performer>
-          <reference value="urn:uuid:5b4b3c1c-08d5-4a54-acbc-55b54f077a1f"/>
+          <reference value="urn:uuid:eef789b3-7bf1-46da-9ced-8b27af993739"/>
           <type value="PractitionerRole"/>
         </performer>
       </ServiceRequest>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:5b4b3c1c-08d5-4a54-acbc-55b54f077a1f"/>
+    <fullUrl value="urn:uuid:eef789b3-7bf1-46da-9ced-8b27af993739"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:47c01fba-8db4-4cf0-9fdf-e0b9749a2e49"/>
+          <reference value="urn:uuid:a1a69f29-2ee3-4c1a-8279-f05094605126"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:3a17259c-62db-422c-ad5b-1f0be9d40ff8"/>
+          <reference value="urn:uuid:d8772a58-3175-4dd1-ba13-5cf658d8672b"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:47c01fba-8db4-4cf0-9fdf-e0b9749a2e49"/>
+    <fullUrl value="urn:uuid:a1a69f29-2ee3-4c1a-8279-f05094605126"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -690,7 +608,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:3a17259c-62db-422c-ad5b-1f0be9d40ff8"/>
+    <fullUrl value="urn:uuid:d8772a58-3175-4dd1-ba13-5cf658d8672b"/>
     <resource>
       <Organization>
         <name value="Klinik Happy Hospital"/>
@@ -705,22 +623,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:a913471d-db88-4fc1-9c33-f18e64c1e2ec"/>
+    <fullUrl value="urn:uuid:f03295fd-d458-4f69-9e6e-bb226e8acb3a"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:b0da0cce-aacc-4ab3-b132-157d56934295"/>
+          <reference value="urn:uuid:2b5737e2-caab-4fc3-8a39-a9645a2d8521"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
+          <reference value="urn:uuid:3506ba27-72c5-41c9-bbe4-f0c6f16fb101"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:b0da0cce-aacc-4ab3-b132-157d56934295"/>
+    <fullUrl value="urn:uuid:2b5737e2-caab-4fc3-8a39-a9645a2d8521"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -748,7 +666,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
+    <fullUrl value="urn:uuid:3506ba27-72c5-41c9-bbe4-f0c6f16fb101"/>
     <resource>
       <Organization>
         <name value="Praxis Happy Doctors"/>
@@ -763,22 +681,22 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:29c69399-0b5c-48c8-b613-bfa6b9f85182"/>
+    <fullUrl value="urn:uuid:7a6b1cb4-fed0-4151-bcb7-5a6b2fdea0fe"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:ecc3d54f-5f89-47be-8af7-f501d7a817da"/>
+          <reference value="urn:uuid:64f9210f-c320-44e4-86f9-9db4eb8d2a3b"/>
           <type value="Practitioner"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:8e2dd4bc-4ec1-47c5-99c5-9f2c911d7fb6"/>
+          <reference value="urn:uuid:3506ba27-72c5-41c9-bbe4-f0c6f16fb101"/>
           <type value="Organization"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:ecc3d54f-5f89-47be-8af7-f501d7a817da"/>
+    <fullUrl value="urn:uuid:64f9210f-c320-44e4-86f9-9db4eb8d2a3b"/>
     <resource>
       <Practitioner>
         <name>
@@ -797,41 +715,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:63bfa1d2-90cc-4ba9-b80e-e4978a5fe564"/>
-    <resource>
-      <Organization>
-        <name value="Praxis Happy Doctors"/>
-        <telecom>
-          <system value="phone"/>
-          <value value="044 333 22 11"/>
-        </telecom>
-        <telecom>
-          <system value="email"/>
-          <value value="o.rderplacer@happydoctors.ch"/>
-        </telecom>
-        <address>
-          <line value="Kantonsstrasse 14"/>
-          <line value="Postfach 14"/>
-          <city value="Zürich"/>
-          <postalCode value="8000"/>
-          <country value="Schweiz"/>
-        </address>
-        <contact>
-          <name>
-            <family value="Rderplacer"/>
-            <given value="Ottilie"/>
-            <prefix value="Dr. med.">
-              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                <valueCode value="AC"/>
-              </extension>
-            </prefix>
-          </name>
-        </contact>
-      </Organization>
-    </resource>
-  </entry>
-  <entry>
-    <fullUrl value="urn:uuid:b2394af4-2d02-4c73-a365-e9efbd25449d"/>
+    <fullUrl value="urn:uuid:5cd44b1a-979c-4fd3-a327-7179a2ff91f4"/>
     <resource>
       <Patient>
         <name>
@@ -862,9 +746,9 @@
       <Questionnaire>
         <id value="order-referral-form"/>
         <meta>
-          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
-          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
+          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
         </meta>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
@@ -897,12 +781,10 @@
         <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <name value="OrderReferralForm"/>
         <title value="Order-Referral-Form"/>
-        <status value="draft"/>
-        <experimental value="true"/>
+        <status value="active"/>
         <subjectType value="Patient"/>
-        <date value="2020-12-17"/>
+        <date value="2021-03-26"/>
         <publisher value="HL7 Switzerland"/>
-        <!-- Auftrag -->
         <item>
           <linkId value="order"/>
           <text value="Auftrag"/>
@@ -942,7 +824,6 @@
             <text value="Identifier des Vorgängerdokuments"/>
             <type value="string"/>
           </item>
-          <!-- Urgent Notification Contact for this document -->
           <item>
             <linkId value="order.notificationContactDocument"/>
             <text value="Dringender Benachrichtigungskontakt für dieses Dokument"/>
@@ -978,7 +859,6 @@
               </item>
             </item>
           </item>
-          <!-- Urgent Notification Contact for the Response to this document -->
           <item>
             <linkId value="order.notificationContactDocumentResponse"/>
             <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"/>
@@ -1049,7 +929,6 @@
             </answerOption>
           </item>
         </item>
-        <!-- Request Receiver: Person/organization who receives the request -->
         <item>
           <linkId value="receiverRequest"/>
           <text value="Auftragsempfänger"/>
@@ -1121,7 +1000,6 @@
             </item>
           </item>
         </item>
-        <!-- Patient: The principle target of a particular Form Content is one patient -->
         <item>
           <linkId value="patient"/>
           <text value="Patient"/>
@@ -1215,7 +1093,6 @@
           <text value="Auftraggeber"/>
           <type value="group"/>
           <required value="true"/>
-          <!-- Author: The person/organization responsible for Form Content -->
           <item>
             <linkId value="orderer.author"/>
             <text value="Verantwortlicher"/>
@@ -1288,7 +1165,6 @@
               </item>
             </item>
           </item>
-          <!-- Data Entry Person: The person who has typed/filled in the Form Content. -->
           <item>
             <linkId value="orderer.dataenterer"/>
             <text value="Erfasser"/>
@@ -1321,62 +1197,62 @@
           </item>
         </item>
         <item>
-          <linkId value="receiverResponses"/>
-          <text value="Rückmeldungsempfänger"/>
+          <linkId value="receiverCopies"/>
+          <text value="Kopieempfänger"/>
           <type value="group"/>
           <item>
-            <linkId value="receiverResponse"/>
-            <text value="Rückmeldungsempfangende Organisation oder Person"/>
+            <linkId value="receiverCopy"/>
+            <text value="Kopieempfangende Organisation oder Person"/>
             <type value="group"/>
             <repeats value="true"/>
             <item>
-              <linkId value="receiverResponse.organization.name"/>
+              <linkId value="receiverCopy.organization.name"/>
               <text value="Name der Organisation"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.familyName"/>
+              <linkId value="receiverCopy.familyName"/>
               <text value="Name"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.givenName"/>
+              <linkId value="receiverCopy.givenName"/>
               <text value="Vorname"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.title"/>
+              <linkId value="receiverCopy.title"/>
               <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.phone"/>
+              <linkId value="receiverCopy.phone"/>
               <text value="Telefon"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.email"/>
+              <linkId value="receiverCopy.email"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.streetAddressLine"/>
+              <linkId value="receiverCopy.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
-              <linkId value="receiverResponse.postalCode"/>
+              <linkId value="receiverCopy.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.city"/>
+              <linkId value="receiverCopy.city"/>
               <text value="Ort"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverResponse.country"/>
+              <linkId value="receiverCopy.country"/>
               <text value="Land"/>
               <type value="string"/>
             </item>

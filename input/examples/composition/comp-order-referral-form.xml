@@ -27,14 +27,14 @@
             <reference value="PractitionerRole/NotificationContactSabineMeier"/>
         </valueReference>
     </extension>
-    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
         <valueReference>
-            <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
+            <reference value="Organization/CopyReceiverPraxisSeeblick"/>
         </valueReference>
     </extension>
-    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
         <valueReference>
-            <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
+            <reference value="Patient/CopyReceiverErikaMusterfrau"/>
         </valueReference>
     </extension>
     <status value="final"/>

@@ -47,14 +47,14 @@
                         <reference value="PractitionerRole/NotificationContactSabineMeier"/>
                     </valueReference>
                 </extension>
-                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
                     <valueReference>
-                        <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
+                        <reference value="Organization/CopyReceiverPraxisSeeblick"/>
                     </valueReference>
                 </extension>
-                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver">
+                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
                     <valueReference>
-                        <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
+                        <reference value="Patient/CopyReceiverErikaMusterfrau"/>
                     </valueReference>
                 </extension>
                 <status value="final"/>
@@ -632,62 +632,62 @@
                     </item>
                 </item>
                 <item>
-                    <linkId value="receiverResponses"/>
-                    <text value="Rückmeldungsempfänger"/>
+                    <linkId value="receiverCopies"/>
+                    <text value="Kopieempfänger"/>
                     <type value="group"/>
                     <item>
-                        <linkId value="receiverResponse"/>
-                        <text value="Rückmeldungsempfangende Organisation oder Person"/>
+                        <linkId value="receiverCopy"/>
+                        <text value="Kopieempfangende Organisation oder Person"/>
                         <type value="group"/>
                         <repeats value="true"/>
                         <item>
-                            <linkId value="receiverResponse.organization.name"/>
+                            <linkId value="receiverCopy.organization.name"/>
                             <text value="Name der Organisation"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.familyName"/>
+                            <linkId value="receiverCopy.familyName"/>
                             <text value="Name"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.givenName"/>
+                            <linkId value="receiverCopy.givenName"/>
                             <text value="Vorname"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.title"/>
+                            <linkId value="receiverCopy.title"/>
                             <text value="Titel"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.phone"/>
+                            <linkId value="receiverCopy.phone"/>
                             <text value="Telefon"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.email"/>
+                            <linkId value="receiverCopy.email"/>
                             <text value="E-Mail"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.streetAddressLine"/>
+                            <linkId value="receiverCopy.streetAddressLine"/>
                             <text value="Strasse, Hausnummer, Postfach etc."/>
                             <type value="string"/>
                             <repeats value="true"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.postalCode"/>
+                            <linkId value="receiverCopy.postalCode"/>
                             <text value="PLZ"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.city"/>
+                            <linkId value="receiverCopy.city"/>
                             <text value="Ort"/>
                             <type value="string"/>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.country"/>
+                            <linkId value="receiverCopy.country"/>
                             <text value="Land"/>
                             <type value="string"/>
                         </item>
@@ -1278,51 +1278,51 @@
                         </item>
                     </item>
                 </item>
-                <!-- Response Receiver: Person/organization who receives the response -->
+                <!-- Copy Receiver: Person/organization who receives the copy of this document -->
                 <item>
-                    <linkId value="receiverResponses"/>
+                    <linkId value="receiverCopies"/>
                     <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
-                    <text value="Rückmeldungsempfänger"/>
+                    <text value="Kopieempfänger"/>
                     <item>
-                        <linkId value="receiverResponse"/>
-                        <text value="Rückmeldungsempfangende Organisation oder Person"/>
+                        <linkId value="receiverCopy"/>
+                        <text value="Kopieempfangende Organisation oder Person"/>
                         <item>
-                            <linkId value="receiverResponse.organization.name"/>
+                            <linkId value="receiverCopy.organization.name"/>
                             <text value="Name der Organisation"/>
                             <answer>
                                 <valueString value="Praxis Seeblick"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.familyName"/>
+                            <linkId value="receiverCopy.familyName"/>
                             <text value="Name"/>
                             <answer>
                                 <valueString value="Meier"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.givenName"/>
+                            <linkId value="receiverCopy.givenName"/>
                             <text value="Vorname"/>
                             <answer>
                                 <valueString value="Sabine"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.title"/>
+                            <linkId value="receiverCopy.title"/>
                             <text value="Titel"/>
                             <answer>
                                 <valueString value="Dr. med."/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.phone"/>
+                            <linkId value="receiverCopy.phone"/>
                             <text value="Telefon"/>
                             <answer>
                                 <valueString value="044 333 22 11"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.email"/>
+                            <linkId value="receiverCopy.email"/>
                             <text value="E-Mail"/>
                             <answer>
                                 <valueString value="sabine.meier@praxisseeblick.ch"/>
@@ -1330,38 +1330,38 @@
                         </item>
                     </item>
                     <item>
-                        <linkId value="receiverResponse"/>
-                        <text value="Rückmeldungsempfangende Organisation oder Person"/>
+                        <linkId value="receiverCopy"/>
+                        <text value="Kopieempfangende Organisation oder Person"/>
                         <item>
-                            <linkId value="receiverResponse.familyName"/>
+                            <linkId value="receiverCopy.familyName"/>
                             <text value="Name"/>
                             <answer>
                                 <valueString value="Musterfrau"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.givenName"/>
+                            <linkId value="receiverCopy.givenName"/>
                             <text value="Vorname"/>
                             <answer>
                                 <valueString value="Erika"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.phone"/>
+                            <linkId value="receiverCopy.phone"/>
                             <text value="Telefon"/>
                             <answer>
                                 <valueString value="079 979 79 79"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.email"/>
+                            <linkId value="receiverCopy.email"/>
                             <text value="E-Mail"/>
                             <answer>
                                 <valueString value="erika@musterfrau.ch"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.streetAddressLine"/>
+                            <linkId value="receiverCopy.streetAddressLine"/>
                             <text value="Strasse, Hausnummer, Postfach etc."/>
                             <answer>
                                 <valueString value="Musterweg"/>
@@ -1371,21 +1371,21 @@
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.postalCode"/>
+                            <linkId value="receiverCopy.postalCode"/>
                             <text value="PLZ"/>
                             <answer>
                                 <valueString value="8000"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.city"/>
+                            <linkId value="receiverCopy.city"/>
                             <text value="Ort"/>
                             <answer>
                                 <valueString value="Zürich"/>
                             </answer>
                         </item>
                         <item>
-                            <linkId value="receiverResponse.country"/>
+                            <linkId value="receiverCopy.country"/>
                             <text value="Land"/>
                             <answer>
                                 <valueString value="Schweiz"/>

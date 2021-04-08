@@ -1,7 +1,7 @@
-Extension: ChOrfResponseReceiver
-Id: ch-orf-responsereceiver
-Title: "CH ORF Response Receiver"
-Description: "Receiver of the response."
+Extension: ChOrfCopyReceiver
+Id: ch-orf-copyreceiver
+Title: "CH ORF Copy Receiver"
+Description: "Receiver of the copy of this document."
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1

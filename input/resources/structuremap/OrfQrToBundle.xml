@@ -35,7 +35,7 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
   qr.item as grp where linkId = 'receiverRequest' then ReceiverRequestInit(grp, bundle, composition, serviceRequest) "receiverRequest";
   qr.item as grp where linkId = 'patient' then PatientItems(grp, patient) "grppatient";
   qr.item as grp where linkId = 'orderer' then OrdererAuthorInit(grp, bundle, composition, serviceRequest) "grporderer";
-  qr.item as grp where linkId = 'receiverResponses' then ReceiverResponse(grp, bundle, composition, serviceRequest) "grporderer";
+  qr.item as grp where linkId = 'receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grporderer";
 }
 
 group OrderItems(source src : BackboneElement, target bundle : Bundle, target composition, target serviceRequest : ServiceRequest) {
@@ -191,54 +191,54 @@ group OrdererAuthorInit(source src : BackboneElement, target bundle : Bundle, ta
   } "orderer";
 }
 
-group ResponseReceiverPatientItems(source src : BackboneElement, target patient : Patient) {
-  src.item as item where ((linkId.value = 'receiverResponse.familyName') and answer.exists()) -&gt;  patient.name as name share name,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverResponse.givenName') and answer.exists()) -&gt;  patient.name as name share name,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverResponse.title') and answer.exists()) -&gt;  patient.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
-  src.item as item where ((linkId.value = 'receiverResponse.phone') and answer.exists()) -&gt;  patient.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
-  src.item as item where ((linkId.value = 'receiverResponse.email') and answer.exists()) -&gt;  patient.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
-  src.item as item where ((linkId.value = 'receiverResponse.streetAddressLine') and answer.exists()) -&gt; patient.address as address share orgAddress then {
+group CopyReceiverPatientItems(source src : BackboneElement, target patient : Patient) {
+  src.item as item where ((linkId.value = 'receiverCopy.familyName') and answer.exists()) -&gt;  patient.name as name share name,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiverCopy.givenName') and answer.exists()) -&gt;  patient.name as name share name,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiverCopy.title') and answer.exists()) -&gt;  patient.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
+  src.item as item where ((linkId.value = 'receiverCopy.phone') and answer.exists()) -&gt;  patient.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
+  src.item as item where ((linkId.value = 'receiverCopy.email') and answer.exists()) -&gt;  patient.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
+  src.item as item where ((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists()) -&gt; patient.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) "streetAddressLine";
   } "answer";
-  src.item as item where ((linkId.value = 'receiverResponse.postalCode') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
-  src.item as item where ((linkId.value = 'receiverResponse.city') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.city = (item.answer.value) "city";
-  src.item as item where ((linkId.value = 'receiverResponse.country') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.country = (item.answer.value) "country";
+  src.item as item where ((linkId.value = 'receiverCopy.postalCode') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
+  src.item as item where ((linkId.value = 'receiverCopy.city') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.city = (item.answer.value) "city";
+  src.item as item where ((linkId.value = 'receiverCopy.country') and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group ExtOrfResponseReceiverPatient(source src : BackboneElement, target patient : Patient, target ext : Extension) {
-  src -&gt; ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver' "url";
+group ExtOrfCopyReceiverPatient(source src : BackboneElement, target patient : Patient, target ext : Extension) {
+  src -&gt; ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -&gt;  ext.value = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id) "patient";
 }
 
-group ResponseReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
-  src.item as item where ((linkId.value = 'receiverResponse.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverResponse.familyName') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverResponse.givenName') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverResponse.title') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
-  src.item as item where ((linkId.value = 'receiverResponse.phone') and answer.exists()) -&gt;  organization.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
-  src.item as item where ((linkId.value = 'receiverResponse.email') and answer.exists()) -&gt;  organization.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
-  src.item as item where ((linkId.value = 'receiverResponse.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
+group CopyReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
+  src.item as item where ((linkId.value = 'receiverCopy.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiverCopy.familyName') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiverCopy.givenName') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiverCopy.title') and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
+  src.item as item where ((linkId.value = 'receiverCopy.phone') and answer.exists()) -&gt;  organization.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
+  src.item as item where ((linkId.value = 'receiverCopy.email') and answer.exists()) -&gt;  organization.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
+  src.item as item where ((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) "streetAddressLine";
   } "answer";
-  src.item as item where ((linkId.value = 'receiverResponse.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
-  src.item as item where ((linkId.value = 'receiverResponse.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
-  src.item as item where ((linkId.value = 'receiverResponse.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
+  src.item as item where ((linkId.value = 'receiverCopy.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
+  src.item as item where ((linkId.value = 'receiverCopy.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
+  src.item as item where ((linkId.value = 'receiverCopy.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group ExtOrfResponseReceiverOrganization(source src : BackboneElement, target organization : Organization, target ext : Extension) {
-  src -&gt; ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver' "url";
+group ExtOrfCopyReceiverOrganization(source src : BackboneElement, target organization : Organization, target ext : Extension) {
+  src -&gt; ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -&gt;  ext.value = create('Reference') as reference,  reference.type = 'Organization',  reference.reference = ('urn:uuid:' + %organization.id) "organization";
 }
 
-group ReceiverResponse(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  grp.item as item where ((linkId = 'receiverResponse') and item.where(linkId = 'receiverResponse.organization.name').answer.exists()) -&gt;  bundle.entry as e4,  e4.resource = create('Organization') as organization,  composition.extension as extension,  organization.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4) then {
-    item then ResponseReceiverOrganizationItems(item, organization) "data";
-    item then ExtOrfResponseReceiverOrganization(item, organization, extension) "extension";
-  } "receiverResponseOrganization";
-  grp.item as item where ((linkId = 'receiverResponse') and item.where(linkId = 'receiverResponse.organization.name').answer.exists().not()) -&gt;  bundle.entry as e4,  e4.resource = create('Patient') as patient,  composition.extension as extension,  patient.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4) then {
-    item then ResponseReceiverPatientItems(item, patient) "data";
-    item then ExtOrfResponseReceiverPatient(item, patient, extension) "extension";
-  } "receiverResponsePatient";
+group ReceiverCopy(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
+  grp.item as item where ((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists()) -&gt;  bundle.entry as e4,  e4.resource = create('Organization') as organization,  composition.extension as extension,  organization.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4) then {
+    item then CopyReceiverOrganizationItems(item, organization) "data";
+    item then ExtOrfCopyReceiverOrganization(item, organization, extension) "extension";
+  } "receiverCopyOrganization";
+  grp.item as item where ((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists().not()) -&gt;  bundle.entry as e4,  e4.resource = create('Patient') as patient,  composition.extension as extension,  patient.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4) then {
+    item then CopyReceiverPatientItems(item, patient) "data";
+    item then ExtOrfCopyReceiverPatient(item, patient, extension) "extension";
+  } "receiverCopyPatient";
 }
 
 group QrToBundle(source qr : QuestionnaireResponse, target patient : Patient, target questionnaireresp : QuestionnaireResponse, target servicerequest : ServiceRequest, target composition : Composition, target bundle : Bundle) {
@@ -629,10 +629,10 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="qr"></context>
         <element value="item"></element>
         <variable value="grp"></variable>
-        <condition value="linkId = 'receiverResponses'"></condition>
+        <condition value="linkId = 'receiverCopies'"></condition>
       </source>
       <dependent>
-        <name value="ReceiverResponse"></name>
+        <name value="ReceiverCopy"></name>
         <variable value="grp"></variable>
         <variable value="bundle"></variable>
         <variable value="composition"></variable>
@@ -3919,7 +3919,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ResponseReceiverPatientItems"></name>
+    <name value="CopyReceiverPatientItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3937,7 +3937,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.familyName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.familyName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -3963,7 +3963,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.givenName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.givenName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -3984,12 +3984,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.title"></name>
+      <name value="receiverCopy.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.title') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.title') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4045,12 +4045,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.phone"></name>
+      <name value="receiverCopy.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.phone') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.phone') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4078,12 +4078,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.email"></name>
+      <name value="receiverCopy.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.email') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.email') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4116,7 +4116,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.streetAddressLine') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4127,7 +4127,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <listRuleId value="orgAddress"></listRuleId>
       </target>
       <rule>
-        <name value="receiverResponse.streetAddressLine"></name>
+        <name value="receiverCopy.streetAddressLine"></name>
         <source>
           <context value="item"></context>
           <element value="answer"></element>
@@ -4145,12 +4145,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </rule>
     </rule>
     <rule>
-      <name value="receiverResponse.postalCode"></name>
+      <name value="receiverCopy.postalCode"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.postalCode') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.postalCode') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4171,12 +4171,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.city"></name>
+      <name value="receiverCopy.city"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.city') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.city') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4197,12 +4197,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.country"></name>
+      <name value="receiverCopy.country"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.country') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.country') and answer.exists())"></condition>
       </source>
       <target>
         <context value="patient"></context>
@@ -4224,7 +4224,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ExtOrfResponseReceiverPatient"></name>
+    <name value="ExtOrfCopyReceiverPatient"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -4252,7 +4252,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <element value="url"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver"></valueString>
+          <valueString value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"></valueString>
         </parameter>
       </target>
     </rule>
@@ -4292,7 +4292,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ResponseReceiverOrganizationItems"></name>
+    <name value="CopyReceiverOrganizationItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -4310,7 +4310,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.organization.name') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.organization.name') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4328,7 +4328,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.familyName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.familyName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4362,7 +4362,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.givenName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.givenName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4391,12 +4391,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.title"></name>
+      <name value="receiverCopy.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.title') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.title') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4460,12 +4460,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.phone"></name>
+      <name value="receiverCopy.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.phone') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.phone') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4493,12 +4493,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.email"></name>
+      <name value="receiverCopy.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.email') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.email') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4531,7 +4531,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.streetAddressLine') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4542,7 +4542,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <listRuleId value="orgAddress"></listRuleId>
       </target>
       <rule>
-        <name value="receiverResponse.streetAddressLine"></name>
+        <name value="receiverCopy.streetAddressLine"></name>
         <source>
           <context value="item"></context>
           <element value="answer"></element>
@@ -4560,12 +4560,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </rule>
     </rule>
     <rule>
-      <name value="receiverResponse.postalCode"></name>
+      <name value="receiverCopy.postalCode"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.postalCode') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.postalCode') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4586,12 +4586,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.city"></name>
+      <name value="receiverCopy.city"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.city') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.city') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4612,12 +4612,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverResponse.country"></name>
+      <name value="receiverCopy.country"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverResponse.country') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiverCopy.country') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -4639,7 +4639,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ExtOrfResponseReceiverOrganization"></name>
+    <name value="ExtOrfCopyReceiverOrganization"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -4667,7 +4667,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <element value="url"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver"></valueString>
+          <valueString value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"></valueString>
         </parameter>
       </target>
     </rule>
@@ -4707,7 +4707,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ReceiverResponse"></name>
+    <name value="ReceiverCopy"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="grp"></name>
@@ -4730,12 +4730,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       <mode value="target"></mode>
     </input>
     <rule>
-      <name value="receiverResponseOrganization"></name>
+      <name value="receiverCopyOrganization"></name>
       <source>
         <context value="grp"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId = 'receiverResponse') and item.where(linkId = 'receiverResponse.organization.name').answer.exists())"></condition>
+        <condition value="((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists())"></condition>
       </source>
       <target>
         <context value="bundle"></context>
@@ -4784,7 +4784,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
           <context value="item"></context>
         </source>
         <dependent>
-          <name value="ResponseReceiverOrganizationItems"></name>
+          <name value="CopyReceiverOrganizationItems"></name>
           <variable value="item"></variable>
           <variable value="organization"></variable>
         </dependent>
@@ -4795,7 +4795,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
           <context value="item"></context>
         </source>
         <dependent>
-          <name value="ExtOrfResponseReceiverOrganization"></name>
+          <name value="ExtOrfCopyReceiverOrganization"></name>
           <variable value="item"></variable>
           <variable value="organization"></variable>
           <variable value="extension"></variable>
@@ -4803,12 +4803,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </rule>
     </rule>
     <rule>
-      <name value="receiverResponsePatient"></name>
+      <name value="receiverCopyPatient"></name>
       <source>
         <context value="grp"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId = 'receiverResponse') and item.where(linkId = 'receiverResponse.organization.name').answer.exists().not())"></condition>
+        <condition value="((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists().not())"></condition>
       </source>
       <target>
         <context value="bundle"></context>
@@ -4857,7 +4857,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
           <context value="item"></context>
         </source>
         <dependent>
-          <name value="ResponseReceiverPatientItems"></name>
+          <name value="CopyReceiverPatientItems"></name>
           <variable value="item"></variable>
           <variable value="patient"></variable>
         </dependent>
@@ -4868,7 +4868,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
           <context value="item"></context>
         </source>
         <dependent>
-          <name value="ExtOrfResponseReceiverPatient"></name>
+          <name value="ExtOrfCopyReceiverPatient"></name>
           <variable value="item"></variable>
           <variable value="patient"></variable>
           <variable value="extension"></variable>

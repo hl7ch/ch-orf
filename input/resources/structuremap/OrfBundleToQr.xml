@@ -44,7 +44,7 @@ group CompositionToQr(source bundle : Bundle, source composition : Composition, 
   serviceRequest.performer -&gt;  qr.item as item,  item.linkId = 'receiverRequest' then ReceiverRequestToQr(bundle, composition, serviceRequest, item) "receiverRequest";
   composition.subject -&gt;  qr.item as item,  item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient";
   composition.author -&gt;  qr.item as item,  item.linkId = 'orderer' then OrdererToQr(bundle, composition, serviceRequest, item) "orderer";
-  composition.extension first as extension where (url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') -&gt;  qr.item as item,  item.linkId = 'receiverResponses' then ReceiverResponseToQr(bundle, composition, serviceRequest, item) "receiverResponses";
+  composition.extension first as extension where (url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') -&gt;  qr.item as item,  item.linkId = 'receiverCopies' then ReceiverCopyToQr(bundle, composition, serviceRequest, item) "receiverCopies";
 }
 
 group OrderToQr(source bundle : Bundle, source composition : Composition, source serviceRequest : ServiceRequest, target item : BackboneElement) {
@@ -358,79 +358,79 @@ group DataEntererPractitionerToQr(source bundle : Bundle, source composition : C
   practitioner.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'orderer.dataenterer.practitioner.email',  item.answer as answer,  answer.value = (telecom.value) "email";
 }
 
-group ReceiverResponseToQr(source bundle : Bundle, source composition : Composition, source serviceRequest : ServiceRequest, target item : BackboneElement) {
-  composition.extension as extension where (url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver') then {
+group ReceiverCopyToQr(source bundle : Bundle, source composition : Composition, source serviceRequest : ServiceRequest, target item : BackboneElement) {
+  composition.extension as extension where (url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') then {
     extension.value as value then {
       bundle.entry as entry then {
         entry.fullUrl where ($this in %value.reference) and $this.startsWith('urn:uuid') then {
-          entry.resource : Organization as organization then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
-          entry.resource : Patient as patient then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+          entry.resource : Organization as organization then ReceiverCopyOrganizationToQr(bundle, composition, organization, item) "organization";
+          entry.resource : Patient as patient then ReceiverCopyPatientToQr(bundle, composition, patient, item) "patient";
         } "fullUrlAsUuid";
-        entry.resource : Organization as organization where ('Organization' + '/' + $this.id) in %value.reference then ReceiverResponseOrganizationToQr(bundle, composition, organization, item) "organization";
-        entry.resource : Patient as patient where ('Patient' + '/' + $this.id) in %value.reference then ReceiverResponsePatientToQr(bundle, composition, patient, item) "patient";
+        entry.resource : Organization as organization where ('Organization' + '/' + $this.id) in %value.reference then ReceiverCopyOrganizationToQr(bundle, composition, organization, item) "organization";
+        entry.resource : Patient as patient where ('Patient' + '/' + $this.id) in %value.reference then ReceiverCopyPatientToQr(bundle, composition, patient, item) "patient";
       };
     };
   };
 }
 
-group ReceiverResponseOrganizationToQr(source bundle : Bundle, source composition : Composition, source organization : Organization, target itemorderer : BackboneElement) {
-  organization -&gt;  itemorderer.item as item,  item.linkId = 'receiverResponse' then {
-    // receiverResponse.organization.name
-    organization.name as name -&gt;  item.item as item,  item.linkId = 'receiverResponse.organization.name',  item.answer as answer,  answer.value = name;
+group ReceiverCopyOrganizationToQr(source bundle : Bundle, source composition : Composition, source organization : Organization, target itemorderer : BackboneElement) {
+  organization -&gt;  itemorderer.item as item,  item.linkId = 'receiverCopy' then {
+    // receiverCopy.organization.name
+    organization.name as name -&gt;  item.item as item,  item.linkId = 'receiverCopy.organization.name',  item.answer as answer,  answer.value = name;
     organization.contact as contact then {
       contact.name as name then {
-        // receiverResponse.familyName
-        name.family as family -&gt;  item.item as item,  item.linkId = 'receiverResponse.familyName',  item.answer as answer,  answer.value = family;
-        // receiverResponse.givenName
-        name.given as given -&gt;  item.item as item,  item.linkId = 'receiverResponse.givenName',  item.answer as answer,  answer.value = given;
-        // receiverResponse.title
-        name.prefix as prefix where (extension.where((url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier') and (valueCode = 'AC'))) -&gt;  item.item as item,  item.linkId = 'receiverResponse.title',  item.answer as answer,  answer.value = prefix;
+        // receiverCopy.familyName
+        name.family as family -&gt;  item.item as item,  item.linkId = 'receiverCopy.familyName',  item.answer as answer,  answer.value = family;
+        // receiverCopy.givenName
+        name.given as given -&gt;  item.item as item,  item.linkId = 'receiverCopy.givenName',  item.answer as answer,  answer.value = given;
+        // receiverCopy.title
+        name.prefix as prefix where (extension.where((url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier') and (valueCode = 'AC'))) -&gt;  item.item as item,  item.linkId = 'receiverCopy.title',  item.answer as answer,  answer.value = prefix;
       };
     };
-    // receiverResponse.phone
-    organization.telecom as telecom where (system = 'phone') -&gt;  item.item as item,  item.linkId = 'receiverResponse.phone',  item.answer as answer,  answer.value = (telecom.value) "phone";
-    // receiverResponse.email
-    organization.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'receiverResponse.email',  item.answer as answer,  answer.value = (telecom.value) "email";
-    // receiverResponse.organization.streetAddressLine
+    // receiverCopy.phone
+    organization.telecom as telecom where (system = 'phone') -&gt;  item.item as item,  item.linkId = 'receiverCopy.phone',  item.answer as answer,  answer.value = (telecom.value) "phone";
+    // receiverCopy.email
+    organization.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'receiverCopy.email',  item.answer as answer,  answer.value = (telecom.value) "email";
+    // receiverCopy.organization.streetAddressLine
     organization.address as addr then {
-      addr.line first as line1 -&gt;  item.item as item,  item.linkId = 'receiverResponse.streetAddressLine' then {
+      addr.line first as line1 -&gt;  item.item as item,  item.linkId = 'receiverCopy.streetAddressLine' then {
         addr.line as line -&gt;  item.answer as answer,  answer.value = line;
       } "addrlinefirst";
-      // receiverResponse.postalCode
-      addr.postalCode as postalCode -&gt;  item.item as item,  item.linkId = 'receiverResponse.postalCode',  item.answer as answer,  answer.value = postalCode;
-      // receiverResponse.city
-      addr.city as city -&gt;  item.item as item,  item.linkId = 'receiverResponse.city',  item.answer as answer,  answer.value = city;
-      // receiverResponse.country
-      addr.country as country -&gt;  item.item as item,  item.linkId = 'receiverResponse.country',  item.answer as answer,  answer.value = country;
+      // receiverCopy.postalCode
+      addr.postalCode as postalCode -&gt;  item.item as item,  item.linkId = 'receiverCopy.postalCode',  item.answer as answer,  answer.value = postalCode;
+      // receiverCopy.city
+      addr.city as city -&gt;  item.item as item,  item.linkId = 'receiverCopy.city',  item.answer as answer,  answer.value = city;
+      // receiverCopy.country
+      addr.country as country -&gt;  item.item as item,  item.linkId = 'receiverCopy.country',  item.answer as answer,  answer.value = country;
     } "addr";
   } "organization";
 }
 
-group ReceiverResponsePatientToQr(source bundle : Bundle, source composition : Composition, source patient : Patient, target itemorderer : BackboneElement) {
-  patient -&gt;  itemorderer.item as item,  item.linkId = 'receiverResponse' then {
+group ReceiverCopyPatientToQr(source bundle : Bundle, source composition : Composition, source patient : Patient, target itemorderer : BackboneElement) {
+  patient -&gt;  itemorderer.item as item,  item.linkId = 'receiverCopy' then {
     patient.name as name then {
-      // receiverResponse.familyName
-      name.family as family -&gt;  item.item as item,  item.linkId = 'receiverResponse.familyName',  item.answer as answer,  answer.value = family;
-      // receiverResponse.givenName
-      name.given as given -&gt;  item.item as item,  item.linkId = 'receiverResponse.givenName',  item.answer as answer,  answer.value = given;
-      // receiverResponse.title
-      name.prefix as prefix where (extension.where((url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier') and (valueCode = 'AC'))) -&gt;  item.item as item,  item.linkId = 'receiverResponse.title',  item.answer as answer,  answer.value = prefix;
+      // receiverCopy.familyName
+      name.family as family -&gt;  item.item as item,  item.linkId = 'receiverCopy.familyName',  item.answer as answer,  answer.value = family;
+      // receiverCopy.givenName
+      name.given as given -&gt;  item.item as item,  item.linkId = 'receiverCopy.givenName',  item.answer as answer,  answer.value = given;
+      // receiverCopy.title
+      name.prefix as prefix where (extension.where((url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier') and (valueCode = 'AC'))) -&gt;  item.item as item,  item.linkId = 'receiverCopy.title',  item.answer as answer,  answer.value = prefix;
     };
-    // receiverResponse.phone
-    patient.telecom as telecom where (system = 'phone') -&gt;  item.item as item,  item.linkId = 'receiverResponse.phone',  item.answer as answer,  answer.value = (telecom.value) "phone";
-    // receiverResponse.email
-    patient.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'receiverResponse.email',  item.answer as answer,  answer.value = (telecom.value) "email";
-    // receiverResponse.organization.streetAddressLine
+    // receiverCopy.phone
+    patient.telecom as telecom where (system = 'phone') -&gt;  item.item as item,  item.linkId = 'receiverCopy.phone',  item.answer as answer,  answer.value = (telecom.value) "phone";
+    // receiverCopy.email
+    patient.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'receiverCopy.email',  item.answer as answer,  answer.value = (telecom.value) "email";
+    // receiverCopy.organization.streetAddressLine
     patient.address as addr then {
-      addr.line first as line1 -&gt;  item.item as item,  item.linkId = 'receiverResponse.streetAddressLine' then {
+      addr.line first as line1 -&gt;  item.item as item,  item.linkId = 'receiverCopy.streetAddressLine' then {
         addr.line as line -&gt;  item.answer as answer,  answer.value = line;
       } "addrlinefirst";
-      // receiverResponse.postalCode
-      addr.postalCode as postalCode -&gt;  item.item as item,  item.linkId = 'receiverResponse.postalCode',  item.answer as answer,  answer.value = postalCode;
-      // receiverResponse.city
-      addr.city as city -&gt;  item.item as item,  item.linkId = 'receiverResponse.city',  item.answer as answer,  answer.value = city;
-      // receiverResponse.country
-      addr.country as country -&gt;  item.item as item,  item.linkId = 'receiverResponse.country',  item.answer as answer,  answer.value = country;
+      // receiverCopy.postalCode
+      addr.postalCode as postalCode -&gt;  item.item as item,  item.linkId = 'receiverCopy.postalCode',  item.answer as answer,  answer.value = postalCode;
+      // receiverCopy.city
+      addr.city as city -&gt;  item.item as item,  item.linkId = 'receiverCopy.city',  item.answer as answer,  answer.value = city;
+      // receiverCopy.country
+      addr.country as country -&gt;  item.item as item,  item.linkId = 'receiverCopy.country',  item.answer as answer,  answer.value = country;
     } "addr";
   } "patient";
 }
@@ -746,13 +746,13 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
       </dependent>
     </rule>
     <rule>
-      <name value="receiverResponses"></name>
+      <name value="receiverCopies"></name>
       <source>
         <context value="composition"></context>
         <element value="extension"></element>
         <listMode value="first"></listMode>
         <variable value="extension"></variable>
-        <condition value="(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver')"></condition>
+        <condition value="(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver')"></condition>
       </source>
       <target>
         <context value="qr"></context>
@@ -766,11 +766,11 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
         <element value="linkId"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="receiverResponses"></valueString>
+          <valueString value="receiverCopies"></valueString>
         </parameter>
       </target>
       <dependent>
-        <name value="ReceiverResponseToQr"></name>
+        <name value="ReceiverCopyToQr"></name>
         <variable value="bundle"></variable>
         <variable value="composition"></variable>
         <variable value="serviceRequest"></variable>
@@ -4456,7 +4456,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
     </rule>
   </group>
   <group>
-    <name value="ReceiverResponseToQr"></name>
+    <name value="ReceiverCopyToQr"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="bundle"></name>
@@ -4484,7 +4484,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
         <context value="composition"></context>
         <element value="extension"></element>
         <variable value="extension"></variable>
-        <condition value="(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-responsereceiver')"></condition>
+        <condition value="(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver')"></condition>
       </source>
       <rule>
         <name value="extension.value"></name>
@@ -4516,7 +4516,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                 <variable value="organization"></variable>
               </source>
               <dependent>
-                <name value="ReceiverResponseOrganizationToQr"></name>
+                <name value="ReceiverCopyOrganizationToQr"></name>
                 <variable value="bundle"></variable>
                 <variable value="composition"></variable>
                 <variable value="organization"></variable>
@@ -4532,7 +4532,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                 <variable value="patient"></variable>
               </source>
               <dependent>
-                <name value="ReceiverResponsePatientToQr"></name>
+                <name value="ReceiverCopyPatientToQr"></name>
                 <variable value="bundle"></variable>
                 <variable value="composition"></variable>
                 <variable value="patient"></variable>
@@ -4550,7 +4550,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <condition value="('Organization' + '/' + $this.id) in %value.reference"></condition>
             </source>
             <dependent>
-              <name value="ReceiverResponseOrganizationToQr"></name>
+              <name value="ReceiverCopyOrganizationToQr"></name>
               <variable value="bundle"></variable>
               <variable value="composition"></variable>
               <variable value="organization"></variable>
@@ -4567,7 +4567,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <condition value="('Patient' + '/' + $this.id) in %value.reference"></condition>
             </source>
             <dependent>
-              <name value="ReceiverResponsePatientToQr"></name>
+              <name value="ReceiverCopyPatientToQr"></name>
               <variable value="bundle"></variable>
               <variable value="composition"></variable>
               <variable value="patient"></variable>
@@ -4579,7 +4579,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
     </rule>
   </group>
   <group>
-    <name value="ReceiverResponseOrganizationToQr"></name>
+    <name value="ReceiverCopyOrganizationToQr"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="bundle"></name>
@@ -4618,7 +4618,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
         <element value="linkId"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="receiverResponse"></valueString>
+          <valueString value="receiverCopy"></valueString>
         </parameter>
       </target>
       <rule>
@@ -4640,7 +4640,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
           <element value="linkId"></element>
           <transform value="copy"></transform>
           <parameter>
-            <valueString value="receiverResponse.organization.name"></valueString>
+            <valueString value="receiverCopy.organization.name"></valueString>
           </parameter>
         </target>
         <target>
@@ -4658,7 +4658,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <valueId value="name"></valueId>
           </parameter>
         </target>
-        <documentation value="receiverResponse.organization.name"></documentation>
+        <documentation value="receiverCopy.organization.name"></documentation>
       </rule>
       <rule>
         <name value="contact"></name>
@@ -4693,7 +4693,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <element value="linkId"></element>
               <transform value="copy"></transform>
               <parameter>
-                <valueString value="receiverResponse.familyName"></valueString>
+                <valueString value="receiverCopy.familyName"></valueString>
               </parameter>
             </target>
             <target>
@@ -4711,7 +4711,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                 <valueId value="family"></valueId>
               </parameter>
             </target>
-            <documentation value="receiverResponse.familyName"></documentation>
+            <documentation value="receiverCopy.familyName"></documentation>
           </rule>
           <rule>
             <name value="given"></name>
@@ -4732,7 +4732,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <element value="linkId"></element>
               <transform value="copy"></transform>
               <parameter>
-                <valueString value="receiverResponse.givenName"></valueString>
+                <valueString value="receiverCopy.givenName"></valueString>
               </parameter>
             </target>
             <target>
@@ -4750,7 +4750,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                 <valueId value="given"></valueId>
               </parameter>
             </target>
-            <documentation value="receiverResponse.givenName"></documentation>
+            <documentation value="receiverCopy.givenName"></documentation>
           </rule>
           <rule>
             <name value="prefix"></name>
@@ -4772,7 +4772,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <element value="linkId"></element>
               <transform value="copy"></transform>
               <parameter>
-                <valueString value="receiverResponse.title"></valueString>
+                <valueString value="receiverCopy.title"></valueString>
               </parameter>
             </target>
             <target>
@@ -4790,7 +4790,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                 <valueId value="prefix"></valueId>
               </parameter>
             </target>
-            <documentation value="receiverResponse.title"></documentation>
+            <documentation value="receiverCopy.title"></documentation>
           </rule>
         </rule>
       </rule>
@@ -4814,7 +4814,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
           <element value="linkId"></element>
           <transform value="copy"></transform>
           <parameter>
-            <valueString value="receiverResponse.phone"></valueString>
+            <valueString value="receiverCopy.phone"></valueString>
           </parameter>
         </target>
         <target>
@@ -4832,7 +4832,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <valueString value="telecom.value"></valueString>
           </parameter>
         </target>
-        <documentation value="receiverResponse.phone"></documentation>
+        <documentation value="receiverCopy.phone"></documentation>
       </rule>
       <rule>
         <name value="email"></name>
@@ -4854,7 +4854,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
           <element value="linkId"></element>
           <transform value="copy"></transform>
           <parameter>
-            <valueString value="receiverResponse.email"></valueString>
+            <valueString value="receiverCopy.email"></valueString>
           </parameter>
         </target>
         <target>
@@ -4872,7 +4872,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <valueString value="telecom.value"></valueString>
           </parameter>
         </target>
-        <documentation value="receiverResponse.email"></documentation>
+        <documentation value="receiverCopy.email"></documentation>
       </rule>
       <rule>
         <name value="addr"></name>
@@ -4901,7 +4901,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.streetAddressLine"></valueString>
+              <valueString value="receiverCopy.streetAddressLine"></valueString>
             </parameter>
           </target>
           <rule>
@@ -4947,7 +4947,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.postalCode"></valueString>
+              <valueString value="receiverCopy.postalCode"></valueString>
             </parameter>
           </target>
           <target>
@@ -4965,7 +4965,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="postalCode"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.postalCode"></documentation>
+          <documentation value="receiverCopy.postalCode"></documentation>
         </rule>
         <rule>
           <name value="city"></name>
@@ -4986,7 +4986,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.city"></valueString>
+              <valueString value="receiverCopy.city"></valueString>
             </parameter>
           </target>
           <target>
@@ -5004,7 +5004,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="city"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.city"></documentation>
+          <documentation value="receiverCopy.city"></documentation>
         </rule>
         <rule>
           <name value="country"></name>
@@ -5025,7 +5025,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.country"></valueString>
+              <valueString value="receiverCopy.country"></valueString>
             </parameter>
           </target>
           <target>
@@ -5043,14 +5043,14 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="country"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.country"></documentation>
+          <documentation value="receiverCopy.country"></documentation>
         </rule>
-        <documentation value="receiverResponse.organization.streetAddressLine"></documentation>
+        <documentation value="receiverCopy.organization.streetAddressLine"></documentation>
       </rule>
     </rule>
   </group>
   <group>
-    <name value="ReceiverResponsePatientToQr"></name>
+    <name value="ReceiverCopyPatientToQr"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="bundle"></name>
@@ -5089,7 +5089,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
         <element value="linkId"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="receiverResponse"></valueString>
+          <valueString value="receiverCopy"></valueString>
         </parameter>
       </target>
       <rule>
@@ -5118,7 +5118,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.familyName"></valueString>
+              <valueString value="receiverCopy.familyName"></valueString>
             </parameter>
           </target>
           <target>
@@ -5136,7 +5136,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="family"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.familyName"></documentation>
+          <documentation value="receiverCopy.familyName"></documentation>
         </rule>
         <rule>
           <name value="given"></name>
@@ -5157,7 +5157,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.givenName"></valueString>
+              <valueString value="receiverCopy.givenName"></valueString>
             </parameter>
           </target>
           <target>
@@ -5175,7 +5175,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="given"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.givenName"></documentation>
+          <documentation value="receiverCopy.givenName"></documentation>
         </rule>
         <rule>
           <name value="prefix"></name>
@@ -5197,7 +5197,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.title"></valueString>
+              <valueString value="receiverCopy.title"></valueString>
             </parameter>
           </target>
           <target>
@@ -5215,7 +5215,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="prefix"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.title"></documentation>
+          <documentation value="receiverCopy.title"></documentation>
         </rule>
       </rule>
       <rule>
@@ -5238,7 +5238,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
           <element value="linkId"></element>
           <transform value="copy"></transform>
           <parameter>
-            <valueString value="receiverResponse.phone"></valueString>
+            <valueString value="receiverCopy.phone"></valueString>
           </parameter>
         </target>
         <target>
@@ -5256,7 +5256,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <valueString value="telecom.value"></valueString>
           </parameter>
         </target>
-        <documentation value="receiverResponse.phone"></documentation>
+        <documentation value="receiverCopy.phone"></documentation>
       </rule>
       <rule>
         <name value="email"></name>
@@ -5278,7 +5278,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
           <element value="linkId"></element>
           <transform value="copy"></transform>
           <parameter>
-            <valueString value="receiverResponse.email"></valueString>
+            <valueString value="receiverCopy.email"></valueString>
           </parameter>
         </target>
         <target>
@@ -5296,7 +5296,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <valueString value="telecom.value"></valueString>
           </parameter>
         </target>
-        <documentation value="receiverResponse.email"></documentation>
+        <documentation value="receiverCopy.email"></documentation>
       </rule>
       <rule>
         <name value="addr"></name>
@@ -5325,7 +5325,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.streetAddressLine"></valueString>
+              <valueString value="receiverCopy.streetAddressLine"></valueString>
             </parameter>
           </target>
           <rule>
@@ -5371,7 +5371,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.postalCode"></valueString>
+              <valueString value="receiverCopy.postalCode"></valueString>
             </parameter>
           </target>
           <target>
@@ -5389,7 +5389,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="postalCode"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.postalCode"></documentation>
+          <documentation value="receiverCopy.postalCode"></documentation>
         </rule>
         <rule>
           <name value="city"></name>
@@ -5410,7 +5410,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.city"></valueString>
+              <valueString value="receiverCopy.city"></valueString>
             </parameter>
           </target>
           <target>
@@ -5428,7 +5428,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="city"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.city"></documentation>
+          <documentation value="receiverCopy.city"></documentation>
         </rule>
         <rule>
           <name value="country"></name>
@@ -5449,7 +5449,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
             <element value="linkId"></element>
             <transform value="copy"></transform>
             <parameter>
-              <valueString value="receiverResponse.country"></valueString>
+              <valueString value="receiverCopy.country"></valueString>
             </parameter>
           </target>
           <target>
@@ -5467,9 +5467,9 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
               <valueId value="country"></valueId>
             </parameter>
           </target>
-          <documentation value="receiverResponse.country"></documentation>
+          <documentation value="receiverCopy.country"></documentation>
         </rule>
-        <documentation value="receiverResponse.organization.streetAddressLine"></documentation>
+        <documentation value="receiverCopy.organization.streetAddressLine"></documentation>
       </rule>
     </rule>
   </group>

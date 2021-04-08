@@ -126,7 +126,7 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-responsereceiver"/>
+        <reference value="StructureDefinition/ch-orf-copyreceiver"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
@@ -359,9 +359,9 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Organization/ResponseReceiverPraxisSeeblick"/>
+        <reference value="Organization/CopyReceiverPraxisSeeblick"/>
       </reference>
-      <name value="Response Receiver Praxis Seeblick"/>
+      <name value="Copy Receiver Praxis Seeblick"/>
       <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -425,9 +425,9 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Patient/ResponseReceiverErikaMusterfrau"/>
+        <reference value="Patient/CopyReceiverErikaMusterfrau"/>
       </reference>
-      <name value="Response Receiver Erika Musterfrau"/>
+      <name value="Copy Receiver Erika Musterfrau"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>
