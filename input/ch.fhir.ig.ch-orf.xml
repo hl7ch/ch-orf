@@ -134,13 +134,6 @@
     <!-- ValueSets-->
     <resource>
       <reference>
-        <reference value="ValueSet/minimaldataset"/>
-      </reference>
-      <name value="Minimal Data Set for questionnaires"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="ValueSet/ch-orf-vs-coveragetype"/>
       </reference>
       <name value="Coverage Type"/>
@@ -148,13 +141,6 @@
     </resource>
 
     <!-- CodeSystems -->
-    <resource>
-      <reference>
-        <reference value="CodeSystem/minimaldataset"/>
-      </reference>
-      <name value="Minimal Data Set for questionnaires"/>
-      <exampleBoolean value="false"/>
-    </resource>
     <resource>
       <reference>
         <reference value="CodeSystem/ch-orf-cs-coveragetype"/>
