@@ -104,6 +104,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-appointment"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Extension Definitions -->
     <resource>
@@ -424,6 +430,14 @@
       </reference>
       <name value="Coverage Disorder KVG"/>
       <description value="Example for Coverage"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Appointment/AppointmentMusterfrau"/>
+      </reference>
+      <name value="Appointment Erika Musterfrau"/>
+      <description value="Example for Appointment"/>
       <exampleBoolean value="true"/>
     </resource>
 

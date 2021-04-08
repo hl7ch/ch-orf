@@ -221,3 +221,19 @@ Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
 * type MS
 * type from ChOrfCoverageType (extensible)
+
+
+Profile: ChOrfAppointment
+Parent: Appointment
+Id: ch-orf-appointment
+Title: "CH ORF Appointment"
+Description: "Profile on Appointment for CH ORF"
+* . ^short = "CH ORF Appointment"
+* identifier 1..1 MS 
+* status MS
+* patientInstruction MS
+* participant MS
+* participant.actor MS
+* participant.actor only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson or Device or HealthcareService or ChCoreLocation)
+* participant.status MS
+* requestedPeriod 0..1 MS

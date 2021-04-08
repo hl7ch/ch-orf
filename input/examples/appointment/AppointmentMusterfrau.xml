@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Appointment xmlns="http://hl7.org/fhir">
+    <id value="AppointmentMusterfrau"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
+    </meta>
+    <identifier>
+        <system value="http://example.com/identifierdomain"/>
+        <value value="384209.38"/>
+    </identifier>
+    <status value="proposed"/>
+    <patientInstruction value="Wunschtermin der Patientin."/>
+    <participant>
+        <actor>
+            <reference value="Patient/ErikaMusterfrau"/>
+        </actor>
+        <status value="accepted"/>
+    </participant>
+    <participant>
+        <actor>
+            <reference value="PractitionerRole/HansRoentgenKantonsspital"/>
+        </actor>
+        <status value="needs-action"/>
+    </participant>
+    <requestedPeriod>
+        <start value="2019-04-01T15:00:00.000+00:00"/>
+        <end value="2019-04-01T15:30:00.000+00:00"/>
+    </requestedPeriod>
+</Appointment>    
