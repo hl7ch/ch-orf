@@ -6,11 +6,6 @@ Description: "Profile on Questionnaire for CH ORF"
 * . ^short = "CH ORF Questionnaire"
 * extension[targetStructureMap] 1..1 MS
 * item MS
-* item.linkId MS // SDC already defines it as MS
-* item.definition MS
-* item.code MS
-* item.code from http://fhir.ch/ig/ch-orf/ValueSet/minimaldataset (extensible)
-* item.code ^binding.description = "Codes for questionnaires, groups and individual questions."
 
 
 Profile: ChOrfQuestionnaireResponse
