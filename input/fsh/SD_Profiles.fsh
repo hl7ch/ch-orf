@@ -62,6 +62,7 @@ Description: "Profile on ServiceRequest for CH ORF"
 * identifier[fillerOrderIdentifier].system MS
 * identifier[fillerOrderIdentifier].value 1.. MS
 * status MS
+* intent MS
 * priority MS
 * priority ^short = "Order priority"
 * subject MS
@@ -73,7 +74,7 @@ Description: "Profile on ServiceRequest for CH ORF"
 * requester ^short = "The person/organization responsible for the form content"
 * performer MS
 * performer only Reference(ChCorePractitionerRole) 
-* performer ^short = "Person/organization who receives the request"
+* performer ^short = "Person/organization who receives the document"
 
 
 Profile: ChOrfComposition

@@ -15,12 +15,12 @@ Content-Type: text/fhir-mapping
 < ./input/maps/OrfQrToBundle.map
 
 
-### 2. Transform order-referral-form to ORF Bundle
+### 2. Transform order-referral-form (QR) to ORF Bundle
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
 Accept: application/fhir+xml;fhirVersion=4.0
-Content-Type: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ./input/examples/questionnaireresponse/order-referral-form.xml
+< ./fsh-generated/resources/QuestionnaireResponse-qr-order-referral-form.json
 
 
 ### 3. POST OrfBundleToQr.map

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QuestionnaireResponse 
-  xmlns="http://hl7.org/fhir">
+
+<QuestionnaireResponse xmlns="http://hl7.org/fhir">
   <id value="order-referal-form-mappedback"/>
   <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
   <status value="completed"/>
@@ -41,6 +41,12 @@
       <item>
         <linkId value="order.notificationContactDocument.practitioner"/>
         <item>
+          <linkId value="order.notificationContactDocument.practitioner.title"/>
+          <answer>
+            <valueString value="Dr. med."/>
+          </answer>
+        </item>
+        <item>
           <linkId value="order.notificationContactDocument.practitioner.familyName"/>
           <answer>
             <valueString value="Röntgen"/>
@@ -50,12 +56,6 @@
           <linkId value="order.notificationContactDocument.practitioner.givenName"/>
           <answer>
             <valueString value="Hans"/>
-          </answer>
-        </item>
-        <item>
-          <linkId value="order.notificationContactDocument.practitioner.title"/>
-          <answer>
-            <valueString value="Dr. med."/>
           </answer>
         </item>
         <item>
@@ -77,6 +77,12 @@
       <item>
         <linkId value="order.notificationContactDocumentResponse.practitioner"/>
         <item>
+          <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+          <answer>
+            <valueString value="Dr. med."/>
+          </answer>
+        </item>
+        <item>
           <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
           <answer>
             <valueString value="Meier"/>
@@ -86,12 +92,6 @@
           <linkId value="order.notificationContactDocumentResponse.practitioner.givenName"/>
           <answer>
             <valueString value="Sabine"/>
-          </answer>
-        </item>
-        <item>
-          <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
-          <answer>
-            <valueString value="Dr. med."/>
           </answer>
         </item>
         <item>
@@ -119,56 +119,56 @@
     </item>
   </item>
   <item>
-    <linkId value="receiverRequest"/>
+    <linkId value="receiver"/>
     <item>
-      <linkId value="receiverRequest.practitioner"/>
+      <linkId value="receiver.practitioner"/>
       <item>
-        <linkId value="receiverRequest.practitioner.familyName"/>
-        <answer>
-          <valueString value="Röntgen"/>
-        </answer>
-      </item>
-      <item>
-        <linkId value="receiverRequest.practitioner.givenName"/>
-        <answer>
-          <valueString value="Hans"/>
-        </answer>
-      </item>
-      <item>
-        <linkId value="receiverRequest.practitioner.title"/>
+        <linkId value="receiver.practitioner.title"/>
         <answer>
           <valueString value="Dr. med."/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.practitioner.gln"/>
+        <linkId value="receiver.practitioner.familyName"/>
+        <answer>
+          <valueString value="Röntgen"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiver.practitioner.givenName"/>
+        <answer>
+          <valueString value="Hans"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="receiver.practitioner.gln"/>
         <answer>
           <valueString value="7601000066878"/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.practitioner.phone"/>
+        <linkId value="receiver.practitioner.phone"/>
         <answer>
           <valueString value="044 412 00 99"/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.practitioner.email"/>
+        <linkId value="receiver.practitioner.email"/>
         <answer>
           <valueString value="hans.roentgen@kantonsspital.ch"/>
         </answer>
       </item>
     </item>
     <item>
-      <linkId value="receiverRequest.organization"/>
+      <linkId value="receiver.organization"/>
       <item>
-        <linkId value="receiverRequest.organization.name"/>
+        <linkId value="receiver.organization.name"/>
         <answer>
           <valueString value="Kantonsspital"/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.organization.streetAddressLine"/>
+        <linkId value="receiver.organization.streetAddressLine"/>
         <answer>
           <valueString value="Kantonsstrasse 14"/>
         </answer>
@@ -177,19 +177,19 @@
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.organization.postalCode"/>
+        <linkId value="receiver.organization.postalCode"/>
         <answer>
           <valueString value="8000"/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.organization.city"/>
+        <linkId value="receiver.organization.city"/>
         <answer>
           <valueString value="Zürich"/>
         </answer>
       </item>
       <item>
-        <linkId value="receiverRequest.organization.country"/>
+        <linkId value="receiver.organization.country"/>
         <answer>
           <valueString value="Schweiz"/>
         </answer>
@@ -272,58 +272,58 @@
     </item>
   </item>
   <item>
-    <linkId value="orderer"/>
+    <linkId value="sender"/>
     <item>
-      <linkId value="orderer.author"/>
+      <linkId value="sender.author"/>
       <item>
-        <linkId value="orderer.author.practitioner"/>
+        <linkId value="sender.author.practitioner"/>
         <item>
-          <linkId value="orderer.author.practitioner.familyName"/>
-          <answer>
-            <valueString value="Meier"/>
-          </answer>
-        </item>
-        <item>
-          <linkId value="orderer.author.practitioner.givenName"/>
-          <answer>
-            <valueString value="Sabine"/>
-          </answer>
-        </item>
-        <item>
-          <linkId value="orderer.author.practitioner.title"/>
+          <linkId value="sender.author.practitioner.title"/>
           <answer>
             <valueString value="Dr. med."/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.practitioner.gln"/>
+          <linkId value="sender.author.practitioner.familyName"/>
+          <answer>
+            <valueString value="Meier"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="sender.author.practitioner.givenName"/>
+          <answer>
+            <valueString value="Sabine"/>
+          </answer>
+        </item>
+        <item>
+          <linkId value="sender.author.practitioner.gln"/>
           <answer>
             <valueString value="7601000034321"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.practitioner.phone"/>
+          <linkId value="sender.author.practitioner.phone"/>
           <answer>
             <valueString value="044 333 22 11"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.practitioner.email"/>
+          <linkId value="sender.author.practitioner.email"/>
           <answer>
             <valueString value="sabine.meier@praxisseeblick.ch"/>
           </answer>
         </item>
       </item>
       <item>
-        <linkId value="orderer.author.organization"/>
+        <linkId value="sender.author.organization"/>
         <item>
-          <linkId value="orderer.author.organization.name"/>
+          <linkId value="sender.author.organization.name"/>
           <answer>
             <valueString value="Praxis Seeblick"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.organization.streetAddressLine"/>
+          <linkId value="sender.author.organization.streetAddressLine"/>
           <answer>
             <valueString value="Seestrasse 133"/>
           </answer>
@@ -332,19 +332,19 @@
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.organization.postalCode"/>
+          <linkId value="sender.author.organization.postalCode"/>
           <answer>
             <valueString value="8000"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.organization.city"/>
+          <linkId value="sender.author.organization.city"/>
           <answer>
             <valueString value="Zürich"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.author.organization.country"/>
+          <linkId value="sender.author.organization.country"/>
           <answer>
             <valueString value="Schweiz"/>
           </answer>
@@ -352,29 +352,29 @@
       </item>
     </item>
     <item>
-      <linkId value="orderer.dataenterer"/>
+      <linkId value="sender.dataenterer"/>
       <item>
-        <linkId value="orderer.dataenterer.practitioner"/>
+        <linkId value="sender.dataenterer.practitioner"/>
         <item>
-          <linkId value="orderer.dataenterer.practitioner.familyName"/>
+          <linkId value="sender.dataenterer.practitioner.familyName"/>
           <answer>
             <valueString value="Boss"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.dataenterer.practitioner.givenName"/>
+          <linkId value="sender.dataenterer.practitioner.givenName"/>
           <answer>
             <valueString value="Stabilo"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.dataenterer.practitioner.phone"/>
+          <linkId value="sender.dataenterer.practitioner.phone"/>
           <answer>
             <valueString value="044 333 22 12"/>
           </answer>
         </item>
         <item>
-          <linkId value="orderer.dataenterer.practitioner.email"/>
+          <linkId value="sender.dataenterer.practitioner.email"/>
           <answer>
             <valueString value="stabilo.boss@praxisseeblick.ch"/>
           </answer>
@@ -393,6 +393,12 @@
         </answer>
       </item>
       <item>
+        <linkId value="receiverCopy.title"/>
+        <answer>
+          <valueString value="Dr. med."/>
+        </answer>
+      </item>
+      <item>
         <linkId value="receiverCopy.familyName"/>
         <answer>
           <valueString value="Meier"/>
@@ -402,12 +408,6 @@
         <linkId value="receiverCopy.givenName"/>
         <answer>
           <valueString value="Sabine"/>
-        </answer>
-      </item>
-      <item>
-        <linkId value="receiverCopy.title"/>
-        <answer>
-          <valueString value="Dr. med."/>
         </answer>
       </item>
       <item>

@@ -32,10 +32,10 @@ group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle) {
 
 group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
   qr.item as grp where linkId = 'order' then OrderItems(grp, bundle, composition, serviceRequest) "grporder";
-  qr.item as grp where linkId = 'receiverRequest' then ReceiverRequestInit(grp, bundle, composition, serviceRequest) "receiverRequest";
+  qr.item as grp where linkId = 'receiver' then ReceiverInit(grp, bundle, composition, serviceRequest) "receiver";
   qr.item as grp where linkId = 'patient' then PatientItems(grp, patient) "grppatient";
-  qr.item as grp where linkId = 'orderer' then OrdererAuthorInit(grp, bundle, composition, serviceRequest) "grporderer";
-  qr.item as grp where linkId = 'receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grporderer";
+  qr.item as grp where linkId = 'sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
+  qr.item as grp where linkId = 'receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grpsender";
 }
 
 group OrderItems(source src : BackboneElement, target bundle : Bundle, target composition, target serviceRequest : ServiceRequest) {
@@ -94,32 +94,32 @@ group ExtOrfUrgentNotificationContactForResponse(source src : BackboneElement, t
   src -&gt;  ext.value = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = ('urn:uuid:' + %practitionerRole.id) "practitionerRole";
 }
 
-group ReceiverRequestPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.title') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.gln') and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = 'urn:oid:2.51.1.3',  value.value = (item.answer.value) "gln";
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
-  src.item as item where ((linkId.value = 'receiverRequest.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
+group ReceiverPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
+  src.item as item where ((linkId.value = 'receiver.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiver.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiver.practitioner.title') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
+  src.item as item where ((linkId.value = 'receiver.practitioner.gln') and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = 'urn:oid:2.51.1.3',  value.value = (item.answer.value) "gln";
+  src.item as item where ((linkId.value = 'receiver.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
+  src.item as item where ((linkId.value = 'receiver.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
 }
 
-group ReceiverRequestOrganizationItems(source src : BackboneElement, target organization : Organization) {
-  src.item as item where ((linkId.value = 'receiverRequest.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
-  src.item as item where ((linkId.value = 'receiverRequest.organization.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
+group ReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
+  src.item as item where ((linkId.value = 'receiver.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
+  src.item as item where ((linkId.value = 'receiver.organization.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) "streetAddressLine";
   } "answer";
-  src.item as item where ((linkId.value = 'receiverRequest.organization.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
-  src.item as item where ((linkId.value = 'receiverRequest.organization.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
-  src.item as item where ((linkId.value = 'receiverRequest.organization.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
+  src.item as item where ((linkId.value = 'receiver.organization.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
+  src.item as item where ((linkId.value = 'receiver.organization.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
+  src.item as item where ((linkId.value = 'receiver.organization.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group ReceiverRequestItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
-  src.item as item where (linkId.value = 'receiverRequest.practitioner') then ReceiverRequestPractitionerItems(item, practitioner);
-  src.item as item where (linkId.value = 'receiverRequest.organization') then ReceiverRequestOrganizationItems(item, organization);
+group ReceiverItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
+  src.item as item where (linkId.value = 'receiver.practitioner') then ReceiverPractitionerItems(item, practitioner);
+  src.item as item where (linkId.value = 'receiver.organization') then ReceiverOrganizationItems(item, organization);
 }
 
-group ReceiverRequestInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  serviceRequest.performer = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.type = 'Organization',  reference.reference = append('urn:uuid:', uuid3) then ReceiverRequestItems(src, practitionerRole, practitioner, organization) "receiverRequest";
+group ReceiverInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
+  src -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  serviceRequest.performer = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.type = 'Organization',  reference.reference = append('urn:uuid:', uuid3) then ReceiverItems(src, practitionerRole, practitioner, organization) "receiver";
 }
 
 group PatientItems(source src : BackboneElement, target tgt : Patient) {
@@ -139,39 +139,39 @@ group PatientItems(source src : BackboneElement, target tgt : Patient) {
   src.item as item where ((linkId.value = 'patient.country') and answer.exists()) -&gt;  tgt.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group OrdererAuthorPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.title') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.gln') and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = 'urn:oid:2.51.1.3',  value.value = (item.answer.value) "gln";
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
-  src.item as item where ((linkId.value = 'orderer.author.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
+group SenderAuthorPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
+  src.item as item where ((linkId.value = 'sender.author.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = 'sender.author.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = 'sender.author.practitioner.title') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',  ext.value = create('code') as value,  value.value = 'AC' "title";
+  src.item as item where ((linkId.value = 'sender.author.practitioner.gln') and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = 'urn:oid:2.51.1.3',  value.value = (item.answer.value) "gln";
+  src.item as item where ((linkId.value = 'sender.author.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
+  src.item as item where ((linkId.value = 'sender.author.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
 }
 
-group OrdererAuthorOrganizationItems(source src : BackboneElement, target organization : Organization) {
-  src.item as item where ((linkId.value = 'orderer.author.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
-  src.item as item where ((linkId.value = 'orderer.author.organization.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
+group SenderAuthorOrganizationItems(source src : BackboneElement, target organization : Organization) {
+  src.item as item where ((linkId.value = 'sender.author.organization.name') and answer.exists()) -&gt; organization.name = (item.answer.value);
+  src.item as item where ((linkId.value = 'sender.author.organization.streetAddressLine') and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) "streetAddressLine";
   } "answer";
-  src.item as item where ((linkId.value = 'orderer.author.organization.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
-  src.item as item where ((linkId.value = 'orderer.author.organization.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
-  src.item as item where ((linkId.value = 'orderer.author.organization.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
+  src.item as item where ((linkId.value = 'sender.author.organization.postalCode') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) "postalCode";
+  src.item as item where ((linkId.value = 'sender.author.organization.city') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) "city";
+  src.item as item where ((linkId.value = 'sender.author.organization.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group OrdererAuthorItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
-  src.item as item where (linkId.value = 'orderer.author.practitioner') then OrdererAuthorPractitionerItems(item, practitioner);
-  src.item as item where (linkId.value = 'orderer.author.organization') then OrdererAuthorOrganizationItems(item, organization);
+group SenderAuthorItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
+  src.item as item where (linkId.value = 'sender.author.practitioner') then SenderAuthorPractitionerItems(item, practitioner);
+  src.item as item where (linkId.value = 'sender.author.organization') then SenderAuthorOrganizationItems(item, organization);
 }
 
-group OrdererDataEntererPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-  src.item as item where ((linkId.value = 'orderer.dataenterer.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = 'orderer.dataenterer.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = 'orderer.dataenterer.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
-  src.item as item where ((linkId.value = 'orderer.dataenterer.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
+group SenderDataEntererPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
+  src.item as item where ((linkId.value = 'sender.dataenterer.practitioner.familyName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = 'sender.dataenterer.practitioner.givenName') and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = 'sender.dataenterer.practitioner.phone') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'phone',  value.value = (item.answer.value) "phone";
+  src.item as item where ((linkId.value = 'sender.dataenterer.practitioner.email') and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = 'email',  value.value = (item.answer.value) "email";
 }
 
-group OrdererDataEntererItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
-  src.item as item where (linkId.value = 'orderer.dataenterer.practitioner') then OrdererDataEntererPractitionerItems(item, practitioner);
+group SenderDataEntererItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
+  src.item as item where (linkId.value = 'sender.dataenterer.practitioner') then SenderDataEntererPractitionerItems(item, practitioner);
 }
 
 group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole : PractitionerRole, target ext : Extension) {
@@ -179,16 +179,16 @@ group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole 
   src -&gt;  ext.extension as ext,  ext.url = 'enterer',  ext.value = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = ('urn:uuid:' + %practitionerRole.id) "practitionerRole";
 }
 
-group OrdererAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
+group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
   src -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.type = 'PractitionerRole',  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.type = 'Organization',  reference.reference = append('urn:uuid:', uuid3) then {
-    src.item as item where (linkId.value = 'orderer.author') then OrdererAuthorItems(item, practitionerRole, practitioner, organization) "author";
-    src.item as item where (linkId.value = 'orderer.dataenterer') then {
+    src.item as item where (linkId.value = 'sender.author') then SenderAuthorItems(item, practitionerRole, practitioner, organization) "author";
+    src.item as item where (linkId.value = 'sender.dataenterer') then {
       item -&gt;  bundle.entry as e4,  e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.type = 'Practitioner',  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.type = 'Organization',  reference.reference = append('urn:uuid:', uuid3) then {
-        item then OrdererDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
+        item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
         item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) "extension";
       } "items";
     } "dataenterer";
-  } "orderer";
+  } "sender";
 }
 
 group CopyReceiverPatientItems(source src : BackboneElement, target patient : Patient) {
@@ -252,7 +252,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition
   qr -&gt; tgt.status = 'final' "status";
   qr -&gt;  tgt.subject = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id) "subject";
   qr -&gt;  tgt.section as tgtSection,  tgtSection.entry = create('Reference') as reference,  reference.type = 'QuestionnaireResponse',  reference.reference = ('urn:uuid:' + %questionnaireresp.id),  tgtSection.entry = create('Reference') as reference,  reference.type = 'ServiceRequest',  reference.reference = ('urn:uuid:' + %servicerequest.id) "sections";
-  qr -&gt;  servicerequest.status = 'active',  servicerequest.intent = 'original-order',  servicerequest.subject = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id) "servicerequest";
+  qr -&gt;  servicerequest.status = 'active',  servicerequest.intent = 'order',  servicerequest.subject = create('Reference') as reference,  reference.type = 'Patient',  reference.reference = ('urn:uuid:' + %patient.id) "servicerequest";
 }
 
 </pre>
@@ -578,15 +578,15 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </dependent>
     </rule>
     <rule>
-      <name value="receiverRequest"></name>
+      <name value="receiver"></name>
       <source>
         <context value="qr"></context>
         <element value="item"></element>
         <variable value="grp"></variable>
-        <condition value="linkId = 'receiverRequest'"></condition>
+        <condition value="linkId = 'receiver'"></condition>
       </source>
       <dependent>
-        <name value="ReceiverRequestInit"></name>
+        <name value="ReceiverInit"></name>
         <variable value="grp"></variable>
         <variable value="bundle"></variable>
         <variable value="composition"></variable>
@@ -608,15 +608,15 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </dependent>
     </rule>
     <rule>
-      <name value="grporderer"></name>
+      <name value="grpsender"></name>
       <source>
         <context value="qr"></context>
         <element value="item"></element>
         <variable value="grp"></variable>
-        <condition value="linkId = 'orderer'"></condition>
+        <condition value="linkId = 'sender'"></condition>
       </source>
       <dependent>
-        <name value="OrdererAuthorInit"></name>
+        <name value="SenderAuthorInit"></name>
         <variable value="grp"></variable>
         <variable value="bundle"></variable>
         <variable value="composition"></variable>
@@ -624,7 +624,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </dependent>
     </rule>
     <rule>
-      <name value="grporderer"></name>
+      <name value="grpsender"></name>
       <source>
         <context value="qr"></context>
         <element value="item"></element>
@@ -1264,7 +1264,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.title"></name>
+      <name value="sender.author.practitioner.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1325,7 +1325,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.phone"></name>
+      <name value="sender.author.practitioner.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1358,7 +1358,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.email"></name>
+      <name value="sender.author.practitioner.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1558,7 +1558,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.title"></name>
+      <name value="sender.author.practitioner.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1619,7 +1619,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.phone"></name>
+      <name value="sender.author.practitioner.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1652,7 +1652,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.email"></name>
+      <name value="sender.author.practitioner.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
@@ -1787,7 +1787,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ReceiverRequestPractitionerItems"></name>
+    <name value="ReceiverPractitionerItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -1805,7 +1805,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.familyName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.familyName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -1831,7 +1831,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.givenName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.givenName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -1852,12 +1852,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.practitioner.title"></name>
+      <name value="receiver.practitioner.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.title') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.title') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -1913,12 +1913,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.practitioner.gln"></name>
+      <name value="receiver.practitioner.gln"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.gln') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.gln') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -1946,12 +1946,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.practitioner.phone"></name>
+      <name value="receiver.practitioner.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.phone') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.phone') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -1979,12 +1979,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.practitioner.email"></name>
+      <name value="receiver.practitioner.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.practitioner.email') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.practitioner.email') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2013,7 +2013,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ReceiverRequestOrganizationItems"></name>
+    <name value="ReceiverOrganizationItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -2031,7 +2031,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.organization.name') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.organization.name') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -2049,7 +2049,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.organization.streetAddressLine') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.organization.streetAddressLine') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -2060,7 +2060,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <listRuleId value="orgAddress"></listRuleId>
       </target>
       <rule>
-        <name value="receiverRequest.organization.streetAddressLine"></name>
+        <name value="receiver.organization.streetAddressLine"></name>
         <source>
           <context value="item"></context>
           <element value="answer"></element>
@@ -2078,12 +2078,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </rule>
     </rule>
     <rule>
-      <name value="receiverRequest.organization.postalCode"></name>
+      <name value="receiver.organization.postalCode"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.organization.postalCode') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.organization.postalCode') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -2104,12 +2104,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.organization.city"></name>
+      <name value="receiver.organization.city"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.organization.city') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.organization.city') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -2130,12 +2130,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="receiverRequest.organization.country"></name>
+      <name value="receiver.organization.country"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'receiverRequest.organization.country') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'receiver.organization.country') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -2157,7 +2157,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="ReceiverRequestItems"></name>
+    <name value="ReceiverItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -2185,10 +2185,10 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="(linkId.value = 'receiverRequest.practitioner')"></condition>
+        <condition value="(linkId.value = 'receiver.practitioner')"></condition>
       </source>
       <dependent>
-        <name value="ReceiverRequestPractitionerItems"></name>
+        <name value="ReceiverPractitionerItems"></name>
         <variable value="item"></variable>
         <variable value="practitioner"></variable>
       </dependent>
@@ -2199,17 +2199,17 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="(linkId.value = 'receiverRequest.organization')"></condition>
+        <condition value="(linkId.value = 'receiver.organization')"></condition>
       </source>
       <dependent>
-        <name value="ReceiverRequestOrganizationItems"></name>
+        <name value="ReceiverOrganizationItems"></name>
         <variable value="item"></variable>
         <variable value="organization"></variable>
       </dependent>
     </rule>
   </group>
   <group>
-    <name value="ReceiverRequestInit"></name>
+    <name value="ReceiverInit"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -2232,7 +2232,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       <mode value="target"></mode>
     </input>
     <rule>
-      <name value="receiverRequest"></name>
+      <name value="receiver"></name>
       <source>
         <context value="src"></context>
       </source>
@@ -2435,7 +2435,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         </parameter>
       </target>
       <dependent>
-        <name value="ReceiverRequestItems"></name>
+        <name value="ReceiverItems"></name>
         <variable value="src"></variable>
         <variable value="practitionerRole"></variable>
         <variable value="practitioner"></variable>
@@ -2791,7 +2791,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="OrdererAuthorPractitionerItems"></name>
+    <name value="SenderAuthorPractitionerItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -2809,7 +2809,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.familyName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.familyName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2835,7 +2835,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.givenName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.givenName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2856,12 +2856,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.title"></name>
+      <name value="sender.author.practitioner.title"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.title') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.title') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2917,12 +2917,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.gln"></name>
+      <name value="sender.author.practitioner.gln"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.gln') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.gln') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2950,12 +2950,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.phone"></name>
+      <name value="sender.author.practitioner.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.phone') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.phone') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -2983,12 +2983,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.email"></name>
+      <name value="sender.author.practitioner.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.practitioner.email') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.practitioner.email') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -3017,7 +3017,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="OrdererAuthorOrganizationItems"></name>
+    <name value="SenderAuthorOrganizationItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3035,7 +3035,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.organization.name') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.organization.name') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -3053,7 +3053,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.organization.streetAddressLine') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.organization.streetAddressLine') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -3064,7 +3064,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <listRuleId value="orgAddress"></listRuleId>
       </target>
       <rule>
-        <name value="orderer.author.organization.streetAddressLine"></name>
+        <name value="sender.author.organization.streetAddressLine"></name>
         <source>
           <context value="item"></context>
           <element value="answer"></element>
@@ -3082,12 +3082,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </rule>
     </rule>
     <rule>
-      <name value="orderer.author.organization.postalCode"></name>
+      <name value="sender.author.organization.postalCode"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.organization.postalCode') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.organization.postalCode') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -3108,12 +3108,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.organization.city"></name>
+      <name value="sender.author.organization.city"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.organization.city') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.organization.city') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -3134,12 +3134,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.organization.country"></name>
+      <name value="sender.author.organization.country"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.author.organization.country') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.author.organization.country') and answer.exists())"></condition>
       </source>
       <target>
         <context value="organization"></context>
@@ -3161,7 +3161,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="OrdererAuthorItems"></name>
+    <name value="SenderAuthorItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3189,10 +3189,10 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="(linkId.value = 'orderer.author.practitioner')"></condition>
+        <condition value="(linkId.value = 'sender.author.practitioner')"></condition>
       </source>
       <dependent>
-        <name value="OrdererAuthorPractitionerItems"></name>
+        <name value="SenderAuthorPractitionerItems"></name>
         <variable value="item"></variable>
         <variable value="practitioner"></variable>
       </dependent>
@@ -3203,17 +3203,17 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="(linkId.value = 'orderer.author.organization')"></condition>
+        <condition value="(linkId.value = 'sender.author.organization')"></condition>
       </source>
       <dependent>
-        <name value="OrdererAuthorOrganizationItems"></name>
+        <name value="SenderAuthorOrganizationItems"></name>
         <variable value="item"></variable>
         <variable value="organization"></variable>
       </dependent>
     </rule>
   </group>
   <group>
-    <name value="OrdererDataEntererPractitionerItems"></name>
+    <name value="SenderDataEntererPractitionerItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3231,7 +3231,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.dataenterer.practitioner.familyName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.dataenterer.practitioner.familyName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -3257,7 +3257,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.dataenterer.practitioner.givenName') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.dataenterer.practitioner.givenName') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -3278,12 +3278,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.phone"></name>
+      <name value="sender.author.practitioner.phone"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.dataenterer.practitioner.phone') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.dataenterer.practitioner.phone') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -3311,12 +3311,12 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       </target>
     </rule>
     <rule>
-      <name value="orderer.author.practitioner.email"></name>
+      <name value="sender.author.practitioner.email"></name>
       <source>
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="((linkId.value = 'orderer.dataenterer.practitioner.email') and answer.exists())"></condition>
+        <condition value="((linkId.value = 'sender.dataenterer.practitioner.email') and answer.exists())"></condition>
       </source>
       <target>
         <context value="practitioner"></context>
@@ -3345,7 +3345,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="OrdererDataEntererItems"></name>
+    <name value="SenderDataEntererItems"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3373,10 +3373,10 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <context value="src"></context>
         <element value="item"></element>
         <variable value="item"></variable>
-        <condition value="(linkId.value = 'orderer.dataenterer.practitioner')"></condition>
+        <condition value="(linkId.value = 'sender.dataenterer.practitioner')"></condition>
       </source>
       <dependent>
-        <name value="OrdererDataEntererPractitionerItems"></name>
+        <name value="SenderDataEntererPractitionerItems"></name>
         <variable value="item"></variable>
         <variable value="practitioner"></variable>
       </dependent>
@@ -3466,7 +3466,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
     </rule>
   </group>
   <group>
-    <name value="OrdererAuthorInit"></name>
+    <name value="SenderAuthorInit"></name>
     <typeMode value="none"></typeMode>
     <input>
       <name value="src"></name>
@@ -3489,7 +3489,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       <mode value="target"></mode>
     </input>
     <rule>
-      <name value="orderer"></name>
+      <name value="sender"></name>
       <source>
         <context value="src"></context>
       </source>
@@ -3723,15 +3723,15 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         </parameter>
       </target>
       <rule>
-        <name value="orderer.author"></name>
+        <name value="sender.author"></name>
         <source>
           <context value="src"></context>
           <element value="item"></element>
           <variable value="item"></variable>
-          <condition value="(linkId.value = 'orderer.author')"></condition>
+          <condition value="(linkId.value = 'sender.author')"></condition>
         </source>
         <dependent>
-          <name value="OrdererAuthorItems"></name>
+          <name value="SenderAuthorItems"></name>
           <variable value="item"></variable>
           <variable value="practitionerRole"></variable>
           <variable value="practitioner"></variable>
@@ -3739,15 +3739,15 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         </dependent>
       </rule>
       <rule>
-        <name value="orderer.dataenterer"></name>
+        <name value="sender.dataenterer"></name>
         <source>
           <context value="src"></context>
           <element value="item"></element>
           <variable value="item"></variable>
-          <condition value="(linkId.value = 'orderer.dataenterer')"></condition>
+          <condition value="(linkId.value = 'sender.dataenterer')"></condition>
         </source>
         <rule>
-          <name value="orderer.dataenterer.items"></name>
+          <name value="sender.dataenterer.items"></name>
           <source>
             <context value="item"></context>
           </source>
@@ -3895,7 +3895,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
               <context value="item"></context>
             </source>
             <dependent>
-              <name value="OrdererDataEntererItems"></name>
+              <name value="SenderDataEntererItems"></name>
               <variable value="item"></variable>
               <variable value="practitionerRoleDataEnterer"></variable>
               <variable value="practitionerDataEnterer"></variable>
@@ -5136,7 +5136,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
         <element value="intent"></element>
         <transform value="copy"></transform>
         <parameter>
-          <valueString value="original-order"></valueString>
+          <valueString value="order"></valueString>
         </parameter>
       </target>
       <target>

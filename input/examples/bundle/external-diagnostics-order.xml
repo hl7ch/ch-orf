@@ -155,6 +155,13 @@
               <linkId value="order.notificationContactDocument.practitioner"/>
               <text value="Zu benachrichtigende Person"/>
               <item>
+                <linkId value="order.notificationContactDocument.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
                 <linkId value="order.notificationContactDocument.practitioner.familyName"/>
                 <text value="Name"/>
                 <answer>
@@ -166,13 +173,6 @@
                 <text value="Vorname"/>
                 <answer>
                   <valueString value="Frederica"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="order.notificationContactDocument.practitioner.title"/>
-                <text value="Titel"/>
-                <answer>
-                  <valueString value="Dr. med."/>
                 </answer>
               </item>
               <item>
@@ -198,6 +198,13 @@
               <linkId value="order.notificationContactDocumentResponse.practitioner"/>
               <text value="Zu benachrichtigende Person"/>
               <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+                <text value="Titel"/>
+                <answer>
+                  <valueString value="Dr. med."/>
+                </answer>
+              </item>
+              <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
                 <text value="Name"/>
                 <answer>
@@ -209,13 +216,6 @@
                 <text value="Vorname"/>
                 <answer>
                   <valueString value="Paul"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
-                <text value="Titel"/>
-                <answer>
-                  <valueString value="Dr. med."/>
                 </answer>
               </item>
               <item>
@@ -246,48 +246,48 @@
           </item>
         </item>
         <item>
-          <linkId value="receiverRequest"/>
-          <text value="Auftragsempfänger"/>
+          <linkId value="receiver"/>
+          <text value="Empfänger"/>
           <item>
-            <linkId value="receiverRequest.practitioner"/>
-            <text value="Auftragsempfangende Person"/>
+            <linkId value="receiver.practitioner"/>
+            <text value="Empfangende Person"/>
             <item>
-              <linkId value="receiverRequest.practitioner.familyName"/>
-              <text value="Name"/>
-              <answer>
-                <valueString value="Iller"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverRequest.practitioner.givenName"/>
-              <text value="Vorname"/>
-              <answer>
-                <valueString value="Frederica"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverRequest.practitioner.title"/>
+              <linkId value="receiver.practitioner.title"/>
               <text value="Titel"/>
               <answer>
                 <valueString value="Dr. med."/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.gln"/>
+              <linkId value="receiver.practitioner.familyName"/>
+              <text value="Name"/>
+              <answer>
+                <valueString value="Iller"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiver.practitioner.givenName"/>
+              <text value="Vorname"/>
+              <answer>
+                <valueString value="Frederica"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="receiver.practitioner.gln"/>
               <text value="GLN"/>
               <answer>
                 <valueString value="7601000099521"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.phone"/>
+              <linkId value="receiver.practitioner.phone"/>
               <text value="Telefon"/>
               <answer>
                 <valueString value="044 503 44 44"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.email"/>
+              <linkId value="receiver.practitioner.email"/>
               <text value="E-Mail"/>
               <answer>
                 <valueString value="f.iller@universityhospital.ch"/>
@@ -295,17 +295,17 @@
             </item>
           </item>
           <item>
-            <linkId value="receiverRequest.organization"/>
-            <text value="Auftragsempfangende Organisation"/>
+            <linkId value="receiver.organization"/>
+            <text value="Empfangende Organisation"/>
             <item>
-              <linkId value="receiverRequest.organization.name"/>
+              <linkId value="receiver.organization.name"/>
               <text value="Name der Organisation"/>
               <answer>
                 <valueString value="University Hospital"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.streetAddressLine"/>
+              <linkId value="receiver.organization.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <answer>
                 <valueString value="Uniweg 33"/>
@@ -315,21 +315,21 @@
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.postalCode"/>
+              <linkId value="receiver.organization.postalCode"/>
               <text value="PLZ"/>
               <answer>
                 <valueString value="8000"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.city"/>
+              <linkId value="receiver.organization.city"/>
               <text value="Ort"/>
               <answer>
                 <valueString value="Zürich"/>
               </answer>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.country"/>
+              <linkId value="receiver.organization.country"/>
               <text value="Land"/>
               <answer>
                 <valueString value="Schweiz"/>
@@ -432,51 +432,51 @@
           </item>
         </item>
         <item>
-          <linkId value="orderer"/>
-          <text value="Auftraggeber"/>
+          <linkId value="sender"/>
+          <text value="Absender"/>
           <item>
-            <linkId value="orderer.author"/>
+            <linkId value="sender.author"/>
             <text value="Verantwortlicher"/>
             <item>
-              <linkId value="orderer.author.practitioner"/>
+              <linkId value="sender.author.practitioner"/>
               <text value="Verantwortliche Person"/>
               <item>
-                <linkId value="orderer.author.practitioner.familyName"/>
-                <text value="Name"/>
-                <answer>
-                  <valueString value="Lacer"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="orderer.author.practitioner.givenName"/>
-                <text value="Vorname"/>
-                <answer>
-                  <valueString value="Paul"/>
-                </answer>
-              </item>
-              <item>
-                <linkId value="orderer.author.practitioner.title"/>
+                <linkId value="sender.author.practitioner.title"/>
                 <text value="Titel"/>
                 <answer>
                   <valueString value="Dr. med."/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.gln"/>
+                <linkId value="sender.author.practitioner.familyName"/>
+                <text value="Name"/>
+                <answer>
+                  <valueString value="Lacer"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="sender.author.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <answer>
+                  <valueString value="Paul"/>
+                </answer>
+              </item>
+              <item>
+                <linkId value="sender.author.practitioner.gln"/>
                 <text value="GLN"/>
                 <answer>
                   <valueString value="7601003334499"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.phone"/>
+                <linkId value="sender.author.practitioner.phone"/>
                 <text value="Telefon"/>
                 <answer>
                   <valueString value="044 987 65 43"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.email"/>
+                <linkId value="sender.author.practitioner.email"/>
                 <text value="E-Mail"/>
                 <answer>
                   <valueString value="p.lacer@regionalhospital.ch"/>
@@ -484,38 +484,38 @@
               </item>
             </item>
             <item>
-              <linkId value="orderer.author.organization"/>
+              <linkId value="sender.author.organization"/>
               <text value="Verantwortliche Organisation"/>
               <item>
-                <linkId value="orderer.author.organization.name"/>
+                <linkId value="sender.author.organization.name"/>
                 <text value="Name der Organisation"/>
                 <answer>
                   <valueString value="Regional Hospital"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.organization.streetAddressLine"/>
+                <linkId value="sender.author.organization.streetAddressLine"/>
                 <text value="Strasse, Hausnummer, Postfach etc."/>
                 <answer>
                   <valueString value="Musterstrasse 129"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.organization.postalCode"/>
+                <linkId value="sender.author.organization.postalCode"/>
                 <text value="PLZ"/>
                 <answer>
                   <valueString value="8000"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.organization.city"/>
+                <linkId value="sender.author.organization.city"/>
                 <text value="Ort"/>
                 <answer>
                   <valueString value="Zürich"/>
                 </answer>
               </item>
               <item>
-                <linkId value="orderer.author.organization.country"/>
+                <linkId value="sender.author.organization.country"/>
                 <text value="Land"/>
                 <answer>
                   <valueString value="Schweiz"/>
@@ -542,7 +542,7 @@
           <value value="60823"/>
         </identifier>
         <status value="active"/>
-        <intent value="original-order"/>
+        <intent value="order"/>
         <priority value="stat"/>
         <subject>
           <reference value="urn:uuid:60580cae-b784-43fb-a0b0-e87702c15285"/>
@@ -777,7 +777,7 @@
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/variable">
           <valueExpression>
-            <name value="Orderer"/>
+            <name value="Sender"/>
             <language value="text/fhirpath"/>
             <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
           </valueExpression>
@@ -837,6 +837,11 @@
               <text value="Zu benachrichtigende Person"/>
               <type value="group"/>
               <item>
+                <linkId value="order.notificationContactDocument.practitioner.title"/>
+                <text value="Titel"/>
+                <type value="string"/>
+              </item>
+              <item>
                 <linkId value="order.notificationContactDocument.practitioner.familyName"/>
                 <text value="Name"/>
                 <type value="string"/>
@@ -844,11 +849,6 @@
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.givenName"/>
                 <text value="Vorname"/>
-                <type value="string"/>
-              </item>
-              <item>
-                <linkId value="order.notificationContactDocument.practitioner.title"/>
-                <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
@@ -872,6 +872,11 @@
               <text value="Zu benachrichtigende Person"/>
               <type value="group"/>
               <item>
+                <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+                <text value="Titel"/>
+                <type value="string"/>
+              </item>
+              <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
                 <text value="Name"/>
                 <type value="string"/>
@@ -879,11 +884,6 @@
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.givenName"/>
                 <text value="Vorname"/>
-                <type value="string"/>
-              </item>
-              <item>
-                <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
-                <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
@@ -934,71 +934,71 @@
           </item>
         </item>
         <item>
-          <linkId value="receiverRequest"/>
-          <text value="Auftragsempfänger"/>
+          <linkId value="receiver"/>
+          <text value="Empfänger"/>
           <type value="group"/>
           <item>
-            <linkId value="receiverRequest.practitioner"/>
-            <text value="Auftragsempfangende Person"/>
+            <linkId value="receiver.practitioner"/>
+            <text value="Empfangende Person"/>
             <type value="group"/>
             <item>
-              <linkId value="receiverRequest.practitioner.familyName"/>
-              <text value="Name"/>
-              <type value="string"/>
-            </item>
-            <item>
-              <linkId value="receiverRequest.practitioner.givenName"/>
-              <text value="Vorname"/>
-              <type value="string"/>
-            </item>
-            <item>
-              <linkId value="receiverRequest.practitioner.title"/>
+              <linkId value="receiver.practitioner.title"/>
               <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.gln"/>
+              <linkId value="receiver.practitioner.familyName"/>
+              <text value="Name"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="receiver.practitioner.givenName"/>
+              <text value="Vorname"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="receiver.practitioner.gln"/>
               <text value="GLN"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.phone"/>
+              <linkId value="receiver.practitioner.phone"/>
               <text value="Telefon"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.practitioner.email"/>
+              <linkId value="receiver.practitioner.email"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
           </item>
           <item>
-            <linkId value="receiverRequest.organization"/>
-            <text value="Auftragsempfangende Organisation"/>
+            <linkId value="receiver.organization"/>
+            <text value="Empfangende Organisation"/>
             <type value="group"/>
             <item>
-              <linkId value="receiverRequest.organization.name"/>
+              <linkId value="receiver.organization.name"/>
               <text value="Name der Organisation"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.streetAddressLine"/>
+              <linkId value="receiver.organization.streetAddressLine"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.postalCode"/>
+              <linkId value="receiver.organization.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.city"/>
+              <linkId value="receiver.organization.city"/>
               <text value="Ort"/>
               <type value="string"/>
             </item>
             <item>
-              <linkId value="receiverRequest.organization.country"/>
+              <linkId value="receiver.organization.country"/>
               <text value="Land"/>
               <type value="string"/>
             </item>
@@ -1093,107 +1093,107 @@
           </item>
         </item>
         <item>
-          <linkId value="orderer"/>
-          <text value="Auftraggeber"/>
+          <linkId value="sender"/>
+          <text value="Absender"/>
           <type value="group"/>
           <required value="true"/>
           <item>
-            <linkId value="orderer.author"/>
+            <linkId value="sender.author"/>
             <text value="Verantwortlicher"/>
             <type value="group"/>
             <required value="true"/>
             <item>
-              <linkId value="orderer.author.practitioner"/>
+              <linkId value="sender.author.practitioner"/>
               <text value="Verantwortliche Person"/>
               <type value="group"/>
               <item>
-                <linkId value="orderer.author.practitioner.familyName"/>
-                <text value="Name"/>
-                <type value="string"/>
-              </item>
-              <item>
-                <linkId value="orderer.author.practitioner.givenName"/>
-                <text value="Vorname"/>
-                <type value="string"/>
-              </item>
-              <item>
-                <linkId value="orderer.author.practitioner.title"/>
+                <linkId value="sender.author.practitioner.title"/>
                 <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.gln"/>
+                <linkId value="sender.author.practitioner.familyName"/>
+                <text value="Name"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="sender.author.practitioner.givenName"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="sender.author.practitioner.gln"/>
                 <text value="GLN"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.phone"/>
+                <linkId value="sender.author.practitioner.phone"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.practitioner.email"/>
+                <linkId value="sender.author.practitioner.email"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
             </item>
             <item>
-              <linkId value="orderer.author.organization"/>
+              <linkId value="sender.author.organization"/>
               <text value="Verantwortliche Organisation"/>
               <type value="group"/>
               <item>
-                <linkId value="orderer.author.organization.name"/>
+                <linkId value="sender.author.organization.name"/>
                 <text value="Name der Organisation"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.organization.streetAddressLine"/>
+                <linkId value="sender.author.organization.streetAddressLine"/>
                 <text value="Strasse, Hausnummer, Postfach etc."/>
                 <type value="string"/>
                 <repeats value="true"/>
               </item>
               <item>
-                <linkId value="orderer.author.organization.postalCode"/>
+                <linkId value="sender.author.organization.postalCode"/>
                 <text value="PLZ"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.organization.city"/>
+                <linkId value="sender.author.organization.city"/>
                 <text value="Ort"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.author.organization.country"/>
+                <linkId value="sender.author.organization.country"/>
                 <text value="Land"/>
                 <type value="string"/>
               </item>
             </item>
           </item>
           <item>
-            <linkId value="orderer.dataenterer"/>
+            <linkId value="sender.dataenterer"/>
             <text value="Erfasser"/>
             <type value="group"/>
             <item>
-              <linkId value="orderer.dataenterer.practitioner"/>
+              <linkId value="sender.dataenterer.practitioner"/>
               <text value="Erfassende Person"/>
               <type value="group"/>
               <item>
-                <linkId value="orderer.dataenterer.practitioner.familyName"/>
+                <linkId value="sender.dataenterer.practitioner.familyName"/>
                 <text value="Name"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.dataenterer.practitioner.givenName"/>
+                <linkId value="sender.dataenterer.practitioner.givenName"/>
                 <text value="Vorname"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.dataenterer.practitioner.phone"/>
+                <linkId value="sender.dataenterer.practitioner.phone"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
-                <linkId value="orderer.dataenterer.practitioner.email"/>
+                <linkId value="sender.dataenterer.practitioner.email"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
@@ -1215,6 +1215,11 @@
               <type value="string"/>
             </item>
             <item>
+              <linkId value="receiverCopy.title"/>
+              <text value="Titel"/>
+              <type value="string"/>
+            </item>
+            <item>
               <linkId value="receiverCopy.familyName"/>
               <text value="Name"/>
               <type value="string"/>
@@ -1222,11 +1227,6 @@
             <item>
               <linkId value="receiverCopy.givenName"/>
               <text value="Vorname"/>
-              <type value="string"/>
-            </item>
-            <item>
-              <linkId value="receiverCopy.title"/>
-              <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>

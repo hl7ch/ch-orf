@@ -24,6 +24,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner"
 * item[=].item[=].item[=].text = "Zu benachrichtigende Person"
 
+* item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.title"
+* item[=].item[=].item[=].item[=].text = "Titel"
+* item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
+
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.familyName"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].answer.valueString = "Iller"
@@ -31,10 +35,6 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.givenName"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].answer.valueString = "Frederica"
-
-* item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.title"
-* item[=].item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
@@ -51,6 +51,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner"
 * item[=].item[=].item[=].text = "Zu benachrichtigende Person"
 
+* item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.title"
+* item[=].item[=].item[=].item[=].text = "Titel"
+* item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
+
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.familyName"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].answer.valueString = "Lacer"
@@ -58,10 +62,6 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.givenName"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].answer.valueString = "Paul"
-
-* item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.title"
-* item[=].item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
@@ -76,58 +76,58 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Auftragspriorität"
 * item[=].item[=].answer.valueCoding = RequestPriority#stat
 
-// ---------- Request Receiver: Person/organization who receives the request ----------
-* item[+].linkId = "receiverRequest"
-* item[=].text = "Auftragsempfänger"
+// ---------- Receiver: Person/organization who receives the document ----------
+* item[+].linkId = "receiver"
+* item[=].text = "Empfänger"
 
-* item[=].item[+].linkId = "receiverRequest.practitioner"
-* item[=].item[=].text = "Auftragsempfangende Person"
+* item[=].item[+].linkId = "receiver.practitioner"
+* item[=].item[=].text = "Empfangende Person"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.familyName"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Iller"
-
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.givenName"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].answer.valueString = "Frederica"
-
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.title"
+* item[=].item[=].item[+].linkId = "receiver.practitioner.title"
 * item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].answer.valueString = "Dr. med."
 
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.gln"
+* item[=].item[=].item[+].linkId = "receiver.practitioner.familyName"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].answer.valueString = "Iller"
+
+* item[=].item[=].item[+].linkId = "receiver.practitioner.givenName"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].answer.valueString = "Frederica"
+
+* item[=].item[=].item[+].linkId = "receiver.practitioner.gln"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].answer.valueString = "7601000099521"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.phone"
+* item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].answer.valueString = "044 503 44 44"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.practitioner.email"
+* item[=].item[=].item[+].linkId = "receiver.practitioner.email"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].answer.valueString = "f.iller@universityhospital.ch"
 
-* item[=].item[+].linkId = "receiverRequest.organization"
-* item[=].item[=].text = "Auftragsempfangende Organisation"
+* item[=].item[+].linkId = "receiver.organization"
+* item[=].item[=].text = "Empfangende Organisation"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.organization.name"
+* item[=].item[=].item[+].linkId = "receiver.organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].answer.valueString = "University Hospital"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.organization.streetAddressLine"
+* item[=].item[=].item[+].linkId = "receiver.organization.streetAddressLine"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].answer[0].valueString = "Uniweg 33"
 * item[=].item[=].item[=].answer[1].valueString = "Radiology"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.organization.postalCode"
+* item[=].item[=].item[+].linkId = "receiver.organization.postalCode"
 * item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].answer.valueString = "8000"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.organization.city"
+* item[=].item[=].item[+].linkId = "receiver.organization.city"
 * item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].answer.valueString = "Zürich"
 
-* item[=].item[=].item[+].linkId = "receiverRequest.organization.country"
+* item[=].item[=].item[+].linkId = "receiver.organization.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
 
@@ -184,61 +184,61 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Land"
 * item[=].item[=].answer.valueString = "Schweiz"
 
-// ---------- orderer (Auftraggeber) ----------
-* item[+].linkId = "orderer"
-* item[=].text = "Auftraggeber"
+// ---------- sender (Absender) ----------
+* item[+].linkId = "sender"
+* item[=].text = "Absender"
 
 // ---------- Author: The person/organization responsible for Form Content ----------
-* item[=].item[+].linkId = "orderer.author"
+* item[=].item[+].linkId = "sender.author"
 * item[=].item[=].text = "Verantwortlicher"
 
-* item[=].item[=].item[+].linkId = "orderer.author.practitioner"
+* item[=].item[=].item[+].linkId = "sender.author.practitioner"
 * item[=].item[=].item[=].text = "Verantwortliche Person"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.familyName"
-* item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].answer.valueString = "Lacer"
-
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.givenName"
-* item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].answer.valueString = "Paul"
-
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.title"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.title"
 * item[=].item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.gln"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.familyName"
+* item[=].item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].item[=].answer.valueString = "Lacer"
+
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.givenName"
+* item[=].item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].item[=].answer.valueString = "Paul"
+
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].item[=].answer.valueString = "7601003334499"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.phone"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].answer.valueString = "044 987 65 43"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.practitioner.email"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.email"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].answer.valueString = "p.lacer@regionalhospital.ch"
 
-* item[=].item[=].item[+].linkId = "orderer.author.organization"
+* item[=].item[=].item[+].linkId = "sender.author.organization"
 * item[=].item[=].item[=].text = "Verantwortliche Organisation"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.organization.name"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.name"
 * item[=].item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].item[=].answer.valueString = "Regional Hospital"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.organization.streetAddressLine"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.streetAddressLine"
 * item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].item[=].answer[+].valueString = "Musterstrasse 129"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.organization.postalCode"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.postalCode"
 * item[=].item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].item[=].answer.valueString = "8000"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.organization.city"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.city"
 * item[=].item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].item[=].answer.valueString = "Zürich"
 
-* item[=].item[=].item[=].item[+].linkId = "orderer.author.organization.country"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.country"
 * item[=].item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].item[=].answer.valueString = "Schweiz"
 
