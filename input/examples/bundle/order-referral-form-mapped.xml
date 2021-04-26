@@ -87,6 +87,10 @@
           <family value="Musterfrau"/>
           <given value="Erika"/>
         </name>
+        <name>
+          <use value="maiden" />
+          <family value="Ledig"/>
+        </name>
         <telecom>
           <system value="phone"/>
           <value value="079 979 79 79"/>

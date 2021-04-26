@@ -230,11 +230,16 @@ group PatientToQr(source bundle : Bundle, source composition: Composition, sourc
 
 group PatientDetailsToQr(source bundle : Bundle, source composition: Composition, source patient: Patient, target item : BackboneElement ) {
 // patient.familyName
-   patient.name as name then {
+   patient.name as name where (use.empty() or use='official') then {
      name.family as family -> item.item as item, item.linkId = 'patient.familyName', item.answer as answer, answer.value = family "family";
+   } "familyName";
+   patient.name as name where use='maiden' then {
+    name.family as family -> item.item as item, item.linkId = 'patient.maidenName', item.answer as answer, answer.value = family "maidenName";
+  } "maidenName";
+  patient.name as name where (use.empty() or use='official') then {
 // patient.givenName
-     name.given as given -> item.item as item, item.linkId = 'patient.givenName', item.answer as answer, answer.value = given "given";
-   } "name";
+    name.given as given -> item.item as item, item.linkId = 'patient.givenName', item.answer as answer, answer.value = given "given";
+  } "givenName";
 // patient.localPid
   patient.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='MR')) 
       -> item.item as item, item.linkId = 'patient.localPid', item.answer as answer, answer.value = (identifier.value) then {

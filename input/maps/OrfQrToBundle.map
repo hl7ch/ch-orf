@@ -214,7 +214,8 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
 
 group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item then PatientItems(item, tgt);
-  src.item as item where (linkId.value = 'patient.familyName' and answer.exists()) -> tgt.name as name share patientName, name.family = (item.answer.value);
+  src.item as item where (linkId.value = 'patient.familyName' and answer.exists()) -> tgt.name as name share patientName,name.family = (item.answer.value);
+  src.item as item where (linkId.value = 'patient.maidenName' and answer.exists()) -> tgt.name as name, name.use = 'maiden', name.family = (item.answer.value);
   src.item as item where (linkId.value = 'patient.givenName' and answer.exists()) -> tgt.name as name share patientName, name.given = (item.answer.value);
   src.item as item where (linkId.value = 'patient.localPid' and answer.exists()) -> tgt.identifier as value, 
                                                                                    value.type as type, type.coding as coding,
