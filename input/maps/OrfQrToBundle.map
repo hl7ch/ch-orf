@@ -49,7 +49,7 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
 
 group OrderItems(source src : BackboneElement, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
   src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
-                                                                        ext.value = create('Identifier') as value, value.value=(item.answer.valueString) "order.precedentDocumentIdentifier"; 
+                                                                        ext.value = create('Identifier') as value, value.system='urn:ietf:rfc:3986', value.value=('urn:uuid'+item.answer.valueString) "order.precedentDocumentIdentifier"; 
 
   src.item as item where (linkId.value = 'order.placerOrderIdentifier' and answer.exists()) -> serviceRequest.identifier as value share placer, 
                                                                                    value.type as type, type.coding as coding,

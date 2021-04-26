@@ -58,7 +58,7 @@ group OrderToQr(source bundle : Bundle, source composition: Composition, source 
 //            <linkId value="order.precedentDocumentIdentifier" />
 
   composition.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument' then {
-     extension.value as value -> item.item as item, item.linkId = 'order.precedentDocumentIdentifier', item.answer as answer, answer.value = (value.value) "order.precedentDocumentIdentifier";
+     extension.value as value where value.startsWith('urn:uuid:') -> item.item as item, item.linkId = 'order.precedentDocumentIdentifier', item.answer as answer, answer.value = (value.value.substring(9)) "order.precedentDocumentIdentifier";
   } "composition";
 
 // 'order.dateTime'- currently not mapped in qr response

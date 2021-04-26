@@ -27,7 +27,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.precedentDocumentIdentifier"
 * item[=].item[=].text = "Identifier des Vorgängerdokuments"
-* item[=].item[=].answer.valueString = "1622f2fb-6ba3-4532-9aed-35b158def187"
+* item[=].item[=].answer.valueString = "urn:uuid:1622f2fb-6ba3-4532-9aed-35b158def187"
 
 // ---------- Urgent Notification Contact for this document ----------
 * item[=].item[+].linkId = "order.notificationContactDocument"
