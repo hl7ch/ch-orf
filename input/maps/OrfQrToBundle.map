@@ -80,7 +80,7 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                e5.resource = create('Practitioner') as practitionerDataEnterer, 
                practitionerDataEnterer.id = uuid() as uuid5,
                e5.fullUrl = append('urn:uuid:',uuid5),
-               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5)
+               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid5)
 //   ,
 // FIXME not known here               practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
                then {
@@ -99,7 +99,7 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                e5.resource = create('Practitioner') as practitionerDataEnterer, 
                practitionerDataEnterer.id = uuid() as uuid5,
                e5.fullUrl = append('urn:uuid:',uuid5),
-               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5)
+               practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid5)
 // ,
 // FIXME not known here practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
                then {
@@ -131,7 +131,7 @@ group UrgentNotificationContactForRequestItems(source src : BackboneElement, tar
 group ExtOrfUrgentNotificationContactForRequest(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument' "url";
   src -> ext.value = create('Reference') as reference, 
-                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
+                reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
 group UrgentNotificationContactForResponsePractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
@@ -156,7 +156,7 @@ group UrgentNotificationContactForResponseItems(source src : BackboneElement, ta
 group ExtOrfUrgentNotificationContactForResponse(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument' "url";
   src -> ext.value = create('Reference') as reference, 
-                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
+                 reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
 
@@ -206,9 +206,9 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
           e3.resource = create('Organization') as organization, 
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
-          serviceRequest.performer = create('Reference') as reference, reference.type='PractitionerRole', reference.reference = append('urn:uuid:',uuid),
-          practitionerRole.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid2),
-          practitionerRole.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) then
+          serviceRequest.performer = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid),
+          practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
+          practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) then
           ReceiverItems(src, practitionerRole, practitioner, organization) "receiver";
 }
 
@@ -288,7 +288,7 @@ group SenderDataEntererItems(source src : BackboneElement, target practitionerRo
 group ChExtEprDataEnterer(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' "url";
   src -> ext.extension as ext, ext.url='enterer', ext.value = create('Reference') as reference, 
-                reference.type='PractitionerRole', reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
+                 reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
 group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
@@ -304,10 +304,10 @@ group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, targ
           e3.resource = create('Organization') as organization, 
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
-          composition.author = create('Reference') as reference, reference.type='PractitionerRole', reference.reference = append('urn:uuid:',uuid),
-          serviceRequest.requester = create('Reference') as reference, reference.type='PractitionerRole', reference.reference = append('urn:uuid:',uuid),
-          practitionerRole.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid2),
-          practitionerRole.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) then {
+          composition.author = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid),
+          serviceRequest.requester = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid),
+          practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
+          practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) then {
              src.item as item where (linkId.value = 'sender.author') then SenderAuthorItems(item, practitionerRole, practitioner, organization) "sender.author";
              src.item as item where (linkId.value = 'sender.dataenterer') then {
                item -> bundle.entry as e4, 
@@ -319,8 +319,8 @@ group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, targ
                       e5.resource = create('Practitioner') as practitionerDataEnterer, 
                       practitionerDataEnterer.id = uuid() as uuid5,
                       e5.fullUrl = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.type='Practitioner', reference.reference = append('urn:uuid:',uuid5),
-                      practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
+                      practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid5),
+                      practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) 
                       then {
                             item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
                             item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) "extension";
@@ -353,7 +353,7 @@ group CopyReceiverPatientItems(source src : BackboneElement, target patient: Pat
 group ExtOrfCopyReceiverPatient(source src: BackboneElement, target patient: Patient, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -> ext.value = create('Reference') as reference, 
-                reference.type='Patient', reference.reference = ('urn:uuid:'+%patient.id) "patient";
+                reference.reference = ('urn:uuid:'+%patient.id) "patient";
 }
 
 group CopyReceiverOrganizationItems(source src : BackboneElement, target organization: Organization) {
@@ -381,7 +381,7 @@ group CopyReceiverOrganizationItems(source src : BackboneElement, target organiz
 group ExtOrfCopyReceiverOrganization(source src: BackboneElement, target organization: Organization, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -> ext.value = create('Reference') as reference, 
-                reference.type='Organization', reference.reference = ('urn:uuid:'+%organization.id) "organization";
+                reference.reference = ('urn:uuid:'+%organization.id) "organization";
 }
 
 group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
@@ -412,10 +412,10 @@ group QrToBundle(source qr : QuestionnaireResponse, target patient : Patient, ta
 
 group OrfComposition(source qr : QuestionnaireResponse, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
   qr -> tgt.status = 'final' "status";
-  qr -> tgt.subject = create('Reference') as reference, reference.type='Patient', reference.reference = ('urn:uuid:'+%patient.id) "subject";
-  qr -> tgt.section as tgtSection, tgtSection.entry = create('Reference') as reference, reference.type='QuestionnaireResponse', reference.reference = ('urn:uuid:'+%questionnaireresp.id),
-                                   tgtSection.entry = create('Reference') as reference, reference.type='ServiceRequest', reference.reference = ('urn:uuid:'+%servicerequest.id) "sections";
+  qr -> tgt.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "subject";
+  qr -> tgt.section as tgtSection, tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%questionnaireresp.id),
+                                   tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%servicerequest.id) "sections";
   qr -> servicerequest.status = 'active',
       servicerequest.intent = 'order',
-      servicerequest.subject = create('Reference') as reference, reference.type='Patient', reference.reference = ('urn:uuid:'+%patient.id) "servicerequest";
+      servicerequest.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "servicerequest";
 }
