@@ -36,6 +36,7 @@ group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) 
              e5.resource = create('ServiceRequest') as servicerequest, 
              servicerequest.id = uuid() as uuid5,
              e5.fullUrl = append('urn:uuid:',uuid5) then {
+               qr.questionnaire as can -> bundle.entry as e, e.fullUrl = can, e.resource = (can.resolve()) "questionnaire";
                qr then QrToBundle(qr, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
              } "orfbundle";
 }
