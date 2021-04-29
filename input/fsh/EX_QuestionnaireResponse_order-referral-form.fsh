@@ -15,7 +15,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifierDomain"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftraggebers"
-* item[=].item[=].answer.valueString = "urn:oid:1.3.4.5.6.7"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.1.3.4.5.6.7"
 
 * item[=].item[+].linkId = "order.fillerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftragsempfängers"
@@ -23,7 +23,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.fillerOrderIdentifierDomain"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftragsempfängers"
-* item[=].item[=].answer.valueString = "urn:oid:7.8.9.10.11"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.7.8.9.10.11"
 
 * item[=].item[+].linkId = "order.precedentDocumentIdentifier"
 * item[=].item[=].text = "Identifier des Vorgängerdokuments"
@@ -162,6 +162,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[+].linkId = "patient.localPid"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].answer.valueString = "11.22.33.4567"
+
+* item[=].item[+].linkId = "patient.localPidDomain"
+* item[=].item[=].text = "Lokale Patienten-ID Domain"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.1.2.3.4"
 
 * item[=].item[+].linkId = "patient.birthDate"
 * item[=].item[=].text = "Geburtsdatum"

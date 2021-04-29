@@ -214,6 +214,12 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].type = #string
 
+* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
+* item[=].item[=].extension.valueBoolean = true
+* item[=].item[=].linkId = "patient.localPidDomain"
+* item[=].item[=].text = "Lokale Patienten-ID Domain"
+* item[=].item[=].type = #string
+
 * item[=].item[+].linkId = "patient.birthDate"
 * item[=].item[=].text = "Geburtsdatum"
 * item[=].item[=].type = #date

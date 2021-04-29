@@ -219,11 +219,13 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item where (linkId.value = 'patient.familyName' and answer.exists()) -> tgt.name as name share patientName,name.family = (item.answer.value);
   src.item as item where (linkId.value = 'patient.maidenName' and answer.exists()) -> tgt.name as name, name.use = 'maiden', name.family = (item.answer.value);
   src.item as item where (linkId.value = 'patient.givenName' and answer.exists()) -> tgt.name as name share patientName, name.given = (item.answer.value);
-  src.item as item where (linkId.value = 'patient.localPid' and answer.exists()) -> tgt.identifier as value, 
+  src.item as item where (linkId.value = 'patient.localPid' and answer.exists()) -> tgt.identifier as value share localpid, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'MR',
                                                                                    value.value=(item.answer.valueString) "patient.localPid";
+  src.item as item where (linkId.value = 'patient.localPidDomain' and answer.exists()) -> tgt.identifier as value share localpid, 
+                                                                                   value.system=(item.answer.valueString) "patient.localPidDomain"; 
   src.item as item where (linkId.value = 'patient.birthDate' and answer.exists()) -> tgt.birthDate = (item.answer.value);
   src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (item.answer.value.code);
   src.item as item where (linkId.value = 'patient.phone' and answer.exists()) -> tgt.telecom as value, 

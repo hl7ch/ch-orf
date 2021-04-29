@@ -243,7 +243,7 @@ group PatientDetailsToQr(source bundle : Bundle, source composition: Composition
 // patient.localPid
   patient.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='MR')) 
       -> item.item as item, item.linkId = 'patient.localPid', item.answer as answer, answer.value = (identifier.value) then {
-         identifier.system as system -> item.item as item, item.linkId = 'patient.localPidIdentifierDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
+         identifier.system as system -> item.item as item, item.linkId = 'patient.localPidDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
   } "patient.localPid";
 // patient.birthDate
    patient.birthDate as birthDate -> item.item as item, item.linkId = 'patient.birthDate', item.answer as answer, answer.value = birthDate "patient.birthDate";

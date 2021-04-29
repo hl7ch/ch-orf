@@ -227,7 +227,7 @@ group PatientDetailsToQr(source bundle : Bundle, source composition : Compositio
   };
   // patient.localPid
   patient.identifier as identifier where (type.coding.where((system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203') and (code.value = 'MR'))) -&gt;  item.item as item,  item.linkId = 'patient.localPid',  item.answer as answer,  answer.value = (identifier.value) then {
-    identifier.system as system -&gt;  item.item as item,  item.linkId = 'patient.localPidIdentifierDomain',  item.answer as answer,  answer.value = cast(system, 'string') "placerOrderIdentifierDomain";
+    identifier.system as system -&gt;  item.item as item,  item.linkId = 'patient.localPidDomain',  item.answer as answer,  answer.value = cast(system, 'string') "placerOrderIdentifierDomain";
   } "localPid";
   // patient.birthDate
   patient.birthDate as birthDate -&gt;  item.item as item,  item.linkId = 'patient.birthDate',  item.answer as answer,  answer.value = birthDate;
@@ -2910,7 +2910,7 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                <element value="linkId"></element>
                <transform value="copy"></transform>
                <parameter>
-                  <valueString value="patient.localPidIdentifierDomain"></valueString>
+                  <valueString value="patient.localPidDomain"></valueString>
                </parameter>
             </target>
             <target>

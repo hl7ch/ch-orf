@@ -15,7 +15,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifierDomain"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftraggebers"
-* item[=].item[=].answer.valueString = "urn:oid:66.77.88"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.66.77.88"
 
 // ---------- Urgent Notification Contact for this document ----------
 * item[=].item[+].linkId = "order.notificationContactDocument"
@@ -150,6 +150,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[+].linkId = "patient.localPid"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].answer.valueString = "44.34.9472.1"
+
+* item[=].item[+].linkId = "patient.localPidDomain"
+* item[=].item[=].text = "Lokale Patienten-ID Domain"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.1.2.3.4"
 
 * item[=].item[+].linkId = "patient.birthDate"
 * item[=].item[=].text = "Geburtsdatum"

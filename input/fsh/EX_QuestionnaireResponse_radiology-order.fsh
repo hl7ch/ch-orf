@@ -15,7 +15,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifierDomain"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftraggebers"
-* item[=].item[=].answer.valueString = "urn:oid:1.3.4.5.6.7"
+* item[=].item[=].answer.valueString = "urn:oid:2.999.1.3.4.5.6.7"
 
 // ---------- Order Priority ----------
 * item[=].item[+].linkId = "order.priority"
