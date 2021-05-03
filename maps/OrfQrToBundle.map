@@ -50,6 +50,21 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
 }
 
 group OrderItems(source src : BackboneElement, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
+
+  src.item as item where (linkId.value = 'order.title' and answer.exists())   -> composition.title = (item.answer.valueString) "order.title"; 
+
+  src.item as item where (linkId.value = 'order.type' and answer.exists()) then {
+   item.answer as answer then {
+      answer.value: Coding as coding -> composition.type as comptype, comptype.coding = coding "type"; 
+      } "answer";
+  } "order.type"; 
+
+  src.item as item where (linkId.value = 'order.category' and answer.exists()) then {
+   item.answer as answer then {
+      answer.value: Coding as coding -> composition.category as compcat, compcat.coding = coding "category"; 
+      } "answer";
+  } "order.category"; 
+
   src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
                                                                         ext.value = create('Identifier') as value, value.system='urn:ietf:rfc:3986', value.value=('urn:uuid'+item.answer.valueString) "order.precedentDocumentIdentifier"; 
 

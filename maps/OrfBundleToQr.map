@@ -2,7 +2,6 @@ map "http://fhir.ch/ig/ch-orf/StructureMap/OrfBundleToQr" = "OrfBundleToQr"
 
 //
 // ORF Bundle To QuestionnaireResonse
-// 2021-03-23 Oliver Egger, copyright ahdis ag, Apache License 
 // Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html
 // QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-referral-min.xml.html
 
@@ -43,6 +42,18 @@ group CompositionToQr(source bundle : Bundle, source composition: Composition, s
 }
 
 group OrderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
+
+//            <linkId value="order.title" />
+  composition.title as title ->  item.item as itemfirst, itemfirst.linkId = 'order.title', itemfirst.answer as answer, answer.value = title "order.title";
+//            <linkId value="order.type" />
+  composition.type as comptype then {
+    comptype.coding as coding -> item.item as itemfirst, itemfirst.linkId = 'order.type', itemfirst.answer as answer, answer.value = coding "order.type";
+  } "CodeableConceptType"; 
+//            <linkId value="order.category" />
+  composition.category as compcat then {
+    compcat.coding as coding -> item.item as itemfirst, itemfirst.linkId = 'order.category', itemfirst.answer as answer, answer.value = coding "order.category";
+  } "CodeableConceptType"; 
+
 //            <linkId value="order.placerOrderIdentifierDomain" />
 //            <linkId value="order.fillerOrderIdentifier" />
   serviceRequest.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='PLAC')) 

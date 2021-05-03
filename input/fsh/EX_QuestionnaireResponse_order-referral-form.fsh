@@ -9,6 +9,18 @@ Description: "Example for QuestionnaireResponse"
 * item[+].linkId = "order"
 * item[=].text = "Auftrag"
 
+* item[=].item[+].linkId = "order.title"
+* item[=].item[=].text = "Titel"
+* item[=].item[=].answer.valueString = "Beispiel Titel"
+
+* item[=].item[+].linkId = "order.type"
+* item[=].item[=].text = "Typ"
+* item[=].item[=].answer.valueCoding = SCT#419891008
+
+* item[=].item[+].linkId = "order.category"
+* item[=].item[=].text = "Kategorie"
+* item[=].item[=].answer.valueCoding = SCT#422735006
+
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
 * item[=].item[=].answer.valueString = "123"

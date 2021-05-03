@@ -12,7 +12,7 @@ POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: text/fhir-mapping
 
-< ./input/maps/OrfQrToBundle.map
+< ./maps/OrfQrToBundle.map
 
 
 ### 4. POST Questionnaire
@@ -43,7 +43,7 @@ POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: text/fhir-mapping
 
-< ./input/maps/OrfBundleToQr.map
+< ./maps/OrfBundleToQr.map
 
 ### 4. POST OrfBundleToQr.map
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfBundleToQr
@@ -57,14 +57,14 @@ PUT https://sqlonfhir-r4.azurewebsites.net/fhir/Questionnaire/order-referral-for
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
 
-< ./input/examples/questionnaire/order-referral-form.xml
+< ./examples/questionnaire/order-referral-form.xml
 
 #### Put prepopulation data to Brians server
 PUT https://sqlonfhir-r4.azurewebsites.net/fhir/Bundle/order-referral-form HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
 
-< ./input/examples/Bundle/order-referral-form.xml
+< ./examples/Bundle/order-referral-form.xml
 
 
 

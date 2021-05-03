@@ -20,4 +20,5 @@ Alias:  BundleType =                http://hl7.org/fhir/bundle-type
 Alias:  RequestPriority =           http://hl7.org/fhir/request-priority
 Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
 Alias:  VSConsentScope =            http://hl7.org/fhir/ValueSet/consent-scope
-    
+
+Alias:   SCT =                          http://snomed.info/sct

@@ -17,16 +17,6 @@ Description: "Example for Questionnaire"
 * extension[1].extension[2].url = "description"
 * extension[1].extension[2].valueString = "The Bundle that is to be used to pre-populate the form"
 
-* extension[2].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* extension[2].valueExpression.name = "Patient"
-* extension[2].valueExpression.language = #text/fhirpath
-* extension[2].valueExpression.expression = "%Bundle.entry[0].resource.subject.resolve()"
-
-* extension[3].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* extension[3].valueExpression.name = "Sender"
-* extension[3].valueExpression.language = #text/fhirpath
-* extension[3].valueExpression.expression = "%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"
-
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * name = "OrderReferralForm"
 * title = "Order-Referral-Form"
@@ -40,6 +30,20 @@ Description: "Example for Questionnaire"
 * item[=].text = "Auftrag"
 * item[=].type = #group
 * item[=].required = true
+
+* item[=].item[+].linkId = "order.title"
+* item[=].item[=].text = "Titel"
+* item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "order.type"
+* item[=].item[=].text = "Typ"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"
+
+* item[=].item[+].linkId = "order.category"
+* item[=].item[=].text = "Kategorie"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
