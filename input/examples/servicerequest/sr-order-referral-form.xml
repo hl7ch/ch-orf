@@ -32,7 +32,4 @@
     <requester>
         <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
     </requester>
-    <performer>
-        <reference value="PractitionerRole/HansRoentgenKantonsspital"/>
-    </performer>
 </ServiceRequest>

@@ -126,6 +126,12 @@
     </resource>
     <resource>
       <reference>
+        <reference value="StructureDefinition/ch-orf-receiver"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="StructureDefinition/ch-orf-copyreceiver"/>
       </reference>
       <exampleBoolean value="false"/>

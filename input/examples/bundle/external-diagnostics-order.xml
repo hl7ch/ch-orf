@@ -25,6 +25,12 @@
             <reference value="urn:uuid:b924d326-3f5a-48c0-be83-5bb02521cb25"/>
           </valueReference>
         </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver">
+          <valueReference>
+            <reference value="urn:uuid:354ddeae-95c5-4970-83e5-71b78aeb1c6d"/>
+            <type value="PractitionerRole"/>
+          </valueReference>
+        </extension>
         <status value="final"/>
         <type>
           <coding>
@@ -552,10 +558,6 @@
           <reference value="urn:uuid:e11eeb26-31a1-491f-afbc-d885f6157172"/>
           <type value="PractitionerRole"/>
         </requester>
-        <performer>
-          <reference value="urn:uuid:354ddeae-95c5-4970-83e5-71b78aeb1c6d"/>
-          <type value="PractitionerRole"/>
-        </performer>
       </ServiceRequest>
     </resource>
   </entry>

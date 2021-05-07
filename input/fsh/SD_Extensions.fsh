@@ -9,6 +9,17 @@ Description: "Receiver of the copy of this document."
 * valueReference ^short = "valueReference"
 
 
+Extension: ChOrfReceiver
+Id: ch-orf-receiver
+Title: "CH ORF Receiver"
+Description: "Person/organization who receives the document"
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
+* valueReference 1..1
+* valueReference only Reference(ChCorePractitionerRole)
+* valueReference ^short = "valueReference"
+
+
 Extension: ChOrfPrecedentDocument
 Id: ch-orf-precedentdocument
 Title: "CH ORF Precedent Document"

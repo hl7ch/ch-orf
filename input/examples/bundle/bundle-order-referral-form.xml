@@ -47,6 +47,11 @@
                         <reference value="PractitionerRole/NotificationContactSabineMeier"/>
                     </valueReference>
                 </extension>
+                <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver">
+                    <valueReference>
+                        <reference value="PractitionerRole/HansRoentgenKantonsspital"/>
+                    </valueReference>
+                </extension>
                 <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
                     <valueReference>
                         <reference value="Organization/CopyReceiverPraxisSeeblick"/>
@@ -158,9 +163,6 @@
                 <requester>
                     <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
                 </requester>
-                <performer>
-                    <reference value="PractitionerRole/HansRoentgenKantonsspital"/>
-                </performer>
             </ServiceRequest>
         </resource>
     </entry>
