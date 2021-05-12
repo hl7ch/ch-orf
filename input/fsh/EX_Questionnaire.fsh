@@ -27,110 +27,134 @@ Description: "Example for Questionnaire"
 
 // ---------- order (Auftrag) ----------
 * item[+].linkId = "order"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document#Bundle"
 * item[=].text = "Auftrag"
 * item[=].type = #group
 * item[=].required = true
 
 * item[=].item[+].linkId = "order.title"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"
 * item[=].item[=].text = "Titel"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "order.type"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"
 * item[=].item[=].text = "Typ"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"
 
 * item[=].item[+].linkId = "order.category"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"
 * item[=].item[=].text = "Kategorie"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
 * item[=].item[=].type = #string
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "order.placerOrderIdentifierDomain"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.system"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftraggebers"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "order.fillerOrderIdentifier"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.value"
 * item[=].item[=].text = "Auftragsnummer des Auftragsempfängers"
 * item[=].item[=].type = #string
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "order.fillerOrderIdentifierDomain"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system"
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftragsempfängers"
 * item[=].item[=].type = #string
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "order.precedentDocumentIdentifier"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument"
 * item[=].item[=].text = "Identifier des Vorgängerdokuments"
 * item[=].item[=].type = #string
 
 // ---------- Urgent Notification Contact for this document ----------
 * item[=].item[+].linkId = "order.notificationContactDocument"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForThisDocument"
 * item[=].item[=].text = "Dringender Benachrichtigungskontakt für dieses Dokument"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Zu benachrichtigende Person"
 * item[=].item[=].item[=].type = #group
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.title"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
 * item[=].item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.familyName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.givenName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.phone"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.email"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
 // ---------- Urgent Notification Contact for the Response to this document ----------
 * item[=].item[+].linkId = "order.notificationContactDocumentResponse"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForTheResponseToThisDocument"
 * item[=].item[=].text = "Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Zu benachrichtigende Person"
 * item[=].item[=].item[=].type = #group
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.title"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
 * item[=].item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.familyName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.givenName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.phone"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.email"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
 // ---------- Order Priority ----------
 * item[=].item[+].linkId = "order.priority"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.priority"
 * item[=].item[=].text = "Auftragspriorität"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = RequestPriority#routine "Die Anfrage hat normale Priorität."
@@ -141,94 +165,116 @@ Description: "Example for Questionnaire"
 
 // ---------- Receiver: Person/organization who receives the document ----------
 * item[+].linkId = "receiver"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"
 * item[=].text = "Empfänger"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "receiver.practitioner"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].text = "Empfangende Person"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.title"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
 * item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.gln"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.email"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "receiver.organization"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 * item[=].item[=].text = "Empfangende Organisation"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "receiver.organization.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.organization.streetAddressLine"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "receiver.organization.postalCode"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"
 * item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.organization.city"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"
 * item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiver.organization.country"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 
 // ---------- Patient: The principle target of a particular Form Content is one patient ----------
 * item[+].linkId = "patient"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"
 * item[=].text = "Patient"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "patient.familyName"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
 * item[=].item[=].text = "Name"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.maidenName"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
 * item[=].item[=].text = "Ledigname"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.givenName"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"
 * item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.localPid"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].type = #string
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "patient.localPidDomain"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.system"
 * item[=].item[=].text = "Lokale Patienten-ID Domain"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.birthDate"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.birthDate"
 * item[=].item[=].text = "Geburtsdatum"
 * item[=].item[=].type = #date
 
 * item[=].item[+].linkId = "patient.gender"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"
 * item[=].item[=].text = "Geschlecht"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = AdministrativeGender#male "Männlich"
@@ -237,27 +283,33 @@ Description: "Example for Questionnaire"
 * item[=].item[=].answerOption[+].valueCoding = AdministrativeGender#other "Anderes"
 
 * item[=].item[+].linkId = "patient.phone"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.email"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.streetAddressLine"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.line"
 * item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
 
 * item[=].item[+].linkId = "patient.postalCode"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.postalCode"
 * item[=].item[=].text = "PLZ"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.city"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.city"
 * item[=].item[=].text = "Ort"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.country"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.country"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
@@ -269,90 +321,111 @@ Description: "Example for Questionnaire"
 
 // ---------- Author: The person/organization responsible for Form Content ----------
 * item[=].item[+].linkId = "sender.author"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.author"
 * item[=].item[=].text = "Verantwortlicher"
 * item[=].item[=].type = #group
 * item[=].item[=].required = true
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Verantwortliche Person"
 * item[=].item[=].item[=].type = #group
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.title"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
 * item[=].item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.familyName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.givenName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
 * item[=].item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.email"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "sender.author.organization"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 * item[=].item[=].item[=].text = "Verantwortliche Organisation"
 * item[=].item[=].item[=].type = #group
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.name"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.streetAddressLine"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
 * item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[=].repeats = true
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.postalCode"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"
 * item[=].item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.city"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"
 * item[=].item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.country"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"
 * item[=].item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].item[=].type = #string
 
 // ---------- Data Entry Person: The person who has typed/filled in the Form Content. ----------
 * item[=].item[+].linkId = "sender.dataenterer"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:dataEnterer"
 * item[=].item[=].text = "Erfasser"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Erfassende Person"
 * item[=].item[=].item[=].type = #group
 
 * item[=].item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.familyName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.givenName"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.phone"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.email"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
 // ---------- Copy Receiver ----------
 * item[+].linkId = "receiverCopies"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"
 * item[=].text = "Kopieempfänger"
 * item[=].type = #group
 
@@ -362,42 +435,52 @@ Description: "Example for Questionnaire"
 * item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.organization.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.title"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"
 * item[=].item[=].item[=].text = "Titel"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.family"
 * item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.given"
 * item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.phone"
+* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.email"
+* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.streetAddressLine"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.line"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.postalCode"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.postalCode"
 * item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.city"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.city"
 * item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "receiverCopy.country"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
