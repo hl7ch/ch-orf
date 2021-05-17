@@ -9,4 +9,6 @@ ValueSet: ChOrfAppointmentStatus
 Id: ch-orf-vs-appointmentstatus
 Title: "Appointment Status"
 Description: "Value Set for CH ORF Appointment Status"
-* include codes from system http://hl7.org/fhir/appointmentstatus 
+* include codes from system http://hl7.org/fhir/appointmentstatus where concept is-a #proposed
+* include codes from system http://hl7.org/fhir/appointmentstatus where concept is-a #pending
+* include codes from system http://hl7.org/fhir/appointmentstatus where concept is-a #booked
