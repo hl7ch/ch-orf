@@ -94,6 +94,12 @@
     </resource>
     <resource>
       <reference>
+        <reference value="StructureDefinition/ch-orf-location"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="StructureDefinition/ch-orf-appointment"/>
       </reference>
       <exampleBoolean value="false"/>

@@ -28,3 +28,20 @@ The suspicion of an aortic aneurysm is confirmed and Dr. F. Iller immediately re
 * **Order external diagnostics:** [XML](Bundle-external-diagnostics-order.xml.html), [JSON](Bundle-external-diagnostics-order.json.html)
 
 {% include img.html img="external-diagnostics-order.png" width="90%" %}
+
+*************************************************************************
+### Appointments
+
+For various reasons, scheduling of the appointment is tricky:
+* Patient S. Ufferer does probably not know the possible dates, e.g. because he is dependent of his daughter who will bring him by car.
+* Neither the patient nor the doctor knows which slots are available in the radiology department.
+* Availability of slots and availability of transport etc. may change in time.
+* Eventually, the patient may need other appointments that in turn cause collisions.
+* Some services provide an online tool for scheduling appointments, others do not.
+* Some health professionals prefer to inquire and fix appointments for referrals by phone at the time the patient is while the patient is with them.
+* Etc.
+
+It is not easy to cover all this in a slim application. For this reason, comprehensive scheduling of appointments for referrals is out of scope. It is however possibel to specify date and time with a note of whether it is agreed or proposed. Furthermore ist is possible to idicate preferred date/time intervals.  
+
+Some service providers offer their services at more than one location; it may also be possible that an assignment / prescription results in more than one consultation (e.g. Holter ECG with appointment for the installation of the device at the beginning and return at the end). ORF therefore provides n appointments per service request. 
+
