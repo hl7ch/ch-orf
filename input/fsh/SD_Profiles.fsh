@@ -207,3 +207,4 @@ Description: "Profile on Appointment for CH ORF"
 * participant.actor only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson or Device or HealthcareService or ChCoreLocation)
 * participant.status MS
 * requestedPeriod 0..1 MS
+* status from ChOrfAppointmentStatus (required)
