@@ -45,6 +45,7 @@ Id: ch-orf-servicerequest
 Title: "CH ORF ServiceRequest"
 Description: "Profile on ServiceRequest for CH ORF"
 * . ^short = "CH ORF ServiceRequest"
+* extension contains ChOrfTimeAndLocation named timeAndLocation 0..* MS
 * identifier MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
@@ -72,7 +73,7 @@ Description: "Profile on ServiceRequest for CH ORF"
 * requester MS
 * requester only Reference(ChCorePractitionerRole)
 * requester ^short = "The person/organization responsible for the form content"
-* patientInstruction ^short = "Use appointment.patientInstruction for patient-oriented instructions"
+* patientInstruction ^short = "Use Appointment.patientInstruction (referenced via ServiceRequest.extension) for patient-oriented instructions"
 
 
 Profile: ChOrfComposition
@@ -210,20 +211,21 @@ Title: "CH ORF Appointment"
 Description: "Profile on Appointment for CH ORF"
 * . ^short = "CH ORF Appointment"
 * identifier 1..1 MS 
-* status MS
-* patientInstruction MS
-* patientInstruction ^short = "Patient-oriented instructions SHALL be but here and NOT in ServiceRequest.patientInstruction"
-* participant MS
-* participant.actor MS
-* participant.actor only Reference(ChOrfLocation)
-* participant.actor ^short = "Address and telecom of the appointment location "
-* participant.status = #tentative         //fixed to "tentative" because the actor is the location
-* requestedPeriod 0..1 MS
 * identifier ^short = "External Id for this item: May be used for referencing to a record in a scheduling application. Status in the scheduling application may 
   change in time whereas appointmen.status reflects the status at the time the appointment is initiated"
+* status MS
 * status from ChOrfAppointmentStatus (required)
 * status ^short = "Used to express if time and date are the preference of the patient (=\"proposed\"), confirmed by the patient but not yet by the service provider 
   (=\"pending\") or confirmed by the patient and the service provider (=\"booked\")"
+* patientInstruction MS
+* patientInstruction ^short = "Patient-oriented instructions SHALL be here and NOT in ServiceRequest.patientInstruction"
+* participant MS
+* participant.actor MS
+* participant.actor only Reference(ChOrfLocation)
+* participant.actor ^short = "Address and telecom of the appointment location"
+* participant.status MS
+* participant.status = #tentative         //fixed to "tentative" because the actor is the location
+* requestedPeriod 0..1 MS
 * requestedPeriod ^short =  "Single Date/time or Date/time interval indication for the appointment. A single Date/time indication MUST have 
  the same value for start and end"
    
