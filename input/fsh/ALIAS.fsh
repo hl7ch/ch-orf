@@ -19,5 +19,6 @@ Alias:  SdcQuestionnaireExtract =   http://hl7.org/fhir/uv/sdc/StructureDefiniti
 Alias:  BundleType =                http://hl7.org/fhir/bundle-type
 Alias:  RequestPriority =           http://hl7.org/fhir/request-priority
 Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
+Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
 
 Alias:   SCT =                      http://snomed.info/sct
