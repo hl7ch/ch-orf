@@ -86,6 +86,14 @@
                 </author>
                 <title value="Order-Referral-Form"/>
                 <section>
+                    <title value="Order-Referral"/>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="93037-0"/>
+                            <display value="Portable medical order form"/>
+                        </coding>
+                    </code>
                     <text>
                         <status value="generated"/>
                         <div xmlns="http://www.w3.org/1999/xhtml"> Order-Referral-Form </div>
@@ -98,6 +106,29 @@
                     </entry>
                     <entry>
                         <reference value="ServiceRequest/sr-order-referral-form"/>
+                    </entry>
+                </section>
+                <section>
+                    <title value="Original representation"/>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="55108-5"/>
+                            <display value="Clinical presentation"/>
+                        </coding>
+                    </code>
+                    <text>
+                        <status value="generated"/>
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+						    Representation of the original view:
+                            <img src="pdf1"/>
+                        </div>
+                    </text>
+                    <entry>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/narrativeLink">
+                            <valueUrl value="pdf1"/>
+                        </extension>
+                        <reference value="Binary/pdf"/>
                     </entry>
                 </section>
             </Composition>
@@ -1532,4 +1563,15 @@
             </Organization>
         </resource>
     </entry>
+    <entry>
+    <fullUrl value="http://example.com/fhir/Binary/pdf"/>
+    <resource>
+      <Binary>
+        <id value="pdf"/>
+        <language value="de-CH"/>
+        <contentType value="application/pdf"/>
+        <data value="TBD: PDF/A-1 or PDF/A-2, base64 encoded"/>
+      </Binary>
+    </resource>
+  </entry>
 </Bundle>
