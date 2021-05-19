@@ -14,6 +14,9 @@ Alias:  ChCoreLocation =            http://fhir.ch/ig/ch-core/StructureDefinitio
 // SDC
 Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
 Alias:  SdcQuestionnaireExtract =   http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract
+Alias:  SdcQuestionnaireTargetStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap
+Alias:  SdcQuestionnaireSourceStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap
+Alias:  SdcQuestionnaireLaunchContext =       http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext
 
 // FHIR CS/VS
 Alias:  BundleType =                http://hl7.org/fhir/bundle-type

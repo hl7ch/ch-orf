@@ -5,6 +5,8 @@ Title: "CH ORF Questionnaire"
 Description: "Profile on Questionnaire for CH ORF"
 * . ^short = "CH ORF Questionnaire"
 * extension[targetStructureMap] 1..1 MS
+* extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
+* extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
 * item MS
 
 
