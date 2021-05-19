@@ -186,6 +186,14 @@
       <description value="Mapping ORF Bundle to QuestionnaireResponse"/>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureMap/OrfPrepopBundleToQr"/>
+      </reference>
+      <name value="Map OR Prepopulation"/>
+      <description value="Mapping ORF Prepopulation SDC Bundle to QuestionnaireResponse"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Example Instances-->
     <resource>
