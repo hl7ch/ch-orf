@@ -11,15 +11,15 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.title"
 * item[=].item[=].text = "Titel"
-* item[=].item[=].answer.valueString = "Beispiel Titel"
+* item[=].item[=].answer.valueString = "Order-Referral-Form"
 
 * item[=].item[+].linkId = "order.type"
 * item[=].item[=].text = "Typ"
-* item[=].item[=].answer.valueCoding = SCT#419891008
+* item[=].item[=].answer.valueCoding = SCT#419891008 "Record artifact (record artifact)"
 
 * item[=].item[+].linkId = "order.category"
 * item[=].item[=].text = "Kategorie"
-* item[=].item[=].answer.valueCoding = SCT#422735006
+* item[=].item[=].answer.valueCoding = SCT#721963009 "Order (record artifact)"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"

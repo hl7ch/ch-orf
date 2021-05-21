@@ -41,17 +41,23 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"
 * item[=].item[=].text = "Titel"
 * item[=].item[=].type = #string
+* item[=].item[=].required = true
+* item[=].item[=].readOnly = true
 
 * item[=].item[+].linkId = "order.type"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"
 * item[=].item[=].text = "Typ"
 * item[=].item[=].type = #choice
+* item[=].item[=].required = true
+// * item[=].item[=].readOnly = true
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"
 
 * item[=].item[+].linkId = "order.category"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"
 * item[=].item[=].text = "Kategorie"
 * item[=].item[=].type = #choice
+* item[=].item[=].required = true
+// * item[=].item[=].readOnly = true
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"

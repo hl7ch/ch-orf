@@ -34,9 +34,9 @@
         <status value="final"/>
         <type>
           <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="4201000179104"/>
-            <display value="Imaging report (record artifact)"/>
+            <system value="urn:oid:2.16.756.5.30.1.127.3.4"/>
+            <code value="2161000195103"/>
+            <display value="Imaging order (record artifact)"/>
           </coding>
         </type>
         <category>
@@ -55,7 +55,7 @@
           <reference value="urn:uuid:e11eeb26-31a1-491f-afbc-d885f6157172"/>
           <type value="PractitionerRole"/>
         </author>
-        <title value="Order external diagnostics"/>
+        <title value="Order-Referral-Form"/>
         <section>
           <entry>
             <reference value="http://example.com/fhir/Questionnaire/order-referral-form"/>
@@ -140,6 +140,35 @@
         <item>
           <linkId value="order"/>
           <text value="Auftrag"/>
+          <item>
+            <linkId value="order.title"/>
+            <text value="Titel"/>
+            <answer>
+              <valueString value="Order-Referral-Form"/>
+            </answer>
+          </item>
+          <item>
+            <linkId value="order.type"/>
+            <text value="Typ"/>
+            <answer>
+              <valueCoding>
+                <system value="urn:oid:2.16.756.5.30.1.127.3.4"/>
+                <code value="2161000195103"/>
+                <display value="Imaging order (record artifact)"/>
+              </valueCoding>
+            </answer>
+          </item>
+          <item>
+            <linkId value="order.category"/>
+            <text value="Kategorie"/>
+            <answer>
+              <valueCoding>
+                <system value="http://snomed.info/sct"/>
+                <code value="721963009"/>
+                <display value="Order (record artifact)"/>
+              </valueCoding>
+            </answer>
+          </item>
           <item>
             <linkId value="order.placerOrderIdentifier"/>
             <text value="Auftragsnummer des Auftraggebers"/>
@@ -759,6 +788,9 @@
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
         </extension>
+        <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap">
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfPrepopBundleToQr"/>
+        </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext">
           <extension url="name">
             <valueId value="Bundle"/>
@@ -769,20 +801,6 @@
           <extension url="description">
             <valueString value="The Bundle that is to be used to pre-populate the form"/>
           </extension>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/variable">
-          <valueExpression>
-            <name value="Patient"/>
-            <language value="text/fhirpath"/>
-            <expression value="%Bundle.entry[0].resource.subject.resolve()"/>
-          </valueExpression>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/variable">
-          <valueExpression>
-            <name value="Sender"/>
-            <language value="text/fhirpath"/>
-            <expression value="%Bundle.entry[0].resource.author.resolve().ofType(Practitioner)"/>
-          </valueExpression>
         </extension>
         <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <name value="OrderReferralForm"/>
@@ -796,6 +814,27 @@
           <text value="Auftrag"/>
           <type value="group"/>
           <required value="true"/>
+          <item>
+            <linkId value="order.title"/>
+            <text value="Titel"/>
+            <type value="string"/>
+            <required value="true"/>
+            <readOnly value="true"/>
+          </item>
+          <item>
+            <linkId value="order.type"/>
+            <text value="Typ"/>
+            <type value="choice"/>
+            <required value="true"/>
+            <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"/>
+          </item>
+          <item>
+            <linkId value="order.category"/>
+            <text value="Kategorie"/>
+            <type value="choice"/>
+            <required value="true"/>
+            <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"/>
+          </item>
           <item>
             <linkId value="order.placerOrderIdentifier"/>
             <text value="Auftragsnummer des Auftraggebers"/>

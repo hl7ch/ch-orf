@@ -24,4 +24,5 @@ Alias:  RequestPriority =           http://hl7.org/fhir/request-priority
 Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
 Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
 
-Alias:   SCT =                      http://snomed.info/sct
+Alias:  SCT =                       http://snomed.info/sct
+Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4

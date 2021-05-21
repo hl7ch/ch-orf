@@ -7,7 +7,7 @@
 
 <Bundle xmlns="http://hl7.org/fhir">
     <id value="bundle-order-referral-form"/>
-   <identifier>
+    <identifier>
         <system value="urn:ietf:rfc:3986"/>
         <value value="urn:uuid:26d3dff7-ab05-4737-a49c-5eccd33595f7"/>
     </identifier>
@@ -21,11 +21,18 @@
                 <status value="final"/>
                 <type>
                     <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="11488-4"/>
-                        <display value="Consult note"/>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419891008"/>
+                        <display value="Record artifact (record artifact)"/>
                     </coding>
                 </type>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="721963009"/>
+                        <display value="Order (record artifact)"/>
+                    </coding>
+                </category>
                 <date value="2019-03-31T11:46:09+02:00"/>
                 <author>
                     <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
@@ -78,43 +85,65 @@
     </entry>
     <entry>
         <fullUrl value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form" />
-    <resource>
-      <Questionnaire>
-        <id value="order-referral-form" />
-        <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-        <version value="0.9.1"/>
-        <name value="OrderReferralForm"/>
-        <title value="Order-Referral-Form"/>
-        <status value="active"/>
-        <subjectType value="Patient"/>
-        <date value="2021-03-26"/>
-        <publisher value="HL7 Switzerland"/>
-        <contact>
-          <name value="HL7 Switzerland"/>
-          <telecom>
-            <system value="url"/>
-            <value value="https://www.hl7.ch/"/>
-          </telecom>
-        </contact>
-        <jurisdiction>
-          <coding>
-            <system value="urn:iso:std:iso:3166"/>
-            <code value="CH"/>
-          </coding>
-        </jurisdiction>
-        <copyright value="CC-BY-SA-4.0"/>
-        <item>
-          <linkId value="order"/>
-          <text value="Auftrag"/>
-          <type value="group"/>
-          <required value="true"/>
-          <item>
-            <linkId value="order.placerOrderIdentifier"/>
-            <text value="Auftragsnummer des Auftraggebers"/>
-            <type value="string"/>
-          </item>
-        </item>
-      </Questionnaire>
-    </resource>
-  </entry>
+        <resource>
+            <Questionnaire>
+                <id value="order-referral-form" />
+                <meta>
+                    <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+                    <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
+                    <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
+                </meta>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
+                    <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
+                </extension>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap">
+                    <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfPrepopBundleToQr"/>
+                </extension>
+                <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext">
+                    <extension url="name">
+                        <valueId value="Bundle"/>
+                    </extension>
+                    <extension url="type">
+                        <valueCode value="Bundle"/>
+                    </extension>
+                    <extension url="description">
+                        <valueString value="The Bundle that is to be used to pre-populate the form"/>
+                    </extension>
+                </extension>
+                <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+                <version value="0.9.1"/>
+                <name value="OrderReferralForm"/>
+                <title value="Order-Referral-Form"/>
+                <status value="active"/>
+                <subjectType value="Patient"/>
+                <date value="2021-03-26"/>
+                <publisher value="HL7 Switzerland"/>
+                <contact>
+                    <name value="HL7 Switzerland"/>
+                    <telecom>
+                        <system value="url"/>
+                        <value value="https://www.hl7.ch/"/>
+                    </telecom>
+                </contact>
+                <jurisdiction>
+                    <coding>
+                        <system value="urn:iso:std:iso:3166"/>
+                        <code value="CH"/>
+                    </coding>
+                </jurisdiction>
+                <copyright value="CC-BY-SA-4.0"/>
+                <item>
+                    <linkId value="order"/>
+                    <text value="Auftrag"/>
+                    <type value="group"/>
+                    <required value="true"/>
+                    <item>
+                        <linkId value="order.placerOrderIdentifier"/>
+                        <text value="Auftragsnummer des Auftraggebers"/>
+                        <type value="string"/>
+                    </item>
+                </item>
+            </Questionnaire>
+        </resource>
+    </entry>
 </Bundle>
