@@ -12,3 +12,9 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#proposed
 * AppointmentStatus#pending
 * AppointmentStatus#booked
+
+ValueSet: ChOrfDescriptorqualifiervalue
+Id: ch-orf-vs-descriptorqualifiervalue
+Title: "Descriptor (qualifier value)"
+Description: "Value Set for CH ORF Descriptor (qualifier value)"
+* include codes from system SCT where concept is-a #272099008 "Descriptor (qualifier value)"
