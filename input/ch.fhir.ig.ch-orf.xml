@@ -160,6 +160,14 @@
       <exampleBoolean value="false"/>
     </resource>
 
+     <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-descriptorqualifiervalue"/>
+      </reference>
+      <name value="Descriptor (qualifier value)"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
     <!-- CodeSystems -->
     <resource>
       <reference>

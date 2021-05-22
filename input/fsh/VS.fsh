@@ -13,7 +13,7 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
-ValueSet: ChOrfDescriptorqualifiervalue
+ValueSet: ChOrfDescriptorQualifierValue
 Id: ch-orf-vs-descriptorqualifiervalue
 Title: "Descriptor (qualifier value)"
 Description: "Value Set for CH ORF Descriptor (qualifier value)"
