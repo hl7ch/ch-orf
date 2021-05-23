@@ -193,8 +193,12 @@ Id: ch-orf-coverage
 Title: "CH ORF Coverage"
 Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
+// Preliminary design: Answer of BAG still pending: 23.05.2021
+* identifier MS
+* identifier.value MS
+* payor MS
 * type MS
-* type from ChOrfCoverageType (extensible)
+* type from ChOrfCoverageType (required)
 
 Profile: ChOrfLocation
 Parent: ChCoreLocation

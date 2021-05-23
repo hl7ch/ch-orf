@@ -324,6 +324,72 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
+// ---------- Coverage (Kostenträger) ----------
+// Preliminary design: Answer of BAG still pending: 23.05.2021
+//4 Arten von Kostentägern 
+* item[+].linkId = "Coverage"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ch-orf-servicerequest.insurance"
+* item[=].text = "Coverage"
+* item[=].type = #group
+
+* item[=].item[+].linkId = "coverage.kvg.name"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization.organization.name"
+* item[=].item[=].text = "Krankenkasse"
+* item[=].item[=].type = #string
+* item[=].item[=].repeats = true
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "coverage.uvg.name"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization.organization.name"
+* item[=].item[=].text = "Unfallversicherung (nach UVG)"
+* item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.uvg.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "coverage.zusatz.name"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.h-core-organization.organization.name"
+* item[=].item[=].text = "Zusatzversicherung (nach VVG)"
+* item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.zusatz.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte / Versichertennummer"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "coverage.self.name"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.h-core-patient#patient.name"
+* item[=].item[=].text = "Selbstzahler"
+* item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "coverage.other.name"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization#Organization.name"
+* item[=].item[=].text = "Anderer Kostenträger"
+* item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.other.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].text = "Beliebige ID"
+* item[=].item[=].item[=].type = #string
+
+
+// The situation where a person and not a organization is an other payer is not depicted. 
+// Id's of insurances other than kvg are proprietary. Zusatzversicherung however may use the Kennnummer der Versichertenkarte (KVG).
+// Id's for other are not defined.
+
+
+
+
+
+
+
+
 // ---------- sender (Absender) ----------
 * item[+].linkId = "sender"
 * item[=].text = "Absender"
