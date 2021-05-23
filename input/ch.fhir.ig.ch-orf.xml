@@ -162,7 +162,7 @@
 
      <resource>
       <reference>
-        <reference value="ValueSet/ch-orf-vs-descriptorqualifiervalue"/>
+        <reference value="ValueSet/ch-orf-vs-yesno"/>
       </reference>
       <name value="Descriptor (qualifier value)"/>
       <exampleBoolean value="false"/>

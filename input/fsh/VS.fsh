@@ -14,9 +14,8 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#booked
 
 ValueSet: ChOrfYesNo
-Id: ch-orf-vs-descriptorqualifiervalue
-Title: "Descriptor (qualifier value)"
-Description: "Value Set for CH ORF Descriptor (qualifier value)"
-* include codes from system SCT where concept is-a #272099008 "Descriptor (qualifier value)"
+Id: ch-orf-vs-yesno
+Title: "Yes No"
+Description: "Value Set for Yes and No"
 * SCT#373066001 "Yes"
 * SCT#373067005 "No"
