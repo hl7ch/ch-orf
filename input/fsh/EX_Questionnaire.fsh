@@ -666,6 +666,11 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Bis"
 * item[=].item[=].item[=].type = #dateTime
 
+* item[=].item[+].linkId = "appointment.status"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.status"
+* item[=].item[=].text = "Status"
+* item[=].item[=].type = #choice
+
 * item[=].item[+].linkId = "appointment.patientInstruction"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
 * item[=].item[=].text = "Patienteninformation für diesen Termin"
