@@ -54,7 +54,7 @@ Description: "An information recipient to notify for urgent matters (e.g. in a r
 
 
 Extension: ChOrfTimeAndLocation
-Id: ch-orf-timeandlocation
+Id: appointment
 Title: "CH ORF Time and Location"
 Description: "CH ORF Time and Location of ServiceRequest Fulfillment."
 * valueReference 1..1

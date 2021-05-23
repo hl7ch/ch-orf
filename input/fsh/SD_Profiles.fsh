@@ -233,5 +233,5 @@ Description: "Profile on Appointment for CH ORF"
 * participant.status = #tentative         //fixed to "tentative" because the actor is the location
 * requestedPeriod 0..1 MS
 * requestedPeriod ^short =  "Single Date/time or Date/time interval indication for the appointment. A single Date/time indication MUST have 
- the same value for start and end"
+ the same value for start and end."
    

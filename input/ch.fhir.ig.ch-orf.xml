@@ -138,7 +138,7 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-timeandlocation"/>
+        <reference value="StructureDefinition/appointment"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
