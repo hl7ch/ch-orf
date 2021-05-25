@@ -636,7 +636,7 @@ Description: "Example for Questionnaire"
 
 /*------ Appointment ------------------------------ */
 * item[+].linkId = "appointment"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:appointment"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
 * item[=].type = #group
 
@@ -684,17 +684,17 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "appointment.datetime"
+* item[=].item[+].linkId = "appointment.dateTime"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period"
 * item[=].item[=].text = "Datum und Zeit"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "appointment.datetime.requestedPeriod.start"
+* item[=].item[=].item[+].linkId = "appointment.dateTime.start"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.start"
 * item[=].item[=].item[=].text = "Von"
 * item[=].item[=].item[=].type = #dateTime
 
-* item[=].item[=].item[+].linkId = "appointment.datetime.requestedPeriod.end"
+* item[=].item[=].item[+].linkId = "appointment.dateTime.end"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.end"
 * item[=].item[=].item[=].text = "Bis"
 * item[=].item[=].item[=].type = #dateTime
@@ -703,6 +703,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.status"
 * item[=].item[=].text = "Status"
 * item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-appointmentstatus"
 
 * item[=].item[+].linkId = "appointment.patientInstruction"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
