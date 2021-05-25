@@ -364,17 +364,23 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
-// 
-* item[=].item[+].linkId = "coverage.zusatz.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.h-core-organization.organization.name"
+// Zusatz
+* item[=].item[+].linkId = "coverage.zusatz"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].item[=].text = "Zusatzversicherung (nach VVG)"
-* item[=].item[=].type = #string
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.zusatz.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "coverage.zusatz.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte / Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
+//
 * item[=].item[+].linkId = "coverage.self.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.h-core-patient#patient.name"
 * item[=].item[=].text = "Selbstzahler"
