@@ -435,7 +435,7 @@
       <reference>
         <reference value="Coverage/CoverageMusterfrau"/>
       </reference>
-      <name value="Coverage Disorder KVG"/>
+      <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
       <exampleBoolean value="true"/>
     </resource>

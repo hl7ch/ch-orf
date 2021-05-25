@@ -196,9 +196,11 @@ Title: "CH ORF Coverage"
 Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
 // Preliminary design: Answer of BAG still pending: 23.05.2021
-* identifier MS
+* contained MS
+* identifier and identifier[insurancecardnumber] MS
 * identifier.system MS
 * identifier.value MS
+* beneficiary MS
 * payor MS
 * type MS
 * type from ChOrfCoverageType (required)
