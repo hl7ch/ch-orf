@@ -397,13 +397,18 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].type = #string
 
 // Other
-* item[=].item[+].linkId = "coverage.other.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization#Organization.name"
+* item[=].item[+].linkId = "coverage.other"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].item[=].text = "Anderer Kostenträger"
-* item[=].item[=].type = #string
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.other.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name des Kostenträgers"
+* item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "coverage.other.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Beliebige ID"
 * item[=].item[=].item[=].type = #string
 
