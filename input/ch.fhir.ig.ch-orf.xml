@@ -266,7 +266,7 @@
     </resource>
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/order-referal-form-mappedback"/>
+        <reference value="QuestionnaireResponse/order-referral-form-mappedback"/>
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form (mapping result)"/>
       <description value="Example for QuestionnaireResponse mapped to Bundle and back with StructureMaps"/>
