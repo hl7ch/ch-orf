@@ -326,23 +326,30 @@ Description: "Example for Questionnaire"
 
 // ---------- Coverage (Kostenträger) ----------
 // Preliminary design: Answer of BAG still pending: 23.05.2021
-//4 Arten von Kostentägern 
-* item[+].linkId = "Coverage"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ch-orf-servicerequest.insurance"
-* item[=].text = "Coverage"
+// 4 Arten von Kostentägern 
+* item[+].linkId = "coverage"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
+* item[=].text = "Kostenträger"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "coverage.kvg.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization.organization.name"
+// KVG
+* item[=].item[+].linkId = "coverage.kvg"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].item[=].text = "Krankenkasse"
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "coverage.kvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#coverage.identifier"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
+// UVG
 * item[=].item[+].linkId = "coverage.uvg.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization.organization.name"
 * item[=].item[=].text = "Unfallversicherung (nach UVG)"
@@ -600,8 +607,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 
-/*------ Appointment ------------------------------ 
-*/
+/*------ Appointment ------------------------------ */
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:appointment"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"

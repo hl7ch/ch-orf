@@ -75,6 +75,8 @@ Description: "Profile on ServiceRequest for CH ORF"
 * requester MS
 * requester only Reference(ChCorePractitionerRole)
 * requester ^short = "The person/organization responsible for the form content"
+* insurance MS
+* insurance only Reference(ChOrfCoverage)
 * patientInstruction ^short = "Use Appointment.patientInstruction (referenced via ServiceRequest.extension) for patient-oriented instructions"
 
 
@@ -195,6 +197,7 @@ Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
 // Preliminary design: Answer of BAG still pending: 23.05.2021
 * identifier MS
+* identifier.system MS
 * identifier.value MS
 * payor MS
 * type MS
