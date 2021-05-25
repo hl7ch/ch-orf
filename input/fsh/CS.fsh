@@ -6,8 +6,8 @@ Title: "Coverage Type"
 Description: "Code System for CH ORF Coverage Type"
 * #KVG "According to KVG"
 * #UVG "According UVG"
-* #Self "Self-payer"
 * #Zusatz "According to VVG"
+* #Self "Self-payer"
 * #Other "Other"
 
 

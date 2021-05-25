@@ -380,12 +380,23 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte / Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
-//
-* item[=].item[+].linkId = "coverage.self.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.h-core-patient#patient.name"
+// Self
+* item[=].item[+].linkId = "coverage.self"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].item[=].text = "Selbstzahler"
-* item[=].item[=].type = #string
+* item[=].item[=].type = #group
 
+* item[=].item[=].item[+].linkId = "coverage.self.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.self.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].type = #string
+
+// Other
 * item[=].item[+].linkId = "coverage.other.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor.ch-core-organization#Organization.name"
 * item[=].item[=].text = "Anderer Kostenträger"
