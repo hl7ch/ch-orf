@@ -163,8 +163,6 @@ Description: "Profile on Composition for CH ORF"
 * section[originalRepresentation].entry 1..1 MS
 * section[originalRepresentation].entry only Reference(Binary)
 * section[originalRepresentation].entry ^short = "According to the EPR ordonnance the PDF has to be in PDF/A-1 or PDF/A-2 format."
-* section[originalRepresentation].entry.extension contains http://hl7.org/fhir/StructureDefinition/narrativeLink named narrativeLink 0..1 MS
-* section[originalRepresentation].entry.extension[narrativeLink] ^short = "narrativeLink to img src attribute"
 * section[originalRepresentation].section 0..0
 
 

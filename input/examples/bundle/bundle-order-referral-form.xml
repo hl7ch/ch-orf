@@ -125,9 +125,6 @@
                         </div>
                     </text>
                     <entry>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/narrativeLink">
-                            <valueUrl value="pdf1"/>
-                        </extension>
                         <reference value="Binary/pdf"/>
                     </entry>
                 </section>
