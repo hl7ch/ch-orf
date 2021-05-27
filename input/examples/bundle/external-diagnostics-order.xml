@@ -57,6 +57,14 @@
         </author>
         <title value="Order-Referral-Form"/>
         <section>
+          <title value="Order-Referral"/>
+          <code>
+            <coding>
+              <system value="http://loinc.org"/>
+              <code value="93037-0"/>
+              <display value="Portable medical order form"/>
+            </coding>
+          </code>
           <entry>
             <reference value="http://example.com/fhir/Questionnaire/order-referral-form"/>
             <type value="Questionnaire"/>

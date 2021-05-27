@@ -26,3 +26,4 @@ Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
 
 Alias:  SCT =                       http://snomed.info/sct
 Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4
+Alias:  LNC =                       http://loinc.org

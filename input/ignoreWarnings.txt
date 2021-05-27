@@ -9,6 +9,9 @@ Display Name for http://hl7.org/fhir/request-priority#urgent should be one of 'U
 Display Name for http://hl7.org/fhir/request-priority#asap should be one of 'ASAP' instead of 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for 'http://hl7.org/fhir/request-priority#asap'
 Display Name for http://hl7.org/fhir/request-priority#stat should be one of 'STAT' instead of 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for 'http://hl7.org/fhir/request-priority#stat'
 
+# Other display value 
+The display "Clinical presentation" is not a valid display for the code {http://loinc.org}55108-5 - should be one of ["Clinical presentation Document","Clinical presentation Doc"] (from http://tx.fhir.org/r4) for 'http://loinc.org#55108-5'
+
 # No examples of extensions themselves or resources shown in the bundle examples
 The Implementation Guide contains no explicitly linked examples for this profile
 

@@ -114,31 +114,60 @@ Description: "Profile on Composition for CH ORF"
 * author ^short = "The person/organization responsible for the form content"
 * title MS
 * title ^short = "Meaningful title"
-* section 1.. MS
-* section.entry MS
-* section.entry ^slicing.discriminator.type = #profile
-* section.entry ^slicing.discriminator.path = "resolve()"
-* section.entry ^slicing.rules = #open
+
+* section MS
+* section ^slicing.discriminator.type = #pattern
+* section ^slicing.discriminator.path = "code"
+* section ^slicing.rules = #open
+
+// ---------- Composition.section:orderReferral ----------
+* section contains orderReferral 1..1 MS
+* section[orderReferral] ^short = "Contains the data that supports the order and referral by form."
+* section[orderReferral].title 1..1 MS
+* section[orderReferral].title ^short = "Order-Referral"
+* section[orderReferral].code 1..1 MS
+* section[orderReferral].code = LNC#93037-0 "Portable medical order form"
+* section[orderReferral].text MS
+* section[orderReferral].section 0..0
+
+* section[orderReferral].entry MS
+* section[orderReferral].entry ^slicing.discriminator.type = #profile
+* section[orderReferral].entry ^slicing.discriminator.path = "resolve()"
+* section[orderReferral].entry ^slicing.rules = #open
 // ---------- Composition.section.entry:Questionnaire ----------
-* section.entry contains Questionnaire 1..1 MS
-* section.entry[Questionnaire] only Reference(ChOrfQuestionnaire)
-* section.entry[Questionnaire] ^short = "Questionnaire"
-* section.entry[Questionnaire].reference 1.. MS
+* section[orderReferral].entry contains Questionnaire 1..1 MS
+* section[orderReferral].entry[Questionnaire] only Reference(ChOrfQuestionnaire)
+* section[orderReferral].entry[Questionnaire] ^short = "Questionnaire"
+* section[orderReferral].entry[Questionnaire].reference 1.. MS
 // ---------- Composition.section.entry:QuestionnaireResponse ----------
-* section.entry contains QuestionnaireResponse 1..1 MS
-* section.entry[QuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
-* section.entry[QuestionnaireResponse] ^short = "QuestionnaireResponse"
-* section.entry[QuestionnaireResponse].reference 1.. MS
+* section[orderReferral].entry contains QuestionnaireResponse 1..1 MS
+* section[orderReferral].entry[QuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
+* section[orderReferral].entry[QuestionnaireResponse] ^short = "QuestionnaireResponse"
+* section[orderReferral].entry[QuestionnaireResponse].reference 1.. MS
 // ---------- Composition.section.entry:ServiceRequest ----------
-* section.entry contains ServiceRequest 1..* MS
-* section.entry[ServiceRequest] only Reference(ChOrfServiceRequest)
-* section.entry[ServiceRequest] ^short = "ServiceRequest"
-* section.entry[ServiceRequest].reference 1.. MS
+* section[orderReferral].entry contains ServiceRequest 1..* MS
+* section[orderReferral].entry[ServiceRequest] only Reference(ChOrfServiceRequest)
+* section[orderReferral].entry[ServiceRequest] ^short = "ServiceRequest"
+* section[orderReferral].entry[ServiceRequest].reference 1.. MS
 // ---------- Composition.section.entry:DocumentReference ----------
-* section.entry contains DocumentReference 0..* MS
-* section.entry[DocumentReference] only Reference(ChOrfDocumentReference)
-* section.entry[DocumentReference] ^short = "DocumentReference"
-* section.entry[DocumentReference].reference 1.. MS
+* section[orderReferral].entry contains DocumentReference 0..* MS
+* section[orderReferral].entry[DocumentReference] only Reference(ChOrfDocumentReference)
+* section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
+* section[orderReferral].entry[DocumentReference].reference 1.. MS
+
+// ---------- Composition.section:originalRepresentation ----------
+* section contains originalRepresentation 0..1 MS
+* section[originalRepresentation] ^short = "Contains the original representation as a PDF of the current document."
+* section[originalRepresentation].title 1..1 MS
+* section[originalRepresentation].title ^short = "Original representation"
+* section[originalRepresentation].code 1..1 MS
+* section[originalRepresentation].code = LNC#55108-5 "Clinical presentation"
+* section[originalRepresentation].text 1.. MS
+* section[originalRepresentation].text ^short = "Representation of the original view"
+* section[originalRepresentation].entry 1..1 MS
+* section[originalRepresentation].entry only Reference(Binary)
+* section[originalRepresentation].entry ^short = "According to the EPR ordonnance the PDF has to be in PDF/A-1 or PDF/A-2 format."
+* section[originalRepresentation].section 0..0
 
 
 Profile: ChOrfDocument
