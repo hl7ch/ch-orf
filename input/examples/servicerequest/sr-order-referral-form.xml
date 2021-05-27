@@ -32,4 +32,7 @@
     <requester>
         <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
     </requester>
+    <insurance>
+        <reference value="Coverage/CoverageMusterfrau"/>
+    </insurance>
 </ServiceRequest>

@@ -138,7 +138,7 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-timeandlocation"/>
+        <reference value="StructureDefinition/ch-orf-locationandtime"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
@@ -157,6 +157,14 @@
         <reference value="ValueSet/ch-orf-vs-appointmentstatus"/>
       </reference>
       <name value="Appointment Status"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+     <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-yesno"/>
+      </reference>
+      <name value="Descriptor (qualifier value)"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -184,6 +192,14 @@
       </reference>
       <name value="Map ORF"/>
       <description value="Mapping ORF Bundle to QuestionnaireResponse"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureMap/OrfPrepopBundleToQr"/>
+      </reference>
+      <name value="Map OR Prepopulation"/>
+      <description value="Mapping ORF Prepopulation SDC Bundle to QuestionnaireResponse"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -250,7 +266,7 @@
     </resource>
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/order-referal-form-mappedback"/>
+        <reference value="QuestionnaireResponse/order-referral-form-mappedback"/>
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form (mapping result)"/>
       <description value="Example for QuestionnaireResponse mapped to Bundle and back with StructureMaps"/>
@@ -419,7 +435,7 @@
       <reference>
         <reference value="Coverage/CoverageMusterfrau"/>
       </reference>
-      <name value="Coverage Disorder KVG"/>
+      <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
       <exampleBoolean value="true"/>
     </resource>

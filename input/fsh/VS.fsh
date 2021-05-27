@@ -12,3 +12,10 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#proposed
 * AppointmentStatus#pending
 * AppointmentStatus#booked
+
+ValueSet: ChOrfYesNo
+Id: ch-orf-vs-yesno
+Title: "Yes No"
+Description: "Value Set for Yes and No"
+* SCT#373066001 "Yes"
+* SCT#373067005 "No"

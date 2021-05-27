@@ -14,6 +14,9 @@ Alias:  ChCoreLocation =            http://fhir.ch/ig/ch-core/StructureDefinitio
 // SDC
 Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
 Alias:  SdcQuestionnaireExtract =   http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract
+Alias:  SdcQuestionnaireTargetStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap
+Alias:  SdcQuestionnaireSourceStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap
+Alias:  SdcQuestionnaireLaunchContext =       http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext
 
 // FHIR CS/VS
 Alias:  BundleType =                http://hl7.org/fhir/bundle-type
@@ -22,4 +25,5 @@ Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
 Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
 
 Alias:  SCT =                       http://snomed.info/sct
+Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4
 Alias:  LNC =                       http://loinc.org

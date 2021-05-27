@@ -11,15 +11,15 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "order.title"
 * item[=].item[=].text = "Titel"
-* item[=].item[=].answer.valueString = "Beispiel Titel"
+* item[=].item[=].answer.valueString = "Order-Referral-Form"
 
 * item[=].item[+].linkId = "order.type"
 * item[=].item[=].text = "Typ"
-* item[=].item[=].answer.valueCoding = SCT#419891008
+* item[=].item[=].answer.valueCoding = SCT#419891008 "Record artifact (record artifact)"
 
 * item[=].item[+].linkId = "order.category"
 * item[=].item[=].text = "Kategorie"
-* item[=].item[=].answer.valueCoding = SCT#422735006
+* item[=].item[=].answer.valueCoding = SCT#721963009 "Order (record artifact)"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
@@ -211,6 +211,23 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[+].linkId = "patient.country"
 * item[=].item[=].text = "Land"
 * item[=].item[=].answer.valueString = "Schweiz"
+
+// ---------- Coverage (Kostenträger) ----------
+
+* item[+].linkId = "coverage"
+* item[=].text = "Kostenträger"
+
+// KVG
+* item[=].item[+].linkId = "coverage.kvg"
+* item[=].item[=].text = "Krankenkasse (nach KVG)"
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.name"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].answer.valueString = "Sanitas"
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.id"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].answer.valueString = "80756015090002647590"
 
 // ---------- sender (Absender) ----------
 * item[+].linkId = "sender"

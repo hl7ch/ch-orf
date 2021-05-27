@@ -5,17 +5,22 @@ Description: "Example for Questionnaire"
 * meta.profile[+] = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"
 * meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
 * meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"
+* meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate"
 
-* extension[targetStructureMap].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
-* extension[targetStructureMap].valueCanonical = "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"
 
-* extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
-* extension[1].extension[0].url = "name"
-* extension[1].extension[0].valueId = "Bundle"
-* extension[1].extension[1].url = "type"
-* extension[1].extension[1].valueCode = #Bundle
-* extension[1].extension[2].url = "description"
-* extension[1].extension[2].valueString = "The Bundle that is to be used to pre-populate the form"
+* extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
+* extension[0].valueCanonical = "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"
+
+* extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap"
+* extension[1].valueCanonical = "http://fhir.ch/ig/ch-orf/StructureMap/OrfPrepopBundleToQr"
+
+* extension[2].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
+* extension[2].extension[0].url = "name"
+* extension[2].extension[0].valueId = "Bundle"
+* extension[2].extension[1].url = "type"
+* extension[2].extension[1].valueCode = #Bundle
+* extension[2].extension[2].url = "description"
+* extension[2].extension[2].valueString = "The Bundle that is to be used to pre-populate the form"
 
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * name = "OrderReferralForm"
@@ -36,17 +41,23 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"
 * item[=].item[=].text = "Titel"
 * item[=].item[=].type = #string
+* item[=].item[=].required = true
+* item[=].item[=].readOnly = true
 
 * item[=].item[+].linkId = "order.type"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"
 * item[=].item[=].text = "Typ"
 * item[=].item[=].type = #choice
+* item[=].item[=].required = true
+// * item[=].item[=].readOnly = true
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"
 
 * item[=].item[+].linkId = "order.category"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"
 * item[=].item[=].text = "Kategorie"
 * item[=].item[=].type = #choice
+* item[=].item[=].required = true
+// * item[=].item[=].readOnly = true
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"
 
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
@@ -313,6 +324,100 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
+// ---------- Coverage (Kostenträger) ----------
+// Preliminary design: Answer of BAG still pending: 23.05.2021
+// 4 Arten von Kostentägern 
+* item[+].linkId = "coverage"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
+* item[=].text = "Kostenträger"
+* item[=].type = #group
+
+// KVG
+* item[=].item[+].linkId = "coverage.kvg"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Krankenkasse (nach KVG)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.kvg.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].type = #string
+
+// UVG
+* item[=].item[+].linkId = "coverage.uvg"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Unfallversicherung (nach UVG)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.uvg.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.uvg.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].type = #string
+
+// Zusatz
+* item[=].item[+].linkId = "coverage.zusatz"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Zusatzversicherung (nach VVG)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.zusatz.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name der Versicherung"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.zusatz.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte / Versichertennummer"
+* item[=].item[=].item[=].type = #string
+
+// Self
+* item[=].item[+].linkId = "coverage.self"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Selbstzahler"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.self.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.self.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].type = #string
+
+// Other
+* item[=].item[+].linkId = "coverage.other"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Anderer Kostenträger"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.other.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
+* item[=].item[=].item[=].text = "Name des Kostenträgers"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.other.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Beliebige ID"
+* item[=].item[=].item[=].type = #string
+
+
+// The situation where a person and not a organization is an other payer is not depicted. 
+// Id's of insurances other than kvg are proprietary. Zusatzversicherung however may use the Kennnummer der Versichertenkarte (KVG).
+// Id's for other are not defined.
+
+
 // ---------- sender (Absender) ----------
 * item[+].linkId = "sender"
 * item[=].text = "Absender"
@@ -325,6 +430,50 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Verantwortlicher"
 * item[=].item[=].type = #group
 * item[=].item[=].required = true
+
+* item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
+* item[=].item[=].item[=].text = "Ort der Durchführung"
+* item[=].item[=].item[=].type = #group
+* item[=].item[=].item[=].required = true
+* item[=].item[=].item[=].repeats = true
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.name"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
+* item[=].item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].item[=].required = true
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.phone"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].item[=].text = "Telefon"
+* item[=].item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.email"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].item[=].text = "E-Mail"
+* item[=].item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.streetAddressLine"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.line"
+* item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
+* item[=].item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].item[=].repeats = true
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.postalCode"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.postalCode"
+* item[=].item[=].item[=].item[=].text = "PLZ"
+* item[=].item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.city"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.city"
+* item[=].item[=].item[=].item[=].text = "Ort"
+* item[=].item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.country"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.country"
+* item[=].item[=].item[=].item[=].text = "Land"
+* item[=].item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
@@ -484,3 +633,92 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
+
+/*------ Appointment ------------------------------ */
+* item[+].linkId = "appointment"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
+* item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
+* item[=].type = #group
+
+* item[=].item[+].linkId = "appointment.location"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
+* item[=].item[=].text = "Ort der Durchführung"
+* item[=].item[=].type = #group
+* item[=].item[=].required = true
+* item[=].item[=].repeats = true
+
+* item[=].item[=].item[+].linkId = "appointment.location.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].required = true
+
+* item[=].item[=].item[+].linkId = "appointment.location.phone"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].text = "Telefon"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "appointment.location.email"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].text = "E-Mail"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "appointment.location.streetAddressLine"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.line"
+* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].repeats = true
+
+* item[=].item[=].item[+].linkId = "appointment.location.postalCode"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.postalCode"
+* item[=].item[=].item[=].text = "PLZ"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "appointment.location.city"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.city"
+* item[=].item[=].item[=].text = "Ort"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "appointment.location.country"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.country"
+* item[=].item[=].item[=].text = "Land"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[+].linkId = "appointment.dateTime"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period"
+* item[=].item[=].text = "Datum und Zeit"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "appointment.dateTime.start"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.start"
+* item[=].item[=].item[=].text = "Von"
+* item[=].item[=].item[=].type = #dateTime
+
+* item[=].item[=].item[+].linkId = "appointment.dateTime.end"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.end"
+* item[=].item[=].item[=].text = "Bis"
+* item[=].item[=].item[=].type = #dateTime
+
+* item[=].item[+].linkId = "appointment.status"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.status"
+* item[=].item[=].text = "Status"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-appointmentstatus"
+
+* item[=].item[+].linkId = "appointment.patientInstruction"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
+* item[=].item[=].text = "Patienteninformation für diesen Termin"
+* item[=].item[=].type = #string
+
+// -------- Service Request Notes ------
+* item[+].linkId = "note"
+* item[=].text = "Bemerkungen"
+* item[=].type = #group
+* item[=].repeats = true
+
+* item[=].item[+].linkId = "note.text"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.note.text"
+* item[=].item[=].text = "Kommentar" 
+* item[=].item[=].type = #string
+* item[=].item[=].required = true
+

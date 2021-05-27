@@ -5,6 +5,8 @@ Title: "CH ORF Questionnaire"
 Description: "Profile on Questionnaire for CH ORF"
 * . ^short = "CH ORF Questionnaire"
 * extension[targetStructureMap] 1..1 MS
+* extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
+* extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
 * item MS
 
 
@@ -45,7 +47,7 @@ Id: ch-orf-servicerequest
 Title: "CH ORF ServiceRequest"
 Description: "Profile on ServiceRequest for CH ORF"
 * . ^short = "CH ORF ServiceRequest"
-* extension contains ChOrfTimeAndLocation named timeAndLocation 0..* MS
+* extension contains ChOrfLocationAndTime named locationAndTime 0..* MS
 * identifier MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
@@ -73,6 +75,8 @@ Description: "Profile on ServiceRequest for CH ORF"
 * requester MS
 * requester only Reference(ChCorePractitionerRole)
 * requester ^short = "The person/organization responsible for the form content"
+* insurance MS
+* insurance only Reference(ChOrfCoverage)
 * patientInstruction ^short = "Use Appointment.patientInstruction (referenced via ServiceRequest.extension) for patient-oriented instructions"
 
 
@@ -220,8 +224,15 @@ Id: ch-orf-coverage
 Title: "CH ORF Coverage"
 Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
+// Preliminary design: Answer of BAG still pending: 23.05.2021
+* contained MS
+* identifier and identifier[insurancecardnumber] MS
+* identifier.system MS
+* identifier.value MS
+* beneficiary MS
+* payor MS
 * type MS
-* type from ChOrfCoverageType (extensible)
+* type from ChOrfCoverageType (required)
 
 Profile: ChOrfLocation
 Parent: ChCoreLocation
@@ -256,5 +267,5 @@ Description: "Profile on Appointment for CH ORF"
 * participant.status = #tentative         //fixed to "tentative" because the actor is the location
 * requestedPeriod 0..1 MS
 * requestedPeriod ^short =  "Single Date/time or Date/time interval indication for the appointment. A single Date/time indication MUST have 
- the same value for start and end"
+ the same value for start and end."
    
