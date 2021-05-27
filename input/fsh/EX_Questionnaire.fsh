@@ -365,19 +365,24 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].type = #string
 
 // Zusatz
-* item[=].item[+].linkId = "coverage.zusatz"
+* item[=].item[+].linkId = "coverage.vvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].item[=].text = "Zusatzversicherung (nach VVG)"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "coverage.zusatz.name"
+* item[=].item[=].item[+].linkId = "coverage.vvg.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.zusatz.id"
+* item[=].item[=].item[+].linkId = "coverage.vvg.id"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "coverage.vvg.insuranceNumber"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
-* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte / Versichertennummer"
+* item[=].item[=].item[=].text = "Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
 // Self
