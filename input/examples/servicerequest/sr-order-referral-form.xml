@@ -35,4 +35,7 @@
     <insurance>
         <reference value="Coverage/CoverageMusterfrau"/>
     </insurance>
+    <note>
+        <text value="Bemerkung/Kommentar"/>
+    </note>
 </ServiceRequest>

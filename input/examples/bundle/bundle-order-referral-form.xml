@@ -157,9 +157,6 @@
             <ServiceRequest xmlns="http://hl7.org/fhir">
                 <id value="sr-order-referral-form"/>
                 <meta>
-                    <versionId value="1"/>
-                    <lastUpdated value="2021-03-24T14:40:17.147+00:00"/>
-                    <source value="#XVt0rBymgZcxMSC7"/>
                     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest"/>
                 </meta>
                 <identifier>
@@ -194,6 +191,9 @@
                 <insurance>
                     <reference value="Coverage/CoverageMusterfrau"/>
                 </insurance>
+                <note>
+                    <text value="Bemerkung/Kommentar"/>
+                </note>
             </ServiceRequest>
         </resource>
     </entry>
@@ -1600,16 +1600,16 @@
         </resource>
     </entry>
     <entry>
-      <fullUrl value="http://example.com/fhir/Binary/pdf"/>
-      <resource>
-        <Binary>
-          <id value="pdf"/>
-          <language value="de-CH"/>
-          <contentType value="application/pdf"/>
-          <data value="TBD: PDF/A-1 or PDF/A-2, base64 encoded"/>
-        </Binary>
-      </resource>
-    </entry>  
+        <fullUrl value="http://example.com/fhir/Binary/pdf"/>
+        <resource>
+            <Binary>
+                <id value="pdf"/>
+                <language value="de-CH"/>
+                <contentType value="application/pdf"/>
+                <data value="TBD: PDF/A-1 or PDF/A-2, base64 encoded"/>
+            </Binary>
+        </resource>
+    </entry>
     <entry>
         <fullUrl value="http://example.com/fhir/Coverage/CoverageMusterfrau"/>
         <resource>

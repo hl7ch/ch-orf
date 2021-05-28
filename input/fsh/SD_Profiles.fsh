@@ -77,6 +77,7 @@ Description: "Profile on ServiceRequest for CH ORF"
 * requester ^short = "The person/organization responsible for the form content"
 * insurance MS
 * insurance only Reference(ChOrfCoverage)
+* note and note.text MS
 * patientInstruction ^short = "Use Appointment.patientInstruction (referenced via ServiceRequest.extension) for patient-oriented instructions"
 
 

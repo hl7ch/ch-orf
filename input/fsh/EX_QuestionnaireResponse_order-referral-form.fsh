@@ -408,3 +408,11 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[+].linkId = "receiverCopy.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
+
+// -------- Service Request Notes ------
+* item[+].linkId = "note"
+* item[=].text = "Bemerkungen"
+
+* item[=].item[+].linkId = "note.text"
+* item[=].item[=].text = "Kommentar" 
+* item[=].item[=].answer.valueString = "Bemerkung/Kommentar"
