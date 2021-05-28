@@ -436,50 +436,6 @@ Description: "Example for Questionnaire"
 * item[=].item[=].type = #group
 * item[=].item[=].required = true
 
-* item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
-* item[=].item[=].item[=].text = "Ort der Durchführung"
-* item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].required = true
-* item[=].item[=].item[=].repeats = true
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.name"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
-* item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[=].required = true
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.phone"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
-* item[=].item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.email"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
-* item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.streetAddressLine"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.line"
-* item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[=].repeats = true
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.postalCode"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.postalCode"
-* item[=].item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.city"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.city"
-* item[=].item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[=].item[+].linkId = "timeAndLocation.appointment.location.country"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.country"
-* item[=].item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].item[=].type = #string
-
 * item[=].item[=].item[+].linkId = "sender.author.practitioner"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Verantwortliche Person"
