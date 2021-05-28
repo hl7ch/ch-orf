@@ -218,23 +218,52 @@ Description: "Profile on DocumentReference for CH ORF"
 
 
 // Probably better in CH Core -> next release
+// Preliminary design: Answer of BAG still pending: 23.05.2021
 Profile: ChOrfCoverage
-Parent: ChCoreCoverage
+Parent: Coverage          // not ChCoreCoverage because of different identifier slicing
 Id: ch-orf-coverage
 Title: "CH ORF Coverage"
 Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
-// Preliminary design: Answer of BAG still pending: 23.05.2021
 * contained MS
+// identifier
 * identifier MS
-* identifier.value MS
-* identifier[insurancecardnumber] MS
-* identifier[insurancecardnumber].system and identifier[insurancecardnumber].value MS
-* beneficiary MS
-* payor MS
-* payor only Reference(ChCoreOrganization or ChCorePatient)
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "use"
+* identifier ^slicing.rules = #open
+// Kennnummer der Versichertenkarte
+* identifier contains insurancecardnumber 0..* MS
+* identifier[insurancecardnumber].use = #usual
+* identifier[insurancecardnumber].use 1.. MS
+* identifier[insurancecardnumber] ^short = "Insurance card number"
+* identifier[insurancecardnumber].system 1.. MS
+* identifier[insurancecardnumber].system = "urn:oid:2.16.756.5.30.1.123.100.1.1.1"
+* identifier[insurancecardnumber].system ^short = "OID of the insurance card number"
+* identifier[insurancecardnumber].value 1.. MS
+* identifier[insurancecardnumber].value ^short = "Insurance card number of the patient (20 digits)"
+// Versichertennummer
+* identifier contains AHVN13 0..1 MS
+* identifier[AHVN13].use = #official
+* identifier[AHVN13].use 1.. MS
+* identifier[AHVN13] ^short = "AHVN13 / NAVS13"
+* identifier[AHVN13].system 1.. MS
+* identifier[AHVN13].system = "urn:oid:2.16.756.5.32"
+* identifier[AHVN13].value 1.. MS
+* identifier[AHVN13].value ^short = "AHVN13 / NAVS13 of the patient (13 digits starting ith 756)"
+// Other ID
+* identifier contains otherId 0..* MS
+* identifier[otherId] ^short = "Other ID"
+* identifier[otherId].use = #secondary
+* identifier[otherId].use 1.. MS
+* identifier[otherId].value 1.. MS
+
 * type MS
 * type from ChOrfCoverageType (required)
+* beneficiary MS
+* beneficiary only Reference(ChCorePatient)
+* payor MS
+* payor only Reference(ChCoreOrganization or ChCorePatient)
+
 
 Profile: ChOrfLocation
 Parent: ChCoreLocation

@@ -381,7 +381,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].linkId = "coverage.vvg.insuranceNumber"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:AHVN13"
 * item[=].item[=].item[=].text = "Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
