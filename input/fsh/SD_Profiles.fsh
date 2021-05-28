@@ -256,7 +256,7 @@ Description: "Profile on Coverage for CH ORF"
 * identifier[otherId].use = #secondary
 * identifier[otherId].use 1.. MS
 * identifier[otherId].value 1.. MS
-
+* status MS
 * type MS
 * type from ChOrfCoverageType (required)
 * beneficiary MS
