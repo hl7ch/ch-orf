@@ -606,7 +606,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
 * item[=].item[=].text = "Ort der Durchführung"
 * item[=].item[=].type = #group
-* item[=].item[=].repeats = true
+* item[=].item[=].required = true
 
 * item[=].item[=].item[+].linkId = "appointment.location.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
