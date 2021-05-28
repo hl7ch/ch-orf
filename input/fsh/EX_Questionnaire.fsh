@@ -600,12 +600,12 @@ Description: "Example for Questionnaire"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
 * item[=].type = #group
+* item[=].repeats = true
 
 * item[=].item[+].linkId = "appointment.location"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
 * item[=].item[=].text = "Ort der Durchführung"
 * item[=].item[=].type = #group
-* item[=].item[=].required = true
 * item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "appointment.location.name"
@@ -645,26 +645,31 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "appointment.dateTime"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period"
-* item[=].item[=].text = "Datum und Zeit"
+* item[=].item[+].linkId = "appointment.requestedPeriod"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod"
+* item[=].item[=].text = "Datum und Zeit, wann der Termin bevorzugt geplant werden soll"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "appointment.dateTime.start"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.start"
+* item[=].item[=].item[+].linkId = "appointment.requestedPeriod.start"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod.start"
 * item[=].item[=].item[=].text = "Von"
 * item[=].item[=].item[=].type = #dateTime
 
-* item[=].item[=].item[+].linkId = "appointment.dateTime.end"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.period.end"
+* item[=].item[=].item[+].linkId = "appointment.requestedPeriod.end"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod.end"
 * item[=].item[=].item[=].text = "Bis"
 * item[=].item[=].item[=].type = #dateTime
 
 * item[=].item[+].linkId = "appointment.status"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.status"
 * item[=].item[=].text = "Status"
+* item[=].item[=].required = true           // also required in Appointment.status
 * item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-appointmentstatus"
+* item[=].item[=].answerOption[+].valueCoding = AppointmentStatus#proposed "Wunsch des Patienten (vorgeschlagen)"
+* item[=].item[=].answerOption[=].initialSelected = true
+* item[=].item[=].answerOption[+].valueCoding = AppointmentStatus#pending "Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)"
+* item[=].item[=].answerOption[+].valueCoding = AppointmentStatus#booked "Vom Patienten und Leistungserbringer bestätigt (gebucht)"
+// * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-appointmentstatus"
 
 * item[=].item[+].linkId = "appointment.patientInstruction"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
