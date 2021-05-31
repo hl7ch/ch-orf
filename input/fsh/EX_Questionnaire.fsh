@@ -324,6 +324,36 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
+// ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
+* item[+].linkId = "encounterclass"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounterClass"
+* item[=].text = "Encounter Class"
+* item[=].type = #group
+
+* item[=].item[+].linkId = "encounter.class"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounter.class"
+* item[=].item[=].type = #choice
+* item[=].item[=].text = "Ambulant / Stationär / Notfall"
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#AMB "Ambulant"
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#IMP "Stationär"
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
+
+
+// ---------- Desired Accommodation (Zimmerkategorie) ----------
+* item[+].linkId = "desiredaccommodation"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:desiredAccommodation"
+* item[=].text = "Zimmerkategorie"
+* item[=].type = #group
+
+* item[=].item[+].linkId = "desiredaccommodation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:class"
+* item[=].item[=].text = "Zimmerkategorie"
+* item[=].item[=].type = #choice
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
+* item[=].item[=].answerOption[=].valueCoding = V3ActCode#SP "Zweierzimmer"
+* item[=].item[=].answerOption[=].valueCoding = V3ActCode#W "Mehrbettzimmer"
+
+
 // ---------- Coverage (Kostenträger) ----------
 // Preliminary design: Answer of BAG still pending: 23.05.2021
 // 4 Arten von Kostentägern 
