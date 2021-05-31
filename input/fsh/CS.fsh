@@ -9,5 +9,3 @@ Description: "Code System for CH ORF Coverage Type"
 * #Zusatz "According to VVG"
 * #Self "Self-payer"
 * #Other "Other"
-
-

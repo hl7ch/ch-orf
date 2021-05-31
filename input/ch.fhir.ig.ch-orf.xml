@@ -158,6 +158,13 @@
       <name value="Appointment Status"/>
       <exampleBoolean value="false"/>
     </resource>
+        <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-desiredaccommodation"/>
+      </reference>
+      <name value="Desired Accommodation"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- CodeSystems -->
     <resource>
