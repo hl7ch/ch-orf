@@ -53,13 +53,13 @@ Description: "An information recipient to notify for urgent matters (e.g. in a r
 * valueReference ^short = "valueReference"
 
 
-Extension: ChOrfRequestedEncounter
-Id: ch-orf-requestedencounter
-Title: "CH ORF Requested Encounter"
-Description: "Requested Encounter"
+Extension: ChOrfRequestedEncounterDetails
+Id: ch-orf-requestedencounterdetails
+Title: "CH ORF Requested Encounter Details"
+Description: "Requested Encounter Details"
 * valueReference 1..1
 * valueReference only Reference(ChOrfRequestedEncounter) 
-* valueReference ^short = "Requested Encounter for ServiceRequest Fullfillment"
+* valueReference ^short = "Requested Encounter Details for ServiceRequest Fullfillment"
 
 
 Extension: ChOrfLocationAndTime

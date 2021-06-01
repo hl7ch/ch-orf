@@ -55,8 +55,8 @@ Title: "CH ORF ServiceRequest"
 Description: "Profile on ServiceRequest for CH ORF"
 * . ^short = "CH ORF ServiceRequest"
 * extension contains ChOrfLocationAndTime named locationAndTime 0..* MS
-* extension contains ChOrfRequestedEncounter named requestedEncounterClass 0..1 MS
-* extension contains ChOrfRequestedEncounter named desiredAccomodation 0..1 MS
+* extension contains ChOrfRequestedEncounterDetails named requestedEncounterClass 0..1 MS
+* extension contains ChOrfRequestedEncounterDetails named desiredAccomodation 0..1 MS
 * identifier MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"

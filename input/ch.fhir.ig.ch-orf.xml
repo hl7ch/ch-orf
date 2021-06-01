@@ -142,7 +142,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-requestedencounterdetails"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- ValueSets-->
     <resource>
