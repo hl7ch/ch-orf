@@ -345,13 +345,13 @@ Description: "Example for Questionnaire"
 * item[=].text = "Zimmerkategorie"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "desiredaccommodation"
+* item[=].item[+].linkId = "encounter.desiredaccommodation"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:class"
-* item[=].item[=].text = "Zimmerkategorie"
+* item[=].item[=].text = "Einer- / Zweier- / Mehrbettzimmer"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
-* item[=].item[=].answerOption[=].valueCoding = V3ActCode#SP "Zweierzimmer"
-* item[=].item[=].answerOption[=].valueCoding = V3ActCode#W "Mehrbettzimmer"
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#SP "Zweierzimmer"
+* item[=].item[=].answerOption[+].valueCoding = V3ActCode#W "Mehrbettzimmer"
 
 
 // ---------- Coverage (Kostenträger) ----------
