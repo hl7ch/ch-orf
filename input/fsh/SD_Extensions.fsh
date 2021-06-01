@@ -58,7 +58,7 @@ Id: ch-orf-ChOrfEncounter
 Title: "CH ORF Encounter"
 Description: "Encounter"
 * valueReference 1..1
-* valueReference only Reference(ChOrfEncounter) 
+* valueReference only Reference(ChOrfEncounterClass) 
 * valueReference ^short = "Encounter"
 
 

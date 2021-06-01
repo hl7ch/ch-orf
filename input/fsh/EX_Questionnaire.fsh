@@ -325,7 +325,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].type = #string
 
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
-* item[+].linkId = "encounterclass"
+* item[+].linkId = "encounterClass"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounterClass"
 * item[=].text = "Encounter Class"
 * item[=].type = #group
@@ -340,12 +340,12 @@ Description: "Example for Questionnaire"
 
 
 // ---------- Desired Accommodation (Zimmerkategorie) ----------
-* item[+].linkId = "desiredaccommodation"
+* item[+].linkId = "desiredAccommodation"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:desiredAccommodation"
 * item[=].text = "Zimmerkategorie"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "encounter.desiredaccommodation"
+* item[=].item[+].linkId = "encounter.desiredAccommodation"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:class"
 * item[=].item[=].text = "Einer- / Zweier- / Mehrbettzimmer"
 * item[=].item[=].type = #choice
