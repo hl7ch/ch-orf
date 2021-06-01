@@ -13,7 +13,7 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
-ValueSet: ChOrfEncounterClass
+ValueSet: ChOrfRequestedEncounterClass
 Id: ch-orf-vs-encounter
 Title: "Encounter"
 Description: "Value Set for CH ORF Encounter"

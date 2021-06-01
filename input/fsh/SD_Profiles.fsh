@@ -9,12 +9,12 @@ Description: "Profile on Questionnaire for CH ORF"
 * extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
 * item MS
 
-Profile: ChOrfEncounter
+Profile: ChOrfRequestedEncounter
 Parent: ChCoreEncounter
 Id: ch-orf-encounter
-Title: "CH ORF Encounter"
-Description: "Profile on Encounter for CH ORF"
-* . ^short = "CH ORF Encounter"
+Title: "CH ORF requested Encounter"
+Description: "Profile on requested Encounter for CH ORF"
+* . ^short = "CH ORF requested Encounter"
 
 
 Profile: ChOrfQuestionnaireResponse
@@ -55,8 +55,8 @@ Title: "CH ORF ServiceRequest"
 Description: "Profile on ServiceRequest for CH ORF"
 * . ^short = "CH ORF ServiceRequest"
 * extension contains ChOrfLocationAndTime named locationAndTime 0..* MS
-* extension contains ChOrfEncounter named encounterClass 0..1 MS
-* extension contains ChOrfEncounter named desiredAccomodation 0..1 MS
+* extension contains ChOrfRequestedEncounter named requestedEncounterClass 0..1 MS
+* extension contains ChOrfRequestedEncounter named desiredAccomodation 0..1 MS
 * identifier MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
