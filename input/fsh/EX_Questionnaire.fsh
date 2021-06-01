@@ -327,7 +327,7 @@ Description: "Example for Questionnaire"
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedencounterclass"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterClass"
-* item[=].text = "Encounter Class"
+* item[=].text = "Patientenaufnahme"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "encounter.class"
@@ -391,7 +391,7 @@ Description: "Example for Questionnaire"
 
 * item[=].item[=].item[+].linkId = "coverage.uvg.id"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
-* item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
+* item[=].item[=].item[=].text = "Schadennummer"
 * item[=].item[=].item[=].type = #string
 
 // Zusatz
@@ -447,6 +447,10 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Beliebige ID"
 * item[=].item[=].item[=].type = #string
 
+* item[=].item[=].item[+].linkId = "coverage.other.id.note"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier.type.text"
+* item[=].item[=].item[=].text = "Bemerkung zur Nummer"
+* item[=].item[=].item[=].type = #string
 
 // The situation where a person and not a organization is an other payer is not depicted. 
 // Id's of insurances other than kvg are proprietary. Zusatzversicherung however may use the Kennnummer der Versichertenkarte (KVG).
