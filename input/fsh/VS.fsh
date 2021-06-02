@@ -13,10 +13,10 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
-ValueSet: ChOrfRequestedEncounterClass
-Id: ch-orf-vs-encounter
-Title: "Encounter"
-Description: "Value Set for CH ORF Encounter"
+ValueSet: ChOrfEncounterClass
+Id: ch-orf-vs-encounterclass
+Title: "Encounter Class"
+Description: "Value Set for CH ORF Encounter Class"
 * V3ActCode#AMB     /* Ambulatory: A comprehensive term for health care 
                     provided in a healthcare facility (e.g. a practitioneraTMs 
                     office, clinic setting, or hospital) on a nonresident basis. 

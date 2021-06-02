@@ -104,6 +104,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-encounter"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Extension Definitions -->
     <resource>
@@ -164,7 +170,14 @@
       <name value="Appointment Status"/>
       <exampleBoolean value="false"/>
     </resource>
-        <resource>
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-encounterclass"/>
+      </reference>
+      <name value="Encounter Class"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
       <reference>
         <reference value="ValueSet/ch-orf-vs-desiredaccommodation"/>
       </reference>

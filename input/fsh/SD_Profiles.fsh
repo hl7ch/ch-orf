@@ -9,13 +9,6 @@ Description: "Profile on Questionnaire for CH ORF"
 * extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
 * item MS
 
-Profile: ChOrfRequestedEncounter
-Parent: ChCoreEncounter
-Id: ch-orf-encounter
-Title: "CH ORF requested Encounter"
-Description: "Profile on requested Encounter for CH ORF"
-* . ^short = "CH ORF requested Encounter"
-
 
 Profile: ChOrfQuestionnaireResponse
 Parent: QuestionnaireResponse
@@ -312,3 +305,10 @@ Description: "Profile on Appointment for CH ORF"
 * requestedPeriod.start MS
 * requestedPeriod.end MS
    
+
+Profile: ChOrfRequestedEncounter
+Parent: ChCoreEncounter
+Id: ch-orf-encounter
+Title: "CH ORF Requested Encounter"
+Description: "Profile on Requested Encounter for CH ORF"
+* . ^short = "CH ORF Requested Encounter"
