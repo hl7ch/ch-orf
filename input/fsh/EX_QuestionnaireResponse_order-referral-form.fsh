@@ -225,7 +225,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].answer.valueString = "Sanitas"
 
-* item[=].item[=].item[+].linkId = "coverage.kvg.id"
+* item[=].item[=].item[+].linkId = "coverage.kvg.insuranceCardNumber"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].answer.valueString = "80756015090002647590"
 

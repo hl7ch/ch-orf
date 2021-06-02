@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Encounter xmlns="http://hl7.org/fhir">
+    <id value="EncounterMusterfrau"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter"/>
+    </meta>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation">
+        <valueCoding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+            <code value="SP"/>
+            <display value="Semi-private"/>
+        </valueCoding>
+    </extension>
+    <status value="planned"/>
+    <class>
+        <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+        <code value="EMER"/>
+        <display value="emergency"/>
+    </class>
+    <subject>
+        <reference value="Patient/ErikaMusterfrau"/>
+    </subject>
+</Encounter> 

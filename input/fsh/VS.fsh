@@ -5,6 +5,14 @@ Title: "Coverage Type"
 Description: "Value Set for CH ORF Coverage Type"
 * include codes from system ChOrfCoverageType
 
+
+ValueSet: ChOrfCoverageIdentifierType
+Id: ch-orf-vs-coverageidentifiertype
+Title: "Coverage Identifier Type"
+Description: "Value Set for CH ORF Coverage Identifier Type"
+* include codes from system ChOrfCoverageIdentifierType
+
+
 ValueSet: ChOrfAppointmentStatus
 Id: ch-orf-vs-appointmentstatus
 Title: "Appointment Status"
@@ -34,10 +42,12 @@ Description: "Value Set for CH ORF Encounter Class"
                     elsewhere (for example, the patient could be admitted as an inpatient or 
                     transferred to another facility.)*/                
 
-ValueSet: ChOrfDesiredAccommodation
+ValueSet: ChOrfVsDesiredAccommodation
 Id: ch-orf-vs-desiredaccommodation
 Title: "Desired Accomodation"
 Description: "Value Set for CH ORF Desired Accomodation"
 * V3ActCode#P // Private: Accommodations in which there is only 1 bed.
 * V3ActCode#SP // Semi-private: Accommodations in which there are 2 beds.
 * V3ActCode#W // Ward: Accommodations in which there are 3 or more beds.
+
+

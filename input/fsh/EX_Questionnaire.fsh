@@ -324,30 +324,25 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
-// ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
-* item[+].linkId = "requestedencounterclass"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterClass"
-* item[=].text = "Patientenaufnahme"
+// ---------- Encounter Class (Ambulant / Satinär / Notfall) & Zimmerkategorie ----------
+* item[+].linkId = "requestedEncounter"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedencounterdetails"
+* item[=].text = "Gewünschter Aufenthalt"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "encounter.class"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounter.class"
+* item[=].item[+].linkId = "requestedEncounter.class"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.class"
 * item[=].item[=].type = #choice
-* item[=].item[=].text = "Ambulant / Stationär / Notfall"
+* item[=].item[=].required = true
+* item[=].item[=].text = "Versicherungsklasse"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#AMB "Ambulant"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#IMP "Stationär"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
 
 
-// ---------- Desired Accommodation (Zimmerkategorie) ----------
-* item[+].linkId = "desiredAccommodation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:desiredAccommodation"
-* item[=].text = "Zimmerkategorie"
-* item[=].type = #group
-
-* item[=].item[+].linkId = "encounter.desiredAccommodation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:class"
-* item[=].item[=].text = "Einer- / Zweier- / Mehrbettzimmer"
+* item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredaccommodation"
+* item[=].item[=].text = "Zimmerkategorie"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#SP "Zweierzimmer"
@@ -373,8 +368,8 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.kvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.kvg.insuranceCardNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
@@ -389,8 +384,8 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.uvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.uvg.claimNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Schadennummer"
 * item[=].item[=].item[=].type = #string
 
@@ -405,13 +400,13 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.vvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.vvg.insuranceCardNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.vvg.insuranceNumber"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:AHVN13"
+* item[=].item[=].item[+].linkId = "coverage.vvg.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
@@ -449,7 +444,7 @@ Description: "Example for Questionnaire"
 
 * item[=].item[=].item[+].linkId = "coverage.other.id.note"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier.type.text"
-* item[=].item[=].item[=].text = "Bemerkung zur Nummer"
+* item[=].item[=].item[=].text = "Bemerkung zur ID"
 * item[=].item[=].item[=].type = #string
 
 // The situation where a person and not a organization is an other payer is not depicted. 

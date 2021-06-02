@@ -154,6 +154,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-desiredaccommodation"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- ValueSets-->
     <resource>
@@ -161,6 +167,13 @@
         <reference value="ValueSet/ch-orf-vs-coveragetype"/>
       </reference>
       <name value="Coverage Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-coverageidentifiertype"/>
+      </reference>
+      <name value="Coverage Identifier Type"/>
       <exampleBoolean value="false"/>
     </resource>
     <resource>
@@ -191,6 +204,13 @@
         <reference value="CodeSystem/ch-orf-cs-coveragetype"/>
       </reference>
       <name value="Coverage Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="CodeSystem/ch-orf-cs-coverageidentifiertype"/>
+      </reference>
+      <name value="Coverage Identifier Type"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -454,6 +474,14 @@
       </reference>
       <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Encounter/EncounterMusterfrau"/>
+      </reference>
+      <name value="Encounter Emergency"/>
+      <description value="Example for Encounter"/>
       <exampleBoolean value="true"/>
     </resource>
 

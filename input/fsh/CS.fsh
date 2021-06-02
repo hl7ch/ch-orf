@@ -9,3 +9,13 @@ Description: "Code System for CH ORF Coverage Type"
 * #Zusatz "According to VVG"
 * #Self "Self-payer"
 * #Other "Other"
+
+
+CodeSystem: ChOrfCoverageIdentifierType
+Id: ch-orf-cs-coverageidentifiertype
+Title: "Coverage Identifier Type"
+Description: "Code System for CH ORF Coverage Identifier Type"
+* #AHVN13 "AHVN13 / NAVS13"
+* #VeKa "Insurance Card Number"
+* #Claim "Claim Number"
+* #Other "Other Identifier"
