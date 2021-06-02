@@ -7,6 +7,8 @@ Description: "Code System for CH ORF Coverage Type"
 * #KVG "According to KVG"
 * #UVG "According to UVG"
 * #Zusatz "According to VVG"
+* #IV "Disability Insurance"
+* #MV "Military Insurance"
 * #Self "Self-payer"
 * #Other "Other"
 

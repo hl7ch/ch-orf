@@ -407,7 +407,29 @@ Description: "Example for Questionnaire"
 
 * item[=].item[=].item[+].linkId = "coverage.vvg.ahvn13"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
-* item[=].item[=].item[=].text = "Versichertennummer"
+* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
+* item[=].item[=].item[=].type = #string
+
+// IV
+* item[=].item[+].linkId = "coverage.iv"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Invalidenversicherung (IV)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.iv.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
+* item[=].item[=].item[=].type = #string
+
+// MV
+* item[=].item[+].linkId = "coverage.mv"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Militärversicherung (MV)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.mv.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
 * item[=].item[=].item[=].type = #string
 
 // Self
