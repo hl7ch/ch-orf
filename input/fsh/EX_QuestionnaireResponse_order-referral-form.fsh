@@ -212,6 +212,19 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Land"
 * item[=].item[=].answer.valueString = "Schweiz"
 
+// ---------- Encounter Class (Ambulant / Satinär / Notfall) & Zimmerkategorie ----------
+* item[+].linkId = "requestedEncounter"
+* item[=].text = "Gewünschter Aufenthalt"
+
+* item[=].item[+].linkId = "requestedEncounter.class"
+* item[=].item[=].text = "Versicherungsklasse"
+* item[=].item[=].answer.valueCoding = V3ActCode#EMER "Notfall"
+
+
+* item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
+* item[=].item[=].text = "Zimmerkategorie"
+* item[=].item[=].answer.valueCoding = V3ActCode#SP "Zweierzimmer"
+
 // ---------- Coverage (Kostenträger) ----------
 
 * item[+].linkId = "coverage"
