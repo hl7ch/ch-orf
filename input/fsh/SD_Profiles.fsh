@@ -9,13 +9,6 @@ Description: "Profile on Questionnaire for CH ORF"
 * extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
 * item MS
 
-Profile: ChOrfRequestedEncounter
-Parent: ChCoreEncounter
-Id: ch-orf-encounter
-Title: "CH ORF requested Encounter"
-Description: "Profile on requested Encounter for CH ORF"
-* . ^short = "CH ORF requested Encounter"
-
 
 Profile: ChOrfQuestionnaireResponse
 Parent: QuestionnaireResponse
@@ -55,8 +48,9 @@ Title: "CH ORF ServiceRequest"
 Description: "Profile on ServiceRequest for CH ORF"
 * . ^short = "CH ORF ServiceRequest"
 * extension contains ChOrfLocationAndTime named locationAndTime 0..* MS
-* extension contains ChOrfRequestedEncounterDetails named requestedEncounterClass 0..1 MS
-* extension contains ChOrfRequestedEncounterDetails named desiredAccomodation 0..1 MS
+* extension contains ChOrfRequestedEncounterDetails named requestedEncounterDetails 0..1 MS
+//* extension contains ChOrfRequestedEncounterDetails named requestedEncounterClass 0..1 MS
+//* extension contains ChOrfRequestedEncounterDetails named desiredAccomodation 0..1 MS
 * identifier MS
 * identifier ^slicing.discriminator.type = #pattern
 * identifier ^slicing.discriminator.path = "$this"
@@ -230,42 +224,20 @@ Description: "Profile on DocumentReference for CH ORF"
 // Probably better in CH Core -> next release
 // Preliminary design: Answer of BAG still pending: 23.05.2021
 Profile: ChOrfCoverage
-Parent: Coverage          // not ChCoreCoverage because of different identifier slicing
+Parent: Coverage          // not ChCoreCoverage because of different identifier profiling
 Id: ch-orf-coverage
 Title: "CH ORF Coverage"
 Description: "Profile on Coverage for CH ORF"
 * . ^short = "CH ORF Coverage"
 * contained MS
-// identifier
 * identifier MS
-* identifier ^slicing.discriminator.type = #value
-* identifier ^slicing.discriminator.path = "use"
-* identifier ^slicing.rules = #open
-// Kennnummer der Versichertenkarte
-* identifier contains insurancecardnumber 0..* MS
-* identifier[insurancecardnumber].use = #usual
-* identifier[insurancecardnumber].use 1.. MS
-* identifier[insurancecardnumber] ^short = "Insurance card number"
-* identifier[insurancecardnumber].system 1.. MS
-* identifier[insurancecardnumber].system = "urn:oid:2.16.756.5.30.1.123.100.1.1.1"
-* identifier[insurancecardnumber].system ^short = "OID of the insurance card number"
-* identifier[insurancecardnumber].value 1.. MS
-* identifier[insurancecardnumber].value ^short = "Insurance card number of the patient (20 digits)"
-// Versichertennummer
-* identifier contains AHVN13 0..1 MS
-* identifier[AHVN13].use = #official
-* identifier[AHVN13].use 1.. MS
-* identifier[AHVN13] ^short = "AHVN13 / NAVS13"
-* identifier[AHVN13].system 1.. MS
-* identifier[AHVN13].system = "urn:oid:2.16.756.5.32"
-* identifier[AHVN13].value 1.. MS
-* identifier[AHVN13].value ^short = "AHVN13 / NAVS13 of the patient (13 digits starting ith 756)"
-// Other ID
-* identifier contains otherId 0..* MS
-* identifier[otherId] ^short = "Other ID"
-* identifier[otherId].use = #secondary
-* identifier[otherId].use 1.. MS
-* identifier[otherId].value 1.. MS
+* identifier.type 1.. MS
+* identifier.type from ChOrfCoverageIdentifierType
+* identifier.type.coding 1.. MS
+* identifier.type.coding.system 1.. MS
+* identifier.type.coding.code 1.. MS
+* identifier.type.text MS
+* identifier.value 1.. MS
 * status MS
 * type MS
 * type from ChOrfCoverageType (required)
@@ -312,3 +284,16 @@ Description: "Profile on Appointment for CH ORF"
 * requestedPeriod.start MS
 * requestedPeriod.end MS
    
+
+Profile: ChOrfRequestedEncounter
+Parent: ChCoreEncounter
+Id: ch-orf-encounter
+Title: "CH ORF Requested Encounter"
+Description: "Profile on Requested Encounter for CH ORF"
+* . ^short = "CH ORF Requested Encounter"
+* extension contains ChOrfDesiredAccommodation named desiredAccomodation 0..1 MS
+* status MS
+* class MS
+* class ^short = "AMB | IMP | EMER"
+* class from ChOrfEncounterClass
+* subject MS

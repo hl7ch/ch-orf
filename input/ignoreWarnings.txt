@@ -1,4 +1,16 @@
 == Suppressed Messages ==
+# Build Errors: icon-q-coding.png, see https://github.com/hl7ch/ch-orf/issues/26
+The image source 'icon-q-coding.png' cannot be resolved
+
+# Build Errors: Options, see https://github.com/hl7ch/ch-orf/issues/8
+The link 'null#item.order.priority' for "4 options" cannot be resolved
+The link 'null#item.patient.gender' for "3 options" cannot be resolved
+The link 'null#item.appointment.status' for "3 options" cannot be resolved
+The link 'null#item.requestedEncounter.class' for "3 options" cannot be resolved
+The link 'null#item.requestedEncounter.desiredAccommodation' for "3 options" cannot be resolved
+
+# Build Errors: valueset-diagnostic-requests.html, see https://github.com/hl7ch/ch-orf/issues/7
+The link 'valueset-diagnostic-requests.html' for "here" cannot be resolved
 
 # Allow German display values or clearer descriptions for the questionnaire
 Display Name for http://hl7.org/fhir/administrative-gender#female should be one of 'Female' instead of 'Weiblich' for 'http://hl7.org/fhir/administrative-gender#female'
@@ -11,8 +23,14 @@ Display Name for http://hl7.org/fhir/request-priority#stat should be one of 'STA
 Display Name for http://hl7.org/fhir/appointmentstatus#proposed should be one of 'Proposed' instead of 'Wunsch des Patienten (vorgeschlagen)' for 'http://hl7.org/fhir/appointmentstatus#proposed'
 Display Name for http://hl7.org/fhir/appointmentstatus#pending should be one of 'Pending' instead of 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for 'http://hl7.org/fhir/appointmentstatus#pending'
 Display Name for http://hl7.org/fhir/appointmentstatus#booked should be one of 'Booked' instead of 'Vom Patienten und Leistungserbringer bestätigt (gebucht)' for 'http://hl7.org/fhir/appointmentstatus#booked'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB should be one of 'ambulatory' instead of 'Ambulant' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP should be one of 'inpatient encounter' instead of 'Stationär' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER should be one of 'emergency' instead of 'Notfall' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#P should be one of 'Private' instead of 'Einerzimmer' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#P'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#SP should be one of 'Semi-private' instead of 'Zweierzimmer' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#SP'
+Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#W should be one of 'Ward' instead of 'Mehrbettzimmer' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#W'
 
-# Other display value 
+# Allow Swiss specific display value
 The display "Clinical presentation" is not a valid display for the code {http://loinc.org}55108-5 - should be one of ["Clinical presentation Document","Clinical presentation Doc"] (from http://tx.fhir.org/r4) for 'http://loinc.org#55108-5'
 
 # No examples of extensions themselves or resources shown in the bundle examples

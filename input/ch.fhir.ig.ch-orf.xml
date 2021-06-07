@@ -104,6 +104,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-encounter"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- Extension Definitions -->
     <resource>
@@ -148,6 +154,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-desiredaccommodation"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- ValueSets-->
     <resource>
@@ -159,12 +171,26 @@
     </resource>
     <resource>
       <reference>
+        <reference value="ValueSet/ch-orf-vs-coverageidentifiertype"/>
+      </reference>
+      <name value="Coverage Identifier Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="ValueSet/ch-orf-vs-appointmentstatus"/>
       </reference>
       <name value="Appointment Status"/>
       <exampleBoolean value="false"/>
     </resource>
-        <resource>
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-encounterclass"/>
+      </reference>
+      <name value="Encounter Class"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
       <reference>
         <reference value="ValueSet/ch-orf-vs-desiredaccommodation"/>
       </reference>
@@ -178,6 +204,13 @@
         <reference value="CodeSystem/ch-orf-cs-coveragetype"/>
       </reference>
       <name value="Coverage Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="CodeSystem/ch-orf-cs-coverageidentifiertype"/>
+      </reference>
+      <name value="Coverage Identifier Type"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -441,6 +474,14 @@
       </reference>
       <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Encounter/EncounterMusterfrau"/>
+      </reference>
+      <name value="Encounter Emergency"/>
+      <description value="Example for Encounter"/>
       <exampleBoolean value="true"/>
     </resource>
 

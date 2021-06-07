@@ -363,29 +363,21 @@ Description: "Example for Questionnaire"
 * item[=].text = "Patientenaufnahme"
 * item[=].type = #group
 
-* item[=].item[+].linkId = "encounter.class"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounter.class"
+* item[=].item[+].linkId = "requestedEncounter.class"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.class"
 * item[=].item[=].type = #choice
 * item[=].item[=].text = "Voraussichtlich: Ambulant / Stationär / Notfall"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#AMB "Ambulant"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#IMP "Stationär"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
 
-
-// ---------- Desired Accommodation (Zimmerkategorie) ----------
-* item[+].linkId = "desiredAccommodation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:desiredAccommodation"
-* item[=].text = "Zimmerkategorie"
-* item[=].type = #group
-
-* item[=].item[+].linkId = "encounter.desiredAccommodation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:class"
-* item[=].item[=].text = "Einer- / Zweier- / Mehrbettzimmer"
+* item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredaccommodation"
+* item[=].item[=].text = "Zimmerkategorie"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#SP "Zweierzimmer"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#W "Mehrbettzimmer"
-
 
 // ---------- Coverage (Kostenträger) ----------
 // Preliminary design: Answer of BAG still pending: 23.05.2021

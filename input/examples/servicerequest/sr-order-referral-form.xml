@@ -3,6 +3,11 @@
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest" />
     </meta>
+    <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails">
+        <valueReference>
+            <reference value="Encounter/EncounterMusterfrau"/>
+        </valueReference>
+    </extension>
     <identifier>
         <type>
             <coding>

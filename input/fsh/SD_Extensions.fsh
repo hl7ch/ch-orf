@@ -56,10 +56,10 @@ Description: "An information recipient to notify for urgent matters (e.g. in a r
 Extension: ChOrfRequestedEncounterDetails
 Id: ch-orf-requestedencounterdetails
 Title: "CH ORF Requested Encounter Details"
-Description: "Requested Encounter Details"
+Description: "Requested Encounter Details for ServiceRequest Fulfillment."
 * valueReference 1..1
 * valueReference only Reference(ChOrfRequestedEncounter) 
-* valueReference ^short = "Requested Encounter Details for ServiceRequest Fullfillment"
+* valueReference ^short = "Requested Encounter Details for ServiceRequest Fulfillment"
 
 
 Extension: ChOrfLocationAndTime
@@ -69,3 +69,12 @@ Description: "Location and Time of ServiceRequest Fulfillment."
 * valueReference 1..1
 * valueReference only Reference(ChOrfAppointment) 
 * valueReference ^short = "Location and Time for ServiceRequest Fulfillment"
+
+
+Extension: ChOrfDesiredAccommodation
+Id: ch-orf-desiredaccommodation
+Title: "CH ORF Desired Accommodation"
+Description: "Desired Accommodation during the Requested Encounter."
+* valueCoding 1..1
+* valueCoding ^short = "Desired Accommodation during the Requested Encounter"
+* valueCoding from ChOrfVsDesiredAccommodation
