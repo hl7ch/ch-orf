@@ -1611,7 +1611,8 @@
                 <id value="pdf"/>
                 <language value="de-CH"/>
                 <contentType value="application/pdf"/>
-                <data value="TBD: PDF/A-1 or PDF/A-2, base64 encoded"/>
+                <!-- TBD: PDF/A-1 or PDF/A-2, base64 encoded -->
+                <data value="VEJEOiBQREYvQS0xIG9yIFBERi9BLTIsIGJhc2U2NCBlbmNvZGVk"/>
             </Binary>
         </resource>
     </entry>

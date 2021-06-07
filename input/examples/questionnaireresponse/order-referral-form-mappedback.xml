@@ -7,6 +7,32 @@
   <item>
     <linkId value="order"/>
     <item>
+      <linkId value="order.title"/>
+      <answer>
+        <valueString value="Order-Referral-Form"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.type"/>
+      <answer>
+        <valueCoding>
+          <system value="http://snomed.info/sct"/>
+          <code value="419891008"/>
+          <display value="Record artifact (record artifact)"/>
+        </valueCoding>
+      </answer>
+    </item>
+    <item>
+      <linkId value="order.category"/>
+      <answer>
+        <valueCoding>
+          <system value="http://snomed.info/sct"/>
+          <code value="721963009"/>
+          <display value="Order (record artifact)"/>
+        </valueCoding>
+      </answer>
+    </item>
+    <item>
       <linkId value="order.placerOrderIdentifier"/>
       <answer>
         <valueString value="123"/>
@@ -15,7 +41,7 @@
     <item>
       <linkId value="order.placerOrderIdentifierDomain"/>
       <answer>
-        <valueString value="urn:oid:1.3.4.5.6.7"/>
+        <valueString value="urn:oid:2.999.1.3.4.5.6.7"/>
       </answer>
     </item>
     <item>
@@ -27,7 +53,7 @@
     <item>
       <linkId value="order.fillerOrderIdentifierDomain"/>
       <answer>
-        <valueString value="urn:oid:7.8.9.10.11"/>
+        <valueString value="urn:oid:2.999.7.8.9.10.11"/>
       </answer>
     </item>
     <item>
@@ -205,6 +231,12 @@
       </answer>
     </item>
     <item>
+      <linkId value="patient.maidenName"/>
+      <answer>
+        <valueString value="Ledigname"/>
+      </answer>
+    </item>
+    <item>
       <linkId value="patient.givenName"/>
       <answer>
         <valueString value="Erika"/>
@@ -214,6 +246,12 @@
       <linkId value="patient.localPid"/>
       <answer>
         <valueString value="11.22.33.4567"/>
+      </answer>
+    </item>
+    <item>
+      <linkId value="patient.localPidDomain"/>
+      <answer>
+        <valueString value="urn:oid:2.999.1.2.3.4"/>
       </answer>
     </item>
     <item>
@@ -268,6 +306,29 @@
       <linkId value="patient.country"/>
       <answer>
         <valueString value="Schweiz"/>
+      </answer>
+    </item>
+  </item>
+  <item>
+    <linkId value="requestedEncounter"/>
+    <item>
+      <linkId value="requestedEncounter.class"/>
+      <answer>
+        <valueCoding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+          <code value="EMER"/>
+          <display value="Notfall"/>
+        </valueCoding>
+      </answer>
+    </item>
+    <item>
+      <linkId value="requestedEncounter.desiredAccommodation"/>
+      <answer>
+        <valueCoding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+          <code value="SP"/>
+          <display value="Zweierzimmer"/>
+        </valueCoding>
       </answer>
     </item>
   </item>

@@ -84,7 +84,7 @@
             <reference value="Questionnaire/order-referral-form"/>
         </entry>
         <entry>
-            <reference value="QuestionnaireResponse/order-referral-form-mappedback"/>
+            <reference value="QuestionnaireResponse/qr-order-referral-form"/>
         </entry>
         <entry>
             <reference value="ServiceRequest/sr-order-referral-form"/>

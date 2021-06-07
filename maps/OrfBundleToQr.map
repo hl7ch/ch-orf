@@ -37,6 +37,8 @@ group CompositionToQr(source bundle : Bundle, source composition: Composition, s
    composition -> qr.item as item, item.linkId = 'order' then OrderToQr(bundle, composition, serviceRequest, item) "order"; 
    serviceRequest.performer -> qr.item as item, item.linkId = 'receiver' then ReceiverToQr(bundle, composition, serviceRequest, item) "receiver"; 
    composition.subject -> qr.item as item, item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient"; 
+   serviceRequest.extension as ext where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails' 
+      -> qr.item as item, item.linkId = 'requestedEncounter' then RequestedEncounterDetailsToQr(bundle, ext, item) "requestedEncounter";
    composition.author -> qr.item as item, item.linkId = 'sender' then SenderToQr(bundle, composition, serviceRequest, item) "sender"; 
    composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') -> qr.item as item, item.linkId = 'receiverCopies' then ReceiverCopyToQr(bundle, composition, serviceRequest, item) "receiverCopies"; 
 }
@@ -253,8 +255,8 @@ group PatientDetailsToQr(source bundle : Bundle, source composition: Composition
   } "givenName";
 // patient.localPid
   patient.identifier as identifier where (type.coding.where(system.value='http://terminology.hl7.org/CodeSystem/v2-0203' and code.value='MR')) 
-      -> item.item as item, item.linkId = 'patient.localPid', item.answer as answer, answer.value = (identifier.value) then {
-         identifier.system as system -> item.item as item, item.linkId = 'patient.localPidDomain', item.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
+      -> item.item as item1, item1.linkId = 'patient.localPid', item1.answer as answer, answer.value = (identifier.value) then {
+         identifier.system as system -> item.item as item2, item2.linkId = 'patient.localPidDomain', item2.answer as answer, answer.value = cast(system, 'string') "order.placerOrderIdentifierDomain"; 
   } "patient.localPid";
 // patient.birthDate
    patient.birthDate as birthDate -> item.item as item, item.linkId = 'patient.birthDate', item.answer as answer, answer.value = birthDate "patient.birthDate";
@@ -275,6 +277,25 @@ group PatientDetailsToQr(source bundle : Bundle, source composition: Composition
 // patient.country
       addr.country as country -> item.item as item, item.linkId = 'patient.country', item.answer as answer, answer.value = country "country";
    } "addr";
+}
+
+group RequestedEncounterDetailsToQr(source bundle: Bundle, source ext: Extension, target item : BackboneElement) {
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %ext.valueReference.reference) and $this.startsWith('urn:uuid')  then {
+      entry.resource : Encounter as encounter then EncounterToQr(encounter, item) "encounter";
+    } "fullUrlAsUuid";
+    entry.resource: Encounter as encounter where ('Encounter'+'/'+$this.id) in %ext.valueReference.reference then EncounterToQr(encounter, item) "encounter";
+  } "bundle.entry";
+}
+
+group EncounterToQr(source encounter: Encounter, target item : BackboneElement) {
+  // requestedEncounter.class
+  encounter.class as class -> item.item as item, item.linkId = 'requestedEncounter.class', item.answer as answer, answer.value = class "class";
+
+  // requestedEncounter.desiredAccommodation
+  encounter.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation' then {
+    extension.value as value -> item.item as item, item.linkId = 'requestedEncounter.desiredAccommodation', item.answer as answer, answer.value = value "desiredAccommodation";
+  } "requestedEncounter.desiredAccommodation";
 }
 
 group SenderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
