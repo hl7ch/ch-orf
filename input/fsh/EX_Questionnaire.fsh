@@ -297,6 +297,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
+* item[=].item[=].repeats = true
 
 * item[=].item[+].linkId = "patient.email"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
@@ -324,6 +325,38 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
+// ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
+* item[=].item[+].linkId = "patient.contactperson"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-etoc/StructureDefinition/ch-etoc-composition#Composition.subject"
+* item[=].item[=].text = "Patient"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.relationship"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"
+* item[=].item[=].item[=].text = "Beziehung"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.phone"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].text = "Telefon"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].repeats = true
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.email"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].text = "E-Mail"
+* item[=].item[=].item[=].type = #string
+
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedencounterclass"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterClass"
@@ -333,7 +366,7 @@ Description: "Example for Questionnaire"
 * item[=].item[+].linkId = "encounter.class"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:encounter.class"
 * item[=].item[=].type = #choice
-* item[=].item[=].text = "Ambulant / Stationär / Notfall"
+* item[=].item[=].text = "Voraussichtlich: Ambulant / Stationär / Notfall"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#AMB "Ambulant"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#IMP "Stationär"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
@@ -356,9 +389,9 @@ Description: "Example for Questionnaire"
 
 // ---------- Coverage (Kostenträger) ----------
 // Preliminary design: Answer of BAG still pending: 23.05.2021
-// 4 Arten von Kostentägern 
+
 * item[+].linkId = "coverage"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
+* item[=].definition = "http://fhir.ch/ig/ch-etoc/StructureDefinition/ch-etoc-servicerequest#ServiceRequest.insurance"
 * item[=].text = "Kostenträger"
 * item[=].type = #group
 
@@ -373,8 +406,8 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.kvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.kvg.insuranceCardNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
@@ -389,8 +422,8 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.uvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.uvg.claimNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Schadennummer"
 * item[=].item[=].item[=].type = #string
 
@@ -405,14 +438,31 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Versicherung"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.vvg.id"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:insurancecardnumber"
+* item[=].item[=].item[+].linkId = "coverage.vvg.insuranceCardNumber"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.vvg.insuranceNumber"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier:AHVN13"
-* item[=].item[=].item[=].text = "Versichertennummer"
+// IV
+* item[=].item[+].linkId = "coverage.iv"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Invalidenversicherung (IV)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.iv.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
+* item[=].item[=].item[=].type = #string
+
+// MV
+* item[=].item[+].linkId = "coverage.mv"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
+* item[=].item[=].text = "Militärversicherung (MV)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.mv.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
+* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
 * item[=].item[=].item[=].type = #string
 
 // Self
@@ -449,13 +499,12 @@ Description: "Example for Questionnaire"
 
 * item[=].item[=].item[+].linkId = "coverage.other.id.note"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier.type.text"
-* item[=].item[=].item[=].text = "Bemerkung zur Nummer"
+* item[=].item[=].item[=].text = "Bemerkung zur ID"
 * item[=].item[=].item[=].type = #string
 
 // The situation where a person and not a organization is an other payer is not depicted. 
 // Id's of insurances other than kvg are proprietary. Zusatzversicherung however may use the Kennnummer der Versichertenkarte (KVG).
 // Id's for other are not defined.
-
 
 // ---------- sender (Absender) ----------
 * item[+].linkId = "sender"
@@ -721,4 +770,3 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Kommentar" 
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
-
