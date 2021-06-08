@@ -327,7 +327,7 @@ Description: "Example for Questionnaire"
 
 // ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-etoc/StructureDefinition/ch-etoc-composition#Composition.subject"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
 
@@ -383,7 +383,7 @@ Description: "Example for Questionnaire"
 // Preliminary design: Answer of BAG still pending: 23.05.2021
 
 * item[+].linkId = "coverage"
-* item[=].definition = "http://fhir.ch/ig/ch-etoc/StructureDefinition/ch-etoc-servicerequest#ServiceRequest.insurance"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
 * item[=].text = "Kostenträger"
 * item[=].type = #group
 
