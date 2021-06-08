@@ -358,7 +358,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].type = #string
 
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
-* item[+].linkId = "requestedencounterclass"
+* item[+].linkId = "requestedEncounter"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterClass"
 * item[=].text = "Patientenaufnahme"
 * item[=].type = #group
