@@ -833,6 +833,23 @@
                     <postalCode value="8000"/>
                     <country value="Schweiz"/>
                 </address>
+                <contact>
+                    <relationship>
+                        <text value="Guter Freund"/>
+                    </relationship>
+                    <name>
+                        <family value="Freund"/>
+                        <given value="Max"/>
+                    </name>
+                    <telecom>
+                        <system value="phone"/>
+                        <value value="079 111 22 33"/>
+                    </telecom>
+                    <telecom>
+                        <system value="email"/>
+                        <value value="max@freund.ch"/>
+                    </telecom>
+                </contact>
             </Patient>
         </resource>
     </entry>
