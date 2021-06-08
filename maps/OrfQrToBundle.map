@@ -47,6 +47,7 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
     qr.item as grp where linkId='requestedEncounter' then RequestedEncounterItems(grp, bundle, patient, serviceRequest) "grprequestedencounter";
     qr.item as grp where linkId='sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grpsender";
+    qr.item as grp where linkId='note' then Note(grp, serviceRequest) "note";
 }
 
 group OrderItems(source src : BackboneElement, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
@@ -442,6 +443,10 @@ group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target c
                item then CopyReceiverPatientItems(item, patient) "data";
                item then ExtOrfCopyReceiverPatient(item, patient, extension) "extension";
             } "receiverCopyPatient";
+}
+
+group Note(source grp : BackboneElement, target serviceRequest: ServiceRequest) {
+   grp.item as item where (linkId='note.text' and answer.exists()) -> serviceRequest.note as note, note.text = (item.answer.value) "note.text";
 }
 
 group QrToBundle(source qr : QuestionnaireResponse, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {

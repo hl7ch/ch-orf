@@ -41,6 +41,7 @@ group CompositionToQr(source bundle : Bundle, source composition: Composition, s
       -> qr.item as item, item.linkId = 'requestedEncounter' then RequestedEncounterDetailsToQr(bundle, ext, item) "requestedEncounter";
    composition.author -> qr.item as item, item.linkId = 'sender' then SenderToQr(bundle, composition, serviceRequest, item) "sender"; 
    composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') -> qr.item as item, item.linkId = 'receiverCopies' then ReceiverCopyToQr(bundle, composition, serviceRequest, item) "receiverCopies"; 
+   serviceRequest.note first as note -> qr.item as item, item.linkId = 'note' then NoteToQr(serviceRequest, item) "note"; 
 }
 
 group OrderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
@@ -484,4 +485,10 @@ group ReceiverCopyPatientToQr(source bundle : Bundle, source composition: Compos
           addr.country as country -> item.item as item, item.linkId = 'receiverCopy.country', item.answer as answer, answer.value = country "country";
       } "addr";
   } "patient";
+}
+
+group NoteToQr(source serviceRequest: ServiceRequest, target item: BackboneElement) {
+  serviceRequest.note as note then {
+    note.text as text -> item.item as item, item.linkId = 'note.text', item.answer as answer, answer.value = text "note.text";
+  } "note";
 }
