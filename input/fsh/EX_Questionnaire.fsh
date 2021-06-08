@@ -359,7 +359,7 @@ Description: "Example for Questionnaire"
 
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedEncounter"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterClass"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
 * item[=].text = "Patientenaufnahme"
 * item[=].type = #group
 
@@ -372,7 +372,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
 
 * item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredaccommodation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"
 * item[=].item[=].text = "Zimmerkategorie"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
