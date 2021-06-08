@@ -212,12 +212,36 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Land"
 * item[=].item[=].answer.valueString = "Schweiz"
 
+// ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
+* item[=].item[+].linkId = "patient.contactperson"
+* item[=].item[=].text = "Kontaktperson"
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.relationship"
+* item[=].item[=].item[=].text = "Beziehung"
+* item[=].item[=].item[=].answer.valueString = "Guter Freund"
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.familyName"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].answer.valueString = "Freund"
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.givenName"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].answer.valueString = "Max"
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.phone"
+* item[=].item[=].item[=].text = "Telefon"
+* item[=].item[=].item[=].answer.valueString = "079 111 22 33"
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.email"
+* item[=].item[=].item[=].text = "E-Mail"
+* item[=].item[=].item[=].answer.valueString = "max@freund.ch"
+
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) & Zimmerkategorie ----------
 * item[+].linkId = "requestedEncounter"
-* item[=].text = "Gewünschter Aufenthalt"
+* item[=].text = "Patientenaufnahme"
 
 * item[=].item[+].linkId = "requestedEncounter.class"
-* item[=].item[=].text = "Versicherungsklasse"
+* item[=].item[=].text = "Voraussichtlich: Ambulant / Stationär / Notfall"
 * item[=].item[=].answer.valueCoding = V3ActCode#EMER "Notfall"
 
 

@@ -297,6 +297,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
+* item[=].item[=].repeats = true
 
 * item[=].item[+].linkId = "patient.email"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
@@ -324,34 +325,63 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 
-// ---------- Encounter Class (Ambulant / Satinär / Notfall) & Zimmerkategorie ----------
+// ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
+* item[=].item[+].linkId = "patient.contactperson"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
+* item[=].item[=].text = "Kontaktperson"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.relationship"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"
+* item[=].item[=].item[=].text = "Beziehung"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.familyName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.givenName"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.phone"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].text = "Telefon"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].repeats = true
+
+* item[=].item[=].item[+].linkId = "patient.contactperson.email"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].text = "E-Mail"
+* item[=].item[=].item[=].type = #string
+
+// ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedEncounter"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedencounterdetails"
-* item[=].text = "Gewünschter Aufenthalt"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
+* item[=].text = "Patientenaufnahme"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "requestedEncounter.class"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.class"
 * item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].text = "Versicherungsklasse"
+* item[=].item[=].text = "Voraussichtlich: Ambulant / Stationär / Notfall"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#AMB "Ambulant"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#IMP "Stationär"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
 
-
 * item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredaccommodation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"
 * item[=].item[=].text = "Zimmerkategorie"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#SP "Zweierzimmer"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#W "Mehrbettzimmer"
 
-
 // ---------- Coverage (Kostenträger) ----------
 // Preliminary design: Answer of BAG still pending: 23.05.2021
-// 4 Arten von Kostentägern 
+
 * item[+].linkId = "coverage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
 * item[=].text = "Kostenträger"
@@ -403,11 +433,6 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[+].linkId = "coverage.vvg.insuranceCardNumber"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "coverage.vvg.ahvn13"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
-* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
 * item[=].item[=].item[=].type = #string
 
 // IV
@@ -472,7 +497,6 @@ Description: "Example for Questionnaire"
 // The situation where a person and not a organization is an other payer is not depicted. 
 // Id's of insurances other than kvg are proprietary. Zusatzversicherung however may use the Kennnummer der Versichertenkarte (KVG).
 // Id's for other are not defined.
-
 
 // ---------- sender (Absender) ----------
 * item[+].linkId = "sender"
@@ -738,4 +762,3 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Kommentar" 
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
-
