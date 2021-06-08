@@ -489,6 +489,6 @@ group ReceiverCopyPatientToQr(source bundle : Bundle, source composition: Compos
 
 group NoteToQr(source serviceRequest: ServiceRequest, target item: BackboneElement) {
   serviceRequest.note as note then {
-    note.text as text -> item.item as item, item.linkId = 'note.text', item.answer as answer, answer.value = text "note.text";
+    note.text as text -> item.item as item, item.linkId = 'note.text', item.answer as answer, answer.value = cast(text, 'string') "note.text";
   } "note";
 }

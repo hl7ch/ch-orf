@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuestionnaireResponse xmlns="http://hl7.org/fhir">
   <id value="order-referral-form-mappedback"/>
-  <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+ <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
   <status value="completed"/>
   <item>
     <linkId value="order"/>
@@ -543,7 +543,7 @@
     <item>
       <linkId value="note.text"/>
       <answer>
-        <valueMarkdown value="Bemerkung/Kommentar"/>
+        <valueString value="Bemerkung/Kommentar"/>
       </answer>
     </item>
   </item>
