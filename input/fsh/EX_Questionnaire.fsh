@@ -328,7 +328,7 @@ Description: "Example for Questionnaire"
 // ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-etoc/StructureDefinition/ch-etoc-composition#Composition.subject"
-* item[=].item[=].text = "Patient"
+* item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
 
 * item[=].item[=].item[+].linkId = "patient.contactperson.relationship"
