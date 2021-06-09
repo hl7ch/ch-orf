@@ -41,7 +41,7 @@ For various reasons, scheduling of the appointment is tricky:
 * Some health professionals prefer to inquire and fix appointments for referrals by phone at the time the patient is while the patient is with them.
 * Etc.
 
-It is not easy to cover all this in a slim application. For this reason, comprehensive scheduling of appointments for referrals is out of scope. It is however possibel to specify date and time with a note of whether it is agreed or proposed. Furthermore ist is possible to idicate preferred date/time intervals.  
+It is not easy to cover all this in a slim application. For this reason, comprehensive scheduling of appointments for referrals is out of scope. It is however possibel to specify date and time with a note of whether it is agreed or proposed. Furthermore it is possible to indicate preferred date/time intervals.  
 
-Some service providers offer their services at more than one location; it may also be possible that an assignment / prescription results in more than one consultation (e.g. Holter ECG with appointment for the installation of the device at the beginning and return at the end). ORF therefore provides n appointments per service request. 
+Some service providers offer their services at more than one location; it may also be possible that an assignment/prescription results in more than one consultation (e.g. Holter ECG with appointment for the installation of the device at the beginning and return at the end). ORF therefore provides n appointments per service request. 
 
