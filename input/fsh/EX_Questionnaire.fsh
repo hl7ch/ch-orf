@@ -380,7 +380,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].answerOption[+].valueCoding = V3ActCode#W "Mehrbettzimmer"
 
 // ---------- Coverage (Kostenträger) ----------
-// Preliminary design: Answer of BAG still pending: 23.05.2021
+// Design as agreed with eHealth Suisse and Cistec 09.06.2021
 
 * item[+].linkId = "coverage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
