@@ -45,6 +45,7 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
     qr.item as grp where linkId='receiver' then ReceiverInit(grp, bundle, composition, serviceRequest) "receiver";
     qr.item as grp where linkId='patient' then PatientItems(grp, patient) "grppatient";
     qr.item as grp where linkId='requestedEncounter' then RequestedEncounterItems(grp, bundle, patient, serviceRequest) "grprequestedencounter";
+    qr.item as grp where linkId='coverage' then Coverage(grp, bundle, patient, serviceRequest) "grprequestedencounter";
     qr.item as grp where linkId='sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='note' then Note(grp, serviceRequest) "note";
@@ -256,6 +257,14 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item where (linkId.value = 'patient.postalCode' and answer.exists()) -> tgt.address as address share orgAddress, address.postalCode = (item.answer.value) "patient.postalCode";
   src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (item.answer.value) "patient.city";
   src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (item.answer.value) "patient.country";
+
+
+//  patient.contactperson	Kontaktperson	0..1	group		Definition: Patient.contact
+//  patient.contactperson.relationship	Beziehung	0..1	string		Definition: Patient.contact.relationship.text
+//  patient.contactperson.familyName	Name	0..1	string		Definition: Patient.contact.name.family
+//  patient.contactperson.givenName	Vorname	0..1	string		Definition: Patient.contact.name.given
+//  patient.contactperson.phone	Telefon	0..*	string		Definition: Patient.contact.telecom.value
+//  patient.contactperson.email
 }
 
 group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
@@ -277,7 +286,132 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
                       extension.value = (item.answer.value) "requestedEncounter.desiredAccommodation";
    } "RequestedEncounterItems";
  }
- 
+
+ group Coverage(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
+//   coverage	
+//   coverage.kvg	
+//   coverage.kvg.name	 
+//   coverage.kvg.insuranceCardNumber	
+      src.item as item where where (linkId.value = 'coverage.kvg') -> bundle.entry as e4, 
+      e4.resource = create('Coverage') as coverage, 
+      coverage.id = uuid() as uuid4,
+      e4.fullUrl = ('urn:uuid:'+%uuid4),
+      serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+      coverage.status = 'active',
+      coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'KVG' then {
+         item.item as item where (linkId.value = 'coverage.kvg.name' and answer.exists()) ->
+           coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.kvg.name";
+         item.item as item where (linkId.value = 'coverage.kvg.insuranceCardNumber' and answer.exists()) ->
+           coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'VeKa', 
+           identifier.value = (item.answer.value) "coverage.kvg.insuranceCardNumber";
+      } "coveragekvg";
+//   coverage.uvg	Unfallversicherung (nach UVG)	0..1	group		Definition: Coverage.type
+//   coverage.uvg.name	Name der Versicherung	0..1	string		Definition: Coverage.payor
+//   coverage.uvg.claimNumber	Schadennummer	0..1	string		Definition: Coverage.identifier
+   src.item as item where where (linkId.value = 'coverage.uvg') -> bundle.entry as e4, 
+      e4.resource = create('Coverage') as coverage, 
+      coverage.id = uuid() as uuid4,
+      e4.fullUrl = ('urn:uuid:'+%uuid4),
+      serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+      coverage.status = 'active',
+      coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'UVG' then {
+         item.item as item where (linkId.value = 'coverage.uvg.name' and answer.exists()) ->
+           coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.uvg.name";
+         item.item as item where (linkId.value = 'coverage.uvg.claimNumber' and answer.exists()) ->
+           coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'Claim', 
+           identifier.value = (item.answer.value) "coverage.uvg.claimNumber";
+      } "coverageuvg";
+//  coverage.vvg	Zusatzversicherung (nach VVG)	0..1	group		Definition: Coverage.type
+//  coverage.vvg.name	Name der Versicherung	0..1	string		Definition: Coverage.payor
+//  coverage.vvg.insuranceCardNumber	Kennnummer der Versichertenkarte	0..1	string		Definition: Coverage.identifier
+ src.item as item where where (linkId.value = 'coverage.vvg') -> bundle.entry as e4, 
+      e4.resource = create('Coverage') as coverage, 
+      coverage.id = uuid() as uuid4,
+      e4.fullUrl = ('urn:uuid:'+%uuid4),
+      serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+      coverage.status = 'active',
+      coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Zusatz' then {
+         item.item as item where (linkId.value = 'coverage.vvg.name' and answer.exists()) ->
+           coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.vvg.name";
+         item.item as item where (linkId.value = 'coverage.vvg.insuranceCardNumber' and answer.exists()) ->
+           coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'VeKa', 
+           identifier.value = (item.answer.value) "coverage.vvg.insuranceCardNumber";
+      } "coveragevvg";
+
+   // coverage.iv	Invalidenversicherung (IV)	0..1	group		Definition: Coverage.type
+   // coverage.iv.ahvn13	Versichertennummer (AHV-Nr.)	0..1	string		Definition: Coverage.identifier
+   src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e4, 
+   e4.resource = create('Coverage') as coverage, 
+   coverage.id = uuid() as uuid4,
+   e4.fullUrl = ('urn:uuid:'+%uuid4),
+   serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+   coverage.status = 'active',
+   coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IV' then {
+      item.item as item where (linkId.value = 'coverage.iv.ahvn13' and answer.exists()) ->
+      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'AHVN13', 
+      identifier.value = (item.answer.value) "coverage.iv.ahvn13";
+   } "coverageiv";
+
+   // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
+   // coverage.mv.ahvn13	Versichertennummer (AHV-Nr.)	0..1	string		Definition: Coverage.identifier
+   src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e4, 
+   e4.resource = create('Coverage') as coverage, 
+   coverage.id = uuid() as uuid4,
+   e4.fullUrl = ('urn:uuid:'+%uuid4),
+   serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+   coverage.status = 'active',
+   coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MV' then {
+      item.item as item where (linkId.value = 'coverage.mv.ahvn13' and answer.exists()) ->
+      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'AHVN13', 
+      identifier.value = (item.answer.value) "coverage.mv.ahvn13";
+   } "coveragemv";
+      
+   // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
+   // coverage.self.familyName	Name	0..1	string		Definition: Coverage.payor
+   // coverage.self.givenName	Vorname	0..1	string		Definition: Coverage.payor
+   src.item as item where where (linkId.value = 'coverage.self') -> bundle.entry as e4, 
+   e4.resource = create('Coverage') as coverage, 
+   coverage.id = uuid() as uuid4,
+   e4.fullUrl = ('urn:uuid:'+%uuid4),
+   serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+   coverage.status = 'active',
+   coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
+   coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#pat', 
+   coverage.contained = create('Patient') as patient, organization.id = 'pat' then {
+      item.item as item where (linkId.value = 'coverage.self.familyName' and answer.exists()) ->
+         patient.name as name share selfname, name.family = (item.answer.value) "coverage.self.familyName";
+      item.item as item where (linkId.value = 'coverage.self.givenName' and answer.exists()) ->
+         patient.name as name share selfname, name.given = (item.answer.value) "coverage.self.givenName";
+   } "coverageself";
+
+// coverage.other	Anderer Kostenträger	0..1	group		Definition: Coverage.type
+// coverage.other.name	Name des Kostenträgers	0..1	string		Definition: Coverage.payor
+// coverage.other.id	Beliebige ID	0..1	string		Definition: Coverage.identifier
+// coverage.other.id.note TODO
+   src.item as item where where (linkId.value = 'coverage.other') -> bundle.entry as e4, 
+   e4.resource = create('Coverage') as coverage, 
+   coverage.id = uuid() as uuid4,
+   e4.fullUrl = ('urn:uuid:'+%uuid4),
+   serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+   coverage.status = 'active',
+   coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Zusatz' then {
+      item.item as item where (linkId.value = 'coverage.other.name' and answer.exists()) ->
+      coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.other.name";
+      item.item as item where (linkId.value = 'coverage.other.id' and answer.exists()) ->
+      coverage.identifier as identifier, identifier.value = (item.answer.value) "coverage.other.id";
+   } "coveragevvg";
+}
 
 group SenderAuthorPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
    src.item as item where (linkId.value = 'sender.author.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
