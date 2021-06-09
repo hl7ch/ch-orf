@@ -387,6 +387,16 @@ Description: "Example for Questionnaire"
 * item[=].text = "Kostenträger"
 * item[=].type = #group
 
+* item[=].item[+].linkId = "coverage.beneficiary"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.beneficiary"
+* item[=].item[=].text = "Begünstigter (Patient)"
+* item[=].item[=].type = #group
+
+* item[=].item[=].item[+].linkId = "coverage.beneficiary.ahvn13"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"
+* item[=].item[=].item[=].text = "AHV-Nr. des Patienten"
+* item[=].item[=].item[=].type = #string
+
 // KVG
 * item[=].item[+].linkId = "coverage.kvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
@@ -441,9 +451,9 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Invalidenversicherung (IV)"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "coverage.iv.ahvn13"
+* item[=].item[=].item[+].linkId = "coverage.iv.verfuegungsnummer"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
-* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
+* item[=].item[=].item[=].text = "IV-Verfügungsnummer"
 * item[=].item[=].item[=].type = #string
 
 // MV
@@ -452,9 +462,9 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Militärversicherung (MV)"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "coverage.mv.ahvn13"
+* item[=].item[=].item[+].linkId = "coverage.mv.versichertennummer"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
-* item[=].item[=].item[=].text = "Versichertennummer (AHV-Nr.)"
+* item[=].item[=].item[=].text = "MV-Versichertennummer"
 * item[=].item[=].item[=].type = #string
 
 // Self
