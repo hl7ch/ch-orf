@@ -16,8 +16,8 @@
         QuestionnaireResponse, forms are addressed here as Questionnaires.
     </p>
     <p>This Implementation Guide is derived from the HL7 Structured Data Capture Implementation Guide, see 
-        <a href="http://build.fhir.org/ig/HL7/sdc/">SDC IG</a> and uses the Swiss Core Profiles, see 
-        <a href="http://build.fhir.org/ig/hl7ch/ch-core/index.html">CH Core</a>.
+        <a href="http://hl7.org/fhir/uv/sdc/2019May/">SDC IG (v2.7.0)</a> and uses the Swiss Core Profiles, see 
+        <a href="https://fhir.ch/ig/ch-core/2.0.0/index.html">CH Core (v2.0.0)</a>.
     </p>
 
     <p>
