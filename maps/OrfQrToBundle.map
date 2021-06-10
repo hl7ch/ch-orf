@@ -48,6 +48,7 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
     qr.item as grp where linkId='coverage' then Coverage(grp, bundle, patient, serviceRequest) "grprequestedencounter";
     qr.item as grp where linkId='sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='receiverCopies' then ReceiverCopy(grp, bundle, composition, serviceRequest) "grpsender";
+    qr.item as grp where linkId='appointment' then Appointment(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='note' then Note(grp, serviceRequest) "note";
 }
 
@@ -225,7 +226,10 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
           e3.resource = create('Organization') as organization, 
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
-          serviceRequest.performer = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid),
+          composition.extension as ext, 
+          ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver',
+          ext.value = create('Reference') as reference, 
+          reference.reference = append('urn:uuid:',uuid),
           practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
           practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) then
           ReceiverItems(src, practitionerRole, practitioner, organization) "receiver";
@@ -293,7 +297,13 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
  }
 
  group Coverage(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
-//   coverage	
+// coverage.beneficiary
+// coverage.beneficiary.ahvn13
+     src.item as item where where (linkId.value = 'coverage.beneficiary') then {
+      item.item as item where (linkId.value = 'coverage.beneficiary.ahvn13' and answer.exists()) -> 
+         patient.identifier as identifier, identifier.system = 'urn:oid:2.16.756.5.32', identifier.value = (item.answer.value) "coverage.beneficiary.ahvn13";
+     } "coverage.beneficiary";
+
 //   coverage.kvg	
 //   coverage.kvg.name	 
 //   coverage.kvg.insuranceCardNumber	
@@ -349,34 +359,34 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
            identifier.value = (item.answer.value) "coverage.vvg.insuranceCardNumber";
       } "coveragevvg";
 
-   // coverage.iv	Invalidenversicherung (IV)	0..1	group		Definition: Coverage.type
-   // coverage.iv.ahvn13	Versichertennummer (AHV-Nr.)	0..1	string		Definition: Coverage.identifier
-   src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e4, 
+// coverage.iv	Invalidenversicherung (IV)	0..1	group		Definition: Coverage.type
+// coverage.iv.verfuegungsnummer
+src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e4, 
    e4.resource = create('Coverage') as coverage, 
    coverage.id = uuid() as uuid4,
    e4.fullUrl = ('urn:uuid:'+%uuid4),
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IV' then {
-      item.item as item where (linkId.value = 'coverage.iv.ahvn13' and answer.exists()) ->
-      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'AHVN13', 
-      identifier.value = (item.answer.value) "coverage.iv.ahvn13";
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IVG' then {
+      item.item as item where (linkId.value = 'coverage.iv.verfuegungsnummer' and answer.exists()) ->
+      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'IV', 
+      identifier.value = (item.answer.value) "coverage.iv.verfuegungsnummer";
    } "coverageiv";
 
-   // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
-   // coverage.mv.ahvn13	Versichertennummer (AHV-Nr.)	0..1	string		Definition: Coverage.identifier
-   src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e4, 
+ // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
+// coverage.mv.versichertennummer
+src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e4, 
    e4.resource = create('Coverage') as coverage, 
    coverage.id = uuid() as uuid4,
    e4.fullUrl = ('urn:uuid:'+%uuid4),
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MV' then {
-      item.item as item where (linkId.value = 'coverage.mv.ahvn13' and answer.exists()) ->
-      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'AHVN13', 
-      identifier.value = (item.answer.value) "coverage.mv.ahvn13";
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MVG' then {
+      item.item as item where (linkId.value = 'coverage.mv.versichertennummer' and answer.exists()) ->
+      coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'MV', 
+      identifier.value = (item.answer.value) "coverage.mv.versichertennummer";
    } "coveragemv";
       
    // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
@@ -559,6 +569,8 @@ group CopyReceiverOrganizationItems(source src : BackboneElement, target organiz
    src.item as item where (linkId.value = 'receiverCopy.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "receiverCopy.country";
 }
 
+
+
 group ExtOrfCopyReceiverOrganization(source src: BackboneElement, target organization: Organization, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -> ext.value = create('Reference') as reference, 
@@ -582,6 +594,40 @@ group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target c
                item then CopyReceiverPatientItems(item, patient) "data";
                item then ExtOrfCopyReceiverPatient(item, patient, extension) "extension";
             } "receiverCopyPatient";
+}
+
+group Appointment(source grp : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
+   src -> bundle.entry as e4, 
+   e4.resource = create('Appointment') as appointment, 
+   appointment.id = uuid() as uuid4,
+   e4.fullUrl = ('urn:uuid:'+%uuid4),
+   serviceRequest.extension as extension,
+   appointment.subject = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+   extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
+   extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
+   then {
+      grp.item as item where (linkId.value = 'appointment.status' and answer.exists()) -> appointment.status = (item.answer.value) "appointment.status";
+      grp.item as item where (linkId.value = 'appointment.requestedPeriod') then {
+         item.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod share requestedPeriod, requestedPeriod.start = (item2.answer.value) "appointment.requestedPeriod.start";
+         item.item as item2 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod share requestedPeriod, requestedPeriod.end = (item2.answer.value) "appointment.requestedPeriod.end";
+      } "appointment.requestedPeriod";
+      grp.item as item where (linkId.value = 'appointment.patientInstruction' and answer.exists()) -> appointment.patientInstruction = (item.answer.value) "appointment.patientInstruction";
+      grp.item as item where (linkId.value = 'appointment.location') then {
+         item -> bundle.entry as e5, 
+         e5.resource = create('Location') as location, 
+         location.id = uuid() as uuid5,
+         e5.fullUrl = ('urn:uuid:'+%uuid5),
+         appointment.participant as participant, participant.status = 'tentative', participant.actor = create('Reference') as actor, actor.reference = ('urn:uuid:'+%location.id) then {
+            item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> organization.name = (item3.answer.value);
+            item.item as item3 where (linkId.value = 'appointment.location.phone' and answer.exists()) -> location.telecom as value, value.system = 'phone', value.value=(item3.answer.value) "appointment.location.phone"; 
+            item.item as item3 where (linkId.value = 'appointment.location.email' and answer.exists()) -> location.telecom as value, value.system = 'email', value.value=(item3.answer.value) "appointment.location.email"; 
+            item.item as item3 where (linkId.value = 'appointment.location.streetAddressLine' and answer.exists()) -> location.address as address share orgAddress, address.line = (item3.answer.value) "appointment.location.streetAddressLine";
+            item.item as item3 where (linkId.value = 'appointment.location.postalCode' and answer.exists()) -> location.address as address share orgAddress, address.postalCode = (item3.answer.value) "appointment.location.postalCode";
+            item.item as item3 where (linkId.value = 'appointment.location.city' and answer.exists()) -> location.address as address share orgAddress, address.city = (item3.answer.value) "appointment.location.city";
+            item.item as item3 where (linkId.value = 'appointment.location.country' and answer.exists()) -> location.address as address share orgAddress, address.country = (item3.answer.value) "appointment.location.country";
+         } "location";
+      } "appointment.location";
+   } "Appointment";
 }
 
 group Note(source grp : BackboneElement, target serviceRequest: ServiceRequest) {
