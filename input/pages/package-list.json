@@ -5,13 +5,21 @@
   "canonical": "http://fhir.ch/ig/ch-orf",
   "list": [
     {
-      "version": "dev",
-      "date": "n/a",
+      "version": "current",
       "desc": "Continuous Integration Build (latest in version control)",
       "path": "http://build.fhir.org/ig/hl7ch/ch-orf",
-      "fhirVersion": "4.0.1",
       "status": "ci-build",
-      "sequence": "STU"
+      "current": true
+    },
+    {
+      "version": "0.10.0",
+      "date": "2021-06-11",
+      "desc": "HL7 Switzerland STU 1 Ballot",
+      "path": "http://fhir.ch/ig/ch-orf",
+      "status": "trial-use",
+      "fhirVersion": "4.0.1",
+      "sequence": "STU 1",
+      "current": true
     },
     {
       "version": "0.9.1",
@@ -23,5 +31,6 @@
       "current": true,
       "sequence": "STU"
     }
-  ]
+  ],
+  "category": "National Base"
 }
