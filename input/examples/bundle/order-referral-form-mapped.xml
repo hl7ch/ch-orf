@@ -499,10 +499,10 @@
         </item>
         <item>
           <linkId value="requestedEncounter"/>
-          <text value="Gewünschter Aufenthalt"/>
+          <text value="Patientenaufnahme"/>
           <item>
             <linkId value="requestedEncounter.class"/>
-            <text value="Versicherungsklasse"/>
+            <text value="Voraussichtlich: Ambulant / Stationär / Notfall"/>
             <answer>
               <valueCoding>
                 <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
