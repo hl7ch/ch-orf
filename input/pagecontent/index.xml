@@ -16,8 +16,8 @@
         QuestionnaireResponse, forms are addressed here as Questionnaires.
     </p>
     <p>This Implementation Guide is derived from the HL7 Structured Data Capture Implementation Guide, see 
-        <a href="http://build.fhir.org/ig/HL7/sdc/">SDC IG</a> and uses the Swiss Core Profiles, see 
-        <a href="http://build.fhir.org/ig/hl7ch/ch-core/index.html">CH Core</a>.
+        <a href="http://hl7.org/fhir/uv/sdc/2019May/">SDC IG (v2.7.0)</a> and uses the Swiss Core Profiles, see 
+        <a href="https://fhir.ch/ig/ch-core/2.0.0/index.html">CH Core (v2.0.0)</a>.
     </p>
 
     <p>
@@ -47,7 +47,7 @@
         new ones. The Implementation Guide itself is agnostic to the nature of a particular Questionnaire and the ORF
         Implementation Guide puts only little limits on its definition.</li>
     </ol>
-    <p>Venders implementing the ORF Implementation Guide benefit of a high re-use potential. Applications which support the
+    <p>Vendors implementing the ORF Implementation Guide benefit of a high re-use potential. Applications which support the
     ORF Implementation Guide may be used for various settings of directional information exchange. The specific needs of
     a particular use case will be covered by a adequate design of the Questionnaire and the value sets being used.
     </p>
@@ -74,7 +74,7 @@
         reproduced according to the Questionnaire.</li>
         <li>Be able to process all codes related to the generic elements in a Questionnaire.</li>
     </ul>
-    <p>Venders of applications with Questionnaire Filler/Questionnaire Receiver Actors are strongly recommended to implement
+    <p>Vendors of applications with Questionnaire Filler/Questionnaire Receiver Actors are strongly recommended to implement
     interfaces to other applications (such as HIS and PACS) for all data in the generics elements of
     Questionnaires.
     </p>
