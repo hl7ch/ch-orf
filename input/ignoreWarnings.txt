@@ -12,6 +12,9 @@ The link 'null#item.requestedEncounter.desiredAccommodation' for "3 options" can
 # Build Errors: valueset-diagnostic-requests.html, see https://github.com/hl7ch/ch-orf/issues/7
 The link 'valueset-diagnostic-requests.html' for "here" cannot be resolved
 
+# Build Error: 
+The image source 'pdf1' cannot be resolved
+
 # Allow German display values or clearer descriptions for the questionnaire
 Display Name for http://hl7.org/fhir/administrative-gender#female should be one of 'Female' instead of 'Weiblich' for 'http://hl7.org/fhir/administrative-gender#female'
 Display Name for http://hl7.org/fhir/administrative-gender#male should be one of 'Male' instead of 'Männlich' for 'http://hl7.org/fhir/administrative-gender#male'
