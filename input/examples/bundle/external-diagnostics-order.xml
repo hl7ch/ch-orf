@@ -140,9 +140,6 @@
     <fullUrl value="urn:uuid:a56ec999-341e-4a32-ac49-7d9be5fa2494"/>
     <resource>
       <QuestionnaireResponse>
-        <meta>
-          <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
-        </meta>
         <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <status value="completed"/>
         <item>
@@ -786,12 +783,13 @@
   <entry>
     <fullUrl value="http://example.com/fhir/Questionnaire/order-referral-form"/>
     <resource>
-      <Questionnaire>
+      <Questionnaire xmlns="http://hl7.org/fhir">
         <id value="order-referral-form"/>
         <meta>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract"/>
+          <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate"/>
         </meta>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
@@ -811,19 +809,36 @@
           </extension>
         </extension>
         <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+        <version value="0.9.1"/>
         <name value="OrderReferralForm"/>
         <title value="Order-Referral-Form"/>
         <status value="active"/>
         <subjectType value="Patient"/>
-        <date value="2021-03-26"/>
+        <date value="2021-06-10"/>
         <publisher value="HL7 Switzerland"/>
+        <contact>
+          <name value="HL7 Switzerland"/>
+          <telecom>
+            <system value="url"/>
+            <value value="https://www.hl7.ch/"/>
+          </telecom>
+        </contact>
+        <jurisdiction>
+          <coding>
+            <system value="urn:iso:std:iso:3166"/>
+            <code value="CH"/>
+          </coding>
+        </jurisdiction>
+        <copyright value="CC-BY-SA-4.0"/>
         <item>
           <linkId value="order"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document#Bundle"/>
           <text value="Auftrag"/>
           <type value="group"/>
           <required value="true"/>
           <item>
             <linkId value="order.title"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"/>
             <text value="Titel"/>
             <type value="string"/>
             <required value="true"/>
@@ -831,6 +846,7 @@
           </item>
           <item>
             <linkId value="order.type"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"/>
             <text value="Typ"/>
             <type value="choice"/>
             <required value="true"/>
@@ -838,6 +854,7 @@
           </item>
           <item>
             <linkId value="order.category"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"/>
             <text value="Kategorie"/>
             <type value="choice"/>
             <required value="true"/>
@@ -845,6 +862,7 @@
           </item>
           <item>
             <linkId value="order.placerOrderIdentifier"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"/>
             <text value="Auftragsnummer des Auftraggebers"/>
             <type value="string"/>
           </item>
@@ -853,11 +871,13 @@
               <valueBoolean value="true"/>
             </extension>
             <linkId value="order.placerOrderIdentifierDomain"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.system"/>
             <text value="Identifier Domain der Auftragsnummer des Auftraggebers"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="order.fillerOrderIdentifier"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.value"/>
             <text value="Auftragsnummer des Auftragsempfängers"/>
             <type value="string"/>
           </item>
@@ -866,6 +886,7 @@
               <valueBoolean value="true"/>
             </extension>
             <linkId value="order.fillerOrderIdentifierDomain"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system"/>
             <text value="Identifier Domain der Auftragsnummer des Auftragsempfängers"/>
             <type value="string"/>
           </item>
@@ -874,39 +895,47 @@
               <valueBoolean value="true"/>
             </extension>
             <linkId value="order.precedentDocumentIdentifier"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument"/>
             <text value="Identifier des Vorgängerdokuments"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="order.notificationContactDocument"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForThisDocument"/>
             <text value="Dringender Benachrichtigungskontakt für dieses Dokument"/>
             <type value="group"/>
             <item>
               <linkId value="order.notificationContactDocument.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
               <text value="Zu benachrichtigende Person"/>
               <type value="group"/>
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.title"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"/>
                 <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.familyName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"/>
                 <text value="Name"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.givenName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"/>
                 <text value="Vorname"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.phone"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocument.practitioner.email"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
@@ -914,34 +943,41 @@
           </item>
           <item>
             <linkId value="order.notificationContactDocumentResponse"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForTheResponseToThisDocument"/>
             <text value="Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"/>
             <type value="group"/>
             <item>
               <linkId value="order.notificationContactDocumentResponse.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
               <text value="Zu benachrichtigende Person"/>
               <type value="group"/>
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.title"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"/>
                 <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.familyName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"/>
                 <text value="Name"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.givenName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"/>
                 <text value="Vorname"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.phone"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="order.notificationContactDocumentResponse.practitioner.email"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
@@ -949,6 +985,7 @@
           </item>
           <item>
             <linkId value="order.priority"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.priority"/>
             <text value="Auftragspriorität"/>
             <type value="choice"/>
             <answerOption>
@@ -984,70 +1021,84 @@
         </item>
         <item>
           <linkId value="receiver"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"/>
           <text value="Empfänger"/>
           <type value="group"/>
           <item>
             <linkId value="receiver.practitioner"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
             <text value="Empfangende Person"/>
             <type value="group"/>
             <item>
               <linkId value="receiver.practitioner.title"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"/>
               <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.practitioner.familyName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"/>
               <text value="Name"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.practitioner.givenName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"/>
               <text value="Vorname"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.practitioner.gln"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"/>
               <text value="GLN"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.practitioner.phone"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
               <text value="Telefon"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.practitioner.email"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
           </item>
           <item>
             <linkId value="receiver.organization"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"/>
             <text value="Empfangende Organisation"/>
             <type value="group"/>
             <item>
               <linkId value="receiver.organization.name"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
               <text value="Name der Organisation"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.organization.streetAddressLine"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
               <linkId value="receiver.organization.postalCode"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.organization.city"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"/>
               <text value="Ort"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiver.organization.country"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"/>
               <text value="Land"/>
               <type value="string"/>
             </item>
@@ -1055,35 +1106,51 @@
         </item>
         <item>
           <linkId value="patient"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"/>
           <text value="Patient"/>
           <type value="group"/>
           <item>
             <linkId value="patient.familyName"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"/>
             <text value="Name"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.maidenName"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"/>
             <text value="Ledigname"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.givenName"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"/>
             <text value="Vorname"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.localPid"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"/>
             <text value="Lokale Patienten-ID"/>
             <type value="string"/>
           </item>
           <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-hidden">
+              <valueBoolean value="true"/>
+            </extension>
+            <linkId value="patient.localPidDomain"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.system"/>
+            <text value="Lokale Patienten-ID Domain"/>
+            <type value="string"/>
+          </item>
+          <item>
             <linkId value="patient.birthDate"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.birthDate"/>
             <text value="Geburtsdatum"/>
             <type value="date"/>
           </item>
           <item>
             <linkId value="patient.gender"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"/>
             <text value="Geschlecht"/>
             <type value="choice"/>
             <answerOption>
@@ -1111,34 +1178,276 @@
           </item>
           <item>
             <linkId value="patient.phone"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
             <text value="Telefon"/>
             <type value="string"/>
+            <repeats value="true"/>
           </item>
           <item>
             <linkId value="patient.email"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
             <text value="E-Mail"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.streetAddressLine"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.line"/>
             <text value="Strasse, Hausnummer, Postfach etc."/>
             <type value="string"/>
             <repeats value="true"/>
           </item>
           <item>
             <linkId value="patient.postalCode"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.postalCode"/>
             <text value="PLZ"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.city"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.city"/>
             <text value="Ort"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.country"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.country"/>
             <text value="Land"/>
             <type value="string"/>
+          </item>
+          <item>
+            <linkId value="patient.contactperson"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"/>
+            <text value="Kontaktperson"/>
+            <type value="group"/>
+            <item>
+              <linkId value="patient.contactperson.relationship"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"/>
+              <text value="Beziehung"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.familyName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"/>
+              <text value="Name"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.givenName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"/>
+              <text value="Vorname"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.phone"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <text value="Telefon"/>
+              <type value="string"/>
+              <repeats value="true"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.email"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <text value="E-Mail"/>
+              <type value="string"/>
+            </item>
+          </item>
+        </item>
+        <item>
+          <linkId value="requestedEncounter"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"/>
+          <text value="Patientenaufnahme"/>
+          <type value="group"/>
+          <item>
+            <linkId value="requestedEncounter.class"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.class"/>
+            <text value="Voraussichtlich: Ambulant / Stationär / Notfall"/>
+            <type value="choice"/>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="AMB"/>
+                <display value="Ambulant"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="IMP"/>
+                <display value="Stationär"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="EMER"/>
+                <display value="Notfall"/>
+              </valueCoding>
+            </answerOption>
+          </item>
+          <item>
+            <linkId value="requestedEncounter.desiredAccommodation"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"/>
+            <text value="Zimmerkategorie"/>
+            <type value="choice"/>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="P"/>
+                <display value="Einerzimmer"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="SP"/>
+                <display value="Zweierzimmer"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+                <code value="W"/>
+                <display value="Mehrbettzimmer"/>
+              </valueCoding>
+            </answerOption>
+          </item>
+        </item>
+        <item>
+          <linkId value="coverage"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"/>
+          <text value="Kostenträger"/>
+          <type value="group"/>
+          <item>
+            <linkId value="coverage.beneficiary"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.beneficiary"/>
+            <text value="Begünstigter (Patient)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.beneficiary.ahvn13"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"/>
+              <text value="AHV-Nr. des Patienten"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.kvg"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Krankenkasse (nach KVG)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.kvg.name"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Name der Versicherung"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.kvg.insuranceCardNumber"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="Kennnummer der Versichertenkarte"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.uvg"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Unfallversicherung (nach UVG)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.uvg.name"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Name der Versicherung"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.uvg.claimNumber"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="Schadennummer"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.vvg"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Zusatzversicherung (nach VVG)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.vvg.name"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Name der Versicherung"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.vvg.insuranceCardNumber"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="Kennnummer der Versichertenkarte"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.iv"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Invalidenversicherung (IV)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.iv.verfuegungsnummer"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="IV-Verfügungsnummer"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.mv"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Militärversicherung (MV)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.mv.versichertennummer"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="MV-Versichertennummer"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.self"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Selbstzahler"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.self.familyName"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Name"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.self.givenName"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Vorname"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="coverage.other"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
+            <text value="Anderer Kostenträger"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.other.name"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Name des Kostenträgers"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.other.id"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
+              <text value="Beliebige ID"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="coverage.other.id.note"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier.type.text"/>
+              <text value="Bemerkung zur ID"/>
+              <type value="string"/>
+            </item>
           </item>
         </item>
         <item>
@@ -1148,71 +1457,85 @@
           <required value="true"/>
           <item>
             <linkId value="sender.author"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.author"/>
             <text value="Verantwortlicher"/>
             <type value="group"/>
             <required value="true"/>
             <item>
               <linkId value="sender.author.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
               <text value="Verantwortliche Person"/>
               <type value="group"/>
               <item>
                 <linkId value="sender.author.practitioner.title"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"/>
                 <text value="Titel"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.practitioner.familyName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"/>
                 <text value="Name"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.practitioner.givenName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"/>
                 <text value="Vorname"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.practitioner.gln"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"/>
                 <text value="GLN"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.practitioner.phone"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.practitioner.email"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
             </item>
             <item>
               <linkId value="sender.author.organization"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"/>
               <text value="Verantwortliche Organisation"/>
               <type value="group"/>
               <item>
                 <linkId value="sender.author.organization.name"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
                 <text value="Name der Organisation"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.organization.streetAddressLine"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"/>
                 <text value="Strasse, Hausnummer, Postfach etc."/>
                 <type value="string"/>
                 <repeats value="true"/>
               </item>
               <item>
                 <linkId value="sender.author.organization.postalCode"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"/>
                 <text value="PLZ"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.organization.city"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"/>
                 <text value="Ort"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.author.organization.country"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"/>
                 <text value="Land"/>
                 <type value="string"/>
               </item>
@@ -1220,29 +1543,35 @@
           </item>
           <item>
             <linkId value="sender.dataenterer"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:dataEnterer"/>
             <text value="Erfasser"/>
             <type value="group"/>
             <item>
               <linkId value="sender.dataenterer.practitioner"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
               <text value="Erfassende Person"/>
               <type value="group"/>
               <item>
                 <linkId value="sender.dataenterer.practitioner.familyName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"/>
                 <text value="Name"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.dataenterer.practitioner.givenName"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"/>
                 <text value="Vorname"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.dataenterer.practitioner.phone"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="Telefon"/>
                 <type value="string"/>
               </item>
               <item>
                 <linkId value="sender.dataenterer.practitioner.email"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                 <text value="E-Mail"/>
                 <type value="string"/>
               </item>
@@ -1251,6 +1580,7 @@
         </item>
         <item>
           <linkId value="receiverCopies"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"/>
           <text value="Kopieempfänger"/>
           <type value="group"/>
           <item>
@@ -1260,55 +1590,189 @@
             <repeats value="true"/>
             <item>
               <linkId value="receiverCopy.organization.name"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
               <text value="Name der Organisation"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.title"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"/>
               <text value="Titel"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.familyName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.family"/>
               <text value="Name"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.givenName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.given"/>
               <text value="Vorname"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.phone"/>
+              <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
               <text value="Telefon"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.email"/>
+              <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.streetAddressLine"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.line"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
               <linkId value="receiverCopy.postalCode"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.city"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.city"/>
               <text value="Ort"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="receiverCopy.country"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"/>
               <text value="Land"/>
               <type value="string"/>
             </item>
+          </item>
+        </item>
+        <item>
+          <linkId value="appointment"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"/>
+          <text value="Ort und Zeit der Durchführung der angeforderten Leistung"/>
+          <type value="group"/>
+          <repeats value="true"/>
+          <item>
+            <linkId value="appointment.location"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"/>
+            <text value="Ort der Durchführung"/>
+            <type value="group"/>
+            <required value="true"/>
+            <item>
+              <linkId value="appointment.location.name"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"/>
+              <text value="Name"/>
+              <type value="string"/>
+              <required value="true"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.phone"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"/>
+              <text value="Telefon"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.email"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"/>
+              <text value="E-Mail"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.streetAddressLine"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.line"/>
+              <text value="Strasse, Hausnummer, Postfach etc."/>
+              <type value="string"/>
+              <repeats value="true"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.postalCode"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.postalCode"/>
+              <text value="PLZ"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.city"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.city"/>
+              <text value="Ort"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="appointment.location.country"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.country"/>
+              <text value="Land"/>
+              <type value="string"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="appointment.requestedPeriod"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod"/>
+            <text value="Datum und Zeit, wann der Termin bevorzugt geplant werden soll"/>
+            <type value="group"/>
+            <item>
+              <linkId value="appointment.requestedPeriod.start"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod.start"/>
+              <text value="Von"/>
+              <type value="dateTime"/>
+            </item>
+            <item>
+              <linkId value="appointment.requestedPeriod.end"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod.end"/>
+              <text value="Bis"/>
+              <type value="dateTime"/>
+            </item>
+          </item>
+          <item>
+            <linkId value="appointment.status"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.status"/>
+            <text value="Status"/>
+            <type value="choice"/>
+            <required value="true"/>
+            <answerOption>
+              <valueCoding>
+                <system value="http://hl7.org/fhir/appointmentstatus"/>
+                <code value="proposed"/>
+                <display value="Wunsch des Patienten (vorgeschlagen)"/>
+              </valueCoding>
+              <initialSelected value="true"/>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://hl7.org/fhir/appointmentstatus"/>
+                <code value="pending"/>
+                <display value="Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://hl7.org/fhir/appointmentstatus"/>
+                <code value="booked"/>
+                <display value="Vom Patienten und Leistungserbringer bestätigt (gebucht)"/>
+              </valueCoding>
+            </answerOption>
+          </item>
+          <item>
+            <linkId value="appointment.patientInstruction"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"/>
+            <text value="Patienteninformation für diesen Termin"/>
+            <type value="string"/>
+          </item>
+        </item>
+        <item>
+          <linkId value="note"/>
+          <text value="Bemerkungen"/>
+          <type value="group"/>
+          <repeats value="true"/>
+          <item>
+            <linkId value="note.text"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.note.text"/>
+            <text value="Kommentar"/>
+            <type value="string"/>
+            <required value="true"/>
           </item>
         </item>
       </Questionnaire>
