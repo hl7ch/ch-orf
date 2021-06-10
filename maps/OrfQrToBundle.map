@@ -258,13 +258,18 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (item.answer.value) "patient.city";
   src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (item.answer.value) "patient.country";
 
-
-//  patient.contactperson	Kontaktperson	0..1	group		Definition: Patient.contact
-//  patient.contactperson.relationship	Beziehung	0..1	string		Definition: Patient.contact.relationship.text
-//  patient.contactperson.familyName	Name	0..1	string		Definition: Patient.contact.name.family
-//  patient.contactperson.givenName	Vorname	0..1	string		Definition: Patient.contact.name.given
-//  patient.contactperson.phone	Telefon	0..*	string		Definition: Patient.contact.telecom.value
-//  patient.contactperson.email
+  src.item as item where (linkId.value = 'patient.contactperson') -> tgt.contact as contact then {
+   item.item as item where (linkId.value = 'patient.contactperson.familyName' and answer.exists()) -> contact.name as name share contactName,name.family = (item.answer.value);
+   item.item as item where (linkId.value = 'patient.contactperson.givenName' and answer.exists()) -> contact.name as name share contactName, name.given = (item.answer.value);
+   item.item as item where (linkId.value = 'patient.contactperson.phone' and answer.exists()) -> contact.telecom as value, 
+                                                                                   value.system = 'phone',
+                                                                                   value.value=(item.answer.value) "patient.phone"; 
+   item.item as item where (linkId.value = 'patient.contactperson.email' and answer.exists()) -> contact.telecom as value, 
+                                                                                   value.system = 'email',
+                                                                                   value.value=(item.answer.value) "patient.email"; 
+   item.item as item where (linkId.value = 'patient.contactperson.relationship' and answer.exists()) -> contact.relationship as relationship, 
+                                                                                   relationship.text=(item.answer.value) "patient.contactperson.relationship"; 
+  } "contact";
 }
 
 group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
