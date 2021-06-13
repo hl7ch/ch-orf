@@ -39,8 +39,12 @@ group CompositionToQr(source bundle : Bundle, source composition: Composition, s
    composition.subject -> qr.item as item, item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient"; 
    serviceRequest.extension as ext where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails' 
       -> qr.item as item, item.linkId = 'requestedEncounter' then RequestedEncounterDetailsToQr(bundle, ext, item) "requestedEncounter";
+   serviceRequest.insurance first as insurance  
+      -> qr.item as item, item.linkId = 'coverage' then CoverageToQr(bundle, composition, serviceRequest, item) "requestedEncounter";      
    composition.author -> qr.item as item, item.linkId = 'sender' then SenderToQr(bundle, composition, serviceRequest, item) "sender"; 
    composition.extension first as extension where (url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver') -> qr.item as item, item.linkId = 'receiverCopies' then ReceiverCopyToQr(bundle, composition, serviceRequest, item) "receiverCopies"; 
+   serviceRequest.extension as ext where url='ch-orf-locationandtime' 
+      -> qr.item as item, item.linkId = 'appointment' then AppointmentDetailsToQr(bundle, ext, item) "apopintments";
    serviceRequest.note first as note -> qr.item as item, item.linkId = 'note' then NoteToQr(serviceRequest, item) "note"; 
 }
 
@@ -278,6 +282,30 @@ group PatientDetailsToQr(source bundle : Bundle, source composition: Composition
 // patient.country
       addr.country as country -> item.item as item, item.linkId = 'patient.country', item.answer as answer, answer.value = country "country";
    } "addr";
+
+   // patient.contactperson	
+   patient.contact as contact -> item.item as item, item.linkId = 'patient.contactperson' then {
+
+    // patient.contactperson.relationship
+    contact.relationship as relationship then {
+      relationship.text as text -> item.item as item, item.linkId = 'patient.contactperson.relationship', item.answer as answer, answer.value = text "patient.contactperson.relationship";
+    } "relationship";
+
+    contact.name as name then {
+      // patient.contactperson.familyName
+      name.family as family -> item.item as item, item.linkId = 'patient.contactperson.familyName', item.answer as answer, answer.value = family "patient.contactperson.familyName";
+      // patient.contactperson.givenName	
+      name.given as given -> item.item as item, item.linkId = 'patient.contactperson.givenName', item.answer as answer, answer.value = given "patient.contactperson.givenName";
+    } "patient.contactperson.name";
+
+    // patient.contactperson.phone	
+    contact.telecom as telecom where (system='phone') -> item.item as item, item.linkId = 'patient.contactperson.phone', item.answer as answer, answer.value = (telecom.value) "phone";
+   
+   // patient.contactperson.email
+   contact.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'patient.contactperson.email', item.answer as answer, answer.value = (telecom.value) "email";
+    
+   } "contact";
+    
 }
 
 group RequestedEncounterDetailsToQr(source bundle: Bundle, source ext: Extension, target item : BackboneElement) {
@@ -297,6 +325,141 @@ group EncounterToQr(source encounter: Encounter, target item : BackboneElement) 
   encounter.extension as extension where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation' then {
     extension.value as value -> item.item as item, item.linkId = 'requestedEncounter.desiredAccommodation', item.answer as answer, answer.value = value "desiredAccommodation";
   } "requestedEncounter.desiredAccommodation";
+}
+
+group AppointmentDetailsToQr(source bundle: Bundle, source ext: Extension, target item : BackboneElement) {
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %ext.valueReference.reference) and $this.startsWith('urn:uuid')  then {
+      entry.resource : Appointment as appointment then AppointmentToQr(appointment, item) "appointment";
+    } "fullUrlAsUuid";
+    entry.resource: Appointment as appointment where ('Appointment'+'/'+$this.id) in %ext.valueReference.reference then AppointmentToQr(appointment, item) "encounter";
+  } "bundle.entry";
+}
+
+group LocationToQr(source loc: Locaton, target item : BackboneElement) {
+  loc -> item.item as item, item.linkId = 'appointment.location' then {
+   // appointment.location.name
+   location.name as name -> item.item as itemloc, itemloc.linkId = 'appointment.location.name',  answer.value = name "name";
+   // appointment.location.phone
+   location.telecom as telecom where system='phone' -> item.item as itemloc, itemloc.linkId = 'appointment.location.phone',  answer.value = (%telecom.value) "phone";
+   // appointment.location.email
+   location.telecom as telecom where system='email' -> item.item as itemloc, itemloc.linkId = 'appointment.location.email',  answer.value = (%telecom.value) "email";
+   location.addr as addr then {
+    // appointment.location.streetAddressLine
+    addr.streetAddressLine as line -> item.item as itemloc, itemloc.linkId = 'appointment.location.streetAddressLine',  answer.value = line "streetAddressLine";
+    // appointment.location.postalCode
+    addr.postalCode as postalCode -> item.item as itemloc, itemloc.linkId = 'appointment.location.postalCode',  answer.value = postalCode "postalCode";
+    // appointment.location.city
+    addr.city as city -> item.item as itemloc, itemloc.linkId = 'appointment.location.city',  answer.value = city "city";
+    // appointment.location.country
+    addr.country as country -> item.item as itemloc, itemloc.linkId = 'appointment.location.country',  answer.value = country "country";
+    } "addr";
+  } "location";
+}
+
+group AppointmentToQr(source app: Appointment, target item : BackboneElement) {
+ // appointment.location
+ app.participant as particiapnt then {
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %participant.reference) and $this.startsWith('urn:uuid')  then {
+      entry.resource : Location as location then LocationToQr(location, item) "location";
+    } "fullUrlAsUuid";
+    entry.resource: Location as location where ('Location'+'/'+$this.id) in %participant.reference then LocationToQr(location, item) "location";
+  } "bundle.entry";
+ } "participant";
+
+  // appointment.requestedPeriod
+  app.requestedPeriod as requestedPeriod -> item.item as item, item.linkId = 'appointment.requestedPeriod' then {
+    // appointment.requestedPeriod.start
+    requestedPeriod.start as start -> item.item as itemloc, itemloc.linkId = 'appointment.requestedPeriod.start',  answer.value = start "start";
+    // appointment.requestedPeriod.end
+    requestedPeriod.end as end -> item.item as itemloc, itemloc.linkId = 'appointment.requestedPeriod.end',  answer.value = end "end";
+  } "requestedPeriod";
+  
+  // appointment.status
+  app.status as status -> item.item as itemloc, itemloc.linkId = 'appointment.requestedPeriod.status',  answer.value = status "status";
+
+  // appointment.patientInstruction
+  app.patientInstruction as patientInstruction -> item.item as itemloc, itemloc.linkId = 'appointment.patientInstruction',  answer.value = patientInstruction "patientInstruction";
+
+}
+
+group CoverageBeneficiary(source patient: Patient, target item : BackboneElement) {
+  patient.identifier as identifier where system='urn:oid:2.16.756.5.32' 
+    -> item.item as itemkvg, itemkvg.linkId = 'coverage.beneficiary', 
+       itemkvg.item as itemname, itemname.linkId = 'coverage.beneficiary.ahvn13', itemname.answer as answer, answer.value = (%identifier.value) "coverage.beneficiary.ahvn13";
+}
+
+group CoverageKvg(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.kvg', 
+  itemkvg.item as itemname, itemname.linkId = 'coverage.kvg.name', itemname.answer as answer, answer.value = (%coverage.contained.name),
+  itemkvg.item as itemno, itemno.linkId = 'coverage.kvg.insuranceCardNumber', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.kvg";
+}
+
+group CoverageUvg(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.uvg', 
+  itemkvg.item as itemname, itemname.linkId = 'coverage.uvg.name', itemname.answer as answer, answer.value = (%coverage.contained.name),
+  itemkvg.item as itemno, itemno.linkId = 'coverage.uvg.claimNumber', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.uvg";
+}
+
+group CoverageVvg(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.vvg', 
+  itemkvg.item as itemname, itemname.linkId = 'coverage.vvg.name', itemname.answer as answer, answer.value = (%coverage.contained.name),
+  itemkvg.item as itemno, itemno.linkId = 'coverage.vvg.insuranceCardNumber', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.vvg";
+}
+
+group CoverageIvg(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.iv', 
+  itemkvg.item as itemno, itemno.linkId = 'coverage.iv.verfuegungsnummer', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.iv";
+}
+
+group CoverageMvg(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.mv', 
+  itemkvg.item as itemno, itemno.linkId = 'coverage.mv.versichertennummer', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.mv";
+}
+
+group CoverageSelf(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.self', 
+  itemkvg.item as itemname, itemname.linkId = 'coverage.self.familyName', itemname.answer as answer, answer.value = (%coverage.contained.name.family),
+  itemkvg.item as itemno, itemno.linkId = 'coverage.self.givenName', itemno.answer as answer, answer.value = (%coverage.contained.name.given) "coverage.uvg";
+}
+
+group CoverageOther(source coverage: Coverage, target item : BackboneElement) {
+  coverage -> item.item as itemkvg, itemkvg.linkId = 'coverage.other', 
+  itemkvg.item as itemname, itemname.linkId = 'coverage.other.name', itemname.answer as answer, answer.value = (%coverage.contained.name),
+  itemkvg.item as itemno, itemno.linkId = 'coverage.other.id', itemno.answer as answer, answer.value = (%coverage.identifier.value) "coverage.uvg";
+  // coverage.other.id.note Tod
+}
+
+group CoverageToQr(source bundle: Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement) {
+
+  composition.subject as subject then {
+    bundle.entry as entry then {
+      entry.fullUrl where ($this in %subject.reference) and $this.startsWith('urn:uuid')  then {
+        entry.resource : Patient as patient then CoverageBeneficiary(patient, item) "patient";
+      } "fullUrlAsUuid";
+      entry.resource: Patient as patient where ('Patient'+'/'+$this.id) in %subject.reference then CoverageBeneficiary(patient, item) "patient";
+    } "bundle.entry";
+  } "practitioner";
+
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %serviceRequest.insurance.reference) and $this.startsWith('urn:uuid')  then {
+      entry.resource : Coverage as coverage where (type.coding.code='KVG') then CoverageKvg(coverage, item) "coveragekvg";
+      entry.resource : Coverage as coverage where (type.coding.code='UVG') then CoverageUvg(coverage, item) "coverageuvg";
+      entry.resource : Coverage as coverage where (type.coding.code='VVG') then CoverageVvg(coverage, item) "coverageVvg";
+      entry.resource : Coverage as coverage where (type.coding.code='IVG') then CoverageIvg(coverage, item) "coverageVvg";
+      entry.resource : Coverage as coverage where (type.coding.code='MVG') then CoverageMvg(coverage, item) "coverageVvg";
+      entry.resource : Coverage as coverage where (type.coding.code='Self') then CoverageSelf(coverage, item) "coverageSelf";
+      entry.resource : Coverage as coverage where (type.coding.code='Other') then CoverageOther(coverage, item) "coverageOth4r";
+    } "fullUrlAsUuid";
+    entry.resource: Coverage as coverage where (type.coding.code='KVG') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageKvg(coverage, item) "coveragekvg";
+    entry.resource: Coverage as coverage where (type.coding.code='UVG') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageUvg(coverage, item) "coverageuvg";
+    entry.resource: Coverage as coverage where (type.coding.code='VVG') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageVvg(coverage, item) "coverageuvg";
+    entry.resource: Coverage as coverage where (type.coding.code='IVG') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageIvg(coverage, item) "coverageivg";
+    entry.resource: Coverage as coverage where (type.coding.code='MVG') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageMvg(coverage, item) "coveragemvg";
+    entry.resource: Coverage as coverage where (type.coding.code='Self') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageSelf(coverage, item) "coverageself";
+    entry.resource: Coverage as coverage where (type.coding.code='Other') and (('Coverage'+'/'+$this.id) in %serviceRequest.insurance.reference) then CoverageOther(coverage, item) "coverageother";
+} "bundle.entry";
 }
 
 group SenderToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {

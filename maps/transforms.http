@@ -1,8 +1,8 @@
 ### Create and Update CDA maps for converting to FHIR with RESTClient and running matchbox (locally)
 ### Note: POST the maps in the following order, if you update one map you need to repost also the maps below
 
-@host = https://test.ahdis.ch/r4
-### @host = http://localhost:8080/r4
+### @host = https://test.ahdis.ch/r4
+@host = http://localhost:8080/r4
 
 GET {{host}}/metadata HTTP/1.1
 Accept: application/fhir+xml
@@ -58,6 +58,13 @@ Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+xml;fhirVersion=4.0
 
 < ./input/examples/bundle/order-referral-form-mapped.xml
+
+### 4. POST OrfBundleToQr.map
+POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfBundleToQr
+Accept: application/fhir+xml;fhirVersion=4.0
+Content-Type: application/fhir+xml;fhirVersion=4.0
+
+< ./input/examples/bundle/bundle-order-referral-form.xml
 
 
 ### 4. POST OrfBundleToQr.map

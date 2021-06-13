@@ -401,7 +401,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
    coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#pat', 
-   coverage.contained = create('Patient') as patient, organization.id = 'pat' then {
+   coverage.contained = create('Patient') as patient, patient.id = 'pat' then {
       item.item as item where (linkId.value = 'coverage.self.familyName' and answer.exists()) ->
          patient.name as name share selfname, name.family = (item.answer.value) "coverage.self.familyName";
       item.item as item where (linkId.value = 'coverage.self.givenName' and answer.exists()) ->
@@ -618,7 +618,7 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
          location.id = uuid() as uuid5,
          e5.fullUrl = ('urn:uuid:'+%uuid5),
          appointment.participant as participant, participant.status = 'tentative', participant.actor = create('Reference') as actor, actor.reference = ('urn:uuid:'+%location.id) then {
-            item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> organization.name = (item3.answer.value);
+            item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> location.name = (item3.answer.value);
             item.item as item3 where (linkId.value = 'appointment.location.phone' and answer.exists()) -> location.telecom as value, value.system = 'phone', value.value=(item3.answer.value) "appointment.location.phone"; 
             item.item as item3 where (linkId.value = 'appointment.location.email' and answer.exists()) -> location.telecom as value, value.system = 'email', value.value=(item3.answer.value) "appointment.location.email"; 
             item.item as item3 where (linkId.value = 'appointment.location.streetAddressLine' and answer.exists()) -> location.address as address share orgAddress, address.line = (item3.answer.value) "appointment.location.streetAddressLine";
