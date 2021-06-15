@@ -29,7 +29,7 @@
       "path": "http://fhir.ch/ig/ch-orf/0.9.1",
       "status": "draft",
       "fhirversion": "4.0.1",
-      "sequence": "STU"
+      "sequence": "STU 1"
     }
   ]  
 }
