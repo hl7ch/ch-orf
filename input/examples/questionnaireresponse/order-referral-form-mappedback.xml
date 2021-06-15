@@ -2,7 +2,7 @@
 <QuestionnaireResponse xmlns="http://hl7.org/fhir">
   <id value="order-referral-form-mappedback"/>
  <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-  <status value="completed"/>
+ <status value="completed"/>
   <item>
     <linkId value="order"/>
     <item>
@@ -307,6 +307,39 @@
         <valueString value="Schweiz"/>
       </answer>
     </item>
+    <item>
+      <linkId value="patient.contactperson"/>
+      <item>
+        <linkId value="patient.contactperson.relationship"/>
+        <answer>
+          <valueString value="Guter Freund"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="patient.contactperson.familyName"/>
+        <answer>
+          <valueString value="Freund"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="patient.contactperson.givenName"/>
+        <answer>
+          <valueString value="Max"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="patient.contactperson.phone"/>
+        <answer>
+          <valueString value="079 111 22 33"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="patient.contactperson.email"/>
+        <answer>
+          <valueString value="max@freund.ch"/>
+        </answer>
+      </item>
+    </item>
   </item>
   <item>
     <linkId value="requestedEncounter"/>
@@ -329,6 +362,24 @@
           <display value="Zweierzimmer"/>
         </valueCoding>
       </answer>
+    </item>
+  </item>
+  <item>
+    <linkId value="coverage"/>
+    <item>
+      <linkId value="coverage.kvg"/>
+      <item>
+        <linkId value="coverage.kvg.name"/>
+        <answer>
+          <valueString value="Sanitas"/>
+        </answer>
+      </item>
+      <item>
+        <linkId value="coverage.kvg.insuranceCardNumber"/>
+        <answer>
+          <valueString value="80756015090002647590"/>
+        </answer>
+      </item>
     </item>
   </item>
   <item>

@@ -35,7 +35,8 @@ group OrfBundleToQr(source bundle : Bundle, target qr : QuestionnaireResponse ) 
 
 group CompositionToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target qr : QuestionnaireResponse ) {
    composition -> qr.item as item, item.linkId = 'order' then OrderToQr(bundle, composition, serviceRequest, item) "order"; 
-   serviceRequest.performer -> qr.item as item, item.linkId = 'receiver' then ReceiverToQr(bundle, composition, serviceRequest, item) "receiver"; 
+   composition.extension as ext where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver' 
+      -> qr.item as item, item.linkId = 'receiver' then ReceiverToQr(bundle, serviceRequest, ext, item) "receiver";
    composition.subject -> qr.item as item, item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient"; 
    serviceRequest.extension as ext where url='http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails' 
       -> qr.item as item, item.linkId = 'requestedEncounter' then RequestedEncounterDetailsToQr(bundle, ext, item) "requestedEncounter";
@@ -169,15 +170,13 @@ group UrgentNotificationResponsePractitionerToQr(source bundle : Bundle, source 
    practitioner.telecom as telecom where (system='email') -> item.item as item, item.linkId = 'order.notificationContactDocumentResponse.practitioner.email', item.answer as answer, answer.value = (telecom.value) "email";
 }
 
-group ReceiverToQr(source bundle : Bundle, source composition: Composition, source serviceRequest: ServiceRequest, target item : BackboneElement ) {
-  serviceRequest.performer as performer then {
-    bundle.entry as entry then {
-      entry.fullUrl where ($this in %performer.reference) and $this.startsWith('urn:uuid')  then {
-        entry.resource : PractitionerRole as practitionerRole then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
-      } "fullUrlAsUuid";
-      entry.resource: PractitionerRoler as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %performer.reference then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
-    } "bundle.entry";
-  } "practitioner";
+group ReceiverToQr(source bundle : Bundle, source composition: Composition, source ext: Extension, target item : BackboneElement ) {
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %ext.valueReference.reference) and $this.startsWith('urn:uuid')  then {
+      entry.resource : PractitionerRole as practitionerRole then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+    } "fullUrlAsUuid";
+    entry.resource: PractitionerRoler as practitionerRole where ('PractitionerRole'+'/'+$this.id) in %ext.valueReference.reference then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+  } "bundle.entry";
 }
 
 group ReceiverPractitionerRoleToQr(source bundle : Bundle, source composition: Composition, source practitionerRole: PractitionerRole, target itemgroup : BackboneElement ) {

@@ -3,12 +3,12 @@
   <id value="order-referral-form-mapped"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
-    <value value="urn:uuid:3c9f56d1-a6d0-4c47-92e4-b28e8e9589ea"/>
+    <value value="urn:uuid:9b60d3c1-2b56-4d65-8fcd-14639fc4312a"/>
   </identifier>
   <type value="document"/>
-  <timestamp value="2021-06-08T14:26:38+02:00"/>
+  <timestamp value="2021-06-15T05:46:48+00:00"/>
   <entry>
-    <fullUrl value="urn:uuid:da3eee7c-f5c1-440d-8609-c245d3bd3c52"/>
+    <fullUrl value="urn:uuid:f85c6d91-423d-445a-939c-a7c1b7498ddb"/>
     <resource>
       <Composition>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument">
@@ -19,29 +19,34 @@
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
           <valueReference>
-            <reference value="urn:uuid:7d07d289-67f9-4554-88ff-aa8c76ab76bf"/>
+            <reference value="urn:uuid:621d538a-3837-4c97-b6d5-c9661c493383"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument">
           <valueReference>
-            <reference value="urn:uuid:ac8ff014-4be9-4c93-b949-576a742614c0"/>
+            <reference value="urn:uuid:11e864ff-443d-4cd3-9e28-31a9c3f6751d"/>
+          </valueReference>
+        </extension>
+        <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver">
+          <valueReference>
+            <reference value="urn:uuid:0b342eb6-26db-4943-b67b-b56399b557c5"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer">
           <extension url="enterer">
             <valueReference>
-              <reference value="urn:uuid:0b0c9fdc-00a7-43ea-a5f8-749f145933cd"/>
+              <reference value="urn:uuid:22a635e9-71ca-43ff-91cb-6c394fda79b1"/>
             </valueReference>
           </extension>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
           <valueReference>
-            <reference value="urn:uuid:61b51d20-e782-4efc-b3b1-2201cb00fb4f"/>
+            <reference value="urn:uuid:3df0adb5-e405-4e88-bbc0-0686cb2964c8"/>
           </valueReference>
         </extension>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
           <valueReference>
-            <reference value="urn:uuid:8c68017d-6439-4775-b04d-5adc0e926b42"/>
+            <reference value="urn:uuid:1eeeaaa1-4395-43b0-85e9-4f538dfb83ed"/>
           </valueReference>
         </extension>
         <status value="final"/>
@@ -60,11 +65,11 @@
           </coding>
         </category>
         <subject>
-          <reference value="urn:uuid:7222a0c6-d81a-47e8-bdb5-b100f46da3f2"/>
+          <reference value="urn:uuid:f00720ca-4cee-4a33-9c72-ab8858d05c15"/>
         </subject>
-        <date value="2021-06-08T14:26:38+02:00"/>
+        <date value="2021-06-15T05:46:48+00:00"/>
         <author>
-          <reference value="urn:uuid:2850f8da-ead1-4d92-aae5-5670061f1c4b"/>
+          <reference value="urn:uuid:bbd52527-72f7-47ba-a330-0ebdfcebd2e0"/>
         </author>
         <title value="Order-Referral-Form"/>
         <section>
@@ -77,20 +82,20 @@
             </coding>
           </code>
           <entry>
-            <reference value="urn:uuid:7adacef7-01d5-4042-ad7a-8fb2d13da65d"/>
+            <reference value="urn:uuid:a506b76d-2a4c-4033-ba07-7da95055c118"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:c1fa8316-30d6-4351-b90e-fd45a8f8a8f9"/>
+            <reference value="urn:uuid:3cf36568-0aba-45d3-96d0-1973a8362853"/>
           </entry>
           <entry>
-            <reference value="urn:uuid:4213b737-49a7-4161-bf34-50aefe870e80"/>
+            <reference value="urn:uuid:2bfb1c37-1fad-43ea-b354-f76b16873885"/>
           </entry>
         </section>
       </Composition>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:7222a0c6-d81a-47e8-bdb5-b100f46da3f2"/>
+    <fullUrl value="urn:uuid:f00720ca-4cee-4a33-9c72-ab8858d05c15"/>
     <resource>
       <Patient>
         <identifier>
@@ -128,11 +133,28 @@
           <postalCode value="8000"/>
           <country value="Schweiz"/>
         </address>
+        <contact>
+          <relationship>
+            <text value="Guter Freund"/>
+          </relationship>
+          <name>
+            <family value="Freund"/>
+            <given value="Max"/>
+          </name>
+          <telecom>
+            <system value="phone"/>
+            <value value="079 111 22 33"/>
+          </telecom>
+          <telecom>
+            <system value="email"/>
+            <value value="max@freund.ch"/>
+          </telecom>
+        </contact>
       </Patient>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:7adacef7-01d5-4042-ad7a-8fb2d13da65d"/>
+    <fullUrl value="urn:uuid:a506b76d-2a4c-4033-ba07-7da95055c118"/>
     <resource>
       <QuestionnaireResponse>
         <meta>
@@ -496,6 +518,45 @@
               <valueString value="Schweiz"/>
             </answer>
           </item>
+          <item>
+            <linkId value="patient.contactperson"/>
+            <text value="Kontaktperson"/>
+            <item>
+              <linkId value="patient.contactperson.relationship"/>
+              <text value="Beziehung"/>
+              <answer>
+                <valueString value="Guter Freund"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.familyName"/>
+              <text value="Name"/>
+              <answer>
+                <valueString value="Freund"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.givenName"/>
+              <text value="Vorname"/>
+              <answer>
+                <valueString value="Max"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.phone"/>
+              <text value="Telefon"/>
+              <answer>
+                <valueString value="079 111 22 33"/>
+              </answer>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.email"/>
+              <text value="E-Mail"/>
+              <answer>
+                <valueString value="max@freund.ch"/>
+              </answer>
+            </item>
+          </item>
         </item>
         <item>
           <linkId value="requestedEncounter"/>
@@ -805,12 +866,12 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:c1fa8316-30d6-4351-b90e-fd45a8f8a8f9"/>
+    <fullUrl value="urn:uuid:3cf36568-0aba-45d3-96d0-1973a8362853"/>
     <resource>
       <ServiceRequest>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails">
           <valueReference>
-            <reference value="urn:uuid:d223287a-00c7-4b1b-bf66-275f32b2e366"/>
+            <reference value="urn:uuid:322dfa17-00d3-4f8e-aa66-8d52a3f316c1"/>
           </valueReference>
         </extension>
         <identifier>
@@ -837,14 +898,14 @@
         <intent value="order"/>
         <priority value="routine"/>
         <subject>
-          <reference value="urn:uuid:7222a0c6-d81a-47e8-bdb5-b100f46da3f2"/>
+          <reference value="urn:uuid:f00720ca-4cee-4a33-9c72-ab8858d05c15"/>
         </subject>
         <requester>
-          <reference value="urn:uuid:2850f8da-ead1-4d92-aae5-5670061f1c4b"/>
+          <reference value="urn:uuid:bbd52527-72f7-47ba-a330-0ebdfcebd2e0"/>
         </requester>
-        <performer>
-          <reference value="urn:uuid:948fdb55-e04c-4307-9a0a-64ee017108cb"/>
-        </performer>
+        <insurance>
+          <reference value="urn:uuid:5718bcfc-818a-455c-839b-ee63ef0c295a"/>
+        </insurance>
         <note>
           <text value="Bemerkung/Kommentar"/>
         </note>
@@ -852,7 +913,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:4213b737-49a7-4161-bf34-50aefe870e80"/>
+    <fullUrl value="urn:uuid:2bfb1c37-1fad-43ea-b354-f76b16873885"/>
     <resource>
       <Questionnaire>
         <meta>
@@ -1236,6 +1297,7 @@
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
             <text value="Telefon"/>
             <type value="string"/>
+            <repeats value="true"/>
           </item>
           <item>
             <linkId value="patient.email"/>
@@ -1268,18 +1330,54 @@
             <text value="Land"/>
             <type value="string"/>
           </item>
+          <item>
+            <linkId value="patient.contactperson"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"/>
+            <text value="Kontaktperson"/>
+            <type value="group"/>
+            <item>
+              <linkId value="patient.contactperson.relationship"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"/>
+              <text value="Beziehung"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.familyName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"/>
+              <text value="Name"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.givenName"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"/>
+              <text value="Vorname"/>
+              <type value="string"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.phone"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <text value="Telefon"/>
+              <type value="string"/>
+              <repeats value="true"/>
+            </item>
+            <item>
+              <linkId value="patient.contactperson.email"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <text value="E-Mail"/>
+              <type value="string"/>
+            </item>
+          </item>
         </item>
         <item>
           <linkId value="requestedEncounter"/>
-          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedencounterdetails"/>
-          <text value="Gewünschter Aufenthalt"/>
+          <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"/>
+          <text value="Patientenaufnahme"/>
           <type value="group"/>
           <item>
             <linkId value="requestedEncounter.class"/>
             <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.class"/>
-            <text value="Versicherungsklasse"/>
+            <text value="Voraussichtlich: Ambulant / Stationär / Notfall"/>
             <type value="choice"/>
-            <required value="true"/>
             <answerOption>
               <valueCoding>
                 <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
@@ -1304,7 +1402,7 @@
           </item>
           <item>
             <linkId value="requestedEncounter.desiredAccommodation"/>
-            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredaccommodation"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"/>
             <text value="Zimmerkategorie"/>
             <type value="choice"/>
             <answerOption>
@@ -1335,6 +1433,18 @@
           <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"/>
           <text value="Kostenträger"/>
           <type value="group"/>
+          <item>
+            <linkId value="coverage.beneficiary"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.beneficiary"/>
+            <text value="Begünstigter (Patient)"/>
+            <type value="group"/>
+            <item>
+              <linkId value="coverage.beneficiary.ahvn13"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"/>
+              <text value="AHV-Nr. des Patienten"/>
+              <type value="string"/>
+            </item>
+          </item>
           <item>
             <linkId value="coverage.kvg"/>
             <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
@@ -1388,12 +1498,6 @@
               <text value="Kennnummer der Versichertenkarte"/>
               <type value="string"/>
             </item>
-            <item>
-              <linkId value="coverage.vvg.ahvn13"/>
-              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
-              <text value="Versichertennummer (AHV-Nr.)"/>
-              <type value="string"/>
-            </item>
           </item>
           <item>
             <linkId value="coverage.iv"/>
@@ -1401,9 +1505,9 @@
             <text value="Invalidenversicherung (IV)"/>
             <type value="group"/>
             <item>
-              <linkId value="coverage.iv.ahvn13"/>
+              <linkId value="coverage.iv.verfuegungsnummer"/>
               <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
-              <text value="Versichertennummer (AHV-Nr.)"/>
+              <text value="IV-Verfügungsnummer"/>
               <type value="string"/>
             </item>
           </item>
@@ -1413,9 +1517,9 @@
             <text value="Militärversicherung (MV)"/>
             <type value="group"/>
             <item>
-              <linkId value="coverage.mv.ahvn13"/>
+              <linkId value="coverage.mv.versichertennummer"/>
               <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"/>
-              <text value="Versichertennummer (AHV-Nr.)"/>
+              <text value="MV-Versichertennummer"/>
               <type value="string"/>
             </item>
           </item>
@@ -1791,17 +1895,17 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:7d07d289-67f9-4554-88ff-aa8c76ab76bf"/>
+    <fullUrl value="urn:uuid:621d538a-3837-4c97-b6d5-c9661c493383"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:34bf68aa-bdb7-4aee-9b18-1a19ca21ec85"/>
+          <reference value="urn:uuid:72136e39-f7ed-4da0-881a-ee6ca9d787a6"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:34bf68aa-bdb7-4aee-9b18-1a19ca21ec85"/>
+    <fullUrl value="urn:uuid:72136e39-f7ed-4da0-881a-ee6ca9d787a6"/>
     <resource>
       <Practitioner>
         <name>
@@ -1825,17 +1929,17 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:ac8ff014-4be9-4c93-b949-576a742614c0"/>
+    <fullUrl value="urn:uuid:11e864ff-443d-4cd3-9e28-31a9c3f6751d"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:8dfa0606-67a9-4ffc-bd96-3864ff29b0cc"/>
+          <reference value="urn:uuid:adb1b9a0-a1fe-4af4-86c1-c7fa3d727c83"/>
         </practitioner>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:8dfa0606-67a9-4ffc-bd96-3864ff29b0cc"/>
+    <fullUrl value="urn:uuid:adb1b9a0-a1fe-4af4-86c1-c7fa3d727c83"/>
     <resource>
       <Practitioner>
         <name>
@@ -1859,20 +1963,20 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:948fdb55-e04c-4307-9a0a-64ee017108cb"/>
+    <fullUrl value="urn:uuid:0b342eb6-26db-4943-b67b-b56399b557c5"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:e1e089eb-0d42-4c73-9e4b-9892a0305759"/>
+          <reference value="urn:uuid:3e40f062-b7a8-4d17-bf05-65d59cd60f31"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:66b26bf0-7071-43aa-bf3b-88a51d09a796"/>
+          <reference value="urn:uuid:81b2eebe-3a44-461b-88fd-0955354005e4"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:e1e089eb-0d42-4c73-9e4b-9892a0305759"/>
+    <fullUrl value="urn:uuid:3e40f062-b7a8-4d17-bf05-65d59cd60f31"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -1900,7 +2004,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:66b26bf0-7071-43aa-bf3b-88a51d09a796"/>
+    <fullUrl value="urn:uuid:81b2eebe-3a44-461b-88fd-0955354005e4"/>
     <resource>
       <Organization>
         <name value="Kantonsspital"/>
@@ -1915,7 +2019,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:d223287a-00c7-4b1b-bf66-275f32b2e366"/>
+    <fullUrl value="urn:uuid:322dfa17-00d3-4f8e-aa66-8d52a3f316c1"/>
     <resource>
       <Encounter>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation">
@@ -1932,26 +2036,61 @@
           <display value="Notfall"/>
         </class>
         <subject>
-          <reference value="urn:uuid:7222a0c6-d81a-47e8-bdb5-b100f46da3f2"/>
+          <reference value="urn:uuid:f00720ca-4cee-4a33-9c72-ab8858d05c15"/>
         </subject>
       </Encounter>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:2850f8da-ead1-4d92-aae5-5670061f1c4b"/>
+    <fullUrl value="urn:uuid:5718bcfc-818a-455c-839b-ee63ef0c295a"/>
+    <resource>
+      <Coverage>
+        <contained>
+          <Organization>
+            <id value="org"/>
+            <name value="Sanitas"/>
+          </Organization>
+        </contained>
+        <identifier>
+          <type>
+            <coding>
+              <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype"/>
+              <code value="VeKa"/>
+            </coding>
+          </type>
+          <value value="80756015090002647590"/>
+        </identifier>
+        <status value="active"/>
+        <type>
+          <coding>
+            <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype"/>
+            <code value="KVG"/>
+          </coding>
+        </type>
+        <beneficiary>
+          <reference value="urn:uuid:f00720ca-4cee-4a33-9c72-ab8858d05c15"/>
+        </beneficiary>
+        <payor>
+          <reference value="#org"/>
+        </payor>
+      </Coverage>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:bbd52527-72f7-47ba-a330-0ebdfcebd2e0"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:74e71a7a-0a90-443f-bb86-e81ced2aae25"/>
+          <reference value="urn:uuid:007d5b98-d7d7-43ac-a676-86ce05f9f38e"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:2a0ce0e8-8844-4f50-a0ab-56b87689393d"/>
+          <reference value="urn:uuid:1ff584f7-6c54-4671-85a6-8147b7a08468"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:74e71a7a-0a90-443f-bb86-e81ced2aae25"/>
+    <fullUrl value="urn:uuid:007d5b98-d7d7-43ac-a676-86ce05f9f38e"/>
     <resource>
       <Practitioner>
         <identifier>
@@ -1979,7 +2118,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:2a0ce0e8-8844-4f50-a0ab-56b87689393d"/>
+    <fullUrl value="urn:uuid:1ff584f7-6c54-4671-85a6-8147b7a08468"/>
     <resource>
       <Organization>
         <name value="Praxis Seeblick"/>
@@ -1994,20 +2133,20 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:0b0c9fdc-00a7-43ea-a5f8-749f145933cd"/>
+    <fullUrl value="urn:uuid:22a635e9-71ca-43ff-91cb-6c394fda79b1"/>
     <resource>
       <PractitionerRole>
         <practitioner>
-          <reference value="urn:uuid:50392452-5c99-4055-a990-335b780c4dd0"/>
+          <reference value="urn:uuid:39b938b1-3493-49b7-8c4c-e8e3d385f318"/>
         </practitioner>
         <organization>
-          <reference value="urn:uuid:2a0ce0e8-8844-4f50-a0ab-56b87689393d"/>
+          <reference value="urn:uuid:1ff584f7-6c54-4671-85a6-8147b7a08468"/>
         </organization>
       </PractitionerRole>
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:50392452-5c99-4055-a990-335b780c4dd0"/>
+    <fullUrl value="urn:uuid:39b938b1-3493-49b7-8c4c-e8e3d385f318"/>
     <resource>
       <Practitioner>
         <name>
@@ -2026,7 +2165,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:61b51d20-e782-4efc-b3b1-2201cb00fb4f"/>
+    <fullUrl value="urn:uuid:3df0adb5-e405-4e88-bbc0-0686cb2964c8"/>
     <resource>
       <Organization>
         <name value="Praxis Seeblick"/>
@@ -2053,7 +2192,7 @@
     </resource>
   </entry>
   <entry>
-    <fullUrl value="urn:uuid:8c68017d-6439-4775-b04d-5adc0e926b42"/>
+    <fullUrl value="urn:uuid:1eeeaaa1-4395-43b0-85e9-4f538dfb83ed"/>
     <resource>
       <Patient>
         <name>

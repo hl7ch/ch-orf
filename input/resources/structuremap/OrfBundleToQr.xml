@@ -38,7 +38,7 @@ group OrfBundleToQr(source bundle : Bundle, target qr : QuestionnaireResponse) {
 
 group CompositionToQr(source bundle : Bundle, source composition : Composition, source serviceRequest : ServiceRequest, target qr : QuestionnaireResponse) {
   composition -&gt;  qr.item as item,  item.linkId = 'order' then OrderToQr(bundle, composition, serviceRequest, item) "order";
-  serviceRequest.performer -&gt;  qr.item as item,  item.linkId = 'receiver' then ReceiverToQr(bundle, composition, serviceRequest, item) "receiver";
+  composition.extension as ext where url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver' -&gt;  qr.item as item,  item.linkId = 'receiver' then ReceiverToQr(bundle, serviceRequest, ext, item) "receiver";
   composition.subject -&gt;  qr.item as item,  item.linkId = 'patient' then PatientToQr(bundle, composition, serviceRequest, item) "patient";
   serviceRequest.extension as ext where url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails' -&gt;  qr.item as item,  item.linkId = 'requestedEncounter' then RequestedEncounterDetailsToQr(bundle, ext, item) "requestedEncounter";
   serviceRequest.insurance first as insurance -&gt;  qr.item as item,  item.linkId = 'coverage' then CoverageToQr(bundle, composition, serviceRequest, item) "requestedEncounter";
@@ -154,15 +154,13 @@ group UrgentNotificationResponsePractitionerToQr(source bundle : Bundle, source 
   practitioner.telecom as telecom where (system = 'email') -&gt;  item.item as item,  item.linkId = 'order.notificationContactDocumentResponse.practitioner.email',  item.answer as answer,  answer.value = (telecom.value) "email";
 }
 
-group ReceiverToQr(source bundle : Bundle, source composition : Composition, source serviceRequest : ServiceRequest, target item : BackboneElement) {
-  serviceRequest.performer as performer then {
-    bundle.entry as entry then {
-      entry.fullUrl where ($this in %performer.reference) and $this.startsWith('urn:uuid') then {
-        entry.resource : PractitionerRole as practitionerRole then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
-      } "fullUrlAsUuid";
-      entry.resource : PractitionerRoler as practitionerRole where ('PractitionerRole' + '/' + $this.id) in %performer.reference then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
-    };
-  } "practitioner";
+group ReceiverToQr(source bundle : Bundle, source composition : Composition, source ext : Extension, target item : BackboneElement) {
+  bundle.entry as entry then {
+    entry.fullUrl where ($this in %ext.valueReference.reference) and $this.startsWith('urn:uuid') then {
+      entry.resource : PractitionerRole as practitionerRole then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+    } "fullUrlAsUuid";
+    entry.resource : PractitionerRoler as practitionerRole where ('PractitionerRole' + '/' + $this.id) in %ext.valueReference.reference then ReceiverPractitionerRoleToQr(bundle, composition, practitionerRole, item) "practitioner";
+  };
 }
 
 group ReceiverPractitionerRoleToQr(source bundle : Bundle, source composition : Composition, source practitionerRole : PractitionerRole, target itemgroup : BackboneElement) {
@@ -831,8 +829,10 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
       <rule>
          <name value="receiver"></name>
          <source>
-            <context value="serviceRequest"></context>
-            <element value="performer"></element>
+            <context value="composition"></context>
+            <element value="extension"></element>
+            <variable value="ext"></variable>
+            <condition value="url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver'"></condition>
          </source>
          <target>
             <context value="qr"></context>
@@ -852,8 +852,8 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
          <dependent>
             <name value="ReceiverToQr"></name>
             <variable value="bundle"></variable>
-            <variable value="composition"></variable>
             <variable value="serviceRequest"></variable>
+            <variable value="ext"></variable>
             <variable value="item"></variable>
          </dependent>
       </rule>
@@ -2337,8 +2337,8 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
          <mode value="source"></mode>
       </input>
       <input>
-         <name value="serviceRequest"></name>
-         <type value="ServiceRequest"></type>
+         <name value="ext"></name>
+         <type value="Extension"></type>
          <mode value="source"></mode>
       </input>
       <input>
@@ -2347,51 +2347,26 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
          <mode value="target"></mode>
       </input>
       <rule>
-         <name value="practitioner"></name>
+         <name value="bundle.entry"></name>
          <source>
-            <context value="serviceRequest"></context>
-            <element value="performer"></element>
-            <variable value="performer"></variable>
+            <context value="bundle"></context>
+            <element value="entry"></element>
+            <variable value="entry"></variable>
          </source>
          <rule>
-            <name value="bundle.entry"></name>
+            <name value="fullUrlAsUuid"></name>
             <source>
-               <context value="bundle"></context>
-               <element value="entry"></element>
-               <variable value="entry"></variable>
+               <context value="entry"></context>
+               <element value="fullUrl"></element>
+               <condition value="($this in %ext.valueReference.reference) and $this.startsWith('urn:uuid')"></condition>
             </source>
-            <rule>
-               <name value="fullUrlAsUuid"></name>
-               <source>
-                  <context value="entry"></context>
-                  <element value="fullUrl"></element>
-                  <condition value="($this in %performer.reference) and $this.startsWith('urn:uuid')"></condition>
-               </source>
-               <rule>
-                  <name value="practitioner"></name>
-                  <source>
-                     <context value="entry"></context>
-                     <type value="PractitionerRole"></type>
-                     <element value="resource"></element>
-                     <variable value="practitionerRole"></variable>
-                  </source>
-                  <dependent>
-                     <name value="ReceiverPractitionerRoleToQr"></name>
-                     <variable value="bundle"></variable>
-                     <variable value="composition"></variable>
-                     <variable value="practitionerRole"></variable>
-                     <variable value="item"></variable>
-                  </dependent>
-               </rule>
-            </rule>
             <rule>
                <name value="practitioner"></name>
                <source>
                   <context value="entry"></context>
-                  <type value="PractitionerRoler"></type>
+                  <type value="PractitionerRole"></type>
                   <element value="resource"></element>
                   <variable value="practitionerRole"></variable>
-                  <condition value="('PractitionerRole' + '/' + $this.id) in %performer.reference"></condition>
                </source>
                <dependent>
                   <name value="ReceiverPractitionerRoleToQr"></name>
@@ -2401,6 +2376,23 @@ QRF Questionnaire Response: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireR
                   <variable value="item"></variable>
                </dependent>
             </rule>
+         </rule>
+         <rule>
+            <name value="practitioner"></name>
+            <source>
+               <context value="entry"></context>
+               <type value="PractitionerRoler"></type>
+               <element value="resource"></element>
+               <variable value="practitionerRole"></variable>
+               <condition value="('PractitionerRole' + '/' + $this.id) in %ext.valueReference.reference"></condition>
+            </source>
+            <dependent>
+               <name value="ReceiverPractitionerRoleToQr"></name>
+               <variable value="bundle"></variable>
+               <variable value="composition"></variable>
+               <variable value="practitionerRole"></variable>
+               <variable value="item"></variable>
+            </dependent>
          </rule>
       </rule>
    </group>
