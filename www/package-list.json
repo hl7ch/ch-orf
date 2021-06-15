@@ -18,7 +18,7 @@
       "desc": "HL7 Switzerland STU 1 Ballot",
       "path": "http://fhir.ch/ig/ch-orf",
       "status": "trial-use",
-      "fhirVersion": "4.0.1",
+      "fhirversion": "4.0.1",
       "sequence": "STU 1",
       "current": true
     },
@@ -28,7 +28,7 @@
       "desc": "Draft version 0.9.1",
       "path": "http://fhir.ch/ig/ch-orf/0.9.1",
       "status": "draft",
-      "fhirVersion": "4.0.1",
+      "fhirversion": "4.0.1",
       "sequence": "STU"
     }
   ]  
