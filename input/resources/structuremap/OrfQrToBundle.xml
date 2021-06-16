@@ -310,7 +310,7 @@ group ReceiverCopy(source grp : BackboneElement, target bundle : Bundle, target 
 }
 
 group Appointment(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e4,  e4.resource = create('Appointment') as appointment,  appointment.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.extension as extension,  appointment.subject = create('Reference') as subject,  subject.reference = ('urn:uuid:' + %patient.id),  extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',  extension.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %uuid4) then {
+  grp -&gt;  bundle.entry as e4,  e4.resource = create('Appointment') as appointment,  appointment.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.extension as extension,  extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',  extension.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %uuid4) then {
     grp.item as item where ((linkId.value = 'appointment.status') and answer.exists()) -&gt; appointment.status = (item.answer.value) "status";
     grp.item as item where (linkId.value = 'appointment.requestedPeriod') then {
       item.item as item2 where ((linkId.value = 'appointment.requestedPeriod.start') and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod share requestedPeriod,  requestedPeriod.start = (item2.answer.value) "start";
@@ -322,7 +322,9 @@ group Appointment(source grp : BackboneElement, target bundle : Bundle, target c
         item.item as item3 where ((linkId.value = 'appointment.location.name') and answer.exists()) -&gt; location.name = (item3.answer.value);
         item.item as item3 where ((linkId.value = 'appointment.location.phone') and answer.exists()) -&gt;  location.telecom as value,  value.system = 'phone',  value.value = (item3.answer.value) "phone";
         item.item as item3 where ((linkId.value = 'appointment.location.email') and answer.exists()) -&gt;  location.telecom as value,  value.system = 'email',  value.value = (item3.answer.value) "email";
-        item.item as item3 where ((linkId.value = 'appointment.location.streetAddressLine') and answer.exists()) -&gt;  location.address as address share orgAddress,  address.line = (item3.answer.value) "streetAddressLine";
+        item.item as item3 where ((linkId.value = 'appointment.location.streetAddressLine') and answer.exists()) -&gt; location.address as address share orgAddress then {
+          item.answer as answer -&gt; address.line = (answer.value) "line";
+        } "streetAddressLine";
         item.item as item3 where ((linkId.value = 'appointment.location.postalCode') and answer.exists()) -&gt;  location.address as address share orgAddress,  address.postalCode = (item3.answer.value) "postalCode";
         item.item as item3 where ((linkId.value = 'appointment.location.city') and answer.exists()) -&gt;  location.address as address share orgAddress,  address.city = (item3.answer.value) "city";
         item.item as item3 where ((linkId.value = 'appointment.location.country') and answer.exists()) -&gt;  location.address as address share orgAddress,  address.country = (item3.answer.value) "country";
@@ -6963,7 +6965,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
       <rule>
          <name value="Appointment"></name>
          <source>
-            <context value="src"></context>
+            <context value="grp"></context>
          </source>
          <target>
             <context value="bundle"></context>
@@ -7002,25 +7004,6 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
             <contextType value="variable"></contextType>
             <element value="extension"></element>
             <variable value="extension"></variable>
-         </target>
-         <target>
-            <context value="appointment"></context>
-            <contextType value="variable"></contextType>
-            <element value="subject"></element>
-            <variable value="subject"></variable>
-            <transform value="create"></transform>
-            <parameter>
-               <valueString value="Reference"></valueString>
-            </parameter>
-         </target>
-         <target>
-            <context value="subject"></context>
-            <contextType value="variable"></contextType>
-            <element value="reference"></element>
-            <transform value="evaluate"></transform>
-            <parameter>
-               <valueString value="'urn:uuid:' + %patient.id"></valueString>
-            </parameter>
          </target>
          <target>
             <context value="extension"></context>
@@ -7326,15 +7309,23 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
                      <listMode value="share"></listMode>
                      <listRuleId value="orgAddress"></listRuleId>
                   </target>
-                  <target>
-                     <context value="address"></context>
-                     <contextType value="variable"></contextType>
-                     <element value="line"></element>
-                     <transform value="evaluate"></transform>
-                     <parameter>
-                        <valueString value="item3.answer.value"></valueString>
-                     </parameter>
-                  </target>
+                  <rule>
+                     <name value="line"></name>
+                     <source>
+                        <context value="item"></context>
+                        <element value="answer"></element>
+                        <variable value="answer"></variable>
+                     </source>
+                     <target>
+                        <context value="address"></context>
+                        <contextType value="variable"></contextType>
+                        <element value="line"></element>
+                        <transform value="evaluate"></transform>
+                        <parameter>
+                           <valueString value="answer.value"></valueString>
+                        </parameter>
+                     </target>
+                  </rule>
                </rule>
                <rule>
                   <name value="appointment.location.postalCode"></name>

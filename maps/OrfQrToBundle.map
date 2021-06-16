@@ -597,12 +597,11 @@ group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target c
 }
 
 group Appointment(source grp : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
-   src -> bundle.entry as e4, 
+   grp -> bundle.entry as e4, 
    e4.resource = create('Appointment') as appointment, 
    appointment.id = uuid() as uuid4,
    e4.fullUrl = ('urn:uuid:'+%uuid4),
    serviceRequest.extension as extension,
-   appointment.subject = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
    extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
    extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
    then {
@@ -621,7 +620,9 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
             item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> location.name = (item3.answer.value);
             item.item as item3 where (linkId.value = 'appointment.location.phone' and answer.exists()) -> location.telecom as value, value.system = 'phone', value.value=(item3.answer.value) "appointment.location.phone"; 
             item.item as item3 where (linkId.value = 'appointment.location.email' and answer.exists()) -> location.telecom as value, value.system = 'email', value.value=(item3.answer.value) "appointment.location.email"; 
-            item.item as item3 where (linkId.value = 'appointment.location.streetAddressLine' and answer.exists()) -> location.address as address share orgAddress, address.line = (item3.answer.value) "appointment.location.streetAddressLine";
+            item.item as item3 where (linkId.value = 'appointment.location.streetAddressLine' and answer.exists()) -> location.address as address share orgAddress then {
+               item.answer as answer -> address.line = (answer.value) "line";
+            } "appointment.location.streetAddressLine";
             item.item as item3 where (linkId.value = 'appointment.location.postalCode' and answer.exists()) -> location.address as address share orgAddress, address.postalCode = (item3.answer.value) "appointment.location.postalCode";
             item.item as item3 where (linkId.value = 'appointment.location.city' and answer.exists()) -> location.address as address share orgAddress, address.city = (item3.answer.value) "appointment.location.city";
             item.item as item3 where (linkId.value = 'appointment.location.country' and answer.exists()) -> location.address as address share orgAddress, address.country = (item3.answer.value) "appointment.location.country";
