@@ -125,13 +125,13 @@ group ReceiverOrganizationItems(source src : BackboneElement, target organizatio
   src.item as item where ((linkId.value = 'receiver.organization.country') and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) "country";
 }
 
-group ReceiverItems(source src : BackboneElement, target practitionerRole : practitionerRole, target practitioner : Practitioner, target organization : Organization) {
-  src.item as item where (linkId.value = 'receiver.practitioner') then ReceiverPractitionerItems(item, practitioner);
-  src.item as item where (linkId.value = 'receiver.organization') then ReceiverOrganizationItems(item, organization);
+group ReceiverItems(source src : BackboneElement, target bundle : Bundle, target practitionerRole : practitionerRole) {
+  src.item as item where (linkId.value = 'receiver.practitioner') -&gt;  bundle.entry as e2,  e2.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  e2.fullUrl = append('urn:uuid:', uuid2) then ReceiverPractitionerItems(item, practitioner);
+  src.item as item where (linkId.value = 'receiver.organization') -&gt;  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  practitionerRole.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3),  e3.fullUrl = append('urn:uuid:', uuid3) then ReceiverOrganizationItems(item, organization);
 }
 
 group ReceiverInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  e2.resource = create('Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.extension as ext,  ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver',  ext.value = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then ReceiverItems(src, practitionerRole, practitioner, organization) "receiver";
+  src -&gt;  bundle.entry as e,  e.resource = create('PractitionerRole') as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  composition.extension as ext,  ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver',  ext.value = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid) then ReceiverItems(src, bundle, practitionerRole) "receiver";
 }
 
 group PatientItems(source src : BackboneElement, target tgt : Patient) {
@@ -311,7 +311,7 @@ group ReceiverCopy(source grp : BackboneElement, target bundle : Bundle, target 
 
 group Appointment(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
   grp -&gt;  bundle.entry as e4,  e4.resource = create('Appointment') as appointment,  appointment.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.extension as extension,  extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',  extension.value = create('Reference') as reference,  reference.reference = ('urn:uuid:' + %uuid4) then {
-    grp.item as item where ((linkId.value = 'appointment.status') and answer.exists()) -&gt; appointment.status = (item.answer.value) "status";
+    grp.item as item where ((linkId.value = 'appointment.status') and answer.exists()) -&gt; appointment.status = (item.answer.value.code) "code";
     grp.item as item where (linkId.value = 'appointment.requestedPeriod') then {
       item.item as item2 where ((linkId.value = 'appointment.requestedPeriod.start') and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod share requestedPeriod,  requestedPeriod.start = (item2.answer.value) "start";
       item.item as item2 where ((linkId.value = 'appointment.requestedPeriod.end') and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod share requestedPeriod,  requestedPeriod.end = (item2.answer.value) "end";
@@ -2438,18 +2438,13 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
          <mode value="source"></mode>
       </input>
       <input>
+         <name value="bundle"></name>
+         <type value="Bundle"></type>
+         <mode value="target"></mode>
+      </input>
+      <input>
          <name value="practitionerRole"></name>
          <type value="practitionerRole"></type>
-         <mode value="target"></mode>
-      </input>
-      <input>
-         <name value="practitioner"></name>
-         <type value="Practitioner"></type>
-         <mode value="target"></mode>
-      </input>
-      <input>
-         <name value="organization"></name>
-         <type value="Organization"></type>
          <mode value="target"></mode>
       </input>
       <rule>
@@ -2460,6 +2455,63 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
             <variable value="item"></variable>
             <condition value="(linkId.value = 'receiver.practitioner')"></condition>
          </source>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e2"></variable>
+         </target>
+         <target>
+            <context value="e2"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="practitioner"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Practitioner"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="practitioner"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid2"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="practitionerRole"></context>
+            <contextType value="variable"></contextType>
+            <element value="practitioner"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid2"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="e2"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid2"></valueId>
+            </parameter>
+         </target>
          <dependent>
             <name value="ReceiverPractitionerItems"></name>
             <variable value="item"></variable>
@@ -2474,6 +2526,63 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
             <variable value="item"></variable>
             <condition value="(linkId.value = 'receiver.organization')"></condition>
          </source>
+         <target>
+            <context value="bundle"></context>
+            <contextType value="variable"></contextType>
+            <element value="entry"></element>
+            <variable value="e3"></variable>
+         </target>
+         <target>
+            <context value="e3"></context>
+            <contextType value="variable"></contextType>
+            <element value="resource"></element>
+            <variable value="organization"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Organization"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="organization"></context>
+            <contextType value="variable"></contextType>
+            <element value="id"></element>
+            <variable value="uuid3"></variable>
+            <transform value="uuid"></transform>
+         </target>
+         <target>
+            <context value="practitionerRole"></context>
+            <contextType value="variable"></contextType>
+            <element value="organization"></element>
+            <variable value="reference"></variable>
+            <transform value="create"></transform>
+            <parameter>
+               <valueString value="Reference"></valueString>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"></context>
+            <contextType value="variable"></contextType>
+            <element value="reference"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid3"></valueId>
+            </parameter>
+         </target>
+         <target>
+            <context value="e3"></context>
+            <contextType value="variable"></contextType>
+            <element value="fullUrl"></element>
+            <transform value="append"></transform>
+            <parameter>
+               <valueString value="urn:uuid:"></valueString>
+            </parameter>
+            <parameter>
+               <valueId value="uuid3"></valueId>
+            </parameter>
+         </target>
          <dependent>
             <name value="ReceiverOrganizationItems"></name>
             <variable value="item"></variable>
@@ -2545,76 +2654,6 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
             </parameter>
          </target>
          <target>
-            <context value="bundle"></context>
-            <contextType value="variable"></contextType>
-            <element value="entry"></element>
-            <variable value="e2"></variable>
-         </target>
-         <target>
-            <context value="e2"></context>
-            <contextType value="variable"></contextType>
-            <element value="resource"></element>
-            <variable value="practitioner"></variable>
-            <transform value="create"></transform>
-            <parameter>
-               <valueString value="Practitioner"></valueString>
-            </parameter>
-         </target>
-         <target>
-            <context value="practitioner"></context>
-            <contextType value="variable"></contextType>
-            <element value="id"></element>
-            <variable value="uuid2"></variable>
-            <transform value="uuid"></transform>
-         </target>
-         <target>
-            <context value="e2"></context>
-            <contextType value="variable"></contextType>
-            <element value="fullUrl"></element>
-            <transform value="append"></transform>
-            <parameter>
-               <valueString value="urn:uuid:"></valueString>
-            </parameter>
-            <parameter>
-               <valueId value="uuid2"></valueId>
-            </parameter>
-         </target>
-         <target>
-            <context value="bundle"></context>
-            <contextType value="variable"></contextType>
-            <element value="entry"></element>
-            <variable value="e3"></variable>
-         </target>
-         <target>
-            <context value="e3"></context>
-            <contextType value="variable"></contextType>
-            <element value="resource"></element>
-            <variable value="organization"></variable>
-            <transform value="create"></transform>
-            <parameter>
-               <valueString value="Organization"></valueString>
-            </parameter>
-         </target>
-         <target>
-            <context value="organization"></context>
-            <contextType value="variable"></contextType>
-            <element value="id"></element>
-            <variable value="uuid3"></variable>
-            <transform value="uuid"></transform>
-         </target>
-         <target>
-            <context value="e3"></context>
-            <contextType value="variable"></contextType>
-            <element value="fullUrl"></element>
-            <transform value="append"></transform>
-            <parameter>
-               <valueString value="urn:uuid:"></valueString>
-            </parameter>
-            <parameter>
-               <valueId value="uuid3"></valueId>
-            </parameter>
-         </target>
-         <target>
             <context value="composition"></context>
             <contextType value="variable"></contextType>
             <element value="extension"></element>
@@ -2651,56 +2690,11 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
                <valueId value="uuid"></valueId>
             </parameter>
          </target>
-         <target>
-            <context value="practitionerRole"></context>
-            <contextType value="variable"></contextType>
-            <element value="practitioner"></element>
-            <variable value="reference"></variable>
-            <transform value="create"></transform>
-            <parameter>
-               <valueString value="Reference"></valueString>
-            </parameter>
-         </target>
-         <target>
-            <context value="reference"></context>
-            <contextType value="variable"></contextType>
-            <element value="reference"></element>
-            <transform value="append"></transform>
-            <parameter>
-               <valueString value="urn:uuid:"></valueString>
-            </parameter>
-            <parameter>
-               <valueId value="uuid2"></valueId>
-            </parameter>
-         </target>
-         <target>
-            <context value="practitionerRole"></context>
-            <contextType value="variable"></contextType>
-            <element value="organization"></element>
-            <variable value="reference"></variable>
-            <transform value="create"></transform>
-            <parameter>
-               <valueString value="Reference"></valueString>
-            </parameter>
-         </target>
-         <target>
-            <context value="reference"></context>
-            <contextType value="variable"></contextType>
-            <element value="reference"></element>
-            <transform value="append"></transform>
-            <parameter>
-               <valueString value="urn:uuid:"></valueString>
-            </parameter>
-            <parameter>
-               <valueId value="uuid3"></valueId>
-            </parameter>
-         </target>
          <dependent>
             <name value="ReceiverItems"></name>
             <variable value="src"></variable>
+            <variable value="bundle"></variable>
             <variable value="practitionerRole"></variable>
-            <variable value="practitioner"></variable>
-            <variable value="organization"></variable>
          </dependent>
       </rule>
    </group>
@@ -7034,7 +7028,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
             </parameter>
          </target>
          <rule>
-            <name value="appointment.status"></name>
+            <name value="appointment.status.code"></name>
             <source>
                <context value="grp"></context>
                <element value="item"></element>
@@ -7047,7 +7041,7 @@ Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-documen
                <element value="status"></element>
                <transform value="evaluate"></transform>
                <parameter>
-                  <valueString value="item.answer.value"></valueString>
+                  <valueString value="item.answer.value.code"></valueString>
                </parameter>
             </target>
          </rule>

@@ -605,7 +605,7 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
    extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
    extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
    then {
-      grp.item as item where (linkId.value = 'appointment.status' and answer.exists()) -> appointment.status = (item.answer.value) "appointment.status";
+      grp.item as item where (linkId.value = 'appointment.status' and answer.exists()) -> appointment.status = (item.answer.value.code) "appointment.status.code";
       grp.item as item where (linkId.value = 'appointment.requestedPeriod') then {
          item.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod share requestedPeriod, requestedPeriod.start = (item2.answer.value) "appointment.requestedPeriod.start";
          item.item as item2 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod share requestedPeriod, requestedPeriod.end = (item2.answer.value) "appointment.requestedPeriod.end";
