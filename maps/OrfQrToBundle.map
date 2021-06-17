@@ -208,9 +208,19 @@ group ReceiverOrganizationItems(source src : BackboneElement, target organizatio
    src.item as item where (linkId.value = 'receiver.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "receiver.organization.country";
 }
 
-group ReceiverItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner, target organization: Organization) {
-   src.item as item where (linkId.value = 'receiver.practitioner') then ReceiverPractitionerItems(item, practitioner);
-   src.item as item where (linkId.value = 'receiver.organization') then ReceiverOrganizationItems(item, organization);
+group ReceiverItems(source src : BackboneElement, target bundle: Bundle, target practitionerRole: practitionerRole) {
+   src.item as item where (linkId.value = 'receiver.practitioner') -> 
+      bundle.entry as e2, 
+      e2.resource = create('Practitioner') as practitioner, 
+      practitioner.id = uuid() as uuid2,
+      practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
+      e2.fullUrl = append('urn:uuid:',uuid2) then ReceiverPractitionerItems(item, practitioner);
+   src.item as item where (linkId.value = 'receiver.organization') ->
+     bundle.entry as e3, 
+     e3.resource = create('Organization') as organization, 
+     organization.id = uuid() as uuid3,
+     practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3), 
+     e3.fullUrl = append('urn:uuid:',uuid3) then ReceiverOrganizationItems(item, organization);
 }
 
 group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
@@ -218,21 +228,11 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
           e.resource = create('PractitionerRole') as practitionerRole, 
           practitionerRole.id = uuid() as uuid,
           e.fullUrl = append('urn:uuid:',uuid),
-          bundle.entry as e2, 
-          e2.resource = create('Practitioner') as practitioner, 
-          practitioner.id = uuid() as uuid2,
-          e2.fullUrl = append('urn:uuid:',uuid2),
-          bundle.entry as e3, 
-          e3.resource = create('Organization') as organization, 
-          organization.id = uuid() as uuid3,
-          e3.fullUrl = append('urn:uuid:',uuid3),
           composition.extension as ext, 
           ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver',
           ext.value = create('Reference') as reference, 
-          reference.reference = append('urn:uuid:',uuid),
-          practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
-          practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) then
-          ReceiverItems(src, practitionerRole, practitioner, organization) "receiver";
+          reference.reference = append('urn:uuid:',uuid) then
+          ReceiverItems(src, bundle, practitionerRole) "receiver";
 }
 
 group PatientItems(source src : BackboneElement, target tgt:Patient) {
