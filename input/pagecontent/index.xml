@@ -149,20 +149,20 @@
     </p>
     <ul>
         <li>
-            <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-designer.html">SDC Form Designer</a>
+            <a href="http://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-designer.html">SDC Form Designer</a>
              - System responsible for creating and editing form designs</li>
         <li>
-            <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-filler.html">SDC Form Filler</a>
+            <a href="http://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-filler.html">SDC Form Filler</a>
              - System responsible for capturing user form input to produce partially or fully completed forms
         </li>
         <li>
-            <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-manager.html">SDC Form Manager</a>
+            <a href="https://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-manager.html">SDC Form Manager</a>
              - Repository for form definitions. May also perform pre-population</li>
         <li>
-            <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-response-manager.html">SDC Form Response Manager</a>
+            <a href="https://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-response-manager.html">SDC Form Response Manager</a>
              - Searchable repository for storage and retrieval of completed and partially completed forms.</li>
         <li>
-            <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-receiver.html">SDC Form Receiver</a>
+            <a href="https://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-receiver.html">SDC Form Receiver</a>
              - Write-only destination to which forms are sent for processing</li>
     </ul>
 
@@ -194,14 +194,14 @@
                 </td>
                 <td>A system that renders Questionnaires and allows for filling in. The Questionnaire Filler is also
                 responsible for filling in the corresponding resources in the Bundle, corresponds to the 
-                <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-filler.html">SDC Form Filler</a>.
+                <a href="https://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-filler.html">SDC Form Filler</a>.
                 </td>
             </tr>
             <tr>
                 <td>Questionnaire Receiver
                 </td>
                 <td>A system that receives a Bundle (according to the Questionnaire) from a Questionnaire filler and
-                renders it, corresponds to the <a href="http://build.fhir.org/ig/HL7/sdc/sdc-form-receiver.html">SDC Form Receiver</a>.
+                renders it, corresponds to the <a href="https://build.fhir.org/ig/HL7/sdc/CapabilityStatement-sdc-form-receiver.html">SDC Form Receiver</a>.
                 </td>
             </tr>
         </tbody>
