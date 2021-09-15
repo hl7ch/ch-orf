@@ -639,6 +639,7 @@ group PreviousResults(source grp : BackboneElement, target bundle: Bundle, targe
             bundle.entry as e, 
             e.resource = create('Media') as media, 
             media.id = uuid() as uuid,
+            media.status = 'completed',
             e.fullUrl = append('urn:uuid:',uuid), 
             media.content = attachment,
             serviceRequest.supportingInfo as supportingInfo,
