@@ -351,7 +351,7 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
       serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
       coverage.status = 'active',
       coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Zusatz' then {
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'VVG' then {
          item.item as item where (linkId.value = 'coverage.vvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
            coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.vvg.name";
@@ -420,7 +420,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Zusatz' then {
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Other' then {
       item.item as item where (linkId.value = 'coverage.other.name' and answer.exists()) ->
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
       coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.other.name";
