@@ -9,9 +9,6 @@ The link 'null#item.appointment.status' for "3 options" cannot be resolved
 The link 'null#item.requestedEncounter.class' for "3 options" cannot be resolved
 The link 'null#item.requestedEncounter.desiredAccommodation' for "3 options" cannot be resolved
 
-# Build Errors: valueset-diagnostic-requests.html, see https://github.com/hl7ch/ch-orf/issues/7
-The link 'valueset-diagnostic-requests.html' for "here" cannot be resolved
-
 # Build Error: 
 The image source 'pdf1' cannot be resolved
 
