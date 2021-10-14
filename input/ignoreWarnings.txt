@@ -2,13 +2,6 @@
 # Build Errors: icon-q-coding.png, see https://github.com/hl7ch/ch-orf/issues/26
 The image source 'icon-q-coding.png' cannot be resolved
 
-# Build Errors: Options, see https://github.com/hl7ch/ch-orf/issues/8
-The link 'null#item.order.priority' for "4 options" cannot be resolved
-The link 'null#item.patient.gender' for "3 options" cannot be resolved
-The link 'null#item.appointment.status' for "3 options" cannot be resolved
-The link 'null#item.requestedEncounter.class' for "3 options" cannot be resolved
-The link 'null#item.requestedEncounter.desiredAccommodation' for "3 options" cannot be resolved
-
 # Build Error: 
 The image source 'pdf1' cannot be resolved
 
