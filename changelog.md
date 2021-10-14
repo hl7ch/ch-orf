@@ -9,7 +9,8 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
 
    
 ### Changed / Updated
-* 
+* Update the suppressed messages (QA), mainly because of display values
+   * Issue: [#30](https://github.com/hl7ch/ch-orf/issues/30)
 
  
 ### Fixed
