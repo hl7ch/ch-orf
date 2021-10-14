@@ -7,6 +7,6 @@ The profile supports creation and domain wide deployment of forms for structured
 
 ## Development
 
-[Mapping of data elements](https://docs.google.com/spreadsheets/d/1e1pQsHjgHSIKiMhTYLdXTpaGPRONcdn2hYOeb2LNwrY/edit#gid=0)
-
-[Meeting notes](https://docs.google.com/document/d/1cDQP6qVrQjbmADiEAaO_pg2FpPyadSE9dWeLW3y3QPI/edit)
+* [Change log](https://github.com/hl7ch/ch-orf/blob/master/changelog.md)
+* [Mapping of data elements](https://docs.google.com/spreadsheets/d/1e1pQsHjgHSIKiMhTYLdXTpaGPRONcdn2hYOeb2LNwrY/edit#gid=0)
+* [Meeting notes](https://docs.google.com/document/d/1cDQP6qVrQjbmADiEAaO_pg2FpPyadSE9dWeLW3y3QPI/edit)
