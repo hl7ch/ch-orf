@@ -9,12 +9,12 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="0.10.0"/>
+  <version value="0.11.0"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2021-06-15"/>
+  <date value="2021-10-14"/>
   <publisher value="HL7 Switzerland"/>
   <contact>
     <name value="HL7 Switzerland"/>
@@ -540,8 +540,8 @@
     <!-- parameters -->
     <parameter>
       <code value="releaselabel"/>
-      <!--<value value="CI Build"/>-->
-      <value value="STU 1 Ballot"/>
+      <value value="CI Build"/>
+      <!--<value value="STU 1 Ballot"/>-->
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
