@@ -1,14 +1,6 @@
 <div xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas-r5/fhir-single.xsd">
 
-    <p/>
-
-    <div markdown="1" class="stu-note">
-    This Implementation Guide is under STU ballot by <a href="https://www.hl7.ch/">HL7 Switzerland</a> until September 24th, 2021 midnight. Please add your feedback via the ‘Propose a change’-link in the footer on the page where you have comments.
-    </div>
-
-    <p/>
-
     <p>This Implementation Guide uses FHIR defined resources – Composition Resource, Questionnaire Resource,
     QuestionnaireResponse Resource, Patient Resource, PractitionerRole Resource, Practitioner Resource, Organization Resource, ServiceRequest Resource and Bundle Resource from
     FHIR R4. For details on HL7 FHIR R4 see <a href="http://hl7.org/fhir/r4">http://hl7.org/fhir/r4</a>.
