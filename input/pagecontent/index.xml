@@ -677,7 +677,7 @@
     <p>This section describes the content of a form. The following definitions apply:
     </p>
     <p>Request and responses consist of filled in questionnaires. Some elements of the questionnaire are generic given
-        elements (such as author, data entry person, receiver etc. are always present in a questionnaire compliant to
+        elements (such as author, data entry person, receiver etc.) and are always present in a questionnaire compliant to
         the ORF Implementation Guide. In addition, a questionnaire will contain elements which are use case specific. The
         ORF Implementation Guide makes no assumptions about the nature of such elements: structure and content (including
         coding of codes elements) are in the responsibility of those creating a form for a particular use case.
