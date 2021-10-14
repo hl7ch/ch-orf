@@ -11,6 +11,7 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
 ### Changed / Updated
 * Improvement/updating of the documentation
    * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
+   * [Issue #43](https://github.com/hl7ch/ch-orf/issues/43): Add meaningful descriptions to the [profiles](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/profiles.html).
 * Update the suppressed messages (QA), mainly because of display values
    * [Issue #30](https://github.com/hl7ch/ch-orf/issues/30)
 
