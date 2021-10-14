@@ -586,7 +586,7 @@
         bundle as a FHIR transaction.
     </p>
     <a name="volume2"></a><h7>Trigger Events</h7>
-    <p>After the Questionnaire is completed by the Questionnaire filler user, the Questionnaire Filler submits a the
+    <p>After the Questionnaire is completed by the Questionnaire filler user, the Questionnaire Filler submits the
         corresponding bundle to the Questionnaire receiver.
     </p>
     <a name="volume2"></a><h7>Message Semantics</h7>
