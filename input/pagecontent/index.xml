@@ -652,8 +652,7 @@
             business rules.</li>
     </ul>
     <p>In addition, the Questionnaire Receiver may also send 5xx HTTP status codes to indicate non-transaction related
-        failures. Note that the Questionnaire Filler may also encounter non-FHIR endpoints which will not return an
-        Bundle in the response.
+        failures. Note that the Questionnaire Filler may also encounter non-FHIR endpoints which will not return a Bundle in the response.
     </p>
     <p>The Questionnaire Receiver may return HTTP redirect responses (responses with HTTP status codes 301, 302, 303 or
         307) in response to a request.
