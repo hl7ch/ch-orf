@@ -701,7 +701,7 @@
 
 
     <a name="volume3"></a><h4>Generic elements of a questionnaire</h4>
-    <p>A questionnaire shall have a set of generice elements (e.g. author, data entry person, receiver etc. 
+    <p>A questionnaire shall have a set of generic elements (e.g. author, data entry person, receiver etc. 
         <sup>&#91;Table 7&#93;</sup> lists the generic given elements
     </p>
      <table>
@@ -772,7 +772,7 @@
                 <td>PractitionerRole
                 </td>
                 <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist 
-                    has to be called by phone right away at the time the doucment is received.)
+                    has to be called by phone right away at the time the document is received.)
                 </td>
             </tr>
             <tr>

@@ -18,3 +18,6 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * [#34 Hyperlink refers to a non-existent page](https://github.com/hl7ch/ch-orf/issues/34)
    * [#35 Various hyperlinks refer to non-existent pages](https://github.com/hl7ch/ch-orf/issues/35)
    * [#36 Hyperlinks to SDC specification: refer to which version?](https://github.com/hl7ch/ch-orf/issues/36)
+   * [#45 Broken links & typos](https://github.com/hl7ch/ch-orf/issues/45)
+* Fixed typos
+   * [#45 Broken links & typos](https://github.com/hl7ch/ch-orf/issues/45)
