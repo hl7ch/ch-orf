@@ -933,7 +933,7 @@
             <a href="http://hl7.org/fhir/bundle-definitions.html#Bundle.type">type</a> &quot;document&quot; and has a 
             <a href="http://hl7.org/fhir/composition.html">Composition</a> resource as the first resource in the
             bundle, followed by a series of other resources, referenced from the Composition resource. The bundle gathers all
-            the content of the document into a single XML document which may be signed and managed as required. The
+            the content of the document into a single document which may be signed and managed as required. The
             resources include both human readable and computer processable sections. In addition, a bundle as defined in this
             profile shall include a CSS stylesheets and optionally it may include a signature.<br /><br />Any resource
             referenced directly in the Composition Resource shall be included in the bundle. Other resources that these referenced
