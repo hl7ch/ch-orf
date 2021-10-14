@@ -264,7 +264,7 @@
     <p>The Submit Bundle transaction is marked as optional to allow solutions which choose a different communication
     transaction method like IHE XDS, XDR, XMD to be conform with this Implementation Guide.
     </p>
-    <p>A product implementation using this Implementation Guide group actors from this with actors from a workflow or
+    <p>A product implementation using this Implementation Guide groups actors from this guide with actors from a workflow or
     transport Implementation Guide to be functional. The grouping of the content module described in this
     Implementation Guide to specific actors is described in more detail in the “Required Actor Groupings” section below.
     </p>
