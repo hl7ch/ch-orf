@@ -891,19 +891,21 @@
      
         <a name="volume3"></a><h5>ServiceRequest resource</h5>
 
-        <body>
-        {% include StructureDefinition-ch-orf-servicerequest-diff.xhtml %}
-        </body>
+        <p>
+            The CH ORF context specific requirements for this resource are shown in the profile 
+            <a href="StructureDefinition-ch-orf-servicerequest.html">CH ORF ServiceRequest</a>.
+        </p>
 
         <a name="volume3"></a><h5>DocumentReference resource</h5>
         <p>There may be the need to provide a linkage between particular files or between a particular file and an imaging
         study (e.g. a link between a PDF-File containing a report and a DICOM study). Such links shall be expressed with
-        a DocumentReference as follows:
+        a DocumentReference resource.
         </p>
 
-        <body>
-        {% include StructureDefinition-ch-orf-documentreference-diff.xhtml %}
-        </body>
+        <p>
+            The CH ORF context specific requirements for this resource are shown in the profile 
+            <a href="StructureDefinition-ch-orf-documentreference.html">CH ORF DocumentReference</a>.
+        </p>
         
 
     <a name="volume3"></a><h4>FHIR Representation</h4>
@@ -941,19 +943,22 @@
             document bigger, but will save applications from needing to retrieve the linked resources.</li>
     </ol>
     <a name="volume3"></a><h5>FHIR Resources Constraints</h5>
-    <p>This section lists FHIR resources where this profile provides additional information. Resources not listed here
+    <p>This section lists FHIR resources for which these <a href="profiles.html">CH ORF profiles</a> provide additional information. Resources not listed here
         follow the specifications of FHIR. For details refer to 
         <a href="https://www.hl7.org/fhir/resourcelist.html">https://www.hl7.org/fhir/resourcelist.html</a>.
     </p>
+
     <a name="volume3"></a><h6>Composition resource</h6>
-    <body>
-        {% include StructureDefinition-ch-orf-composition-diff.xhtml %}
-    </body>
+
+    <p>
+        The CH ORF context specific requirements for this resource are shown in the profile 
+        <a href="StructureDefinition-ch-orf-composition.html">CH ORF Composition</a>.
+    </p>
 
     <a name="volume3"></a><h6>Questionnaire resource</h6>
     <p>The intention of the ORF Implementation Guide is to provide a standardized representation of forms at sender and
-        receiver site as well. This is achieved with the Questionnaire Resource, which defines representation of all
-        elements for the user (with the help of a CSS) and user interaction as well (e.g. with drop down lists).
+    receiver site as well. This is achieved with the Questionnaire Resource, which defines representation of all
+    elements for the user (with the help of a CSS) and user interaction as well (e.g. with drop down lists).
     </p>
     <p>This approach requires two things:
     </p>
@@ -965,9 +970,10 @@
     <p>Both is achieved by assigning meaningful concepts to all elements concerned. For codes refer to Appendix A.
     </p>
 
-    <body>
-        {% include StructureDefinition-ch-orf-questionnaire-diff.xhtml %}
-    </body>
+    <p>
+        The CH ORF context specific requirements for this resource are shown in the profile 
+        <a href="StructureDefinition-ch-orf-questionnaire.html">CH ORF Questionnaire</a>.
+    </p>
      
     <a name="volume3"></a><h6>QuestionnaireResponse resource</h6>
     <p>The QuestionnaireResponse Resource depends of the definition of the Questionnaire Resource and is therefore use
@@ -975,7 +981,8 @@
         <a href="https://www.hl7.org/fhir/r4/questionnaireresponse.html">https://www.hl7.org/fhir/r4/questionnaireresponse.html</a>.
     </p>
 
-    <body>
-        {% include StructureDefinition-ch-orf-questionnaireresponse-diff.xhtml %}
-    </body>
+    <p>
+        The CH ORF context specific requirements for this resource are shown in the profile 
+        <a href="StructureDefinition-ch-orf-questionnaireresponse.html">CH ORF QuestionnaireResponse</a>.
+    </p>
 </div>
