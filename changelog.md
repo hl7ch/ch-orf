@@ -20,3 +20,5 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * Issues: [#32](https://github.com/hl7ch/ch-orf/issues/32), [#34](https://github.com/hl7ch/ch-orf/issues/34), [#35](https://github.com/hl7ch/ch-orf/issues/35), [#36](https://github.com/hl7ch/ch-orf/issues/36), [#49](https://github.com/hl7ch/ch-orf/issues/49), [#45](https://github.com/hl7ch/ch-orf/issues/45)
 * Fixed typos
    * Issues: [#45](https://github.com/hl7ch/ch-orf/issues/45), [#41](https://github.com/hl7ch/ch-orf/issues/41), [#37](https://github.com/hl7ch/ch-orf/issues/37), [#38](https://github.com/hl7ch/ch-orf/issues/38), [#39](https://github.com/hl7ch/ch-orf/issues/39), [#40](https://github.com/hl7ch/ch-orf/issues/40)
+* Fixed mapping
+   * [Issue #46](https://github.com/hl7ch/ch-orf/issues/46)  
