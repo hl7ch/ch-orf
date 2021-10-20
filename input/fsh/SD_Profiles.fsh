@@ -2,7 +2,8 @@ Profile: ChOrfQuestionnaire
 Parent: SdcQuestionnaireExtract
 Id: ch-orf-questionnaire
 Title: "CH ORF Questionnaire"
-Description: "Profile on Questionnaire for CH ORF"
+Description: "Profile to define how a CH ORF-conformant Questionnaire resource must be structured. 
+This is independent of the content and content structure of the questionnaire instance itself."
 * . ^short = "CH ORF Questionnaire"
 * extension[targetStructureMap] 1..1 MS
 * extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
@@ -14,7 +15,8 @@ Profile: ChOrfQuestionnaireResponse
 Parent: QuestionnaireResponse
 Id: ch-orf-questionnaireresponse
 Title: "CH ORF QuestionnaireResponse"
-Description: "Profile on QuestionnaireResponse for CH ORF"
+Description: "Profile to define how a CH ORF-conformant QuestionnaireResponse resource must be structured. 
+This is independent of the content and content structure of the response items to a specific questionnaire."
 * . ^short = "CH ORF QuestionnaireResponse"
 * identifier MS
 * basedOn MS
@@ -45,7 +47,8 @@ Profile: ChOrfServiceRequest
 Parent: ServiceRequest
 Id: ch-orf-servicerequest
 Title: "CH ORF ServiceRequest"
-Description: "Profile on ServiceRequest for CH ORF"
+Description: "Profile to define how the record of a request for service to be performed is represented in the context of an order.
+This resource is used to share relevant information required to support an CH ORF request from the order placer to the order filler."
 * . ^short = "CH ORF ServiceRequest"
 * extension contains ChOrfLocationAndTime named locationAndTime 0..* MS
 * extension contains ChOrfRequestedEncounterDetails named requestedEncounterDetails 0..1 MS
@@ -88,7 +91,8 @@ Profile: ChOrfComposition
 Parent: ChCoreComposition
 Id: ch-orf-composition
 Title: "CH ORF Composition"
-Description: "Profile on Composition for CH ORF"
+Description: "Profile to specify how the generic elements (e.g. patient, author) and the healthcare domain specific elements 
+must be structured in the Composition as the first entry of the document."
 * . ^short = "CH ORF Composition"
 * text 1.. MS
 * text ^short = "Narrative text of the composition"
@@ -178,7 +182,8 @@ Profile: ChOrfDocument
 Parent: ChCoreDocument
 Id: ch-orf-document
 Title: "CH ORF Document"
-Description: "Profile on Document for CH ORF"
+Description: "Profile to set constraints that specify the CH ORF-conformant presentation of a document. 
+The CH ORF exchange format is defined as a document type corresponding to a Bundle resource."
 * . ^short = "CH ORF Bundle"
 * identifier MS
 * identifier ^short = "Document Identifier"
@@ -202,7 +207,7 @@ Profile: ChOrfDocumentReference
 Parent: ChCoreDocumentReference
 Id: ch-orf-documentreference
 Title: "CH ORF DocumentReference"
-Description: "Profile on DocumentReference for CH ORF"
+Description: "Profile to describe how to provide a reference to a document to make it available to a healthcare system."
 * . ^short = "CH ORF DocumentReference"
 * status MS
 * type MS
@@ -227,7 +232,8 @@ Profile: ChOrfCoverage
 Parent: Coverage          // not ChCoreCoverage because of different identifier profiling
 Id: ch-orf-coverage
 Title: "CH ORF Coverage"
-Description: "Profile on Coverage for CH ORF"
+Description: "Profile to specify how the coverage is represented. 
+This provides an organization or the individual, which will pay for services requested."
 * . ^short = "CH ORF Coverage"
 * contained MS
 * identifier MS
@@ -251,7 +257,7 @@ Profile: ChOrfLocation
 Parent: ChCoreLocation
 Id: ch-orf-location
 Title: "CH ORF Location"
-Description: "Profile on Location for CH ORF"
+Description: "Profile to define the details of the location of the appointment."
 * . ^short = "CH ORF Location"
 * name MS
 * telecom MS
@@ -261,7 +267,9 @@ Profile: ChOrfAppointment
 Parent: Appointment
 Id: ch-orf-appointment
 Title: "CH ORF Appointment"
-Description: "Profile on Appointment for CH ORF"
+Description: "Profile to describe the location and time for the fulfillment of the service request.
+In this resource, the status of the appointment is defined, patient-oriented instructions are listed here 
+and where and when the service request is to be fulfilled."
 * . ^short = "CH ORF Appointment"
 * identifier MS 
 * identifier ^short = "External identifier for this item: May be used for referencing to a record in a scheduling application. Status in the scheduling application may 
@@ -289,7 +297,8 @@ Profile: ChOrfRequestedEncounter
 Parent: ChCoreEncounter
 Id: ch-orf-encounter
 Title: "CH ORF Requested Encounter"
-Description: "Profile on Requested Encounter for CH ORF"
+Description: "Profile to describe which details are represented at the requested encounter for the fulfillment of the service request. 
+These are, for example, the status of the encounter or the class and the desired accomodation during the encounter."
 * . ^short = "CH ORF Requested Encounter"
 * extension contains ChOrfDesiredAccommodation named desiredAccomodation 0..1 MS
 * status MS

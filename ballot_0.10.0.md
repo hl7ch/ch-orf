@@ -1,0 +1,72 @@
+# Resolution Ballot CH ORF STU 1
+
+## General information
+The Ballot STU 1 took place from August 1 to September 24. From September 20 to
+September 24, a Projectathon was organized to test Order & Referral by Form (ORF) and provide feedback on the exchange format.
+During the Ballot 43 problems were reported for CH ORF:
+* [Issues CH ORF](https://github.com/hl7ch/ch-orf/issues)
+
+## Feature request
+Axsana issues feature requests for Spitex registration use case:
+
+* [#74](https://github.com/hl7ch/ch-orf/issues/74) Spitex Type
+* [#73](https://github.com/hl7ch/ch-orf/issues/73) Date Discharge Hospital
+* [#72](https://github.com/hl7ch/ch-orf/issues/72) Consent Patient
+* [#71](https://github.com/hl7ch/ch-orf/issues/71) Relationship initiator
+* [#66](https://github.com/hl7ch/ch-orf/issues/66) PractitionerRole.availableTime
+* [#65](https://github.com/hl7ch/ch-orf/issues/65) Practitioner.identifier:ZSR
+* [#64](https://github.com/hl7ch/ch-orf/issues/64) Patient.language
+* [#61](https://github.com/hl7ch/ch-orf/issues/61) Encounter.participant.type and individual
+* [#60](https://github.com/hl7ch/ch-orf/issues/60)/[#63](https://github.com/hl7ch/ch-orf/issues/63) Patient.maritalsStatus
+
+
+## Documentation
+Proposals for adjustments to the content:
+
+* [#54](https://github.com/hl7ch/ch-orf/issues/54) Conditions Form & OID Organization (Sender/Receiver)
+* [#57](https://github.com/hl7ch/ch-orf/issues/57) Organization of receiver needs ID
+* [#58](https://github.com/hl7ch/ch-orf/issues/58) To discuss if one receiver organisation should provide n endpoints (with diffent ID's) 
+* [#70](https://github.com/hl7ch/ch-orf/issues/70) Adaption for eToc needs? Support for expression based population
+* [#53](https://github.com/hl7ch/ch-orf/issues/53) Cardinality Patient & Appointment status
+* [#47](https://github.com/hl7ch/ch-orf/issues/47) Appointment.requestedPeriod
+* [#48](https://github.com/hl7ch/ch-orf/issues/48) Appointment with status = "booked" -> start & end
+* [#31](https://github.com/hl7ch/ch-orf/issues/31) Composition.title/.type/.category
+* [#52](https://github.com/hl7ch/ch-orf/issues/52) Possibility to add information of Coverage.payor
+* [#51](https://github.com/hl7ch/ch-orf/issues/51) Composition.extension:receiver -> Reference to Practitioner
+* [#50](https://github.com/hl7ch/ch-orf/issues/50) Composition.extension:copyReceiver -> References to Organization|Patient|RelatedPerson|Practitioner
+* [#62](https://github.com/hl7ch/ch-orf/issues/62) orderIdentifier in addition to placerOrderIdentifier/fillerOrderIdentifier
+* [#43](https://github.com/hl7ch/ch-orf/issues/43) Missing short description of the profiles on the profile overview page
+* [#42](https://github.com/hl7ch/ch-orf/issues/42) Multiple embedding of FHIR Profile Differential Tables
+
+
+## Errors/IG Publisher
+Errors to be fixed:
+
+* [#69](https://github.com/hl7ch/ch-orf/issues/69) Clicking on options gives error 404
+* [#28](https://github.com/hl7ch/ch-orf/issues/28) Error transforming Appointment
+* [#46](https://github.com/hl7ch/ch-orf/issues/46) Map ORF: wrong values for coverage-type
+* [#30](https://github.com/hl7ch/ch-orf/issues/30) Warning display value
+
+
+## Broken links/typos
+Broken links or typos to be fixed:
+
+* [#49](https://github.com/hl7ch/ch-orf/issues/49) Links to IG SDC
+* [#44](https://github.com/hl7ch/ch-orf/issues/44) FHIR Serialization Format Representations
+* [#32](https://github.com/hl7ch/ch-orf/issues/32) Home: Several links not found in section 1.1.1
+* [#34](https://github.com/hl7ch/ch-orf/issues/34) Hyperlink refers to a non-existent page
+* [#35](https://github.com/hl7ch/ch-orf/issues/35) Various hyperlinks refer to non-existent pages
+* [#36](https://github.com/hl7ch/ch-orf/issues/36) Hyperlinks on SDC - Specification: refer to which version?
+* [#37](https://github.com/hl7ch/ch-orf/issues/37) Correct sentence
+* [#38](https://github.com/hl7ch/ch-orf/issues/38) Typo
+* [#39](https://github.com/hl7ch/ch-orf/issues/39) Typo
+* [#40](https://github.com/hl7ch/ch-orf/issues/40) Typo
+* [#41](https://github.com/hl7ch/ch-orf/issues/41)/[#45](https://github.com/hl7ch/ch-orf/issues/45) Broken links & typos
+
+
+## Value sets
+Adaptions: 
+
+* [#59](https://github.com/hl7ch/ch-orf/issues/59) Value sets may be revised according to clinicians and adminstrative (e.g. insurance) needs
+* [#56](https://github.com/hl7ch/ch-orf/issues/56) Coverage.class.type
+* [#55](https://github.com/hl7ch/ch-orf/issues/55) Coverage Type
