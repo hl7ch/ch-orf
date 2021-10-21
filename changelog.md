@@ -18,6 +18,8 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
 
  
 ### Fixed
+* Different elements for start and end time of an Appointment, according to the status. Add examples of Appointments with the different status.
+   * [Issue #48](https://github.com/hl7ch/ch-orf/issues/48)  
 * Links to SDC FHIR IG: Some links were broken and other links led to wrong versions. For this publication, the IG CH ORF is derived from [SDC v2.7.0](http://hl7.org/fhir/uv/sdc/2019May/). The links were fixed so that they link to this version.
    * Issues: [#32](https://github.com/hl7ch/ch-orf/issues/32), [#34](https://github.com/hl7ch/ch-orf/issues/34), [#35](https://github.com/hl7ch/ch-orf/issues/35), [#36](https://github.com/hl7ch/ch-orf/issues/36), [#49](https://github.com/hl7ch/ch-orf/issues/49), [#45](https://github.com/hl7ch/ch-orf/issues/45)
 * Fixed typos
