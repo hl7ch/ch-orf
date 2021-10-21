@@ -278,6 +278,10 @@ and where and when the service request is to be fulfilled."
 * status from ChOrfAppointmentStatus (required)
 * status ^short = "Used to express if time and date are the preference of the patient (=\"proposed\"), confirmed by the patient but not yet by the service provider 
   (=\"pending\") or confirmed by the patient and the service provider (=\"booked\")"
+* start MS
+* start ^short = "When appointment is to take place (required if status=\"pending\" or \"booked\")"
+* end MS  
+* end ^short = "When appointment is to conclude (required if status=\"pending\" or \"booked\")"
 * patientInstruction MS
 * patientInstruction ^short = "Patient-oriented instructions SHALL be here and NOT in ServiceRequest.patientInstruction"
 * participant ..1 MS
@@ -287,7 +291,7 @@ and where and when the service request is to be fulfilled."
 * participant.status MS
 * participant.status = #tentative         //fixed to "tentative" because the actor is the location
 * requestedPeriod 0..1 MS
-* requestedPeriod ^short = "Single Date/time or Date/time interval indication for the appointment. A single Date/time indication MUST have 
+* requestedPeriod ^short = "Single Date/time or Date/time-interval indication for the appointment with the status=\"proposed\". A single Date/time indication MUST have 
  the same value for start and end."
 * requestedPeriod.start MS
 * requestedPeriod.end MS
