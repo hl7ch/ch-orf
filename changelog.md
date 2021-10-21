@@ -5,8 +5,8 @@ All notable changes to this project will be documented in this file.
 These changes were made based on the comments of the HL7 Switzerland STU 1 Ballot.
 
 ### Added
-* 
-
+* [Description](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#composition-resource) of the handling of general information about the document in derived questionnaires.
+   * [Issue #31](https://github.com/hl7ch/ch-orf/issues/31) 
    
 ### Changed / Updated
 * Improvement/updating of the documentation
