@@ -491,7 +491,7 @@
       </reference>
       <name value="Appointment pending"/>
       <description value="Example for Appointment with status=pending"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
     <resource>
       <reference>
@@ -499,7 +499,7 @@
       </reference>
       <name value="Appointment booked"/>
       <description value="Example for Appointment with status=booked"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
     <resource>
       <reference>
@@ -507,7 +507,7 @@
       </reference>
       <name value="Appointment proposed"/>
       <description value="Example for Appointment with status=proposed"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
 
     <resource>
@@ -516,7 +516,7 @@
       </reference>
       <name value="Location of Appointment"/>
       <description value="Example for Location"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location"/>
     </resource>
 
     <!-- pages -->
