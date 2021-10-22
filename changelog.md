@@ -13,6 +13,7 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
    * [Issue #42](https://github.com/hl7ch/ch-orf/issues/42): Instead of the redundantly embedded differential tables of the profiles on the 'Home' page ([Volume 3 - Content Modules](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#volume-3-%E2%80%93-content-modules)), links to the profiles are provided at the relevant places.
    * [Issue #43](https://github.com/hl7ch/ch-orf/issues/43): Add meaningful descriptions to the [profiles](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/profiles.html).
+   * [Issue #51](https://github.com/hl7ch/ch-orf/issues/51): Add a [description](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#generic-elements-of-a-questionnaire) of the use of the PractitionerRole resource.
 * Update the suppressed messages (QA), mainly because of display values
    * [Issue #30](https://github.com/hl7ch/ch-orf/issues/30)
 
