@@ -37,34 +37,6 @@ Description: "Example for Questionnaire"
 * item[=].type = #group
 * item[=].required = true
 
-* item[=].item[+].linkId = "order.title"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"
-* item[=].item[=].text = "Titel"
-* item[=].item[=].type = #string
-* item[=].item[=].required = true
-// * item[=].item[=].readOnly = true
-
-* item[=].item[+].linkId = "order.type"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"
-* item[=].item[=].text = "Typ"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-// * item[=].item[=].readOnly = true
-* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"
-
-* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
-* item[=].item[=].extension.valueBoolean = true
-* item[=].item[=].linkId = "order.category"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"
-* item[=].item[=].text = "Kategorie"
-* item[=].item[=].type = #choice
-* item[=].item[=].required = true
-* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"
-* item[=].item[=].initial.valueCoding = SCT#721963009 "Order (record artifact)"
-// example intial value: https://www.hl7.org/fhir/questionnaire-profile-example-ussg-fht.xml.html
-// choice: Question with a Coding drawn from a list of possible answers (specified in either the answerOption property, or via the valueset referenced in the answerValueSet property) as an answer (valueCoding).
-// https://chat.fhir.org/#narrow/stream/179255-questionnaire/topic/Initial.20Value.3A.20Coding.20.3D.20.7Btodo.7D
-
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"

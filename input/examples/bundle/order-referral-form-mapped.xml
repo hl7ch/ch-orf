@@ -166,35 +166,6 @@
           <linkId value="order"/>
           <text value="Auftrag"/>
           <item>
-            <linkId value="order.title"/>
-            <text value="Titel"/>
-            <answer>
-              <valueString value="Order-Referral-Form"/>
-            </answer>
-          </item>
-          <item>
-            <linkId value="order.type"/>
-            <text value="Typ"/>
-            <answer>
-              <valueCoding>
-                <system value="http://snomed.info/sct"/>
-                <code value="419891008"/>
-                <display value="Record artifact (record artifact)"/>
-              </valueCoding>
-            </answer>
-          </item>
-          <item>
-            <linkId value="order.category"/>
-            <text value="Kategorie"/>
-            <answer>
-              <valueCoding>
-                <system value="http://snomed.info/sct"/>
-                <code value="721963009"/>
-                <display value="Order (record artifact)"/>
-              </valueCoding>
-            </answer>
-          </item>
-          <item>
             <linkId value="order.placerOrderIdentifier"/>
             <text value="Auftragsnummer des Auftraggebers"/>
             <answer>
@@ -952,30 +923,6 @@
           <text value="Auftrag"/>
           <type value="group"/>
           <required value="true"/>
-          <item>
-            <linkId value="order.title"/>
-            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.title"/>
-            <text value="Titel"/>
-            <type value="string"/>
-            <required value="true"/>
-            <readOnly value="true"/>
-          </item>
-          <item>
-            <linkId value="order.type"/>
-            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.type"/>
-            <text value="Typ"/>
-            <type value="choice"/>
-            <required value="true"/>
-            <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode"/>
-          </item>
-          <item>
-            <linkId value="order.category"/>
-            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.category"/>
-            <text value="Kategorie"/>
-            <type value="choice"/>
-            <required value="true"/>
-            <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode"/>
-          </item>
           <item>
             <linkId value="order.placerOrderIdentifier"/>
             <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"/>

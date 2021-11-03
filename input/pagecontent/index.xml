@@ -948,42 +948,37 @@
         In the Composition, general information about the document is defined, such as title, type and category. 
         In the CH ORF exchange format, no fixed values are determined for these elements, only a preferred binding to specific ValueSets is made. 
         These values are context-dependent and have to be specified in the corresponding derived exchange format.
-        They must be defined in the Questionnaire, as they are read-only items. 
-        To support the contextual validation of the document, the values can be set as fixedValues in the Composition profile.
+        They must be defined as fixedValues or limited ValueSet in the Composition profile.
         <table>
             <tbody>
                 <tr>
                     <th><b>Element</b></th>
                     <th><b>Description</b></th>
-                    <th><b>Item in Questionnaire</b></th>
-                    <th><b>Element in Composition</b></th>
-                    <th><b>Value</b></th>
+                    <th><b>DataType</b></th>
+                    <th><b>ValueSet</b></th>
                 </tr>
                 <tr>
-                    <td>Title</td>
-                    <td>Meaningful human-readable title of the document</td>
-                    <td><a href="Questionnaire-order-referral-form.html">order.title</a><br/>Flag in CH ORF &amp; dependent Questionnaire: Is Readonly</td>
                     <td><a href="StructureDefinition-ch-orf-composition.html#Composition.title">Composition.title</a></td>
-                    <td>string</td>
+                    <td>Meaningful human-readable title of the document</td>
+                    <td><code>string</code></td>
+                    <td>-</td>
                 </tr>
                 <tr>
-                    <td>Type</td>
-                    <td>Precise type of the document</td>
-                    <td><a href="Questionnaire-order-referral-form.html">order.type</a><br/>Flag in dependent Questionnaire: Is Readonly</td>
                     <td><a href="StructureDefinition-ch-orf-composition.html#Composition.type">Composition.type</a></td>
-                    <td>CodeableConcept<br/><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.typeCode.html">DocumentEntry.typeCode</a></td>
+                    <td>Precise type of the document</td>
+                    <td><code>CodeableConcept</code></td>
+                    <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.typeCode.html">DocumentEntry.typeCode</a></td>
                 </tr>
                 <tr>
-                    <td>Category</td>
-                    <td>High-level kind of the document at a macro level</td>
-                    <td><a href="Questionnaire-order-referral-form.html">order.category</a><br/>Flag in dependent Questionnaire: Is Readonly</td>
                     <td><a href="StructureDefinition-ch-orf-composition.html#Composition.category">Composition.category</a></td>
-                    <td>CodeableConcept<br/><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.classCode.html">DocumentEntry.classCode</a></td>
+                    <td>High-level kind of the document at a macro level</td>
+                    <td><code>CodeableConcept</code></td>
+                    <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.classCode.html">DocumentEntry.classCode</a></td>
                 </tr>
             </tbody>
         </table>
         <p>
-            <sup>&#91;Table 8&#93;</sup> <i>Generel information about the document defined in Composition &amp; Questionnaire</i>
+            <sup>&#91;Table 8&#93;</sup> <i>Generel information about the document defined in Composition</i>
         </p>
     </p>
 
