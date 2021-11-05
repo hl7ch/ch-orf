@@ -11,7 +11,7 @@
         <code value="MR" />
       </coding>
     </type>
-    <system value="urn:oid:2.16.756.5.30.999999.1"/>
+    <system value="urn:oid:2.999.1.2"/>
     <value value="11.22.33.4567"/>
   </identifier>
   <name>
