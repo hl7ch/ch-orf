@@ -1,7 +1,7 @@
 Extension: ChOrfCopyReceiver
 Id: ch-orf-copyreceiver
 Title: "CH ORF Copy Receiver"
-Description: "Receiver of the copy of this document."
+Description: "Receiver of the copy of this order and the results therefrom"
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1

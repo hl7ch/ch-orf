@@ -618,10 +618,10 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
-// ---------- Copy Receiver ----------
+// ---------- Copy Receiver (Copy of this order and all results therefrom----------
 * item[+].linkId = "receiverCopies"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"
-* item[=].text = "Kopieempfänger"
+* item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "receiverCopy"

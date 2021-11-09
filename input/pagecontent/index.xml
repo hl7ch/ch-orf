@@ -821,7 +821,7 @@
                 </td>
                 <td>Patient/Organization
                 </td>
-                <td>Person/organization who receives the copy of this document.
+                <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).
                 </td>
             </tr>
             <tr>
