@@ -988,7 +988,7 @@
                 <item>
                     <linkId value="receiverCopies"/>
                     <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"/>
-                    <text value="Kopieempfänger"/>
+                    <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
                     <type value="group"/>
                     <item>
                         <linkId value="receiverCopy"/>
@@ -1768,11 +1768,11 @@
                         </item>
                     </item>
                 </item>
-                <!-- Copy Receiver: Person/organization who receives the copy of this document -->
+                <!-- Copy Receiver: Person/organization who receives the copy of this order (shall receive also all results therefrom) -->
                 <item>
                     <linkId value="receiverCopies"/>
                     <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
-                    <text value="Kopieempfänger"/>
+                    <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
                     <item>
                         <linkId value="receiverCopy"/>
                         <text value="Kopieempfangende Organisation oder Person"/>

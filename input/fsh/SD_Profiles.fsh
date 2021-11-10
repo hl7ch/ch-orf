@@ -107,7 +107,7 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfReceiver named receiver 0..1 MS
 * extension[receiver] ^short = "Person/organization who receives the document"
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
-* extension[copyReceiver] ^short = "Person/organization who receives the copy of this document"
+* extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)

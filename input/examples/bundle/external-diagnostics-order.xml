@@ -1581,7 +1581,7 @@
         <item>
           <linkId value="receiverCopies"/>
           <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"/>
-          <text value="Kopieempfänger"/>
+          <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
           <type value="group"/>
           <item>
             <linkId value="receiverCopy"/>
