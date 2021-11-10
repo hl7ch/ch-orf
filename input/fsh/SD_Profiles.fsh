@@ -107,7 +107,7 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfReceiver named receiver 0..1 MS
 * extension[receiver] ^short = "Person/organization who receives the document"
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
-* extension[copyReceiver] ^short = "Person/organization who receives the copy of this document"
+* extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)
@@ -142,13 +142,13 @@ must be structured in the Composition as the first entry of the document."
 * section[orderReferral].entry ^slicing.discriminator.type = #profile
 * section[orderReferral].entry ^slicing.discriminator.path = "resolve()"
 * section[orderReferral].entry ^slicing.rules = #open
-// ---------- Composition.section.entry:Questionnaire ----------
-* section[orderReferral].entry contains Questionnaire 1..1 MS
+// ---------- Composition.section.entry:Questionnaire - 10.11.21: According to Ballot #18, Cardinality set to 0..
+* section[orderReferral].entry contains Questionnaire 0..1 MS
 * section[orderReferral].entry[Questionnaire] only Reference(ChOrfQuestionnaire)
 * section[orderReferral].entry[Questionnaire] ^short = "Questionnaire"
 * section[orderReferral].entry[Questionnaire].reference 1.. MS
-// ---------- Composition.section.entry:QuestionnaireResponse ----------
-* section[orderReferral].entry contains QuestionnaireResponse 1..1 MS
+// ---------- Composition.section.entry:QuestionnaireResponse - - 10.11.21: According to Ballot #18, Cardinality set to 0..
+* section[orderReferral].entry contains QuestionnaireResponse 0..1 MS
 * section[orderReferral].entry[QuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
 * section[orderReferral].entry[QuestionnaireResponse] ^short = "QuestionnaireResponse"
 * section[orderReferral].entry[QuestionnaireResponse].reference 1.. MS
