@@ -13,11 +13,14 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
    * [Issue #42](https://github.com/hl7ch/ch-orf/issues/42): Instead of the redundantly embedded differential tables of the profiles on the 'Home' page ([Volume 3 - Content Modules](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#volume-3-%E2%80%93-content-modules)), links to the profiles are provided at the relevant places.
    * [Issue #43](https://github.com/hl7ch/ch-orf/issues/43): Add meaningful descriptions to the [profiles](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/profiles.html).
+   * [Issue #51](https://github.com/hl7ch/ch-orf/issues/51): Add a [description](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#generic-elements-of-a-questionnaire) of the use of the PractitionerRole resource.
 * Update the suppressed messages (QA), mainly because of display values
    * [Issue #30](https://github.com/hl7ch/ch-orf/issues/30)
 
  
 ### Fixed
+* Different elements for start and end time of an Appointment, according to the status. Add examples of Appointments with the different status.
+   * [Issue #48](https://github.com/hl7ch/ch-orf/issues/48)  
 * Links to SDC FHIR IG: Some links were broken and other links led to wrong versions. For this publication, the IG CH ORF is derived from [SDC v2.7.0](http://hl7.org/fhir/uv/sdc/2019May/). The links were fixed so that they link to this version.
    * Issues: [#32](https://github.com/hl7ch/ch-orf/issues/32), [#34](https://github.com/hl7ch/ch-orf/issues/34), [#35](https://github.com/hl7ch/ch-orf/issues/35), [#36](https://github.com/hl7ch/ch-orf/issues/36), [#49](https://github.com/hl7ch/ch-orf/issues/49), [#45](https://github.com/hl7ch/ch-orf/issues/45)
 * Fixed typos

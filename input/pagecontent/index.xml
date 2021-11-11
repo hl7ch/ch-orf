@@ -901,6 +901,12 @@
     <p><sup>&#91;Table 7&#93;</sup> <i>Generic elements in Questionnaires compliant to the ORF Implementation Guide</i>
     </p>
 
+    <p>
+        <sup>&#91;Table 7&#93;</sup> shows that the FHIR representation of elements representing a person and/or an organisation 
+        is defined by the <b>PractitionerRole</b> resource. The Practitioner and/or the Organisation resource can then be referenced 
+        from the PractitionerRole resource.
+    </p>
+
     <a name="volume3"></a><h4>Healthcare domain specific elements of a questionnaire</h4>
      
         <a name="volume3"></a><h5>ServiceRequest resource</h5>
