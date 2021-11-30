@@ -474,7 +474,7 @@
       </reference>
       <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
     </resource>
     <resource>
       <reference>
