@@ -480,15 +480,34 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Selbstzahler"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "coverage.self.familyName"
+* item[=].item[=].item[+].linkId = "coverage.self.patient"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].text = "Patient selbst"
+* item[=].item[=].item[=].type = #boolean
 
-* item[=].item[=].item[+].linkId = "coverage.self.givenName"
+* item[=].item[=].item[+].linkId = "coverage.self.relatedPerson"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].text = "Andere Person"
+* item[=].item[=].item[=].type = #boolean
+* item[=].item[=].item[=].enableWhen[+].question = "coverage.self.patient"
+* item[=].item[=].item[=].enableWhen[=].operator = #exists
+* item[=].item[=].item[=].enableWhen[=].answerBoolean = false
+
+* item[=].item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.familyName"
+* item[=].item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
+* item[=].item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].item[=].enableWhen[+].question = "coverage.self.relatedPerson"
+* item[=].item[=].item[=].item[=].enableWhen[=].operator = #=
+* item[=].item[=].item[=].item[=].enableWhen[=].answerBoolean = true
+
+* item[=].item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.givenName"
+* item[=].item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
+* item[=].item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].item[=].enableWhen[+].question = "coverage.self.relatedPerson"
+* item[=].item[=].item[=].item[=].enableWhen[=].operator = #=
+* item[=].item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 // Other
 * item[=].item[+].linkId = "coverage.other"

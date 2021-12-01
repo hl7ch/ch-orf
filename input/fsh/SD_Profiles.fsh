@@ -250,7 +250,7 @@ This provides an organization or the individual, which will pay for services req
 * beneficiary MS
 * beneficiary only Reference(ChCorePatient)
 * payor MS
-* payor only Reference(ChCoreOrganization or ChCorePatient)
+* payor only Reference(ChCoreOrganization or ChCorePatient or RelatedPerson)
 
 
 Profile: ChOrfLocation
