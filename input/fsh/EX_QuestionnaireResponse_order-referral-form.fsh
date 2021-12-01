@@ -247,7 +247,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
 * item[=].item[=].text = "Zimmerkategorie"
-* item[=].item[=].answer.valueCoding = V3ActCode#SP "Zweierzimmer"
+* item[=].item[=].answer.valueCoding = ChCoreCSEncounterType#2 "halbprivat"
 
 // ---------- Coverage (Kostenträger) ----------
 

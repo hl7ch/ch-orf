@@ -6,9 +6,9 @@
     </meta>
     <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation">
         <valueCoding>
-            <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-            <code value="SP"/>
-            <display value="Semi-private"/>
+            <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+            <code value="2"/>
+            <display value="halbprivat"/>
         </valueCoding>
     </extension>
     <status value="planned"/>

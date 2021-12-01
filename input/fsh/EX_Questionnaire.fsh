@@ -382,9 +382,10 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"
 * item[=].item[=].text = "Zimmerkategorie"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerOption[+].valueCoding = V3ActCode#P "Einerzimmer"
-* item[=].item[=].answerOption[+].valueCoding = V3ActCode#SP "Zweierzimmer"
-* item[=].item[=].answerOption[+].valueCoding = V3ActCode#W "Mehrbettzimmer"
+* item[=].item[=].answerOption[+].valueCoding = ChCoreCSEncounterType#1 "allgemein"
+* item[=].item[=].answerOption[+].valueCoding = ChCoreCSEncounterType#2 "halbprivat"
+* item[=].item[=].answerOption[+].valueCoding = ChCoreCSEncounterType#3 "privat"
+
 
 // ---------- Coverage (Kostenträger) ----------
 // Design as agreed with eHealth Suisse and Cistec 09.06.2021

@@ -359,9 +359,9 @@
       <linkId value="requestedEncounter.desiredAccommodation"/>
       <answer>
         <valueCoding>
-          <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-          <code value="SP"/>
-          <display value="Zweierzimmer"/>
+          <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+          <code value="2"/>
+          <display value="halbprivat"/>
         </valueCoding>
       </answer>
     </item>

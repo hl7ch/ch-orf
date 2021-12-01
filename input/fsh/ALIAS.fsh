@@ -10,6 +10,7 @@ Alias:  ChCoreEncounter =           http://fhir.ch/ig/ch-core/StructureDefinitio
 Alias:  ChCoreDocumentReference =   http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-documentreference
 Alias:  ChCoreCoverage =            http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-coverage
 Alias:  ChCoreLocation =            http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-location
+Alias:  ChCoreCSEncounterType =     http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype
 
 // SDC
 Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire

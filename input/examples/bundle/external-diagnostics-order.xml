@@ -1245,23 +1245,23 @@
             <type value="choice"/>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="P"/>
-                <display value="Einerzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="1"/>
+                <display value="allgemein"/>
               </valueCoding>
             </answerOption>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="SP"/>
-                <display value="Zweierzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="2"/>
+                <display value="halbprivat"/>
               </valueCoding>
             </answerOption>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="W"/>
-                <display value="Mehrbettzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="3"/>
+                <display value="privat"/>
               </valueCoding>
             </answerOption>
           </item>
