@@ -29,6 +29,9 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
 * [Issue #50](https://github.com/hl7ch/ch-orf/issues/50)
 * Expansion of the [questionnaire](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Questionnaire-order-referral-form.html) field 'coverage.self'. Differentiation between [patient himself](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Coverage-CoverageSelfPatient.html) or [related person](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Coverage-CoverageSelfRelatedPerson.html) as self-payer.
    * [Issue #80](https://github.com/hl7ch/ch-orf/issues/80)
+* Change source of the codes for [desired accommodation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/ValueSet-ch-orf-vs-desiredaccommodation.html).
+   * [Issue #91](https://github.com/hl7ch/ch-orf/issues/91)
+
  
 ### Fixed
 * Different elements for start and end time of an Appointment, according to the status. Add examples of Appointments with the different status.
