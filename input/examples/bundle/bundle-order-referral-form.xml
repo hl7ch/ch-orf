@@ -1646,6 +1646,13 @@
                             </answer>
                         </item>
                         <item>
+                            <linkId value="receiver.practitioner.zsr"/>
+                            <text value="ZSR"/>
+                            <answer>
+                                <valueString value="A123262"/>
+                            </answer>
+                        </item>
+                        <item>
                             <linkId value="receiver.practitioner.phone"/>
                             <text value="Telefon"/>
                             <answer>
@@ -1864,6 +1871,13 @@
                                 </answer>
                             </item>
                             <item>
+                                <linkId value="sender.author.practitioner.zsr"/>
+                                <text value="ZSR"/>
+                                <answer>
+                                    <valueString value="A123321"/>
+                                </answer>
+                            </item>
+                            <item>
                                 <linkId value="sender.author.practitioner.phone"/>
                                 <text value="Telefon"/>
                                 <answer>
@@ -2071,6 +2085,10 @@
                     <system value="urn:oid:2.51.1.3"/>
                     <value value="7601000034321"/>
                 </identifier>
+                <identifier>
+                    <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
+                    <value value="A123321"/>
+                </identifier>
                 <name>
                     <family value="Meier"/>
                     <given value="Sabine"/>
@@ -2129,6 +2147,10 @@
                 <identifier>
                     <system value="urn:oid:2.51.1.3"/>
                     <value value="7601000066878"/>
+                </identifier>
+                <identifier>
+                    <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
+                    <value value="A123262"/>
                 </identifier>
                 <name>
                     <family value="Röntgen"/>

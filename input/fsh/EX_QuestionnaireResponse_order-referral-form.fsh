@@ -111,6 +111,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].answer.valueString = "7601000066878"
 
+* item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
+* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].answer.valueString = "A123262"
+
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].answer.valueString = "044 412 00 99"
@@ -288,6 +292,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].item[=].answer.valueString = "7601000034321"
+
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
+* item[=].item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].item[=].answer.valueString = "A123321"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
