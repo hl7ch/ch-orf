@@ -204,6 +204,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Land"
 * item[=].item[=].answer.valueString = "Schweiz"
 
+* item[=].item[+].linkId = "patient.languageOfCorrespondance"
+* item[=].item[=].text = "Korrespondenssprache"
+* item[=].item[=].answer.valueCoding = urn:ietf:bcp:47#de-CH "German (Switzerland)"
+
 // ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
 * item[=].item[=].text = "Kontaktperson"

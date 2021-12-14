@@ -667,6 +667,13 @@
                         <type value="string"/>
                     </item>
                     <item>
+                        <linkId value="patient.languageOfCorrespondance"/>
+                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"/>
+                        <text value="Korrespondenssprache"/>
+                        <type value="choice"/>
+                        <answerValueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+                    </item>
+                    <item>
                         <linkId value="patient.contactperson"/>
                         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"/>
                         <text value="Kontaktperson"/>
@@ -1439,6 +1446,16 @@
                         <value value="max@freund.ch"/>
                     </telecom>
                 </contact>
+                <communication>
+                    <language>
+                    <coding>
+                        <system value="urn:ietf:bcp:47"/>
+                        <code value="de-CH"/>
+                        <display value="German (Switzerland)"/>
+                    </coding>
+                    </language>
+                    <preferred value="true"/>
+                </communication>
             </Patient>
         </resource>
     </entry>
@@ -1792,6 +1809,17 @@
                         <text value="Land"/>
                         <answer>
                             <valueString value="Schweiz"/>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.languageOfCorrespondance"/>
+                        <text value="Korrespondenssprache"/>
+                        <answer>
+                            <valueCoding>
+                                <system value="urn:ietf:bcp:47"/>
+                                <code value="de-CH"/>
+                                <display value="German (Switzerland)"/>
+                            </valueCoding>
                         </answer>
                     </item>
                 </item>
