@@ -437,6 +437,12 @@
                             <type value="string"/>
                         </item>
                         <item>
+                            <linkId value="receiver.practitioner.zsr"/>
+                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
+                            <text value="ZSR"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
                             <linkId value="receiver.practitioner.phone"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
                             <text value="Telefon"/>
@@ -947,6 +953,12 @@
                                 <linkId value="sender.author.practitioner.gln"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"/>
                                 <text value="GLN"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="sender.author.practitioner.zsr"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
+                                <text value="ZSR"/>
                                 <type value="string"/>
                             </item>
                             <item>
