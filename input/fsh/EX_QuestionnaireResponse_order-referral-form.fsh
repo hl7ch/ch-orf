@@ -175,6 +175,10 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Geschlecht"
 * item[=].item[=].answer.valueCoding = AdministrativeGender#female
 
+* item[=].item[+].linkId = "patient.maritalStatus"
+* item[=].item[=].text = "Zivilstand"
+* item[=].item[=].answer.valueCoding = EchMaritalStatus#1 "ledig"
+
 * item[=].item[+].linkId = "patient.phone"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].answer.valueString = "079 979 79 79"

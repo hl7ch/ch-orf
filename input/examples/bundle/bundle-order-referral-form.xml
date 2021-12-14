@@ -567,6 +567,68 @@
                         </answerOption>
                     </item>
                     <item>
+                        <linkId value="patient.maritalStatus"/>
+                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.maritalStatus"/>
+                        <text value="Zivilstand"/>
+                        <type value="choice"/>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="1"/>
+                                <display value="ledig"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="2"/>
+                                <display value="verheiratet"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="3"/>
+                                <display value="verwitwet"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="4"/>
+                                <display value="geschieden"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="5"/>
+                                <display value="unverheiratet"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="6"/>
+                                <display value="in eingetragener Partnerschaft"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="7"/>
+                                <display value="aufgelöste Partnerschaft"/>
+                            </valueCoding>
+                        </answerOption>
+                        <answerOption>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="9"/>
+                                <display value="unbekannt"/>
+                            </valueCoding>
+                        </answerOption>
+                    </item>
+                    <item>
                         <linkId value="patient.phone"/>
                         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
                         <text value="Telefon"/>
@@ -1353,6 +1415,13 @@
                     <postalCode value="8000"/>
                     <country value="Schweiz"/>
                 </address>
+                <maritalStatus>
+                    <coding>
+                        <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                        <code value="1"/>
+                        <display value="ledig"/>
+                    </coding>
+                </maritalStatus>
                 <contact>
                     <relationship>
                         <text value="Guter Freund"/>
@@ -1666,6 +1735,17 @@
                                 <system value="http://hl7.org/fhir/administrative-gender"/>
                                 <code value="female"/>
                                 <display value="Weiblich"/>
+                            </valueCoding>
+                        </answer>
+                    </item>
+                    <item>
+                        <linkId value="patient.maritalStatus"/>
+                        <text value="Zivilstand"/>
+                        <answer>
+                            <valueCoding>
+                                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                                <code value="1"/>
+                                <display value="ledig"/>
                             </valueCoding>
                         </answer>
                     </item>

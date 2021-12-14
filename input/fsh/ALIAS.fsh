@@ -23,6 +23,7 @@ Alias:  BundleType =                http://hl7.org/fhir/bundle-type
 Alias:  RequestPriority =           http://hl7.org/fhir/request-priority
 Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
 Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
+Alias:  EchMaritalStatus =          http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus
 
 Alias:  SCT =                       http://snomed.info/sct
 Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4
