@@ -671,7 +671,7 @@
                         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"/>
                         <text value="Korrespondenssprache"/>
                         <type value="choice"/>
-                        <answerValueSet value="http://hl7.org/fhir/ValueSet/languages"/>
+                        <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"/>
                     </item>
                     <item>
                         <linkId value="patient.contactperson"/>
@@ -1449,9 +1449,9 @@
                 <communication>
                     <language>
                     <coding>
-                        <system value="urn:ietf:bcp:47"/>
+                        <system value="urn:oid:2.16.840.1.113883.6.316"/>
                         <code value="de-CH"/>
-                        <display value="German (Switzerland)"/>
+                        <display value="Deutsch (Schweiz)"/>
                     </coding>
                     </language>
                     <preferred value="true"/>
@@ -1816,9 +1816,9 @@
                         <text value="Korrespondenssprache"/>
                         <answer>
                             <valueCoding>
-                                <system value="urn:ietf:bcp:47"/>
+                                <system value="urn:oid:2.16.840.1.113883.6.316"/>
                                 <code value="de-CH"/>
-                                <display value="German (Switzerland)"/>
+                                <display value="Deutsch (Schweiz)"/>
                             </valueCoding>
                         </answer>
                     </item>
