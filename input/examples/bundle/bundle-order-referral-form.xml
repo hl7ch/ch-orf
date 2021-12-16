@@ -216,12 +216,12 @@
                     </extension>
                 </extension>
                 <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-                <version value="0.9.1"/>
+                <version value="0.11.0"/>
                 <name value="OrderReferralForm"/>
                 <title value="Order-Referral-Form"/>
                 <status value="active"/>
                 <subjectType value="Patient"/>
-                <date value="2021-06-10"/>
+                <date value="2021-03-26"/>
                 <publisher value="HL7 Switzerland"/>
                 <contact>
                     <name value="HL7 Switzerland"/>
@@ -461,6 +461,12 @@
                             <type value="string"/>
                         </item>
                         <item>
+                            <linkId value="receiver.organization.gln"/>
+                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition-ch-core-organization-definitions.html#Organization.identifier:GLN"/>
+                            <text value="GLN"/>
+                            <type value="string"/>
+                        </item>
+                        <item>
                             <linkId value="receiver.organization.streetAddressLine"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"/>
                             <text value="Strasse, Hausnummer, Postfach etc."/>
@@ -492,6 +498,7 @@
                     <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"/>
                     <text value="Patient"/>
                     <type value="group"/>
+                    <required value="true"/>
                     <item>
                         <linkId value="patient.familyName"/>
                         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"/>
@@ -898,6 +905,12 @@
                                 <type value="string"/>
                             </item>
                             <item>
+                                <linkId value="sender.author.organization.gln"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"/>
+                                <text value="GLN"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
                                 <linkId value="sender.author.organization.streetAddressLine"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"/>
                                 <text value="Strasse, Hausnummer, Postfach etc."/>
@@ -962,75 +975,201 @@
                     </item>
                 </item>
                 <item>
-                    <linkId value="receiverCopies"/>
+                    <linkId value="receiverCopy"/>
                     <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"/>
                     <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
                     <type value="group"/>
                     <item>
-                        <linkId value="receiverCopy"/>
-                        <text value="Kopieempfangende Organisation oder Person"/>
-                        <type value="group"/>
+                        <linkId value="receiverCopy.practitionerRole"/>
+                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole"/>
+                        <text value="Gesundheitsfachperson oder -organisation"/>
+                        <type value="boolean"/>
                         <repeats value="true"/>
                         <item>
-                            <linkId value="receiverCopy.organization.name"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
-                            <text value="Name der Organisation"/>
-                            <type value="string"/>
+                            <linkId value="receiverCopy.practitionerRole.practitioner"/>
+                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
+                            <text value="Gesundheitsfachperson"/>
+                            <type value="group"/>
+                            <enableWhen>
+                                <question value="receiverCopy.practitionerRole"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.title"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"/>
+                                <text value="Titel"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.familyName"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.family"/>
+                                <text value="Name"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.givenName"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.given"/>
+                                <text value="Vorname"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.phone"/>
+                                <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
+                                <text value="Telefon"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.email"/>
+                                <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
+                                <text value="E-Mail"/>
+                                <type value="string"/>
+                            </item>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.title"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"/>
-                            <text value="Titel"/>
-                            <type value="string"/>
+                            <linkId value="receiverCopy.practitionerRole.organization"/>
+                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"/>
+                            <text value="Gesundheitsorganisatiton"/>
+                            <type value="group"/>
+                            <enableWhen>
+                                <question value="receiverCopy.practitionerRole"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.name"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
+                                <text value="Name der Organisation"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.streetAddressLine"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.line"/>
+                                <text value="Strasse, Hausnummer, Postfach etc."/>
+                                <type value="string"/>
+                                <repeats value="true"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.postalCode"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.postalCode"/>
+                                <text value="PLZ"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.city"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.city"/>
+                                <text value="Ort"/>
+                                <type value="string"/>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.country"/>
+                                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"/>
+                                <text value="Land"/>
+                                <type value="string"/>
+                            </item>
                         </item>
+                    </item>
+                    <item>
+                        <linkId value="receiverCopy.patient"/>
+                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient"/>
+                        <text value="Patient selbst"/>
+                        <type value="boolean"/>
+                    </item>
+                    <item>
+                        <linkId value="receiverCopy.relatedPerson"/>
+                        <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"/>
+                        <text value="Andere Person"/>
+                        <type value="boolean"/>
+                        <repeats value="true"/>
                         <item>
-                            <linkId value="receiverCopy.familyName"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.family"/>
+                            <linkId value="receiverCopy.relatedPerson.familyName"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"/>
                             <text value="Name"/>
                             <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.givenName"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.given"/>
-                            <text value="Vorname"/>
+                            <linkId value="receiverCopy.relatedPerson.givenName"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"/>
+                            <text value="Vorame"/>
                             <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.phone"/>
-                            <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
+                            <linkId value="receiverCopy.relatedPerson.phone"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
                             <text value="Telefon"/>
                             <type value="string"/>
-                        </item>
-                        <item>
-                            <linkId value="receiverCopy.email"/>
-                            <definition value="http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"/>
-                            <text value="E-Mail"/>
-                            <type value="string"/>
-                        </item>
-                        <item>
-                            <linkId value="receiverCopy.streetAddressLine"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.line"/>
-                            <text value="Strasse, Hausnummer, Postfach etc."/>
-                            <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                             <repeats value="true"/>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.postalCode"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.postalCode"/>
+                            <linkId value="receiverCopy.relatedPerson.email"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
+                            <text value="E-Mail"/>
+                            <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
+                        </item>
+                        <item>
+                            <linkId value="receiverCopy.relatedPerson.streetAddressLine"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"/>
+                            <text value="Strasse, Hausnummer, Postfach etc."/>
+                            <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
+                            <repeats value="true"/>
+                        </item>
+                        <item>
+                            <linkId value="receiverCopy.relatedPerson.postalCode"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"/>
                             <text value="PLZ"/>
                             <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.city"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.city"/>
+                            <linkId value="receiverCopy.relatedPerson.city"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"/>
                             <text value="Ort"/>
                             <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                         </item>
                         <item>
-                            <linkId value="receiverCopy.country"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"/>
+                            <linkId value="receiverCopy.relatedPerson.country"/>
+                            <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"/>
                             <text value="Land"/>
                             <type value="string"/>
+                            <enableWhen>
+                                <question value="receiverCopy.relatedPerson"/>
+                                <operator value="="/>
+                                <answerBoolean value="true"/>
+                            </enableWhen>
                         </item>
                     </item>
                 </item>
