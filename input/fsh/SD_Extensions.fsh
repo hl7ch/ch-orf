@@ -5,7 +5,7 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1
-* valueReference only Reference(ChCoreOrganization or ChCorePatient)
+* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 

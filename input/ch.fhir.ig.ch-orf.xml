@@ -384,6 +384,14 @@
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/CopyReceiverSabineMeierPraxisSeeblick"/>
+      </reference>
+      <name value="Copy Receiver Sabine Meier @ Praxis Seeblick"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
 
     <resource>
       <reference>
@@ -398,7 +406,7 @@
         <reference value="Organization/CopyReceiverPraxisSeeblick"/>
       </reference>
       <name value="Copy Receiver Praxis Seeblick"/>
-      <description value="Example for Organization"/>
+      <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
@@ -415,6 +423,14 @@
         <reference value="Practitioner/SabineMeier"/>
       </reference>
       <name value="Sabine Meier"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Practitioner/CopyReceiverSabineMeier"/>
+      </reference>
+      <name value="Copy Receiver Sabine Meier"/>
       <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -456,14 +472,6 @@
         <reference value="Patient/ErikaMusterfrau"/>
       </reference>
       <name value="Erika Musterfrau"/>
-      <description value="Example for Patient"/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Patient/CopyReceiverErikaMusterfrau"/>
-      </reference>
-      <name value="Copy Receiver Erika Musterfrau"/>
       <description value="Example for Patient"/>
       <exampleBoolean value="true"/>
     </resource>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PractitionerRole xmlns="http://hl7.org/fhir">
+    <id value="CopyReceiverSabineMeierPraxisSeeblick"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole"/>
+    </meta>
+    <practitioner>
+        <reference value="Practitioner/CopyReceiverSabineMeier"/>
+    </practitioner>
+    <organization>
+        <reference value="Organization/CopyReceiverPraxisSeeblick"/>
+    </organization>
+</PractitionerRole> 

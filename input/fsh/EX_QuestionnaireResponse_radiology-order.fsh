@@ -209,6 +209,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].answer.valueString = "d.ataenterer@happydoctors.ch"
 
 // ---------- Copy Receiver ----------
+/*
 * item[+].linkId = "receiverCopies"
 * item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 
@@ -247,3 +248,4 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[+].linkId = "receiverCopy.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
+*/

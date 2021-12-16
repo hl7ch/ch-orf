@@ -48,12 +48,12 @@
                 </extension>
                 <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
                     <valueReference>
-                        <reference value="Organization/CopyReceiverPraxisSeeblick"/>
+                        <reference value="PractitionerRole/CopyReceiverSabineMeierPraxisSeeblick"/>
                     </valueReference>
                 </extension>
                 <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver">
                     <valueReference>
-                        <reference value="Patient/CopyReceiverErikaMusterfrau"/>
+                        <reference value="Patient/ErikaMusterfrau"/>
                     </valueReference>
                 </extension>
                 <status value="final"/>
@@ -2008,6 +2008,60 @@
                     <reference value="Patient/ErikaMusterfrau"/>
                 </subject>
             </Encounter>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://example.com/fhir/PractitionerRole/CopyReceiverSabineMeierPraxisSeeblick"/>
+        <resource>
+            <PractitionerRole xmlns="http://hl7.org/fhir">
+                <id value="CopyReceiverSabineMeierPraxisSeeblick"/>
+                <practitioner>
+                    <reference value="Practitioner/CopyReceiverSabineMeier"/>
+                </practitioner>
+                <organization>
+                    <reference value="Organization/CopyReceiverPraxisSeeblick"/>
+                </organization>
+            </PractitionerRole>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://example.com/fhir/Practitioner/CopyReceiverSabineMeier"/>
+        <resource>
+            <Practitioner xmlns="http://hl7.org/fhir">
+                <id value="CopyReceiverSabineMeier"/>
+                <name>
+                    <family value="Meier"/>
+                    <given value="Sabine"/>
+                    <prefix value="Dr. med.">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="AC"/>
+                        </extension>
+                    </prefix>
+                </name>
+                <telecom>
+                    <system value="phone"/>
+                    <value value="044 333 22 11"/>
+                </telecom>
+                <telecom>
+                    <system value="email"/>
+                    <value value="sabine.meier@praxisseeblick.ch"/>
+                </telecom>
+            </Practitioner>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="http://example.com/fhir/Organization/CopyReceiverPraxisSeeblick"/>
+        <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+                <id value="CopyReceiverPraxisSeeblick"/>
+                <name value="Praxis Seeblick"/>
+                <address>
+                    <line value="Seestrasse 133"/>
+                    <city value="Zürich"/>
+                    <postalCode value="8000"/>
+                    <country value="Schweiz"/>
+                </address>
+            </Organization>
         </resource>
     </entry>
 </Bundle>
