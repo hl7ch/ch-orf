@@ -463,71 +463,16 @@
             </item>
           </item>
         </item>
+        <!-- Copy Receiver: Person/organization who receives the copy of this order (shall receive also all results therefrom) -->
         <item>
-          <linkId value="receiverCopies"/>
+          <linkId value="receiverCopy"/>
           <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
           <item>
-            <linkId value="receiverCopy"/>
-            <text value="Kopieempfangende Organisation oder Person"/>
-            <item>
-              <linkId value="receiverCopy.familyName"/>
-              <text value="Name"/>
-              <answer>
-                <valueString value="Ufferer"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.givenName"/>
-              <text value="Vorname"/>
-              <answer>
-                <valueString value="Susanna"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.phone"/>
-              <text value="Telefon"/>
-              <answer>
-                <valueString value="079 979 79 79"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.email"/>
-              <text value="E-Mail"/>
-              <answer>
-                <valueString value="susanna@ufferer.ch"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.streetAddressLine"/>
-              <text value="Strasse, Hausnummer, Postfach etc."/>
-              <answer>
-                <valueString value="Musterweg"/>
-              </answer>
-              <answer>
-                <valueString value="6a"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.postalCode"/>
-              <text value="PLZ"/>
-              <answer>
-                <valueString value="8000"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.city"/>
-              <text value="Ort"/>
-              <answer>
-                <valueString value="Zürich"/>
-              </answer>
-            </item>
-            <item>
-              <linkId value="receiverCopy.country"/>
-              <text value="Land"/>
-              <answer>
-                <valueString value="Schweiz"/>
-              </answer>
-            </item>
+            <linkId value="receiverCopy.patient"/>
+            <text value="Patient selbst"/>
+            <answer>
+              <valueBoolean value="true"/>
+            </answer>
           </item>
         </item>
       </QuestionnaireResponse>
