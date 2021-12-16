@@ -209,43 +209,6 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].answer.valueString = "d.ataenterer@happydoctors.ch"
 
 // ---------- Copy Receiver ----------
-/*
-* item[+].linkId = "receiverCopies"
-* item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
-
-* item[=].item[+].linkId = "receiverCopy"
-* item[=].item[=].text = "Kopieempfangende Organisation oder Person"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.familyName"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Ufferer"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.givenName"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].answer.valueString = "Susanna"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.phone"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].answer.valueString = "079 979 79 79"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.email"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].answer.valueString = "susanna@ufferer.ch"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.streetAddressLine"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].answer[+].valueString = "Musterweg"
-* item[=].item[=].item[=].answer[+].valueString = "6a"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].answer.valueString = "8000"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].answer.valueString = "Zürich"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].answer.valueString = "Schweiz"
-*/
+* item[=].item[+].linkId = "receiverCopy.patient"
+* item[=].item[=].text = "Patient selbst"
+* item[=].item[=].answer.valueBoolean = true
