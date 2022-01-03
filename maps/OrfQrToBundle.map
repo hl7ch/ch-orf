@@ -375,7 +375,9 @@ src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IVG' then {
       item.item as item where (linkId.value = 'coverage.iv.verfuegungsnummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'IV', 
-      identifier.value = (item.answer.value) "coverage.iv.verfuegungsnummer";
+      identifier.value = (item.answer.value),
+      coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'IV' "coverage.iv.verfuegungsnummer";
    } "coverageiv";
 
  // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
@@ -390,7 +392,9 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MVG' then {
       item.item as item where (linkId.value = 'coverage.mv.versichertennummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'MV', 
-      identifier.value = (item.answer.value) "coverage.mv.versichertennummer";
+      identifier.value = (item.answer.value),
+      coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'IV' "coverage.mv.versichertennummer";
    } "coveragemv";
       
    // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
