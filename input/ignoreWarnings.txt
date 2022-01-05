@@ -30,10 +30,10 @@ The display "Record artifact (record artifact)" is not a valid display for the c
 The Implementation Guide contains no explicitly linked examples for this profile
 
 # Own ValueSet is defined
-None of the codings provided are in the value set http://hl7.org/fhir/ValueSet/coverage-type (http://hl7.org/fhir/ValueSet/coverage-type), and a coding is recommended to come from this value set) (codes = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype#KVG)
+None of the codings provided are in the value set 'Coverage Type and Self-Pay Codes' (http://hl7.org/fhir/ValueSet/coverage-type), and a coding is recommended to come from this value set) (codes = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype#KVG)
 
-# Only text is supported for Patient.contact.relationship (CC)
-No code provided, and a code should be provided from the value set http://hl7.org/fhir/ValueSet/patient-contactrelationship (http://hl7.org/fhir/ValueSet/patient-contactrelationship)
+# Only text is supported for Patient.contact.relationship (CodeableConcept)
+No code provided, and a code should be provided from the value set 'Patient Contact Relationship ' (http://hl7.org/fhir/ValueSet/patient-contactrelationship)
 
 # See examples in IG CH RAD-Order
 WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location'): The Implementation Guide contains no examples for this profile

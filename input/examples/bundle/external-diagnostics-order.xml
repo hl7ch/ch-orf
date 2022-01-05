@@ -92,7 +92,7 @@
               <code value="MR"/>
             </coding>
           </type>
-          <system value="urn:oid:2.16.756.5.30.999999.1"/>
+          <system value="urn:oid:2.999.1.2"/>
           <value value="44.34.9472.1"/>
         </identifier>
         <name>
@@ -156,7 +156,7 @@
             <linkId value="order.placerOrderIdentifierDomain"/>
             <text value="Identifier Domain der Auftragsnummer des Auftraggebers"/>
             <answer>
-              <valueString value="urn:oid:66.77.88"/>
+              <valueString value="urn:oid:2.16.756.5.30.1"/>
             </answer>
           </item>
           <item>
@@ -549,7 +549,7 @@
               <code value="PLAC"/>
             </coding>
           </type>
-          <system value="urn:oid:66.77.88"/>
+          <system value="urn:oid:2.999.1.2.3"/>
           <value value="60823"/>
         </identifier>
         <status value="active"/>
@@ -1528,7 +1528,7 @@
         <item>
           <linkId value="receiverCopies"/>
           <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"/>
-          <text value="Kopieempfänger"/>
+          <text value="Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"/>
           <type value="group"/>
           <item>
             <linkId value="receiverCopy"/>

@@ -338,7 +338,7 @@ Description: "Example for QuestionnaireResponse"
 
 // ---------- Copy Receiver ----------
 * item[+].linkId = "receiverCopies"
-* item[=].text = "Kopieempfänger"
+* item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 
 * item[=].item[+].linkId = "receiverCopy"
 * item[=].item[=].text = "Kopieempfangende Organisation oder Person"

@@ -74,12 +74,26 @@
     defined meaning which are part of every Questionnaire in the ORF Implementation Guide. It is up to a SDC Form
     Designer to create Questionnaires with additional use case specific elements.
     </p>
+    <p>There has been a discussion whether population of the resources such as Patient Resource, ServiceRequest Resource 
+    etc. with the content of the QuestionnaireResponse Resource should be done by the order placer application or rather 
+    by the order filler application. The argument for assigning the task to the order placer is a result of the following 
+    consideration: the authors of a particular implementation guide  may decide to define a questionnaire and its rendering 
+    but to leave it open if in a particular implementation the questionnaire is implemented or if the representation towards 
+    the user is made (in accordance to the questionnaire definition) by other technical means. In such a case, there would 
+    be no QuestionnaireResponse Resource in the bundle because all content is already in concerning resources. In order to 
+    handle all FHIR exchange formats equal (as far as sensible), the authors decided to mandate the order placer application 
+    with the task.
+    </p>
     <p>Applications claiming for conformance with the ORF Implementation Guide shall:
     </p>
     <ul>
         <li>Render (and in case of the Questionnaire filler allow for data entry) all elements of a questionnaire in the
         user interface (e.g. on screen, in print). Grouping of items and the order of items within shall be adequately
         reproduced according to the Questionnaire.</li>
+
+        <li>In case of an implementation without Questionnaire and QuestionnaireResponse, the content of otherwise implemented UIs shall 
+        be in accordance to the questionnaire definition.</li>
+        
         <li>Be able to process all codes related to the generic elements in a Questionnaire.</li>
     </ul>
     <p>Vendors of applications with Questionnaire Filler/Questionnaire Receiver Actors are strongly recommended to implement
@@ -811,7 +825,7 @@
                 </td>
                 <td>Patient/Organization
                 </td>
-                <td>Person/organization who receives the copy of this document.
+                <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).
                 </td>
             </tr>
             <tr>
@@ -875,6 +889,12 @@
         </tbody>
     </table>
     <p><sup>&#91;Table 7&#93;</sup> <i>Generic elements in Questionnaires compliant to the ORF Implementation Guide</i>
+    </p>
+
+    <p>
+        <sup>&#91;Table 7&#93;</sup> shows that the FHIR representation of elements representing a person and/or an organisation 
+        is defined by the <b>PractitionerRole</b> resource. The Practitioner and/or the Organisation resource can then be referenced 
+        from the PractitionerRole resource.
     </p>
 
     <a name="volume3"></a><h4>Healthcare domain specific elements of a questionnaire</h4>

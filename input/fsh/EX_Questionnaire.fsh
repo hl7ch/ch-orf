@@ -202,6 +202,11 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 
+* item[=].item[=].item[+].linkId = "receiver.organization.gln"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition-ch-core-organization-definitions.html#Organization.identifier:GLN"
+* item[=].item[=].item[=].text = "GLN"
+* item[=].item[=].item[=].type = #string
+
 * item[=].item[=].item[+].linkId = "receiver.organization.streetAddressLine"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
@@ -228,6 +233,7 @@ Description: "Example for Questionnaire"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"
 * item[=].text = "Patient"
 * item[=].type = #group
+* item[=].required = true
 
 * item[=].item[+].linkId = "patient.familyName"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
@@ -543,6 +549,11 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].item[=].type = #string
 
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.gln"
+* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition-ch-core-organization-definitions.html#Organization.identifier:GLN"
+* item[=].item[=].item[=].item[=].text = "GLN"
+* item[=].item[=].item[=].item[=].type = #string
+
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.streetAddressLine"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
 * item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
@@ -595,10 +606,10 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
 
-// ---------- Copy Receiver ----------
+// ---------- Copy Receiver (Copy of this order and all results therefrom----------
 * item[+].linkId = "receiverCopies"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"
-* item[=].text = "Kopieempfänger"
+* item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "receiverCopy"

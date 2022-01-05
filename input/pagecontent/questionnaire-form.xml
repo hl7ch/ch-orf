@@ -2,6 +2,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas-r5/fhir-single.xsd">
 
     <div>
-    {% include Questionnaire-order-referral-form-html.xhtml %}
+    {% include Questionnaire-order-referral-form-form.xhtml %}
     </div>
 </div>

@@ -209,6 +209,10 @@ group ReceiverPractitionerToQr(source bundle : Bundle, source composition: Compo
 group ReceiverOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target item : BackboneElement ) {
 // receiver.organization.name
    organization.name as name -> item.item as item, item.linkId = 'receiver.organization.name', item.answer as answer, answer.value = name "name";
+  //receiver.organization.gln
+  organization.identifier as identifier where (system='urn:oid:2.51.1.3') then {
+    identifier.value as value -> item.item as item, item.linkId = 'receiver.organization.gln', item.answer as answer, answer.value = cast(value, 'string') "gln";
+  } "identifier";
 // receiver.organization.streetAddressLine
    organization.address as addr then {
       addr.line first as line1 -> item.item as item, item.linkId = 'receiver.organization.streetAddressLine' then {
@@ -516,6 +520,10 @@ group SenderPractitionerToQr(source bundle : Bundle, source composition: Composi
 group SenderOrganizationToQr(source bundle : Bundle, source composition: Composition, source organization: Organization, target item : BackboneElement ) {
 // sender.author.organization.name
    organization.name as name -> item.item as item, item.linkId = 'sender.author.organization.name', item.answer as answer, answer.value = name "name";
+// sender.author.organization.gln
+   organization.identifier as identifier where (system='urn:oid:2.51.1.3') then {
+    identifier.value as value -> item.item as item, item.linkId = 'sender.author.organization.gln', item.answer as answer, answer.value = cast(value, 'string') "gln";
+  } "identifier";
 // sender.author.organization.streetAddressLine
    organization.address as addr then {
       addr.line first as line1 -> item.item as item, item.linkId = 'sender.author.organization.streetAddressLine' then {

@@ -107,7 +107,7 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfReceiver named receiver 0..1 MS
 * extension[receiver] ^short = "Person/organization who receives the document"
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
-* extension[copyReceiver] ^short = "Person/organization who receives the copy of this document"
+* extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)
@@ -115,7 +115,7 @@ must be structured in the Composition as the first entry of the document."
 * category 1..1 MS
 * category from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode (preferred)
 * category ^short = "High-level kind of a clinical document at a macro level"
-* subject MS
+* subject 1.. MS
 * subject ^short = "Patient as the principle target of a particular form content"
 * author ..1 MS
 * author only Reference(ChCorePractitionerRole)
@@ -142,13 +142,13 @@ must be structured in the Composition as the first entry of the document."
 * section[orderReferral].entry ^slicing.discriminator.type = #profile
 * section[orderReferral].entry ^slicing.discriminator.path = "resolve()"
 * section[orderReferral].entry ^slicing.rules = #open
-// ---------- Composition.section.entry:Questionnaire ----------
-* section[orderReferral].entry contains Questionnaire 1..1 MS
+// ---------- Composition.section.entry:Questionnaire - 10.11.21: According to Ballot #18, Cardinality set to 0..
+* section[orderReferral].entry contains Questionnaire 0..1 MS
 * section[orderReferral].entry[Questionnaire] only Reference(ChOrfQuestionnaire)
 * section[orderReferral].entry[Questionnaire] ^short = "Questionnaire"
 * section[orderReferral].entry[Questionnaire].reference 1.. MS
-// ---------- Composition.section.entry:QuestionnaireResponse ----------
-* section[orderReferral].entry contains QuestionnaireResponse 1..1 MS
+// ---------- Composition.section.entry:QuestionnaireResponse - - 10.11.21: According to Ballot #18, Cardinality set to 0..
+* section[orderReferral].entry contains QuestionnaireResponse 0..1 MS
 * section[orderReferral].entry[QuestionnaireResponse] only Reference(ChOrfQuestionnaireResponse)
 * section[orderReferral].entry[QuestionnaireResponse] ^short = "QuestionnaireResponse"
 * section[orderReferral].entry[QuestionnaireResponse].reference 1.. MS
@@ -278,6 +278,10 @@ and where and when the service request is to be fulfilled."
 * status from ChOrfAppointmentStatus (required)
 * status ^short = "Used to express if time and date are the preference of the patient (=\"proposed\"), confirmed by the patient but not yet by the service provider 
   (=\"pending\") or confirmed by the patient and the service provider (=\"booked\")"
+* start MS
+* start ^short = "When appointment is to take place (required if status=\"pending\" or \"booked\")"
+* end MS  
+* end ^short = "When appointment is to conclude (required if status=\"pending\" or \"booked\")"
 * patientInstruction MS
 * patientInstruction ^short = "Patient-oriented instructions SHALL be here and NOT in ServiceRequest.patientInstruction"
 * participant ..1 MS
@@ -287,7 +291,7 @@ and where and when the service request is to be fulfilled."
 * participant.status MS
 * participant.status = #tentative         //fixed to "tentative" because the actor is the location
 * requestedPeriod 0..1 MS
-* requestedPeriod ^short = "Single Date/time or Date/time interval indication for the appointment. A single Date/time indication MUST have 
+* requestedPeriod ^short = "Single Date/time or Date/time-interval indication for the appointment with the status=\"proposed\". A single Date/time indication MUST have 
  the same value for start and end."
 * requestedPeriod.start MS
 * requestedPeriod.end MS

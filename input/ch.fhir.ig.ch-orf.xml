@@ -474,7 +474,7 @@
       </reference>
       <name value="Coverage KVG"/>
       <description value="Example for Coverage"/>
-      <exampleBoolean value="true"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
     </resource>
     <resource>
       <reference>
@@ -483,6 +483,40 @@
       <name value="Encounter Emergency"/>
       <description value="Example for Encounter"/>
       <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Appointment/AppointmentPending"/>
+      </reference>
+      <name value="Appointment pending"/>
+      <description value="Example for Appointment with status=pending"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Appointment/AppointmentBooked"/>
+      </reference>
+      <name value="Appointment booked"/>
+      <description value="Example for Appointment with status=booked"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Appointment/AppointmentProposed"/>
+      </reference>
+      <name value="Appointment proposed"/>
+      <description value="Example for Appointment with status=proposed"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Location/LocationOfAppointment"/>
+      </reference>
+      <name value="Location of Appointment"/>
+      <description value="Example for Location"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location"/>
     </resource>
 
     <!-- pages -->
@@ -511,7 +545,7 @@
         <generation value="markdown"/>
       </page>
       <page>
-        <nameUrl value="questionnaire.html"/>
+        <nameUrl value="questionnaire-form.html"/>
         <title value="Questionnaire Order-Referral-Form"/>
         <generation value="html"/>
       </page>

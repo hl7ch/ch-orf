@@ -7,7 +7,7 @@
 * **Order filler:** Dr. O. Rderfiller, radiologist at the Institute of Radiology of the Happy Hospital
 
 Mrs. S. Ufferer has an appointment with her general practitioner, Dr. O. Rderplacer, at the Happy Doctors group practice on 15 March 2021. The patient complains of recurrent knee pain. Based on the medical anamnesis and the physical examination, the doctor decides to order an X-ray, which is to be performed at the Institute for Radiology of the Happy Hospital by Dr. O. Rderfiller.   
-The medical practice assistant D. Ataenterer enters the radiology order and sends it to the Institute of Radiology. The order also indicates that the copy of this order should be sent to the patient.
+The medical practice assistant D. Ataenterer enters the radiology order and sends it to the Institute of Radiology. The order also indicates that the copy of this order shall be sent to the patient (as well as all results therefrom).
 
 * **Radiology order:** [XML](Bundle-radiology-order.xml.html), [JSON](Bundle-radiology-order.json.html)
 
