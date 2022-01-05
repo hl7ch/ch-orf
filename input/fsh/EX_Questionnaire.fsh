@@ -27,7 +27,7 @@ Description: "Example for Questionnaire"
 * title = "Order-Referral-Form"
 * status = #active
 * subjectType = #Patient
-* date = "2021-03-26"
+* date = "2022-01-05"
 * publisher = "HL7 Switzerland"
 
 // ---------- order (Auftrag) ----------
@@ -612,20 +612,16 @@ Description: "Example for Questionnaire"
 * item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 * item[=].type = #group
 
-
 * item[=].item[+].linkId = "receiverCopy.practitionerRole"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole"
 * item[=].item[=].text = "Gesundheitsfachperson oder -organisation"
-* item[=].item[=].type = #boolean
+* item[=].item[=].type = #group
 * item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].item[=].text = "Gesundheitsfachperson"
 * item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.practitionerRole"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.title"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"
@@ -656,9 +652,6 @@ Description: "Example for Questionnaire"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 * item[=].item[=].item[=].text = "Gesundheitsorganisatiton"
 * item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.practitionerRole"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.name"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
@@ -696,76 +689,50 @@ Description: "Example for Questionnaire"
 * item[=].item[+].linkId = "receiverCopy.relatedPerson"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"
 * item[=].item[=].text = "Andere Person"
-* item[=].item[=].type = #boolean
+* item[=].item[=].type = #group
 * item[=].item[=].repeats = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.familyName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
 * item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.givenName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
 * item[=].item[=].item[=].text = "Vorame"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.phone"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.email"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.streetAddressLine"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.postalCode"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"
 * item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.city"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"
 * item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
 
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.country"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].enableWhen[+].question = "receiverCopy.relatedPerson"
-* item[=].item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].item[=].enableWhen[=].answerBoolean = true
-
-
 
 /*------ Appointment ------------------------------ */
 * item[+].linkId = "appointment"
