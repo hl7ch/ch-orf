@@ -5,14 +5,14 @@ All notable changes to this project will be documented in this file.
 These changes were made based on the comments of the HL7 Switzerland STU 1 Ballot.
 
 ### Added
-* [Description](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#composition-resource) of the handling of general information about the document in derived questionnaires.
+* [Description](index.html#composition-resource) of the handling of general information about the document in derived questionnaires (title, type and category).
    * [Issue #31](https://github.com/hl7ch/ch-orf/issues/31) 
    
 ### Changed / Updated
 * Improvement/updating of the documentation
-   * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
-   * [Issue #42](https://github.com/hl7ch/ch-orf/issues/42): Instead of the redundantly embedded differential tables of the profiles on the 'Home' page ([Volume 3 - Content Modules](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#volume-3-%E2%80%93-content-modules)), links to the profiles are provided at the relevant places.
-   * [Issue #43](https://github.com/hl7ch/ch-orf/issues/43): Add meaningful descriptions to the [profiles](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/profiles.html).
+   * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
+   * [Issue #42](https://github.com/hl7ch/ch-orf/issues/42): Instead of the redundantly embedded differential tables of the profiles on the 'Home' page ([Volume 3 - Content Modules](index.html#volume-3-%E2%80%93-content-modules)), links to the profiles are provided at the relevant places.
+   * [Issue #43](https://github.com/hl7ch/ch-orf/issues/43): Add meaningful descriptions to the [profiles](profiles.html).
 * Update the suppressed messages (QA), mainly because of display values
    * [Issue #30](https://github.com/hl7ch/ch-orf/issues/30)
 
