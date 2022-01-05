@@ -616,12 +616,20 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
    extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
    extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
    then {
-      grp.item as item where (linkId.value = 'appointment.status' and answer.exists()) -> appointment.status = (item.answer.value.code) "appointment.status.code";
-      grp.item as item where (linkId.value = 'appointment.requestedPeriod') then {
-         item.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (item2.answer.value), requestedPeriod.end = (item2.answer.value) then {
-            item.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end if not same as start";
-         } "appointment.requestedPeriod.start";
-      } "appointment.requestedPeriod";
+      grp.item as item where (linkId.value = 'appointment.status' and answer.value.code='proposed') -> appointment.status = (item.answer.value.code) then {
+         grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
+           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (item2.answer.value), requestedPeriod.end = (item2.answer.value) then {
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end if not same as start";
+           } "appointment.requestedPeriod.start";
+         } "appointment.requestedPeriod";
+      } "proposed";
+      grp.item as item where (linkId.value = 'appointment.status' and (answer.value.code='pending' or answer.value.code='booked')) -> appointment.status = (item.answer.value.code) then {
+         grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
+           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (item2.answer.value), appointment.end = (item2.answer.value) then {
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end if not same as start";
+           } "appointment.start";
+         } "appointment.startend";
+      } "pendingorbooked";
       grp.item as item where (linkId.value = 'appointment.patientInstruction' and answer.exists()) -> appointment.patientInstruction = (item.answer.value) "appointment.patientInstruction";
       grp.item as item where (linkId.value = 'appointment.location') then {
          item -> bundle.entry as e5, 
