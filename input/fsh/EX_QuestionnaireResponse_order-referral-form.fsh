@@ -337,102 +337,64 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].answer.valueString = "stabilo.boss@praxisseeblick.ch"
 
 // ---------- Copy Receiver ----------
-* item[+].linkId = "receiverCopies"
+* item[+].linkId = "receiverCopy"
 * item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 
-* item[=].item[+].linkId = "receiverCopy"
-* item[=].item[=].text = "Kopieempfangende Organisation oder Person"
+* item[=].item[+].linkId = "receiverCopy.practitionerRole"
+* item[=].item[=].text = "Gesundheitsfachperson oder -organisation"
+* item[=].item[=].answer.valueBoolean = true
 
-* item[=].item[=].item[+].linkId = "receiverCopy.organization.name"
-* item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].answer.valueString = "Praxis Seeblick"
+* item[=].item[=].answer.item[+].linkId = "receiverCopy.practitionerRole.practitioner"
+* item[=].item[=].answer.item[=].text = "Gesundheitsfachperson"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.title"
-* item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].answer.valueString = "Dr. med."
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.title"
+* item[=].item[=].answer.item[=].item[=].text = "Titel"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Dr. med."
 
-* item[=].item[=].item[+].linkId = "receiverCopy.familyName"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Meier"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.familyName"
+* item[=].item[=].answer.item[=].item[=].text = "Name"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Meier"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.givenName"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].answer.valueString = "Sabine"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.givenName"
+* item[=].item[=].answer.item[=].item[=].text = "Vorname"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Sabine"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.phone"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].answer.valueString = "044 333 22 11"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.phone"
+* item[=].item[=].answer.item[=].item[=].text = "Telefon"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "044 333 22 11"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.email"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].answer.valueString = "sabine.meier@praxisseeblick.ch"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.email"
+* item[=].item[=].answer.item[=].item[=].text = "E-Mail"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "sabine.meier@praxisseeblick.ch"
 
-/*
-* item[=].item[=].item[+].linkId = "receiverCopy.streetAddressLine"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].answer[+].valueString = "Seestrasse 133"
-* item[=].item[=].item[=].answer[+].valueString = "Haus C"
+* item[=].item[=].answer.item[+].linkId = "receiverCopy.practitionerRole.organization"
+* item[=].item[=].answer.item[=].text = "Gesundheitsorganisatiton"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].answer.valueString = "8000"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.name"
+* item[=].item[=].answer.item[=].item[=].text = "Name der Organisation"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Praxis Seeblick"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].answer.valueString = "Zürich"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.streetAddressLine"
+* item[=].item[=].answer.item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Seestrasse 133"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].answer.valueString = "Schweiz"
-*/
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.postalCode"
+* item[=].item[=].answer.item[=].item[=].text = "PLZ"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "8000"
 
-* item[=].item[+].linkId = "receiverCopy"
-* item[=].item[=].text = "Kopieempfangende Organisation oder Person"
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.city"
+* item[=].item[=].answer.item[=].item[=].text = "Ort"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Zürich"
 
-/* 
-* item[=].item[=].item[+].linkId = "receiverCopy.organization.name"
-* item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].answer.valueString = ""
-*/
+* item[=].item[=].answer.item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.country"
+* item[=].item[=].answer.item[=].item[=].text = "Land"
+* item[=].item[=].answer.item[=].item[=].answer.valueString = "Schweiz"
 
-/* 
-* item[=].item[=].item[+].linkId = "receiverCopy.title"
-* item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].answer.valueString = ""
-*/
 
-* item[=].item[=].item[+].linkId = "receiverCopy.familyName"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Musterfrau"
+* item[=].item[+].linkId = "receiverCopy.patient"
+* item[=].item[=].text = "Patient selbst"
+* item[=].item[=].answer.valueBoolean = true
 
-* item[=].item[=].item[+].linkId = "receiverCopy.givenName"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].answer.valueString = "Erika"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.phone"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].answer.valueString = "079 979 79 79"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.email"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].answer.valueString = "erika@musterfrau.ch"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.streetAddressLine"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].answer[+].valueString = "Musterweg"
-* item[=].item[=].item[=].answer[+].valueString = "6a"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].answer.valueString = "8000"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].answer.valueString = "Zürich"
-
-* item[=].item[=].item[+].linkId = "receiverCopy.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].answer.valueString = "Schweiz"
 
 // -------- Service Request Notes ------
 * item[+].linkId = "note"

@@ -1,8 +1,8 @@
 <StructureMap xmlns="http://hl7.org/fhir">
    <id value="OrfQrToBundle"/>
    <meta>
-      <versionId value="4"/>
-      <lastUpdated value="2022-01-03T16:30:29.235+01:00"/>
+      <versionId value="19"/>
+      <lastUpdated value="2022-01-05T18:15:03.860+00:00"/>
    </meta>
    <text>
       <status value="generated"/>
@@ -19,6 +19,7 @@
 uses &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot; alias QuestionnaireResponse as source
 uses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target
 uses &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot; alias Patient as target
+uses &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot; alias RelatedPerson as target
 uses &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot; alias Organization as target
 uses &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot; alias Practitioner as target
 uses &quot;http://hl7.org/fhir/StructureDefinition/PractitionerRole&quot; alias PractitionerRole as target
@@ -27,7 +28,7 @@ uses &quot;http://hl7.org/fhir/StructureDefinition/BackboneElement&quot; alias B
 
 group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle) {
   qr -&gt;  bundle.identifier as documentIdentifier,  documentIdentifier.system = &apos;urn:ietf:rfc:3986&apos;,  uuid() as uuidDoc,  documentIdentifier.value = append(&apos;urn:uuid:&apos;, uuidDoc) &quot;documentIdentifier&quot;;
-  qr as qrcp -&gt;  bundle.entry as e,  e.resource = create('Composition') as composition,  composition.id = uuid() as uuid,  e.fullUrl = append('urn:uuid:', uuid),  bundle.entry as e2,  bundle.timestamp = (now()) as timestamp,  composition.date = timestamp,  e2.resource = create('Patient') as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e4,  e4.resource = qrcp as questionnaireresp,  questionnaireresp.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  bundle.entry as e5,  e5.resource = create(&apos;ServiceRequest&apos;) as servicerequest,  servicerequest.id = uuid() as uuid5,  e5.fullUrl = append(&apos;urn:uuid:&apos;, uuid5) then {
+  qr as qrcp -&gt;  bundle.entry as e,  e.resource = create(&apos;Composition&apos;) as composition,  composition.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  bundle.timestamp = (now()) as timestamp,  composition.date = timestamp,  e2.resource = create(&apos;Patient&apos;) as patient,  patient.id = uuid() as uuid2,  e2.fullUrl = append(&apos;urn:uuid:&apos;, uuid2),  bundle.entry as e4,  e4.resource = qrcp as questionnaireresp,  questionnaireresp.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4),  bundle.entry as e5,  e5.resource = create(&apos;ServiceRequest&apos;) as servicerequest,  servicerequest.id = uuid() as uuid5,  e5.fullUrl = append(&apos;urn:uuid:&apos;, uuid5) then {
     qr.questionnaire as can -&gt;  bundle.entry as e6,  e6.resource = (can.resolve()) as q,  q.id = uuid() as uuid6,  e6.fullUrl = append(&apos;urn:uuid:&apos;, uuid6) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) &quot;orfbundle&quot;;
   } &quot;orfbundle&quot;;
 }
@@ -39,24 +40,13 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
   qr.item as grp where linkId = &apos;requestedEncounter&apos; then RequestedEncounterItems(grp, bundle, patient, serviceRequest) &quot;grprequestedencounter&quot;;
   qr.item as grp where linkId = &apos;coverage&apos; then Coverage(grp, bundle, patient, serviceRequest) &quot;grprequestedencounter&quot;;
   qr.item as grp where linkId = &apos;sender&apos; then SenderAuthorInit(grp, bundle, composition, serviceRequest) &quot;grpsender&quot;;
-  qr.item as grp where linkId = &apos;receiverCopies&apos; then ReceiverCopy(grp, bundle, composition, serviceRequest) &quot;grpsender&quot;;
+  qr.item as grp where linkId = &apos;receiverCopy&apos; then ReceiverCopy(grp, bundle, patient, composition, serviceRequest) &quot;grpsender&quot;;
   qr.item as grp where linkId = &apos;appointment&apos; then Appointment(grp, bundle, composition, serviceRequest) &quot;grpsender&quot;;
   qr.item as grp where linkId = &apos;previousResults&apos; then PreviousResults(grp, bundle, serviceRequest) &quot;previousResults&quot;;
   qr.item as grp where linkId = &apos;note&apos; then Note(grp, serviceRequest) &quot;note&quot;;
 }
 
 group OrderItems(source src : BackboneElement, target bundle : Bundle, target composition, target serviceRequest : ServiceRequest) {
-  src.item as item where ((linkId.value = &apos;order.title&apos;) and answer.exists()) -&gt; composition.title = (item.answer.valueString) &quot;title&quot;;
-  src.item as item where ((linkId.value = &apos;order.type&apos;) and answer.exists()) then {
-    item.answer as answer then {
-      answer.value : Coding as coding -&gt;  composition.type as comptype,  comptype.coding = coding &quot;type&quot;;
-    };
-  } &quot;type&quot;;
-  src.item as item where ((linkId.value = &apos;order.category&apos;) and answer.exists()) then {
-    item.answer as answer then {
-      answer.value : Coding as coding -&gt;  composition.category as compcat,  compcat.coding = coding &quot;category&quot;;
-    };
-  } &quot;category&quot;;
   src.item as item where ((linkId.value = &apos;order.precedentDocumentIdentifier&apos;) and answer.exists()) -&gt;  composition.extension as ext,  ext.url = &apos;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument&apos;,  ext.value = create(&apos;Identifier&apos;) as value,  value.system = &apos;urn:ietf:rfc:3986&apos;,  value.value = (&apos;urn:uuid:&apos; + item.answer.valueString) &quot;precedentDocumentIdentifier&quot;;
   src.item as item where ((linkId.value = &apos;order.placerOrderIdentifier&apos;) and answer.exists()) -&gt;  serviceRequest.identifier as value share placer,  value.type as type,  type.coding as coding,  coding.system = &apos;http://terminology.hl7.org/CodeSystem/v2-0203&apos;,  coding.code = &apos;PLAC&apos;,  value.value = (item.answer.valueString) &quot;placerOrderIdentifier&quot;;
   src.item as item where ((linkId.value = &apos;order.placerOrderIdentifierDomain&apos;) and answer.exists()) -&gt;  serviceRequest.identifier as value share placer,  value.system = (item.answer.valueString) &quot;placerOrderIdentifierDomain&quot;;
@@ -163,7 +153,9 @@ group PatientItems(source src : BackboneElement, target tgt : Patient) {
   src.item as item where (linkId.value = &apos;patient.contactperson&apos;) -&gt; tgt.contact as contact then {
     item.item as item where ((linkId.value = &apos;patient.contactperson.familyName&apos;) and answer.exists()) -&gt;  contact.name as name share contactName,  name.family = (item.answer.value);
     item.item as item where ((linkId.value = &apos;patient.contactperson.givenName&apos;) and answer.exists()) -&gt;  contact.name as name share contactName,  name.given = (item.answer.value);
-    item.item as item where ((linkId.value = &apos;patient.contactperson.phone&apos;) and answer.exists()) -&gt;  contact.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
+    src.item as item where ((linkId.value = &apos;patient.contactperson.phone&apos;) and answer.exists()) then {
+      item.answer as answer -&gt;  tgt.telecom as value,  value.system = &apos;phone&apos;,  value.value = (answer.value) &quot;phone&quot;;
+    } &quot;phone&quot;;
     item.item as item where ((linkId.value = &apos;patient.contactperson.email&apos;) and answer.exists()) -&gt;  contact.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
     item.item as item where ((linkId.value = &apos;patient.contactperson.relationship&apos;) and answer.exists()) -&gt;  contact.relationship as relationship,  relationship.text = (item.answer.value) &quot;relationship&quot;;
   } &quot;contact&quot;;
@@ -188,7 +180,7 @@ group Coverage(source src : BackboneElement, target bundle : Bundle, target pati
   } &quot;coveragekvg&quot;;
   // coverage.uvg	Unfallversicherung (nach UVG)	0..1	group		Definition: Coverage.type
   src.item as item where where(linkId.value = &apos;coverage.uvg&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = ('urn:uuid:' + %uuid4),  coverage.status = 'active',  coverage.beneficiary = create('Reference') as subject,  subject.reference = ('urn:uuid:' + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype',  coding.code = 'UVG' then {
-    item.item as item where ((linkId.value = 'coverage.uvg.name') and answer.exists()) -&gt;  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = (item.answer.value) &quot;name&quot;;
+    item.item as item where ((linkId.value = 'coverage.uvg.name&apos;) and answer.exists()) -&gt;  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = (item.answer.value) &quot;name&quot;;
     item.item as item where ((linkId.value = &apos;coverage.uvg.claimNumber&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;Claim&apos;,  identifier.value = (item.answer.value) &quot;claimNumber&quot;;
   } &quot;coverageuvg&quot;;
   // coverage.vvg	Zusatzversicherung (nach VVG)	0..1	group		Definition: Coverage.type
@@ -258,7 +250,7 @@ group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole 
 }
 
 group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append(&apos;urn:uuid:&apos;, uuid2),  bundle.entry as e3,  e3.resource = create(&apos;Organization&apos;) as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
+  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append(&apos;urn:uuid:&apos;, uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create('Reference') as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
     src.item as item where (linkId.value = &apos;sender.author&apos;) then SenderAuthorItems(item, practitionerRole, practitioner, organization) &quot;author&quot;;
     src.item as item where (linkId.value = &apos;sender.dataenterer&apos;) then {
       item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then {
@@ -269,18 +261,42 @@ group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, tar
   } &quot;sender&quot;;
 }
 
-group CopyReceiverPatientItems(source src : BackboneElement, target patient : Patient) {
-  src.item as item where ((linkId.value = &apos;receiverCopy.familyName&apos;) and answer.exists()) -&gt;  patient.name as name share name,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;receiverCopy.givenName&apos;) and answer.exists()) -&gt;  patient.name as name share name,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;receiverCopy.title&apos;) and answer.exists()) -&gt;  patient.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = &apos;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&apos;,  ext.value = create(&apos;code&apos;) as value,  value.value = &apos;AC&apos; &quot;title&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.phone&apos;) and answer.exists()) -&gt;  patient.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.email&apos;) and answer.exists()) -&gt;  patient.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.streetAddressLine&apos;) and answer.exists()) -&gt; patient.address as address share orgAddress then {
+group ReceiverCopyRelatedPersonItems(source src : BackboneElement, target relatedPerson : RelatedPerson) {
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.familyName&apos;) and answer.exists()) -&gt;  relatedPerson.name as name share name,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.givenName&apos;) and answer.exists()) -&gt;  relatedPerson.name as name share name,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.phone&apos;) and answer.exists()) then {
+    item.answer as answer -&gt;  relatedPerson.telecom as value,  value.system = &apos;phone&apos;,  value.value = (answer.value) &quot;phone&quot;;
+  } &quot;phone&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.email&apos;) and answer.exists()) -&gt;  relatedPerson.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.streetAddressLine&apos;) and answer.exists()) -&gt; relatedPerson.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
   } &quot;answer&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.postalCode&apos;) and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.city&apos;) and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.country&apos;) and answer.exists()) -&gt;  patient.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.postalCode&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.city&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.relatedPerson.country&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
+}
+
+group ReceiverCopyPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.practitioner.familyName&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.practitioner.givenName&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.practitioner.title&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = &apos;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&apos;,  ext.value = create(&apos;code&apos;) as value,  value.value = &apos;AC&apos; &quot;title&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.practitioner.phone&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.practitioner.email&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
+}
+
+group ReceiverCopyOrganizationItems(source src : BackboneElement, target organization : Organization) {
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.organization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.organization.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
+    item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
+  } &quot;answer&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.organization.postalCode&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.organization.city&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
+  src.item as item where ((linkId.value = &apos;receiverCopy.practitionerRole.organization.country&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
+}
+
+group ReceiverCopyPractitionerRoleItems(source src : BackboneElement, target bundle : Bundle, target practitionerRole : practitionerRole) {
+  src.item as item where (linkId.value = &apos;receiverCopy.practitionerRole.practitioner&apos;) -&gt;  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  practitionerRole.practitioner = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid2),  e2.fullUrl = append(&apos;urn:uuid:&apos;, uuid2) then ReceiverCopyPractitionerItems(item, practitioner);
+  src.item as item where (linkId.value = &apos;receiverCopy.practitionerRole.organization&apos;) -&gt;  bundle.entry as e3,  e3.resource = create(&apos;Organization&apos;) as organization,  organization.id = uuid() as uuid3,  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3),  e3.fullUrl = append(&apos;urn:uuid:&apos;, uuid3) then ReceiverCopyOrganizationItems(item, organization);
 }
 
 group ExtOrfCopyReceiverPatient(source src : BackboneElement, target patient : Patient, target ext : Extension) {
@@ -288,45 +304,41 @@ group ExtOrfCopyReceiverPatient(source src : BackboneElement, target patient : P
   src -&gt;  ext.value = create(&apos;Reference&apos;) as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id) &quot;patient&quot;;
 }
 
-group CopyReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
-  src.item as item where ((linkId.value = &apos;receiverCopy.organization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;receiverCopy.familyName&apos;) and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.family = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;receiverCopy.givenName&apos;) and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.given = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;receiverCopy.title&apos;) and answer.exists()) -&gt;  organization.contact as contact share contact,  contact.name as name share name,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = &apos;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&apos;,  ext.value = create(&apos;code&apos;) as value,  value.value = &apos;AC&apos; &quot;title&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.phone&apos;) and answer.exists()) -&gt;  organization.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.email&apos;) and answer.exists()) -&gt;  organization.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
-    item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
-  } &quot;answer&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.postalCode&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.city&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
-  src.item as item where ((linkId.value = &apos;receiverCopy.country&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
-}
-
-group ExtOrfCopyReceiverOrganization(source src : BackboneElement, target organization : Organization, target ext : Extension) {
+group ExtOrfCopyReceiver(source src : BackboneElement, target res, target ext : Extension) {
   src -&gt; ext.url = &apos;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver&apos; &quot;url&quot;;
-  src -&gt;  ext.value = create(&apos;Reference&apos;) as reference,  reference.reference = (&apos;urn:uuid:&apos; + %organization.id) &quot;organization&quot;;
+  src -&gt;  ext.value = create(&apos;Reference&apos;) as reference,  reference.reference = (&apos;urn:uuid:&apos; + %res.id) &quot;organization&quot;;
 }
 
-group ReceiverCopy(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  grp.item as item where ((linkId = &apos;receiverCopy&apos;) and item.where(linkId = &apos;receiverCopy.organization.name&apos;).answer.exists()) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Organization&apos;) as organization,  composition.extension as extension,  organization.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
-    item then CopyReceiverOrganizationItems(item, organization) &quot;data&quot;;
-    item then ExtOrfCopyReceiverOrganization(item, organization, extension) &quot;extension&quot;;
-  } &quot;receiverCopyOrganization&quot;;
-  grp.item as item where ((linkId = &apos;receiverCopy&apos;) and item.where(linkId = &apos;receiverCopy.organization.name&apos;).answer.exists().not()) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Patient&apos;) as patient,  composition.extension as extension,  patient.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
-    item then CopyReceiverPatientItems(item, patient) &quot;data&quot;;
-    item then ExtOrfCopyReceiverPatient(item, patient, extension) &quot;extension&quot;;
-  } &quot;receiverCopyPatient&quot;;
+group ReceiverCopy(source grp : BackboneElement, target bundle : Bundle, target patient : Patient, target composition : Composition, target serviceRequest : ServiceRequest) {
+  grp.item as item where (linkId = &apos;receiverCopy.practitionerRole&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerrole,  composition.extension as extension,  practitionerrole.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
+    item then ReceiverCopyPractitionerRoleItems(item, bundle, practitionerrole) &quot;data&quot;;
+    item then ExtOrfCopyReceiver(item, practitionerrole, extension) &quot;extension&quot;;
+  } &quot;receiverCopyPractitionerRole&quot;;
+  grp.item as item where (linkId = &apos;receiverCopy.patient&apos;) -&gt; composition.extension as extension then {
+    item then ExtOrfCopyReceiver(item, patient, extension) &quot;extension&quot;;
+  } &quot;receiverCopyPractitionerRole&quot;;
+  grp.item as item where (linkId = &apos;receiverCopy.relatedPerson&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  composition.extension as extension,  relatedPerson.id = uuid() as uuid4,  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id),  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
+    item then ReceiverCopyRelatedPersonItems(item, relatedPerson) &quot;data&quot;;
+    item then ExtOrfCopyReceiver(item, relatedPerson, extension) &quot;extension&quot;;
+  } &quot;receiverCopyPractitionerRole&quot;;
 }
 
 group Appointment(source grp : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
   grp -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Appointment&apos;) as appointment,  appointment.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.extension as extension,  extension.url = &apos;http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime&apos;,  extension.value = create(&apos;Reference&apos;) as reference,  reference.reference = (&apos;urn:uuid:&apos; + %uuid4) then {
-    grp.item as item where ((linkId.value = &apos;appointment.status&apos;) and answer.exists()) -&gt; appointment.status = (item.answer.value.code) &quot;code&quot;;
-    grp.item as item where (linkId.value = &apos;appointment.requestedPeriod&apos;) then {
-      item.item as item2 where ((linkId.value = &apos;appointment.requestedPeriod.start&apos;) and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod,  requestedPeriod.start = (item2.answer.value),  requestedPeriod.end = (item2.answer.value) then {
-        item.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; requestedPeriod.end = (item3.answer.value) &quot;end if not same as start&quot;;
-      } &quot;start&quot;;
-    } &quot;requestedPeriod&quot;;
+    grp.item as item where ((linkId.value = &apos;appointment.status&apos;) and (answer.value.code = &apos;proposed&apos;)) -&gt; appointment.status = (item.answer.value.code) then {
+      grp.item as itemp where (linkId.value = &apos;appointment.requestedPeriod&apos;) then {
+        itemp.item as item2 where ((linkId.value = &apos;appointment.requestedPeriod.start&apos;) and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod,  requestedPeriod.start = (item2.answer.value),  requestedPeriod.end = (item2.answer.value) then {
+          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; requestedPeriod.end = (item3.answer.value) &quot;end if not same as start&quot;;
+        } &quot;start&quot;;
+      } &quot;requestedPeriod&quot;;
+    } &quot;proposed&quot;;
+    grp.item as item where ((linkId.value = &apos;appointment.status&apos;) and ((answer.value.code = &apos;pending&apos;) or (answer.value.code = &apos;booked&apos;))) -&gt; appointment.status = (item.answer.value.code) then {
+      grp.item as itemp where (linkId.value = &apos;appointment.requestedPeriod&apos;) then {
+        itemp.item as item2 where ((linkId.value = &apos;appointment.requestedPeriod.start&apos;) and answer.exists()) -&gt;  appointment.start = (item2.answer.value),  appointment.end = (item2.answer.value) then {
+          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; appointment.end = (item3.answer.value) &quot;end if not same as start&quot;;
+        } &quot;start&quot;;
+      } &quot;startend&quot;;
+    } &quot;pendingorbooked&quot;;
     grp.item as item where ((linkId.value = &apos;appointment.patientInstruction&apos;) and answer.exists()) -&gt; appointment.patientInstruction = (item.answer.value) &quot;patientInstruction&quot;;
     grp.item as item where (linkId.value = &apos;appointment.location&apos;) then {
       item -&gt;  bundle.entry as e5,  e5.resource = create(&apos;Location&apos;) as location,  location.id = uuid() as uuid5,  e5.fullUrl = (&apos;urn:uuid:&apos; + %uuid5),  appointment.participant as participant,  participant.status = &apos;tentative&apos;,  participant.actor = create(&apos;Reference&apos;) as actor,  actor.reference = (&apos;urn:uuid:&apos; + %location.id) then {
@@ -390,6 +402,11 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
       <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
       <mode value="target"/>
       <alias value="Patient"/>
+   </structure>
+   <structure>
+      <url value="http://hl7.org/fhir/StructureDefinition/RelatedPerson"/>
+      <mode value="target"/>
+      <alias value="RelatedPerson"/>
    </structure>
    <structure>
       <url value="http://hl7.org/fhir/StructureDefinition/Organization"/>
@@ -815,12 +832,13 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <context value="qr"/>
             <element value="item"/>
             <variable value="grp"/>
-            <condition value="linkId = 'receiverCopies'"/>
+            <condition value="linkId = 'receiverCopy'"/>
          </source>
          <dependent>
             <name value="ReceiverCopy"/>
             <variable value="grp"/>
             <variable value="bundle"/>
+            <variable value="patient"/>
             <variable value="composition"/>
             <variable value="serviceRequest"/>
          </dependent>
@@ -893,106 +911,6 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <type value="ServiceRequest"/>
          <mode value="target"/>
       </input>
-      <rule>
-         <name value="order.title"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'order.title') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="composition"/>
-            <contextType value="variable"/>
-            <element value="title"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.valueString"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="order.type"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'order.type') and answer.exists())"/>
-         </source>
-         <rule>
-            <name value="answer"/>
-            <source>
-               <context value="item"/>
-               <element value="answer"/>
-               <variable value="answer"/>
-            </source>
-            <rule>
-               <name value="type"/>
-               <source>
-                  <context value="answer"/>
-                  <type value="Coding"/>
-                  <element value="value"/>
-                  <variable value="coding"/>
-               </source>
-               <target>
-                  <context value="composition"/>
-                  <contextType value="variable"/>
-                  <element value="type"/>
-                  <variable value="comptype"/>
-               </target>
-               <target>
-                  <context value="comptype"/>
-                  <contextType value="variable"/>
-                  <element value="coding"/>
-                  <transform value="copy"/>
-                  <parameter>
-                     <valueId value="coding"/>
-                  </parameter>
-               </target>
-            </rule>
-         </rule>
-      </rule>
-      <rule>
-         <name value="order.category"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'order.category') and answer.exists())"/>
-         </source>
-         <rule>
-            <name value="answer"/>
-            <source>
-               <context value="item"/>
-               <element value="answer"/>
-               <variable value="answer"/>
-            </source>
-            <rule>
-               <name value="category"/>
-               <source>
-                  <context value="answer"/>
-                  <type value="Coding"/>
-                  <element value="value"/>
-                  <variable value="coding"/>
-               </source>
-               <target>
-                  <context value="composition"/>
-                  <contextType value="variable"/>
-                  <element value="category"/>
-                  <variable value="compcat"/>
-               </target>
-               <target>
-                  <context value="compcat"/>
-                  <contextType value="variable"/>
-                  <element value="coding"/>
-                  <transform value="copy"/>
-                  <parameter>
-                     <valueId value="coding"/>
-                  </parameter>
-               </target>
-            </rule>
-         </rule>
-      </rule>
       <rule>
          <name value="order.precedentDocumentIdentifier"/>
          <source>
@@ -3244,37 +3162,45 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             </target>
          </rule>
          <rule>
-            <name value="patient.phone"/>
+            <name value="patient.contactperson.phone"/>
             <source>
-               <context value="item"/>
+               <context value="src"/>
                <element value="item"/>
                <variable value="item"/>
                <condition value="((linkId.value = 'patient.contactperson.phone') and answer.exists())"/>
             </source>
-            <target>
-               <context value="contact"/>
-               <contextType value="variable"/>
-               <element value="telecom"/>
-               <variable value="value"/>
-            </target>
-            <target>
-               <context value="value"/>
-               <contextType value="variable"/>
-               <element value="system"/>
-               <transform value="copy"/>
-               <parameter>
-                  <valueString value="phone"/>
-               </parameter>
-            </target>
-            <target>
-               <context value="value"/>
-               <contextType value="variable"/>
-               <element value="value"/>
-               <transform value="evaluate"/>
-               <parameter>
-                  <valueString value="item.answer.value"/>
-               </parameter>
-            </target>
+            <rule>
+               <name value="patient.phone"/>
+               <source>
+                  <context value="item"/>
+                  <element value="answer"/>
+                  <variable value="answer"/>
+               </source>
+               <target>
+                  <context value="tgt"/>
+                  <contextType value="variable"/>
+                  <element value="telecom"/>
+                  <variable value="value"/>
+               </target>
+               <target>
+                  <context value="value"/>
+                  <contextType value="variable"/>
+                  <element value="system"/>
+                  <transform value="copy"/>
+                  <parameter>
+                     <valueString value="phone"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="value"/>
+                  <contextType value="variable"/>
+                  <element value="value"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="answer.value"/>
+                  </parameter>
+               </target>
+            </rule>
          </rule>
          <rule>
             <name value="patient.email"/>
@@ -6197,7 +6123,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
       </rule>
    </group>
    <group>
-      <name value="CopyReceiverPatientItems"/>
+      <name value="ReceiverCopyRelatedPersonItems"/>
       <typeMode value="none"/>
       <input>
          <name value="src"/>
@@ -6205,8 +6131,8 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <mode value="source"/>
       </input>
       <input>
-         <name value="patient"/>
-         <type value="Patient"/>
+         <name value="relatedPerson"/>
+         <type value="RelatedPerson"/>
          <mode value="target"/>
       </input>
       <rule>
@@ -6215,10 +6141,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.familyName') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.familyName') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="relatedPerson"/>
             <contextType value="variable"/>
             <element value="name"/>
             <variable value="name"/>
@@ -6241,10 +6167,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.givenName') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.givenName') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="relatedPerson"/>
             <contextType value="variable"/>
             <element value="name"/>
             <variable value="name"/>
@@ -6262,20 +6188,272 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="receiverCopy.title"/>
+         <name value="phone"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.title') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.phone') and answer.exists())"/>
+         </source>
+         <rule>
+            <name value="receiverCopy.relatedPerson.phone"/>
+            <source>
+               <context value="item"/>
+               <element value="answer"/>
+               <variable value="answer"/>
+            </source>
+            <target>
+               <context value="relatedPerson"/>
+               <contextType value="variable"/>
+               <element value="telecom"/>
+               <variable value="value"/>
+            </target>
+            <target>
+               <context value="value"/>
+               <contextType value="variable"/>
+               <element value="system"/>
+               <transform value="copy"/>
+               <parameter>
+                  <valueString value="phone"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="value"/>
+               <contextType value="variable"/>
+               <element value="value"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="answer.value"/>
+               </parameter>
+            </target>
+         </rule>
+      </rule>
+      <rule>
+         <name value="receiverCopy.relatedPerson.email"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.email') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="telecom"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="email"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item.answer"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.streetAddressLine') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <rule>
+            <name value="receiverCopy.relatedPerson.streetAddressLine"/>
+            <source>
+               <context value="item"/>
+               <element value="answer"/>
+               <variable value="answer"/>
+            </source>
+            <target>
+               <context value="address"/>
+               <contextType value="variable"/>
+               <element value="line"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="answer.value"/>
+               </parameter>
+            </target>
+         </rule>
+      </rule>
+      <rule>
+         <name value="receiverCopy.relatedPerson.postalCode"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.postalCode') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="postalCode"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="receiverCopy.relatedPerson.city"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.city') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="city"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="receiverCopy.relatedPerson.country"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.relatedPerson.country') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="country"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+   </group>
+   <group>
+      <name value="ReceiverCopyPractitionerItems"/>
+      <typeMode value="none"/>
+      <input>
+         <name value="src"/>
+         <type value="BackboneElement"/>
+         <mode value="source"/>
+      </input>
+      <input>
+         <name value="practitioner"/>
+         <type value="Practitioner"/>
+         <mode value="target"/>
+      </input>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.practitioner.familyName') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="name"/>
             <variable value="name"/>
             <listMode value="share"/>
-            <listRuleId value="name"/>
+            <listRuleId value="practitionerName"/>
+         </target>
+         <target>
+            <context value="name"/>
+            <contextType value="variable"/>
+            <element value="family"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.practitioner.givenName') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="practitioner"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <variable value="name"/>
+            <listMode value="share"/>
+            <listRuleId value="practitionerName"/>
+         </target>
+         <target>
+            <context value="name"/>
+            <contextType value="variable"/>
+            <element value="given"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="receiverCopy.practitionerRole.practitioner.title"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.practitioner.title') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="practitioner"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <variable value="name"/>
+            <listMode value="share"/>
+            <listRuleId value="practitionerName"/>
          </target>
          <target>
             <context value="name"/>
@@ -6323,15 +6501,15 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="receiverCopy.phone"/>
+         <name value="receiverCopy.practitionerRole.practitioner.phone"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.phone') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.practitioner.phone') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="telecom"/>
             <variable value="value"/>
@@ -6356,15 +6534,15 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="receiverCopy.email"/>
+         <name value="receiverCopy.practitionerRole.practitioner.email"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.email') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.practitioner.email') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="practitioner"/>
             <contextType value="variable"/>
             <element value="telecom"/>
             <variable value="value"/>
@@ -6388,16 +6566,48 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             </parameter>
          </target>
       </rule>
+   </group>
+   <group>
+      <name value="ReceiverCopyOrganizationItems"/>
+      <typeMode value="none"/>
+      <input>
+         <name value="src"/>
+         <type value="BackboneElement"/>
+         <mode value="source"/>
+      </input>
+      <input>
+         <name value="organization"/>
+         <type value="Organization"/>
+         <mode value="target"/>
+      </input>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.organization.name') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="organization"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
       <rule>
          <name value="item.answer"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.organization.streetAddressLine') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="organization"/>
             <contextType value="variable"/>
             <element value="address"/>
             <variable value="address"/>
@@ -6405,7 +6615,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <listRuleId value="orgAddress"/>
          </target>
          <rule>
-            <name value="receiverCopy.streetAddressLine"/>
+            <name value="receiverCopy.practitionerRole.organization.streetAddressLine"/>
             <source>
                <context value="item"/>
                <element value="answer"/>
@@ -6423,15 +6633,15 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </rule>
       </rule>
       <rule>
-         <name value="receiverCopy.postalCode"/>
+         <name value="receiverCopy.practitionerRole.organization.postalCode"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.postalCode') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.organization.postalCode') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="organization"/>
             <contextType value="variable"/>
             <element value="address"/>
             <variable value="address"/>
@@ -6449,15 +6659,15 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="receiverCopy.city"/>
+         <name value="receiverCopy.practitionerRole.organization.city"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.city') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.organization.city') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="organization"/>
             <contextType value="variable"/>
             <element value="address"/>
             <variable value="address"/>
@@ -6475,15 +6685,15 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="receiverCopy.country"/>
+         <name value="receiverCopy.practitionerRole.organization.country"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.country') and answer.exists())"/>
+            <condition value="((linkId.value = 'receiverCopy.practitionerRole.organization.country') and answer.exists())"/>
          </source>
          <target>
-            <context value="patient"/>
+            <context value="organization"/>
             <contextType value="variable"/>
             <element value="address"/>
             <variable value="address"/>
@@ -6499,6 +6709,167 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <valueString value="item.answer.value"/>
             </parameter>
          </target>
+      </rule>
+   </group>
+   <group>
+      <name value="ReceiverCopyPractitionerRoleItems"/>
+      <typeMode value="none"/>
+      <input>
+         <name value="src"/>
+         <type value="BackboneElement"/>
+         <mode value="source"/>
+      </input>
+      <input>
+         <name value="bundle"/>
+         <type value="Bundle"/>
+         <mode value="target"/>
+      </input>
+      <input>
+         <name value="practitionerRole"/>
+         <type value="practitionerRole"/>
+         <mode value="target"/>
+      </input>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="(linkId.value = 'receiverCopy.practitionerRole.practitioner')"/>
+         </source>
+         <target>
+            <context value="bundle"/>
+            <contextType value="variable"/>
+            <element value="entry"/>
+            <variable value="e2"/>
+         </target>
+         <target>
+            <context value="e2"/>
+            <contextType value="variable"/>
+            <element value="resource"/>
+            <variable value="practitioner"/>
+            <transform value="create"/>
+            <parameter>
+               <valueString value="Practitioner"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="practitioner"/>
+            <contextType value="variable"/>
+            <element value="id"/>
+            <variable value="uuid2"/>
+            <transform value="uuid"/>
+         </target>
+         <target>
+            <context value="practitionerRole"/>
+            <contextType value="variable"/>
+            <element value="practitioner"/>
+            <variable value="reference"/>
+            <transform value="create"/>
+            <parameter>
+               <valueString value="Reference"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"/>
+            <contextType value="variable"/>
+            <element value="reference"/>
+            <transform value="append"/>
+            <parameter>
+               <valueString value="urn:uuid:"/>
+            </parameter>
+            <parameter>
+               <valueId value="uuid2"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="e2"/>
+            <contextType value="variable"/>
+            <element value="fullUrl"/>
+            <transform value="append"/>
+            <parameter>
+               <valueString value="urn:uuid:"/>
+            </parameter>
+            <parameter>
+               <valueId value="uuid2"/>
+            </parameter>
+         </target>
+         <dependent>
+            <name value="ReceiverCopyPractitionerItems"/>
+            <variable value="item"/>
+            <variable value="practitioner"/>
+         </dependent>
+      </rule>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="(linkId.value = 'receiverCopy.practitionerRole.organization')"/>
+         </source>
+         <target>
+            <context value="bundle"/>
+            <contextType value="variable"/>
+            <element value="entry"/>
+            <variable value="e3"/>
+         </target>
+         <target>
+            <context value="e3"/>
+            <contextType value="variable"/>
+            <element value="resource"/>
+            <variable value="organization"/>
+            <transform value="create"/>
+            <parameter>
+               <valueString value="Organization"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="organization"/>
+            <contextType value="variable"/>
+            <element value="id"/>
+            <variable value="uuid3"/>
+            <transform value="uuid"/>
+         </target>
+         <target>
+            <context value="practitionerRole"/>
+            <contextType value="variable"/>
+            <element value="organization"/>
+            <variable value="reference"/>
+            <transform value="create"/>
+            <parameter>
+               <valueString value="Reference"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="reference"/>
+            <contextType value="variable"/>
+            <element value="reference"/>
+            <transform value="append"/>
+            <parameter>
+               <valueString value="urn:uuid:"/>
+            </parameter>
+            <parameter>
+               <valueId value="uuid3"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="e3"/>
+            <contextType value="variable"/>
+            <element value="fullUrl"/>
+            <transform value="append"/>
+            <parameter>
+               <valueString value="urn:uuid:"/>
+            </parameter>
+            <parameter>
+               <valueId value="uuid3"/>
+            </parameter>
+         </target>
+         <dependent>
+            <name value="ReceiverCopyOrganizationItems"/>
+            <variable value="item"/>
+            <variable value="organization"/>
+         </dependent>
       </rule>
    </group>
    <group>
@@ -6561,7 +6932,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
       </rule>
    </group>
    <group>
-      <name value="CopyReceiverOrganizationItems"/>
+      <name value="ExtOrfCopyReceiver"/>
       <typeMode value="none"/>
       <input>
          <name value="src"/>
@@ -6569,355 +6940,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <mode value="source"/>
       </input>
       <input>
-         <name value="organization"/>
-         <type value="Organization"/>
-         <mode value="target"/>
-      </input>
-      <rule>
-         <name value="item"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.organization.name') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="name"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="item"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.familyName') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="contact"/>
-            <variable value="contact"/>
-            <listMode value="share"/>
-            <listRuleId value="contact"/>
-         </target>
-         <target>
-            <context value="contact"/>
-            <contextType value="variable"/>
-            <element value="name"/>
-            <variable value="name"/>
-            <listMode value="share"/>
-            <listRuleId value="name"/>
-         </target>
-         <target>
-            <context value="name"/>
-            <contextType value="variable"/>
-            <element value="family"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="item"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.givenName') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="contact"/>
-            <variable value="contact"/>
-            <listMode value="share"/>
-            <listRuleId value="contact"/>
-         </target>
-         <target>
-            <context value="contact"/>
-            <contextType value="variable"/>
-            <element value="name"/>
-            <variable value="name"/>
-            <listMode value="share"/>
-            <listRuleId value="name"/>
-         </target>
-         <target>
-            <context value="name"/>
-            <contextType value="variable"/>
-            <element value="given"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="receiverCopy.title"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.title') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="contact"/>
-            <variable value="contact"/>
-            <listMode value="share"/>
-            <listRuleId value="contact"/>
-         </target>
-         <target>
-            <context value="contact"/>
-            <contextType value="variable"/>
-            <element value="name"/>
-            <variable value="name"/>
-            <listMode value="share"/>
-            <listRuleId value="name"/>
-         </target>
-         <target>
-            <context value="name"/>
-            <contextType value="variable"/>
-            <element value="prefix"/>
-            <variable value="prefix"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="prefix"/>
-            <contextType value="variable"/>
-            <element value="extension"/>
-            <variable value="ext"/>
-         </target>
-         <target>
-            <context value="ext"/>
-            <contextType value="variable"/>
-            <element value="url"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="ext"/>
-            <contextType value="variable"/>
-            <element value="value"/>
-            <variable value="value"/>
-            <transform value="create"/>
-            <parameter>
-               <valueString value="code"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="value"/>
-            <contextType value="variable"/>
-            <element value="value"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="AC"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="receiverCopy.phone"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.phone') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="telecom"/>
-            <variable value="value"/>
-         </target>
-         <target>
-            <context value="value"/>
-            <contextType value="variable"/>
-            <element value="system"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="phone"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="value"/>
-            <contextType value="variable"/>
-            <element value="value"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="receiverCopy.email"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.email') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="telecom"/>
-            <variable value="value"/>
-         </target>
-         <target>
-            <context value="value"/>
-            <contextType value="variable"/>
-            <element value="system"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="email"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="value"/>
-            <contextType value="variable"/>
-            <element value="value"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="item.answer"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.streetAddressLine') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="address"/>
-            <variable value="address"/>
-            <listMode value="share"/>
-            <listRuleId value="orgAddress"/>
-         </target>
-         <rule>
-            <name value="receiverCopy.streetAddressLine"/>
-            <source>
-               <context value="item"/>
-               <element value="answer"/>
-               <variable value="answer"/>
-            </source>
-            <target>
-               <context value="address"/>
-               <contextType value="variable"/>
-               <element value="line"/>
-               <transform value="evaluate"/>
-               <parameter>
-                  <valueString value="answer.value"/>
-               </parameter>
-            </target>
-         </rule>
-      </rule>
-      <rule>
-         <name value="receiverCopy.postalCode"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.postalCode') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="address"/>
-            <variable value="address"/>
-            <listMode value="share"/>
-            <listRuleId value="orgAddress"/>
-         </target>
-         <target>
-            <context value="address"/>
-            <contextType value="variable"/>
-            <element value="postalCode"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="receiverCopy.city"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.city') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="address"/>
-            <variable value="address"/>
-            <listMode value="share"/>
-            <listRuleId value="orgAddress"/>
-         </target>
-         <target>
-            <context value="address"/>
-            <contextType value="variable"/>
-            <element value="city"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-      <rule>
-         <name value="receiverCopy.country"/>
-         <source>
-            <context value="src"/>
-            <element value="item"/>
-            <variable value="item"/>
-            <condition value="((linkId.value = 'receiverCopy.country') and answer.exists())"/>
-         </source>
-         <target>
-            <context value="organization"/>
-            <contextType value="variable"/>
-            <element value="address"/>
-            <variable value="address"/>
-            <listMode value="share"/>
-            <listRuleId value="orgAddress"/>
-         </target>
-         <target>
-            <context value="address"/>
-            <contextType value="variable"/>
-            <element value="country"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="item.answer.value"/>
-            </parameter>
-         </target>
-      </rule>
-   </group>
-   <group>
-      <name value="ExtOrfCopyReceiverOrganization"/>
-      <typeMode value="none"/>
-      <input>
-         <name value="src"/>
-         <type value="BackboneElement"/>
-         <mode value="source"/>
-      </input>
-      <input>
-         <name value="organization"/>
-         <type value="Organization"/>
+         <name value="res"/>
          <mode value="target"/>
       </input>
       <input>
@@ -6961,7 +6984,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <element value="reference"/>
             <transform value="evaluate"/>
             <parameter>
-               <valueString value="'urn:uuid:' + %organization.id"/>
+               <valueString value="'urn:uuid:' + %res.id"/>
             </parameter>
          </target>
       </rule>
@@ -6980,6 +7003,11 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <mode value="target"/>
       </input>
       <input>
+         <name value="patient"/>
+         <type value="Patient"/>
+         <mode value="target"/>
+      </input>
+      <input>
          <name value="composition"/>
          <type value="Composition"/>
          <mode value="target"/>
@@ -6990,12 +7018,12 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <mode value="target"/>
       </input>
       <rule>
-         <name value="receiverCopyOrganization"/>
+         <name value="receiverCopyPractitionerRole"/>
          <source>
             <context value="grp"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists())"/>
+            <condition value="(linkId = 'receiverCopy.practitionerRole')"/>
          </source>
          <target>
             <context value="bundle"/>
@@ -7007,10 +7035,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <context value="e4"/>
             <contextType value="variable"/>
             <element value="resource"/>
-            <variable value="organization"/>
+            <variable value="practitionerrole"/>
             <transform value="create"/>
             <parameter>
-               <valueString value="Organization"/>
+               <valueString value="PractitionerRole"/>
             </parameter>
          </target>
          <target>
@@ -7020,7 +7048,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <variable value="extension"/>
          </target>
          <target>
-            <context value="organization"/>
+            <context value="practitionerrole"/>
             <contextType value="variable"/>
             <element value="id"/>
             <variable value="uuid4"/>
@@ -7044,9 +7072,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <context value="item"/>
             </source>
             <dependent>
-               <name value="CopyReceiverOrganizationItems"/>
+               <name value="ReceiverCopyPractitionerRoleItems"/>
                <variable value="item"/>
-               <variable value="organization"/>
+               <variable value="bundle"/>
+               <variable value="practitionerrole"/>
             </dependent>
          </rule>
          <rule>
@@ -7055,20 +7084,47 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <context value="item"/>
             </source>
             <dependent>
-               <name value="ExtOrfCopyReceiverOrganization"/>
+               <name value="ExtOrfCopyReceiver"/>
                <variable value="item"/>
-               <variable value="organization"/>
+               <variable value="practitionerrole"/>
                <variable value="extension"/>
             </dependent>
          </rule>
       </rule>
       <rule>
-         <name value="receiverCopyPatient"/>
+         <name value="receiverCopyPractitionerRole"/>
          <source>
             <context value="grp"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId = 'receiverCopy') and item.where(linkId = 'receiverCopy.organization.name').answer.exists().not())"/>
+            <condition value="(linkId = 'receiverCopy.patient')"/>
+         </source>
+         <target>
+            <context value="composition"/>
+            <contextType value="variable"/>
+            <element value="extension"/>
+            <variable value="extension"/>
+         </target>
+         <rule>
+            <name value="extension"/>
+            <source>
+               <context value="item"/>
+            </source>
+            <dependent>
+               <name value="ExtOrfCopyReceiver"/>
+               <variable value="item"/>
+               <variable value="patient"/>
+               <variable value="extension"/>
+            </dependent>
+         </rule>
+      </rule>
+      <rule>
+         <name value="receiverCopyPractitionerRole"/>
+         <source>
+            <context value="grp"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="(linkId = 'receiverCopy.relatedPerson')"/>
          </source>
          <target>
             <context value="bundle"/>
@@ -7080,10 +7136,10 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <context value="e4"/>
             <contextType value="variable"/>
             <element value="resource"/>
-            <variable value="patient"/>
+            <variable value="relatedPerson"/>
             <transform value="create"/>
             <parameter>
-               <valueString value="Patient"/>
+               <valueString value="RelatedPerson"/>
             </parameter>
          </target>
          <target>
@@ -7093,11 +7149,26 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <variable value="extension"/>
          </target>
          <target>
-            <context value="patient"/>
+            <context value="relatedPerson"/>
             <contextType value="variable"/>
             <element value="id"/>
             <variable value="uuid4"/>
             <transform value="uuid"/>
+         </target>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="patient"/>
+            <variable value="reference"/>
+         </target>
+         <target>
+            <context value="reference"/>
+            <contextType value="variable"/>
+            <element value="reference"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="'urn:uuid:' + %patient.id"/>
+            </parameter>
          </target>
          <target>
             <context value="e4"/>
@@ -7117,9 +7188,9 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <context value="item"/>
             </source>
             <dependent>
-               <name value="CopyReceiverPatientItems"/>
+               <name value="ReceiverCopyRelatedPersonItems"/>
                <variable value="item"/>
-               <variable value="patient"/>
+               <variable value="relatedPerson"/>
             </dependent>
          </rule>
          <rule>
@@ -7128,9 +7199,9 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <context value="item"/>
             </source>
             <dependent>
-               <name value="ExtOrfCopyReceiverPatient"/>
+               <name value="ExtOrfCopyReceiver"/>
                <variable value="item"/>
-               <variable value="patient"/>
+               <variable value="relatedPerson"/>
                <variable value="extension"/>
             </dependent>
          </rule>
@@ -7231,12 +7302,12 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             </parameter>
          </target>
          <rule>
-            <name value="appointment.status.code"/>
+            <name value="proposed"/>
             <source>
                <context value="grp"/>
                <element value="item"/>
                <variable value="item"/>
-               <condition value="((linkId.value = 'appointment.status') and answer.exists())"/>
+               <condition value="((linkId.value = 'appointment.status') and (answer.value.code = 'proposed'))"/>
             </source>
             <target>
                <context value="appointment"/>
@@ -7247,64 +7318,136 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                   <valueString value="item.answer.value.code"/>
                </parameter>
             </target>
-         </rule>
-         <rule>
-            <name value="appointment.requestedPeriod"/>
-            <source>
-               <context value="grp"/>
-               <element value="item"/>
-               <variable value="item"/>
-               <condition value="(linkId.value = 'appointment.requestedPeriod')"/>
-            </source>
             <rule>
-               <name value="appointment.requestedPeriod.start"/>
+               <name value="appointment.requestedPeriod"/>
                <source>
-                  <context value="item"/>
+                  <context value="grp"/>
                   <element value="item"/>
-                  <variable value="item2"/>
-                  <condition value="((linkId.value = 'appointment.requestedPeriod.start') and answer.exists())"/>
+                  <variable value="itemp"/>
+                  <condition value="(linkId.value = 'appointment.requestedPeriod')"/>
                </source>
-               <target>
-                  <context value="appointment"/>
-                  <contextType value="variable"/>
-                  <element value="requestedPeriod"/>
-                  <variable value="requestedPeriod"/>
-               </target>
-               <target>
-                  <context value="requestedPeriod"/>
-                  <contextType value="variable"/>
-                  <element value="start"/>
-                  <transform value="evaluate"/>
-                  <parameter>
-                     <valueString value="item2.answer.value"/>
-                  </parameter>
-               </target>
-               <target>
-                  <context value="requestedPeriod"/>
-                  <contextType value="variable"/>
-                  <element value="end"/>
-                  <transform value="evaluate"/>
-                  <parameter>
-                     <valueString value="item2.answer.value"/>
-                  </parameter>
-               </target>
                <rule>
-                  <name value="appointment.requestedPeriod.end if not same as start"/>
+                  <name value="appointment.requestedPeriod.start"/>
                   <source>
-                     <context value="item"/>
+                     <context value="itemp"/>
                      <element value="item"/>
-                     <variable value="item3"/>
-                     <condition value="((linkId.value = 'appointment.requestedPeriod.end') and answer.exists())"/>
+                     <variable value="item2"/>
+                     <condition value="((linkId.value = 'appointment.requestedPeriod.start') and answer.exists())"/>
                   </source>
+                  <target>
+                     <context value="appointment"/>
+                     <contextType value="variable"/>
+                     <element value="requestedPeriod"/>
+                     <variable value="requestedPeriod"/>
+                  </target>
+                  <target>
+                     <context value="requestedPeriod"/>
+                     <contextType value="variable"/>
+                     <element value="start"/>
+                     <transform value="evaluate"/>
+                     <parameter>
+                        <valueString value="item2.answer.value"/>
+                     </parameter>
+                  </target>
                   <target>
                      <context value="requestedPeriod"/>
                      <contextType value="variable"/>
                      <element value="end"/>
                      <transform value="evaluate"/>
                      <parameter>
-                        <valueString value="item3.answer.value"/>
+                        <valueString value="item2.answer.value"/>
                      </parameter>
                   </target>
+                  <rule>
+                     <name value="appointment.requestedPeriod.end if not same as start"/>
+                     <source>
+                        <context value="itemp"/>
+                        <element value="item"/>
+                        <variable value="item3"/>
+                        <condition value="((linkId.value = 'appointment.requestedPeriod.end') and answer.exists())"/>
+                     </source>
+                     <target>
+                        <context value="requestedPeriod"/>
+                        <contextType value="variable"/>
+                        <element value="end"/>
+                        <transform value="evaluate"/>
+                        <parameter>
+                           <valueString value="item3.answer.value"/>
+                        </parameter>
+                     </target>
+                  </rule>
+               </rule>
+            </rule>
+         </rule>
+         <rule>
+            <name value="pendingorbooked"/>
+            <source>
+               <context value="grp"/>
+               <element value="item"/>
+               <variable value="item"/>
+               <condition value="((linkId.value = 'appointment.status') and ((answer.value.code = 'pending') or (answer.value.code = 'booked')))"/>
+            </source>
+            <target>
+               <context value="appointment"/>
+               <contextType value="variable"/>
+               <element value="status"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="item.answer.value.code"/>
+               </parameter>
+            </target>
+            <rule>
+               <name value="appointment.startend"/>
+               <source>
+                  <context value="grp"/>
+                  <element value="item"/>
+                  <variable value="itemp"/>
+                  <condition value="(linkId.value = 'appointment.requestedPeriod')"/>
+               </source>
+               <rule>
+                  <name value="appointment.start"/>
+                  <source>
+                     <context value="itemp"/>
+                     <element value="item"/>
+                     <variable value="item2"/>
+                     <condition value="((linkId.value = 'appointment.requestedPeriod.start') and answer.exists())"/>
+                  </source>
+                  <target>
+                     <context value="appointment"/>
+                     <contextType value="variable"/>
+                     <element value="start"/>
+                     <transform value="evaluate"/>
+                     <parameter>
+                        <valueString value="item2.answer.value"/>
+                     </parameter>
+                  </target>
+                  <target>
+                     <context value="appointment"/>
+                     <contextType value="variable"/>
+                     <element value="end"/>
+                     <transform value="evaluate"/>
+                     <parameter>
+                        <valueString value="item2.answer.value"/>
+                     </parameter>
+                  </target>
+                  <rule>
+                     <name value="appointment.end if not same as start"/>
+                     <source>
+                        <context value="itemp"/>
+                        <element value="item"/>
+                        <variable value="item3"/>
+                        <condition value="((linkId.value = 'appointment.requestedPeriod.end') and answer.exists())"/>
+                     </source>
+                     <target>
+                        <context value="appointment"/>
+                        <contextType value="variable"/>
+                        <element value="end"/>
+                        <transform value="evaluate"/>
+                        <parameter>
+                           <valueString value="item3.answer.value"/>
+                        </parameter>
+                     </target>
+                  </rule>
                </rule>
             </rule>
          </rule>
