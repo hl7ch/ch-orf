@@ -9,6 +9,10 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * [Issue #31](https://github.com/hl7ch/ch-orf/issues/31) 
 * Add patients marital status to the [Questionnaire](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Bundle-bundle-order-referral-form.html)).
    * [Issue #60](https://github.com/hl7ch/ch-orf/issues/60)   
+* Add patients language of correspondance to the [Questionnaire](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Bundle-bundle-order-referral-form.html)).
+   * [Issue #64](https://github.com/hl7ch/ch-orf/issues/64) 
+
+   
 ### Changed / Updated
 * Improvement/updating of the documentation.
    * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
