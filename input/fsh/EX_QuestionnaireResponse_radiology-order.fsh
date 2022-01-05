@@ -9,18 +9,6 @@ Description: "Example for QuestionnaireResponse"
 * item[+].linkId = "order"
 * item[=].text = "Auftrag"
 
-* item[=].item[+].linkId = "order.title"
-* item[=].item[=].text = "Titel"
-* item[=].item[=].answer.valueString = "Order-Referral-Form"
-
-* item[=].item[+].linkId = "order.type"
-* item[=].item[=].text = "Typ"
-* item[=].item[=].answer.valueCoding = SNOMEDCTSwissExtension#2161000195103 "Imaging order (record artifact)"
-
-* item[=].item[+].linkId = "order.category"
-* item[=].item[=].text = "Kategorie"
-* item[=].item[=].answer.valueCoding = SCT#721963009 "Order (record artifact)"
-
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
 * item[=].item[=].answer.valueString = "2156286"

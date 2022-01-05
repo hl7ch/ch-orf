@@ -1,6 +1,15 @@
 <div xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas-r5/fhir-single.xsd">
 
+    <head>
+        <style>
+            table, th, td {
+                border: 0.5px solid grey;
+                padding: 2px 5px;
+            }
+        </style>
+    </head>
+
     <p>This Implementation Guide uses FHIR defined resources – Composition Resource, Questionnaire Resource,
     QuestionnaireResponse Resource, Patient Resource, PractitionerRole Resource, Practitioner Resource, Organization Resource, ServiceRequest Resource and Bundle Resource from
     FHIR R4. For details on HL7 FHIR R4 see <a href="http://hl7.org/fhir/r4">http://hl7.org/fhir/r4</a>.
@@ -530,60 +539,41 @@
     <p><sup>&#91;Table 6&#93;</sup><i>Actor Roles</i>
     </p>
     <a name="volume2"></a><h5>Referenced Standard</h5>
-     <table>
-        <tbody>
-            <tr>
-                <td>HL7 FHIR
-                </td>
-                <td>Fast Healthcare Interoperability Resources 
-                    <a href="http://hl7.org/fhir/r4/index.html">http://hl7.org/fhir/r4/index.html</a>
-                </td>
-            </tr>
-            <tr>
-                <td>HL7 SDC IG
-                </td>
-                <td>Structured Data Capture Implementation Guide 
-                    <a href="http://hl7.org/fhir/uv/sdc/2019May/index.html">http://hl7.org/fhir/uv/sdc/2019May/index.html</a>
-                </td>
-            </tr>
-            <tr>
-                <td>IETF RFC 2616
-                </td>
-                <td>Hypertext Transfer Protocol – HTTP/1.1
-                </td>
-            </tr>
-            <tr>
-                <td>IETF RFC 7540
-                </td>
-                <td>Hypertext Transfer Protocol – HTTP/2
-                </td>
-            </tr>
-            <tr>
-                <td>IETF RFC 3986
-                </td>
-                <td>Uniform Resource Identifier (URI): Generic Syntax
-                </td>
-            </tr>
-            <tr>
-                <td>IETF RFC 4627
-                </td>
-                <td>The application/json Media Type for JavaScript Object Notation (JSON)
-                </td>
-            </tr>
-            <tr>
-                <td>IETF RFC 6585
-                </td>
-                <td>Additional HTTP Status Codes
-                </td>
-            </tr>
-            <tr>
-                <td>IHE Appendix on HL7 FHIR
-                </td>
-                <td><a href="https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_Appx-Z.pdf">https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_Appx-Z.pdf</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+    <ul>
+        <li>
+            <a href="http://hl7.org/fhir/r4/index.html">HL7 FHIR</a>
+            - Fast Healthcare Interoperability Resources
+        </li>
+        <li>
+            <a href="http://hl7.org/fhir/uv/sdc/2019May/index.html">HL7 SDC IG</a>
+            - Structured Data Capture Implementation Guide
+        </li>
+        <li>
+            IETF RFC 2616
+            - Hypertext Transfer Protocol – HTTP/1.1
+        </li>
+        <li>
+            IETF RFC 7540
+            - Hypertext Transfer Protocol – HTTP/2
+        </li>
+        <li>
+            IETF RFC 3986
+            - Uniform Resource Identifier (URI): Generic Syntax
+        </li>
+        <li>
+            IETF RFC 4627
+            - The application/json Media Type for JavaScript Object Notation (JSON)
+        </li>
+        <li>
+            IETF RFC 6585
+            - Additional HTTP Status Codes
+        </li>
+        <li>
+            <a href="https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_Appx-Z.pdf">IHE Appendix on HL7 FHIR</a>
+            - Appendix Z – FHIR Implementation Material (Trial Implementation)
+        </li>
+    </ul>
 
     <a name="volume2"></a><h5>Interaction Diagram</h5>
     <p>
@@ -973,6 +963,43 @@
     <p>
         The CH ORF context specific requirements for this resource are shown in the profile 
         <a href="StructureDefinition-ch-orf-composition.html">CH ORF Composition</a>.
+    </p>
+    <p>
+        In the Composition, general information about the document is defined, such as title, type and category. 
+        In the CH ORF exchange format, no fixed values are determined for these elements, only a preferred binding to specific ValueSets is made. 
+        These values are context-dependent and have to be specified in the corresponding derived exchange format.
+        They must be defined as fixedValues or limited ValueSet in the Composition profile.
+        <table>
+            <tbody>
+                <tr>
+                    <th><b>Element</b></th>
+                    <th><b>Description</b></th>
+                    <th><b>DataType</b></th>
+                    <th><b>ValueSet</b></th>
+                </tr>
+                <tr>
+                    <td><a href="StructureDefinition-ch-orf-composition.html#Composition.title">Composition.title</a></td>
+                    <td>Meaningful human-readable title of the document</td>
+                    <td><code>string</code></td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><a href="StructureDefinition-ch-orf-composition.html#Composition.type">Composition.type</a></td>
+                    <td>Precise type of the document</td>
+                    <td><code>CodeableConcept</code></td>
+                    <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.typeCode.html">DocumentEntry.typeCode</a></td>
+                </tr>
+                <tr>
+                    <td><a href="StructureDefinition-ch-orf-composition.html#Composition.category">Composition.category</a></td>
+                    <td>High-level kind of the document at a macro level</td>
+                    <td><code>CodeableConcept</code></td>
+                    <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.classCode.html">DocumentEntry.classCode</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <sup>&#91;Table 8&#93;</sup> <i>Generel information about the document defined in Composition</i>
+        </p>
     </p>
 
     <a name="volume3"></a><h6>Questionnaire resource</h6>
