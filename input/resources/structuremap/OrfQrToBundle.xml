@@ -1,8 +1,8 @@
 <StructureMap xmlns="http://hl7.org/fhir">
    <id value="OrfQrToBundle"/>
    <meta>
-      <versionId value="29"/>
-      <lastUpdated value="2022-01-05T21:27:49.905+00:00"/>
+      <versionId value="30"/>
+      <lastUpdated value="2022-01-05T21:46:00.112+00:00"/>
    </meta>
    <text>
       <status value="generated"/>
@@ -107,6 +107,7 @@ group ReceiverPractitionerItems(source src : BackboneElement, target practitione
   src.item as item where ((linkId.value = &apos;receiver.practitioner.givenName&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
   src.item as item where ((linkId.value = &apos;receiver.practitioner.title&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = &apos;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&apos;,  ext.value = create(&apos;code&apos;) as value,  value.value = &apos;AC&apos; &quot;title&quot;;
   src.item as item where ((linkId.value = &apos;receiver.practitioner.gln&apos;) and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = &apos;urn:oid:2.51.1.3&apos;,  value.value = (item.answer.value) &quot;gln&quot;;
+  src.item as item where ((linkId.value = &apos;receiver.practitioner.zsr&apos;) and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = &apos;urn:oid:2.16.756.5.30.1.123.100.2.1.1&apos;,  value.value = (item.answer.value) &quot;zsr&quot;;
   src.item as item where ((linkId.value = &apos;receiver.practitioner.phone&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
   src.item as item where ((linkId.value = &apos;receiver.practitioner.email&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
 }
@@ -114,6 +115,7 @@ group ReceiverPractitionerItems(source src : BackboneElement, target practitione
 group ReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
   src.item as item where ((linkId.value = &apos;receiver.organization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
   src.item as item where ((linkId.value = &apos;receiver.organization.gln&apos;) and answer.exists()) -&gt;  organization.identifier as value,  value.system = &apos;urn:oid:2.51.1.3&apos;,  value.value = (item.answer.value) &quot;gln&quot;;
+  src.item as item where ((linkId.value = &apos;receiver.organization.zsr&apos;) and answer.exists()) -&gt;  organization.identifier as value,  value.system = &apos;urn:oid:2.16.756.5.30.1.123.100.2.1.1&apos;,  value.value = (item.answer.value) &quot;zsr&quot;;
   src.item as item where ((linkId.value = &apos;receiver.organization.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
   } &quot;answer&quot;;
@@ -203,8 +205,8 @@ group Coverage(source src : BackboneElement, target bundle : Bundle, target pati
     item.item as item where ((linkId.value = &apos;coverage.iv.verfuegungsnummer&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;IV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;verfuegungsnummer&quot;;
   } &quot;coverageiv&quot;;
   // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
-  src.item as item where where(linkId.value = &apos;coverage.mv&apos;) -&gt;  bundle.entry as e4,  e4.resource = create('Coverage') as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = ('urn:uuid:' + %uuid4),  coverage.status = 'active',  coverage.beneficiary = create('Reference') as subject,  subject.reference = ('urn:uuid:' + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype',  coding.code = 'MVG' then {
-    item.item as item where ((linkId.value = &apos;coverage.mv.versichertennummer&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;MV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;versichertennummer&quot;;
+  src.item as item where where(linkId.value = &apos;coverage.mv&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = ('urn:uuid:' + %uuid4),  coverage.status = 'active',  coverage.beneficiary = create('Reference') as subject,  subject.reference = ('urn:uuid:' + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype',  coding.code = 'MVG' then {
+    item.item as item where ((linkId.value = 'coverage.mv.versichertennummer') and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;MV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;versichertennummer&quot;;
   } &quot;coveragemv&quot;;
   // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
   src.item as item where where(linkId.value = &apos;coverage.self&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#pat&apos;,  coverage.contained = create(&apos;Patient&apos;) as patient,  patient.id = &apos;pat&apos; then {
@@ -223,6 +225,7 @@ group SenderAuthorPractitionerItems(source src : BackboneElement, target practit
   src.item as item where ((linkId.value = &apos;sender.author.practitioner.givenName&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.given = (item.answer.value);
   src.item as item where ((linkId.value = &apos;sender.author.practitioner.title&apos;) and answer.exists()) -&gt;  practitioner.name as name share practitionerName,  name.prefix = (item.answer.value) as prefix,  prefix.extension as ext,  ext.url = &apos;http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier&apos;,  ext.value = create(&apos;code&apos;) as value,  value.value = &apos;AC&apos; &quot;title&quot;;
   src.item as item where ((linkId.value = &apos;sender.author.practitioner.gln&apos;) and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = &apos;urn:oid:2.51.1.3&apos;,  value.value = (item.answer.value) &quot;gln&quot;;
+  src.item as item where ((linkId.value = &apos;sender.author.practitioner.zsr&apos;) and answer.exists()) -&gt;  practitioner.identifier as value,  value.system = &apos;urn:oid:2.16.756.5.30.1.123.100.2.1.1&apos;,  value.value = (item.answer.value) &quot;zsr&quot;;
   src.item as item where ((linkId.value = &apos;sender.author.practitioner.phone&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;phone&apos;,  value.value = (item.answer.value) &quot;phone&quot;;
   src.item as item where ((linkId.value = &apos;sender.author.practitioner.email&apos;) and answer.exists()) -&gt;  practitioner.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
 }
@@ -230,6 +233,7 @@ group SenderAuthorPractitionerItems(source src : BackboneElement, target practit
 group SenderAuthorOrganizationItems(source src : BackboneElement, target organization : Organization) {
   src.item as item where ((linkId.value = &apos;sender.author.organization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
   src.item as item where ((linkId.value = &apos;sender.author.organization.gln&apos;) and answer.exists()) -&gt;  organization.identifier as value,  value.system = &apos;urn:oid:2.51.1.3&apos;,  value.value = (item.answer.value) &quot;gln&quot;;
+  src.item as item where ((linkId.value = &apos;sender.author.organization.zsr&apos;) and answer.exists()) -&gt;  organization.identifier as value,  value.system = &apos;urn:oid:2.16.756.5.30.1.123.100.2.1.1&apos;,  value.value = (item.answer.value) &quot;zsr&quot;;
   src.item as item where ((linkId.value = &apos;sender.author.organization.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
   } &quot;answer&quot;;
@@ -260,10 +264,10 @@ group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole 
 }
 
 group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner') as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
+  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append(&apos;urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
     src.item as item where (linkId.value = &apos;sender.author&apos;) then SenderAuthorItems(item, practitionerRole, practitioner, organization) &quot;author&quot;;
     src.item as item where (linkId.value = &apos;sender.dataenterer&apos;) then {
-      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
+      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then {
         item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) &quot;data&quot;;
         item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) &quot;extension&quot;;
       } &quot;items&quot;;
@@ -2178,6 +2182,39 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
+         <name value="receiver.practitioner.zsr"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiver.practitioner.zsr') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="practitioner"/>
+            <contextType value="variable"/>
+            <element value="identifier"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
          <name value="receiver.practitioner.phone"/>
          <source>
             <context value="src"/>
@@ -2296,6 +2333,39 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <transform value="copy"/>
             <parameter>
                <valueString value="urn:oid:2.51.1.3"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="receiver.organization.zsr"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'receiver.organization.zsr') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="organization"/>
+            <contextType value="variable"/>
+            <element value="identifier"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
             </parameter>
          </target>
          <target>
@@ -5291,6 +5361,39 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
+         <name value="recsender.author.practitioner.zsr"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'sender.author.practitioner.zsr') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="practitioner"/>
+            <contextType value="variable"/>
+            <element value="identifier"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
          <name value="sender.author.practitioner.phone"/>
          <source>
             <context value="src"/>
@@ -5409,6 +5512,39 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <transform value="copy"/>
             <parameter>
                <valueString value="urn:oid:2.51.1.3"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="sender.author.organization.zsr"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'sender.author.organization.zsr') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="organization"/>
+            <contextType value="variable"/>
+            <element value="identifier"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
             </parameter>
          </target>
          <target>
