@@ -1,7 +1,7 @@
 # Change Log for Implementation Guide CH ORF
 All notable changes to this project will be documented in this file.   
 
-## v1.0.0 - 2021-xx-xx
+## v1.0.0 - 2022-xx-xx
 These changes were made based on the comments of the HL7 Switzerland STU 1 Ballot.
 
 ### Added
@@ -11,6 +11,8 @@ These changes were made based on the comments of the HL7 Switzerland STU 1 Ballo
    * [Issue #60](https://github.com/hl7ch/ch-orf/issues/60)   
 * Add patients language of correspondance to the [Questionnaire](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Bundle-bundle-order-referral-form.html)).
    * [Issue #64](https://github.com/hl7ch/ch-orf/issues/64) 
+* Add 'ZSR' as Practitioner.identifier to the [Questionnaire](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](http://build.fhir.org/ig/hl7ch/ch-orf/branches/master/Bundle-bundle-order-referral-form.html)).
+   * [Issue #65](https://github.com/hl7ch/ch-orf/issues/65) 
 
    
 ### Changed / Updated
