@@ -52,6 +52,13 @@
     <postalCode value="8000"/>
     <country value="Schweiz"/>
   </address>
+  <maritalStatus>
+    <coding>
+      <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+      <code value="1"/>
+      <display value="ledig"/>
+    </coding>
+  </maritalStatus>
   <contact>
     <relationship>
       <text value="Guter Freund"/>
