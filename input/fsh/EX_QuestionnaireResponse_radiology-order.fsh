@@ -209,6 +209,9 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].answer.valueString = "d.ataenterer@happydoctors.ch"
 
 // ---------- Copy Receiver ----------
+* item[+].linkId = "receiverCopy"
+* item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
+
 * item[=].item[+].linkId = "receiverCopy.patient"
 * item[=].item[=].text = "Patient selbst"
 * item[=].item[=].answer.valueBoolean = true

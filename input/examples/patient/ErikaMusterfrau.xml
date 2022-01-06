@@ -79,7 +79,7 @@
   <communication>
     <language>
       <coding>
-        <system value="urn:oid:2.16.840.1.113883.6.316"/>
+        <system value="urn:ietf:bcp:47"/>
         <code value="de-CH"/>
         <display value="Deutsch (Schweiz)"/>
       </coding>

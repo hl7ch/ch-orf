@@ -1,8 +1,8 @@
 <StructureMap xmlns="http://hl7.org/fhir">
    <id value="OrfQrToBundle"/>
    <meta>
-      <versionId value="42"/>
-      <lastUpdated value="2022-01-06T11:15:10.114+00:00"/>
+      <versionId value="44"/>
+      <lastUpdated value="2022-01-06T14:55:49.530+00:00"/>
    </meta>
    <text>
       <status value="generated"/>
@@ -212,7 +212,7 @@ group Coverage(source src : BackboneElement, target bundle : Bundle, target pati
   src.item as item where where(linkId.value = &apos;coverage.self&apos;) then {
     item.item as item where ((linkId.value = &apos;coverage.self.patient&apos;) and answer.exists() and answer.value) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  coverage.payor as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id) &quot;payor&quot;;
     item.item as item2 where ((linkId.value = &apos;coverage.self.patientRelatedPerson&apos;) and answer.exists() and answer.value) then {
-      item.item as item where (linkId.value = &apos;coverage.self.relatedPerson&apos;) -&gt;  bundle.entry as e5,  e5.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e5.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  bundle.entry as e6,  e6.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  relatedPerson.id = uuid() as uuid6,  e6.fullUrl = append(&apos;urn:uuid:&apos;, uuid6),  coverage.payor as subject,  subject.reference = (&apos;urn:uuid:&apos; + %relatedPerson.id),  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id) then CoverageRelatedPersonItems(item, relatedPerson) &quot;*&quot;;
+      item.item as item where (linkId.value = &apos;coverage.self.relatedPerson&apos;) -&gt;  bundle.entry as e5,  e5.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e5.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  bundle.entry as e6,  e6.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  relatedPerson.id = uuid() as uuid6,  e6.fullUrl = append(&apos;urn:uuid:&apos;, uuid6),  coverage.payor as subject,  subject.reference = (&apos;urn:uuid:&apos; + %relatedPerson.id),  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id) then CoverageRelatedPersonItems(item, relatedPerson) &quot;relatedPerson&quot;;
     } &quot;&quot;;
   } &quot;self&quot;;
   // coverage.other	Anderer Kostenträger	0..1	group		Definition: Coverage.type
@@ -281,10 +281,10 @@ group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole 
 }
 
 group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:&apos;, uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
+  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
     src.item as item where (linkId.value = &apos;sender.author&apos;) then SenderAuthorItems(item, practitionerRole, practitioner, organization) &quot;author&quot;;
     src.item as item where (linkId.value = &apos;sender.dataenterer&apos;) then {
-      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then {
+      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:&apos;, uuid3) then {
         item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) &quot;data&quot;;
         item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) &quot;extension&quot;;
       } &quot;items&quot;;
@@ -359,14 +359,14 @@ group Appointment(source grp : BackboneElement, target bundle : Bundle, target c
     grp.item as item where ((linkId.value = &apos;appointment.status&apos;) and (answer.value.code = &apos;proposed&apos;)) -&gt; appointment.status = (item.answer.value.code) then {
       grp.item as itemp where (linkId.value = &apos;appointment.requestedPeriod&apos;) then {
         itemp.item as item2 where ((linkId.value = &apos;appointment.requestedPeriod.start&apos;) and answer.exists()) -&gt;  appointment.requestedPeriod as requestedPeriod,  requestedPeriod.start = (item2.answer.value),  requestedPeriod.end = (item2.answer.value) then {
-          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; requestedPeriod.end = (item3.answer.value) &quot;end if not same as start&quot;;
+          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; requestedPeriod.end = (item3.answer.value) &quot;start&quot;;
         } &quot;start&quot;;
       } &quot;requestedPeriod&quot;;
     } &quot;proposed&quot;;
     grp.item as item where ((linkId.value = &apos;appointment.status&apos;) and ((answer.value.code = &apos;pending&apos;) or (answer.value.code = &apos;booked&apos;))) -&gt; appointment.status = (item.answer.value.code) then {
       grp.item as itemp where (linkId.value = &apos;appointment.requestedPeriod&apos;) then {
         itemp.item as item2 where ((linkId.value = &apos;appointment.requestedPeriod.start&apos;) and answer.exists()) -&gt;  appointment.start = (item2.answer.value),  appointment.end = (item2.answer.value) then {
-          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; appointment.end = (item3.answer.value) &quot;end if not same as start&quot;;
+          itemp.item as item3 where ((linkId.value = &apos;appointment.requestedPeriod.end&apos;) and answer.exists()) -&gt; appointment.end = (item3.answer.value) &quot;start&quot;;
         } &quot;start&quot;;
       } &quot;startend&quot;;
     } &quot;pendingorbooked&quot;;
@@ -4959,7 +4959,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <condition value="((linkId.value = 'coverage.self.patientRelatedPerson') and answer.exists() and answer.value)"/>
             </source>
             <rule>
-               <name value="coverage.self.relatedPerson.*"/>
+               <name value="coverage.self.relatedPerson"/>
                <source>
                   <context value="item"/>
                   <element value="item"/>
@@ -7996,7 +7996,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                      </parameter>
                   </target>
                   <rule>
-                     <name value="appointment.requestedPeriod.end if not same as start"/>
+                     <name value="appointment.requestedPeriod.end.if.not.same.as.start"/>
                      <source>
                         <context value="itemp"/>
                         <element value="item"/>
@@ -8068,7 +8068,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                      </parameter>
                   </target>
                   <rule>
-                     <name value="appointment.end if not same as start"/>
+                     <name value="appointment.end.if.not.same.as.start"/>
                      <source>
                         <context value="itemp"/>
                         <element value="item"/>

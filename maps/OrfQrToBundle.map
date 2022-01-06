@@ -436,7 +436,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
             coverage.payor as subject, subject.reference = ('urn:uuid:'+%relatedPerson.id),
             relatedPerson.patient as reference, reference.reference = ('urn:uuid:'+%patient.id)
             then 
-              CoverageRelatedPersonItems(item,relatedPerson) "coverage.self.relatedPerson.*";
+              CoverageRelatedPersonItems(item,relatedPerson) "coverage.self.relatedPerson";
       } "coverage.self.patientrelated.";
    } "self";
  
@@ -687,14 +687,14 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
       grp.item as item where (linkId.value = 'appointment.status' and answer.value.code='proposed') -> appointment.status = (item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (item2.answer.value), requestedPeriod.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end if not same as start";
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end.if.not.same.as.start";
            } "appointment.requestedPeriod.start";
          } "appointment.requestedPeriod";
       } "proposed";
       grp.item as item where (linkId.value = 'appointment.status' and (answer.value.code='pending' or answer.value.code='booked')) -> appointment.status = (item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (item2.answer.value), appointment.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end if not same as start";
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end.if.not.same.as.start";
            } "appointment.start";
          } "appointment.startend";
       } "pendingorbooked";
