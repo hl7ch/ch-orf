@@ -46,8 +46,6 @@ ValueSet: ChOrfVsDesiredAccommodation
 Id: ch-orf-vs-desiredaccommodation
 Title: "Desired Accomodation"
 Description: "Value Set for CH ORF Desired Accomodation"
-* V3ActCode#P // Private: Accommodations in which there is only 1 bed.
-* V3ActCode#SP // Semi-private: Accommodations in which there are 2 beds.
-* V3ActCode#W // Ward: Accommodations in which there are 3 or more beds.
-
-
+* ChCoreCSEncounterType#1 "allgemein"
+* ChCoreCSEncounterType#2 "halbprivat"
+* ChCoreCSEncounterType#3 "privat"
