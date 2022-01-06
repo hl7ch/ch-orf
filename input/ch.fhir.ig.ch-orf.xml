@@ -486,6 +486,22 @@
     </resource>
     <resource>
       <reference>
+        <reference value="Coverage/CoverageSelfPatient"/>
+      </reference>
+      <name value="Coverage Self (Patient)"/>
+      <description value="Example for Coverage"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Coverage/CoverageSelfRelatedPerson"/>
+      </reference>
+      <name value="Coverage Self (RelatedPerson)"/>
+      <description value="Example for Coverage"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Encounter/EncounterMusterfrau"/>
       </reference>
       <name value="Encounter Emergency"/>
