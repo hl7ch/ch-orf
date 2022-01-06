@@ -1,8 +1,8 @@
 <StructureMap xmlns="http://hl7.org/fhir">
    <id value="OrfQrToBundle"/>
    <meta>
-      <versionId value="30"/>
-      <lastUpdated value="2022-01-05T21:46:00.112+00:00"/>
+      <versionId value="42"/>
+      <lastUpdated value="2022-01-06T11:15:10.114+00:00"/>
    </meta>
    <text>
       <status value="generated"/>
@@ -209,15 +209,32 @@ group Coverage(source src : BackboneElement, target bundle : Bundle, target pati
     item.item as item where ((linkId.value = 'coverage.mv.versichertennummer') and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;MV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;versichertennummer&quot;;
   } &quot;coveragemv&quot;;
   // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
-  src.item as item where where(linkId.value = &apos;coverage.self&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#pat&apos;,  coverage.contained = create(&apos;Patient&apos;) as patient,  patient.id = &apos;pat&apos; then {
-    item.item as item where ((linkId.value = &apos;coverage.self.familyName&apos;) and answer.exists()) -&gt;  patient.name as name share selfname,  name.family = (item.answer.value) &quot;familyName&quot;;
-    item.item as item where ((linkId.value = &apos;coverage.self.givenName&apos;) and answer.exists()) -&gt;  patient.name as name share selfname,  name.given = (item.answer.value) &quot;givenName&quot;;
-  } &quot;coverageself&quot;;
+  src.item as item where where(linkId.value = &apos;coverage.self&apos;) then {
+    item.item as item where ((linkId.value = &apos;coverage.self.patient&apos;) and answer.exists() and answer.value) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  coverage.payor as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id) &quot;payor&quot;;
+    item.item as item2 where ((linkId.value = &apos;coverage.self.patientRelatedPerson&apos;) and answer.exists() and answer.value) then {
+      item.item as item where (linkId.value = &apos;coverage.self.relatedPerson&apos;) -&gt;  bundle.entry as e5,  e5.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e5.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Self&apos;,  bundle.entry as e6,  e6.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  relatedPerson.id = uuid() as uuid6,  e6.fullUrl = append(&apos;urn:uuid:&apos;, uuid6),  coverage.payor as subject,  subject.reference = (&apos;urn:uuid:&apos; + %relatedPerson.id),  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id) then CoverageRelatedPersonItems(item, relatedPerson) &quot;*&quot;;
+    } &quot;&quot;;
+  } &quot;self&quot;;
   // coverage.other	Anderer Kostenträger	0..1	group		Definition: Coverage.type
   src.item as item where where(linkId.value = &apos;coverage.other&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;Other&apos; then {
     item.item as item where ((linkId.value = &apos;coverage.other.name&apos;) and answer.exists()) -&gt;  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = (item.answer.value) &quot;name&quot;;
     item.item as item where ((linkId.value = &apos;coverage.other.id&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.value = (item.answer.value) &quot;id&quot;;
   } &quot;coveragevvg&quot;;
+}
+
+group CoverageRelatedPersonItems(source src : BackboneElement, target relatedPerson : RelatedPerson) {
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.familyName&apos;) and answer.exists()) -&gt;  relatedPerson.name as name share name,  name.family = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.givenName&apos;) and answer.exists()) -&gt;  relatedPerson.name as name share name,  name.given = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.phone&apos;) and answer.exists()) then {
+    item.answer as answer -&gt;  relatedPerson.telecom as value,  value.system = &apos;phone&apos;,  value.value = (answer.value) &quot;phone&quot;;
+  } &quot;phone&quot;;
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.email&apos;) and answer.exists()) -&gt;  relatedPerson.telecom as value,  value.system = &apos;email&apos;,  value.value = (item.answer.value) &quot;email&quot;;
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.streetAddressLine&apos;) and answer.exists()) -&gt; relatedPerson.address as address share orgAddress then {
+    item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
+  } &quot;answer&quot;;
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.postalCode&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.city&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
+  src.item as item where ((linkId.value = &apos;coverage.self.relatedPerson.country&apos;) and answer.exists()) -&gt;  relatedPerson.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
 }
 
 group SenderAuthorPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
@@ -264,10 +281,10 @@ group ChExtEprDataEnterer(source src : BackboneElement, target practitionerRole 
 }
 
 group SenderAuthorInit(source src : BackboneElement, target bundle : Bundle, target composition : Composition, target serviceRequest : ServiceRequest) {
-  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append(&apos;urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
+  src -&gt;  bundle.entry as e,  e.resource = create(&apos;PractitionerRole&apos;) as practitionerRole,  practitionerRole.id = uuid() as uuid,  e.fullUrl = append(&apos;urn:uuid:&apos;, uuid),  bundle.entry as e2,  e2.resource = create(&apos;Practitioner&apos;) as practitioner,  practitioner.id = uuid() as uuid2,  e2.fullUrl = append('urn:uuid:', uuid2),  bundle.entry as e3,  e3.resource = create('Organization') as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append('urn:uuid:', uuid3),  composition.author = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  serviceRequest.requester = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid),  practitionerRole.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:&apos;, uuid2),  practitionerRole.organization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then {
     src.item as item where (linkId.value = &apos;sender.author&apos;) then SenderAuthorItems(item, practitionerRole, practitioner, organization) &quot;author&quot;;
     src.item as item where (linkId.value = &apos;sender.dataenterer&apos;) then {
-      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append(&apos;urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then {
+      item -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerRoleDataEnterer,  practitionerRoleDataEnterer.id = uuid() as uuid4,  e4.fullUrl = append('urn:uuid:', uuid4),  composition.extension as extension,  bundle.entry as e5,  e5.resource = create('Practitioner') as practitionerDataEnterer,  practitionerDataEnterer.id = uuid() as uuid5,  e5.fullUrl = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.practitioner = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid5),  practitionerRoleDataEnterer.organization = create('Reference') as reference,  reference.reference = append('urn:uuid:', uuid3) then {
         item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) &quot;data&quot;;
         item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) &quot;extension&quot;;
       } &quot;items&quot;;
@@ -4797,209 +4814,334 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          <documentation value="coverage.mv&#x9;Militärversicherung (MV)&#x9;0..1&#x9;group&#x9;&#x9;Definition: Coverage.type"/>
       </rule>
       <rule>
-         <name value="coverageself"/>
+         <name value="self"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
             <condition value="where(linkId.value = 'coverage.self')"/>
          </source>
-         <target>
-            <context value="bundle"/>
-            <contextType value="variable"/>
-            <element value="entry"/>
-            <variable value="e4"/>
-         </target>
-         <target>
-            <context value="e4"/>
-            <contextType value="variable"/>
-            <element value="resource"/>
-            <variable value="coverage"/>
-            <transform value="create"/>
-            <parameter>
-               <valueString value="Coverage"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="id"/>
-            <variable value="uuid4"/>
-            <transform value="uuid"/>
-         </target>
-         <target>
-            <context value="e4"/>
-            <contextType value="variable"/>
-            <element value="fullUrl"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="'urn:uuid:' + %uuid4"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="serviceRequest"/>
-            <contextType value="variable"/>
-            <element value="insurance"/>
-            <variable value="insurance"/>
-         </target>
-         <target>
-            <context value="insurance"/>
-            <contextType value="variable"/>
-            <element value="reference"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="'urn:uuid:' + %uuid4"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="status"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="active"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="beneficiary"/>
-            <variable value="subject"/>
-            <transform value="create"/>
-            <parameter>
-               <valueString value="Reference"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="subject"/>
-            <contextType value="variable"/>
-            <element value="reference"/>
-            <transform value="evaluate"/>
-            <parameter>
-               <valueString value="'urn:uuid:' + %patient.id"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="type"/>
-            <variable value="type"/>
-         </target>
-         <target>
-            <context value="type"/>
-            <contextType value="variable"/>
-            <element value="coding"/>
-            <variable value="coding"/>
-         </target>
-         <target>
-            <context value="coding"/>
-            <contextType value="variable"/>
-            <element value="system"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coding"/>
-            <contextType value="variable"/>
-            <element value="code"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="Self"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="payor"/>
-            <variable value="payor"/>
-         </target>
-         <target>
-            <context value="payor"/>
-            <contextType value="variable"/>
-            <element value="reference"/>
-            <variable value="refcontained"/>
-         </target>
-         <target>
-            <context value="refcontained"/>
-            <contextType value="variable"/>
-            <element value="value"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="#pat"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="coverage"/>
-            <contextType value="variable"/>
-            <element value="contained"/>
-            <variable value="patient"/>
-            <transform value="create"/>
-            <parameter>
-               <valueString value="Patient"/>
-            </parameter>
-         </target>
-         <target>
-            <context value="patient"/>
-            <contextType value="variable"/>
-            <element value="id"/>
-            <transform value="copy"/>
-            <parameter>
-               <valueString value="pat"/>
-            </parameter>
-         </target>
          <rule>
-            <name value="coverage.self.familyName"/>
+            <name value="payor"/>
             <source>
                <context value="item"/>
                <element value="item"/>
                <variable value="item"/>
-               <condition value="((linkId.value = 'coverage.self.familyName') and answer.exists())"/>
+               <condition value="((linkId.value = 'coverage.self.patient') and answer.exists() and answer.value)"/>
             </source>
             <target>
-               <context value="patient"/>
+               <context value="bundle"/>
                <contextType value="variable"/>
-               <element value="name"/>
-               <variable value="name"/>
-               <listMode value="share"/>
-               <listRuleId value="selfname"/>
+               <element value="entry"/>
+               <variable value="e4"/>
             </target>
             <target>
-               <context value="name"/>
+               <context value="e4"/>
                <contextType value="variable"/>
-               <element value="family"/>
+               <element value="resource"/>
+               <variable value="coverage"/>
+               <transform value="create"/>
+               <parameter>
+                  <valueString value="Coverage"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coverage"/>
+               <contextType value="variable"/>
+               <element value="id"/>
+               <variable value="uuid4"/>
+               <transform value="uuid"/>
+            </target>
+            <target>
+               <context value="e4"/>
+               <contextType value="variable"/>
+               <element value="fullUrl"/>
                <transform value="evaluate"/>
                <parameter>
-                  <valueString value="item.answer.value"/>
+                  <valueString value="'urn:uuid:' + %uuid4"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="serviceRequest"/>
+               <contextType value="variable"/>
+               <element value="insurance"/>
+               <variable value="insurance"/>
+            </target>
+            <target>
+               <context value="insurance"/>
+               <contextType value="variable"/>
+               <element value="reference"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="'urn:uuid:' + %uuid4"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coverage"/>
+               <contextType value="variable"/>
+               <element value="status"/>
+               <transform value="copy"/>
+               <parameter>
+                  <valueString value="active"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coverage"/>
+               <contextType value="variable"/>
+               <element value="beneficiary"/>
+               <variable value="subject"/>
+               <transform value="create"/>
+               <parameter>
+                  <valueString value="Reference"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="subject"/>
+               <contextType value="variable"/>
+               <element value="reference"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="'urn:uuid:' + %patient.id"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coverage"/>
+               <contextType value="variable"/>
+               <element value="type"/>
+               <variable value="type"/>
+            </target>
+            <target>
+               <context value="type"/>
+               <contextType value="variable"/>
+               <element value="coding"/>
+               <variable value="coding"/>
+            </target>
+            <target>
+               <context value="coding"/>
+               <contextType value="variable"/>
+               <element value="system"/>
+               <transform value="copy"/>
+               <parameter>
+                  <valueString value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coding"/>
+               <contextType value="variable"/>
+               <element value="code"/>
+               <transform value="copy"/>
+               <parameter>
+                  <valueString value="Self"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="coverage"/>
+               <contextType value="variable"/>
+               <element value="payor"/>
+               <variable value="subject"/>
+            </target>
+            <target>
+               <context value="subject"/>
+               <contextType value="variable"/>
+               <element value="reference"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="'urn:uuid:' + %patient.id"/>
                </parameter>
             </target>
          </rule>
          <rule>
-            <name value="coverage.self.givenName"/>
+            <name value="coverage.self.patientrelated."/>
             <source>
                <context value="item"/>
                <element value="item"/>
-               <variable value="item"/>
-               <condition value="((linkId.value = 'coverage.self.givenName') and answer.exists())"/>
+               <variable value="item2"/>
+               <condition value="((linkId.value = 'coverage.self.patientRelatedPerson') and answer.exists() and answer.value)"/>
             </source>
-            <target>
-               <context value="patient"/>
-               <contextType value="variable"/>
-               <element value="name"/>
-               <variable value="name"/>
-               <listMode value="share"/>
-               <listRuleId value="selfname"/>
-            </target>
-            <target>
-               <context value="name"/>
-               <contextType value="variable"/>
-               <element value="given"/>
-               <transform value="evaluate"/>
-               <parameter>
-                  <valueString value="item.answer.value"/>
-               </parameter>
-            </target>
+            <rule>
+               <name value="coverage.self.relatedPerson.*"/>
+               <source>
+                  <context value="item"/>
+                  <element value="item"/>
+                  <variable value="item"/>
+                  <condition value="(linkId.value = 'coverage.self.relatedPerson')"/>
+               </source>
+               <target>
+                  <context value="bundle"/>
+                  <contextType value="variable"/>
+                  <element value="entry"/>
+                  <variable value="e5"/>
+               </target>
+               <target>
+                  <context value="e5"/>
+                  <contextType value="variable"/>
+                  <element value="resource"/>
+                  <variable value="coverage"/>
+                  <transform value="create"/>
+                  <parameter>
+                     <valueString value="Coverage"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coverage"/>
+                  <contextType value="variable"/>
+                  <element value="id"/>
+                  <variable value="uuid4"/>
+                  <transform value="uuid"/>
+               </target>
+               <target>
+                  <context value="e5"/>
+                  <contextType value="variable"/>
+                  <element value="fullUrl"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="'urn:uuid:' + %uuid4"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="serviceRequest"/>
+                  <contextType value="variable"/>
+                  <element value="insurance"/>
+                  <variable value="insurance"/>
+               </target>
+               <target>
+                  <context value="insurance"/>
+                  <contextType value="variable"/>
+                  <element value="reference"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="'urn:uuid:' + %uuid4"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coverage"/>
+                  <contextType value="variable"/>
+                  <element value="status"/>
+                  <transform value="copy"/>
+                  <parameter>
+                     <valueString value="active"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coverage"/>
+                  <contextType value="variable"/>
+                  <element value="beneficiary"/>
+                  <variable value="subject"/>
+                  <transform value="create"/>
+                  <parameter>
+                     <valueString value="Reference"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="subject"/>
+                  <contextType value="variable"/>
+                  <element value="reference"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="'urn:uuid:' + %patient.id"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coverage"/>
+                  <contextType value="variable"/>
+                  <element value="type"/>
+                  <variable value="type"/>
+               </target>
+               <target>
+                  <context value="type"/>
+                  <contextType value="variable"/>
+                  <element value="coding"/>
+                  <variable value="coding"/>
+               </target>
+               <target>
+                  <context value="coding"/>
+                  <contextType value="variable"/>
+                  <element value="system"/>
+                  <transform value="copy"/>
+                  <parameter>
+                     <valueString value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coding"/>
+                  <contextType value="variable"/>
+                  <element value="code"/>
+                  <transform value="copy"/>
+                  <parameter>
+                     <valueString value="Self"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="bundle"/>
+                  <contextType value="variable"/>
+                  <element value="entry"/>
+                  <variable value="e6"/>
+               </target>
+               <target>
+                  <context value="e6"/>
+                  <contextType value="variable"/>
+                  <element value="resource"/>
+                  <variable value="relatedPerson"/>
+                  <transform value="create"/>
+                  <parameter>
+                     <valueString value="RelatedPerson"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="relatedPerson"/>
+                  <contextType value="variable"/>
+                  <element value="id"/>
+                  <variable value="uuid6"/>
+                  <transform value="uuid"/>
+               </target>
+               <target>
+                  <context value="e6"/>
+                  <contextType value="variable"/>
+                  <element value="fullUrl"/>
+                  <transform value="append"/>
+                  <parameter>
+                     <valueString value="urn:uuid:"/>
+                  </parameter>
+                  <parameter>
+                     <valueId value="uuid6"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="coverage"/>
+                  <contextType value="variable"/>
+                  <element value="payor"/>
+                  <variable value="subject"/>
+               </target>
+               <target>
+                  <context value="subject"/>
+                  <contextType value="variable"/>
+                  <element value="reference"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="'urn:uuid:' + %relatedPerson.id"/>
+                  </parameter>
+               </target>
+               <target>
+                  <context value="relatedPerson"/>
+                  <contextType value="variable"/>
+                  <element value="patient"/>
+                  <variable value="reference"/>
+               </target>
+               <target>
+                  <context value="reference"/>
+                  <contextType value="variable"/>
+                  <element value="reference"/>
+                  <transform value="evaluate"/>
+                  <parameter>
+                     <valueString value="'urn:uuid:' + %patient.id"/>
+                  </parameter>
+               </target>
+               <dependent>
+                  <name value="CoverageRelatedPersonItems"/>
+                  <variable value="item"/>
+                  <variable value="relatedPerson"/>
+               </dependent>
+            </rule>
          </rule>
          <documentation value="coverage.self&#x9;Selbstzahler&#x9;0..1&#x9;group&#x9;&#x9;Definition: Coverage.type"/>
       </rule>
@@ -5199,6 +5341,258 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             </target>
          </rule>
          <documentation value="coverage.other&#x9;Anderer Kostenträger&#x9;0..1&#x9;group&#x9;&#x9;Definition: Coverage.type"/>
+      </rule>
+   </group>
+   <group>
+      <name value="CoverageRelatedPersonItems"/>
+      <typeMode value="none"/>
+      <input>
+         <name value="src"/>
+         <type value="BackboneElement"/>
+         <mode value="source"/>
+      </input>
+      <input>
+         <name value="relatedPerson"/>
+         <type value="RelatedPerson"/>
+         <mode value="target"/>
+      </input>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.familyName') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <variable value="name"/>
+            <listMode value="share"/>
+            <listRuleId value="name"/>
+         </target>
+         <target>
+            <context value="name"/>
+            <contextType value="variable"/>
+            <element value="family"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.givenName') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="name"/>
+            <variable value="name"/>
+            <listMode value="share"/>
+            <listRuleId value="name"/>
+         </target>
+         <target>
+            <context value="name"/>
+            <contextType value="variable"/>
+            <element value="given"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="phone"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.phone') and answer.exists())"/>
+         </source>
+         <rule>
+            <name value="coverage.self.relatedPerson.phone"/>
+            <source>
+               <context value="item"/>
+               <element value="answer"/>
+               <variable value="answer"/>
+            </source>
+            <target>
+               <context value="relatedPerson"/>
+               <contextType value="variable"/>
+               <element value="telecom"/>
+               <variable value="value"/>
+            </target>
+            <target>
+               <context value="value"/>
+               <contextType value="variable"/>
+               <element value="system"/>
+               <transform value="copy"/>
+               <parameter>
+                  <valueString value="phone"/>
+               </parameter>
+            </target>
+            <target>
+               <context value="value"/>
+               <contextType value="variable"/>
+               <element value="value"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="answer.value"/>
+               </parameter>
+            </target>
+         </rule>
+      </rule>
+      <rule>
+         <name value="coverage.self.relatedPerson.email"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.email') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="telecom"/>
+            <variable value="value"/>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="system"/>
+            <transform value="copy"/>
+            <parameter>
+               <valueString value="email"/>
+            </parameter>
+         </target>
+         <target>
+            <context value="value"/>
+            <contextType value="variable"/>
+            <element value="value"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="item.answer"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.streetAddressLine') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <rule>
+            <name value="coverage.self.relatedPerson.streetAddressLine"/>
+            <source>
+               <context value="item"/>
+               <element value="answer"/>
+               <variable value="answer"/>
+            </source>
+            <target>
+               <context value="address"/>
+               <contextType value="variable"/>
+               <element value="line"/>
+               <transform value="evaluate"/>
+               <parameter>
+                  <valueString value="answer.value"/>
+               </parameter>
+            </target>
+         </rule>
+      </rule>
+      <rule>
+         <name value="coverage.self.relatedPerson.postalCode"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.postalCode') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="postalCode"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="coverage.self.relatedPerson.city"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.city') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="city"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
+      </rule>
+      <rule>
+         <name value="coverage.self.relatedPerson.country"/>
+         <source>
+            <context value="src"/>
+            <element value="item"/>
+            <variable value="item"/>
+            <condition value="((linkId.value = 'coverage.self.relatedPerson.country') and answer.exists())"/>
+         </source>
+         <target>
+            <context value="relatedPerson"/>
+            <contextType value="variable"/>
+            <element value="address"/>
+            <variable value="address"/>
+            <listMode value="share"/>
+            <listRuleId value="orgAddress"/>
+         </target>
+         <target>
+            <context value="address"/>
+            <contextType value="variable"/>
+            <element value="country"/>
+            <transform value="evaluate"/>
+            <parameter>
+               <valueString value="item.answer.value"/>
+            </parameter>
+         </target>
       </rule>
    </group>
    <group>
