@@ -1460,11 +1460,11 @@
                 </contact>
                 <communication>
                     <language>
-                    <coding>
-                        <system value="urn:ietf:bcp:47"/>
-                        <code value="de-CH"/>
-                        <display value="Deutsch (Schweiz)"/>
-                    </coding>
+                        <coding>
+                            <system value="urn:ietf:bcp:47"/>
+                            <code value="de-CH"/>
+                            <display value="Deutsch (Schweiz)"/>
+                        </coding>
                     </language>
                     <preferred value="true"/>
                 </communication>
@@ -1995,87 +1995,84 @@
                     <item>
                         <linkId value="receiverCopy.practitionerRole"/>
                         <text value="Gesundheitsfachperson oder -organisation"/>
-                        <answer>
-                            <valueBoolean value="true"/>
+                        <item>
+                            <linkId value="receiverCopy.practitionerRole.practitioner"/>
+                            <text value="Gesundheitsfachperson"/>
                             <item>
-                                <linkId value="receiverCopy.practitionerRole.practitioner"/>
-                                <text value="Gesundheitsfachperson"/>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.practitioner.title"/>
-                                    <text value="Titel"/>
-                                    <answer>
-                                        <valueString value="Dr. med."/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.practitioner.familyName"/>
-                                    <text value="Name"/>
-                                    <answer>
-                                        <valueString value="Meier"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.practitioner.givenName"/>
-                                    <text value="Vorname"/>
-                                    <answer>
-                                        <valueString value="Sabine"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.practitioner.phone"/>
-                                    <text value="Telefon"/>
-                                    <answer>
-                                        <valueString value="044 333 22 11"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.practitioner.email"/>
-                                    <text value="E-Mail"/>
-                                    <answer>
-                                        <valueString value="sabine.meier@praxisseeblick.ch"/>
-                                    </answer>
-                                </item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.title"/>
+                                <text value="Titel"/>
+                                <answer>
+                                    <valueString value="Dr. med."/>
+                                </answer>
                             </item>
                             <item>
-                                <linkId value="receiverCopy.practitionerRole.organization"/>
-                                <text value="Gesundheitsorganisatiton"/>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.organization.name"/>
-                                    <text value="Name der Organisation"/>
-                                    <answer>
-                                        <valueString value="Praxis Seeblick"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.organization.streetAddressLine"/>
-                                    <text value="Strasse, Hausnummer, Postfach etc."/>
-                                    <answer>
-                                        <valueString value="Seestrasse 133"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.organization.postalCode"/>
-                                    <text value="PLZ"/>
-                                    <answer>
-                                        <valueString value="8000"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.organization.city"/>
-                                    <text value="Ort"/>
-                                    <answer>
-                                        <valueString value="Zürich"/>
-                                    </answer>
-                                </item>
-                                <item>
-                                    <linkId value="receiverCopy.practitionerRole.organization.country"/>
-                                    <text value="Land"/>
-                                    <answer>
-                                        <valueString value="Schweiz"/>
-                                    </answer>
-                                </item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.familyName"/>
+                                <text value="Name"/>
+                                <answer>
+                                    <valueString value="Meier"/>
+                                </answer>
                             </item>
-                        </answer>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.givenName"/>
+                                <text value="Vorname"/>
+                                <answer>
+                                    <valueString value="Sabine"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.phone"/>
+                                <text value="Telefon"/>
+                                <answer>
+                                    <valueString value="044 333 22 11"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.practitioner.email"/>
+                                <text value="E-Mail"/>
+                                <answer>
+                                    <valueString value="sabine.meier@praxisseeblick.ch"/>
+                                </answer>
+                            </item>
+                        </item>
+                        <item>
+                            <linkId value="receiverCopy.practitionerRole.organization"/>
+                            <text value="Gesundheitsorganisatiton"/>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.name"/>
+                                <text value="Name der Organisation"/>
+                                <answer>
+                                    <valueString value="Praxis Seeblick"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.streetAddressLine"/>
+                                <text value="Strasse, Hausnummer, Postfach etc."/>
+                                <answer>
+                                    <valueString value="Seestrasse 133"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.postalCode"/>
+                                <text value="PLZ"/>
+                                <answer>
+                                    <valueString value="8000"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.city"/>
+                                <text value="Ort"/>
+                                <answer>
+                                    <valueString value="Zürich"/>
+                                </answer>
+                            </item>
+                            <item>
+                                <linkId value="receiverCopy.practitionerRole.organization.country"/>
+                                <text value="Land"/>
+                                <answer>
+                                    <valueString value="Schweiz"/>
+                                </answer>
+                            </item>
+                        </item>
                     </item>
                     <item>
                         <linkId value="receiverCopy.patient"/>
