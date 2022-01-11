@@ -4,6 +4,7 @@ CodeSystem: ChOrfCoverageType
 Id: ch-orf-cs-coveragetype
 Title: "Coverage Type"
 Description: "Code System for CH ORF Coverage Type"
+* ^caseSensitive = true
 * #KVG "According to KVG"
 * #UVG "According to UVG"
 * #VVG "According to VVG"
@@ -17,6 +18,7 @@ CodeSystem: ChOrfCoverageIdentifierType
 Id: ch-orf-cs-coverageidentifiertype
 Title: "Coverage Identifier Type"
 Description: "Code System for CH ORF Coverage Identifier Type"
+* ^caseSensitive = true
 * #VeKa "Insurance Card Number"
 * #Claim "Claim Number"
 * #Other "Other Identifier"
