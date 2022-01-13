@@ -400,7 +400,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'MV', 
       identifier.value = (item.answer.value),
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'IV' "coverage.mv.versichertennummer";
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'MV' "coverage.mv.versichertennummer";
    } "coveragemv";
       
    // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type

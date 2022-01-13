@@ -205,8 +205,8 @@ group Coverage(source src : BackboneElement, target bundle : Bundle, target pati
     item.item as item where ((linkId.value = &apos;coverage.iv.verfuegungsnummer&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;IV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;verfuegungsnummer&quot;;
   } &quot;coverageiv&quot;;
   // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
-  src.item as item where where(linkId.value = &apos;coverage.mv&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = ('urn:uuid:' + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = ('urn:uuid:' + %uuid4),  coverage.status = 'active',  coverage.beneficiary = create('Reference') as subject,  subject.reference = ('urn:uuid:' + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype',  coding.code = 'MVG' then {
-    item.item as item where ((linkId.value = 'coverage.mv.versichertennummer') and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;MV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;IV&apos; &quot;versichertennummer&quot;;
+  src.item as item where where(linkId.value = &apos;coverage.mv&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;Coverage&apos;) as coverage,  coverage.id = uuid() as uuid4,  e4.fullUrl = (&apos;urn:uuid:&apos; + %uuid4),  serviceRequest.insurance as insurance,  insurance.reference = (&apos;urn:uuid:&apos; + %uuid4),  coverage.status = &apos;active&apos;,  coverage.beneficiary = create(&apos;Reference&apos;) as subject,  subject.reference = (&apos;urn:uuid:&apos; + %patient.id),  coverage.type as type,  type.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype&apos;,  coding.code = &apos;MVG&apos; then {
+    item.item as item where ((linkId.value = &apos;coverage.mv.versichertennummer&apos;) and answer.exists()) -&gt;  coverage.identifier as identifier,  identifier.type as typeid,  typeid.coding as coding,  coding.system = &apos;http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype&apos;,  coding.code = &apos;MV&apos;,  identifier.value = (item.answer.value),  coverage.payor as payor,  payor.reference as refcontained,  refcontained.value = &apos;#org&apos;,  coverage.contained = create(&apos;Organization&apos;) as organization,  organization.id = &apos;org&apos;,  organization.name = &apos;MV&apos; &quot;versichertennummer&quot;;
   } &quot;coveragemv&quot;;
   // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
   src.item as item where where(linkId.value = &apos;coverage.self&apos;) then {
@@ -4807,7 +4807,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <element value="name"/>
                <transform value="copy"/>
                <parameter>
-                  <valueString value="IV"/>
+                  <valueString value="MV"/>
                </parameter>
             </target>
          </rule>
