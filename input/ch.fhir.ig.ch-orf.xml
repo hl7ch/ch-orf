@@ -9,7 +9,7 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="0.11.0"/>
+  <version value="1.0.0"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
@@ -579,8 +579,8 @@
     <!-- parameters -->
     <parameter>
       <code value="releaselabel"/>
-      <value value="CI Build"/>
-      <!--<value value="STU 1 Ballot"/>-->
+      <!--<value value="CI Build"/>-->
+      <value value="STU 1"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
