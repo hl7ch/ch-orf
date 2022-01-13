@@ -570,8 +570,8 @@
         <generation value="html"/>
       </page>
       <page>
-        <nameUrl value="openissues.html"/>
-        <title value="Open Issues"/>
+        <nameUrl value="changelog.html"/>
+        <title value="Change Log"/>
         <generation value="markdown"/>
       </page>
     </page>
