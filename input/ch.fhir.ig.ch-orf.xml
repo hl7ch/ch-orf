@@ -9,7 +9,7 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="0.11.0"/>
+  <version value="1.0.0"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
@@ -223,22 +223,6 @@
       <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="StructureMap/OrfBundleToQr"/>
-      </reference>
-      <name value="Map ORF"/>
-      <description value="Mapping ORF Bundle to QuestionnaireResponse"/>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureMap/OrfPrepopBundleToQr"/>
-      </reference>
-      <name value="Map OR Prepopulation"/>
-      <description value="Mapping ORF Prepopulation SDC Bundle to QuestionnaireResponse"/>
-      <exampleBoolean value="false"/>
-    </resource>
 
     <!-- Example Instances-->
     <resource>
@@ -247,14 +231,6 @@
       </reference>
       <name value="Bundle Order-Referral-Form"/>
       <description value="Example for Bundle"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="Bundle/order-referral-form-mapped"/>
-      </reference>
-      <name value="Bundle Order-Referral-Form (mapped)"/>
-      <description value="Example for Bundle (mapped)"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
     <resource>
@@ -303,10 +279,10 @@
     </resource>
     <resource>
       <reference>
-        <reference value="QuestionnaireResponse/order-referral-form-mappedback"/>
+        <reference value="QuestionnaireResponse/order-referral-form"/>
       </reference>
-      <name value="QuestionnaireResponse Order-Referral-Form (mapping result)"/>
-      <description value="Example for QuestionnaireResponse mapped to Bundle and back with StructureMaps"/>
+      <name value="QuestionnaireResponse Order-Referral-Form )"/>
+      <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
     <resource>
@@ -486,6 +462,22 @@
     </resource>
     <resource>
       <reference>
+        <reference value="Coverage/CoverageSelfPatient"/>
+      </reference>
+      <name value="Coverage Self (Patient)"/>
+      <description value="Example for Coverage"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Coverage/CoverageSelfRelatedPerson"/>
+      </reference>
+      <name value="Coverage Self (RelatedPerson)"/>
+      <description value="Example for Coverage"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Encounter/EncounterMusterfrau"/>
       </reference>
       <name value="Encounter Emergency"/>
@@ -577,13 +569,18 @@
         <title value="Terminology"/>
         <generation value="html"/>
       </page>
+      <page>
+        <nameUrl value="changelog.html"/>
+        <title value="Change Log"/>
+        <generation value="markdown"/>
+      </page>
     </page>
 
     <!-- parameters -->
     <parameter>
       <code value="releaselabel"/>
-      <value value="CI Build"/>
-      <!--<value value="STU 1 Ballot"/>-->
+      <!--<value value="CI Build"/>-->
+      <value value="STU 1"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>

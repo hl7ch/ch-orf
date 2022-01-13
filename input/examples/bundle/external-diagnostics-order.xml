@@ -785,7 +785,7 @@
         <title value="Order-Referral-Form"/>
         <status value="active"/>
         <subjectType value="Patient"/>
-        <date value="2021-03-26"/>
+        <date value="2022-01-06"/>
         <publisher value="HL7 Switzerland"/>
         <contact>
           <name value="HL7 Switzerland"/>
@@ -1001,6 +1001,12 @@
               <type value="string"/>
             </item>
             <item>
+              <linkId value="receiver.practitioner.zsr"/>
+              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
+              <text value="ZSR"/>
+              <type value="string"/>
+            </item>
+            <item>
               <linkId value="receiver.practitioner.phone"/>
               <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"/>
               <text value="Telefon"/>
@@ -1131,6 +1137,68 @@
             </answerOption>
           </item>
           <item>
+            <linkId value="patient.maritalStatus"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.maritalStatus"/>
+            <text value="Zivilstand"/>
+            <type value="choice"/>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="1"/>
+                <display value="ledig"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="2"/>
+                <display value="verheiratet"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="3"/>
+                <display value="verwitwet"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="4"/>
+                <display value="geschieden"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="5"/>
+                <display value="unverheiratet"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="6"/>
+                <display value="in eingetragener Partnerschaft"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="7"/>
+                <display value="aufgelöste Partnerschaft"/>
+              </valueCoding>
+            </answerOption>
+            <answerOption>
+              <valueCoding>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+                <code value="9"/>
+                <display value="unbekannt"/>
+              </valueCoding>
+            </answerOption>
+          </item>
+          <item>
             <linkId value="patient.phone"/>
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
             <text value="Telefon"/>
@@ -1167,6 +1235,13 @@
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.country"/>
             <text value="Land"/>
             <type value="string"/>
+          </item>
+          <item>
+            <linkId value="patient.languageOfCorrespondance"/>
+            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"/>
+            <text value="Korrespondenssprache"/>
+            <type value="choice"/>
+            <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"/>
           </item>
           <item>
             <linkId value="patient.contactperson"/>
@@ -1245,23 +1320,23 @@
             <type value="choice"/>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="P"/>
-                <display value="Einerzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="1"/>
+                <display value="allgemein"/>
               </valueCoding>
             </answerOption>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="SP"/>
-                <display value="Zweierzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="2"/>
+                <display value="halbprivat"/>
               </valueCoding>
             </answerOption>
             <answerOption>
               <valueCoding>
-                <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
-                <code value="W"/>
-                <display value="Mehrbettzimmer"/>
+                <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
+                <code value="3"/>
+                <display value="privat"/>
               </valueCoding>
             </answerOption>
           </item>
@@ -1367,16 +1442,82 @@
             <text value="Selbstzahler"/>
             <type value="group"/>
             <item>
-              <linkId value="coverage.self.familyName"/>
+              <linkId value="coverage.self.patient"/>
               <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
-              <text value="Name"/>
-              <type value="string"/>
+              <text value="Patient selbst"/>
+              <type value="boolean"/>
             </item>
             <item>
-              <linkId value="coverage.self.givenName"/>
+              <linkId value="coverage.self.patientRelatedPerson"/>
               <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
-              <text value="Vorname"/>
-              <type value="string"/>
+              <text value="Andere Person"/>
+              <type value="boolean"/>
+              <enableWhen>
+                <question value="coverage.self.patient"/>
+                <operator value="="/>
+                <answerBoolean value="false"/>
+              </enableWhen>
+            </item>
+            <item>
+              <linkId value="coverage.self.relatedPerson"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"/>
+              <text value="Andere Person"/>
+              <type value="group"/>
+              <enableWhen>
+                <question value="coverage.self.patientRelatedPerson"/>
+                <operator value="="/>
+                <answerBoolean value="true"/>
+              </enableWhen>
+              <item>
+                <linkId value="coverage.self.relatedPerson.familyName"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"/>
+                <text value="Name"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.givenName"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"/>
+                <text value="Vorname"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.phone"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
+                <text value="Telefon"/>
+                <type value="string"/>
+                <repeats value="true"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.email"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
+                <text value="E-Mail"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.streetAddressLine"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"/>
+                <text value="Strasse, Hausnummer, Postfach etc."/>
+                <type value="string"/>
+                <repeats value="true"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.postalCode"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"/>
+                <text value="PLZ"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.city"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"/>
+                <text value="Ort"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="coverage.self.relatedPerson.country"/>
+                <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"/>
+                <text value="Land"/>
+                <type value="string"/>
+              </item>
             </item>
           </item>
           <item>
@@ -1442,6 +1583,12 @@
                 <linkId value="sender.author.practitioner.gln"/>
                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"/>
                 <text value="GLN"/>
+                <type value="string"/>
+              </item>
+              <item>
+                <linkId value="sender.author.practitioner.zsr"/>
+                <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
+                <text value="ZSR"/>
                 <type value="string"/>
               </item>
               <item>
@@ -1547,18 +1694,13 @@
             <linkId value="receiverCopy.practitionerRole"/>
             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole"/>
             <text value="Gesundheitsfachperson oder -organisation"/>
-            <type value="boolean"/>
+            <type value="group"/>
             <repeats value="true"/>
             <item>
               <linkId value="receiverCopy.practitionerRole.practitioner"/>
               <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"/>
               <text value="Gesundheitsfachperson"/>
               <type value="group"/>
-              <enableWhen>
-                <question value="receiverCopy.practitionerRole"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
               <item>
                 <linkId value="receiverCopy.practitionerRole.practitioner.title"/>
                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"/>
@@ -1595,11 +1737,6 @@
               <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"/>
               <text value="Gesundheitsorganisatiton"/>
               <type value="group"/>
-              <enableWhen>
-                <question value="receiverCopy.practitionerRole"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
               <item>
                 <linkId value="receiverCopy.practitionerRole.organization.name"/>
                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"/>
@@ -1643,40 +1780,25 @@
             <linkId value="receiverCopy.relatedPerson"/>
             <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"/>
             <text value="Andere Person"/>
-            <type value="boolean"/>
+            <type value="group"/>
             <repeats value="true"/>
             <item>
               <linkId value="receiverCopy.relatedPerson.familyName"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"/>
               <text value="Name"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
             <item>
               <linkId value="receiverCopy.relatedPerson.givenName"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"/>
               <text value="Vorame"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
             <item>
               <linkId value="receiverCopy.relatedPerson.phone"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
               <text value="Telefon"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
               <repeats value="true"/>
             </item>
             <item>
@@ -1684,22 +1806,12 @@
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"/>
               <text value="E-Mail"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
             <item>
               <linkId value="receiverCopy.relatedPerson.streetAddressLine"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"/>
               <text value="Strasse, Hausnummer, Postfach etc."/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
               <repeats value="true"/>
             </item>
             <item>
@@ -1707,33 +1819,18 @@
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"/>
               <text value="PLZ"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
             <item>
               <linkId value="receiverCopy.relatedPerson.city"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"/>
               <text value="Ort"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
             <item>
               <linkId value="receiverCopy.relatedPerson.country"/>
               <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"/>
               <text value="Land"/>
               <type value="string"/>
-              <enableWhen>
-                <question value="receiverCopy.relatedPerson"/>
-                <operator value="="/>
-                <answerBoolean value="true"/>
-              </enableWhen>
             </item>
           </item>
         </item>

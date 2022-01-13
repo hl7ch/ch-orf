@@ -28,6 +28,10 @@
         <a href="https://fhir.ch/ig/ch-core/2.0.0/index.html">CH Core (v2.0.0)</a>.
     </p>
 
+    <div markdown="1" class="stu-note">
+      <a href="changelog.html">Significant Changes, Open and Closed Issues</a>
+     </div>
+
     <p>
         <b>Download:</b>
         You can download this Implementation Guide in 

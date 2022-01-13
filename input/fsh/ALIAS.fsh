@@ -10,6 +10,7 @@ Alias:  ChCoreEncounter =           http://fhir.ch/ig/ch-core/StructureDefinitio
 Alias:  ChCoreDocumentReference =   http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-documentreference
 Alias:  ChCoreCoverage =            http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-coverage
 Alias:  ChCoreLocation =            http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-location
+Alias:  ChCoreCSEncounterType =     http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype
 
 // SDC
 Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
@@ -23,6 +24,7 @@ Alias:  BundleType =                http://hl7.org/fhir/bundle-type
 Alias:  RequestPriority =           http://hl7.org/fhir/request-priority
 Alias:  AdministrativeGender =      http://hl7.org/fhir/administrative-gender
 Alias:  AppointmentStatus =         http://hl7.org/fhir/appointmentstatus
+Alias:  EchMaritalStatus =          http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus
 
 Alias:  SCT =                       http://snomed.info/sct
 Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4

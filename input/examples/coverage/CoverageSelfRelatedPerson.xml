@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Coverage xmlns="http://hl7.org/fhir">
+    <id value="CoverageSelfRelatedPerson"/>
+    <meta>
+        <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage"/>
+    </meta>
+    <contained>
+        <RelatedPerson>
+            <id value="relatedperson"/>
+            <patient>
+                <reference value="Patient/ErikaMusterfrau"/>
+            </patient>
+            <name>
+                <family value="Freund"/>
+                <given value="Max"/>
+            </name>
+        </RelatedPerson>
+    </contained>
+    <status value="active" />
+    <type>
+        <coding>
+            <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype" />
+            <code value="Self"/>
+            <display value="Self-payer"/>
+        </coding>
+    </type>
+    <beneficiary>
+        <reference value="Patient/ErikaMusterfrau"/>
+    </beneficiary>
+    <payor>
+        <reference value="#relatedperson"/>
+    </payor>
+</Coverage>    

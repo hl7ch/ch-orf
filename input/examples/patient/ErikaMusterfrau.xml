@@ -52,6 +52,13 @@
     <postalCode value="8000"/>
     <country value="Schweiz"/>
   </address>
+  <maritalStatus>
+    <coding>
+      <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
+      <code value="1"/>
+      <display value="ledig"/>
+    </coding>
+  </maritalStatus>
   <contact>
     <relationship>
       <text value="Guter Freund"/>
@@ -69,4 +76,14 @@
       <value value="max@freund.ch"/>
     </telecom>
   </contact>
+  <communication>
+    <language>
+      <coding>
+        <system value="urn:ietf:bcp:47"/>
+        <code value="de-CH"/>
+        <display value="Deutsch (Schweiz)"/>
+      </coding>
+    </language>
+    <preferred value="true"/>
+  </communication>
 </Patient>

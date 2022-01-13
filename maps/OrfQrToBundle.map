@@ -178,6 +178,9 @@ group ReceiverPractitionerItems(source src : BackboneElement, target practitione
    src.item as item where (linkId.value = 'receiver.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
                                                                                    value.value=(item.answer.value) "receiver.practitioner.gln"; 
+   src.item as item where (linkId.value = 'receiver.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
+                                                                                   value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
+                                                                                   value.value=(item.answer.value) "receiver.practitioner.zsr"; 
    src.item as item where (linkId.value = 'receiver.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
                                                                                    value.value=(item.answer.value) "receiver.practitioner.phone"; 
@@ -190,7 +193,10 @@ group ReceiverOrganizationItems(source src : BackboneElement, target organizatio
    src.item as item where (linkId.value = 'receiver.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
    src.item as item where (linkId.value = 'receiver.organization.gln' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "receiver.organization.gln"; 
+                                                                                   value.value=(item.answer.value) "receiver.organization.gln";
+   src.item as item where (linkId.value = 'receiver.organization.zsr' and answer.exists()) -> organization.identifier as value, 
+                                                                                   value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
+                                                                                   value.value=(item.answer.value) "receiver.organization.zsr"; 
    src.item as item where (linkId.value = 'receiver.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
      item.answer as answer -> address.line = (answer.value) "receiver.organization.streetAddressLine";
    } "item.answer";
@@ -240,6 +246,11 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
                                                                                    value.system=(item.answer.valueString) "patient.localPidDomain"; 
   src.item as item where (linkId.value = 'patient.birthDate' and answer.exists()) -> tgt.birthDate = (item.answer.value);
   src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (item.answer.value.code);
+  src.item as item where (linkId.value = 'patient.maritalStatus' and answer.exists()) then {
+   item.answer as answer then {
+      answer.value: Coding as coding -> tgt.maritalStatus as maritalStatus, maritalStatus.coding = coding "maritalStatus"; 
+      } "answer";
+  } "patient.maritalStatus"; 
   src.item as item where (linkId.value = 'patient.phone' and answer.exists()) then {
    item.answer as answer -> tgt.telecom as value, value.system = 'phone', value.value=(answer.value) "patient.phone";  
   } "patient.phone";
@@ -252,6 +263,12 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item where (linkId.value = 'patient.postalCode' and answer.exists()) -> tgt.address as address share orgAddress, address.postalCode = (item.answer.value) "patient.postalCode";
   src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (item.answer.value) "patient.city";
   src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (item.answer.value) "patient.country";
+
+  src.item as item where (linkId.value = 'patient.languageOfCorrespondance' and answer.exists()) then {
+   item.answer as answer then {
+      answer.value: Coding as coding -> tgt.communication as communication, communication.preferred = true, communication.language as language, language.coding = coding "languageOfCorrespondance"; 
+      } "answer";
+  } "patient.languageOfCorrespondance"; 
 
   src.item as item where (linkId.value = 'patient.contactperson') -> tgt.contact as contact then {
    item.item as item where (linkId.value = 'patient.contactperson.familyName' and answer.exists()) -> contact.name as name share contactName,name.family = (item.answer.value);
@@ -389,22 +406,40 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
    // coverage.self.familyName	Name	0..1	string		Definition: Coverage.payor
    // coverage.self.givenName	Vorname	0..1	string		Definition: Coverage.payor
-   src.item as item where where (linkId.value = 'coverage.self') -> bundle.entry as e4, 
-   e4.resource = create('Coverage') as coverage, 
-   coverage.id = uuid() as uuid4,
-   e4.fullUrl = ('urn:uuid:'+%uuid4),
-   serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
-   coverage.status = 'active',
-   coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
-   coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#pat', 
-   coverage.contained = create('Patient') as patient, patient.id = 'pat' then {
-      item.item as item where (linkId.value = 'coverage.self.familyName' and answer.exists()) ->
-         patient.name as name share selfname, name.family = (item.answer.value) "coverage.self.familyName";
-      item.item as item where (linkId.value = 'coverage.self.givenName' and answer.exists()) ->
-         patient.name as name share selfname, name.given = (item.answer.value) "coverage.self.givenName";
-   } "coverageself";
+   src.item as item where where (linkId.value = 'coverage.self') then {
+      
+      item.item as item where (linkId.value = 'coverage.self.patient' and answer.exists() and answer.value) ->
+         bundle.entry as e4, 
+         e4.resource = create('Coverage') as coverage, 
+         coverage.id = uuid() as uuid4,
+         e4.fullUrl = ('urn:uuid:'+%uuid4),
+         serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+         coverage.status = 'active',
+         coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+         coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
+         coverage.payor  as subject, subject.reference = ('urn:uuid:'+%patient.id) "payor";
 
+      item.item as item2 where (linkId.value = 'coverage.self.patientRelatedPerson' and answer.exists() and answer.value) then {        
+            item.item as item where (linkId.value = 'coverage.self.relatedPerson') ->
+            bundle.entry as e5, 
+            e5.resource = create('Coverage') as coverage, 
+            coverage.id = uuid() as uuid4,
+            e5.fullUrl = ('urn:uuid:'+%uuid4),
+            serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
+            coverage.status = 'active',
+            coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
+            coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
+            bundle.entry as e6, 
+            e6.resource = create('RelatedPerson') as relatedPerson, 
+            relatedPerson.id = uuid() as uuid6,
+            e6.fullUrl = append('urn:uuid:',uuid6),
+            coverage.payor as subject, subject.reference = ('urn:uuid:'+%relatedPerson.id),
+            relatedPerson.patient as reference, reference.reference = ('urn:uuid:'+%patient.id)
+            then 
+              CoverageRelatedPersonItems(item,relatedPerson) "coverage.self.relatedPerson";
+      } "coverage.self.patientrelated.";
+   } "self";
+ 
 // coverage.other	Anderer Kostenträger	0..1	group		Definition: Coverage.type
 // coverage.other.name	Name des Kostenträgers	0..1	string		Definition: Coverage.payor
 // coverage.other.id	Beliebige ID	0..1	string		Definition: Coverage.identifier
@@ -425,6 +460,25 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    } "coveragevvg";
 }
 
+group CoverageRelatedPersonItems(source src : BackboneElement, target relatedPerson: RelatedPerson) {
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (item.answer.value);
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (item.answer.value);
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.phone' and answer.exists()) then {
+      item.answer as answer -> relatedPerson.telecom as value, value.system = 'phone',
+                                value.value= (answer.value) "coverage.self.relatedPerson.phone"; 
+   } "phone";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.email' and answer.exists()) -> relatedPerson.telecom as value, 
+                                                                                   value.system = 'email',
+                                                                                   value.value=(item.answer.value) "coverage.self.relatedPerson.email"; 
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.streetAddressLine' and answer.exists()) -> relatedPerson.address as address share orgAddress then {
+     item.answer as answer -> address.line = (answer.value) "coverage.self.relatedPerson.streetAddressLine";
+   } "item.answer";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (item.answer.value) "coverage.self.relatedPerson.postalCode";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (item.answer.value) "coverage.self.relatedPerson.city";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (item.answer.value) "coverage.self.relatedPerson.country";
+}
+
+
 group SenderAuthorPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
    src.item as item where (linkId.value = 'sender.author.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
    src.item as item where (linkId.value = 'sender.author.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
@@ -435,6 +489,9 @@ group SenderAuthorPractitionerItems(source src : BackboneElement, target practit
    src.item as item where (linkId.value = 'sender.author.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
                                                                                    value.value=(item.answer.value) "sender.author.practitioner.gln"; 
+   src.item as item where (linkId.value = 'sender.author.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
+                                                                                   value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
+                                                                                   value.value=(item.answer.value) "recsender.author.practitioner.zsr"; 
    src.item as item where (linkId.value = 'sender.author.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
                                                                                    value.value=(item.answer.value) "sender.author.practitioner.phone"; 
@@ -447,7 +504,10 @@ group SenderAuthorOrganizationItems(source src : BackboneElement, target organiz
    src.item as item where (linkId.value = 'sender.author.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
    src.item as item where (linkId.value = 'sender.author.organization.gln' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "sender.author.organization.gln"; 
+                                                                                   value.value=(item.answer.value) "sender.author.organization.gln";
+   src.item as item where (linkId.value = 'sender.author.organization.zsr' and answer.exists()) -> organization.identifier as value, 
+                                                                                   value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
+                                                                                   value.value=(item.answer.value) "sender.author.organization.zsr"; 
    src.item as item where (linkId.value = 'sender.author.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
      item.answer as answer -> address.line = (answer.value) "sender.author.organization.streetAddressLine";
    } "item.answer";
@@ -627,14 +687,14 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
       grp.item as item where (linkId.value = 'appointment.status' and answer.value.code='proposed') -> appointment.status = (item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (item2.answer.value), requestedPeriod.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end if not same as start";
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end.if.not.same.as.start";
            } "appointment.requestedPeriod.start";
          } "appointment.requestedPeriod";
       } "proposed";
       grp.item as item where (linkId.value = 'appointment.status' and (answer.value.code='pending' or answer.value.code='booked')) -> appointment.status = (item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (item2.answer.value), appointment.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end if not same as start";
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end.if.not.same.as.start";
            } "appointment.start";
          } "appointment.startend";
       } "pendingorbooked";
