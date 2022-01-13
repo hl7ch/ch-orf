@@ -8,7 +8,7 @@ During the ballot, the following comments came in, which will be taken into acco
 * [Issue #82](https://github.com/hl7ch/ch-orf/issues/82): Questionnaire support for expression based population and advanced behavior 
 * [Issue #70](https://github.com/hl7ch/ch-orf/issues/70): Questionnaire Order-Referral-Form adaption for eToc needs
 * [Feature requests](https://github.com/hl7ch/ch-orf/issues?q=is%3Aissue+is%3Aopen+label%3A%22feature+request%22) for additions to the CH ORF Questionnaire
-   * Issues: [#74](https://github.com/hl7ch/ch-orf/issues/74), [#73](https://github.com/hl7ch/ch-orf/issues/73), [#72](https://github.com/hl7ch/ch-orf/issues/72), [#71](https://github.com/hl7ch/ch-orf/issues/71), [#66](https://github.com/hl7ch/ch-orf/issues/66), [#61](https://github.com/hl7ch/ch-orf/issues/61), [Issue #59](https://github.com/hl7ch/ch-orf/issues/59)
+   * Issues: [#74](https://github.com/hl7ch/ch-orf/issues/74), [#73](https://github.com/hl7ch/ch-orf/issues/73), [#72](https://github.com/hl7ch/ch-orf/issues/72), [#71](https://github.com/hl7ch/ch-orf/issues/71), [#66](https://github.com/hl7ch/ch-orf/issues/66), [#61](https://github.com/hl7ch/ch-orf/issues/61), [#59](https://github.com/hl7ch/ch-orf/issues/59)
 
 See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
@@ -35,7 +35,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * Update the suppressed messages (QA), mainly because of display values.
    * [Issue #30](https://github.com/hl7ch/ch-orf/issues/30)
 * Change references of the ch-orf-copyreceiver from `CH Core Organization Profile | CH Core Patient Profile` to `CH Core Practitioner Role Profile | CH Core Patient Profile | RelatedPerson` and update the Questionnaire accordingly.
-* [Issue #50](https://github.com/hl7ch/ch-orf/issues/50)
+   * [Issue #50](https://github.com/hl7ch/ch-orf/issues/50)
 * Expansion of the [questionnaire](Questionnaire-order-referral-form.html) field 'coverage.self'. Differentiation between [patient himself](Coverage-CoverageSelfPatient.html) or [related person](Coverage-CoverageSelfRelatedPerson.html) as self-payer.
    * [Issue #80](https://github.com/hl7ch/ch-orf/issues/80)
 * Change source of the codes for [desired accommodation](ValueSet-ch-orf-vs-desiredaccommodation.html).
