@@ -38,8 +38,12 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
    * [Issue #50](https://github.com/hl7ch/ch-orf/issues/50)
 * Expansion of the [questionnaire](Questionnaire-order-referral-form.html) field 'coverage.self'. Differentiation between [patient himself](Coverage-CoverageSelfPatient.html) or [related person](Coverage-CoverageSelfRelatedPerson.html) as self-payer.
    * [Issue #80](https://github.com/hl7ch/ch-orf/issues/80)
+Added explanation in questionnaire: "Copy receiver is ment to receive a copy from the order and all evolving results".
+   * [ORF Issue #84](https://github.com/hl7ch/ch-orf/issues/84) 
 * Change source of the codes for [desired accommodation](ValueSet-ch-orf-vs-desiredaccommodation.html).
    * [Issue #91](https://github.com/hl7ch/ch-orf/issues/91)
+Cardinality for Questionnaire and QR in Composition set to 0..1. --> Exchange format can be used without questionnaire.
+    * [Issue #101](https://github.com/hl7ch/ch-orf/issues/101) 
 
 #### Fixed
 * Set values for IV and MV (Coverage.payor) in the mapping.
