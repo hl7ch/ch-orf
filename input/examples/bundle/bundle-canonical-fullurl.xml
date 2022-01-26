@@ -372,7 +372,7 @@
                         </item>
                         <item>
                             <linkId value="receiver.organization.gln"/>
-                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition-ch-core-organization-definitions.html#Organization.identifier:GLN"/>
+                            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"/>
                             <text value="GLN"/>
                             <type value="string"/>
                         </item>
