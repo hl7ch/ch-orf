@@ -24,7 +24,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * Add 'GLN' to organization ([Questionnaire](Questionnaire-order-referral-form.html)).
    * [Issue #57](https://github.com/hl7ch/ch-orf/issues/57)
 
-#### Changed / Update
+#### Changed / Updated
 * Improvement/updating of the documentation.
    * [Issue #44](https://github.com/hl7ch/ch-orf/issues/44): Description in the [FHIR Representation](index.html#fhir-representation) section adapted, i.e. 'XML' removed, as FHIR can also be serialised for exchange in formats other than XML.
    * [Issue #42](https://github.com/hl7ch/ch-orf/issues/42): Instead of the redundantly embedded differential tables of the profiles on the 'Home' page ([Volume 3 - Content Modules](index.html#volume-3-%E2%80%93-content-modules)), links to the profiles are provided at the relevant places.
@@ -38,11 +38,11 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
    * [Issue #50](https://github.com/hl7ch/ch-orf/issues/50)
 * Expansion of the [questionnaire](Questionnaire-order-referral-form.html) field 'coverage.self'. Differentiation between [patient himself](Coverage-CoverageSelfPatient.html) or [related person](Coverage-CoverageSelfRelatedPerson.html) as self-payer.
    * [Issue #80](https://github.com/hl7ch/ch-orf/issues/80)
-Added explanation in questionnaire: "Copy receiver is ment to receive a copy from the order and all evolving results".
-   * [ORF Issue #84](https://github.com/hl7ch/ch-orf/issues/84) 
+* Added explanation in [questionnaire](Questionnaire-order-referral-form.html): "Copy receiver is ment to receive a copy from the order and all evolving results".
+   * [Issue #84](https://github.com/hl7ch/ch-orf/issues/84) 
 * Change source of the codes for [desired accommodation](ValueSet-ch-orf-vs-desiredaccommodation.html).
    * [Issue #91](https://github.com/hl7ch/ch-orf/issues/91)
-* Cardinality for Questionnaire and QR in Composition set to 0..1. --> Exchange format can be used without questionnaire.
+* Cardinality for Questionnaire and QR in [Composition]((StructureDefinition-ch-orf-composition.html)) set to 0..1. --> Exchange format can be used without questionnaire.
     * [Issue #101](https://github.com/hl7ch/ch-orf/issues/101) 
 
 #### Fixed
