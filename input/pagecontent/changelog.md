@@ -42,7 +42,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
    * [Issue #84](https://github.com/hl7ch/ch-orf/issues/84) 
 * Change source of the codes for [desired accommodation](ValueSet-ch-orf-vs-desiredaccommodation.html).
    * [Issue #91](https://github.com/hl7ch/ch-orf/issues/91)
-* Cardinality for Questionnaire and QR in [Composition]((StructureDefinition-ch-orf-composition.html)) set to 0..1. --> Exchange format can be used without questionnaire.
+* Cardinality for Questionnaire and QR in [Composition](StructureDefinition-ch-orf-composition.html) set to 0..1. --> Exchange format can be used without questionnaire.
     * [Issue #101](https://github.com/hl7ch/ch-orf/issues/101) 
 
 #### Fixed
