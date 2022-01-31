@@ -37,7 +37,7 @@
   <dependsOn id="cheprterm">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-epr-term"/>
     <packageId value="ch.fhir.ig.ch-epr-term"/>
-    <version value="2.0.6"/>
+    <version value="2.0.7"/>
   </dependsOn>
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
