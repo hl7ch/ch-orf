@@ -45,7 +45,6 @@ The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:data
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:copyReceiver' for "Composition.extension:copyReceiver" cannot be resolved (valid targets: 360 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 256 targets)
 The link 'StructureDefinition-ch-orf-location.html#Location.telecom.value' for "Location.telecom.value" cannot be resolved (valid targets: 122 targets)
-The link 'StructureDefinition-ch-orf-location.html#Location.telecom.value' for "Location.telecom.value" cannot be resolved (valid targets: 122 targets)
 The link 'StructureDefinition-ch-orf-location.html#Location.address.line' for "Location.address.line" cannot be resolved (valid targets: 122 targets)
 The link 'StructureDefinition-ch-orf-location.html#Location.address.postalCode' for "Location.address.postalCode" cannot be resolved (valid targets: 122 targets)
 The link 'StructureDefinition-ch-orf-location.html#Location.address.city' for "Location.address.city" cannot be resolved (valid targets: 122 targets)

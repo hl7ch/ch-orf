@@ -13,14 +13,23 @@
       "current": true
     },
     {
-      "version": "0.10.0",
-      "date": "2021-06-11",
-      "desc": "HL7 Switzerland STU 1 Ballot",
+      "version": "1.0.0",
+      "date": "2022-02-22",
+      "desc": "HL7 Switzerland STU 1",
       "path": "http://fhir.ch/ig/ch-orf",
       "status": "trial-use",
       "fhirversion": "4.0.1",
       "sequence": "STU 1",
       "current": true
+    },
+    {
+      "version": "0.10.0",
+      "date": "2021-06-11",
+      "desc": "HL7 Switzerland STU 1 Ballot",
+      "path": "http://fhir.ch/ig/ch-orf/0.10.0",
+      "status": "trial-use",
+      "fhirversion": "4.0.1",
+      "sequence": "STU 1"
     },
     {
       "version": "0.9.1",
