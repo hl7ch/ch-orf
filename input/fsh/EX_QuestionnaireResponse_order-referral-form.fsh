@@ -109,7 +109,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.gln"
 * item[=].item[=].item[=].text = "GLN"
-* item[=].item[=].item[=].answer.valueString = "7601000066878"
+* item[=].item[=].item[=].answer.valueString = "7601000201041"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].item[=].text = "ZSR"
@@ -291,7 +291,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].item[=].text = "GLN"
-* item[=].item[=].item[=].item[=].answer.valueString = "7601000034321"
+* item[=].item[=].item[=].item[=].answer.valueString = "7601000618627"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].item[=].text = "ZSR"

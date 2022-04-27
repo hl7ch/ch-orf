@@ -179,7 +179,7 @@
         <linkId value="receiver.practitioner.gln"/>
         <text value="GLN"/>
         <answer>
-          <valueString value="7601000066878"/>
+          <valueString value="7601000201041"/>
         </answer>
       </item>
       <item>
@@ -404,7 +404,7 @@
           <linkId value="sender.author.practitioner.gln"/>
           <text value="GLN"/>
           <answer>
-            <valueString value="7601000034321"/>
+            <valueString value="7601000618627"/>
           </answer>
         </item>
         <item>
