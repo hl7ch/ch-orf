@@ -19,6 +19,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
       * Adaptation of the Questionnaire profiles to the new SDC profiles ([CH ORF Questionnaire](Questionnaire-order-referral-form.json.html): `Questionnaire.meta.profile`)
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap`
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp`
+      * Update [Home](index.html) 
 
 #### Fixed
 
