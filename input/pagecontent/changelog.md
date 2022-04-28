@@ -1,7 +1,30 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### STU 1 Ballot
+### v1.1.0 - HL7 Switzerland STU 2 Ballot
+
+#### Open Issues
+
+See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
+
+#### Added
+
+#### Changed / Updated
+* Update the dependencies to the current published versions
+   * IG [CH Core](http://fhir.ch/ig/ch-core/history.html): v2.0.0 -> v2.1.0
+      * Update the GLN (Practitioner.identifier) in the examples because of the modulus 10 check 
+   * IG [SDC](http://hl7.org/fhir/uv/sdc/history.html): v2.7.0 -> v3.0.0
+      * Adaptation of the parent profile of the CH ORF Questionnaire
+         * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire`
+      * Adaptation of the Questionnaire profiles to the new SDC profiles ([CH ORF Questionnaire](Questionnaire-order-referral-form.json.html): `Questionnaire.meta.profile`)
+         * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap`
+         * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp`
+
+#### Fixed
+
+
+
+### v1.0.0 - HL7 Switzerland STU 1
 
 #### Open Issues
 During the ballot, the following comments came in, which will be taken into account in the further development of CH ORF:
@@ -9,8 +32,6 @@ During the ballot, the following comments came in, which will be taken into acco
 * [Issue #70](https://github.com/hl7ch/ch-orf/issues/70): Questionnaire Order-Referral-Form adaption for eToc needs
 * [Feature requests](https://github.com/hl7ch/ch-orf/issues?q=is%3Aissue+is%3Aopen+label%3A%22feature+request%22) for additions to the CH ORF Questionnaire
    * Issues: [#74](https://github.com/hl7ch/ch-orf/issues/74), [#73](https://github.com/hl7ch/ch-orf/issues/73), [#72](https://github.com/hl7ch/ch-orf/issues/72), [#71](https://github.com/hl7ch/ch-orf/issues/71), [#66](https://github.com/hl7ch/ch-orf/issues/66), [#61](https://github.com/hl7ch/ch-orf/issues/61), [#59](https://github.com/hl7ch/ch-orf/issues/59)
-
-See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
 #### Added
 * [Description](index.html#composition-resource) of the handling of general information about the document in derived questionnaires (title, type and category).
