@@ -13,8 +13,7 @@ Alias:  ChCoreLocation =            http://fhir.ch/ig/ch-core/StructureDefinitio
 Alias:  ChCoreCSEncounterType =     http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype
 
 // SDC
-Alias:  SdcQuestionnaire =          http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
-Alias:  SdcQuestionnaireExtract =   http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract
+Alias:  SdcBaseQuestionnaire =                http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire
 Alias:  SdcQuestionnaireTargetStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap
 Alias:  SdcQuestionnaireSourceStructureMap =  http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap
 Alias:  SdcQuestionnaireLaunchContext =       http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext

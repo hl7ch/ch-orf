@@ -1,14 +1,14 @@
 Profile: ChOrfQuestionnaire
-Parent: SdcQuestionnaireExtract
+Parent: SdcBaseQuestionnaire
 Id: ch-orf-questionnaire
 Title: "CH ORF Questionnaire"
 Description: "Profile to define how a CH ORF-conformant Questionnaire resource must be structured. 
 This is independent of the content and content structure of the questionnaire instance itself."
 * . ^short = "CH ORF Questionnaire"
-* extension[targetStructureMap] 1..1 MS
-* extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
-* extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
-* item MS
+//* extension[targetStructureMap] 1..1 MS
+//* extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
+//* extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
+
 
 
 Profile: ChOrfQuestionnaireResponse
