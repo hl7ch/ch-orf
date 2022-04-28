@@ -31,6 +31,9 @@ WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefi
 
 # Build Errors: 
 The image source 'pdf1' cannot be resolved
+The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
+The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
+The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
 
 The link '../output/ConceptMap-bfs-encounter-class-to-fhir.html' for "BFS Encounter Class to FHIR mapping" cannot be resolved
 
