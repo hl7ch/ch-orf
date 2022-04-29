@@ -115,13 +115,13 @@ This section defines the actors, transactions and/or content modules specific to
             <td>Questionnaire Filler</td>
             <td>Submit Bundle [CH ORF-1]</td>
             <td>O</td>
-            <td>3.1</td>
+            <td><a href="index.html#volume-2--transactions">Volume 2 – Transactions</a></td>
         </tr>
         <tr>
             <td>Questionnaire Receiver</td>
-            <td>Submit Bundle[CH ORF-1]</td>
+            <td>Submit Bundle [CH ORF-1]</td>
             <td>O</td>
-            <td>3.1</td>
+            <td><a href="index.html#volume-2--transactions">Volume 2 – Transactions</a></td>
         </tr>
     </tbody>
 </table>
@@ -148,13 +148,13 @@ A product implementation using the group actors from this implementation guide w
             <td>Questionnaire Filler</td>
             <td>ORF Content Module <sup>&#91;Note 1&#93;</sup></td>
             <td>R</td>
-            <td>Vol 3</td>
+            <td><a href="index.html#volume-3--content-modules">Volume 3 – Content Modules</a></td>
         </tr>
         <tr>
             <td>Questionnaire Receiver</td>
             <td>ORF Content Module <sup>&#91;Note 1&#93;</sup></td>
             <td>R <sup>&#91;Note 1&#93;</sup></td>
-            <td>Vol 3</td>
+            <td><a href="index.html#volume-3--content-modules">Volume 3 – Content Modules</a></td>
         </tr>
     </tbody>
 </table>
@@ -199,7 +199,7 @@ If this is a content module, and actors from this implementation guide are group
 
 In some cases, required groupings are defined as at least one of an enumerated set of possible actors; this is designated by merging column one into a single cell spanning multiple potential grouped actors. Notes are used to highlight this situation.
 
-Section 1.5 describes some optional groupings that may be of interest for security considerations and section 1.6 describes some optional groupings in other related profiles.
+The [Security Considerations](index.html#orf-security-considerations) section describes some optional groupings that may be of interest for security considerations.
 
 {:class="table table-bordered"}
 <table>
@@ -213,25 +213,25 @@ Section 1.5 describes some optional groupings that may be of interest for securi
         <tr>
             <td>Questionnaire Filler</td>
             <td>Questionnaire Receiver</td>
-            <td>1.1</td>
-            <td>Volume 3</td>
+            <td><a href="index.html#ch-orf">CH ORF</a> Actors/Transactions</td>
+            <td><a href="index.html#volume-3--content-modules">Volume 3 – Content Modules</a></td>
         </tr>
         <tr>
             <td>Questionnaire Receiver</td>
             <td>Questionnaire Filler</td>
-            <td>1.1</td>
-            <td>Volume 3</td>
+            <td><a href="index.html#ch-orf">CH ORF</a> Actors/Transactions</td>
+            <td><a href="index.html#volume-3--content-modules">Volume 3 – Content Modules</a></td>
         </tr>
         <tr>
             <td>Questionnaire Filler</td>
             <td>CT Time Client</td>
-            <td>ITI TF-1: 7.1</td>
+            <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-7.html#7.1">ITI TF-1: 7.1</a> CT Actors/Transactions</td>
             <td>na</td>
         </tr>
         <tr>
             <td>Questionnaire Receiver</td>
             <td>CT Time Client</td>
-            <td>ITI TF-1: 7.1</td>
+            <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-7.html#7.1">ITI TF-1: 7.1</a> CT Actors/Transactions</td>
             <td>na</td>
         </tr>
     </tbody>
@@ -388,7 +388,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
     <tbody>
         <tr>
             <th><b>Name</b></th>
-            <th colspan="2"><b>Role taker</b></th>
+            <th colspan="2"><b>Role Taker</b></th>
             <th><b>HL7 V3<br />Equivalent</b></th>
             <th><b>FHIR<br />Representation</b></th>
             <th><b>Comment</b></th>
