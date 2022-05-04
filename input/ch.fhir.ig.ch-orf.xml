@@ -37,7 +37,8 @@
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="current"/> <!--TBD: 2.1.0 -->
+    <version value="current"/>
+    <!--TBD: 2.1.0 -->
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
@@ -267,6 +268,79 @@
       <name value="Questionnaire Order-Referral-Form"/>
       <description value="Example for Questionnaire"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/order-referral-form-modular"/>
+      </reference>
+      <name value="Questionnaire Order-Referral-Form (Modular version)"/>
+      <description value="Example for Questionnaire (Modular version)"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-order"/>
+      </reference>
+      <name value="Module Questionnaire order"/>
+      <description value="Subquestionnaire order"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-receiver"/>
+      </reference>
+      <name value="Module Questionnaire receiver"/>
+      <description value="Subquestionnaire receiver"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-patient"/>
+      </reference>
+      <name value="Module Questionnaire patient"/>
+      <description value="Subquestionnaire patient"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-requestedencounter"/>
+      </reference>
+      <name value="Module Questionnaire requestedEncounter"/>
+      <description value="Subquestionnaire requestedEncounter"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-coverage"/>
+      </reference>
+      <name value="Module Questionnaire Coverage"/>
+      <description value="Subquestionnaire Coverage"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-sender"/>
+      </reference>
+      <name value="Module Questionnaire Sender"/>
+      <description value="Subquestionnaire Sender"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-receivercopy"/>
+      </reference>
+      <name value="Module Questionnaire receiverCopy"/>
+      <description value="Subquestionnaire receiverCopy"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-appointment"/>
+      </reference>
+      <name value="Module Questionnaire Appointment"/>
+      <description value="Subquestionnaire Appointment"/>
     </resource>
 
     <resource>
