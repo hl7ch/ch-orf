@@ -322,6 +322,11 @@ Description: "Subquestionnaire receiver"
 * item[=].text = "Empfangende Organisation"
 * item[=].type = #group
 
+* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "'receiverCopy.organization.'"
+
 * item[=].item[+].linkId = "receiver.organization.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].text = "Name der Organisation"
@@ -332,26 +337,11 @@ Description: "Subquestionnaire receiver"
 * item[=].item[=].text = "GLN"
 * item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "receiver.organization.streetAddressLine"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
-* item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
-
-* item[=].item[+].linkId = "receiver.organization.postalCode"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"
-* item[=].item[=].text = "PLZ"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "receiver.organization.city"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"
-* item[=].item[=].text = "Ort"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "receiver.organization.country"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"
-* item[=].item[=].text = "Land"
-* item[=].item[=].type = #string
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].linkId = "receiver.organization.1"
+* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].type = #display
 
 
 Instance: ch-orf-module-patient
@@ -366,6 +356,7 @@ Description: "Subquestionnaire patient"
 * status = #active
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
+
 
 * item[+].linkId = "patient.familyName"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
@@ -432,26 +423,15 @@ Description: "Subquestionnaire patient"
 * item[=].text = "E-Mail"
 * item[=].type = #string
 
-* item[+].linkId = "patient.streetAddressLine"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.line"
-* item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].type = #string
-* item[=].repeats = true
-
-* item[+].linkId = "patient.postalCode"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.postalCode"
-* item[=].text = "PLZ"
-* item[=].type = #string
-
-* item[+].linkId = "patient.city"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.city"
-* item[=].text = "Ort"
-* item[=].type = #string
-
-* item[+].linkId = "patient.country"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.country"
-* item[=].text = "Land"
-* item[=].type = #string
+* item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "linkIdPrefix"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "'patient.'"
+* item[=].linkId = "patient.1"
+* item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].type = #display
 
 * item[+].linkId = "patient.languageOfCorrespondance"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"
@@ -640,6 +620,10 @@ Description: "Subquestionnaire Converage"
 * item[=].item[=].enableWhen[+].question = "coverage.self.patientRelatedPerson"
 * item[=].item[=].enableWhen[=].operator = #=
 * item[=].item[=].enableWhen[=].answerBoolean = true
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'coverage.self.relatedPerson.'"
 
 * item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.familyName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
@@ -662,27 +646,11 @@ Description: "Subquestionnaire Converage"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.streetAddressLine"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-
-* item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.postalCode"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.city"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "coverage.self.relatedPerson.country"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].type = #string
-
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].item[=].linkId = "coverage.self.relatedPerson.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
 
 // Other
 * item[+].linkId = "coverage.other"
@@ -773,6 +741,10 @@ Description: "Subquestionnaire Sender"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 * item[=].item[=].text = "Verantwortliche Organisation"
 * item[=].item[=].type = #group
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'sender.author.organization.'"
 
 * item[=].item[=].item[+].linkId = "sender.author.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
@@ -784,26 +756,11 @@ Description: "Subquestionnaire Sender"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "sender.author.organization.streetAddressLine"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.line"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-
-* item[=].item[=].item[+].linkId = "sender.author.organization.postalCode"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "sender.author.organization.city"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "sender.author.organization.country"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.address.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].item[=].linkId = "sender.author.organization.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
 
 // ---------- Data Entry Person: The person who has typed/filled in the Form Content. ----------
 * item[+].linkId = "sender.dataenterer"
@@ -868,32 +825,21 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].text = "Gesundheitsorganisatiton"
 * item[=].item[=].type = #group
 
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'receiverCopy.practitionerRole.organization.'"
+
 * item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.streetAddressLine"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.line"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.postalCode"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.city"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.country"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-address#Address.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].type = #string
-
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].item[=].linkId = "receiverCopy.practitionerRole.organization.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
 
 * item[+].linkId = "receiverCopy.patient"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient"
@@ -911,6 +857,10 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
 * item[=].item[=].text = "Name"
 * item[=].item[=].type = #string
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'receiverCopy.relatedPerson.'"
 
 * item[=].item[+].linkId = "receiverCopy.relatedPerson.givenName"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
@@ -928,26 +878,11 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "receiverCopy.relatedPerson.streetAddressLine"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.line"
-* item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
-
-* item[=].item[+].linkId = "receiverCopy.relatedPerson.postalCode"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.postalCode"
-* item[=].item[=].text = "PLZ"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "receiverCopy.relatedPerson.city"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.city"
-* item[=].item[=].text = "Ort"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "receiverCopy.relatedPerson.country"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.address.country"
-* item[=].item[=].text = "Land"
-* item[=].item[=].type = #string
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].linkId = "receiverCopy.relatedPerson.1"
+* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].type = #display
 
 /*------ Appointment ------------------------------ */
 Instance: ch-orf-module-appointment
@@ -968,6 +903,10 @@ Description: "Subquestionnaire appointment"
 * item[=].text = "Ort der Durchführung"
 * item[=].type = #group
 * item[=].required = true
+* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "'appointment.location.'"
 
 * item[=].item[+].linkId = "appointment.location.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
@@ -985,26 +924,11 @@ Description: "Subquestionnaire appointment"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 
-* item[=].item[+].linkId = "appointment.location.streetAddressLine"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.line"
-* item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
-
-* item[=].item[+].linkId = "appointment.location.postalCode"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.postalCode"
-* item[=].item[=].text = "PLZ"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "appointment.location.city"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.city"
-* item[=].item[=].text = "Ort"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "appointment.location.country"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.address.country"
-* item[=].item[=].text = "Land"
-* item[=].item[=].type = #string
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].linkId = "appointment.location.1"
+* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].type = #display
 
 * item[+].linkId = "appointment.requestedPeriod"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.requestedPeriod"
@@ -1076,4 +1000,39 @@ Description: "Subquestionnaire Practitioner with Name/Telecom"
 * item[+].linkId = "email"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].text = "E-Mail"
+* item[=].type = #string
+
+
+
+/*------ Address ------------------------------ */
+Instance: ch-orf-module-address
+InstanceOf: Questionnaire
+Title: "Module Questionnaire Address"
+Description: "Subquestionnaire Practitioner Address"
+* extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
+* extension[=].valueCode = #assemble-child
+* extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
+* extension[=].valueString = "linkIdPrefix"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address"
+* name = "ModuleQuestionnaireAddress"
+* title = "Module Questionnaire Address"
+* status = #active
+* date = "2022-05-09"
+* publisher = "HL7 Switzerland"
+
+* item[+].linkId = "streetAddressLine"
+* item[=].text = "Strasse, Hausnummer, Postfach etc."
+* item[=].type = #string
+* item[=].repeats = true
+
+* item[+].linkId = "postalCode"
+* item[=].text = "PLZ"
+* item[=].type = #string
+
+* item[+].linkId = "city"
+* item[=].text = "Ort"
+* item[=].type = #string
+
+* item[+].linkId = "country"
+* item[=].text = "Land"
 * item[=].type = #string
