@@ -345,6 +345,14 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-practitioner-nametel"/>
+      </reference>
+      <name value="ModuleQuestionnairePractitionerNameTel"/>
+      <description value="Module Questionnaire Practitioner with name and telecom"/>
+    </resource>
+
+    <resource>
+      <reference>
         <reference value="QuestionnaireResponse/qr-order-referral-form"/>
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form"/>

@@ -219,30 +219,17 @@ Description: "Subquestionnaire order"
 * item[=].item[=].text = "Zu benachrichtigende Person"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.title"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
-* item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'order.notificationContactDocument.practitioner.'"
 
-* item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.familyName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].item.linkId = "order.notificationContactDocument.practitioner.1"
+* item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].item.type = #display
 
-* item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.givenName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.phone"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.email"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].type = #string
 
 // ---------- Urgent Notification Contact for the Response to this document ----------
 * item[+].linkId = "order.notificationContactDocumentResponse"
@@ -255,30 +242,16 @@ Description: "Subquestionnaire order"
 * item[=].item[=].text = "Zu benachrichtigende Person"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.title"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
-* item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'order.notificationContactDocumentResponse.practitioner.'"
 
-* item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.familyName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.givenName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.phone"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.email"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].item.linkId = "order.notificationContactDocumentResponse.practitioner.1"
+* item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].item.type = #display
 
 // ---------- Order Priority ----------
 * item[+].linkId = "order.priority"
@@ -843,26 +816,17 @@ Description: "Subquestionnaire Sender"
 * item[=].item[=].text = "Erfassende Person"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.familyName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
 
-* item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.givenName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'sender.dataenterer.practitioner.'"
 
-* item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.phone"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "sender.dataenterer.practitioner.email"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].type = #string
-
+* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].item.linkId = "sender.dataenterer.practitioner.1"
+* item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].item.type = #display
 
 Instance: ch-orf-module-receivercopy
 InstanceOf: Questionnaire
@@ -888,30 +852,16 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].text = "Gesundheitsfachperson"
 * item[=].item[=].type = #group
 
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.title"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.prefix"
-* item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'eceiverCopy.practitionerRole.practitione.'"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.familyName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.family"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.givenName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-humanname#HumanName.given"
-* item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.phone"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.practitioner.email"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/ContactPoint#ContactPoint.value"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].type = #string
+* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].item.linkId = "eceiverCopy.practitionerRole.practitione.1"
+* item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].item.type = #display
 
 * item[=].item[+].linkId = "receiverCopy.practitionerRole.organization"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
@@ -1085,4 +1035,45 @@ Description: "Subquestionnaire appointment"
 * item[+].linkId = "appointment.patientInstruction"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
 * item[=].text = "Patienteninformation für diesen Termin"
+* item[=].type = #string
+
+/*------ Practitioner Name / Telecom ------------------------------ */
+Instance: ch-orf-module-practitioner-nametel
+InstanceOf: Questionnaire
+Title: "Module Questionnaire Practitioner with Name/Telecom"
+Description: "Subquestionnaire Practitioner with Name/Telecom"
+* extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
+* extension[=].valueCode = #assemble-child
+* extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
+* extension[=].valueString = "linkIdPrefix"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel"
+* name = "ModuleQuestionnairePractitionerNameTel"
+* title = "Module Questionnaire Practitioner with name and telecom"
+* status = #active
+* date = "2022-05-09"
+* publisher = "HL7 Switzerland"
+
+* item[+].linkId = "title"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
+* item[=].text = "Titel"
+* item[=].type = #string
+
+* item[+].linkId = "familyName"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
+* item[=].text = "Name"
+* item[=].type = #string
+
+* item[+].linkId = "givenName"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
+* item[=].text = "Vorname"
+* item[=].type = #string
+
+* item[+].linkId = "phone"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
+* item[=].text = "Telefon"
+* item[=].type = #string
+
+* item[+].linkId = "email"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
+* item[=].text = "E-Mail"
 * item[=].type = #string
