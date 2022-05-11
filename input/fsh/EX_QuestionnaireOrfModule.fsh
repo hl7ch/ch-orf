@@ -69,18 +69,6 @@ Description: "Example for Questionnaire"
 * item[=].item.text = "Unable to resolve 'patient' sub-questionnaire"
 * item[=].item.type = #display
 
-// ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
-* item[=].item[+].linkId = "patient.contactperson"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
-* item[=].item[=].text = "Kontaktperson"
-* item[=].item[=].type = #group
-
-* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patientcontact|2.0.0"
-* item[=].item[=].item.linkId = "patientcontact.1"
-* item[=].item[=].item.text = "Unable to resolve 'patientcontact' sub-questionnaire"
-* item[=].item[=].item.type = #display
-
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedEncounter"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
@@ -88,9 +76,9 @@ Description: "Example for Questionnaire"
 * item[=].type = #group
 
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedEncounter|2.0.0"
+* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|2.0.0"
 * item[=].item.linkId = "requestedEncounter.1"
-* item[=].item.text = "Unable to resolve 'requestedEncounter' sub-questionnaire"
+* item[=].item.text = "Unable to resolve 'requestedencounter' sub-questionnaire"
 * item[=].item.type = #display
 
 
@@ -134,9 +122,9 @@ Description: "Example for Questionnaire"
 * item[=].type = #group
 
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiverCopy|2.0.0"
+* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|2.0.0"
 * item[=].item.linkId = "receiverCopy.1"
-* item[=].item.text = "Unable to resolve 'receiverCopy' sub-questionnaire"
+* item[=].item.text = "Unable to resolve 'receivercopy' sub-questionnaire"
 * item[=].item.type = #display
 
 /*------ Appointment ------------------------------ */
@@ -325,7 +313,7 @@ Description: "Subquestionnaire receiver"
 * item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "'receiverCopy.organization.'"
+* item[=].extension.valueExpression.expression = "'receiver.organization.'"
 
 * item[=].item[+].linkId = "receiver.organization.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
@@ -812,11 +800,11 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'eceiverCopy.practitionerRole.practitione.'"
+* item[=].item[=].extension.valueExpression.expression = "'receiverCopy.practitionerRole.practitioner.'"
 
 * item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
-* item[=].item[=].item.linkId = "eceiverCopy.practitionerRole.practitione.1"
+* item[=].item[=].item.linkId = "receiverCopy.practitionerRole.practitioner.1"
 * item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
 * item[=].item[=].item.type = #display
 

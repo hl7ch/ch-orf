@@ -281,6 +281,14 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-address"/>
+      </reference>
+      <name value="Module Questionnaire address"/>
+      <description value="Subquestionnaire address"/>
+    </resource>
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/ch-orf-module-order"/>
       </reference>
       <name value="Module Questionnaire order"/>
