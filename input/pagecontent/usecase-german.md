@@ -3,7 +3,7 @@
 * **Patientin:** Frau S. Ufferer
 * **Auftraggeber:** 
    * **Verantwortliche Person:** Dr. O. Rderplacer, Hausärztin in der Gruppenpraxis 'Happy Doctors' 
-   * **Data enterer:** D. Ataenterer, medizinische Praxisassistentin in der Gruppenpraxis 'Happy Doctors' 
+   * **Erfassende Person:** D. Ataenterer, medizinische Praxisassistentin in der Gruppenpraxis 'Happy Doctors' 
 * **Auftragsempfänger:** Dr. O. Rderfiller, Radiologe am Institut für Radiologie des Spitals 'Happy Hospital'
 
 Frau S. Ufferer hat am 15. März 2021 einen Termin bei ihrer Hausärztin Dr. O. Rderplacer in der Gruppenpraxis 'Happy Doctors'. Die Patientin klagt über wiederkehrende Knieschmerzen. Aufgrund der Anamnese und der körperlichen Untersuchung beschliesst die Ärztin, eine Röntgenaufnahme anzuordnen, die im Institut für Radiologie des Spitals 'Happy Hospital' von Dr. O. Rderfiller durchgeführt werden soll.
