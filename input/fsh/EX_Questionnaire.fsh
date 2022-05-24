@@ -36,7 +36,7 @@ Usage: #example
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * version = "1.1.0-assembled"
 * name = "OrderReferralForm"
 * title = "Order-Referral-Form"
