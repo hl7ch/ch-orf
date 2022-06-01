@@ -1,5 +1,4 @@
-@host = http://test.ahdis.ch/hapi-fhir-jpavalidator/fhir
-
+@host = http://test.ahdis.ch/matchbox/fhir 
 ###@host = http://hapi.fhir.org/baseR4
 
 
@@ -144,8 +143,18 @@ Content-Type: application/fhir+xml
 < input/examples/composition/order-referral-form.xml
 
 
-
-
 ### $document order-referral-form
 GET {{host}}/Composition/order-referral-form/$document HTTP/1.1
 Content-Type: application/fhir+xml
+
+
+### Create modular questionnaire wiht $assemble operation
+### 1. Create FHS Questionnaires (modules)
+### 2. Upload IG on matchbox https://test.ahdis.ch/matchbox/#/igs
+### 3. Invoice $assemble operation on modular Questionnaire
+### 4. If you want to provide the Questionnaire integrated in your IG translate it back to fsh with: https://fshschool.org/FSHOnline/#/
+POST {{host}}/Questionnaire/$assemble HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-order-referral-form-modular.json
