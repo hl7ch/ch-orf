@@ -356,8 +356,8 @@
       </answer>
     </item>
     <item>
-      <linkId value="patient.languageOfCorrespondance"/>
-      <text value="Korrespondenssprache"/>
+      <linkId value="patient.languageOfCorrespondence"/>
+      <text value="Korrespondenzsprache"/>
       <answer>
         <valueCoding>
           <system value="urn:ietf:bcp:47"/>

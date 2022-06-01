@@ -264,11 +264,11 @@ group PatientItems(source src : BackboneElement, target tgt:Patient) {
   src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (item.answer.value) "patient.city";
   src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (item.answer.value) "patient.country";
 
-  src.item as item where (linkId.value = 'patient.languageOfCorrespondance' and answer.exists()) then {
+  src.item as item where (linkId.value = 'patient.languageOfCorrespondence' and answer.exists()) then {
    item.answer as answer then {
-      answer.value: Coding as coding -> tgt.communication as communication, communication.preferred = true, communication.language as language, language.coding = coding "languageOfCorrespondance"; 
+      answer.value: Coding as coding -> tgt.communication as communication, communication.preferred = true, communication.language as language, language.coding = coding "languageOfCorrespondence"; 
       } "answer";
-  } "patient.languageOfCorrespondance"; 
+  } "patient.languageOfCorrespondence"; 
 
   src.item as item where (linkId.value = 'patient.contactperson') -> tgt.contact as contact then {
    item.item as item where (linkId.value = 'patient.contactperson.familyName' and answer.exists()) -> contact.name as name share contactName,name.family = (item.answer.value);

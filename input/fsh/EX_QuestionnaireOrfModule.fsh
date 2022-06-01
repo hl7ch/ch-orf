@@ -421,9 +421,9 @@ Description: "Subquestionnaire patient"
 * item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].type = #display
 
-* item[+].linkId = "patient.languageOfCorrespondance"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"
-* item[=].text = "Korrespondenssprache"
+* item[+].linkId = "patient.languageOfCorrespondence"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
+* item[=].text = "Korrespondenzsprache"
 * item[=].type = #choice
 * item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 
