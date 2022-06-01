@@ -148,7 +148,7 @@ GET {{host}}/Composition/order-referral-form/$document HTTP/1.1
 Content-Type: application/fhir+xml
 
 
-### Create modular questionnaire wiht $assemble operation
+### Create modular questionnaire with $assemble operation
 ### 1. Create FHS Questionnaires (modules)
 ### 2. Upload IG on matchbox https://test.ahdis.ch/matchbox/#/igs
 ### 3. Invoice $assemble operation on modular Questionnaire
