@@ -1131,11 +1131,11 @@ Description: "Subquestionnaire initiator"
 */
 
 
-* item[=].item[+].linkId = "initiator.practitionerRole.class.legalguardian"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.class#legal"
-* item[=].item[=].text = "Gesetzlicher Vertreter?"
-* item[=].item[=].type = #choice
-* item[=].item[=].answerOption[+].valueCoding = SCT#58626002  "Legal guardian (person)"
+* item[+].linkId = "initiator.practitionerRole.class.legalguardian"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.class#legal"
+* item[=].text = "Gesetzlicher Vertreter?"
+* item[=].type = #choice
+* item[=].answerOption[+].valueCoding = SCT#58626002  "Legal guardian (person)"
 
 * item[=].item[+].linkId = "initiator.practitionerRole.practitioner"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
