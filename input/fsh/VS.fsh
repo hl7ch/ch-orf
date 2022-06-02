@@ -21,6 +21,16 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
+
+ValueSet: ChOrfConsentStatus
+Id: ch-orf-vs-consentstatus
+Title: "Consent Status"
+Description: "Value Set for CH ORF Consent Status"
+* ChOrfConsentStatus#InformedExplicitAgreement
+* ChOrfConsentStatus#Other
+* SCT#373068000 "Undetermined (qualifier value)"
+
+
 ValueSet: ChOrfEncounterClass
 Id: ch-orf-vs-encounterclass
 Title: "Encounter Class"
@@ -49,3 +59,30 @@ Description: "Value Set for CH ORF Desired Accomodation"
 * ChCoreCSEncounterType#1 "allgemein"
 * ChCoreCSEncounterType#2 "halbprivat"
 * ChCoreCSEncounterType#3 "privat"
+
+/*
+ValueSet: ChOrfVsInitiatorRole
+Id: ch-orf-vs-initiatorrole
+Title: "Initiator Role"
+Description: "Value Set for CH ORF Inititator Role"
+* include codes from system ChOrfCsInitiatorRole
+*/
+
+ValueSet: ChOrfVsInitiatorRelation
+Id: ch-orf-vs-initiatorrelation
+Title: "Initiator Role"
+Description: "Value Set for CH ORF Inititator Relation"
+
+* SCT#6089001 "Daughter (person)"
+* SCT#5616008 "Son (person)"
+//127848009 "Spouse (person)"
+* SCT#127849001 "Husband (person)"
+* SCT#127850001 "Wife (person)"
+* SCT#394921008 "Cohabitee (person)"
+* SCT#70924004  "Brother (person)"
+* SCT#27733009  "Sister (person)"
+* SCT#72705000  "Mother (person)"
+* SCT#66839005  "Father (person)"
+* SCT#48385004  "Acquaintance (person)"
+// "Other" --> Empty
+
