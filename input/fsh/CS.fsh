@@ -20,7 +20,7 @@ Id: ch-orf-cs-consentstatus
 Title: "Consent Status"
 Description: "Value Set for CH ORF Consent Status"
 * ^caseSensitive = true
-* #InformedExpicitAgreement "Patient is informed and has explicitly agreed"
+* #ExplicitAgreement "Patient is informed and has explicitly agreed"
 * #Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
 
 

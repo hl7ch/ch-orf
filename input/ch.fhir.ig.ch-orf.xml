@@ -361,6 +361,20 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-initiator"/>
+      </reference>
+      <name value="Module Questionnaire initiator"/>
+      <description value="Subquestionnaire initiator"/>
+    </resource>
+
+
+
+
+
+
+
+    <resource>
+      <reference>
         <reference value="QuestionnaireResponse/qr-order-referral-form"/>
       </reference>
       <name value="QuestionnaireResponse Order-Referral-Form"/>

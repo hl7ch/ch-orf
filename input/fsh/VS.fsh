@@ -21,15 +21,15 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
-/*
+
 ValueSet: ChOrfConsentStatus
 Id: ch-orf-vs-consentstatus
 Title: "Consent Status"
 Description: "Value Set for CH ORF Consent Status"
-* ChOrfConsentStatus#InformedExplicitAgreement
+* ChOrfConsentStatus#ExplicitAgreement
 * ChOrfConsentStatus#Other
 //* SCT#373068000 "Undetermined (qualifier value)" --> entspricht leer
-*/
+
 
 
 ValueSet: ChOrfEncounterClass
