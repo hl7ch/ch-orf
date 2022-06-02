@@ -1099,7 +1099,7 @@ Person or body who initiated the service request; particularly in the context of
 
 Instance: ch-orf-module-initiator
 InstanceOf: Questionnaire
-Title: "Module Questionnaire initiator"
+Title: "Module Questionnaire Initiator"
 Description: "Subquestionnaire initiator"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
@@ -1258,7 +1258,7 @@ Description: "SubQuestionnaire 'address'"
 * item[=].type = #string
 
 /*------ Patient Permission ------------------------------ */
-Instance: ch-orf-module-patientPermission
+Instance: ch-orf-module-patientConsent
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Patient Consent"
 Description: "Subquestionnaire Patient Consent"
@@ -1266,14 +1266,14 @@ Description: "Subquestionnaire Patient Consent"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
 * extension[=].valueString = "linkIdPrefix"
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patientPermission"
-* name = "ModuleQuestionnairepatientPermission"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patientConsent"
+* name = "ModuleQuestionnairepatientConsent"
 * title = "Module Questionnaire Patient Consent"
 * status = #active
 * date = "2022-05-09"
 * publisher = "HL7 Switzerland"
 
-* item[+].linkId = "patientPermission.statement"
+* item[+].linkId = "patientConsent.statement"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
@@ -1282,7 +1282,7 @@ Description: "Subquestionnaire Patient Consent"
 * item[=].required = true
 
 
-* item[=].item[+].linkId = "patientPermission.statement.specification"
+* item[=].item[+].linkId = "patientConsent.statement.specification"
 * item[=].item[=].definition = ""
 * item[=].item[=].text = "Beschreibung"
 * item[=].item[=].type = #string
