@@ -8,6 +8,7 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
+
 Extension: ChOrfInitiator
 Id: ch-orf-initiator
 Title: "CH ORF Initiator"
@@ -17,6 +18,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * valueReference 1..1
 * valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
+
 
 Extension: ChOrfReceiver
 Id: ch-orf-receiver

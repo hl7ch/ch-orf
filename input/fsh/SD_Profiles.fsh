@@ -348,14 +348,12 @@ These are, for example, the status of the encounter or the class and the desired
 * class from ChOrfEncounterClass
 * subject MS
 
-/*Profile: ChOrfInitiatorPractitionerRole
-Parent:  ChCoreInitiatorPractitionerRole
-Id: ch-orf-initiatorpractitionerrole
-Title: "CH ORF Initiator Practitioner Role"
-Description: "Supports class for classification of initiator (in PractionerRole)"
-* . ^short = "CH ORF Intiator Practitioner Role"
-* class MS
-* class [personalRelation] only Reference()
+/*Profile: Initiator
+Parent:  
+Id: ch-orf-initiator
+Title: "CH ORF Initiator"
+Description: "Supports coding of relation of initator to patient)"
+* . ^short = "CH ORF Intiator"
 */
 
 
