@@ -315,13 +315,5 @@ These are, for example, the status of the encounter or the class and the desired
 * class from ChOrfEncounterClass
 * subject MS
 
-/*Profile: Initiator
-Parent:  
-Id: ch-orf-initiator
-Title: "CH ORF Initiator"
-Description: "Supports coding of relation of initator to patient)"
-* . ^short = "CH ORF Intiator"
-*/
-
 
 
