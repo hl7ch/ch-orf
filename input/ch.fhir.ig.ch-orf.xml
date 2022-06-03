@@ -142,7 +142,15 @@
         <reference value="StructureDefinition/ch-orf-copyreceiver"/>
       </reference>
       <exampleBoolean value="false"/>
+
     </resource>
+       <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-initiator"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-locationandtime"/>
