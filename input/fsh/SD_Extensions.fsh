@@ -15,16 +15,19 @@ Title: "CH ORF Initiator"
 Description: "Person/organization who initated this order (may or may nor receive a copy)"
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
-//* valueReference 1..1
-//* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
-//* valueReference ^short = "valueReference"
-* extension contains ChOrfRelationInitiatorPatient named releationInitiatorPatient 0..1 MS
-* extension[releationInitiatorPatient] ^short = "Relatioin between Initator and Patient"
-* extension contains ChOrfInitiatorDetail named initatorDetail 0..1 MS
-* extension[initatorDetail] ^short = "Initiator"
+* valueReference 0..0
+/* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference ^short = "valueReference"
+*/
+* extension contains ChOrfRelationInitiatorPatient named releationInitiatorPatient 1..1 MS and
+ChOrfInitiatorDetail named initatorDetail 0..1 MS
+//* extension[initatorDetail] ^short = "Initiator Detail"
+* extension[releationInitiatorPatient].value[x] only Coding
+* extension[initatorDetail].value[x] contains ChOrfInitiatorDetail 0..1
+
 
 Extension: ChOrfRelationInitiatorPatient
-Id: ch-orf-relationinitatorpatient
+Id: ch-orf-relationinitiatorpatient
 Title: "Relatioin between Initator and Patient"
 Description: "Relatioin between Initator and Patient"
 * ^context[0].type = #fhirpath
@@ -33,16 +36,26 @@ Description: "Relatioin between Initator and Patient"
 * valueReference only Reference(ChCorePractitionerRole)
 * valueReference ^short = "valueReference"
 
+
 Extension: ChOrfInitiatorDetail
 Id: ch-orf-initiatordetail
 Title: "CH ORF Initiator Detail"
 Description: "Person/organization who initated this order (may or may nor receive a copy)"
 * ^context[0].type = #fhirpath
-* ^context[0].expression = "ChOrfInitiator"
+* ^context[0].expression = "Initator"
 * valueReference 1..1
 * valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
+/* ^context[0].type = #fhirpath
+* ^context[0].expression = "ChOrfInitiator"
+* valueReference 0..1
+* extension contains ChCorePractitionerRole named practiionerRole 0..1 MS and
+ ChOrfParctioner and
+ http://hl7.org/fhir/StructureDefinition/RelatedPerson named relatedPerson 0..1 MS
+*/
 
+* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference ^short = "valueReference"
 
 
 
