@@ -43,6 +43,16 @@ This is independent of the content and content structure of the response items t
 * item.item MS
 
 
+
+
+Profile: ChOrfConsent
+Parent: Consent
+Id: ch-orf-consent
+Title: "CH ORF Consent"
+Description: "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex 
+and  transfer to retirement home etc."
+* . ^short = "CH ORF Consent"
+
 Profile: ChOrfServiceRequest
 Parent: ServiceRequest
 Id: ch-orf-servicerequest
@@ -87,6 +97,18 @@ This resource is used to share relevant information required to support an CH OR
 * patientInstruction ^short = "Use Appointment.patientInstruction (referenced via ServiceRequest.extension) for patient-oriented instructions"
 
 
+Profile: ChOrfEpisodeOfCare
+Parent: EpisodeOfCare
+Id: ch-orf-episodeofcare
+Title: "CH ORF Episode of Care"
+Description: "Profile to document the precedent episode of  care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
+* . ^short = "CH ORF Consent"
+* statusHistory  MS
+* statusHistory.status MS
+* period MS
+* managingOrganization MS
+
+
 Profile: ChOrfComposition
 Parent: ChCoreComposition
 Id: ch-orf-composition
@@ -109,9 +131,11 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
 * extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 
-* extension contains ChOrfInitiator named initiator 0..1 MS
-* extension[initiator] ^short = "Person/organization who initated this order (may or may nor receive a copy)"
+* extension contains ChOrfPrecedentEpisodeOfCare named precedentEpisodeOfCare 0..1 MS
+* extension[precedentEpisodeOfCare] ^short = "Documentation of the precedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 
+* extension contains ChOrfPatientConsent named consent 0..1 MS
+* extension[consent] ^short = "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex and  transfer to retirement home etc."
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)
