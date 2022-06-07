@@ -581,9 +581,9 @@ Success: 0 errors, 1 warnings, 1 notes
                         <type value="string"/>
                     </item>
                     <item>
-                        <linkId value="patient.languageOfCorrespondance"/>
-                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"/>
-                        <text value="Korrespondenssprache"/>
+                        <linkId value="patient.languageOfCorrespondence"/>
+                        <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"/>
+                        <text value="Korrespondenzsprache"/>
                         <type value="choice"/>
                         <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"/>
                     </item>

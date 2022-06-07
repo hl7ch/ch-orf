@@ -22,7 +22,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
       * Update [Home](index.html) 
 
 #### Fixed
-
+* Typo: [#105](https://github.com/hl7ch/ch-orf/issues/105)
 
 
 ### v1.0.0 - HL7 Switzerland STU 1

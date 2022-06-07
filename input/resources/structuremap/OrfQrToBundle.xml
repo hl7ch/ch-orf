@@ -157,11 +157,11 @@ group PatientItems(source src : BackboneElement, target tgt : Patient) {
   src.item as item where ((linkId.value = &apos;patient.postalCode&apos;) and answer.exists()) -&gt;  tgt.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
   src.item as item where ((linkId.value = &apos;patient.city&apos;) and answer.exists()) -&gt;  tgt.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
   src.item as item where ((linkId.value = &apos;patient.country&apos;) and answer.exists()) -&gt;  tgt.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
-  src.item as item where ((linkId.value = &apos;patient.languageOfCorrespondance&apos;) and answer.exists()) then {
+  src.item as item where ((linkId.value = &apos;patient.languageOfCorrespondence&apos;) and answer.exists()) then {
     item.answer as answer then {
-      answer.value : Coding as coding -&gt;  tgt.communication as communication,  communication.preferred = true,  communication.language as language,  language.coding = coding &quot;languageOfCorrespondance&quot;;
+      answer.value : Coding as coding -&gt;  tgt.communication as communication,  communication.preferred = true,  communication.language as language,  language.coding = coding &quot;languageOfCorrespondence&quot;;
     };
-  } &quot;languageOfCorrespondance&quot;;
+  } &quot;languageOfCorrespondence&quot;;
   src.item as item where (linkId.value = &apos;patient.contactperson&apos;) -&gt; tgt.contact as contact then {
     item.item as item where ((linkId.value = &apos;patient.contactperson.familyName&apos;) and answer.exists()) -&gt;  contact.name as name share contactName,  name.family = (item.answer.value);
     item.item as item where ((linkId.value = &apos;patient.contactperson.givenName&apos;) and answer.exists()) -&gt;  contact.name as name share contactName,  name.given = (item.answer.value);
@@ -3234,12 +3234,12 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
          </target>
       </rule>
       <rule>
-         <name value="patient.languageOfCorrespondance"/>
+         <name value="patient.languageOfCorrespondence"/>
          <source>
             <context value="src"/>
             <element value="item"/>
             <variable value="item"/>
-            <condition value="((linkId.value = 'patient.languageOfCorrespondance') and answer.exists())"/>
+            <condition value="((linkId.value = 'patient.languageOfCorrespondence') and answer.exists())"/>
          </source>
          <rule>
             <name value="answer"/>
@@ -3249,7 +3249,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
                <variable value="answer"/>
             </source>
             <rule>
-               <name value="languageOfCorrespondance"/>
+               <name value="languageOfCorrespondence"/>
                <source>
                   <context value="answer"/>
                   <type value="Coding"/>

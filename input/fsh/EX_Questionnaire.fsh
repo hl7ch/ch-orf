@@ -290,9 +290,9 @@ Usage: #example
 * item[=].item[+].linkId = "patient.country"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
-* item[=].item[+].linkId = "patient.languageOfCorrespondance"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"
-* item[=].item[=].text = "Korrespondenssprache"
+* item[=].item[+].linkId = "patient.languageOfCorrespondence"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
+* item[=].item[=].text = "Korrespondenzsprache"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 * item[=].item[+].linkId = "patient.contactperson"
