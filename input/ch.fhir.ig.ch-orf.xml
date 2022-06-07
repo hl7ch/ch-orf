@@ -81,6 +81,14 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-episodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-documentreference"/>
@@ -112,7 +120,24 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consent"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
     <!-- Extension Definitions -->
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-precedentepisodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-precedentdocument"/>
@@ -149,6 +174,31 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-patientconsent"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
+   <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentnote"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+ 
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-locationandtime"/>

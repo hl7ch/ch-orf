@@ -1358,7 +1358,7 @@ Description: "SubQuestionnaire 'address'"
 * item[=].type = #string
 
 /*------ Patient Permission ------------------------------ */
-Instance: ch-orf-module-patientConsent
+Instance: ch-orf-module-Consent
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Patient Consent"
 Description: "Subquestionnaire Patient Consent"
@@ -1366,14 +1366,14 @@ Description: "Subquestionnaire Patient Consent"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
 * extension[=].valueString = "linkIdPrefix"
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patientConsent"
-* name = "ModuleQuestionnairepatientConsent"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent"
+* name = "ModuleQuestionnaiConsent"
 * title = "Module Questionnaire Patient Consent"
 * status = #active
 * date = "2022-05-09"
 * publisher = "HL7 Switzerland"
 
-* item[+].linkId = "patientConsent.statement"
+* item[+].linkId = "consent.statement"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
@@ -1382,8 +1382,8 @@ Description: "Subquestionnaire Patient Consent"
 * item[=].required = true
 
 
-* item[=].item[+].linkId = "patientConsent.statement.specification"
+* item[=].item[+].linkId = "consent.statement.note"
 * item[=].item[=].definition = ""
-* item[=].item[=].text = "Beschreibung"
+* item[=].item[=].text = "Anmerkung"
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
