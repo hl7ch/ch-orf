@@ -1002,25 +1002,25 @@
           <required value="true"/>
           <item>
             <linkId value="patient.familyName"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"/>
             <text value="Name"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.maidenName"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"/>
             <text value="Ledigname"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.givenName"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.given"/>
             <text value="Vorname"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.localPid"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:LocalPid.value"/>
             <text value="Lokale Patienten-ID"/>
             <type value="string"/>
           </item>
@@ -1029,19 +1029,19 @@
               <valueBoolean value="true"/>
             </extension>
             <linkId value="patient.localPidDomain"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.system"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:LocalPid.system"/>
             <text value="Lokale Patienten-ID Domain"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.birthDate"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.birthDate"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.birthDate"/>
             <text value="Geburtsdatum"/>
             <type value="date"/>
           </item>
           <item>
             <linkId value="patient.gender"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.gender"/>
             <text value="Geschlecht"/>
             <type value="choice"/>
             <answerOption>
@@ -1069,7 +1069,7 @@
           </item>
           <item>
             <linkId value="patient.maritalStatus"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.maritalStatus"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.maritalStatus"/>
             <text value="Zivilstand"/>
             <type value="choice"/>
             <answerOption>
@@ -1131,82 +1131,82 @@
           </item>
           <item>
             <linkId value="patient.phone"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.telecom.value"/>
             <text value="Telefon"/>
             <type value="string"/>
             <repeats value="true"/>
           </item>
           <item>
             <linkId value="patient.email"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.telecom.value"/>
             <text value="E-Mail"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.streetAddressLine"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.line"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.address.line"/>
             <text value="Strasse, Hausnummer, Postfach etc."/>
             <type value="string"/>
             <repeats value="true"/>
           </item>
           <item>
             <linkId value="patient.postalCode"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.postalCode"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.address.postalCode"/>
             <text value="PLZ"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.city"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.city"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.address.city"/>
             <text value="Ort"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.country"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.address.country"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.address.country"/>
             <text value="Land"/>
             <type value="string"/>
           </item>
           <item>
             <linkId value="patient.languageOfCorrespondance"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.communication:languageOfCorrespondance"/>
             <text value="Korrespondenssprache"/>
             <type value="choice"/>
             <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"/>
           </item>
           <item>
             <linkId value="patient.contactperson"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact"/>
             <text value="Kontaktperson"/>
             <type value="group"/>
             <item>
               <linkId value="patient.contactperson.relationship"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.relationship.text"/>
               <text value="Beziehung"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="patient.contactperson.familyName"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.name.family"/>
               <text value="Name"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="patient.contactperson.givenName"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.name.given"/>
               <text value="Vorname"/>
               <type value="string"/>
             </item>
             <item>
               <linkId value="patient.contactperson.phone"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.telecom.value"/>
               <text value="Telefon"/>
               <type value="string"/>
               <repeats value="true"/>
             </item>
             <item>
               <linkId value="patient.contactperson.email"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.telecom.value"/>
               <text value="E-Mail"/>
               <type value="string"/>
             </item>
@@ -1284,7 +1284,7 @@
             <type value="group"/>
             <item>
               <linkId value="coverage.beneficiary.ahvn13"/>
-              <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"/>
+              <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:AHVN13"/>
               <text value="AHV-Nr. des Patienten"/>
               <type value="string"/>
             </item>
@@ -1703,7 +1703,7 @@
           </item>
           <item>
             <linkId value="receiverCopy.patient"/>
-            <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient"/>
+            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient"/>
             <text value="Patient selbst"/>
             <type value="boolean"/>
           </item>

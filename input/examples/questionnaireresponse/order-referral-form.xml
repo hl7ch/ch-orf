@@ -251,7 +251,7 @@
   <!-- Patient: The principle target of a particular Form Content is one patient -->
   <item>
     <linkId value="patient"/>
-    <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
+    <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient"/>
     <text value="Patient"/>
     <item>
       <linkId value="patient.familyName"/>

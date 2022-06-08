@@ -223,33 +223,33 @@ Usage: #example
 * item[=].type = #group
 * item[=].required = true
 * item[=].item[0].linkId = "patient.familyName"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"
 * item[=].item[=].text = "Name"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.maidenName"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"
 * item[=].item[=].text = "Ledigname"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.givenName"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.given"
 * item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.localPid"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:LocalPid.value"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].type = #string
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "patient.localPidDomain"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.system"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:LocalPid.system"
 * item[=].item[=].text = "Lokale Patienten-ID Domain"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.birthDate"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.birthDate"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.birthDate"
 * item[=].item[=].text = "Geburtsdatum"
 * item[=].item[=].type = #date
 * item[=].item[+].linkId = "patient.gender"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.gender"
 * item[=].item[=].text = "Geschlecht"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://hl7.org/fhir/administrative-gender#male "Männlich"
@@ -257,7 +257,7 @@ Usage: #example
 * item[=].item[=].answerOption[+].valueCoding = http://hl7.org/fhir/administrative-gender#female "Weiblich"
 * item[=].item[=].answerOption[+].valueCoding = http://hl7.org/fhir/administrative-gender#other "Anderes"
 * item[=].item[+].linkId = "patient.maritalStatus"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.maritalStatus"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.maritalStatus"
 * item[=].item[=].text = "Zivilstand"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#1 "ledig"
@@ -269,12 +269,12 @@ Usage: #example
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#7 "aufgelöste Partnerschaft"
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#9 "unbekannt"
 * item[=].item[+].linkId = "patient.phone"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.telecom.value"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
 * item[=].item[+].linkId = "patient.email"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.telecom.value"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.streetAddressLine"
@@ -291,33 +291,33 @@ Usage: #example
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "patient.languageOfCorrespondance"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondance"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.communication:languageOfCorrespondance"
 * item[=].item[=].text = "Korrespondenssprache"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 * item[=].item[+].linkId = "patient.contactperson"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact"
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "patient.contactperson.relationship"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.relationship.text"
 * item[=].item[=].item[=].text = "Beziehung"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "patient.contactperson.familyName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.name.family"
 * item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "patient.contactperson.givenName"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.name.given"
 * item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "patient.contactperson.phone"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.telecom.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
 * item[=].item[=].item[+].linkId = "patient.contactperson.email"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.contact.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 * item[+].linkId = "requestedEncounter"
@@ -347,7 +347,7 @@ Usage: #example
 * item[=].item[=].text = "Begünstigter (Patient)"
 * item[=].item[=].type = #group
 * item[=].item[=].item.linkId = "coverage.beneficiary.ahvn13"
-* item[=].item[=].item.definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"
+* item[=].item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:AHVN13"
 * item[=].item[=].item.text = "AHV-Nr. des Patienten"
 * item[=].item[=].item.type = #string
 * item[=].item[+].linkId = "coverage.kvg"
@@ -639,7 +639,7 @@ Usage: #example
 * item[=].item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[+].linkId = "receiverCopy.patient"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient"
 * item[=].item[=].text = "Patient selbst"
 * item[=].item[=].type = #boolean
 * item[=].item[+].linkId = "receiverCopy.relatedPerson"

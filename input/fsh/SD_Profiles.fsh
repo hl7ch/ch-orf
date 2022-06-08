@@ -1,3 +1,13 @@
+Profile: ChOrfPatient
+Parent: ChCorePatient
+Id: ch-orf-patient
+Title: "CH ORF Location"
+Description: "Profile to define the details of the location of the appointment."
+* . ^short = "CH ORF Location"
+* generalPractitioner MS
+* generalPractitioner only Reference(ChCorePractitionerRole or ChCoreOrganization or ChCorePractitioner)
+
+
 Profile: ChOrfQuestionnaire
 Parent: SdcBaseQuestionnaire
 Id: ch-orf-questionnaire
@@ -8,7 +18,6 @@ This is independent of the content and content structure of the questionnaire in
 //* extension[targetStructureMap] 1..1 MS
 //* extension contains SdcQuestionnaireSourceStructureMap named sdcQuestionnaireSourceStructureMap 1..1 MS
 //* extension contains SdcQuestionnaireLaunchContext named sdcQuestionnaireLaunchContext 1..1 MS
-
 
 
 Profile: ChOrfQuestionnaireResponse
@@ -25,14 +34,14 @@ This is independent of the content and content structure of the response items t
 * questionnaire MS
 * status MS
 * subject MS
-* subject only Reference(ChCorePatient)
+* subject only Reference(ChOrfPatient)
 * encounter MS
 * encounter only Reference(ChCoreEncounter)
 * authored MS
 * author MS
-* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChCorePatient or RelatedPerson or ChCoreOrganization)
+* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChOrfPatient or RelatedPerson or ChCoreOrganization)
 * source MS
-* source only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* source only Reference(ChOrfPatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 * item MS
 * item.linkId MS
 * item.definition MS
@@ -85,7 +94,7 @@ This resource is used to share relevant information required to support an CH OR
 * priority MS
 * priority ^short = "Order priority"
 * subject MS
-* subject only Reference(ChCorePatient)
+* subject only Reference(ChOrfPatient)
 * subject ^short = "Patient"
 * subject ^definition = "The principle target of a particular form content is one patient (for obstetrical and neonatal use cases see...)."
 * requester MS
@@ -243,7 +252,7 @@ Description: "Profile to describe how to provide a reference to a document to ma
 * category MS
 * category ^short = "High-level kind of a clinical document at a macro level"
 * subject MS
-* subject only Reference(ChCorePatient)
+* subject only Reference(ChOrfPatient)
 * author MS
 * author only Reference(ChCorePractitionerRole)
 * content MS
@@ -276,9 +285,9 @@ This provides an organization or the individual, which will pay for services req
 * type MS
 * type from ChOrfCoverageType (required)
 * beneficiary MS
-* beneficiary only Reference(ChCorePatient)
+* beneficiary only Reference(ChOrfPatient)
 * payor MS
-* payor only Reference(ChCoreOrganization or ChCorePatient or RelatedPerson)
+* payor only Reference(ChCoreOrganization or ChOrfPatient or RelatedPerson)
 
 
 Profile: ChOrfLocation

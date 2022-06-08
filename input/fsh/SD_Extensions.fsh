@@ -17,7 +17,7 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 //========================
@@ -46,7 +46,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * extension[detail] ^short = "Information about the person and organization that entered data"
 //* extension[detail].url only uri
 //* extension[detail].valueReference 1..
-* extension[detail].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* extension[detail].valueReference only Reference(ChOrfPatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 * extension[detail].valueReference ^short = "Practioner who initated this order"
 //* url only uri
 
@@ -73,7 +73,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 0..0
-/* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+/* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 * extension contains ChOrfRelationInitiatorPatient named releationInitiatorPatient 1..1 MS and
@@ -93,7 +93,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Initator"
 * valueReference 1..1
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
  ^context[0].type = #fhirpath
 * ^context[0].expression = "ChOrfInitiator"
@@ -103,7 +103,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
  http://hl7.org/fhir/StructureDefinition/RelatedPerson named relatedPerson 0..1 MS
 
 
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 */
@@ -139,7 +139,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Initator"
 * valueReference 1..1
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 /* ^context[0].type = #fhirpath
@@ -150,7 +150,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
  http://hl7.org/fhir/StructureDefinition/RelatedPerson named relatedPerson 0..1 MS
 
 
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChOrfPatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
 
 

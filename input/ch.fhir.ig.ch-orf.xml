@@ -401,6 +401,15 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-familydoctor"/>
+      </reference>
+      <name value="Module Questionnaire Family Doctor"/>
+      <description value="Subquestionnaire familydoctor"/>
+    </resource>
+
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/ch-orf-module-appointment"/>
       </reference>
       <name value="Module Questionnaire Appointment"/>
