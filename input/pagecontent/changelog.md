@@ -8,6 +8,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
 #### Added
+* [#102](https://github.com/hl7ch/ch-orf/issues/102): Translation of use cases in FR and DE
 
 #### Changed / Updated
 * Update the dependencies to the current published versions

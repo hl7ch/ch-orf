@@ -32,16 +32,15 @@ The suspicion of an aortic aneurysm is confirmed and Dr. F. Iller immediately re
 *************************************************************************
 ### Appointments
 
-For various reasons, scheduling of the appointment is tricky:
-* Patient S. Ufferer does probably not know the possible dates, e.g. because he is dependent of his daughter who will bring him by car.
-* Neither the patient nor the doctor knows which slots are available in the radiology department.
-* Availability of slots and availability of transport etc. may change in time.
-* Eventually, the patient may need other appointments that in turn cause collisions.
-* Some services provide an online tool for scheduling appointments, others do not.
-* Some health professionals prefer to inquire and fix appointments for referrals by phone at the time the patient is while the patient is with them.
+For various reasons, scheduling appointments is tricky:
+* Patient S. Ufferer may not know the possible dates because, for example, she depends of her daughter, who will take her to the appointment by car.
+* Neither the doctor nor the patient knows what slots are available in the radiology department.
+* Available slots, availability of transportation etc. may change over time.
+* The patient may have other appointments, which in turn may cause scheduling conflicts.
+* Some healthcare providers offer an online tool for scheduling appointments, others do not.
+* Some healthcare professionals prefer to call and make appointments for referrals while the patient is onsite with them.
 * Etc.
 
-It is not easy to cover all this in a slim application. For this reason, comprehensive scheduling of appointments for referrals is out of scope. It is however possibel to specify date and time with a note of whether it is agreed or proposed. Furthermore it is possible to indicate preferred date/time intervals.  
+It is not easy to cover all these contingencies with a simple application. Therefore, comprehensive scheduling of appointments for referrals is out of scope in this implementation guide. However, it is possible to specify the date and time and to note whether the appointment is firmly agreed or merely proposed. Furthermore, it is possible to indicate preferred date/time intervals.  
 
-Some service providers offer their services at more than one location; it may also be possible that an assignment/prescription results in more than one consultation (e.g. Holter ECG with appointment for the installation of the device at the beginning and return at the end). ORF therefore provides n appointments per service request. 
-
+Some service providers offer their services at more than one location, so it can also happen that one assignment/prescription leads to more than one consultation (e.g. Holter ECG with an appointment for installation of the device at the beginning and an appointment for return at the end). In CH ORF, therefore, several appointments (n Appointments) are provided per service order (ServiceRequest). 
