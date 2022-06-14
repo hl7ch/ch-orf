@@ -225,7 +225,7 @@ Description: "Example for Questionnaire"
 // if additional familydoctor exists
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|2.0.0"
-* item[=].item[=].linkId = "familydoctor.1"
+* item[=].item[=].linkId = "copytofamilydoctor.1"
 * item[=].item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
 * item[=].item[=].type = #display
 * item[=].item[=].enableWhen.question = "additionalFamilyDoctor"
