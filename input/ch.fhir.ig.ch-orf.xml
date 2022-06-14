@@ -345,6 +345,14 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-consent"/>
+      </reference>
+      <name value="Module Questionnaire consent"/>
+      <description value="Subquestionnaire consent"/>
+    </resource>
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/ch-orf-module-order"/>
       </reference>
       <name value="Module Questionnaire order"/>

@@ -28,7 +28,7 @@ Title: "Consent Status"
 Description: "Value Set for CH ORF Consent Status"
 * ChOrfConsentStatus#ExplicitAgreement
 * ChOrfConsentStatus#Other
-//* SCT#373068000 "Undetermined (qualifier value)" --> entspricht leer
+* SCT#373068000 "Undetermined (qualifier value)" //--> entspricht leer
 
 
 
