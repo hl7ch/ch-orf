@@ -67,11 +67,11 @@ Description: "Example for Questionnaire"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
 
-* item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|2.0.0"
-* item[=].item.linkId = "sender.1"
-* item[=].item.text = "Unable to resolve 'sender' sub-questionnaire"
-* item[=].item.type = #display
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|2.0.0"
+* item[=].item[=].item[=].linkId = "sender.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'sender' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
 
 //------- Role of Sender ----
 * item[=].item[+].linkId = "author.isFamilyDoctor"
@@ -102,15 +102,19 @@ Description: "Example for Questionnaire"
 * item[=].type = #boolean
 
 //---------------------------------------
-
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|2.0.0"
-* item[=].item[=].linkId = "familydoctor.1"
-* item[=].item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
-* item[=].item[=].type = #display
+* item[=].item[+].linkId = "additionalFamilyDoctor"
+* item[=].item[=].text = "Anderer Hausarzt"
+* item[=].item[=].type = #group
 * item[=].item[=].enableWhen.question = "additionalFamilyDoctor"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
+
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|2.0.0"
+* item[=].item[=].item[=].linkId = "familydoctor.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
+
 
 
 //------- Initiator ----
