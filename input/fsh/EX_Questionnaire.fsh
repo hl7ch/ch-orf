@@ -235,7 +235,7 @@ Usage: #example
 * item[=].item[+].linkId = "patient.givenName"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.name.where(use='maiden').given"
+* item[=].item[=].extension.valueExpression.expression = "%patient.name.where(use='official').given"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"
 * item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
@@ -246,12 +246,12 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"
 * item[=].item[=].text = "Lokale Patienten-ID"
 * item[=].item[=].type = #string
-* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
-* item[=].item[=].extension.valueBoolean = true
+* item[=].item[+].extension[+].url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
+* item[=].item[=].extension[=].valueBoolean = true
 * item[=].item[=].linkId = "patient.localPidDomain"
-* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).system"
+* item[=].item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].extension[=].valueExpression.expression = "%patient.identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).system"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.system"
 * item[=].item[=].text = "Lokale Patienten-ID Domain"
 * item[=].item[=].type = #string
@@ -305,11 +305,9 @@ Usage: #example
 * item[=].item[+].linkId = "patient.streetAddressLine"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.address.line[0]"
+* item[=].item[=].extension.valueExpression.expression = "%patient.address.line"
 * item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.address.line[1]"
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
 * item[=].item[+].linkId = "patient.postalCode"

@@ -1,18 +1,13 @@
+<<<<<<< HEAD
 @host = http://test.ahdis.ch/matchbox/fhir 
+=======
+### @host = http://test.ahdis.ch/matchbox/fhir
+@host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
+
+>>>>>>> b48e802 (fix expressions)
 ###@host = http://hapi.fhir.org/baseR4
 
 
-### ErikaMusterfrau
-PUT {{host}}/Patient/ErikaMusterfrau HTTP/1.1
-Content-Type: application/fhir+xml
-
-< input/examples/patient/ErikaMusterfrau.xml
-
-### FranzMuster
-PUT {{host}}/Patient/FranzMuster HTTP/1.1
-Content-Type: application/fhir+xml
-
-< input/examples/patient/FranzMuster.xml
 
 ### ResponseReceiverErikaMusterfrau
 PUT {{host}}/Patient/ResponseReceiverErikaMusterfrau HTTP/1.1
@@ -158,3 +153,36 @@ Accept: application/json+fhir
 Content-Type: application/json+fhir
 
 < ./output/Questionnaire-order-referral-form-modular.json
+
+
+### Prepopulation tests with LHC Forms app
+
+### FranzMuster top select as patient
+PUT {{host}}/Patient/FranzMuster HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/patient/FranzMuster.xml
+
+### Setup test paitent ErikaMusterfrau
+PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+json
+
+< output/Questionnaire-order-referral-form.json
+
+
+### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR server
+### Setup test paitent ErikaMusterfrau
+PUT {{host}}/ValueSet/DocumentEntry.languageCode HTTP/1.1
+Content-Type: application/fhir+json
+
+< ../ch-epr-term/output/ValueSet-DocumentEntry.languageCode.json
+
+
+### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR server
+### Setup test paitent ErikaMusterfrau
+GET {{host}}/ValueSet?url=http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode HTTP/1.1
+Content-Type: application/fhir+json
+
+
+
+ https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir/Patient/FranzMsuter.xml
