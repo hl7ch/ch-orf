@@ -516,24 +516,28 @@ Description: "Subquestionnaire patient"
 * item[=].type = #boolean
 
 //------------------------------
-
-
+* item[+].linkId = "patient.pulldown"
+//* item[=].text = "Weitere Angaben"
+* item[=].type = #group
+* item[=].enableWhen.question = "patient.pulldown"
+* item[=].enableWhen.operator = #=
+* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "patient.maidenName"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"
 * item[=].item[=].text = "Ledigname"
 * item[=].item[=].type = #string
-* item[=].item[=].enableWhen.question = "patient.pulldown"
+/* item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
-
+*/
 
 * item[=].item[+].linkId = "patient.maritalStatus"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.maritalStatus"
 * item[=].item[=].text = "Zivilstand"
-* item[=].item[=].enableWhen.question = "patient.pulldown"
-* item[=].item[=].enableWhen.operator = #=
-* item[=].item[=].enableWhen.answerBoolean = true
+//* item[=].item[=].enableWhen.question = "patient.pulldown"
+//* item[=].item[=].enableWhen.operator = #=
+//* item[=].item[=].enableWhen.answerBoolean = true
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[+].valueCoding = EchMaritalStatus#1 "ledig"
 * item[=].item[=].answerOption[+].valueCoding = EchMaritalStatus#2 "verheiratet"
@@ -549,18 +553,18 @@ Description: "Subquestionnaire patient"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
-* item[=].item[=].enableWhen.question = "patient.pulldown"
+/* item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
-
+*/
 * item[=].item[+].linkId = "patient.email"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.telecom.value"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
-* item[=].item[=].enableWhen.question = "patient.pulldown"
+/* item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
-
+*/
 * item[=].item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
 * item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
@@ -570,19 +574,19 @@ Description: "Subquestionnaire patient"
 * item[=].item[=].linkId = "patient.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
-* item[=].item[=].enableWhen.question = "patient.pulldown"
+/* item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
-
+*/
 * item[=].item[+].linkId = "patient.languageOfCorrespondance"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.communication:languageOfCorrespondance"
 * item[=].item[=].text = "Korrespondenssprache"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
+/* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 * item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
-
+*/
 
 
 
