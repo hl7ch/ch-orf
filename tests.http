@@ -156,6 +156,6 @@ Content-Type: application/fhir+xml
 ### 4. If you want to provide the Questionnaire integrated in your IG translate it back to fsh with: https://fshschool.org/FSHOnline/#/
 POST {{host}}/Questionnaire/$assemble HTTP/1.1
 Accept: application/json+fhir
-Content-Type: application/json+fhirqq
+Content-Type: application/json+fhir
 
 < ./output/Questionnaire-order-referral-form-modular.json

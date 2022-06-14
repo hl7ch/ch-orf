@@ -111,7 +111,7 @@ Parent: EpisodeOfCare
 Id: ch-orf-episodeofcare
 Title: "CH ORF Episode of Care"
 Description: "Profile to document the precedent episode of  care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
-* . ^short = "CH ORF Consent"
+* . ^short = "CH ORF Episode of Care"
 * statusHistory  MS
 * statusHistory.status MS
 * period MS
