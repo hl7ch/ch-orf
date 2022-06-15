@@ -307,7 +307,6 @@ Usage: #example
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "%patient.address.line"
 * item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
 * item[=].item[+].linkId = "patient.postalCode"
