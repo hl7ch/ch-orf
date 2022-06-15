@@ -96,7 +96,7 @@ Description: "Example for Questionnaire"
 
 //---------------------------------------
 * item[=].item[+].linkId = "additionalFamilyDoctor.practitioner"
-* item[=].item[=].text = "Anderer Hausarzt"
+* item[=].item[=].text = "->"
 * item[=].item[=].type = #group
 * item[=].item[=].enableWhen.question = "additionalFamilyDoctor"
 * item[=].item[=].enableWhen.operator = #=
@@ -634,9 +634,9 @@ Description: "Subquestionnaire Family Docotor"
 * date = "2022-06-08"
 * publisher = "HL7 Switzerland"
 
-/* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
+* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].text = "Anderer Hausarzt"
+* item[=].text = "fam"
 * item[=].type = #group
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
@@ -667,7 +667,7 @@ Description: "Subquestionnaire Family Docotor"
 * item[=].item[=].linkId = "familydoctor.organization.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
-*/
+
 
 Instance: ch-orf-module-requestedencounter
 InstanceOf: Questionnaire
