@@ -469,8 +469,6 @@ Description: "Subquestionnaire patient"
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
 
-
-
 * item[+].linkId = "patient.localPid"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:LocalPid.value"
 * item[=].text = "Lokale Patienten-ID"
@@ -516,8 +514,8 @@ Description: "Subquestionnaire patient"
 * item[=].type = #boolean
 
 //------------------------------
-* item[+].linkId = "patient.pulldown"
-//* item[=].text = "Weitere Angaben"
+* item[+].linkId = "patient"
+* item[=].text = "Weitere Angaben"
 * item[=].type = #group
 * item[=].enableWhen.question = "patient.pulldown"
 * item[=].enableWhen.operator = #=
