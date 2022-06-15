@@ -50,13 +50,6 @@ Description: "Example for Questionnaire"
 * item[=].text = "Absender anzeigen"
 * item[=].type = #boolean
 
-//------------------------------
-
-/* item[+].linkId = "sender"
-* item[=].text = "Absender"
-* item[=].type = #group
-* item[=].required = true
-*/
 // ---------- Author: The person/organization responsible for Form Content ----------
 * item[=].item[+].linkId = "sender.author"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.author"
@@ -102,7 +95,7 @@ Description: "Example for Questionnaire"
 * item[=].type = #boolean
 
 //---------------------------------------
-* item[=].item[+].linkId = "additionalFamilyDoctor"
+* item[=].item[+].linkId = "additionalFamilyDoctor.practitioner"
 * item[=].item[=].text = "Anderer Hausarzt"
 * item[=].item[=].type = #group
 * item[=].item[=].enableWhen.question = "additionalFamilyDoctor"
@@ -122,16 +115,19 @@ Description: "Example for Questionnaire"
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #boolean
 
-
+* item[+].linkId = "initiator.initiator"
+//* item[=].text = "Initiant dieser Anmeldung"
+* item[=].type = #group
+* item[=].enableWhen.question = "initiator"
+* item[=].enableWhen.operator = #=
+* item[=].enableWhen.answerBoolean = true
 //---------------------
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|2.0.0"
 * item[=].item[=].linkId = "initiator.1"
 * item[=].item[=].text = "Unable to resolve 'initiator' sub-questionnaire"
 * item[=].item[=].type = #display
-* item[=].item[=].enableWhen.question = "initiator"
-* item[=].item[=].enableWhen.operator = #=
-* item[=].item[=].enableWhen.answerBoolean = true
+
 
 
 // ---------- Patient: The principle target of a particular Form Content is one patient ----------
@@ -159,7 +155,7 @@ Description: "Example for Questionnaire"
 * item[=].item.text = "Unable to resolve 'requestedencounter' sub-questionnaire"
 * item[=].item.type = #display
 
-/*------ Appointment ------------------------------ */
+//------ Appointment ------------------------------ 
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
@@ -182,20 +178,19 @@ Description: "Example for Questionnaire"
 * item[=].text = "Kostenträger anzeigen"
 * item[=].type = #boolean
 //-----------------------
-
-/* item[+].linkId = "coverage"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.insurance"
-* item[=].text = "Kostenträger"
+* item[+].linkId = "coverage.pulldown.coverage"
+* item[=].text = "Kostenträger anzeigen"
 * item[=].type = #group
-*/
+* item[=].enableWhen.question = "coverage.pulldown"
+* item[=].enableWhen.operator = #=
+* item[=].enableWhen.answerBoolean = true
+
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|2.0.0"
 * item[=].item[=].linkId = "coverage.1"
 * item[=].item[=].text = "Unable to resolve 'coverage' sub-questionnaire"
 * item[=].item[=].type = #display
-* item[=].item[=].enableWhen.question = "coverage.pulldown"
-* item[=].item[=].enableWhen.operator = #=
-* item[=].item[=].enableWhen.answerBoolean = true
+
 
 // --------Consent ------
 * item[+].linkId = "consent"
@@ -243,12 +238,6 @@ Description: "Example for Questionnaire"
 * item[=].item[=].linkId = "receiverCopy.1"
 * item[=].item[=].text = "Unable to resolve 'receivercopy' sub-questionnaire"
 * item[=].item[=].type = #display
-
-
-
-
-
-
 
 Instance: ch-orf-module-order
 InstanceOf: Questionnaire
@@ -323,14 +312,6 @@ Description: "Subquestionnaire order"
 * item[=].answerOption[+].valueCoding = RequestPriority#asap "Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend."
 * item[=].answerOption[+].valueCoding = RequestPriority#stat "Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall."
 
-
-// ---------- Urgent Notification Contact for this document ----------
-/* item[=].item[+].linkId = "order.notificationContactDocument"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForThisDocument"
-* item[=].item[=].text = "Dringender Benachrichtigungskontakt für dieses Dokument"
-* item[=].item[=].type = #group
-*/
-
 * item[=].item[+].linkId = "order.notificationContactDocument.practitioner"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].text = "Zu benachrichtigende Person bei Eingang des Auftrags"
@@ -351,11 +332,6 @@ Description: "Subquestionnaire order"
 
 
 // ---------- Urgent Notification Contact for the Response to this document ----------
-/* item[=].item[+].linkId = "order.notificationContactDocumentResponse"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForTheResponseToThisDocument"
-* item[=].item[=].text = "Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"
-* item[=].item[=].type = #group
-*/
 
 * item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
@@ -515,7 +491,7 @@ Description: "Subquestionnaire patient"
 
 //------------------------------
 * item[+].linkId = "patient"
-* item[=].text = "Weitere Angaben"
+* item[=].text = "->"
 * item[=].type = #group
 * item[=].enableWhen.question = "patient.pulldown"
 * item[=].enableWhen.operator = #=
@@ -658,33 +634,16 @@ Description: "Subquestionnaire Family Docotor"
 * date = "2022-06-08"
 * publisher = "HL7 Switzerland"
 
-/* item[+].linkId = "familyDocotor.practitionerRole"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole"
-* item[=].text = "Gesundheitsfachperson oder -organisation"
-* item[=].type = #group
-* item[=].repeats = true
-*/
-* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
+/* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].text = "Anderer Hausarzt"
 * item[=].type = #group
-/*
-* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'familyDocotor.practitionerRole.practitioner.'"
-*/
+
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
 * item[=].item[=].linkId = "familyDocotor.practitionerRole.practitioner.1"
 * item[=].item[=].text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
 * item[=].item[=].type = #display
-
-/* item[=].item[+].linkId = "familyDocotor.practitionerRole.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].item[=].text = "Gesundheitsorganisatiton"
-* item[=].item[=].type = #group
-*/
 
 //------- Pull down ----
 
@@ -695,87 +654,20 @@ Description: "Subquestionnaire Family Docotor"
 //------------------------------
 
 
-/* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'familyDocotor.practitionerRole.organization.'"
-*/
-
-
-
-
-
-/*
-* item[+].linkId = "familyDoctor.practitioner.title"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
-* item[=].text = "Titel"
-* item[=].type = #string
-
-* item[+].linkId = "familyDoctor.practitioner.familyName"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].text = "Name"
-* item[=].type = #string
-
-* item[+].linkId = "familyDoctor.practitioner.givenName"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].text = "Vorname"
-* item[=].type =  #string
-
-* item[+].linkId = "familyDoctor.practitioner.phone"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].text = "Telefon"
-* item[=].type = #string
-
-* item[+].linkId = "patient.generalPractitioner.practitioner.email"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].text = "E-Mail"
-* item[=].type = #string
-
-//------- Pull down ----
-
-* item[+].linkId = "patient.contactperson.pulldown"
-* item[=].text = "Weitere Angaben"
-* item[=].type = #boolean
-
-//------------------------------
-
-* item[=].item[+].linkId = "familyDoctor.practitioner.gln"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
-* item[=].item[=].text = "GLN"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "familyDoctor.practitioner.zsr"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].text = "ZSR"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "familyDoctor.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].item[=].text = "Verantwortliche Organisation"
-* item[=].item[=].type = #group
-* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'patient.generalPractitioner.organization.'"
-
-* item[=].item[=].item[+].linkId = "familyDoctor.organization.name"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].linkId = "familyDoctor.organization.gln"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"
-* item[=].item[=].item[=].text = "GLN"
-* item[=].item[=].item[=].type = #string
+* item[+].linkId = "familydoctor.practitionerRole.organization"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
+* item[=].text = "Empfangende Person"
+* item[=].type = #group
+* item[=].enableWhen.question = "familydoctor.pulldown"
+* item[=].enableWhen.operator = #=
+* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].linkId = "familyDoctor.organization.1"
+* item[=].item[=].linkId = "familydoctor.organization.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
 */
-
-
 
 Instance: ch-orf-module-requestedencounter
 InstanceOf: Questionnaire
@@ -820,22 +712,11 @@ Description: "Subquestionnaire Converage"
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
 
-//------- Pull down ----
-
-* item[+].linkId = "coverage.pulldown"
-* item[=].text = "Weitere Angaben"
-* item[=].type = #boolean
-
-//------------------------------
-
-
 * item[+].linkId = "coverage.beneficiary"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.beneficiary"
 * item[=].text = "Begünstigter (Patient)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
+
 
 * item[=].item[+].linkId = "coverage.beneficiary.ahvn13"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.identifier:AHVN13"
@@ -847,9 +728,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Krankenkasse (nach KVG)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.kvg.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
@@ -866,9 +744,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Unfallversicherung (nach UVG)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.uvg.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
@@ -885,9 +760,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Zusatzversicherung (nach VVG)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.vvg.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
@@ -904,9 +776,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Invalidenversicherung (IV)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.iv.verfuegungsnummer"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
@@ -918,9 +787,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Militärversicherung (MV)"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.mv.versichertennummer"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"
@@ -932,9 +798,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Selbstzahler"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.self.patient"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
@@ -945,17 +808,11 @@ Description: "Subquestionnaire Converage"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
 * item[=].item[=].text = "Andere Person"
 * item[=].item[=].type = #boolean
-* item[=].item[=].enableWhen[+].question = "coverage.self.patient"
-* item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].enableWhen[=].answerBoolean = false
 
 * item[=].item[+].linkId = "coverage.self.relatedPerson" 
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
 * item[=].item[=].text = "Andere Person"   
 * item[=].item[=].type = #group
-* item[=].item[=].enableWhen[+].question = "coverage.self.patientRelatedPerson"
-* item[=].item[=].enableWhen[=].operator = #=
-* item[=].item[=].enableWhen[=].answerBoolean = true
 * item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -993,9 +850,6 @@ Description: "Subquestionnaire Converage"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
 * item[=].text = "Anderer Kostenträger"
 * item[=].type = #group
-* item[=].enableWhen.question = "coverage.pulldown"
-* item[=].enableWhen.operator = #=
-* item[=].enableWhen.answerBoolean = true
 
 * item[=].item[+].linkId = "coverage.other.name"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"
@@ -1147,7 +1001,6 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].text = "Gesundheitsfachperson"
 * item[=].item[=].type = #group
-
 * item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -1224,7 +1077,8 @@ Description: "Subquestionnaire receiverCopy"
 * item[=].item[=].type = #display
 
 
-
+/*--------- Inititaor
+Person or body who initiated the service request; particularly in the context of spitex*/
 Instance: ch-orf-module-initiator
 InstanceOf: Questionnaire
 Title: "Module Questionnaire initiator"
@@ -1440,7 +1294,7 @@ Description: "Subquestionnaire Practitioner with Name/Telecom"
 * item[=].text = "Telefon"
 * item[=].type = #string
 
-// Name of organization is included here in case Name and Givennname of Practioner are left empty
+// Name of organization is included here in case Name and Givennname of Practitioner are left empty
 * item[+].linkId = "familyDocotor.practitionerRole.organization.name"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].text = "Name der Organisation"
@@ -1451,102 +1305,7 @@ Description: "Subquestionnaire Practitioner with Name/Telecom"
 * item[=].text = "E-Mail"
 * item[=].type = #string
 
-/*--------- Inititaor
-Person or body who initiated the service request; particularly in the context of spitex*/
 
-/*Instance: ch-orf-module-initiator
-InstanceOf: Questionnaire
-Title: "Module Questionnaire Initiator"
-Description: "Subquestionnaire initiator"
-* extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
-* extension[=].valueCode = #assemble-child
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator"
-* name = "ModuleQuestionnaireOrderInitiator"
-* title = "Module Questionnaire Order Initiator"
-* status = #active
-* date = "2022-06-01"
-* publisher = "HL7 Switzerland"
-
-* item[+].linkId = "initiator.practitionerRole.class.legalguardian"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.class#legal"
-* item[=].text = "Gesetzlicher Vertreter?"
-* item[=].type = #choice
-* item[=].answerOption[+].valueCoding = SCT#58626002  "Legal guardian (person)"
-
-* item[=].item[+].linkId = "initiator.practitionerRole.practitioner"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].item[=].text = "Gesundheitsfachperson"
-* item[=].item[=].type = #group
-
-* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.practitioner'"
-
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
-* item[=].item[=].linkId = "initiator.practitionerRole.practitioner.1"
-* item[=].item[=].text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
-* item[=].item[=].type = #display
-
-* item[=].item[+].linkId = "initiator.practitionerRole.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].item[=].text = "Gesundheitsorganisatiton"
-* item[=].item[=].type = #group
-
-* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.organization'"
-
-* item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.name"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].type = #string
-
-* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].item[=].linkId = "initiator.practitionerRole.organization.1"
-* item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
-* item[=].item[=].item[=].type = #display
-
-* item[+].linkId = "initiator.relatedPerson"
-* item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"
-* item[=].text = "Andere Person"
-* item[=].type = #group
-* item[=].repeats = true
-
-* item[=].item[+].linkId = "initiator.relatedPerson.familyName"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
-* item[=].item[=].text = "Name"
-* item[=].item[=].type = #string
-* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'initiator.relatedPerson'"
-
-* item[=].item[+].linkId = "initiator.relatedPerson.givenName"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].text = "Vorame"
-* item[=].item[=].type = #string
-
-* item[=].item[+].linkId = "initiator.relatedPerson.phone"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
-* item[=].item[=].text = "Telefon"
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
-
-* item[=].item[+].linkId = "initiator.relatedPerson.email"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
-* item[=].item[=].text = "E-Mail"
-* item[=].item[=].type = #string
-
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].linkId = "initiator.relatedPerson.1"
-* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
-* item[=].item[=].type = #display
-*/
 
 /*------ Address ------------------------------ */
 Instance: ch-orf-module-address
