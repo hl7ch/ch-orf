@@ -633,29 +633,29 @@ Description: "Subquestionnaire Family Docotor"
 * date = "2022-06-08"
 * publisher = "HL7 Switzerland"
 
-* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].text = "fam"
-* item[=].type = #group
+//* item[+].linkId = "familyDocotor.practitionerRole.practitioner"
+//* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
+//* item[=].text = "fam"
+//* item[=].type = #group
 
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
-* item[=].item[=].linkId = "familyDocotor.practitionerRole.practitioner.1"
-* item[=].item[=].text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
-* item[=].item[=].type = #display
+* item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].linkId = "familyDocotor.practitionerRole.practitioner.1"
+* item[=].text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].type = #display
 
 //------- Pull down ----
 
-* item[=].item[+].linkId = "familydoctor.pulldown"
-* item[=].item[=].text = "Weitere Angaben"
-* item[=].item[=].type = #boolean
+* item[+].linkId = "familydoctor.pulldown"
+* item[=].text = "Weitere Angaben"
+* item[=].type = #boolean
 
 //------------------------------
 
 
 * item[+].linkId = "familydoctor.practitionerRole.organization"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].text = "Empfangende Person"
+* item[=].text = ""
 * item[=].type = #group
 * item[=].enableWhen.question = "familydoctor.pulldown"
 * item[=].enableWhen.operator = #=
