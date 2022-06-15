@@ -491,13 +491,15 @@ Description: "Subquestionnaire patient"
 * item[=].type = #boolean
 
 //------------------------------
-/* item[+].linkId = "patient"
+* item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
+* item[=].extension.valueBoolean = true
+* item[=].linkId = "patient"
 * item[=].text = "->"
 * item[=].type = #group
 * item[=].enableWhen.question = "patient.pulldown"
 * item[=].enableWhen.operator = #=
 * item[=].enableWhen.answerBoolean = true
-*/
+
 * item[=].item[+].linkId = "patient.maidenName"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patient#Patient.name.family"
 * item[=].item[=].text = "Ledigname"
@@ -552,9 +554,7 @@ Description: "Subquestionnaire patient"
 * item[=].item[=].linkId = "patient.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
-* item[=].item[=].enableWhen.question = "patient.pulldown"
-* item[=].item[=].enableWhen.operator = #=
-* item[=].item[=].enableWhen.answerBoolean = true
+
 
 
 
