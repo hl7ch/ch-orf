@@ -265,7 +265,7 @@ Usage: #example
 * item[=].item[+].linkId = "patient.gender"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.gender"
+* item[=].item[=].extension.valueExpression.expression = "%questionnaire.repeat(item).where(linkId='patient.gender').answerOption.valueCoding.where(code=%patient.gender)"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"
 * item[=].item[=].text = "Geschlecht"
 * item[=].item[=].type = #choice
@@ -333,10 +333,11 @@ Usage: #example
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "%patient.communication.where(preferred=true).language.coding"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
-* item[=].item[=].text = "Korrespondenssprache"
+* item[=].item[=].text = "Korrespondenzsprache"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 * item[=].item[+].linkId = "patient.contactperson"
+// * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemPopulationContext"
 * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemPopulationContext"
 * item[=].item[=].extension.valueExpression.name = "contact"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -345,9 +346,9 @@ Usage: #example
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "patient.contactperson.relationship"
-* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"
 * item[=].item[=].item[=].text = "Beziehung"
 * item[=].item[=].item[=].type = #string
@@ -368,7 +369,7 @@ Usage: #example
 * item[=].item[=].item[+].linkId = "patient.contactperson.phone"
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "%telecom.where(system='phone').value"
+* item[=].item[=].item[=].extension.valueExpression.expression = "%contact.telecom.where(system='phone').value"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
@@ -376,7 +377,7 @@ Usage: #example
 * item[=].item[=].item[+].linkId = "patient.contactperson.email"
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "%telecom.where(system='email').value"
+* item[=].item[=].item[=].extension.valueExpression.expression = "%contact.telecom.where(system='email').value"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
