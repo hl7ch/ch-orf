@@ -37,11 +37,11 @@ Description: "Example for Questionnaire"
 * item[=].type = #group
 * item[=].required = true
 
-* item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|2.0.0"
-* item[=].item.linkId = "order.1"
-* item[=].item.text = "Unable to resolve 'order' sub-questionnaire"
-* item[=].item.type = #display
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|2.0.0"
+* item[=].item[=].linkId = "order.1"
+* item[=].item[=].text = "Unable to resolve 'order' sub-questionnaire"
+* item[=].item[=].type = #display
 
 // ---------- sender (Auftraggeber) ----------
 //------- Pull down ----
@@ -68,9 +68,14 @@ Description: "Example for Questionnaire"
 
 //------- Role of Sender ----
 * item[=].item[+].linkId = "author.isFamilyDoctor"
-* item[=].item[=].text = "Auftraggeber hat Hausarzt-Funktion?"
+* item[=].item[=].text = "Auftraggeber ist Hausarzt?"
 * item[=].item[=].type = #boolean
 
+//------- Additional Family Docotor ----
+* item[+].linkId = "additionalFamilyDoctor"
+* item[=].text = "Anderer Hausarzt"
+* item[=].type = #boolean
+* item[=].repeats = true
 
 // ---------- Receiver: Person/organization who receives the document ----------
 * item[+].linkId = "receiver"
@@ -83,16 +88,6 @@ Description: "Example for Questionnaire"
 * item[=].item.linkId = "receiver.1"
 * item[=].item.text = "Unable to resolve 'receiver' sub-questionnaire"
 * item[=].item.type = #display
-
-//------- Role of Receiver ----
-* item[=].item[+].linkId = "receiver.isFamilyDoctor"
-* item[=].item[=].text = "Empfänger hat Hausarzt-Funktion?"
-* item[=].item[=].type = #boolean
-
-//------- Additional Family Docotor ----
-* item[+].linkId = "additionalFamilyDoctor"
-* item[=].text = "Anderer Hausarzt"
-* item[=].type = #boolean
 
 //---------------------------------------
 * item[=].item[+].linkId = "additionalFamilyDoctor.practitioner"
@@ -366,9 +361,16 @@ Description: "Subquestionnaire receiver"
 
 * item[+].linkId = "receiver.practitioner"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].text = "Empfangende Person"
+* item[=].text = "-->"
 * item[=].type = #group
 
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].linkId = "familyDocotor.practitionerRole.practitioner.1"
+* item[=].item[=].text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].type = #display
+
+/*
 * item[=].item[+].linkId = "receiver.practitioner.title"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
 * item[=].item[=].text = "Titel"
@@ -408,7 +410,7 @@ Description: "Subquestionnaire receiver"
 //* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 //* item[=].text = "Empfangende Organisation"
 //* item[=].type = #group
-
+*/
 //* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 //* item[=].extension.valueExpression.name = "linkIdPrefix"
 //* item[=].extension.valueExpression.language = #text/fhirpath
