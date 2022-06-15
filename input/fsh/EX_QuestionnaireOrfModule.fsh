@@ -404,20 +404,20 @@ Description: "Subquestionnaire receiver"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 
-* item[+].linkId = "receiver.organization"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].text = "Empfangende Organisation"
-* item[=].type = #group
+//* item[+].linkId = "receiver.organization"
+//* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
+//* item[=].text = "Empfangende Organisation"
+//* item[=].type = #group
 
-* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "'receiver.organization.'"
+//* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+//* item[=].extension.valueExpression.name = "linkIdPrefix"
+//* item[=].extension.valueExpression.language = #text/fhirpath
+//* item[=].extension.valueExpression.expression = "'receiver.organization.'"
 
-* item[=].item[+].linkId = "receiver.organization.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].type = #string
+* item[+].linkId = "receiver.organization.name"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
+* item[=].text = "Name der Organisation"
+* item[=].type = #string
 
 * item[=].item[+].linkId = "receiver.organization.gln"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"
