@@ -540,17 +540,19 @@ Description: "Subquestionnaire patient"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
 */
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 
-/* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'patient.'"
-*/
+
+
+* item[=].item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension[=].valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].extension[=].valueExpression.expression = "'patient.'"
 * item[=].item[=].linkId = "patient.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
+
 /* item[=].item[=].enableWhen.question = "patient.pulldown"
 * item[=].item[=].enableWhen.operator = #=
 * item[=].item[=].enableWhen.answerBoolean = true
