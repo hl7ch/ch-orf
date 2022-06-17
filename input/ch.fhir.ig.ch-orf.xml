@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
@@ -81,14 +82,6 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-episodeofcare"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-documentreference"/>
@@ -127,17 +120,14 @@
       <exampleBoolean value="false"/>
     </resource>
 
-
-    <!-- Extension Definitions -->
-
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-precedentepisodeofcare"/>
+        <reference value="StructureDefinition/ch-orf-initiator"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
 
-
+    <!-- Extension Definitions -->
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-precedentdocument"/>
@@ -170,37 +160,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-initiator"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-patientconsent"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
-
-   <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-consentnote"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    
-
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
- 
-
-    <resource>
-      <reference>
         <reference value="StructureDefinition/ch-orf-locationandtime"/>
       </reference>
       <exampleBoolean value="false"/>
@@ -214,6 +173,29 @@
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-desiredaccommodation"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-episodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-antecedentepisodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-patientconsent"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentnote"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
@@ -420,14 +402,16 @@
         <reference value="Questionnaire/ch-orf-module-initiator"/>
       </reference>
       <name value="Module Questionnaire initiator"/>
-      <description value="Subquestionnaire initiator"/>
+      <description value="Subquestionnaire Initiator"/>
     </resource>
 
-
-
-
-
-
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-consent"/>
+      </reference>
+      <name value="Module Questionnaire Consent"/>
+      <description value="Subquestionnaire Consent"/>
+    </resource>
 
     <resource>
       <reference>
@@ -479,6 +463,7 @@
       <description value="Example for DocumentReference"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-documentreference"/>
     </resource>
+
 
     <resource>
       <reference>

@@ -189,6 +189,17 @@ Description: "Person/organization who receives the document"
 * valueReference only Reference(ChCorePractitionerRole)
 * valueReference ^short = "valueReference"
 
+Extension: ChOrfAntecedentEpisodeOfCare
+Id: ch-orf-antecedentepisodeofcare
+Title: "CH ORFEpisode of Care"
+Description: "Documentation of the precedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
+* valueReference 1..1
+* valueReference only Reference(ChOrfEpisodeOfCare)
+* valueReference ^short = "valueReference"
+
+
 
 Extension: ChOrfPrecedentDocument
 Id: ch-orf-precedentdocument

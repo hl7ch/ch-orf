@@ -29,3 +29,5 @@ Alias:  SCT =                       http://snomed.info/sct
 Alias:  SNOMEDCTSwissExtension =    urn:oid:2.16.756.5.30.1.127.3.4
 Alias:  LNC =                       http://loinc.org
 Alias:  V3ActCode =                 http://terminology.hl7.org/CodeSystem/v3-ActCode
+Alias:  ConsentScopeCodes =         http://terminology.hl7.org/CodeSystem/consentscope
+Alias:  ConsentState =              http://hl7.org/fhir/consent-state-codes

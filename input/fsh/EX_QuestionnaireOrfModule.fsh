@@ -1357,8 +1357,8 @@ Description: "SubQuestionnaire 'address'"
 * item[=].text = "Land"
 * item[=].type = #string
 
-/*------ Patient Permission ------------------------------ */
-Instance: ch-orf-module-Consent
+/*------ Patient Consent ------------------------------ */
+Instance: ch-orf-module-consent
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Patient Consent"
 Description: "Subquestionnaire Patient Consent"
@@ -1387,3 +1387,4 @@ Description: "Subquestionnaire Patient Consent"
 * item[=].item[=].text = "Anmerkung"
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
+

@@ -53,6 +53,7 @@ Description: "Profile to specify if the patient gave an informed consent to this
 and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
 
+
 Profile: ChOrfServiceRequest
 Parent: ServiceRequest
 Id: ch-orf-servicerequest
@@ -102,7 +103,7 @@ Parent: EpisodeOfCare
 Id: ch-orf-episodeofcare
 Title: "CH ORF Episode of Care"
 Description: "Profile to document the precedent episode of  care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
-* . ^short = "CH ORF Consent"
+* . ^short = "CH ORF EpisodeOfCare"
 * statusHistory  MS
 * statusHistory.status MS
 * period MS
@@ -134,8 +135,12 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfPrecedentEpisodeOfCare named precedentEpisodeOfCare 0..1 MS
 * extension[precedentEpisodeOfCare] ^short = "Documentation of the precedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 
-* extension contains ChOrfPatientConsent named consent 0..1 MS
-* extension[consent] ^short = "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex and  transfer to retirement home etc."
+* extension contains ChOrfInitiator named initiator 0..1 MS
+* extension[initiator] ^short = "Profile to specify who intiated this order; in particulars for spitex and  transfer to retirement home etc."
+
+
+
+
 * status MS
 * type MS
 * type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)
@@ -190,6 +195,17 @@ must be structured in the Composition as the first entry of the document."
 * section[orderReferral].entry[DocumentReference] only Reference(ChOrfDocumentReference)
 * section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
 * section[orderReferral].entry[DocumentReference].reference 1.. MS
+// ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
+* section[orderReferral].entry contains EpisodeOfCare 1..1 MS
+* section[orderReferral].entry[EpisodeOfCare] only Reference(ChOrfEpisodeOfCare) 
+* section[orderReferral].entry[EpisodeOfCare] ^short = "Episode of Care"
+* section[orderReferral].entry[EpisodeOfCare].reference 1.. MS
+// ---------- Composition.section.entry:Consent ----------
+* section[orderReferral].entry contains Consent 1..1 MS
+* section[orderReferral].entry[Consent] only Reference(ChOrfConsent) 
+* section[orderReferral].entry[Consent] ^short = "Consent"
+* section[orderReferral].entry[Consent].reference 1.. MS
+
 
 // ---------- Composition.section:originalRepresentation ----------
 * section contains originalRepresentation 0..1 MS
