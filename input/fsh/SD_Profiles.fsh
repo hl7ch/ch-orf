@@ -197,10 +197,43 @@ The CH ORF exchange format is defined as a document type corresponding to a Bund
 * total 0..0
 * link 0..0
 * entry MS
+* entry contains 
+    Questionnaire 0..1 MS and
+    QuestionnaireResponse 0..1 MS and 
+    ServiceRequest 1..* MS and 
+    DocumentReference 0..* MS and 
+    Binary 0..* MS and
+    Appointment 0..* MS and
+    Coverage 0..* MS
 // ---------- Bundle.entry:Composition ----------
 * entry[Composition] MS
 * entry[Composition].resource ^type.profile = Canonical(ChOrfComposition)
 * entry[Composition].resource MS
+// ---------- Bundle.entry:Questionnaire ----------
+* entry[Questionnaire].resource ^type.profile = Canonical(ChOrfQuestionnaire)
+* entry[Questionnaire].resource 1.. MS
+// ---------- Bundle.entry:QuestionnaireResponse ----------
+* entry[QuestionnaireResponse].resource ^type.profile = Canonical(ChOrfQuestionnaireResponse)
+* entry[QuestionnaireResponse].resource 1.. MS
+// ---------- Bundle.entry:ServiceRequest ----------
+* entry[ServiceRequest].resource ^type.profile = Canonical(ChOrfServiceRequest)
+* entry[ServiceRequest].resource 1.. MS
+// ---------- Bundle.entry:DocumentReference ----------
+* entry[DocumentReference].resource ^type.profile = Canonical(ChOrfDocumentReference)
+* entry[DocumentReference].resource 1.. MS
+// ---------- Bundle.entry:Binary ----------
+* entry[Binary].resource ^type.profile = Canonical(Binary)
+* entry[Binary].resource 1.. MS
+// ---------- Bundle.entry:DocumentReference ----------
+* entry[DocumentReference].resource ^type.profile = Canonical(ChOrfDocumentReference)
+* entry[DocumentReference].resource 1.. MS
+// ---------- Bundle.entry:Appointment ----------
+* entry[Appointment].resource ^type.profile = Canonical(ChOrfAppointment)
+* entry[Appointment].resource 1.. MS
+// ---------- Bundle.entry:Coverage ----------
+* entry[Coverage].resource ^type.profile = Canonical(ChOrfCoverage)
+* entry[Coverage].resource 1.. MS
+
 
 
 Profile: ChOrfDocumentReference

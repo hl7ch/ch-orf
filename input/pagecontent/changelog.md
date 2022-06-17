@@ -21,6 +21,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap`
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp`
       * Update [Home](index.html) 
+* [Issue #108](https://github.com/hl7ch/ch-orf/issues/108): Improve slicing that infor entry[x] warnings are not shown.
 
 #### Fixed
 * Typo: [#105](https://github.com/hl7ch/ch-orf/issues/105)
