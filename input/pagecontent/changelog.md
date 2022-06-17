@@ -9,6 +9,11 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
 #### Added
 * [#102](https://github.com/hl7ch/ch-orf/issues/102): Translation of use cases in FR and DE
+* Add documentation in tab 'Questionnaire' about
+   * [Modular Form](modular-form.html)
+   * [Form Population](form-population.html)
+   * [Form Data Extraction](form-data-extraction.html)
+
 
 #### Changed / Updated
 * Update the dependencies to the current published versions
