@@ -60,6 +60,18 @@ Description: "Example for Questionnaire"
 * item[=].item.text = "Unable to resolve 'receiver' sub-questionnaire"
 * item[=].item.type = #display
 
+// ----------Initiator: Person/organization who initated this order / application ; e.g. spitex, retirement home etc. ----------
+* item[+].linkId = "initiator"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"
+* item[=].text = "Intitant dieser Anmeldung"
+* item[=].type = #group
+
+* item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|2.0.0"
+* item[=].item.linkId = "initiator.1"
+* item[=].item.text = "Unable to resolve 'intitiator' sub-questionnaire"
+* item[=].item.type = #display
+
 // ---------- Patient: The principle target of a particular Form Content is one patient ----------
 * item[+].linkId = "patient"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"
@@ -149,6 +161,19 @@ Description: "Example for Questionnaire"
 * item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|2.0.0"
 * item[=].item.linkId = "appointment.1"
 * item[=].item.text = "Unable to resolve 'appointment' sub-questionnaire"
+* item[=].item.type = #display
+
+/*------ Consent ------------------------------ */
+* item[+].linkId = "consent"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
+* item[=].text = "Einverständniserklärung"
+* item[=].type = #group
+* item[=].repeats = true
+
+* item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|2.0.0"
+* item[=].item.linkId = "consent.1"
+* item[=].item.text = "Unable to resolve 'consent' sub-questionnaire"
 * item[=].item.type = #display
 
 // -------- Service Request Notes ------
@@ -522,15 +547,15 @@ Description: "SubQuestionnaire 'patient'"
 * item[=].text = "Hausarzt"
 * item[=].type = #group
 
-* item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|2.0.0"
-* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension[=].valueExpression.name = "linkIdPrefix"
-* item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].extension[=].valueExpression.expression = "'patient.'"
-* item[=].linkId = "patient.1"
-* item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
-* item[=].type = #display
+* item[=].item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|2.0.0"
+* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension[=].valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].extension[=].valueExpression.expression = "'patient.'"
+* item[=].item[=].linkId = "patient.1"
+* item[=].item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
+* item[=].item[=].type = #display
 
 
 Instance: ch-orf-module-familydoctor
