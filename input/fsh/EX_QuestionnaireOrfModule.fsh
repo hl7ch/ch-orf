@@ -150,6 +150,40 @@ Description: "Example for Questionnaire"
 * item[=].item.text = "Unable to resolve 'receiverCopy' sub-questionnaire"
 * item[=].item.type = #display
 
+
+/*------ Antecedent Episode of Care ------------------------------ */
+
+* item[+].linkId = "antecedentEpisodeOfCare"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:ChOrfAntecedentEpisodeOfCare"
+* item[=].text = "Zeit und Ort der Durchführung der angeforderten Leistung"
+* item[=].type = #group
+
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.start"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].text = "Von"
+* item[=].item[=].type = #dateTime
+
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].text = "Bis"
+* item[=].item[=].type = #dateTime
+
+* item[+].linkId = "antecedentEpisodeOfCare.organization"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].text = "Spital /Heim"
+* item[=].type = #group
+
+* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
+
+* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.1"
+* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].type = #display
+
 /*------ Appointment ------------------------------ */
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
@@ -552,8 +586,8 @@ Description: "SubQuestionnaire 'patient'"
 * item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension[=].valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].item[=].extension[=].valueExpression.expression = "'patient.'"
-* item[=].item[=].linkId = "patient.1"
+* item[=].item[=].extension[=].valueExpression.expression = "'familydoctor.'"
+* item[=].item[=].linkId = "patientfamilydoctor.1"
 * item[=].item[=].text = "Unable to resolve 'familydoctor' sub-questionnaire"
 * item[=].item[=].type = #display
 

@@ -240,6 +240,16 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-initiatorrelation"/>
+      </reference>
+      <name value="Initiator Relation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
+
     <!-- CodeSystems -->
     <resource>
       <reference>
