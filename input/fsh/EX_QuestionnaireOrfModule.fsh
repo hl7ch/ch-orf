@@ -30,7 +30,7 @@ Description: "Example for Questionnaire"
 
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
 * name = "OrderReferralForm"
-* title = "Order-Referral-Form"
+* title = "Order Referral Form"
 * status = #active
 * subjectType = #Patient
 * date = "2022-05-04"
@@ -518,13 +518,13 @@ Description: "SubQuestionnaire 'patient'"
 
 Instance: ch-orf-module-requestedencounter
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Requested Encounter"
-Description: "SubQuestionnaire 'requestedEncounter'"
+Title: "Module Questionnaire requestedEncounter"
+Description: "Subquestionnaire requestedEncounter"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter"
 * name = "ModuleQuestionnaireOrderRequestedEncounter"
-* title = "Module Questionnaire Order requestedEncounter"
+* title = "Module Questionnaire Order Requested Encounter"
 * status = #active
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
@@ -548,8 +548,8 @@ Description: "SubQuestionnaire 'requestedEncounter'"
 
 Instance: ch-orf-module-coverage
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Coverage"
-Description: "SubQuestionnaire 'coverage'"
+Title: "Module Questionnaire coverage"
+Description: "Subquestionnaire coverage"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage"
@@ -724,8 +724,8 @@ Description: "SubQuestionnaire 'coverage'"
 
 Instance: ch-orf-module-sender
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Sender"
-Description: "SubQuestionnaire 'sender'"
+Title: "Module Questionnaire sender"
+Description: "Subquestionnaire sender"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender"
@@ -885,7 +885,7 @@ Description: "SubQuestionnaire 'receiverCopy'"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy"
 * name = "ModuleQuestionnaireOrderReceiverCopy"
-* title = "Module Questionnaire Order receiverCopy"
+* title = "Module Questionnaire Order Receiver Copy"
 * status = #active
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
@@ -984,7 +984,7 @@ Description: "Subquestionnaire initator"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initator"
 * name = "ModuleQuestionnaireOrderInitator"
-* title = "Module Questionnaire Order initator"
+* title = "Module Questionnaire Order Initator"
 * status = #active
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
@@ -1079,8 +1079,8 @@ Description: "Subquestionnaire initator"
 /*------ Appointment ------------------------------ */
 Instance: ch-orf-module-appointment
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Appointment"
-Description: "SubQuestionnaire 'appointment'"
+Title: "Module Questionnaire appointment"
+Description: "Subquestionnaire appointment"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment"
@@ -1164,7 +1164,7 @@ Description: "SubQuestionnaire 'practitioner-nametel'"
 * extension[=].valueString = "linkIdPrefix"
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel"
 * name = "ModuleQuestionnairePractitionerNameTel"
-* title = "Module Questionnaire Practitioner with name and telecom"
+* title = "Module Questionnaire Practitioner with Name and Telecom"
 * status = #active
 * date = "2022-05-09"
 * publisher = "HL7 Switzerland"
@@ -1199,7 +1199,7 @@ Person or body who initiated the service request; particularly in the context of
 
 Instance: ch-orf-module-initiator
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Initiator"
+Title: "Module Questionnaire initiator"
 Description: "Subquestionnaire initiator"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
@@ -1315,8 +1315,8 @@ Description: "Subquestionnaire initiator"
 /*------ Address ------------------------------ */
 Instance: ch-orf-module-address
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Address"
-Description: "SubQuestionnaire 'address'"
+Title: "Module Questionnaire address"
+Description: "Subquestionnaire address"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
@@ -1360,8 +1360,8 @@ Description: "SubQuestionnaire 'address'"
 /*------ Patient Consent ------------------------------ */
 Instance: ch-orf-module-consent
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Patient Consent"
-Description: "Subquestionnaire Patient Consent"
+Title: "Module Questionnaire patientConsent"
+Description: "Subquestionnaire patientConsent"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"

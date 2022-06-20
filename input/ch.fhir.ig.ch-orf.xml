@@ -128,12 +128,7 @@
     </resource>
 
     <!-- Extension Definitions -->
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-precedentdocument"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"/>
@@ -199,6 +194,14 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
 
     <!-- ValueSets-->
     <resource>

@@ -1,14 +1,5 @@
 
 
-Extension: ChOrfPrecedentEpisodeOfCare
-Id: ch-orf-precedentepisodeofcare
-Title: "CH ORF Precedent Epidsode of Care"
-Description: "Information about the Episode of Care which takes place before the transfer of care initated by  this order"
-* ^context[0].type = #fhirpath
-* ^context[0].expression = "Composition"
-* valueReference 1..1
-* valueReference only Reference(ChOrfEpisodeOfCare)
-* valueReference ^short = "valueReference"
 
 Extension: ChOrfCopyReceiver
 Id: ch-orf-copyreceiver
@@ -192,7 +183,7 @@ Description: "Person/organization who receives the document"
 Extension: ChOrfAntecedentEpisodeOfCare
 Id: ch-orf-antecedentepisodeofcare
 Title: "CH ORFEpisode of Care"
-Description: "Documentation of the precedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
+Description: "Documentation of the antecedent episode  of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1
@@ -201,15 +192,7 @@ Description: "Documentation of the precedent episode of care e.g hospitalisation
 
 
 
-Extension: ChOrfPrecedentDocument
-Id: ch-orf-precedentdocument
-Title: "CH ORF Precedent Document"
-Description: "Identifier of the document which precedes this document in a thread."
-* ^context[0].type = #fhirpath
-* ^context[0].expression = "Composition"
-* valueIdentifier 1..1
-* valueIdentifier only Identifier
-* valueIdentifier ^short = "valueIdentifier"
+
 
 
 Extension: ChOrfUrgentNotificiationContactForTheResponseToThisDocument

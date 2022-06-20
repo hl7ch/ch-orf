@@ -102,7 +102,7 @@ Profile: ChOrfEpisodeOfCare
 Parent: EpisodeOfCare
 Id: ch-orf-episodeofcare
 Title: "CH ORF Episode of Care"
-Description: "Profile to document the precedent episode of  care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
+Description: "Profile to document the antecedent episode of  care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 * . ^short = "CH ORF EpisodeOfCare"
 * statusHistory  MS
 * statusHistory.status MS
@@ -119,8 +119,6 @@ must be structured in the Composition as the first entry of the document."
 * . ^short = "CH ORF Composition"
 * text 1.. MS
 * text ^short = "Narrative text of the composition"
-* extension contains ChOrfPrecedentDocument named precedentDocument 0..1 MS
-* extension[precedentDocument] ^short = "Identifier of the document which precedes this document in a thread"
 * extension contains ChExtEprDataEnterer named dataEnterer 0..1 MS
 * extension[dataEnterer] ^short = "The person/organization who has typed/filled in the form content"
 * extension contains ChOrfUrgentNotificiationContactForThisDocument named urgentNoficationContactForThisDocument 0..1 MS
@@ -132,8 +130,8 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
 * extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 
-* extension contains ChOrfPrecedentEpisodeOfCare named precedentEpisodeOfCare 0..1 MS
-* extension[precedentEpisodeOfCare] ^short = "Documentation of the precedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
+* extension contains ChOrfAntecedentEpisodeOfCare named antecedentEpisodeOfCare 0..1 MS
+* extension[antecedentEpisodeOfCare] ^short = "Documentation of the antecedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 
 * extension contains ChOrfInitiator named initiator 0..1 MS
 * extension[initiator] ^short = "Profile to specify who intiated this order; in particulars for spitex and  transfer to retirement home etc."
@@ -196,12 +194,12 @@ must be structured in the Composition as the first entry of the document."
 * section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
 * section[orderReferral].entry[DocumentReference].reference 1.. MS
 // ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
-* section[orderReferral].entry contains EpisodeOfCare 1..1 MS
+* section[orderReferral].entry contains EpisodeOfCare 0..1 MS
 * section[orderReferral].entry[EpisodeOfCare] only Reference(ChOrfEpisodeOfCare) 
 * section[orderReferral].entry[EpisodeOfCare] ^short = "Episode of Care"
 * section[orderReferral].entry[EpisodeOfCare].reference 1.. MS
 // ---------- Composition.section.entry:Consent ----------
-* section[orderReferral].entry contains Consent 1..1 MS
+* section[orderReferral].entry contains Consent 0..1 MS
 * section[orderReferral].entry[Consent] only Reference(ChOrfConsent) 
 * section[orderReferral].entry[Consent] ^short = "Consent"
 * section[orderReferral].entry[Consent].reference 1.. MS
