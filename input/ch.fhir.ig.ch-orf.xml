@@ -697,7 +697,7 @@
         <reference value="RelatedPerson/ChOrfRelatedPersonMUfferer"/>
       </reference>
       <name value="Susanna Ufferer"/>
-      <description value="Example for Related Person (Husband of Susanna Ufferer"/>
+      <description value="Example for Related Person Resource (Husband of Susanna Ufferer)"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -706,7 +706,7 @@
         <reference value="EpisodeOfCare/ChOrfEpisodeOfCareSUfferer"/>
       </reference>
       <name value="Eisode of Care"/>
-      <description value="Example for Discharge Date in ChOrfEpisodeOfCare Profile"/>
+      <description value="Example for Discharge Date in ChOrfEpisodeOfCare Resource"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -715,7 +715,7 @@
         <reference value="Consent/ChOrfConsentSUfferer"/>
       </reference>
       <name value="Consent"/>
-      <description value="Example for ChOrfConsent Profile"/>
+      <description value="Example for ChOrfConsent Resource"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -724,11 +724,27 @@
         <reference value="Organization/OrganizationSpitalTrubschachen"/>
       </reference>
       <name value="Organization"/>
-      <description value="Example for ChCoreOrganization Profile"/>
+      <description value="Example for ChCoreOrganization Resource"/>
       <exampleBoolean value="true"/>
     </resource>
 
-
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/ChCorePractitionerRoleFAmily"/>
+      </reference>
+      <name value="PractitionerRole"/>
+      <description value="Example for ChCorePractitionerRole Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+ 
+     <resource>
+      <reference>
+        <reference value="Practitioner/ChCorePractitionerFAmily"/>
+      </reference>
+      <name value="Practitioner"/>
+      <description value="EExample for Practitioner Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
 
 
 

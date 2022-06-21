@@ -1,7 +1,7 @@
 Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
 Title: "Susanna Ufferer is not yet informed"
-Description: "Example for ChOrfConsent Profile"
+Description: "Example for ChOrfConsent Resource"
 * status = ConsentState#active
 * scope = ConsentScopeCodes#patient-privacy
 * category =  LNC#59284-0
@@ -25,7 +25,7 @@ Usage: #inline
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
-Description: "Example for Discharge Date in ChOrfEpisodeOfCare Profile"
+Description: "Example for Discharge Date in ChOrfEpisodeOfCare Resource"
 * status = EpisodeOfCareStatus#active
 * patient = Reference (SUfferer)
 * statusHistory.status = EpisodeOfCareStatus#active
@@ -37,13 +37,13 @@ Description: "Example for Discharge Date in ChOrfEpisodeOfCare Profile"
 Instance: OrganizationSpitalTrubschachen
 InstanceOf: ChCoreOrganization
 Title: "Spital Trubschachen"
-Description: "Example for ChCoreOrganization Profile"
+Description: "Example for ChCoreOrganization Resource"
 * name = "Spital Trubschachen"
 
 Instance: ChOrfRelationInitiatorPatientMUfferer
 InstanceOf: ChOrfRelationInitiatorPatient
 Title: "Beziehung Max und Susanna Sufferer"
-Description: "Example for Initiator Relation"
+Description: "Example forChOrfRelationInitiatorPatient Extension"
 Usage: #inline
 * valueCodeableConcept = SCT#127849001 // Husband
 
@@ -52,7 +52,7 @@ Usage: #inline
 Instance: SUfferer
 InstanceOf: ChCorePatient
 Title: "Susanna Ufferer"
-Description: "Example for Patient"
+Description: "Example for Patient Resource"
 * name[+].use = #official
 * name[=].family[+] = "Ufferer"
 * name[=].family[=].extension[ech11name].url = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name"
@@ -87,29 +87,38 @@ Description: "Example for Patient"
 Instance: ChOrfRelatedPersonMUfferer
 InstanceOf: RelatedPerson
 Title: "Initiator ist Ehemann"
-Description: "Example for OrfInitiator"
+Description: "Example for OrfRelatedPersonMUfferer Resource"
 * name.family = "Sufferer"
 * name.given = "Max"
 * patient = Reference (SUfferer)
 * telecom[0].system = #phone
 * telecom[0].value = "+41 79 979 79 79"
 
-Instance: PractionerRoleFAmily
+Instance: ChCorePractitionerRoleFAmily
 InstanceOf: ChCorePractitionerRole
+Title: "Practioner Role Family Doctor"
+Description: "Example for ChCorePractitionerRole Resource"
 * practitioner = Reference (FamilyDoctorFAmily)
 
-Instance: FamilyDoctorFAmily
+
+Instance: ChCorePractitionerFAmily
 InstanceOf: ChCorePractitioner
+Title: "Florance Amily"
+Description: "Example for Practioner Resource"
 * name.family = "Amily"
-* name.given = "Flavia"
+* name.given = "Florance"
 
 Instance: ChOrfAntecedentEpisodeOfCareSUfferer
 InstanceOf: ChOrfAntecedentEpisodeOfCare
+Title: "AntecedentEpisodeOfCare Susanna Ufferer"
+Description: "Example of AntecedentEpisodeOfCare Extension"
 Usage: #inline
 * valueReference = Reference(ChOrfEpisodeOfCareSUfferer)
 
 Instance: ChOrfPatientConsentSUfferer
 InstanceOf: ChOrfPatientConsent
+Title: "Consent of Susanna Ufferer"
+Description: "Example of Consent Extension"
 Usage: #inline
 * valueReference = Reference(ChOrfConsentSUfferer)
 
