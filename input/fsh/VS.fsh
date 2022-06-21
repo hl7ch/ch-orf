@@ -87,3 +87,8 @@ Description: "Value Set for CH ORF Inititator Relation"
 * SCT#48385004  "Acquaintance (person)"
 // "Other" --> Empty
 
+ValueSet: ChOrfVSLegalGuardian
+Id: ch-orf-vs-legalguradian
+Title: "Legal Guardian"
+Description: "Value Set for CH ORF Legal Guardian"
+* SCT#58626002  "Legal guardian (person)"
