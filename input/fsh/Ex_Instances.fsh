@@ -6,6 +6,7 @@ Description: "Example for ChOrfConsent"
 * scope = ConsentScopeCodes#patient-privacy
 * category =  LNC#59284-0
 // provision.type is left empty, because patient is not yet informed
+//
 
 Instance: ChOrfConsentNoteSUfferer
 InstanceOf:  ChOrfConsentNote
