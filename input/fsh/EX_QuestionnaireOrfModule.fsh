@@ -155,7 +155,7 @@ Description: "Example for Questionnaire"
 
 * item[+].linkId = "antecedentEpisodeOfCare"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:ChOrfAntecedentEpisodeOfCare"
-* item[=].text = "Zeit und Ort der Durchführung der angeforderten Leistung"
+* item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.start"
@@ -1537,4 +1537,5 @@ Description: "Subquestionnaire patientConsent"
 * item[=].item[=].text = "Anmerkung"
 * item[=].item[=].type = #string
 * item[=].item[=].required = true
+
 
