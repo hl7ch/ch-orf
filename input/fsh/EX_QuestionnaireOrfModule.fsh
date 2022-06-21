@@ -1374,40 +1374,46 @@ Description: "Subquestionnaire initiator"
 
 * item[+].linkId = "initiator.practitionerRole.practitioner"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].text = "Gesundheitsfachperson"
+* item[=].text = "Gesundheitsfachperson oder -organisation"
 * item[=].type = #group
 
-* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "'initiator.practitionerRole.practitioner.'"
+* item[=].item[+].linkId = "initiator.practitionerRole.practitioner"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
+* item[=].item[=].text = "Gesundheitsfachperson"
+* item[=].item[=].type = #group
 
-* item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
-* item[=].item.linkId = "initiator.practitionerRole.practitioner.1"
-* item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
-* item[=].item.type = #display
 
-* item[+].linkId = "initiator.practitionerRole.organization"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].text = "Gesundheitsorganisatiton"
-* item[=].type = #group
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.practitioner.'"
 
-* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "'initiator.practitionerRole.organization.'"
+* item[=].item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|2.0.0"
+* item[=].item[=].item.linkId = "initiator.practitionerRole.practitioner.1"
+* item[=].item[=].item.text = "Unable to resolve 'practitioner-nametel' sub-questionnaire"
+* item[=].item[=].item.type = #display
 
-* item[=].item[+].linkId = "initiator.practitionerRole.organization.name"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].type = #string
+* item[=].item[+].linkId = "initiator.practitionerRole.organization"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
+* item[=].item[=].text = "Gesundheitsorganisatiton"
+* item[=].item[=].type = #group
 
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
-* item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].linkId = "initiator.practitionerRole.organization.1"
-* item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
-* item[=].item[=].type = #display
+* item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.organization.'"
+
+* item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
+* item[=].item[=].item[=].text = "Name der Organisation"
+* item[=].item[=].item[=].type = #string
+
+* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
+* item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
+* item[=].item[=].item[=].linkId = "initiator.practitionerRole.organization.1"
+* item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
+* item[=].item[=].item[=].type = #display
 
 * item[+].linkId = "initiator.relatedPerson"
 * item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"

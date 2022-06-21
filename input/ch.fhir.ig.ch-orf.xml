@@ -254,6 +254,13 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-legalguardian"/>
+      </reference>
+      <name value="Initiator Relation"/>
+      <exampleBoolean value="false"/>
+    </resource>
 
 
     <!-- CodeSystems -->
