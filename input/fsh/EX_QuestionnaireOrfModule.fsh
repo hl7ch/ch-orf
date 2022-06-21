@@ -1366,11 +1366,18 @@ Description: "Subquestionnaire initiator"
 * date = "2022-06-20"
 * publisher = "HL7 Switzerland"
 
-* item[+].linkId = "initiator.practitionerRole.class.legalguardian"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.class#legal"
-* item[=].text = "Ist der Initiant gesetzlicher Vertreter des Patienten?"
+* item[+].linkId = "initiator.legalguardian"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
+* item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
-* item[=].answerOption[+].valueCoding = SCT#58626002  "Legal guardian (person)"
+* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
+
+* item[+].linkId = "initiator.initiatorrelation"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfRelationInitiatorPatient"
+* item[=].text = "Persönliche Beziehung zum Patienten?"
+* item[=].type = #choice
+* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-initiatorrelation"
+
 
 * item[+].linkId = "initiator.practitionerRole.practitioner"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
