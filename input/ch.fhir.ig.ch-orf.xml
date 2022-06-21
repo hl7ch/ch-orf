@@ -610,6 +610,9 @@
       <exampleBoolean value="true"/>
     </resource>
 
+
+
+
     <resource>
       <reference>
         <reference value="Coverage/CoverageMusterfrau"/>
@@ -676,6 +679,9 @@
       <description value="Example for Location"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location"/>
     </resource>
+
+
+
 
     <!-- pages -->
     <page>
