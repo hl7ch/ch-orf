@@ -127,6 +127,12 @@
       <exampleBoolean value="false"/>
     </resource>
 
+
+
+
+
+
+
     <!-- Extension Definitions -->
 
     <resource>
@@ -610,9 +616,6 @@
       <exampleBoolean value="true"/>
     </resource>
 
-
-
-
     <resource>
       <reference>
         <reference value="Coverage/CoverageMusterfrau"/>
@@ -679,6 +682,52 @@
       <description value="Example for Location"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="Patient/SUfferer"/>
+      </reference>
+      <name value="Susanna Ufferer"/>
+      <description value="Example for Patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="RelatedPerson/ChOrfRelatedPersonMUfferer"/>
+      </reference>
+      <name value="Susanna Ufferer"/>
+      <description value="Example for Related Person (Husband of Susanna Ufferer"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="EpisodeOfCare/ChOrfEpisodeOfCareSUfferer"/>
+      </reference>
+      <name value="Eisode of Care"/>
+      <description value="Example for Discharge Date in ChOrfEpisodeOfCare Profile"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Consent/ChOrfConsentSUfferer"/>
+      </reference>
+      <name value="Consent"/>
+      <description value="Example for ChOrfConsent Profile"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Organization/OrganizationSpitalTrubschachen"/>
+      </reference>
+      <name value="Organization"/>
+      <description value="Example for ChCoreOrganization Profile"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
 
 
 

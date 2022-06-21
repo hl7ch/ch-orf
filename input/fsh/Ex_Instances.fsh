@@ -1,7 +1,7 @@
 Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
-Title: "Susanna Ufferer is not yet informde"
-Description: "Example for ChOrfConsent"
+Title: "Susanna Ufferer is not yet informed"
+Description: "Example for ChOrfConsent Profile"
 * status = ConsentState#active
 * scope = ConsentScopeCodes#patient-privacy
 * category =  LNC#59284-0
@@ -10,20 +10,22 @@ Description: "Example for ChOrfConsent"
 
 Instance: ChOrfConsentNoteSUfferer
 InstanceOf:  ChOrfConsentNote
+Title: "Consent Note"
+Description: "Example forChOrfConsentNote Extension"
 Usage: #inline
 * valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
 
 Instance:  ChOrfInitiatorMUfferer
 InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
-Description: "Example for CH Orf Initiator"
+Description: "Example for ChOrfInitiator Extension"
 Usage: #inline
 * extension[detail].valueReference = Reference (ChOrfRelatedPersonMUfferer)
  
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
-Description: "Example for Discharge DAte"
+Description: "Example for Discharge Date in ChOrfEpisodeOfCare Profile"
 * status = EpisodeOfCareStatus#active
 * patient = Reference (SUfferer)
 * statusHistory.status = EpisodeOfCareStatus#active
@@ -34,6 +36,8 @@ Description: "Example for Discharge DAte"
 
 Instance: OrganizationSpitalTrubschachen
 InstanceOf: ChCoreOrganization
+Title: "Spital Trubschachen"
+Description: "Example for ChCoreOrganization Profile"
 * name = "Spital Trubschachen"
 
 Instance: ChOrfRelationInitiatorPatientMUfferer
