@@ -345,6 +345,15 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-familydoctor"/>
+      </reference>
+      <name value="Module Questionnaire Familydoctor"/>
+      <description value="Subquestionnaire address"/>
+    </resource>
+
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/ch-orf-module-address"/>
       </reference>
       <name value="Module Questionnaire Address"/>

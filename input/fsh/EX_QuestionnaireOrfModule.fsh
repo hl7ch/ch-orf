@@ -594,7 +594,7 @@ Description: "SubQuestionnaire 'patient'"
 
 Instance: ch-orf-module-familydoctor
 InstanceOf: Questionnaire
-Title: "Module Questionnairefamilydoctor"
+Title: "Module Questionnaire Familydoctor"
 Description: "Subquestionnaire familydoctor"
 
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
