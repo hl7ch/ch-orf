@@ -207,7 +207,12 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-legalguardian"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- ValueSets-->
     <resource>
