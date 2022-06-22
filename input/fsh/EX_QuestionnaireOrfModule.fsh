@@ -1370,6 +1370,7 @@ Description: "Subquestionnaire initiator"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
+* item[=].answerOption[+].valueCoding = SCT#373068000 "Undetermined (qualifier value)"
 * item[=].answerOption[+].valueCoding = SCT#58626002 "Legal guardian (person)"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
 

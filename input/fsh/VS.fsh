@@ -84,4 +84,5 @@ ValueSet: ChOrfVSLegalGuardian
 Id: ch-orf-vs-legalguardian
 Title: "Legal Guardian"
 Description: "Value Set for CH ORF Legal Guardian"
+* SCT#373068000 "Undetermined (qualifier value)"
 * SCT#58626002  "Legal guardian (person)"
