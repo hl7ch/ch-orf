@@ -28,7 +28,7 @@ Description: "Example for Questionnaire"
 * extension[=].extension[+].url = "description"
 * extension[=].extension[=].valueString = "The practitioner that is to be used to pre-populate the form"
 
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * name = "OrderReferralForm"
 * title = "Order Referral Form"
 * status = #active
@@ -62,7 +62,7 @@ Description: "Example for Questionnaire"
 
 // ----------Initiator: Person/organization who initated this order / application ; e.g. spitex, retirement home etc. ----------
 * item[+].linkId = "initiator"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 
@@ -178,7 +178,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
 
-* item[=].item[=].item[+].linkId = "receiverCopy.practitionerRole.organization.name"
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string

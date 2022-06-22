@@ -45,7 +45,8 @@ Usage: #example
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|1.1.0"
-* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
+* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
+//* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
 * version = "1.1.0-assembled"
 * name = "OrderReferralForm"
 * title = "Order Referral Form"
@@ -248,14 +249,15 @@ Usage: #example
 * item[=].extension[=].valueExpression.expression = "%patient.address"
 * item[=].linkId = "patient"
 * item[+].linkId = "initiator"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 * item[=].item[0].linkId = "initiator.legalguardian"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
 * item[=].item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].item[=].type = #choice
-* item[=].item[=].answerOption.valueCoding = http://snomed.info/sct#58626002 "Legal guardian (person)"
+* item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#373068000 "Undetermined (qualifier value)"
+* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#58626002 "Legal guardian (person)"
 * item[=].item[+].linkId = "initiator.initiatorrelation"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfRelationInitiatorPatient"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
@@ -271,7 +273,7 @@ Usage: #example
 * item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#72705000 "Mother (person)"
 * item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#66839005 "Father (person)"
 * item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#48385004 "Acquaintance (person)"
-* item[=].item[+].linkId = "initiator.practitionerRole.practitioner"
+* item[=].item[+].linkId = "initiator.practitionerRole"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].text = "Gesundheitsfachperson oder -organisation"
 * item[=].item[=].type = #group
@@ -1049,11 +1051,7 @@ Usage: #example
 * item[=].item[=].item[=].linkId = "receiverCopy.relatedPerson.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
-* item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
-* item[=].linkId = "antecedentEpisodeOfCare"
+* item[+].linkId = "antecedentEpisodeOfCare"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:ChOrfAntecedentEpisodeOfCare"
 * item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
 * item[=].type = #group
@@ -1065,23 +1063,31 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization"
+* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
+* item[=].item[=].linkId = "antecedentEpisodeOfCare.organization"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.streetAddressLine"
-* item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].type = #string
-* item[=].item[=].repeats = true
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.postalCode"
-* item[=].item[=].text = "PLZ"
-* item[=].item[=].type = #string
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.city"
-* item[=].item[=].text = "Ort"
-* item[=].item[=].type = #string
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.country"
-* item[=].item[=].text = "Land"
-* item[=].item[=].type = #string
+* item[=].item[=].item[0].linkId = "receiverCopy.practitionerRole.organization.name"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
+* item[=].item[=].item[=].text = "Name der Organisation"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.streetAddressLine"
+* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].repeats = true
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.postalCode"
+* item[=].item[=].item[=].text = "PLZ"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.city"
+* item[=].item[=].item[=].text = "Ort"
+* item[=].item[=].item[=].type = #string
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.country"
+* item[=].item[=].item[=].text = "Land"
+* item[=].item[=].item[=].type = #string
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
@@ -1163,14 +1169,13 @@ Usage: #example
 * item[=].text = "Einverständniserklärung"
 * item[=].type = #group
 * item[=].repeats = true
-* item[=].item.linkId = "antecedentEpisodeOfCare.organization.consent.statement"
+* item[=].item.linkId = "consent.statement"
 * item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].item.text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].item.type = #choice
 * item[=].item.answerOption[0].valueCoding = #ExplicitAgreement "Patient is informed and has explicitly agreed"
 * item[=].item.answerOption[+].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc."
-* item[=].item.initial.valueCoding = http://snomed.info/sct#373068000
-* item[=].item.item.linkId = "antecedentEpisodeOfCare.organization.consent.statement.note"
+* item[=].item.item.linkId = "consent.statement.note"
 * item[=].item.item.text = "Anmerkung"
 * item[=].item.item.type = #string
 * item[+].linkId = "note"
