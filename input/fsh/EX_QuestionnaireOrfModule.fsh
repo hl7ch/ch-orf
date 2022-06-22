@@ -13,16 +13,12 @@ Description: "Example for Questionnaire"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"
 
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-sourceStructureMap"
-* extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/StructureMap/OrfPrepopBundleToQr"
-
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
 * extension[=].extension[0].url = "name"
-* extension[=].extension[0].valueId = "Bundle"
-* extension[=].extension[1].url = "type"
-* extension[=].extension[1].valueCode = #Bundle
-* extension[=].extension[2].url = "description"
-* extension[=].extension[2].valueString = "The Bundle that is to be used to pre-populate the form"
+* extension[=].extension[=].valueCoding.system = "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext"
+* extension[=].extension[=].valueCoding.code = #patient
+* extension[=].extension[+].url = "type"
+* extension[=].extension[=].valueCode = #Patient
 
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
 * name = "OrderReferralForm"
@@ -62,7 +58,14 @@ Description: "Example for Questionnaire"
 * item[=].text = "Patient"
 * item[=].type = #group
 * item[=].required = true
-
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[0].valueExpression.name = "linkIdPrefix"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "'patient.'"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "address"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%patient.address"
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|2.0.0"
 * item[=].item.linkId = "patient.1"
@@ -347,21 +350,33 @@ Description: "Subquestionnaire patient"
 
 
 * item[+].linkId = "patient.familyName"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.name.where(use='official').family"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
 * item[=].text = "Name"
 * item[=].type = #string
 
 * item[+].linkId = "patient.maidenName"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.name.where(use='maiden').family"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.family"
 * item[=].text = "Ledigname"
 * item[=].type = #string
 
 * item[+].linkId = "patient.givenName"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.name.where(use='official').given"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.name.given"
 * item[=].text = "Vorname"
 * item[=].type = #string
 
 * item[+].linkId = "patient.localPid"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.identifier.where(type.coding.where(system='http://terminology.hl7.org/CodeSystem/v2-0203' and code='MR').exists()).value"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:LocalPid.value"
 * item[=].text = "Lokale Patienten-ID"
 * item[=].type = #string
@@ -374,11 +389,17 @@ Description: "Subquestionnaire patient"
 * item[=].type = #string
 
 * item[+].linkId = "patient.birthDate"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.birthDate"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.birthDate"
 * item[=].text = "Geburtsdatum"
 * item[=].type = #date
 
 * item[+].linkId = "patient.gender"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%questionnaire.repeat(item).where(linkId='patient.gender').answerOption.valueCoding.where(code=%patient.gender)"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"
 * item[=].text = "Geschlecht"
 * item[=].type = #choice
@@ -388,6 +409,9 @@ Description: "Subquestionnaire patient"
 * item[=].answerOption[+].valueCoding = AdministrativeGender#other "Anderes"
 
 * item[+].linkId = "patient.maritalStatus"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.maritalStatus"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.maritalStatus"
 * item[=].text = "Zivilstand"
 * item[=].type = #choice
@@ -401,27 +425,32 @@ Description: "Subquestionnaire patient"
 * item[=].answerOption[+].valueCoding = EchMaritalStatus#9 "unbekannt"
 
 * item[+].linkId = "patient.phone"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.telecom.where(system='phone').value"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].text = "Telefon"
 * item[=].type = #string
 * item[=].repeats = true
 
 * item[+].linkId = "patient.email"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.telecom.where(system='email').value"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.telecom.value"
 * item[=].text = "E-Mail"
 * item[=].type = #string
 
 * item[+].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].extension[=].valueExpression.name = "linkIdPrefix"
-* item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].extension[=].valueExpression.expression = "'patient.'"
-* item[=].linkId = "patient.1"
+* item[=].linkId = "address.1"
 * item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].type = #display
 
 * item[+].linkId = "patient.languageOfCorrespondence"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.communication.where(preferred=true).language.coding"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
 * item[=].text = "Korrespondenzsprache"
 * item[=].type = #choice
@@ -432,29 +461,49 @@ Description: "Subquestionnaire patient"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].text = "Kontaktperson"
 * item[=].type = #group
+// * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemPopulationContext"
+* item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension.valueExpression.name = "contact"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%patient.contact"
 
 * item[=].item[+].linkId = "patient.contactperson.relationship"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=]..extension.valueExpression.expression = "%contact.relationship.text"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.relationship.text"
 * item[=].item[=].text = "Beziehung"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.contactperson.familyName"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.family"
 * item[=].item[=].text = "Name"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.contactperson.givenName"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "%contact.name.given"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.name.given"
 * item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "patient.contactperson.phone"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "%contact.telecom.where(system='phone').value"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
 * item[=].item[=].repeats = true
 
 * item[=].item[+].linkId = "patient.contactperson.email"
+* item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].extension.valueExpression.expression = "%contact.telecom.where(system='email').value"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
@@ -685,6 +734,28 @@ Description: "Subquestionnaire Sender"
 * item[=].type = #group
 * item[=].required = true
 
+* item[=].extension[0].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "senderPractitionerRoles"
+* item[=].extension[=].valueExpression.language = #application/x-fhir-query
+* item[=].extension[=].valueExpression.expression = "PractitionerRole?practitioner={{%user.id}}"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "senderPractitionerRole"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%senderPractitionerRoles.entry[0].resource"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "senderOrganizations"
+* item[=].extension[=].valueExpression.language = #application/x-fhir-query
+* item[=].extension[=].valueExpression.expression = "Organization?_id={{%senderPractitionerRole.organization.reference}}"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "senderOrganization"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%senderOrganizations.entry[0].resource"
+* item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].extension[=].valueExpression.name = "address"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%senderOrganization.address"
+
+
 * item[=].item[+].linkId = "sender.author.practitioner"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].item[=].text = "Verantwortliche Person"
@@ -699,31 +770,49 @@ Description: "Subquestionnaire Sender"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.name.family"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.givenName"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.name.given"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.identifier.where(system='urn:oid:2.51.1.3').value"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
 * item[=].item[=].item[=].text = "ZSR"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.identifier.where(system='urn:oid:2.16.756.5.30.1.123.100.2.1.1').value"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.telecom.where(system='phone').value"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.email"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%user.telecom.where(system='email').value"
 
 * item[=].item[+].linkId = "sender.author.organization"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
@@ -738,11 +827,18 @@ Description: "Subquestionnaire Sender"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%senderOrganization.name"
+
 
 * item[=].item[=].item[+].linkId = "sender.author.organization.gln"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"
 * item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].type = #string
+* item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension.valueExpression.expression = "%senderOrganization.identifier.where(system='urn:oid:2.51.1.3').value"
 
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
@@ -1009,18 +1105,30 @@ Description: "Subquestionnaire Practitioner Address"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "streetAddressLine"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%address.line"
 * item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].type = #string
 * item[=].repeats = true
 
 * item[+].linkId = "postalCode"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%address.postalCode"
 * item[=].text = "PLZ"
 * item[=].type = #string
 
 * item[+].linkId = "city"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%address.city"
 * item[=].text = "Ort"
 * item[=].type = #string
 
 * item[+].linkId = "country"
+* item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
+* item[=].extension.valueExpression.language = #text/fhirpath
+* item[=].extension.valueExpression.expression = "%address.country"
 * item[=].text = "Land"
 * item[=].type = #string
