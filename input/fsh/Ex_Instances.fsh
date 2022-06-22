@@ -80,7 +80,7 @@ Description: "Example for Patient Resource"
 * address.postalCode = "8000"
 * address.country = "Schweiz"
 
-*  generalPractitioner = Reference(PractionerRoleFAmily)
+*  generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
 
 
 
@@ -98,7 +98,7 @@ Instance: ChCorePractitionerRoleFAmily
 InstanceOf: ChCorePractitionerRole
 Title: "Practioner Role Family Doctor"
 Description: "Example for ChCorePractitionerRole Resource"
-* practitioner = Reference (FamilyDoctorFAmily)
+* practitioner = Reference (ChCorePractitionerFAmily)
 
 
 Instance: ChCorePractitionerFAmily

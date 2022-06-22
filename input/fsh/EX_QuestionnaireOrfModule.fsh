@@ -1392,7 +1392,7 @@ Description: "Subquestionnaire initiator"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-initiatorrelation"
 
 
-* item[+].linkId = "initiator.practitionerRole.practitioner"
+* item[+].linkId = "initiator.practitionerRole"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
 * item[=].text = "Gesundheitsfachperson oder -organisation"
 * item[=].type = #group
@@ -1541,7 +1541,7 @@ Description: "Subquestionnaire patientConsent"
 * item[=].answerOption[+].valueCoding = #ExplicitAgreement "Patient is informed and has explicitly agreed"
 * item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
-* item[=].initial.valueCoding = SCT#373068000
+//* item[=].initial.valueCoding = SCT#373068000
 //* item[=].required = true
 * item[=].item[+].linkId = "consent.statement.note"
 * item[=].item[=].definition = ""
