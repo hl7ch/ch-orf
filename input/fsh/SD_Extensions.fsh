@@ -35,7 +35,7 @@ Description: "Person/organization who initated this order (may or may nor receiv
     ChOrfLegalGuardian named legal 0..1 MS and 
     detail 0..1 MS 
 * extension[relation] ^short = "Relation between Initator and Patient" 
-* extension[legal] ^short = "Initator ist gesetzlicher Vertreter des Patienten"    
+* extension[legal] ^short = "Initator ist  Vertreter des Patienten"    
 * extension[detail] ^short = "Information about the person and organization that entered data"
 //* extension[detail].url only uri
 //* extension[detail].valueReference 1..

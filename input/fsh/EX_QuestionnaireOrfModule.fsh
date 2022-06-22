@@ -220,7 +220,6 @@ Description: "Example for Questionnaire"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.note.text"
 * item[=].item[=].text = "Kommentar" 
 * item[=].item[=].type = #string
-* item[=].item[=].required = true
 
 Instance: ch-orf-module-order
 InstanceOf: Questionnaire
@@ -1251,7 +1250,7 @@ Description: "Subquestionnaire appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
 * item[=].text = "Ort der Durchführung"
 * item[=].type = #group
-* item[=].required = true
+//* item[=].required = true
 * item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].extension.valueExpression.language = #text/fhirpath
@@ -1371,7 +1370,7 @@ Description: "Subquestionnaire initiator"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
-* item[=].answerOption[+].valueCoding = SCT#58626002
+* item[=].answerOption[+].valueCoding = SCT#58626002 "Legal guardian (person)"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
 
 * item[+].linkId = "initiator.initiatorrelation"
@@ -1380,7 +1379,7 @@ Description: "Subquestionnaire initiator"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#6089001 "Daughter (person)"
 * item[=].answerOption[+].valueCoding = SCT#5616008 "Son (person)"
-//* item[=].answerOption[+].valueCoding =127848009 "Spouse (person)"
+* item[=].answerOption[+].valueCoding = SCT#127848009 "Spouse (person)"
 * item[=].answerOption[+].valueCoding = SCT#127849001 "Husband (person)"
 * item[=].answerOption[+].valueCoding = SCT#127850001 "Wife (person)"
 * item[=].answerOption[+].valueCoding = SCT#394921008 "Cohabitee (person)"
@@ -1538,18 +1537,14 @@ Description: "Subquestionnaire patientConsent"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
-* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#ExplicitAgreement
-* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other
+* item[=].answerOption[+].valueCoding = #ExplicitAgreement "Patient is informed and has explicitly agreed"
+* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
-
 * item[=].initial.valueCoding = SCT#373068000
-* item[=].required = true
-
-
+//* item[=].required = true
 * item[=].item[+].linkId = "consent.statement.note"
 * item[=].item[=].definition = ""
 * item[=].item[=].text = "Anmerkung"
 * item[=].item[=].type = #string
-* item[=].item[=].required = true
 
 
