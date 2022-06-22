@@ -61,13 +61,6 @@ Description: "Value Set for CH ORF Desired Accomodation"
 * ChCoreCSEncounterType#2 "halbprivat"
 * ChCoreCSEncounterType#3 "privat"
 
-/*
-ValueSet: ChOrfVsInitiatorRole
-Id: ch-orf-vs-initiatorrole
-Title: "Initiator Role"
-Description: "Value Set for CH ORF Inititator Role"
-* include codes from system ChOrfCsInitiatorRole
-*/
 
 ValueSet: ChOrfVsInitiatorRelation
 Id: ch-orf-vs-initiatorrelation

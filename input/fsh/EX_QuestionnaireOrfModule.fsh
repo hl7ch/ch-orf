@@ -168,10 +168,10 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 
-* item[+].linkId = "antecedentEpisodeOfCare.organization"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
-* item[=].text = "Spital /Heim"
-* item[=].type = #group
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].text = "Spital /Heim"
+* item[=].item[=].type = #group
 
 * item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].extension.valueExpression.name = "linkIdPrefix"
@@ -671,7 +671,6 @@ Description: "Subquestionnaire familydoctor"
 * item[=].item[=].linkId = "familydoctor.organization.1"
 * item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].type = #display
-
 
 
 Instance: ch-orf-module-requestedencounter
@@ -1372,13 +1371,25 @@ Description: "Subquestionnaire initiator"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
-* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
+* item[=].answerOption[+].valueCoding = SCT#58626002
+//* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
 
 * item[+].linkId = "initiator.initiatorrelation"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfRelationInitiatorPatient"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
-* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-initiatorrelation"
+* item[=].answerOption[+].valueCoding = SCT#6089001 "Daughter (person)"
+* item[=].answerOption[+].valueCoding = SCT#5616008 "Son (person)"
+//* item[=].answerOption[+].valueCoding =127848009 "Spouse (person)"
+* item[=].answerOption[+].valueCoding = SCT#127849001 "Husband (person)"
+* item[=].answerOption[+].valueCoding = SCT#127850001 "Wife (person)"
+* item[=].answerOption[+].valueCoding = SCT#394921008 "Cohabitee (person)"
+* item[=].answerOption[+].valueCoding = SCT#70924004  "Brother (person)"
+* item[=].answerOption[+].valueCoding = SCT#27733009  "Sister (person)"
+* item[=].answerOption[+].valueCoding = SCT#72705000  "Mother (person)"
+* item[=].answerOption[+].valueCoding = SCT#66839005  "Father (person)"
+* item[=].answerOption[+].valueCoding = SCT#48385004  "Acquaintance (person)"
+//* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-initiatorrelation"
 
 
 * item[+].linkId = "initiator.practitionerRole.practitioner"
@@ -1527,7 +1538,10 @@ Description: "Subquestionnaire patientConsent"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
-* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
+* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#ExplicitAgreement
+* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other
+//* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
+
 * item[=].initial.valueCoding = SCT#373068000
 * item[=].required = true
 
