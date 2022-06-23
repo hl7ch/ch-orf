@@ -46,7 +46,6 @@ Usage: #example
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|1.1.0"
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
-//* url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular"
 * version = "1.1.0-assembled"
 * name = "OrderReferralForm"
 * title = "Order Referral Form"
@@ -1071,7 +1070,7 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
-* item[=].item[=].item[0].linkId = "receiverCopy.practitionerRole.organization.name"
+* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string

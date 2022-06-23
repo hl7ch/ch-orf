@@ -89,17 +89,34 @@ Description: "Patient Consent to this Order"
 * valueReference ^short = "valueReference"
 
 
+
+Extension: ChOrfConsentCode
+Id: ch-orf-consentcode
+Title: "CH ORF Note to Consent"
+Description: "Note to Consent"
+
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "ChOrfConsent"
+
+* valueCodeableConcept 1..1
+* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept ^short = "valueString"
+
 Extension: ChOrfConsentNote
 Id: ch-orf-consentnote
 Title: "CH ORF Note to Consent"
 Description: "Note to Consent"
 
-/* ^context[0].type = #fhirpath
+* ^context[0].type = #fhirpath
 * ^context[0].expression = "ChOrfConsent"
-*/
+
 * valueString 1..1
 * valueString only string
 * valueString ^short = "valueString"
+
+
+
+
 
 Extension: ChOrfReceiver
 Id: ch-orf-receiver

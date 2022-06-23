@@ -52,7 +52,8 @@ Title: "CH ORF Consent"
 Description: "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex 
 and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
-
+* extension contains ChOrfConsentNote named consentNote 0..1 MS
+* extension contains ChOrfConsentCode named consentCode 0..1 MS
 
 Profile: ChOrfServiceRequest
 Parent: ServiceRequest
@@ -139,8 +140,9 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfInitiator named initiator 0..1 MS
 * extension[initiator] ^short = "Profile to specify who intiated this order; in particulars for spitex and  transfer to retirement home etc."
 
-
-
+* extension contains ChOrfPatientConsent named patientConsent 0..1 MS
+* extension[patientConsent] ^short = "To specify if the patient gave an informed consent to this order; in particulars for spitex 
+and  transfer to retirement home etc."
 
 * status MS
 * type MS

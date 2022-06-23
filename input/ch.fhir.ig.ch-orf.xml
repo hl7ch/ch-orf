@@ -194,12 +194,8 @@
         <reference value="StructureDefinition/ch-orf-patientconsent"/>
       </reference>
       <exampleBoolean value="false"/>
-    </resource>    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-consentnote"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
+    </resource>   
+
 
     <resource>
       <reference>
@@ -210,6 +206,19 @@
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-legalguardian"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentcode"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentnote"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
