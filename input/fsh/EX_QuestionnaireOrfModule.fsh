@@ -581,7 +581,7 @@ Description: "SubQuestionnaire 'patient'"
 
 // ---------- Patient Family Docotor  ----------
 * item[+].linkId = "familydoctor"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/cch-core-patient#Patient#Patient:generalPractitioner"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-core-patient#Patient.generalPractitioner"
 * item[=].text = "Hausarzt"
 * item[=].type = #group
 

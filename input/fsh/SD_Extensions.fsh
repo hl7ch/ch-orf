@@ -35,8 +35,8 @@ Description: "Person/organization who initated this order (may or may nor receiv
     ChOrfLegalGuardian named legal 0..1 MS and 
     detail 0..1 MS 
 * extension[relation] ^short = "Relation between Initator and Patient" 
-* extension[legal] ^short = "Initator ist  Vertreter des Patienten"    
-* extension[detail] ^short = "Information about the person and organization that entered data"
+* extension[legal] ^short = "Extension to define the personal relation between intitator and patient"    
+* extension[detail] ^short = "Information about the Initiator Person and Organization "
 //* extension[detail].url only uri
 //* extension[detail].valueReference 1..
 * extension[detail].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
@@ -53,7 +53,7 @@ Description: "Legal Guardian of thePatient"
 * ^context[=].expression = "Composition.extension"
 * . 0..1
 * . ^short = "Extension"
-* . ^definition = "Extension to define the relation between intitator and patient"
+* . ^definition = "Extension to define the legal relation between intitator and patient"
 * valueCodeableConcept 1..1
 * valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVSLegalGuardian (required)
@@ -87,8 +87,6 @@ Description: "Patient Consent to this Order"
 * valueReference 1..1
 * valueReference only Reference(ChOrfConsent)
 * valueReference ^short = "valueReference"
-
-
 
 Extension: ChOrfConsentCode
 Id: ch-orf-consentcode

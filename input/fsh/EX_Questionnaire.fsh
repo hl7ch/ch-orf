@@ -252,13 +252,13 @@ Usage: #example
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 * item[=].item[0].linkId = "initiator.legalguardian"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfLegalGuardian"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian.coding"
 * item[=].item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#373068000 "Undetermined (qualifier value)"
 * item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#58626002 "Legal guardian (person)"
 * item[=].item[+].linkId = "initiator.initiatorrelation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/composition#Composition.extension:ChOrfRelationInitiatorPatient"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiatorrelation.coding"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#6089001 "Daughter (person)"
@@ -1051,15 +1051,15 @@ Usage: #example
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 * item[+].linkId = "antecedentEpisodeOfCare"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:ChOrfAntecedentEpisodeOfCare"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:antecedentEpisodeOfCare"
 * item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
 * item[=].type = #group
 * item[=].item[0].linkId = "antecedentEpisodeOfCare.start"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
 * item[=].item[=].text = "Von"
 * item[=].item[=].type = #dateTime
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
@@ -1067,7 +1067,7 @@ Usage: #example
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
 * item[=].item[=].linkId = "antecedentEpisodeOfCare.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-ChOrfAntecedentEpisodeOfCaret#ChOrfAntecedentEpisodeOfCare.Period.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
@@ -1164,15 +1164,14 @@ Usage: #example
 * item[=].item[=].text = "Patienteninformation für diesen Termin"
 * item[=].item[=].type = #string
 * item[+].linkId = "consent"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:patientConsent"
 * item[=].text = "Einverständniserklärung"
 * item[=].type = #group
 * item[=].repeats = true
 * item[=].item.linkId = "consent.statement"
-* item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition//ch-orf-servicerequest#ServiceRequest."
 * item[=].item.text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].item.type = #choice
-* item[=].item.answerOption[0].valueCoding = #ExplicitAgreement "Patient is informed and has explicitly agreed"
+* item[=].item.answerOption[0].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
 * item[=].item.answerOption[+].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc."
 * item[=].item.item.linkId = "consent.statement.note"
 * item[=].item.item.text = "Anmerkung"
