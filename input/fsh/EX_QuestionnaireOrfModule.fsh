@@ -581,7 +581,7 @@ Description: "SubQuestionnaire 'patient'"
 
 // ---------- Patient Family Docotor  ----------
 * item[+].linkId = "familydoctor"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-core-patient#Patient.generalPractitioner"
+* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.generalPractitioner"
 * item[=].text = "Hausarzt"
 * item[=].type = #group
 
@@ -1372,28 +1372,28 @@ Description: "Subquestionnaire initiator"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "initiator.legalguardian"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/©"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/CChOrfInitiator.extension:relationn"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
-* item[=].answerOption[+].valueCoding = SCT#373068000 "Undetermined (qualifier value)"
-* item[=].answerOption[+].valueCoding = SCT#58626002 "Legal guardian (person)"
+* item[=].answerOption[+].valueCoding = SCT#373068000 "Nicht definiert"
+* item[=].answerOption[+].valueCoding = SCT#58626002 "Gesetzlicher Vertreter"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
 
 * item[+].linkId = "initiator.initiatorrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiatorrelation.coding"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ChOrfInitiator.extension:relation"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
-* item[=].answerOption[+].valueCoding = SCT#6089001 "Daughter (person)"
-* item[=].answerOption[+].valueCoding = SCT#5616008 "Son (person)"
-* item[=].answerOption[+].valueCoding = SCT#127848009 "Spouse (person)"
-* item[=].answerOption[+].valueCoding = SCT#127849001 "Husband (person)"
-* item[=].answerOption[+].valueCoding = SCT#127850001 "Wife (person)"
-* item[=].answerOption[+].valueCoding = SCT#394921008 "Cohabitee (person)"
-* item[=].answerOption[+].valueCoding = SCT#70924004  "Brother (person)"
-* item[=].answerOption[+].valueCoding = SCT#27733009  "Sister (person)"
-* item[=].answerOption[+].valueCoding = SCT#72705000  "Mother (person)"
-* item[=].answerOption[+].valueCoding = SCT#66839005  "Father (person)"
-* item[=].answerOption[+].valueCoding = SCT#48385004  "Acquaintance (person)"
+* item[=].answerOption[+].valueCoding = SCT#6089001 "Tochter"
+* item[=].answerOption[+].valueCoding = SCT#5616008 "Sohn"
+//* item[=].answerOption[+].valueCoding = SCT#127848009 "Spouse (person)"
+* item[=].answerOption[+].valueCoding = SCT#127849001 "Ehemann"
+* item[=].answerOption[+].valueCoding = SCT#127850001 "Ehefrau"
+* item[=].answerOption[+].valueCoding = SCT#394921008 "Partner (eingetragene  Partnerschaft)"
+* item[=].answerOption[+].valueCoding = SCT#70924004  "Bruder"
+* item[=].answerOption[+].valueCoding = SCT#27733009  "Schwester"
+* item[=].answerOption[+].valueCoding = SCT#72705000  "Mutter"
+* item[=].answerOption[+].valueCoding = SCT#66839005  "Vater"
+* item[=].answerOption[+].valueCoding = SCT#48385004  "Bekannt"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-initiatorrelation"
 
 
