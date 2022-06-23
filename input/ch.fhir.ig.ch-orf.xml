@@ -276,6 +276,14 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-consentstatus"/>
+      </reference>
+      <name value="Consent Status"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
 
     <!-- CodeSystems -->
     <resource>

@@ -68,7 +68,7 @@ Description: "Relatioin between Initator and Patient"
 * ^context[=].expression = "Composition.extension"
 * . 0..1
 * . ^short = "Extension"
-* . ^definition = "Extension to define the relation between intitator and patient"
+* . ^definition = "Relation between intitator and patient"
 * valueCodeableConcept 1..1
 * valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVsInitiatorRelation (required)
@@ -90,8 +90,8 @@ Description: "Patient Consent to this Order"
 
 Extension: ChOrfConsentCode
 Id: ch-orf-consentcode
-Title: "CH ORF Note to Consent"
-Description: "Note to Consent"
+Title: "CH ORF Consent Code"
+Description: "Consent Code"
 
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "ChOrfConsent"
@@ -100,11 +100,11 @@ Description: "Note to Consent"
 * valueCodeableConcept only CodeableConcept
 * valueCodeableConcept ^short = "valueString"
 
+
 Extension: ChOrfConsentNote
 Id: ch-orf-consentnote
-Title: "CH ORF Note to Consent"
-Description: "Note to Consent"
-
+Title: "CH ORF Consent Note"
+Description: "Consent Note "
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "ChOrfConsent"
 

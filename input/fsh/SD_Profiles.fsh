@@ -52,8 +52,12 @@ Title: "CH ORF Consent"
 Description: "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex 
 and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
-* extension contains ChOrfConsentCode named consentCode 0..1 MS
-* extension contains ChOrfConsentNote named consentNote 0..1 MS
+* extension contains ChOrfConsentCode named consentCode 0..1 MS and
+                     ChOrfConsentNote named consentNote 0..1 MS
+* extension[consentCode].value[x] only CodeableConcept 
+* extension[consentCode].valueCodeableConcept from ChOrfConsentStatus 
+* extension[consentNote].value[x] only string
+
 
 
 Profile: ChOrfServiceRequest
