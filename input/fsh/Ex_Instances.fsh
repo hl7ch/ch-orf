@@ -27,7 +27,7 @@ InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
 Description: "Example for ChOrfInitiator Extension"
 Usage: #inline
-* extension[detail].valueReference = Reference (ChOrfRelatedPersonMUfferer)
+* extension[nameAdress].valueReference = Reference (ChOrfRelatedPersonMUfferer)
  
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare

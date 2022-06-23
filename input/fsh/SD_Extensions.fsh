@@ -27,21 +27,17 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * ^context.type = #element
 * ^context.expression = "Composition"
 * . ..1
-
 * . ^short = "Extension"
 * . ^definition = "Extension to define Person/organization who initated this order (may or may nor receive a copy)"
 * extension contains
     ChOrfRelationInitiatorPatient named relation 0..1 MS and 
     ChOrfLegalGuardian named legal 0..1 MS and 
-    detail 0..1 MS 
+    nameAdress 0..1 MS 
 * extension[relation] ^short = "Relation between Initator and Patient" 
 * extension[legal] ^short = "Extension to define the personal relation between intitator and patient"    
-* extension[detail] ^short = "Information about the Initiator Person and Organization "
-//* extension[detail].url only uri
-//* extension[detail].valueReference 1..
-* extension[detail].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
-* extension[detail].valueReference ^short = "Practioner or related Person who initated this order"
-//* url only uri
+* extension[nameAdress] ^short = "Information about the Initiator Person and Organization"
+* extension[nameAdress].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* extension[nameAdress].valueReference ^short = "Practioner or related Person who initated this order"
 
 
 
