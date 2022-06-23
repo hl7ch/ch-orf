@@ -252,13 +252,13 @@ Usage: #example
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 * item[=].item[0].linkId = "initiator.legalguardian"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian.coding"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-legalguardian.coding"
 * item[=].item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#373068000 "Undetermined (qualifier value)"
 * item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#58626002 "Legal guardian (person)"
 * item[=].item[+].linkId = "initiator.initiatorrelation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiatorrelation.coding"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-initiatorrelation.coding"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#6089001 "Daughter (person)"
@@ -533,7 +533,7 @@ Usage: #example
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 * item[=].item[+].linkId = "familydoctor"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/cch-core-patient#Patient#Patient:generalPractitioner"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-core-patient#Patient.generalPractitioner"
 * item[=].item[=].text = "Hausarzt"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "familydoctor.practitioner"

@@ -1372,7 +1372,7 @@ Description: "Subquestionnaire initiator"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "initiator.legalguardian"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-legalguardian.coding"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/©"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#373068000 "Undetermined (qualifier value)"
@@ -1380,7 +1380,7 @@ Description: "Subquestionnaire initiator"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalguardian"
 
 * item[+].linkId = "initiator.initiatorrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-orf-initiatorrelation.coding"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiatorrelation.coding"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#6089001 "Daughter (person)"
