@@ -64,7 +64,7 @@ Description: "Value Set for CH ORF Desired Accomodation"
 
 ValueSet: ChOrfVsInitiatorRelation
 Id: ch-orf-vs-initiatorrelation
-Title: "Initiator Role"
+Title: "Initiator Relation"
 Description: "Value Set for CH ORF Inititator Relation"
 
 * SCT#6089001 "Daughter (person)"

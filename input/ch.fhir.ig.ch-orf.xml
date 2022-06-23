@@ -272,7 +272,7 @@
       <reference>
         <reference value="ValueSet/ch-orf-vs-legalguardian"/>
       </reference>
-      <name value="Initiator Relation"/>
+      <name value="Initiator Legal Relation"/>
       <exampleBoolean value="false"/>
     </resource>
 
