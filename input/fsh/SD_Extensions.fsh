@@ -51,7 +51,7 @@ Description: "Legal Guardian of thePatient"
 * . ^short = "Extension"
 * . ^definition = "Extension to define the legal relation between intitator and patient"
 * valueCodeableConcept 1..1
-* valueCodeableConcept only CodeableConcept
+//* valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVSLegalGuardian (required)
 * valueCodeableConcept ^short = "Value of extension"
 
@@ -66,7 +66,7 @@ Description: "Relatioin between Initator and Patient"
 * . ^short = "Extension"
 * . ^definition = "Relation between intitator and patient"
 * valueCodeableConcept 1..1
-* valueCodeableConcept only CodeableConcept
+//* valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVsInitiatorRelation (required)
 * valueCodeableConcept ^short = "Value of extension"
 
@@ -89,23 +89,24 @@ Id: ch-orf-consentcode
 Title: "CH ORF Consent Code"
 Description: "Consent Code"
 
-* ^context[0].type = #fhirpath
-* ^context[0].expression = "ChOrfConsent"
+//* ^context[0].type = #fhirpath
+//* ^context[0].expression = "ChOrfConsent"
 
 * valueCodeableConcept 1..1
-* valueCodeableConcept only CodeableConcept
-* valueCodeableConcept ^short = "valueString"
+//* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept from  ChOrfConsentStatus (required)
+* valueCodeableConcept ^short = "valuecode"
 
 
 Extension: ChOrfConsentNote
 Id: ch-orf-consentnote
 Title: "CH ORF Consent Note"
 Description: "Consent Note "
-* ^context[0].type = #fhirpath
-* ^context[0].expression = "ChOrfConsent"
+//* ^context[0].type = #fhirpath
+//* ^context[0].expression = "ChOrfConsent"
 
 * valueString 1..1
-* valueString only string
+//* valueString only string
 * valueString ^short = "valueString"
 
 

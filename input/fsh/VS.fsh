@@ -28,7 +28,7 @@ Title: "Consent Status"
 Description: "Value Set for CH ORF Consent Status"
 * ChOrfConsentStatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
 * ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
-//* SCT#373068000 "Undetermined (qualifier value)" --> entspricht leer
+* SCT#373068000 "Undetermined (qualifier value)" // --> entspricht leer
 
 
 
