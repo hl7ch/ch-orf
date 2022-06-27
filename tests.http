@@ -1,4 +1,4 @@
-### @host = http://test.ahdis.ch/matchbox/fhir
+###@host = http://test.ahdis.ch/matchbox/fhir
 @host = http://localhost:8080/matchbox/fhir
 ### @host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
 
@@ -116,6 +116,12 @@ Content-Type: application/fhir+xml
 
 < input/examples/questionnaire/order-referral-form.xml
 
+### order-referral-form
+PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/questionnaire/order-referral-form.xml
+
 
 
 ### order-referral-form
@@ -162,13 +168,13 @@ Content-Type: application/json+fhir
 ### LHC Forms appp (might be different for two above: https://lhcforms.nlm.nih.gov/sdc)
 
 ### ErikaMuster top select as patient
-PUT {{host}}/Patient/ErikaMusterFrau HTTP/1.1
+PUT {{host}}/Patient/ErikaMusterfrau HTTP/1.1
 Content-Type: application/fhir+xml
 
 < input/examples/patient/ErikaMusterFrau.xml
 
 ### GET
-GET {{host}}/Patient/ErikaMusterFrau HTTP/1.1
+GET {{host}}/Patient/ErikaMusterfrau HTTP/1.1
 Content-Type: application/fhir+json
 
 
@@ -190,29 +196,11 @@ Content-Type: application/fhir+json
 
 < output/PractitionerRole-SabineMeierPraxisSeeblick.json
 
-### reomove in output/Questionnaire-order-referral-form the entry with http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode, otherwise you will get error ### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR servers
+### reomove in lhc/Questionnaire-order-referral-form the entry with http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode, otherwise you will get error ### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR servers
 PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
 Content-Type: application/fhir+json
 
-< output/Questionnaire-order-referral-form.json
-
-
-### reomove in output/Questionnaire-order-referral-form the entry with http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode, otherwise you will get error ### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR servers
-PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
-Content-Type: application/fhir+json
-
-< ./lhc/Questionnaire-order-referral-form.json
-
-### Cannot load yet ValueSet onto LHC FHIR Server that is evaluated afterwards (see above)
-PUT {{host}}/ValueSet/DocumentEntry.languageCode HTTP/1.1
-Content-Type: application/fhir+json
-
-< ../ch-epr-term/output/ValueSet-DocumentEntry.languageCode.json
-
-
-### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR server
-GET {{host}}/ValueSet?url=http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode HTTP/1.1
-Content-Type: application/fhir+json
+< lhc/Questionnaire-order-referral-form.json
 
 ###
 GET {{host}}/Questionnaire/order-referral-form HTTP/1.1
