@@ -52,6 +52,8 @@ Title: "CH ORF Consent"
 Description: "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex 
 and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
+* policyRule = SCT#385432009
+
 * extension contains ChOrfConsentCode named consentCode 0..1 MS
 * extension contains ChOrfConsentNote named consentNote 0..1 MS
 
