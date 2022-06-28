@@ -283,40 +283,40 @@
       <reference>
         <reference value="Questionnaire/ch-orf-module-address"/>
       </reference>
-      <name value="Module Questionnaire address"/>
-      <description value="Subquestionnaire address"/>
+      <name value="Module Questionnaire Address"/>
+      <description value="SubQuestionnaire 'address'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-order"/>
       </reference>
-      <name value="Module Questionnaire order"/>
-      <description value="Subquestionnaire order"/>
+      <name value="Module Questionnaire Order"/>
+      <description value="SubQuestionnaire 'order'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-receiver"/>
       </reference>
-      <name value="Module Questionnaire receiver"/>
-      <description value="Subquestionnaire receiver"/>
+      <name value="Module Questionnaire Receiver"/>
+      <description value="SubQuestionnaire 'receiver'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-patient"/>
       </reference>
-      <name value="Module Questionnaire patient"/>
-      <description value="Subquestionnaire patient"/>
+      <name value="Module Questionnaire Patient"/>
+      <description value="SubQuestionnaire 'patient'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-requestedencounter"/>
       </reference>
-      <name value="Module Questionnaire requestedEncounter"/>
-      <description value="Subquestionnaire requestedEncounter"/>
+      <name value="Module Questionnaire Requested Encounter"/>
+      <description value="SubQuestionnaire 'requestedEncounter'"/>
     </resource>
 
     <resource>
@@ -324,7 +324,7 @@
         <reference value="Questionnaire/ch-orf-module-coverage"/>
       </reference>
       <name value="Module Questionnaire Coverage"/>
-      <description value="Subquestionnaire Coverage"/>
+      <description value="SubQuestionnaire 'coverage'"/>
     </resource>
 
     <resource>
@@ -332,15 +332,15 @@
         <reference value="Questionnaire/ch-orf-module-sender"/>
       </reference>
       <name value="Module Questionnaire Sender"/>
-      <description value="Subquestionnaire Sender"/>
+      <description value="SubQuestionnaire 'sender'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-receivercopy"/>
       </reference>
-      <name value="Module Questionnaire receiverCopy"/>
-      <description value="Subquestionnaire receiverCopy"/>
+      <name value="Module Questionnaire Receiver Copy"/>
+      <description value="SubQuestionnaire 'receiverCopy'"/>
     </resource>
 
     <resource>
@@ -348,15 +348,15 @@
         <reference value="Questionnaire/ch-orf-module-appointment"/>
       </reference>
       <name value="Module Questionnaire Appointment"/>
-      <description value="Subquestionnaire Appointment"/>
+      <description value="SubQuestionnaire 'appointment'"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-practitioner-nametel"/>
       </reference>
-      <name value="ModuleQuestionnairePractitionerNameTel"/>
-      <description value="Module Questionnaire Practitioner with name and telecom"/>
+      <name value="Module Questionnaire Practitioner Name-Tel"/>
+      <description value="SubQuestionnaire 'practitioner-nametel'"/>
     </resource>
 
     <resource>
@@ -371,7 +371,7 @@
       <reference>
         <reference value="QuestionnaireResponse/order-referral-form"/>
       </reference>
-      <name value="QuestionnaireResponse Order-Referral-Form )"/>
+      <name value="QuestionnaireResponse Order-Referral-Form)"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
@@ -638,6 +638,21 @@
         <nameUrl value="questionnaire-form.html"/>
         <title value="Questionnaire Order-Referral-Form"/>
         <generation value="html"/>
+      </page>
+      <page>
+        <nameUrl value="modular-form.html"/>
+        <title value="Modular Form"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="form-population.html"/>
+        <title value="Form Population"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <nameUrl value="form-data-extraction.html"/>
+        <title value="Form Data Extraction"/>
+        <generation value="markdown"/>
       </page>
       <page>
         <nameUrl value="document.html"/>

@@ -78,7 +78,7 @@ Description: "Example for Questionnaire"
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|2.0.0"
 * item[=].item.linkId = "requestedEncounter.1"
-* item[=].item.text = "Unable to resolve 'requestedencounter' sub-questionnaire"
+* item[=].item.text = "Unable to resolve 'requestedEncounter' sub-questionnaire"
 * item[=].item.type = #display
 
 
@@ -124,7 +124,7 @@ Description: "Example for Questionnaire"
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|2.0.0"
 * item[=].item.linkId = "receiverCopy.1"
-* item[=].item.text = "Unable to resolve 'receivercopy' sub-questionnaire"
+* item[=].item.text = "Unable to resolve 'receiverCopy' sub-questionnaire"
 * item[=].item.type = #display
 
 /*------ Appointment ------------------------------ */
@@ -154,8 +154,8 @@ Description: "Example for Questionnaire"
 
 Instance: ch-orf-module-order
 InstanceOf: Questionnaire
-Title: "Module Questionnaire order"
-Description: "Subquestionnaire order"
+Title: "Module Questionnaire Order"
+Description: "SubQuestionnaire 'order'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order"
@@ -254,8 +254,8 @@ Description: "Subquestionnaire order"
 
 Instance: ch-orf-module-receiver
 InstanceOf: Questionnaire
-Title: "Module Questionnaire receiver"
-Description: "Subquestionnaire receiver"
+Title: "Module Questionnaire Receiver"
+Description: "SubQuestionnaire 'receiver'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver"
@@ -334,8 +334,8 @@ Description: "Subquestionnaire receiver"
 
 Instance: ch-orf-module-patient
 InstanceOf: Questionnaire
-Title: "Module Questionnaire patient"
-Description: "Subquestionnaire patient"
+Title: "Module Questionnaire Patient"
+Description: "SubQuestionnaire 'patient'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient"
@@ -461,8 +461,8 @@ Description: "Subquestionnaire patient"
 
 Instance: ch-orf-module-requestedencounter
 InstanceOf: Questionnaire
-Title: "Module Questionnaire requestedEncounter"
-Description: "Subquestionnaire patrequestedEncounterient"
+Title: "Module Questionnaire Requested Encounter"
+Description: "SubQuestionnaire 'requestedEncounter'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter"
@@ -492,7 +492,7 @@ Description: "Subquestionnaire patrequestedEncounterient"
 Instance: ch-orf-module-coverage
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Coverage"
-Description: "Subquestionnaire Converage"
+Description: "SubQuestionnaire 'coverage'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage"
@@ -668,7 +668,7 @@ Description: "Subquestionnaire Converage"
 Instance: ch-orf-module-sender
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Sender"
-Description: "Subquestionnaire Sender"
+Description: "SubQuestionnaire 'sender'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender"
@@ -775,8 +775,8 @@ Description: "Subquestionnaire Sender"
 
 Instance: ch-orf-module-receivercopy
 InstanceOf: Questionnaire
-Title: "Module Questionnaire receiverCopy"
-Description: "Subquestionnaire receiverCopy"
+Title: "Module Questionnaire Receiver Copy"
+Description: "SubQuestionnaire 'receiverCopy'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy"
@@ -876,7 +876,7 @@ Description: "Subquestionnaire receiverCopy"
 Instance: ch-orf-module-appointment
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Appointment"
-Description: "Subquestionnaire appointment"
+Description: "SubQuestionnaire 'appointment'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment"
@@ -952,8 +952,8 @@ Description: "Subquestionnaire appointment"
 /*------ Practitioner Name / Telecom ------------------------------ */
 Instance: ch-orf-module-practitioner-nametel
 InstanceOf: Questionnaire
-Title: "Module Questionnaire Practitioner with Name/Telecom"
-Description: "Subquestionnaire Practitioner with Name/Telecom"
+Title: "Module Questionnaire Practitioner Name-Tel"
+Description: "SubQuestionnaire 'practitioner-nametel'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
@@ -996,7 +996,7 @@ Description: "Subquestionnaire Practitioner with Name/Telecom"
 Instance: ch-orf-module-address
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Address"
-Description: "Subquestionnaire Practitioner Address"
+Description: "SubQuestionnaire 'address'"
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
