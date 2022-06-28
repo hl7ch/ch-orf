@@ -12,13 +12,13 @@ Usage: #example
 * extension[=].extension[=].valueCoding = http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext#patient
 * extension[=].extension[+].url = "type"
 * extension[=].extension[=].valueCode = #Patient
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
-* extension[=].extension[0].url = "name"
+* extension[+].extension[0].url = "name"
 * extension[=].extension[=].valueCoding = http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext#user "User"
 * extension[=].extension[+].url = "type"
 * extension[=].extension[=].valueCode = #Practitioner
 * extension[=].extension[+].url = "description"
 * extension[=].extension[=].valueString = "The practitioner that is to be used to pre-populate the form"
+* extension[=].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
@@ -42,10 +42,10 @@ Usage: #example
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * version = "1.1.0-assembled"
 * name = "OrderReferralForm"
-* title = "Order-Referral-Form"
+* title = "Order-Referral-Form v16"
 * status = #active
 * subjectType = #Patient
-* date = "2022-06-27"
+* date = "2022-05-04"
 * publisher = "HL7 Switzerland"
 * contact.name = "HL7 Switzerland"
 * contact.telecom.system = #url
@@ -294,7 +294,6 @@ Usage: #example
 * item[=].item[=].text = "Geschlecht"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = http://hl7.org/fhir/administrative-gender#male "Männlich"
-* item[=].item[=].answerOption[=].initialSelected = true
 * item[=].item[=].answerOption[+].valueCoding = http://hl7.org/fhir/administrative-gender#female "Weiblich"
 * item[=].item[=].answerOption[+].valueCoding = http://hl7.org/fhir/administrative-gender#other "Anderes"
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
@@ -352,14 +351,6 @@ Usage: #example
 * item[=].item[=].linkId = "patient.country"
 * item[=].item[=].text = "Land"
 * item[=].item[=].type = #string
-* item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "%patient.communication.where(preferred=true).language.coding"
-* item[=].item[=].linkId = "patient.languageOfCorrespondence"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
-* item[=].item[=].text = "Korrespondenzsprache"
-* item[=].item[=].type = #choice
-* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "contact"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -574,27 +565,7 @@ Usage: #example
 * item[=].text = "Absender"
 * item[=].type = #group
 * item[=].required = true
-* item[=].item[0].extension[0].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension[=].valueExpression.name = "senderPractitionerRoles"
-* item[=].item[=].extension[=].valueExpression.language = #application/x-fhir-query
-* item[=].item[=].extension[=].valueExpression.expression = "PractitionerRole?practitioner={{%user.id}}"
-* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension[=].valueExpression.name = "senderPractitionerRole"
-* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].item[=].extension[=].valueExpression.expression = "%senderPractitionerRoles.entry[0].resource"
-* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension[=].valueExpression.name = "senderOrganizations"
-* item[=].item[=].extension[=].valueExpression.language = #application/x-fhir-query
-* item[=].item[=].extension[=].valueExpression.expression = "Organization?_id={{%senderPractitionerRole.organization.reference}}"
-* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension[=].valueExpression.name = "senderOrganization"
-* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].item[=].extension[=].valueExpression.expression = "%senderOrganizations.entry[0].resource"
-* item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension[=].valueExpression.name = "address"
-* item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
-* item[=].item[=].extension[=].valueExpression.expression = "%senderOrganization.address"
-* item[=].item[=].linkId = "sender.author"
+* item[=].item[0].linkId = "sender.author"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.author"
 * item[=].item[=].text = "Verantwortlicher"
 * item[=].item[=].type = #group
@@ -614,45 +585,46 @@ Usage: #example
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
 * item[=].item[=].item[=].item[=].text = "Name"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.name.given"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.givenName"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.givenName"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
 * item[=].item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.identifier.where(system='urn:oid:2.51.1.3').value"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.gln"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
 * item[=].item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.identifier.where(system='urn:oid:2.16.756.5.30.1.123.100.2.1.1').value"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.zsr"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
 * item[=].item[=].item[=].item[=].text = "ZSR"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.telecom.where(system='phone').value"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.phone"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.telecom.where(system='email').value"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.email"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.email"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "'sender.author.organization.'"
+* item[=].item[=].item[+].extension[0].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].item[=].extension[=].valueExpression.name = "linkIdPrefix"
+* item[=].item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension[=].valueExpression.expression = "'sender.author.organization.'"
+* item[=].item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].item[=].extension[=].valueExpression.name = "senderPractitionerRoles"
+* item[=].item[=].item[=].extension[=].valueExpression.language = #application/x-fhir-query
+* item[=].item[=].item[=].extension[=].valueExpression.expression = "PractitionerRole?practitioner={{%user.id}}"
+* item[=].item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].item[=].extension[=].valueExpression.name = "senderPractitionerRole"
+* item[=].item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension[=].valueExpression.expression = "%senderPractitionerRoles.entry[0].resource"
+* item[=].item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].item[=].extension[=].valueExpression.name = "senderOrganizations"
+* item[=].item[=].item[=].extension[=].valueExpression.language = #application/x-fhir-query
+* item[=].item[=].item[=].extension[=].valueExpression.expression = "Organization?_id={{%senderPractitionerRole.organization.reference}}"
+* item[=].item[=].item[=].extension[+].url = "http://hl7.org/fhir/StructureDefinition/variable"
+* item[=].item[=].item[=].extension[=].valueExpression.name = "senderOrganization"
+* item[=].item[=].item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].item[=].item[=].extension[=].valueExpression.expression = "%senderOrganizations.entry[0].resource"
 * item[=].item[=].item[=].linkId = "sender.author.organization"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
 * item[=].item[=].item[=].text = "Verantwortliche Organisation"
@@ -664,10 +636,7 @@ Usage: #example
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
-* item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%senderOrganization.identifier.where(system='urn:oid:2.51.1.3').value"
-* item[=].item[=].item[=].item[=].linkId = "sender.author.organization.gln"
+* item[=].item[=].item[=].item[+].linkId = "sender.author.organization.gln"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"
 * item[=].item[=].item[=].item[=].text = "GLN"
 * item[=].item[=].item[=].item[=].type = #string
