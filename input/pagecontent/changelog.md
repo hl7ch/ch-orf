@@ -8,11 +8,17 @@ All significant changes to this FHIR implementation guide will be documented on 
 See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
 #### Added
+* [#61](https://github.com/hl7ch/ch-orf/issues/61): Family doctor
+* [#71](https://github.com/hl7ch/ch-orf/issues/71): Initiator and his relationship to to the patient
+* [#72](https://github.com/hl7ch/ch-orf/issues/72): Patient consent
+* [#73](https://github.com/hl7ch/ch-orf/issues/73): Entry date, discharge Date and Organization of stationary episode antecedent to requested service (e.g spitex)
+
 * [#102](https://github.com/hl7ch/ch-orf/issues/102): Translation of use cases in FR and DE
 * Add documentation in tab 'Questionnaire' about
    * [Modular Form](modular-form.html)
    * [Form Population](form-population.html)
    * [Form Data Extraction](form-data-extraction.html)
+
 
 
 #### Changed / Updated

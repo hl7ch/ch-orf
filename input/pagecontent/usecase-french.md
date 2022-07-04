@@ -27,6 +27,39 @@ Madame S. Ufferer ressent une douleur lancinante dans le bas-ventre tard dans la
 {% include img.html img="external-diagnostics-order.png" width="90%" %}
 
 *************************************************************************
+### Inscription soins à domicile (p.ex. Spitex)
+
+**Patient:** Mme S. Ufferer
+**Client:** 
+   * **Personne responsable:** Dr. F. Amily, médecin de famille
+**Destinataire du mandat:** Spitex
+
+Une demande de soins à domicile (ou d'un autre service ambulatoire, p. ex. service de repas) peut être faite dans différentes situations :
+
+* Le patient est à domicile
+
+* Le patient est actuellement dans un établissement hospitalier et va bientôt rentrer chez lui
+
+* Le patient est à domicile, mais il sera admis dans un établissement stationnaire (p. ex. un hôpital) et rentrera ensuite chez lui à la suite de ce séjour (ou d'un séjour hospitalier ultérieur, p. ex. une réadaptation).
+
+En cas de séjour stationnaire avant les soins à domicile, la date de sortie et éventuellement la date d'entrée sont importantes pour la planification des soins à domicile ; l'institution du séjour stationnaire doit également être connue pour d'éventuelles questions. 
+
+L'inscription pour des soins à domicile se fait souvent à l'initiative de tiers. Il est également important de savoir si l'initiateur est le représentant légal.
+
+Souvent, l'inscription aux soins à domicile ne provient pas du médecin de famille - surtout pour les patients hospitalisés - mais celui-ci doit être connu par les soins à domicile.
+
+Dans la pratique, une inscription (provisoire) pour des soins à domicile peut s'avérer nécessaire avant que le patient n'ait donné son accord formel. Cela doit ressortir de l'inscription. 
+
+Les indications ci-dessus sont de nature administrative ; CH ORF prévoit des attributs correspondants dans la version 1.1. En ce qui concerne le consentement du patient, le formulaire permet une présentation différenciée de la situation sous forme de texte libre.
+
+Pour la saisie d'autres données médicales et de soins, nous renvoyons à [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+
+*************************************************************************
+### Sortie de traitement hospitalier
+
+La possibilité de fournir des informations supplémentaires pour l'inscription aux soins à domicile (voir ci-dessus) couvre également les exigences administratives d'une lettre de sortie. En outre, dans ce cas d'application, d'autres données médicales et de soins sont nécessaires. Pour ce faire, nous vous renvoyons à CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+
+*************************************************************************
 ### Appointments
 La planification des rendez-vous n'est pas simple pour diverses raisons:
 * La patiente S. Ufferer ne connaît peut-être pas les rendez-vous possibles, car elle dépend par exemple de sa fille qui l'emmènera en voiture au rendez-vous.

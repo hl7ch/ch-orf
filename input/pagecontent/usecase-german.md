@@ -30,6 +30,39 @@ Der Verdacht auf ein Aortenauneurysma bestätigt sich und Dr. F. Iller meldet di
 {% include img.html img="external-diagnostics-order.png" width="90%" %}
 
 *************************************************************************
+### Anmeldung Heimpflege (z.B. Spitex)
+
+* **Patientin:** Frau S. Ufferer
+* **Auftraggeber:** 
+   * **Verantwortliche Person:** Dr. F. Amily, Hausärztin
+* **Auftragsempfänger:** Spitex
+
+Eine Anmeldung für die Heimpflege (od. auch einen anderen ambulanten Service, z.B. Mahlzeitendienst) kann in unterschiedlichen Situationen erfolgen:
+
+* Patient ist zuhause
+
+* Patient ist aktuell in einer stationären Einrichtung und wird bald nach Hause entlassen
+
+* Patient ist zuhause, wir jedoch in eine stationäre Einrichtung (z.B. Spital) eintreten und anschliessend von dieser (oder einem nachfolgenden stationären Aufenthalt (z. B. Rehab) nach Hause entlassen.
+
+Im Fall eines stationären Aufenthaltes vor der Heimpflege ist für die Planung der Heimpflege das Entlassungsdatum und ev. auch das Entrittsdatum wichtig; für ev. Nachfragen soll auch die Institution des stationären Aufenthaltes bekannt sein. 
+
+Die Anmeldung für eine Heimpflege erfolgt oft auf Initiative dritter. Wesentlich ist auch, ob es sich beim Initianten um den gesetzlichen Vertreter handelt.
+
+Die Anmeldung für die Heimpflege geht oft - gerade bei stationären Patienten - nicht vom Hausarzt aus; dieser muss der Heimpflege jedoch bekannt sein.
+
+In der Praxis kann eine (provisorische) Anmeldung für eine Heimpflege notwendig werden, bevor das formale Einverständnis des Patienten vorliegt. Dies muss aus der Anmeldung hervorgehen 
+
+Die obigen Angaben sind administrativer Art; CH ORF sieht dafür mit der Version 1.1 entsprechende Attribute vor. Betreffend Einverständnis des Patienten erlaubt das Formular eine differenzierte Darstellung der Situation als Freitext.
+
+Für die Erfassung weiterer medizinischen und pflegerischen Angaben wird auf [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html) verweisen.
+
+*************************************************************************
+### Entlassung aus stationärer Behandlung
+
+Die Möglichkeit zusätzlicher Angaben für die Anmeldung zur Heimpflege (s. o.) deckt auch die administrativen Anforderungen an ein Entlassungsschreiben ab. Zusätzlich sind bei diesem Anwendungsfall weitere medizinische und pflegerische Angaben erforderlich. Dafür wird auf CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html)verweisen.
+
+*************************************************************************
 ### Appointments
 
 Die Terminplanung ist aus verschiedenen Gründen nicht ganz einfach:

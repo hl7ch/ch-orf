@@ -30,6 +30,39 @@ The suspicion of an aortic aneurysm is confirmed and Dr. F. Iller immediately re
 {% include img.html img="external-diagnostics-order.png" width="90%" %}
 
 *************************************************************************
+### Registration for home care (e.g. Spitex)
+
+* **Patient:** Ms. S. Ufferer
+* **Customer:** 
+   * **Responsible person:** Dr. F. Amily, family physician
+* **Order recipient:** Spitex
+
+An application for home care (or also another outpatient service, e.g. meal service) can be made in different situations:
+
+* Patient is at home
+
+* Patient is currently in an inpatient facility and will be discharged home soon.
+
+* Patient is at home, but will enter an inpatient facility (e.g. hospital) and will be discharged from this (or a subsequent inpatient stay (e.g. rehab) to home.
+
+In the case of an inpatient stay before home care, the discharge date and possibly also the entry date are important for planning home care; the institution of the inpatient stay should also be known for necessary inquiries. 
+
+The application for home care is often made on the initiative of a third party. It is important to know whether the initiator is the legal representative.
+
+The registration for home care is often - especially in the case of inpatients - not initiated by the family doctor; however, the family doctor must be known to the home care.
+
+In practice, a (provisional) registration for home care may be necessary before the patient's formal consent has been obtained. This must be stated in the registration 
+
+The above information is of an administrative nature; CH ORF provides with version 1.1. appropriate attributes. Regarding the patient's consent, the form allows a differentiated representation of the situation as free text.
+
+For the entry of further medical and nursing information, please refer to [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+
+*************************************************************************
+### Discharge from inpatient treatment
+
+The additional information for the application for home care (see above) also covers the administrative requirements for discharge letters. In addition, further medical and nursing information is required for this use case. For this, please refer to CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+
+*************************************************************************
 ### Appointments
 
 For various reasons, scheduling appointments is tricky:
