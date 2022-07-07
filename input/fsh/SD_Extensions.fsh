@@ -1,5 +1,13 @@
 
-
+Extension: ChOrfPrecedentDocument
+Id: ch-orf-precedentdocument
+Title: "CH ORF Precedent Document"
+Description: "Identifier of the document which precedes this document in a thread."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
+* valueIdentifier 1..1
+* valueIdentifier only Identifier
+* valueIdentifier ^short = "valueIdentifier"
 
 Extension: ChOrfCopyReceiver
 Id: ch-orf-copyreceiver
