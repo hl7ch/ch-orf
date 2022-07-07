@@ -28,11 +28,7 @@ Usage: #example
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
-* extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|1.1.0"
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|1.1.0"
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
-* extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
@@ -43,12 +39,10 @@ Usage: #example
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|1.1.0"
 * extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
 * extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"
-* extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom"
-* extension[=].valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|1.1.0"
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * version = "1.1.0-assembled"
 * name = "OrderReferralForm"
-* title = "Order Referral Form"
+* title = "Order-Referral-Form"
 * status = #active
 * subjectType = #Patient
 * date = "2022-06-27"
@@ -247,127 +241,6 @@ Usage: #example
 * item[=].extension[=].valueExpression.language = #text/fhirpath
 * item[=].extension[=].valueExpression.expression = "%patient.address"
 * item[=].linkId = "patient"
-* item[+].linkId = "initiator"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"
-* item[=].text = "Initiant dieser Anmeldung"
-* item[=].type = #group
-* item[=].item[0].linkId = "initiator.legalguardian"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
-* item[=].item[=].text = "Juristische Beziehung zum Patienten"
-* item[=].item[=].type = #choice
-* item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#373068000 "Nicht definiert"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#58626002 "Gesetzlicher Vertreter"
-* item[=].item[+].linkId = "initiator.initiatorrelation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
-* item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
-* item[=].item[=].type = #choice
-* item[=].item[=].answerOption[0].valueCoding = http://snomed.info/sct#6089001 "Tochter"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#5616008 "Sohn"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#127849001 "Ehemann"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#127850001 "Ehefrau"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#394921008 "Partner (eingetragene  Partnerschaft)"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#70924004 "Bruder"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#27733009 "Schwester"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#72705000 "Mutter"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#66839005 "Vater"
-* item[=].item[=].answerOption[+].valueCoding = http://snomed.info/sct#48385004 "Bekannt"
-* item[=].item[+].linkId = "initiator.practitionerRole"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].item[=].text = "Gesundheitsfachperson oder -organisation"
-* item[=].item[=].type = #group
-* item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.practitioner.'"
-* item[=].item[=].item[=].linkId = "initiator.practitionerRole.practitioner"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].item[=].item[=].text = "Gesundheitsfachperson"
-* item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].item[0].linkId = "initiator.practitionerRole.practitioner.title"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
-* item[=].item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.practitioner.familyName"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.practitioner.givenName"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.practitioner.phone"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.practitioner.email"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "'initiator.practitionerRole.organization.'"
-* item[=].item[=].item[=].linkId = "initiator.practitionerRole.organization"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].item[=].item[=].text = "Gesundheitsorganisatiton"
-* item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].item[0].linkId = "initiator.practitionerRole.organization.name"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.streetAddressLine"
-* item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.postalCode"
-* item[=].item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.city"
-* item[=].item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "initiator.practitionerRole.organization.country"
-* item[=].item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[+].linkId = "initiator.relatedPerson"
-* item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"
-* item[=].item[=].text = "Andere Person"
-* item[=].item[=].type = #group
-* item[=].item[=].repeats = true
-* item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "'initiator.relatedPerson.'"
-* item[=].item[=].item[=].linkId = "initiator.relatedPerson.familyName"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"
-* item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.givenName"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].item[=].text = "Vorame"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.phone"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
-* item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.email"
-* item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
-* item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.streetAddressLine"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "initiator.relatedPerson.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].type = #string
-* item[+].linkId = "patient"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.subject"
 * item[=].text = "Patient"
 * item[=].type = #group
@@ -437,7 +310,7 @@ Usage: #example
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#4 "geschieden"
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#5 "unverheiratet"
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#6 "in eingetragener Partnerschaft"
-* item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#7 "aufgelöste Partnerschaft"
+* item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#7 "aufgelöste Partnerschaft"
 * item[=].item[=].answerOption[+].valueCoding = http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus#9 "unbekannt"
 * item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -531,71 +404,6 @@ Usage: #example
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact.telecom.value"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
-* item[=].item[+].linkId = "familydoctor"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.generalPractitioner"
-* item[=].item[=].text = "Hausarzt"
-* item[=].item[=].type = #group
-* item[=].item[=].item[0].linkId = "familydoctor.practitioner"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.practitioner"
-* item[=].item[=].item[=].text = "Hausarzt Person"
-* item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].item[0].linkId = "familydoctor.practitioner.title"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.prefix"
-* item[=].item[=].item[=].item[=].text = "Titel"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.familyName"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.family"
-* item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.givenName"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.name.given"
-* item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.gln"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:GLN.value"
-* item[=].item[=].item[=].item[=].text = "GLN"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.zsr"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].item[=].text = "ZSR"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.phone"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].item[=].text = "Telefon"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.email"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
-* item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].item[=].extension.valueExpression.expression = "'familydoctor.organization.'"
-* item[=].item[=].item[=].linkId = "familydoctor.organization"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitionerrole#PractitionerRole.organization"
-* item[=].item[=].item[=].text = "Hausarzt Organisation"
-* item[=].item[=].item[=].type = #group
-* item[=].item[=].item[=].item[0].linkId = "familydoctor.organization.name"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.organization.gln"
-* item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.identifier:GLN"
-* item[=].item[=].item[=].item[=].text = "GLN"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.organization.streetAddressLine"
-* item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.organization.postalCode"
-* item[=].item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.organization.city"
-* item[=].item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].item[+].linkId = "familydoctor.organization.country"
-* item[=].item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].item[=].type = #string
 * item[+].linkId = "requestedEncounter"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
 * item[=].text = "Patientenaufnahme"
@@ -1049,43 +857,6 @@ Usage: #example
 * item[=].item[=].item[=].linkId = "receiverCopy.relatedPerson.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
-* item[+].linkId = "antecedentEpisodeOfCare"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:antecedentEpisodeOfCare"
-* item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
-* item[=].type = #group
-* item[=].item[0].linkId = "antecedentEpisodeOfCare.start"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
-* item[=].item[=].text = "Von"
-* item[=].item[=].type = #dateTime
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
-* item[=].item[=].text = "Bis"
-* item[=].item[=].type = #dateTime
-* item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
-* item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
-* item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
-* item[=].item[=].linkId = "antecedentEpisodeOfCare.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
-* item[=].item[=].text = "Spital /Heim"
-* item[=].item[=].type = #group
-* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
-* item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.streetAddressLine"
-* item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[=].repeats = true
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.postalCode"
-* item[=].item[=].item[=].text = "PLZ"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.city"
-* item[=].item[=].item[=].text = "Ort"
-* item[=].item[=].item[=].type = #string
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.country"
-* item[=].item[=].item[=].text = "Land"
-* item[=].item[=].item[=].type = #string
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
@@ -1099,6 +870,7 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.participant.actor"
 * item[=].item[=].text = "Ort der Durchführung"
 * item[=].item[=].type = #group
+* item[=].item[=].required = true
 * item[=].item[=].item[0].linkId = "appointment.location.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.name"
 * item[=].item[=].item[=].text = "Name"
@@ -1162,19 +934,6 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment#Appointment.patientInstruction"
 * item[=].item[=].text = "Patienteninformation für diesen Termin"
 * item[=].item[=].type = #string
-* item[+].linkId = "consent"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:patientConsent"
-* item[=].text = "Einverständniserklärung"
-* item[=].type = #group
-* item[=].repeats = true
-* item[=].item.linkId = "consent.statement"
-* item[=].item.text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
-* item[=].item.type = #choice
-* item[=].item.answerOption[0].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
-* item[=].item.answerOption[+].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc."
-* item[=].item.item.linkId = "consent.statement.note"
-* item[=].item.item.text = "Anmerkung"
-* item[=].item.item.type = #string
 * item[+].linkId = "note"
 * item[=].text = "Bemerkungen"
 * item[=].type = #group
@@ -1183,3 +942,4 @@ Usage: #example
 * item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.note.text"
 * item[=].item.text = "Kommentar"
 * item[=].item.type = #string
+* item[=].item.required = true
