@@ -38,8 +38,7 @@
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="current"/>
-    <!--TBD: 2.1.0 -->
+    <version value="2.1.0"/>
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
