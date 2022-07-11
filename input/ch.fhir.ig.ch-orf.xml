@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
@@ -112,13 +113,28 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Extension Definitions -->
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-precedentdocument"/>
+        <reference value="StructureDefinition/ch-orf-consent"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-initiator"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
+
+
+
+
+
+    <!-- Extension Definitions -->
+
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"/>
@@ -161,6 +177,57 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-episodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-antecedentepisodeofcare"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+        <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-precedentdocument"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-patientconsent"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>   
+
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-legalguardian"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentcode"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentnote"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <!-- ValueSets-->
     <resource>
@@ -199,6 +266,31 @@
       <exampleBoolean value="false"/>
     </resource>
 
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-initiatorrelation"/>
+      </reference>
+      <name value="Initiator Relation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-legalguardian"/>
+      </reference>
+      <name value="Initiator Legal Relation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="ValueSet/ch-orf-vs-consentstatus"/>
+      </reference>
+      <name value="Consent Status"/>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
     <!-- CodeSystems -->
     <resource>
       <reference>
@@ -210,6 +302,13 @@
     <resource>
       <reference>
         <reference value="CodeSystem/ch-orf-cs-coverageidentifiertype"/>
+      </reference>
+      <name value="Coverage Identifier Type"/>
+      <exampleBoolean value="false"/>
+    </resource>
+        <resource>
+      <reference>
+        <reference value="CodeSystem/ch-orf-cs-consentstatus"/>
       </reference>
       <name value="Coverage Identifier Type"/>
       <exampleBoolean value="false"/>
@@ -238,7 +337,7 @@
       <reference>
         <reference value="Bundle/radiology-order"/>
       </reference>
-      <name value="Radiology order"/>
+      <name value="Radiology Order"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
@@ -281,10 +380,19 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/ch-orf-module-familydoctor"/>
+      </reference>
+      <name value="Module Questionnaire Familydoctor"/>
+      <description value="Subquestionnaire familyDoctor"/>
+    </resource>
+
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/ch-orf-module-address"/>
       </reference>
       <name value="Module Questionnaire Address"/>
-      <description value="SubQuestionnaire 'address'"/>
+      <description value="Subquestionnaire address"/>
     </resource>
 
     <resource>
@@ -292,7 +400,7 @@
         <reference value="Questionnaire/ch-orf-module-order"/>
       </reference>
       <name value="Module Questionnaire Order"/>
-      <description value="SubQuestionnaire 'order'"/>
+      <description value="Subquestionnaire order"/>
     </resource>
 
     <resource>
@@ -300,7 +408,7 @@
         <reference value="Questionnaire/ch-orf-module-receiver"/>
       </reference>
       <name value="Module Questionnaire Receiver"/>
-      <description value="SubQuestionnaire 'receiver'"/>
+      <description value="Subquestionnaire receiver"/>
     </resource>
 
     <resource>
@@ -308,7 +416,7 @@
         <reference value="Questionnaire/ch-orf-module-patient"/>
       </reference>
       <name value="Module Questionnaire Patient"/>
-      <description value="SubQuestionnaire 'patient'"/>
+      <description value="Subquestionnaire patient"/>
     </resource>
 
     <resource>
@@ -316,7 +424,7 @@
         <reference value="Questionnaire/ch-orf-module-requestedencounter"/>
       </reference>
       <name value="Module Questionnaire Requested Encounter"/>
-      <description value="SubQuestionnaire 'requestedEncounter'"/>
+      <description value="Subquestionnaire requestedEncounter"/>
     </resource>
 
     <resource>
@@ -324,7 +432,7 @@
         <reference value="Questionnaire/ch-orf-module-coverage"/>
       </reference>
       <name value="Module Questionnaire Coverage"/>
-      <description value="SubQuestionnaire 'coverage'"/>
+      <description value="Subquestionnaire coverage"/>
     </resource>
 
     <resource>
@@ -332,7 +440,7 @@
         <reference value="Questionnaire/ch-orf-module-sender"/>
       </reference>
       <name value="Module Questionnaire Sender"/>
-      <description value="SubQuestionnaire 'sender'"/>
+      <description value="Subquestionnaire sender"/>
     </resource>
 
     <resource>
@@ -340,7 +448,7 @@
         <reference value="Questionnaire/ch-orf-module-receivercopy"/>
       </reference>
       <name value="Module Questionnaire Receiver Copy"/>
-      <description value="SubQuestionnaire 'receiverCopy'"/>
+      <description value="Subquestionnaire receiverCopy"/>
     </resource>
 
     <resource>
@@ -348,15 +456,31 @@
         <reference value="Questionnaire/ch-orf-module-appointment"/>
       </reference>
       <name value="Module Questionnaire Appointment"/>
-      <description value="SubQuestionnaire 'appointment'"/>
+      <description value="Subquestionnaire appointment"/>
     </resource>
 
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-practitioner-nametel"/>
       </reference>
-      <name value="Module Questionnaire Practitioner Name-Tel"/>
-      <description value="SubQuestionnaire 'practitioner-nametel'"/>
+      <name value="Module Questionnaire Practitioner Name Tel"/>
+      <description value="Subquestionnaire Practitioner with Name and Telecom"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-initiator"/>
+      </reference>
+      <name value="Module Questionnaire Initiator"/>
+      <description value="Subquestionnaire initiator"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Questionnaire/ch-orf-module-consent"/>
+      </reference>
+      <name value="Module Questionnaire Consent"/>
+      <description value="Subquestionnaire consent"/>
     </resource>
 
     <resource>
@@ -409,6 +533,7 @@
       <description value="Example for DocumentReference"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-documentreference"/>
     </resource>
+
 
     <resource>
       <reference>
@@ -608,6 +733,71 @@
       <description value="Example for Location"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="Patient/SUfferer"/>
+      </reference>
+      <name value="Susanna Ufferer"/>
+      <description value="Example for Patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="RelatedPerson/ChOrfRelatedPersonMUfferer"/>
+      </reference>
+      <name value="Susanna Ufferer"/>
+      <description value="Example for Related Person Resource (Husband of Susanna Ufferer)"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="EpisodeOfCare/ChOrfEpisodeOfCareSUfferer"/>
+      </reference>
+      <name value="Eisode of Care"/>
+      <description value="Example for Discharge Date in ChOrfEpisodeOfCare Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Consent/ChOrfConsentSUfferer"/>
+      </reference>
+      <name value="Consent"/>
+      <description value="Example for ChOrfConsent Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Organization/OrganizationSpitalTrubschachen"/>
+      </reference>
+      <name value="Organization"/>
+      <description value="Example for ChCoreOrganization Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/ChCorePractitionerRoleFAmily"/>
+      </reference>
+      <name value="PractitionerRole"/>
+      <description value="Example for ChCorePractitionerRole Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+ 
+     <resource>
+      <reference>
+        <reference value="Practitioner/ChCorePractitionerFAmily"/>
+      </reference>
+      <name value="Practitioner"/>
+      <description value="EExample for Practitioner Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+
 
     <!-- pages -->
     <page>

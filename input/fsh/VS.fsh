@@ -21,6 +21,17 @@ Description: "Value Set for CH ORF Appointment Status"
 * AppointmentStatus#pending
 * AppointmentStatus#booked
 
+
+ValueSet: ChOrfConsentStatus
+Id: ch-orf-vs-consentstatus
+Title: "Consent Status"
+Description: "Value Set for CH ORF Consent Status"
+* ChOrfConsentStatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
+* ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
+* SCT#373068000 "Undetermined (qualifier value)" // --> entspricht leer
+
+
+
 ValueSet: ChOrfEncounterClass
 Id: ch-orf-vs-encounterclass
 Title: "Encounter Class"
@@ -49,3 +60,29 @@ Description: "Value Set for CH ORF Desired Accomodation"
 * ChCoreCSEncounterType#1 "allgemein"
 * ChCoreCSEncounterType#2 "halbprivat"
 * ChCoreCSEncounterType#3 "privat"
+
+
+ValueSet: ChOrfVsInitiatorRelation
+Id: ch-orf-vs-initiatorrelation
+Title: "Initiator Relation"
+Description: "Value Set for CH ORF Inititator Relation"
+
+* SCT#6089001 "Daughter (person)"
+* SCT#5616008 "Son (person)"
+//127848009 "Spouse (person)"
+* SCT#127849001 "Husband (person)"
+* SCT#127850001 "Wife (person)"
+* SCT#394921008 "Cohabitee (person)"
+* SCT#70924004  "Brother (person)"
+* SCT#27733009  "Sister (person)"
+* SCT#72705000  "Mother (person)"
+* SCT#66839005  "Father (person)"
+* SCT#48385004  "Acquaintance (person)"
+// "Other" --> Empty
+
+ValueSet: ChOrfVSLegalGuardian
+Id: ch-orf-vs-legalguardian
+Title: "Legal Guardian"
+Description: "Value Set for CH ORF Legal Guardian"
+* SCT#373068000 "Undetermined (qualifier value)"
+* SCT#58626002  "Legal guardian (person)"

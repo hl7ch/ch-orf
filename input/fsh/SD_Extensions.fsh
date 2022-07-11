@@ -1,3 +1,14 @@
+
+Extension: ChOrfPrecedentDocument
+Id: ch-orf-precedentdocument
+Title: "CH ORF Precedent Document"
+Description: "Identifier of the document which precedes this document in a thread."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
+* valueIdentifier 1..1
+* valueIdentifier only Identifier
+* valueIdentifier ^short = "valueIdentifier"
+
 Extension: ChOrfCopyReceiver
 Id: ch-orf-copyreceiver
 Title: "CH ORF Copy Receiver"
@@ -7,6 +18,107 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * valueReference 1..1
 * valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
 * valueReference ^short = "valueReference"
+
+//========================
+Extension: ChOrfInitiator
+Id: ch-orf-initiator
+Title: "CH ORF Initiator"
+Description: "Person/organization who initated this order (may or may nor receive a copy)"
+* ^version = "2.0.0"
+* ^date = "2019-12-04"
+* ^publisher = "HL7 Switzerland"
+* ^contact.name = "HL7 Switzerland"
+* ^contact.telecom.system = #url
+* ^contact.telecom.value = "https://www.hl7.ch/"
+* ^jurisdiction = urn:iso:std:iso:3166#CH
+* ^copyright = "CC-BY-SA-4.0"
+* ^context.type = #element
+* ^context.expression = "Composition"
+* . ..1
+* . ^short = "Extension"
+* . ^definition = "Extension to define Person/organization who initated this order (may or may nor receive a copy)"
+* extension contains
+    ChOrfRelationInitiatorPatient named relation 0..1 MS and 
+    ChOrfLegalGuardian named legal 0..1 MS and 
+    nameAdress 0..1 MS 
+* extension[relation] ^short = "Relation between Initator and Patient" 
+* extension[legal] ^short = "Extension to define the personal relation between intitator and patient"    
+* extension[nameAdress] ^short = "Information about the Initiator Person and Organization"
+* extension[nameAdress].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* extension[nameAdress].valueReference ^short = "Practioner or related Person who initated this order"
+
+
+
+Extension: ChOrfLegalGuardian
+Id: ch-orf-legalguardian
+Title: "CH ORF Legal Guardian of thePatient"
+Description: "Legal Guardian of thePatient"
+* ^context[0].type = #element
+* ^context[=].expression = "Composition.extension"
+* . 0..1
+* . ^short = "Extension"
+* . ^definition = "Extension to define the legal relation between intitator and patient"
+* valueCodeableConcept 1..1
+//* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* valueCodeableConcept ^short = "Value of extension"
+
+
+Extension: ChOrfRelationInitiatorPatient
+Id: ch-orf-relationinitiatorpatient
+Title: "CH ORF Relation between Initator and Patient"
+Description: "Relatioin between Initator and Patient"
+* ^context[0].type = #element
+* ^context[=].expression = "Composition.extension"
+* . 0..1
+* . ^short = "Extension"
+* . ^definition = "Relation between intitator and patient"
+* valueCodeableConcept 1..1
+//* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+* valueCodeableConcept ^short = "Value of extension"
+
+
+
+
+
+Extension: ChOrfPatientConsent
+Id: ch-orf-patientconsent
+Title: "CH ORF Patient Consent"
+Description: "Patient Consent to this Order"
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
+* valueReference 1..1
+* valueReference only Reference(ChOrfConsent)
+* valueReference ^short = "valueReference"
+
+Extension: ChOrfConsentCode
+Id: ch-orf-consentcode
+Title: "CH ORF Consent Code"
+Description: "Consent Code"
+
+//* ^context[0].type = #fhirpath
+//* ^context[0].expression = "ChOrfConsent"
+
+* valueCodeableConcept 1..1
+//* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept from  ChOrfConsentStatus (required)
+* valueCodeableConcept ^short = "valuecode"
+
+
+Extension: ChOrfConsentNote
+Id: ch-orf-consentnote
+Title: "CH ORF Consent Note"
+Description: "Consent Note "
+//* ^context[0].type = #fhirpath
+//* ^context[0].expression = "ChOrfConsent"
+
+* valueString 1..1
+//* valueString only string
+* valueString ^short = "valueString"
+
+
+
 
 
 Extension: ChOrfReceiver
@@ -19,16 +131,19 @@ Description: "Person/organization who receives the document"
 * valueReference only Reference(ChCorePractitionerRole)
 * valueReference ^short = "valueReference"
 
-
-Extension: ChOrfPrecedentDocument
-Id: ch-orf-precedentdocument
-Title: "CH ORF Precedent Document"
-Description: "Identifier of the document which precedes this document in a thread."
+Extension: ChOrfAntecedentEpisodeOfCare
+Id: ch-orf-antecedentepisodeofcare
+Title: "CH ORF Episode of Care"
+Description: "Documentation of the antecedent episode  of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
-* valueIdentifier 1..1
-* valueIdentifier only Identifier
-* valueIdentifier ^short = "valueIdentifier"
+* valueReference 1..1
+* valueReference only Reference(ChOrfEpisodeOfCare)
+* valueReference ^short = "valueReference"
+
+
+
+
 
 
 Extension: ChOrfUrgentNotificiationContactForTheResponseToThisDocument

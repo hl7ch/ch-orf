@@ -14,6 +14,16 @@ Description: "Code System for CH ORF Coverage Type"
 * #Other "Other"
 
 
+
+CodeSystem: ChOrfConsentStatus
+Id: ch-orf-cs-consentstatus
+Title: "Consent Status"
+Description: "Value Set for CH ORF Consent Status"
+* ^caseSensitive = true
+* #ExplicitAgreement "Patient is informed and has explicitly agreed"
+* #Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
+
+
 CodeSystem: ChOrfCoverageIdentifierType
 Id: ch-orf-cs-coverageidentifiertype
 Title: "Coverage Identifier Type"
@@ -24,3 +34,5 @@ Description: "Code System for CH ORF Coverage Identifier Type"
 * #Other "Other Identifier"
 * #IV "IV-Verfügungsnummer"
 * #MV "MV-Versichertennummer"
+
+

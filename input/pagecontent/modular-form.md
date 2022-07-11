@@ -27,7 +27,8 @@ Each section of the [ORF Questionnaire](Questionnaire-order-referral-form.html) 
 * [Module Questionnaire Sender](Questionnaire-ch-orf-module-sender.html): Sender section
 * [Module Questionnaire Receiver Copy](Questionnaire-ch-orf-module-receivercopy.html): ReceiverCopy section
 * [Module Questionnaire Appointment](Questionnaire-ch-orf-module-appointment.html): Appointment section
-
+* [Module Questionnaire Initiator](Questionnaire-ch-orf-module-initiator.html): Initiator section
+* [Module Questionnaire Consent](Questionnaire-ch-orf-module-consent.html): Consent section 
 
 Further re-usable modules used in the sections:
 * [Module Questionnaire Practitioner Name-Tel](Questionnaire-ch-orf-module-practitioner-nametel.html): Defining name and contact details
