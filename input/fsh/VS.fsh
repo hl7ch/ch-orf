@@ -67,8 +67,8 @@ Id: ch-orf-vs-initiatorrelation
 Title: "Initiator Relation"
 Description: "Value Set for CH ORF Inititator Relation"
 
-* SCT#6089001 "Daughter (person)"
-* SCT#5616008 "Son (person)"
+* SCT#66089001 "Daughter (person)"
+* SCT#65616008 "Son (person)"
 //127848009 "Spouse (person)"
 * SCT#127849001 "Husband (person)"
 * SCT#127850001 "Wife (person)"

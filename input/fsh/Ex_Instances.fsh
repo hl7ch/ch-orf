@@ -22,14 +22,14 @@ Title: "Consent Note"
 Description: "Example forChOrfConsentNote Extension"
 Usage: #inline
 * valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
-*/
+
 Instance:  ChOrfInitiatorMUfferer
 InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
 Description: "Example for ChOrfInitiator Extension"
 Usage: #inline
 * extension[nameAdress].valueReference = Reference (ChOrfRelatedPersonMUfferer)
- 
+*/ 
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
@@ -48,13 +48,13 @@ Title: "Spital Trubschachen"
 Description: "Example for ChCoreOrganization Resource"
 * name = "Spital Trubschachen"
 
-Instance: ChOrfRelationInitiatorPatientMUfferer
+/*Instance: ChOrfRelationInitiatorPatientMUfferer
 InstanceOf: ChOrfRelationInitiatorPatient
 Title: "Beziehung Max und Susanna Sufferer"
 Description: "Example forChOrfRelationInitiatorPatient Extension"
 Usage: #inline
 * valueCodeableConcept = SCT#127849001 // Husband
-
+*/
 
 
 Instance: SUfferer
@@ -87,7 +87,6 @@ Description: "Example for Patient Resource"
 * address.city = "Zürich"
 * address.postalCode = "8000"
 * address.country = "Schweiz"
-
 *  generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
 
 
@@ -111,12 +110,12 @@ Description: "Example for ChCorePractitionerRole Resource"
 
 Instance: ChCorePractitionerFAmily
 InstanceOf: ChCorePractitioner
-Title: "Florance Amily"
+Title: "Florence Amily"
 Description: "Example for Practioner Resource"
 * name.family = "Amily"
-* name.given = "Florance"
+* name.given = "Florence"
 
-Instance: ChOrfAntecedentEpisodeOfCareSUfferer
+/*Instance: ChOrfAntecedentEpisodeOfCareSUfferer
 InstanceOf: ChOrfAntecedentEpisodeOfCare
 Title: "AntecedentEpisodeOfCare Susanna Ufferer"
 Description: "Example of AntecedentEpisodeOfCare Extension"
@@ -129,7 +128,7 @@ Title: "Consent of Susanna Ufferer"
 Description: "Example of Consent Extension"
 Usage: #inline
 * valueReference = Reference(ChOrfConsentSUfferer)
-
+*/
 
 
 
