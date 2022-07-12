@@ -1104,7 +1104,7 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
-* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
+* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
