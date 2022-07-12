@@ -4,7 +4,7 @@ Id: ch-orf-vs-coveragetype
 Title: "Coverage Type"
 Description: "Value Set for CH ORF Coverage Type"
 * include codes from system ChOrfCoverageType
-//--
+
 
 ValueSet: ChOrfCoverageIdentifierType
 Id: ch-orf-vs-coverageidentifiertype

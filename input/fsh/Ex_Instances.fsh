@@ -1,3 +1,56 @@
+Instance: comp-order-referral-form-1-1-0
+InstanceOf: Composition
+Usage: #inline
+* extension[0].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument"
+* extension[=].valueIdentifier.system = "urn:ietf:rfc:3986"
+* extension[=].valueIdentifier.value = "urn:uuid:1622f2fb-6ba3-4532-9aed-35b158def187"
+* extension[+].url = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer"
+* extension[=].extension.url = "enterer"
+* extension[=].extension.valueReference = Reference(PractitionerRole/StabiloBossPraxisSeeblick)
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"
+* extension[=].valueReference = Reference(PractitionerRole/NotificationContactHansRoentgen)
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument"
+* extension[=].valueReference = Reference(PractitionerRole/NotificationContactSabineMeier)
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver"
+* extension[=].valueReference = Reference(HansRoentgenKantonsspital)
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
+* extension[=].valueReference = Reference(CopyReceiverSabineMeierPraxisSeeblick)
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
+* extension[=].valueReference = Reference(SUfferer)
+
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-antecedentepisodeofcare"
+* extension[=].valueReference = Reference(ChOrfEpisodeOfCareSUfferer)
+
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-consent"
+* extension[=].valueReference = Reference(ChOrfConsentSUfferer)
+
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"
+* extension[=].valueReference = Reference(ChOrfRelatedPersonMUfferer)
+* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian"
+* extension[=].valueCode =  SCT#58626002  "Legal guardian (person)"
+
+
+* status = #final
+* type = http://snomed.info/sct#419891008 "Record artifact (record artifact)"
+* category = http://snomed.info/sct#721963009 "Order (record artifact)"
+* subject = Reference(ErikaMusterfrau)
+* date = "2019-03-31T11:46:09+02:00"
+* author = Reference(SabineMeierPraxisSeeblick)
+* title = "Order-Referral-Form"
+* section[0].title = "Order-Referral"
+* section[=].code = http://loinc.org#93037-0 "Portable medical order form"
+* section[=].text.status = #generated
+* section[=].text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\"> Order-Referral-Form </div>"
+* section[=].entry[0] = Reference(order-referral-form)
+* section[=].entry[+] = Reference(qr-order-referral-form)
+* section[=].entry[+] = Reference(sr-order-referral-form)
+* section[+].title = "Original representation"
+* section[=].code = http://loinc.org#55108-5 "Clinical presentation"
+* section[=].text.status = #generated
+* section[=].text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t\t\t\t    Representation of the original view:\n                            <img src=\"pdf1\"/>\n                        </div>"
+* section[=].entry = Reference(pdf)
+
+
 Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
 Title: "Susanna Ufferer is not yet informed"
@@ -23,7 +76,7 @@ Description: "Example forChOrfConsentNote Extension"
 Usage: #inline
 * valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
 
-Instance:  ChOrfInitiatorMUfferer
+Instance:  MUfferer
 InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
 Description: "Example for ChOrfInitiator Extension"
