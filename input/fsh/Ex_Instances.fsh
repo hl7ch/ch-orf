@@ -21,11 +21,13 @@ InstanceOf: Composition
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-antecedentepisodeofcare"
 * extension[=].valueReference = Reference(ChOrfEpisodeOfCareSUfferer)
 
-* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-consent"
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-patientconsent"
 * extension[=].valueReference = Reference(ChOrfConsentSUfferer)
 
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"
 * extension[=].valueReference = Reference(ChOrfRelatedPersonMUfferer)
+* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-relationinitiatorpatient"
+* extension[=].valueCode = SCT#127849001 "Husband (person)"
 * extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian"
 * extension[=].valueCode =  SCT#58626002  "Legal guardian (person)"
 
@@ -74,14 +76,14 @@ Title: "Consent Note"
 Description: "Example forChOrfConsentNote Extension"
 Usage: #inline
 * valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
-
-Instance:  ChOrfInitiatorMUfferer
+*/
+Instance: ChOrfInitiatorMUfferer
 InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
 Description: "Example for ChOrfInitiator Extension"
 Usage: #inline
 * extension[nameAdress].valueReference = Reference (ChOrfRelatedPersonMUfferer)
-*/ 
+ 
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
@@ -93,21 +95,11 @@ Description: "Example for Discharge Date in ChOrfEpisodeOfCare Resource"
 * statusHistory.period.end = 2022-07-28
 * managingOrganization = Reference (OrganizationSpitalTrubschachen)
 
-
 Instance: OrganizationSpitalTrubschachen
 InstanceOf: ChCoreOrganization
 Title: "Spital Trubschachen"
 Description: "Example for ChCoreOrganization Resource"
 * name = "Spital Trubschachen"
-
-/*Instance: ChOrfRelationInitiatorPatientMUfferer
-InstanceOf: ChOrfRelationInitiatorPatient
-Title: "Beziehung Max und Susanna Sufferer"
-Description: "Example forChOrfRelationInitiatorPatient Extension"
-Usage: #inline
-* valueCodeableConcept = SCT#127849001 // Husband
-*/
-
 
 Instance: SUfferer
 InstanceOf: ChCorePatient
@@ -141,8 +133,6 @@ Description: "Example for Patient Resource"
 * address.country = "Schweiz"
 *  generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
 
-
-
 Instance: ChOrfRelatedPersonMUfferer
 InstanceOf: RelatedPerson
 Title: "Initiator ist Ehemann"
@@ -159,28 +149,12 @@ Title: "Practioner Role Family Doctor"
 Description: "Example for ChCorePractitionerRole Resource"
 * practitioner = Reference (ChCorePractitionerFAmily)
 
-
 Instance: ChCorePractitionerFAmily
 InstanceOf: ChCorePractitioner
 Title: "Florence Amily"
 Description: "Example for Practioner Resource"
 * name.family = "Amily"
 * name.given = "Florence"
-
-/*Instance: ChOrfAntecedentEpisodeOfCareSUfferer
-InstanceOf: ChOrfAntecedentEpisodeOfCare
-Title: "AntecedentEpisodeOfCare Susanna Ufferer"
-Description: "Example of AntecedentEpisodeOfCare Extension"
-Usage: #inline
-* valueReference = Reference(ChOrfEpisodeOfCareSUfferer)
-
-Instance: ChOrfPatientConsentSUfferer
-InstanceOf: ChOrfPatientConsent
-Title: "Consent of Susanna Ufferer"
-Description: "Example of Consent Extension"
-Usage: #inline
-* valueReference = Reference(ChOrfConsentSUfferer)
-*/
 
 
 
