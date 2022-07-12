@@ -332,6 +332,16 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="Bundle/spitex-order"/>
+      </reference>
+      <name value="Spitex Order"/>
+      <description value="Example for Bundle"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+    </resource>
+
     <resource>
       <reference>
         <reference value="Bundle/radiology-order"/>
