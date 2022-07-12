@@ -335,11 +335,11 @@
 
     <resource>
       <reference>
-        <reference value="Bundle/spitex-order"/>
+        <reference value="Composition/spitex-order"/>
       </reference>
-      <name value="Spitex Order"/>
-      <description value="Example for Bundle"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+      <name value="Composition Spitex-Order"/>
+      <description value="Example for Composition"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
 
     <resource>
@@ -802,7 +802,7 @@
         <reference value="Practitioner/ChCorePractitionerFAmily"/>
       </reference>
       <name value="Practitioner"/>
-      <description value="EExample for Practitioner Resource"/>
+      <description value="Example for Practitioner Resource"/>
       <exampleBoolean value="true"/>
     </resource>
 

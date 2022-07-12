@@ -1,6 +1,6 @@
 Instance: spitex-order
 InstanceOf: Composition
-Usage: #inline
+// Usage: #inline
 * extension[0].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument"
 * extension[=].valueIdentifier.system = "urn:ietf:rfc:3986"
 * extension[=].valueIdentifier.value = "urn:uuid:1622f2fb-6ba3-4532-9aed-35b158def187"
@@ -28,7 +28,6 @@ Usage: #inline
 * extension[=].valueReference = Reference(ChOrfRelatedPersonMUfferer)
 * extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian"
 * extension[=].valueCode =  SCT#58626002  "Legal guardian (person)"
-
 
 * status = #final
 * type = http://snomed.info/sct#419891008 "Record artifact (record artifact)"
