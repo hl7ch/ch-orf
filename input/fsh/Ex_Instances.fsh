@@ -12,9 +12,9 @@ InstanceOf: Composition
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument"
 * extension[=].valueReference = Reference(PractitionerRole/NotificationContactSabineMeier)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver"
-* extension[=].valueReference = Reference(HansRoentgenKantonsspital)
+* extension[=].valueReference = Reference(ChCorePractitionerRoleSpitex)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
-* extension[=].valueReference = Reference(CopyReceiverSabineMeierPraxisSeeblick)
+* extension[=].valueReference = Reference(PractitionerRole/CopyReceiverSabineMeierPraxisSeeblick)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
 * extension[=].valueReference = Reference(SUfferer)
 
@@ -25,32 +25,39 @@ InstanceOf: Composition
 * extension[=].valueReference = Reference(ChOrfConsentSUfferer)
 
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"
-* extension[=].valueReference = Reference(ChOrfRelatedPersonMUfferer)
-* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-relationinitiatorpatient"
-* extension[=].valueCode = SCT#127849001 "Husband (person)"
-* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian"
-* extension[=].valueCode =  SCT#58626002  "Legal guardian (person)"
+//* extension[=].valueReference = Reference(ChOrfConsentSUfferer)
+
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-relationinitiatorpatient"
+* extension[=].valueCodeableConcept = SCT#127849001 "Husband (person)"
+
+* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-legalguardian"
+* extension[=].valueCodeableConcept =  SCT#58626002  "Legal guardian (person)"
+
+//* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-person-organization"
+//* extension[=].extension[=].valueReference = Reference(RelatedPerson/ChOrfRelatedPersonMUfferer)
+
+
 
 * status = #final
 * type = http://snomed.info/sct#419891008 "Record artifact (record artifact)"
 * category = http://snomed.info/sct#721963009 "Order (record artifact)"
 * subject = Reference(SUfferer)
 * date = "2019-03-31T11:46:09+02:00"
-* author = Reference(SabineMeierPraxisSeeblick)
+* author = Reference(PractitionerRole/StabiloBossPraxisSeeblick)
 * title = "Order-Referral-Form"
 * section[0].title = "Order-Referral"
 * section[=].code = http://loinc.org#93037-0 "Portable medical order form"
 * section[=].text.status = #generated
 * section[=].text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\"> Order-Referral-Form </div>"
-* section[=].entry[0] = Reference(order-referral-form)
-* section[=].entry[+] = Reference(qr-order-referral-form)
-* section[=].entry[+] = Reference(sr-order-referral-form)
-* section[+].title = "Original representation"
+* section[=].entry[0] = Reference(Questionnaire/order-referral-form)
+* section[=].entry[+] = Reference(QuestionnaireResponse/qr-order-referral-form)
+* section[=].entry[+] = Reference(ServiceRequest/sr-order-referral-form)
+/* section[+].title = "Original representation"
 * section[=].code = http://loinc.org#55108-5 "Clinical presentation"
 * section[=].text.status = #generated
 * section[=].text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t\t\t\t    Representation of the original view:\n                            <img src=\"pdf1\"/>\n                        </div>"
 * section[=].entry = Reference(pdf)
-
+*/
 
 Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
@@ -76,14 +83,15 @@ Title: "Consent Note"
 Description: "Example forChOrfConsentNote Extension"
 Usage: #inline
 * valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
-*/
+
 Instance: ChOrfInitiatorMUfferer
 InstanceOf: ChOrfInitiator
 Title: "Initiator ist Ehemann"
 Description: "Example for ChOrfInitiator Extension"
 Usage: #inline
-* extension[nameAdress].valueReference = Reference (ChOrfRelatedPersonMUfferer)
- 
+* extension[nameAdress].valueReference = Reference (RelatedPerson/ChOrfRelatedPersonMUfferer)
+*/
+
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
@@ -131,7 +139,7 @@ Description: "Example for Patient Resource"
 * address.city = "Zürich"
 * address.postalCode = "8000"
 * address.country = "Schweiz"
-*  generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
+* generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
 
 Instance: ChOrfRelatedPersonMUfferer
 InstanceOf: RelatedPerson
@@ -156,6 +164,23 @@ Description: "Example for Practioner Resource"
 * name.family = "Amily"
 * name.given = "Florence"
 
+Instance: ChCorePractitionerRoleSpitex
+InstanceOf: ChCorePractitionerRole
+Title: "Practioner Role Spitex"
+Description: "Example for ChCorePractitionerRole Resource"
+* practitioner = Reference (ChCorePractitionerSPitex)
 
+Instance: ChCorePractitionerSPitex
+InstanceOf: ChCorePractitioner
+Title: "Samuel Itex"
+Description: "Example for Practioner Resource"
+* name.family = "Itex"
+* name.given = "Samuel"
 
+Instance: ChCorePractitionerTRub
+InstanceOf: ChCorePractitioner
+Title: "Thomas Rub"
+Description: "Example for Practioner Resource"
+* name.family = "Thomas"
+* name.given = "Rub"
 

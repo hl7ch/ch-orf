@@ -23,9 +23,9 @@ Description: "Receiver of the copy of this order and the results therefrom"
 Extension: ChOrfInitiator
 Id: ch-orf-initiator
 Title: "CH ORF Initiator"
-Description: "Person/organization who initated this order (may or may nor receive a copy)"
+Description: "Initiator and his realtion to the patient"
 * ^version = "2.0.0"
-* ^date = "2019-12-04"
+* ^date = "2022-06-13"
 * ^publisher = "HL7 Switzerland"
 * ^contact.name = "HL7 Switzerland"
 * ^contact.telecom.system = #url
@@ -40,29 +40,18 @@ Description: "Person/organization who initated this order (may or may nor receiv
 * extension contains
     ChOrfRelationInitiatorPatient named relation 0..1 MS and 
     ChOrfLegalGuardian named legal 0..1 MS and 
-    nameAdress 0..1 MS 
-* extension[relation] ^short = "Relation between Initator and Patient" 
-* extension[legal] ^short = "Extension to define the personal relation between intitator and patient"    
-* extension[nameAdress] ^short = "Information about the Initiator Person and Organization"
-* extension[nameAdress].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
-* extension[nameAdress].valueReference ^short = "Practioner or related Person who initated this order"
+    ChOrfInitiatorPersonOrganization named personOrganisation 0..1 MS 
+* extension[relation] ^short = "Personal Relation between initator and patient" 
+//* extension[relation] only CodeableConcept
+* extension[relation].valueCodeableConcept 1..1
+* extension[relation].valueCodeableConcept from ChOrfVsInitiatorRelation (required)
 
-
-
-Extension: ChOrfLegalGuardian
-Id: ch-orf-legalguardian
-Title: "CH ORF Legal Guardian of thePatient"
-Description: "Legal Guardian of thePatient"
-* ^context[0].type = #element
-* ^context[=].expression = "Composition.extension"
-* . 0..1
-* . ^short = "Extension"
-* . ^definition = "Extension to define the legal relation between intitator and patient"
-* valueCodeableConcept 1..1
-//* valueCodeableConcept only CodeableConcept
-* valueCodeableConcept from ChOrfVSLegalGuardian (required)
-* valueCodeableConcept ^short = "Value of extension"
-
+* extension[legal] ^short = "Legal relation between intitator and patient"    
+//* extension[legal]. only CodeableConcept
+* extension[legal].valueCodeableConcept 1..1
+* extension[legal].valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* extension[personOrganisation] ^short = "Person/organization who initated this order (may or may nor receive a copy"
+* extension[personOrganisation].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 
 Extension: ChOrfRelationInitiatorPatient
 Id: ch-orf-relationinitiatorpatient
@@ -74,12 +63,30 @@ Description: "Relatioin between Initator and Patient"
 * . ^short = "Extension"
 * . ^definition = "Relation between intitator and patient"
 * valueCodeableConcept 1..1
-//* valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVsInitiatorRelation (required)
 * valueCodeableConcept ^short = "Value of extension"
 
 
+Extension: ChOrfLegalGuardian
+Id: ch-orf-legalguardian
+Title: "CH ORF Legal Guardian of the Patient"
+Description: "Legal Guardian of the Patient"
+* ^context[0].type = #element
+* ^context[=].expression = "Composition.extension"
+* . 0..1
+* . ^short = "Extension"
+* . ^definition = "Extension to define the legal relation between intitator and patient"
+* valueCodeableConcept 1..1
+//* valueCodeableConcept only CodeableConcept
+* valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* valueCodeableConcept ^short = "Value of extension"
 
+Extension: ChOrfInitiatorPersonOrganization
+Id: ch-orf-initiator-person-organization
+Title: "CH ORF Initiator (Practioner or Related Person"
+Description: "Person/organization who initated this order (may or may nor receive a copy)"
+* extension ^short = "Information about the Initiator Person and Organization"
+* extension.valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 
 
 Extension: ChOrfPatientConsent

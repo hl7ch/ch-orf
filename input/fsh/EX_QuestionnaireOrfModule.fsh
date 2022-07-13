@@ -178,7 +178,7 @@ Description: "Example for Questionnaire"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
 
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.practitionerRole.organization.name"
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
@@ -1544,7 +1544,7 @@ Description: "Subquestionnaire patientConsent"
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = ChOrfConsentStatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
-* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
+* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc." 
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
 //* item[=].initial.valueCoding = SCT#373068000
 //* item[=].required = true

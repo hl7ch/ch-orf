@@ -119,21 +119,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-initiator"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
-
-
-
-
-
-
     <!-- Extension Definitions -->
-
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"/>
@@ -201,6 +187,18 @@
       <exampleBoolean value="false"/>
     </resource>   
 
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentcode"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-consentnote"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
 
     <resource>
       <reference>
@@ -217,16 +215,11 @@
 
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-consentcode"/>
+        <reference value="StructureDefinition/ch-orf-initiator-person-organization"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-consentnote"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
+
 
     <!-- ValueSets-->
     <resource>
@@ -543,20 +536,19 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-documentreference"/>
     </resource>
 
-
-    <resource>
-      <reference>
-        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
-      </reference>
-      <name value="Sabine Meier @ Praxis Seeblick"/>
-      <description value="Example for PractitionerRole"/>
-      <exampleBoolean value="true"/>
-    </resource>
     <resource>
       <reference>
         <reference value="PractitionerRole/NotificationContactSabineMeier"/>
       </reference>
       <name value="Notification Contact Sabine Meier"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+        <resource>
+      <reference>
+        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
+      </reference>
+      <name value="Sabine Meier @ Praxis Seeblick"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -576,6 +568,16 @@
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/ChCorePractitionerRoleSpitex"/>
+      </reference>
+      <name value="Spitex"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    
     <resource>
       <reference>
         <reference value="PractitionerRole/NotificationContactHansRoentgen"/>
@@ -797,6 +799,25 @@
       <exampleBoolean value="true"/>
     </resource>
  
+    <resource>
+      <reference>
+        <reference value="Practitioner/ChCorePractitionerSPitex"/>
+      </reference>
+      <name value="Practitioner"/>
+      <description value="Example for Practitioner Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Practitioner/ChCorePractitionerTRub"/>
+      </reference>
+      <name value="Practitioner"/>
+      <description value="Example for Practitioner Resource"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+
      <resource>
       <reference>
         <reference value="Practitioner/ChCorePractitionerFAmily"/>
