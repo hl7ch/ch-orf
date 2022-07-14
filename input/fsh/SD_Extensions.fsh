@@ -16,7 +16,7 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * ^context[0].type = #fhirpath
 * ^context[0].expression = "Composition"
 * valueReference 1..1
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or http://hl7.org/fhir/StructureDefinition/RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
 * valueReference ^short = "valueReference"
 
 //========================
@@ -24,37 +24,46 @@ Extension: ChOrfInitiator
 Id: ch-orf-initiator
 Title: "CH ORF Initiator"
 Description: "Initiator and his realtion to the patient"
-* ^version = "2.0.0"
-* ^date = "2022-06-13"
-* ^publisher = "HL7 Switzerland"
-* ^contact.name = "HL7 Switzerland"
-* ^contact.telecom.system = #url
-* ^contact.telecom.value = "https://www.hl7.ch/"
-* ^jurisdiction = urn:iso:std:iso:3166#CH
-* ^copyright = "CC-BY-SA-4.0"
-* ^context.type = #element
-* ^context.expression = "Composition"
-* . ..1
 * . ^short = "Extension"
 * . ^definition = "Extension to define Person/organization who initated this order (may or may nor receive a copy)"
 * extension contains
-    ChOrfRelationInitiatorPatient named relation 0..1 MS and 
-    ChOrfLegalGuardian named legal 0..1 MS and 
-    ChOrfInitiatorPersonOrganization named personOrganisation 0..1 MS 
-* extension[relation] ^short = "Personal Relation between initator and patient" 
-//* extension[relation] only CodeableConcept
-* extension[relation].valueCodeableConcept 1..1
-* extension[relation].valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+    ch-orf-personalrelation 1..1 MS and 
+    ch-orf-legalrelation 1..1 MS and
+    ch-orf-personOrganization 1..1 MS 
 
-* extension[legal] ^short = "Legal relation between intitator and patient"    
-//* extension[legal]. only CodeableConcept
-* extension[legal].valueCodeableConcept 1..1
-* extension[legal].valueCodeableConcept from ChOrfVSLegalGuardian (required)
-* extension[personOrganisation] ^short = "Person/organization who initated this order (may or may nor receive a copy"
-* extension[personOrganisation].valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+//* extension[ch-orf-personalrelation] ^short = "Personal relation"
+//* extension[ch-orf-personalrelation].value[x] only CodeableConcept
+* extension[ch-orf-personalrelation].valueCodeableConcept from ChOrfVsInitiatorRelation (required)
 
-Extension: ChOrfRelationInitiatorPatient
-Id: ch-orf-relationinitiatorpatient
+//* extension[ch-orf-legalrelation] ^short = "Legal relation"
+//* extension[ch-orf-legalrelation].value[x] only CodeableConcept
+* extension[ch-orf-legalrelation].valueCodeableConcept from ChOrfVSLegalGuardian (required)
+
+//* extension[ch-orf-personOrganization] ^short = "Initiator person or organization"
+* extension[ch-orf-personOrganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+
+
+Extension: ChOrfPersonalRelation
+Id: ch-orf-personalrelation
+//* . ^definition = "Extension to define the personal relation between initator and patient"
+* extension 0..0
+* value[x] only CodeableConcept
+* extension.valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+
+Extension: ChOrfLegalRelation
+Id: ch-orf-legalrelation
+//* . ^definition = "Extension to define the legal relation between initator and patient"
+* extension 0..0
+* value[x] only CodeableConcept
+* extension.valueCodeableConcept from ChOrfVSLegalGuardian (required)
+
+Extension: ChOrfPersonOrganization
+Id: ch-orf-personOrganization
+* extension 0..0
+* value[x] only Reference (ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+
+/*Extension: ChOrfRelationInitiatorPatient
+Id: ch-orf-personalrelationinitiatorpatient
 Title: "CH ORF Relation between Initator and Patient"
 Description: "Relatioin between Initator and Patient"
 * ^context[0].type = #element
@@ -68,7 +77,7 @@ Description: "Relatioin between Initator and Patient"
 
 
 Extension: ChOrfLegalGuardian
-Id: ch-orf-legalguardian
+Id: ch-orf-legalrelationguardian
 Title: "CH ORF Legal Guardian of the Patient"
 Description: "Legal Guardian of the Patient"
 * ^context[0].type = #element
@@ -80,14 +89,14 @@ Description: "Legal Guardian of the Patient"
 //* valueCodeableConcept only CodeableConcept
 * valueCodeableConcept from ChOrfVSLegalGuardian (required)
 * valueCodeableConcept ^short = "Value of extension"
-
-Extension: ChOrfInitiatorPersonOrganization
+*/
+/*Extension: ChOrfInitiatorPersonOrganization
 Id: ch-orf-initiator-person-organization
 Title: "CH ORF Initiator (Practioner or Related Person"
 Description: "Person/organization who initated this order (may or may nor receive a copy)"
 * extension ^short = "Information about the Initiator Person and Organization"
 * extension.valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
-
+*/
 
 Extension: ChOrfPatientConsent
 Id: ch-orf-patientconsent

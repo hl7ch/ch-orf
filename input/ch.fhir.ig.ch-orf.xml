@@ -202,23 +202,13 @@
 
     <resource>
       <reference>
-        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-legalguardian"/>
+        <reference value="StructureDefinition/ch-orf-initiator"/>
       </reference>
       <exampleBoolean value="false"/>
     </resource>
 
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-initiator-person-organization"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
+
+
 
 
     <!-- ValueSets-->
