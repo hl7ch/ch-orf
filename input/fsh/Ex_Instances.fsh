@@ -4,15 +4,15 @@ InstanceOf: Composition
 * extension[0].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument"
 * extension[=].valueIdentifier.system = "urn:ietf:rfc:3986"
 * extension[=].valueIdentifier.value = "urn:uuid:1622f2fb-6ba3-4532-9aed-35b158def187"
-* extension[+].url = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer"
-* extension[=].extension.url = "enterer"
-* extension[=].extension.valueReference = Reference(PractitionerRole/StabiloBossPraxisSeeblick)
-* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"
-* extension[=].valueReference = Reference(PractitionerRole/NotificationContactHansRoentgen)
+//* extension[+].url = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer"
+//* extension[=].extension.url = "enterer"
+//* extension[=].extension.valueReference = Reference(PractitionerRole/StabiloBossPraxisSeeblick)
+//* extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"
+//* extension[=].valueReference = Reference(PractitionerRole/NotificationContactHansRoentgen)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument"
 * extension[=].valueReference = Reference(PractitionerRole/NotificationContactSabineMeier)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-receiver"
-* extension[=].valueReference = Reference(ChCorePractitionerRoleSpitex)
+* extension[=].valueReference = Reference(ChOrfPractitionerRoleSPitex)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
 * extension[=].valueReference = Reference(PractitionerRole/CopyReceiverSabineMeierPraxisSeeblick)
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver"
@@ -62,7 +62,7 @@ InstanceOf: Composition
 Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
 Title: "Susanna Ufferer is not yet informed"
-Description: "Example for ChOrfConsent Resource"
+Description: "Example for ChOrfConsent"
 * status = ConsentState#active
 * scope = ConsentScopeCodes#patient-privacy
 * category = LNC#59284-0
@@ -71,31 +71,10 @@ Description: "Example for ChOrfConsent Resource"
 * extension[consentCode].valueCodeableConcept = SCT#373068000 "Undetermined (qualifier value)"
 * extension[consentNote].valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
 
-/*Instance: ChOrfConsentCodeSUfferer
-InstanceOf:  ChOrfConsentCode
-Title: "Consent Note"
-Description: "Example forChOrfConsentCode Extension"
-* valueCodeableConcept = SCT#373068000 "Undetermined (qualifier value)"
-
-Instance: ChOrfConsentNoteSUfferer
-InstanceOf:  ChOrfConsentNote
-Title: "Consent Note"
-Description: "Example forChOrfConsentNote Extension"
-Usage: #inline
-* valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
-
-Instance: ChOrfInitiatorMUfferer
-InstanceOf: ChOrfInitiator
-Title: "Initiator ist Ehemann"
-Description: "Example for ChOrfInitiator Extension"
-Usage: #inline
-* extension[nameAdress].valueReference = Reference (RelatedPerson/ChOrfRelatedPersonMUfferer)
-*/
-
 Instance: ChOrfEpisodeOfCareSUfferer
 InstanceOf: ChOrfEpisodeOfCare
 Title: "Entlassung aus der Klinik 15.07.22"
-Description: "Example for Discharge Date in ChOrfEpisodeOfCare Resource"
+Description: "Example for Discharge Date in ChOrfEpisodeOfCare"
 * status = EpisodeOfCareStatus#active
 * patient = Reference (SUfferer)
 * statusHistory.status = EpisodeOfCareStatus#active
@@ -106,13 +85,13 @@ Description: "Example for Discharge Date in ChOrfEpisodeOfCare Resource"
 Instance: OrganizationSpitalTrubschachen
 InstanceOf: ChCoreOrganization
 Title: "Spital Trubschachen"
-Description: "Example for ChCoreOrganization Resource"
+Description: "Example for ChCoreOrganization"
 * name = "Spital Trubschachen"
 
 Instance: SUfferer
 InstanceOf: ChCorePatient
 Title: "Susanna Ufferer"
-Description: "Example for Patient Resource"
+Description: "Example for Patient"
 * name[+].use = #official
 * name[=].family[+] = "Ufferer"
 * name[=].family[=].extension[ech11name].url = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-ech-11-name"
@@ -139,48 +118,48 @@ Description: "Example for Patient Resource"
 * address.city = "Zürich"
 * address.postalCode = "8000"
 * address.country = "Schweiz"
-* generalPractitioner = Reference(ChCorePractitionerRoleFAmily)
+* generalPractitioner = Reference(ChOrfPractitionerRoleFAmily)
 
 Instance: ChOrfRelatedPersonMUfferer
 InstanceOf: RelatedPerson
 Title: "Initiator ist Ehemann"
-Description: "Example for OrfRelatedPersonMUfferer Resource"
-* name.family = "Sufferer"
+Description: "Example for RelatedPerson"
+* name.family = "Ufferer"
 * name.given = "Max"
 * patient = Reference (SUfferer)
 * telecom[0].system = #phone
 * telecom[0].value = "+41 79 979 79 79"
 
-Instance: ChCorePractitionerRoleFAmily
+Instance: ChOrfPractitionerRoleFAmily
 InstanceOf: ChCorePractitionerRole
 Title: "Practioner Role Family Doctor"
-Description: "Example for ChCorePractitionerRole Resource"
-* practitioner = Reference (ChCorePractitionerFAmily)
+Description: "Example for PractitionerRole"
+* practitioner = Reference (ChOrfPractitionerFAmily)
 
-Instance: ChCorePractitionerFAmily
+Instance: ChOrfPractitionerFAmily
 InstanceOf: ChCorePractitioner
 Title: "Florence Amily"
-Description: "Example for Practioner Resource"
+Description: "Example for Practioner"
 * name.family = "Amily"
 * name.given = "Florence"
 
-Instance: ChCorePractitionerRoleSpitex
+Instance: ChOrfPractitionerRoleSPitex
 InstanceOf: ChCorePractitionerRole
 Title: "Practioner Role Spitex"
-Description: "Example for ChCorePractitionerRole Resource"
-* practitioner = Reference (ChCorePractitionerSPitex)
+Description: "Example for PractitionerRole"
+* practitioner = Reference (ChOrfPractitionerSPitex)
 
-Instance: ChCorePractitionerSPitex
+Instance: ChOrfPractitionerSPitex
 InstanceOf: ChCorePractitioner
 Title: "Samuel Itex"
-Description: "Example for Practioner Resource"
+Description: "Example for Practioner"
 * name.family = "Itex"
 * name.given = "Samuel"
 
 Instance: ChCorePractitionerTRub
 InstanceOf: ChCorePractitioner
 Title: "Thomas Rub"
-Description: "Example for Practioner Resource"
+Description: "Example for Practioner"
 * name.family = "Thomas"
 * name.given = "Rub"
 

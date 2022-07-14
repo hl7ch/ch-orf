@@ -33,11 +33,11 @@ Description: "Initiator and his realtion to the patient"
 
 //* extension[ch-orf-personalrelation] ^short = "Personal relation"
 //* extension[ch-orf-personalrelation].value[x] only CodeableConcept
-* extension[ch-orf-personalrelation].valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+* extension[ch-orf-personalrelation].valueCodeableConcept from ChOrfVsPersonalRelation (required)
 
 //* extension[ch-orf-legalrelation] ^short = "Legal relation"
 //* extension[ch-orf-legalrelation].value[x] only CodeableConcept
-* extension[ch-orf-legalrelation].valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* extension[ch-orf-legalrelation].valueCodeableConcept from ChOrfVSLegalRelation (required)
 
 //* extension[ch-orf-personOrganization] ^short = "Initiator person or organization"
 * extension[ch-orf-personOrganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
@@ -48,14 +48,14 @@ Id: ch-orf-personalrelation
 //* . ^definition = "Extension to define the personal relation between initator and patient"
 * extension 0..0
 * value[x] only CodeableConcept
-* extension.valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+* extension.valueCodeableConcept from ChOrfVsPersonalRelation (required)
 
 Extension: ChOrfLegalRelation
 Id: ch-orf-legalrelation
 //* . ^definition = "Extension to define the legal relation between initator and patient"
 * extension 0..0
 * value[x] only CodeableConcept
-* extension.valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* extension.valueCodeableConcept from ChOrfVSLegalRelation (required)
 
 Extension: ChOrfPersonOrganization
 Id: ch-orf-personOrganization
@@ -72,7 +72,7 @@ Description: "Relatioin between Initator and Patient"
 * . ^short = "Extension"
 * . ^definition = "Relation between intitator and patient"
 * valueCodeableConcept 1..1
-* valueCodeableConcept from ChOrfVsInitiatorRelation (required)
+* valueCodeableConcept from ChOrfVsPersonalRelation (required)
 * valueCodeableConcept ^short = "Value of extension"
 
 
@@ -87,7 +87,7 @@ Description: "Legal Guardian of the Patient"
 * . ^definition = "Extension to define the legal relation between intitator and patient"
 * valueCodeableConcept 1..1
 //* valueCodeableConcept only CodeableConcept
-* valueCodeableConcept from ChOrfVSLegalGuardian (required)
+* valueCodeableConcept from ChOrfVSLegalRelation (required)
 * valueCodeableConcept ^short = "Value of extension"
 */
 /*Extension: ChOrfInitiatorPersonOrganization

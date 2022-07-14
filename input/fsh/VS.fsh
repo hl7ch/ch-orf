@@ -62,10 +62,10 @@ Description: "Value Set for CH ORF Desired Accomodation"
 * ChCoreCSEncounterType#3 "privat"
 
 
-ValueSet: ChOrfVsInitiatorRelation
-Id: ch-orf-vs-initiatorrelation
-Title: "Initiator Relation"
-Description: "Value Set for CH ORF Inititator Relation"
+ValueSet: ChOrfVsPersonalRelation
+Id: ch-orf-vs-personalrelation
+Title: "Personal Relation"
+Description: "Value Set for Personal Relation"
 
 * SCT#66089001 "Daughter (person)"
 * SCT#65616008 "Son (person)"
@@ -80,9 +80,9 @@ Description: "Value Set for CH ORF Inititator Relation"
 * SCT#48385004  "Acquaintance (person)"
 // "Other" --> Empty
 
-ValueSet: ChOrfVSLegalGuardian
-Id: ch-orf-vs-legalguardian
-Title: "Legal Guardian"
-Description: "Value Set for CH ORF Legal Guardian"
+ValueSet: ChOrfVSLegalRelation
+Id: ch-orf-vs-legalrelation
+Title: "Legal Relation"
+Description: "Value Set for Legal Relation"
 * SCT#373068000 "Undetermined (qualifier value)"
 * SCT#58626002  "Legal guardian (person)"
