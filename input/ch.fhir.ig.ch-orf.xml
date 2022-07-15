@@ -119,21 +119,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-initiator"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
-
-
-
-
-
-
     <!-- Extension Definitions -->
-
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument"/>
@@ -201,20 +187,6 @@
       <exampleBoolean value="false"/>
     </resource>   
 
-
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-relationinitiatorpatient"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-    <resource>
-      <reference>
-        <reference value="StructureDefinition/ch-orf-legalguardian"/>
-      </reference>
-      <exampleBoolean value="false"/>
-    </resource>
-
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-consentcode"/>
@@ -227,6 +199,17 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-initiator"/>
+      </reference>
+      <exampleBoolean value="false"/>
+    </resource>
+
+
+
+
 
     <!-- ValueSets-->
     <resource>
@@ -267,17 +250,17 @@
 
     <resource>
       <reference>
-        <reference value="ValueSet/ch-orf-vs-initiatorrelation"/>
+        <reference value="ValueSet/ch-orf-vs-personalrelation"/>
       </reference>
-      <name value="Initiator Relation"/>
+      <name value="Personal Relation"/>
       <exampleBoolean value="false"/>
     </resource>
 
     <resource>
       <reference>
-        <reference value="ValueSet/ch-orf-vs-legalguardian"/>
+        <reference value="ValueSet/ch-orf-vs-legalrelation"/>
       </reference>
-      <name value="Initiator Legal Relation"/>
+      <name value="Legal Relation"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -309,7 +292,7 @@
       <reference>
         <reference value="CodeSystem/ch-orf-cs-consentstatus"/>
       </reference>
-      <name value="Coverage Identifier Type"/>
+      <name value="Consent Status"/>
       <exampleBoolean value="false"/>
     </resource>
 
@@ -332,6 +315,17 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
+
+    <resource>
+      <reference>
+        <reference value="Composition/spitex-order"/>
+      </reference>
+      <name value="Composition Spitex-Order"/>
+      <description value="Example for Composition"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-spitex-order
+      "/>
+    </resource>
+
     <resource>
       <reference>
         <reference value="Bundle/radiology-order"/>
@@ -344,7 +338,7 @@
       <reference>
         <reference value="Bundle/external-diagnostics-order"/>
       </reference>
-      <name value="Order external diagnostics"/>
+      <name value="Order External Diagnostics"/>
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
@@ -533,20 +527,19 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-documentreference"/>
     </resource>
 
-
-    <resource>
-      <reference>
-        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
-      </reference>
-      <name value="Sabine Meier @ Praxis Seeblick"/>
-      <description value="Example for PractitionerRole"/>
-      <exampleBoolean value="true"/>
-    </resource>
     <resource>
       <reference>
         <reference value="PractitionerRole/NotificationContactSabineMeier"/>
       </reference>
       <name value="Notification Contact Sabine Meier"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+        <resource>
+      <reference>
+        <reference value="PractitionerRole/SabineMeierPraxisSeeblick"/>
+      </reference>
+      <name value="Sabine Meier @ Praxis Seeblick"/>
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
@@ -566,6 +559,16 @@
       <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
+    <resource>
+      <reference>
+        <reference value="PractitionerRole/ChOrfPractitionerRoleSPitex"/>
+      </reference>
+      <name value="Spitex"/>
+      <description value="Example for PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    
     <resource>
       <reference>
         <reference value="PractitionerRole/NotificationContactHansRoentgen"/>
@@ -703,7 +706,7 @@
       <reference>
         <reference value="Appointment/AppointmentPending"/>
       </reference>
-      <name value="Appointment pending"/>
+      <name value="Appointment Pending"/>
       <description value="Example for Appointment with status=pending"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
@@ -711,7 +714,7 @@
       <reference>
         <reference value="Appointment/AppointmentBooked"/>
       </reference>
-      <name value="Appointment booked"/>
+      <name value="Appointment Booked"/>
       <description value="Example for Appointment with status=booked"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
@@ -719,7 +722,7 @@
       <reference>
         <reference value="Appointment/AppointmentProposed"/>
       </reference>
-      <name value="Appointment proposed"/>
+      <name value="Appointment Proposed"/>
       <description value="Example for Appointment with status=proposed"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-appointment"/>
     </resource>
@@ -746,8 +749,8 @@
       <reference>
         <reference value="RelatedPerson/ChOrfRelatedPersonMUfferer"/>
       </reference>
-      <name value="Susanna Ufferer"/>
-      <description value="Example for Related Person Resource (Husband of Susanna Ufferer)"/>
+      <name value="Max Ufferer"/>
+      <description value="Example for Related Person (Husband of Susanna Ufferer)"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -756,7 +759,7 @@
         <reference value="EpisodeOfCare/ChOrfEpisodeOfCareSUfferer"/>
       </reference>
       <name value="Eisode of Care"/>
-      <description value="Example for Discharge Date in ChOrfEpisodeOfCare Resource"/>
+      <description value="Example for Discharge Date in EpisodeOfCare"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -765,7 +768,7 @@
         <reference value="Consent/ChOrfConsentSUfferer"/>
       </reference>
       <name value="Consent"/>
-      <description value="Example for ChOrfConsent Resource"/>
+      <description value="Example for Consent"/>
       <exampleBoolean value="true"/>
     </resource>
 
@@ -773,26 +776,45 @@
       <reference>
         <reference value="Organization/OrganizationSpitalTrubschachen"/>
       </reference>
-      <name value="Organization"/>
-      <description value="Example for ChCoreOrganization Resource"/>
+      <name value="Spital Trubschachen"/>
+      <description value="Example for Organization"/>
       <exampleBoolean value="true"/>
     </resource>
 
     <resource>
       <reference>
-        <reference value="PractitionerRole/ChCorePractitionerRoleFAmily"/>
+        <reference value="PractitionerRole/ChOrfPractitionerRoleFAmily"/>
       </reference>
-      <name value="PractitionerRole"/>
-      <description value="Example for ChCorePractitionerRole Resource"/>
+      <name value="Florence Amily @ Praxis Allzeitbereit"/>
+      <description value="Example for PractitionerRole"/>
       <exampleBoolean value="true"/>
     </resource>
  
+    <resource>
+      <reference>
+        <reference value="Practitioner/ChOrfPractitionerSPitex"/>
+      </reference>
+      <name value="Samuel Pitex"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+    <resource>
+      <reference>
+        <reference value="Practitioner/ChCorePractitionerTRub"/>
+      </reference>
+      <name value="Thomas Rub"/>
+      <description value="Example for Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+
+
      <resource>
       <reference>
-        <reference value="Practitioner/ChCorePractitionerFAmily"/>
+        <reference value="Practitioner/ChOrfPractitionerFAmily"/>
       </reference>
-      <name value="Practitioner"/>
-      <description value="EExample for Practitioner Resource"/>
+      <name value="Florence Amily"/>
+      <description value="Example for Practitioner"/>
       <exampleBoolean value="true"/>
     </resource>
 

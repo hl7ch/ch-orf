@@ -1214,12 +1214,12 @@ Usage: #example
 * item[=].text = "Einverständniserklärung"
 * item[=].type = #group
 * item[=].repeats = true
-* item[=].item.linkId = "patient.consent.statement"
+* item[=].item.linkId = "consent.statement"
 * item[=].item.text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].item.type = #choice
 * item[=].item.answerOption[0].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
 * item[=].item.answerOption[+].valueCoding = http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc."
-* item[=].item.item.linkId = "patient.consent.statement.note"
+* item[=].item.item.linkId = "consent.statement.note"
 * item[=].item.item.text = "Anmerkung"
 * item[=].item.item.type = #string
 * item[+].linkId = "note"
