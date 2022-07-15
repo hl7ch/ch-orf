@@ -332,7 +332,7 @@
       </reference>
       <name value="Radiology Order"/>
       <description value="Example for Bundle"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/S"/>
     </resource>
     <resource>
       <reference>
