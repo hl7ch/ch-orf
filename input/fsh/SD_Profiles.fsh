@@ -137,6 +137,9 @@ must be structured in the Composition as the first entry of the document."
 * extension contains ChOrfCopyReceiver named copyReceiver 0..* MS
 * extension[copyReceiver] ^short = "Person/organization who receives the copy of this order (shall receive also all results therefrom)"
 
+* extension contains ChOrfPrecedentDocument named precedentDocument 0..1 MS
+* extension[precedentDocument] ^short = "Identifier of the document which precedes this document in a thread."
+
 * extension contains ChOrfAntecedentEpisodeOfCare named antecedentEpisodeOfCare 0..1 MS
 * extension[antecedentEpisodeOfCare] ^short = "Documentation of the antecedent episode of care e.g hospitalisation in case of care transfer between instituitons e.g. hospitals, rehab. clinics, retirement homes etc."
 
