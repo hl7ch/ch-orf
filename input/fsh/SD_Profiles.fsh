@@ -54,6 +54,12 @@ and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
 * policyRule = SCT#385432009  //not applicable
 
+* status = ConsentState#active
+* scope = ConsentScopeCodes#patient-privacy
+* category = LNC#59284-0
+* policyRule.coding = SCT#385432009 //not applicable
+
+
 * extension contains ChOrfConsentCode named consentCode 0..1 MS
 * extension contains ChOrfConsentNote named consentNote 0..1 MS
 

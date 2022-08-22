@@ -63,11 +63,11 @@ Instance: ChOrfConsentSUfferer
 InstanceOf: ChOrfConsent
 Title: "Susanna Ufferer is not yet informed"
 Description: "Example for ChOrfConsent"
-* status = ConsentState#active
-* scope = ConsentScopeCodes#patient-privacy
-* category = LNC#59284-0
+// status = ConsentState#active
+// scope = ConsentScopeCodes#patient-privacy
+// category = LNC#59284-0
 // provision.type is left empty, because patient is not yet informed
-* policyRule.coding = SCT#385432009 //not applicable
+// policyRule.coding = SCT#385432009 //not applicable
 * extension[consentCode].valueCodeableConcept = SCT#373068000 "Undetermined (qualifier value)"
 * extension[consentNote].valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
 

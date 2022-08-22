@@ -33,11 +33,11 @@ Description: "Initiator and his realtion to the patient"
 
 //* extension[ch-orf-personalrelation] ^short = "Personal relation"
 //* extension[ch-orf-personalrelation].value[x] only CodeableConcept
-* extension[ch-orf-personalrelation].valueCodeableConcept from ChOrfVsPersonalRelation (required)
+* extension[ch-orf-personalrelation].valueCoding from ChOrfVsPersonalRelation (required)
 
 //* extension[ch-orf-legalrelation] ^short = "Legal relation"
 //* extension[ch-orf-legalrelation].value[x] only CodeableConcept
-* extension[ch-orf-legalrelation].valueCodeableConcept from ChOrfVSLegalRelation (required)
+* extension[ch-orf-legalrelation].valueCoding from ChOrfVSLegalRelation (required)
 
 //* extension[ch-orf-personOrganization] ^short = "Initiator person or organization"
 * extension[ch-orf-personOrganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
@@ -116,10 +116,10 @@ Description: "Consent Code"
 //* ^context[0].type = #fhirpath
 //* ^context[0].expression = "ChOrfConsent"
 
-* valueCodeableConcept 1..1
+* valueCoding 1..1
 //* valueCodeableConcept only CodeableConcept
-* valueCodeableConcept from  ChOrfConsentStatus (required)
-* valueCodeableConcept ^short = "valuecode"
+* valueCoding from  ChOrfConsentStatus (required)
+* valueCoding ^short = "valuecoding"
 
 
 Extension: ChOrfConsentNote

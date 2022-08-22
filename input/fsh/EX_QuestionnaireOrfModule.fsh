@@ -207,7 +207,6 @@ Description: "Example for Questionnaire"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:patientConsent"
 * item[=].text = "Einverständniserklärung"
 * item[=].type = #group
-* item[=].repeats = true
 
 * item[=].item.extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item.extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|2.0.0"
