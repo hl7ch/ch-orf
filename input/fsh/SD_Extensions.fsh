@@ -8,7 +8,7 @@ Description: "Identifier of the document which precedes this document in a threa
 * valueIdentifier 1..1
 * valueIdentifier only Identifier
 * valueIdentifier ^short = "valueIdentifier"
-
+//
 Extension: ChOrfCopyReceiver
 Id: ch-orf-copyreceiver
 Title: "CH ORF Copy Receiver"
