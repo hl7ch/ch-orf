@@ -322,8 +322,7 @@
       </reference>
       <name value="Composition Spitex-Order"/>
       <description value="Example for Composition"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-spitex-order
-      "/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-spitex-order"/>
     </resource>
 
     <resource>
