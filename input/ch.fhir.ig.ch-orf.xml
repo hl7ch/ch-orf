@@ -306,7 +306,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Example Instances-->
+    <!-- Example Instances -->
     <resource>
       <reference>
         <reference value="Bundle/bundle-order-referral-form"/>
@@ -325,14 +325,16 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-spitex-order"/>
     </resource>
 
+<!-- SEE https://github.com/hapifhir/org.hl7.fhir.core/issues/896-
     <resource>
       <reference>
         <reference value="Bundle/radiology-order"/>
       </reference>
       <name value="Radiology Order"/>
       <description value="Example for Bundle"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/S"/>
+      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
+-->
     <resource>
       <reference>
         <reference value="Bundle/external-diagnostics-order"/>
@@ -341,8 +343,6 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
-
-
     <resource>
       <reference>
         <reference value="Composition/comp-order-referral-form"/>
