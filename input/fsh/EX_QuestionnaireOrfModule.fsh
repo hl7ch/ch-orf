@@ -1370,7 +1370,7 @@ Description: "Subquestionnaire initiator"
 * date = "2022-06-20"
 * publisher = "HL7 Switzerland"
 
-* item[+].linkId = "initiator.legalguardian"
+* item[+].linkId = "initiator.legalrelation"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
@@ -1378,7 +1378,7 @@ Description: "Subquestionnaire initiator"
 * item[=].answerOption[+].valueCoding = SCT#58626002 "Gesetzlicher Vertreter"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalrelation"
 
-* item[+].linkId = "initiator.initiatorrelation"
+* item[+].linkId = "initiator.personalrelation"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
