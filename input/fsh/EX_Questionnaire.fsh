@@ -1099,38 +1099,38 @@ Usage: #example
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
-* item[=].item[=].linkId = "antecedentEpisodeOfCare.organization"
+* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.managingOrganization.'"
+* item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
-* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.organization.name"
+* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.managingOrganization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%address.line"
-* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.streetAddressLine"
+* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization.streetAddressLine"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].repeats = true
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%address.postalCode"
-* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.postalCode"
+* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization.postalCode"
 * item[=].item[=].item[=].text = "PLZ"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%address.city"
-* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.city"
+* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization.city"
 * item[=].item[=].item[=].text = "Ort"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%address.country"
-* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.country"
+* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization.country"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 * item[+].linkId = "appointment"

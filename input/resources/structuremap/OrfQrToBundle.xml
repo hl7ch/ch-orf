@@ -237,17 +237,17 @@ group AntecedentEpisodeOfCareItems(source src : BackboneElement, target bundle :
   src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.start&apos;) and answer.exists()) -&gt;  episodeofcare.statusHistory as statusHistory,  statusHistory.status = &apos;finished&apos;,  statusHistory.period as period,  period.start = (item.answer.value),  period.end = (item.answer.value) then {
     src.item as iteme where ((linkId.value = &apos;antecedentEpisodeOfCare.end&apos;) and answer.exists()) -&gt; period.end = (iteme.answer.value) &quot;antecedentEpisodeOfCareEndNotSameAsStart&quot;;
   } &quot;start&quot;;
-  src.item as item where (linkId.value = &apos;antecedentEpisodeOfCare.organization&apos;) -&gt;  bundle.entry as e3,  e3.resource = create(&apos;Organization&apos;) as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append(&apos;urn:uuid:&apos;, uuid3),  episodeofcare.managingOrganization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) &quot;organization&quot;;
+  src.item as item where (linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization&apos;) -&gt;  bundle.entry as e3,  e3.resource = create(&apos;Organization&apos;) as organization,  organization.id = uuid() as uuid3,  e3.fullUrl = append(&apos;urn:uuid:&apos;, uuid3),  episodeofcare.managingOrganization = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) &quot;organization&quot;;
 }
 
 group AntecedentEpisodeOfCareOrganizationItems(source src : BackboneElement, target organization : Organization) {
-  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.organization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
-  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.organization.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
+  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization.name&apos;) and answer.exists()) -&gt; organization.name = (item.answer.value);
+  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization.streetAddressLine&apos;) and answer.exists()) -&gt; organization.address as address share orgAddress then {
     item.answer as answer -&gt; address.line = (answer.value) &quot;streetAddressLine&quot;;
   } &quot;answer&quot;;
-  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.organization.postalCode&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
-  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.organization.city&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
-  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.organization.country&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
+  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization.postalCode&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.postalCode = (item.answer.value) &quot;postalCode&quot;;
+  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization.city&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.city = (item.answer.value) &quot;city&quot;;
+  src.item as item where ((linkId.value = &apos;antecedentEpisodeOfCare.managingOrganization.country&apos;) and answer.exists()) -&gt;  organization.address as address share orgAddress,  address.country = (item.answer.value) &quot;country&quot;;
 }
 
 group InitiatorInit(source src : BackboneElement, target bundle : Bundle, target patient : Patient, target composition : Composition, target serviceRequest : ServiceRequest) {
@@ -5727,12 +5727,12 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
       </rule>
     </rule>
     <rule>
-      <name value="antecedentEpisodeOfCare.organization"/>
+      <name value="antecedentEpisodeOfCare.managingOrganization"/>
       <source>
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="(linkId.value = 'antecedentEpisodeOfCare.organization')"/>
+        <condition value="(linkId.value = 'antecedentEpisodeOfCare.managingOrganization')"/>
       </source>
       <target>
         <context value="bundle"/>
@@ -5825,7 +5825,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="((linkId.value = 'antecedentEpisodeOfCare.organization.name') and answer.exists())"/>
+        <condition value="((linkId.value = 'antecedentEpisodeOfCare.managingOrganization.name') and answer.exists())"/>
       </source>
       <target>
         <context value="organization"/>
@@ -5843,7 +5843,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="((linkId.value = 'antecedentEpisodeOfCare.organization.streetAddressLine') and answer.exists())"/>
+        <condition value="((linkId.value = 'antecedentEpisodeOfCare.managingOrganization.streetAddressLine') and answer.exists())"/>
       </source>
       <target>
         <context value="organization"/>
@@ -5877,7 +5877,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="((linkId.value = 'antecedentEpisodeOfCare.organization.postalCode') and answer.exists())"/>
+        <condition value="((linkId.value = 'antecedentEpisodeOfCare.managingOrganization.postalCode') and answer.exists())"/>
       </source>
       <target>
         <context value="organization"/>
@@ -5903,7 +5903,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="((linkId.value = 'antecedentEpisodeOfCare.organization.city') and answer.exists())"/>
+        <condition value="((linkId.value = 'antecedentEpisodeOfCare.managingOrganization.city') and answer.exists())"/>
       </source>
       <target>
         <context value="organization"/>
@@ -5929,7 +5929,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
         <context value="src"/>
         <element value="item"/>
         <variable value="item"/>
-        <condition value="((linkId.value = 'antecedentEpisodeOfCare.organization.country') and answer.exists())"/>
+        <condition value="((linkId.value = 'antecedentEpisodeOfCare.managingOrganization.country') and answer.exists())"/>
       </source>
       <target>
         <context value="organization"/>

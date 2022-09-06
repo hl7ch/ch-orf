@@ -205,7 +205,7 @@ and  transfer to retirement home etc."
 * section[orderReferral].entry[ServiceRequest] only Reference(ChOrfServiceRequest)
 * section[orderReferral].entry[ServiceRequest] ^short = "ServiceRequest"
 * section[orderReferral].entry[ServiceRequest].reference 1.. MS
-// ---------- Composition.section.entry:DocumentReference ----------
+/* ---------- Composition.section.entry:DocumentReference ----------
 * section[orderReferral].entry contains DocumentReference 0..* MS
 * section[orderReferral].entry[DocumentReference] only Reference(ChOrfDocumentReference)
 * section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
@@ -220,7 +220,7 @@ and  transfer to retirement home etc."
 * section[orderReferral].entry[Consent] only Reference(ChOrfConsent) 
 * section[orderReferral].entry[Consent] ^short = "Consent"
 * section[orderReferral].entry[Consent].reference 1.. MS
-
+*/
 
 // ---------- Composition.section:originalRepresentation ----------
 * section contains originalRepresentation 0..1 MS

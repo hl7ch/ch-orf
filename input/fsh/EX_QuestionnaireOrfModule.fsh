@@ -168,24 +168,24 @@ Description: "Example for Questionnaire"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 
-* item[=].item[+].linkId = "antecedentEpisodeOfCare.organization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.managingOrganization"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.managingOrganization"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
 
 * item[=].item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.organization.'"
+* item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.managingOrganization.'"
 
-* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.organization.name"
+* item[=].item[=].item[+].linkId = "antecedentEpisodeOfCare.managingOrganization.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-organization#Organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
 * item[=].item[=].item[=].type = #string
 
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-subQuestionnaire"
 * item[=].item[=].item[=].extension.valueCanonical = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|2.0.0"
-* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.organization.1"
+* item[=].item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization.1"
 * item[=].item[=].item[=].text = "Unable to resolve 'address' sub-questionnaire"
 * item[=].item[=].item[=].type = #display
 
@@ -1532,7 +1532,7 @@ Description: "Subquestionnaire patientConsent"
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
 * extension[=].valueString = "linkIdPrefix"
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent"
-* name = "ModuleQuestionnaiConsent"
+* name = "ModuleQuestionnaireConsent"
 * title = "Module Questionnaire Patient Consent"
 * status = #active
 * date = "2022-05-09"
