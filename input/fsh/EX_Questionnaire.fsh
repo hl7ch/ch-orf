@@ -1101,7 +1101,7 @@ Usage: #example
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].extension.valueExpression.expression = "'antecedentEpisodeOfCare.managingOrganization.'"
 * item[=].item[=].linkId = "antecedentEpisodeOfCare.managingOrganization"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.organization"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.managingOrganization"
 * item[=].item[=].text = "Spital /Heim"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.managingOrganization.name"
