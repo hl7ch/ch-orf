@@ -8,290 +8,424 @@
   },
   "questionnaire": "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form",
   "status": "in-progress",
-  "item": [ {
-    "linkId": "initiator",
-    "text": "Initiant dieser Anmeldung",
-    "item": [ {
-      "linkId": "initiator.legalguardian",
-      "text": "Juristische Beziehung zum Patienten",
-      "answer": [ {
-        "valueCoding": {
-          "system": "http://snomed.info/sct",
-          "code": "58626002",
-          "display": "Gesetzlicher Vertreter"
-        }
-      } ]
-    }, {
-      "linkId": "initiator.initiatorrelation",
-      "text": "Persönliche Beziehung zum Patienten?",
-      "answer": [ {
-        "valueCoding": {
-          "system": "http://snomed.info/sct",
-          "code": "66089001",
-          "display": "Tochter"
-        }
-      } ]
-    }, {
-      "linkId": "initiator.practitionerRole",
-      "text": "Gesundheitsfachperson oder -organisation",
-      "item": [ {
-        "linkId": "initiator.practitionerRole.practitioner",
-        "text": "Gesundheitsfachperson",
-        "item": [ {
-          "linkId": "initiator.practitionerRole.practitioner.title",
-          "text": "Titel",
-          "answer": [ {
-            "valueString": "GFP-Titel"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.practitioner.familyName",
-          "text": "Name",
-          "answer": [ {
-            "valueString": "GFP-Name"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.practitioner.givenName",
-          "text": "Vorname",
-          "answer": [ {
-            "valueString": "GFP-Vorname"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.practitioner.phone",
-          "text": "Telefon",
-          "answer": [ {
-            "valueString": "GFP-Telefon"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.practitioner.email",
-          "text": "E-Mail",
-          "answer": [ {
-            "valueString": "GFP-E-Mail"
-          } ]
-        } ]
-      }, {
-        "linkId": "initiator.practitionerRole.organization",
-        "text": "Gesundheitsorganisatiton",
-        "item": [ {
-          "linkId": "initiator.practitionerRole.organization.name",
-          "text": "Name der Organisation",
-          "answer": [ {
-            "valueString": "GO-Name"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.organization.streetAddressLine",
-          "text": "Strasse, Hausnummer, Postfach etc.",
-          "answer": [ {
-            "valueString": "GO-Strasse"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.organization.postalCode",
-          "text": "PLZ",
-          "answer": [ {
-            "valueString": "GO-PLZ"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.organization.city",
-          "text": "Ort",
-          "answer": [ {
-            "valueString": "GO-Ort"
-          } ]
-        }, {
-          "linkId": "initiator.practitionerRole.organization.country",
-          "text": "Land",
-          "answer": [ {
-            "valueString": "GO-Land"
-          } ]
-        } ]
-      } ]
-    } ]
-  }, {
-    "linkId": "patient",
-    "text": "Patient",
-    "item": [ {
-      "linkId": "patient.languageOfCorrespondence",
-      "text": "Korrespondenzsprache",
-      "answer": [ {
-        "valueCoding": {
-          "system": "urn:ietf:bcp:47",
-          "code": "de",
-          "display": "German"
-        }
-      } ]
-    }, {
-      "linkId": "familydoctor",
-      "text": "Hausarzt",
-      "item": [ {
-        "linkId": "familydoctor.practitioner",
-        "text": "Hausarzt Person",
-        "item": [ {
-          "linkId": "familydoctor.practitioner.title",
-          "text": "Titel",
-          "answer": [ {
-            "valueString": "HA-Title"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.familyName",
-          "text": "Name",
-          "answer": [ {
-            "valueString": "HA-Name"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.givenName",
-          "text": "Vorname",
-          "answer": [ {
-            "valueString": "HA-Vorname"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.gln",
-          "text": "GLN",
-          "answer": [ {
-            "valueString": "HA-GLN"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.zsr",
-          "text": "ZSR",
-          "answer": [ {
-            "valueString": "HA-ZSR"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.phone",
-          "text": "Telefon",
-          "answer": [ {
-            "valueString": "HA-Tel"
-          } ]
-        }, {
-          "linkId": "familydoctor.practitioner.email",
-          "text": "E-Mail",
-          "answer": [ {
-            "valueString": "HA-E-MAIL"
-          } ]
-        } ]
-      }, {
-        "linkId": "familydoctor.organization",
-        "text": "Hausarzt Organisation",
-        "item": [ {
-          "linkId": "familydoctor.organization.name",
-          "text": "Name der Organisation",
-          "answer": [ {
-            "valueString": "HA-OrgName"
-          } ]
-        }, {
-          "linkId": "familydoctor.organization.gln",
-          "text": "GLN",
-          "answer": [ {
-            "valueString": "HA-OrgGln"
-          } ]
-        }, {
-          "linkId": "familydoctor.organization.streetAddressLine",
-          "text": "Strasse, Hausnummer, Postfach etc.",
-          "answer": [ {
-            "valueString": "HA-OrgStreet"
-          } ]
-        }, {
-          "linkId": "familydoctor.organization.postalCode",
-          "text": "PLZ",
-          "answer": [ {
-            "valueString": "HA-OrgPLZ"
-          } ]
-        }, {
-          "linkId": "familydoctor.organization.city",
-          "text": "Ort",
-          "answer": [ {
-            "valueString": "HA-OrgORT"
-          } ]
-        }, {
-          "linkId": "familydoctor.organization.country",
-          "text": "Land",
-          "answer": [ {
-            "valueString": "HA-OrgContunry"
-          } ]
-        } ]
-      } ]
-    } ]
-  }, {
-    "linkId": "antecedentEpisodeOfCare",
-    "text": "Vorgängiger Aufenthalt in Spital / Heim",
-    "item": [ {
-      "linkId": "antecedentEpisodeOfCare.start",
-      "text": "Von",
-      "answer": [ {
-        "valueDateTime": "2022-08-16T00:00:00+02:00"
-      } ]
-    }, {
-      "linkId": "antecedentEpisodeOfCare.end",
-      "text": "Bis",
-      "answer": [ {
-        "valueDateTime": "2022-08-22T00:00:00+02:00"
-      } ]
-    }, {
-      "linkId": "antecedentEpisodeOfCare.organization",
-      "text": "Spital /Heim",
-      "item": [ {
-        "linkId": "antecedentEpisodeOfCare.organization.name",
-        "text": "Name der Organisation",
-        "answer": [ {
-          "valueString": "VA-Spital"
-        } ]
-      }, {
-        "linkId": "antecedentEpisodeOfCare.organization.streetAddressLine",
-        "text": "Strasse, Hausnummer, Postfach etc.",
-        "answer": [ {
-          "valueString": "VA-Strasse"
-        } ]
-      }, {
-        "linkId": "antecedentEpisodeOfCare.organization.postalCode",
-        "text": "PLZ",
-        "answer": [ {
-          "valueString": "VA-PLZ"
-        } ]
-      }, {
-        "linkId": "antecedentEpisodeOfCare.organization.city",
-        "text": "Ort",
-        "answer": [ {
-          "valueString": "VA-Ort"
-        } ]
-      }, {
-        "linkId": "antecedentEpisodeOfCare.organization.country",
-        "text": "Land",
-        "answer": [ {
-          "valueString": "VA.Country"
-        } ]
-      } ]
-    } ]
-  }, {
-    "linkId": "appointment",
-    "text": "Ort und Zeit der Durchführung der angeforderten Leistung",
-    "item": [ {
-      "linkId": "appointment.status",
-      "text": "Status",
-      "answer": [ {
-        "valueCoding": {
-          "system": "http://hl7.org/fhir/appointmentstatus",
-          "code": "proposed",
-          "display": "Wunsch des Patienten (vorgeschlagen)"
-        }
-      } ]
-    } ]
-  }, {
-    "linkId": "consent",
-    "text": "Einverständniserklärung",
-    "item": [ {
-      "linkId": "consent.statement",
-      "text": "Ist der Patient über die Anmeldung informiert und explizit einverstanden?",
-      "answer": [ {
-        "valueCoding": {
-          "system": "http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus",
-          "code": "ExplicitAgreement",
-          "display": "Patient is informed and has explicitly agreed"
+  "item": [
+    {
+      "linkId": "initiator",
+      "text": "Initiant dieser Anmeldung",
+      "item": [
+        {
+          "linkId": "initiator.legalguardian",
+          "text": "Juristische Beziehung zum Patienten",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://snomed.info/sct",
+                "code": "58626002",
+                "display": "Gesetzlicher Vertreter"
+              }
+            }
+          ]
         },
-        "item": [ {
-          "linkId": "consent.statement.note",
-          "text": "Anmerkung",
-          "answer": [ {
-            "valueString": "Constent- Anmerkung"
-          } ]
-        } ]
-      } ]
-    } ]
-  } ]
+        {
+          "linkId": "initiator.initiatorrelation",
+          "text": "Persönliche Beziehung zum Patienten?",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://snomed.info/sct",
+                "code": "66089001",
+                "display": "Tochter"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "initiator.practitionerRole",
+          "text": "Gesundheitsfachperson oder -organisation",
+          "item": [
+            {
+              "linkId": "initiator.practitionerRole.practitioner",
+              "text": "Gesundheitsfachperson",
+              "item": [
+                {
+                  "linkId": "initiator.practitionerRole.practitioner.title",
+                  "text": "Titel",
+                  "answer": [
+                    {
+                      "valueString": "GFP-Titel"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.practitioner.familyName",
+                  "text": "Name",
+                  "answer": [
+                    {
+                      "valueString": "GFP-Name"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.practitioner.givenName",
+                  "text": "Vorname",
+                  "answer": [
+                    {
+                      "valueString": "GFP-Vorname"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.practitioner.phone",
+                  "text": "Telefon",
+                  "answer": [
+                    {
+                      "valueString": "GFP-Telefon"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.practitioner.email",
+                  "text": "E-Mail",
+                  "answer": [
+                    {
+                      "valueString": "GFP-E-Mail"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "initiator.practitionerRole.organization",
+              "text": "Gesundheitsorganisatiton",
+              "item": [
+                {
+                  "linkId": "initiator.practitionerRole.organization.name",
+                  "text": "Name der Organisation",
+                  "answer": [
+                    {
+                      "valueString": "GO-Name"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.organization.streetAddressLine",
+                  "text": "Strasse, Hausnummer, Postfach etc.",
+                  "answer": [
+                    {
+                      "valueString": "GO-Strasse"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.organization.postalCode",
+                  "text": "PLZ",
+                  "answer": [
+                    {
+                      "valueString": "GO-PLZ"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.organization.city",
+                  "text": "Ort",
+                  "answer": [
+                    {
+                      "valueString": "GO-Ort"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "initiator.practitionerRole.organization.country",
+                  "text": "Land",
+                  "answer": [
+                    {
+                      "valueString": "GO-Land"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "item": [
+        {
+          "linkId": "patient.languageOfCorrespondence",
+          "text": "Korrespondenzsprache",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "urn:ietf:bcp:47",
+                "code": "de",
+                "display": "German"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "familydoctor",
+          "text": "Hausarzt",
+          "item": [
+            {
+              "linkId": "familydoctor.practitioner",
+              "text": "Hausarzt Person",
+              "item": [
+                {
+                  "linkId": "familydoctor.practitioner.title",
+                  "text": "Titel",
+                  "answer": [
+                    {
+                      "valueString": "HA-Title"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.familyName",
+                  "text": "Name",
+                  "answer": [
+                    {
+                      "valueString": "HA-Name"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.givenName",
+                  "text": "Vorname",
+                  "answer": [
+                    {
+                      "valueString": "HA-Vorname"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.gln",
+                  "text": "GLN",
+                  "answer": [
+                    {
+                      "valueString": "HA-GLN"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.zsr",
+                  "text": "ZSR",
+                  "answer": [
+                    {
+                      "valueString": "HA-ZSR"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.phone",
+                  "text": "Telefon",
+                  "answer": [
+                    {
+                      "valueString": "HA-Tel"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.practitioner.email",
+                  "text": "E-Mail",
+                  "answer": [
+                    {
+                      "valueString": "HA-E-MAIL"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "familydoctor.organization",
+              "text": "Hausarzt Organisation",
+              "item": [
+                {
+                  "linkId": "familydoctor.organization.name",
+                  "text": "Name der Organisation",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgName"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.organization.gln",
+                  "text": "GLN",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgGln"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.organization.streetAddressLine",
+                  "text": "Strasse, Hausnummer, Postfach etc.",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgStreet"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.organization.postalCode",
+                  "text": "PLZ",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgPLZ"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.organization.city",
+                  "text": "Ort",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgORT"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "familydoctor.organization.country",
+                  "text": "Land",
+                  "answer": [
+                    {
+                      "valueString": "HA-OrgContunry"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "antecedentEpisodeOfCare",
+      "text": "Vorgängiger Aufenthalt in Spital / Heim",
+      "item": [
+        {
+          "linkId": "antecedentEpisodeOfCare.start",
+          "text": "Von",
+          "answer": [
+            {
+              "valueDateTime": "2022-08-16T00:00:00+02:00"
+            }
+          ]
+        },
+        {
+          "linkId": "antecedentEpisodeOfCare.end",
+          "text": "Bis",
+          "answer": [
+            {
+              "valueDateTime": "2022-08-22T00:00:00+02:00"
+            }
+          ]
+        },
+        {
+          "linkId": "antecedentEpisodeOfCare.managingOrganization",
+          "text": "Spital /Heim",
+          "item": [
+            {
+              "linkId": "antecedentEpisodeOfCare.managingOrganization.name",
+              "text": "Name der Organisation",
+              "answer": [
+                {
+                  "valueString": "VA-Spital"
+                }
+              ]
+            },
+            {
+              "linkId": "antecedentEpisodeOfCare.managingOrganization.streetAddressLine",
+              "text": "Strasse, Hausnummer, Postfach etc.",
+              "answer": [
+                {
+                  "valueString": "VA-Strasse"
+                }
+              ]
+            },
+            {
+              "linkId": "antecedentEpisodeOfCare.managingOrganization.postalCode",
+              "text": "PLZ",
+              "answer": [
+                {
+                  "valueString": "VA-PLZ"
+                }
+              ]
+            },
+            {
+              "linkId": "antecedentEpisodeOfCare.managingOrganization.city",
+              "text": "Ort",
+              "answer": [
+                {
+                  "valueString": "VA-Ort"
+                }
+              ]
+            },
+            {
+              "linkId": "antecedentEpisodeOfCare.managingOrganization.country",
+              "text": "Land",
+              "answer": [
+                {
+                  "valueString": "VA.Country"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "appointment",
+      "text": "Ort und Zeit der Durchführung der angeforderten Leistung",
+      "item": [
+        {
+          "linkId": "appointment.status",
+          "text": "Status",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/appointmentstatus",
+                "code": "proposed",
+                "display": "Wunsch des Patienten (vorgeschlagen)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "consent",
+      "text": "Einverständniserklärung",
+      "item": [
+        {
+          "linkId": "consent.statement",
+          "text": "Ist der Patient über die Anmeldung informiert und explizit einverstanden?",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus",
+                "code": "ExplicitAgreement",
+                "display": "Patient is informed and has explicitly agreed"
+              },
+              "item": [
+                {
+                  "linkId": "consent.statement.note",
+                  "text": "Anmerkung",
+                  "answer": [
+                    {
+                      "valueString": "Constent- Anmerkung"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

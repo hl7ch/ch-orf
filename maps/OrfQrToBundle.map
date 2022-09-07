@@ -440,23 +440,23 @@ group AntecedentEpisodeOfCareItems(source src : BackboneElement, target bundle: 
    src.item as item where (linkId.value = 'antecedentEpisodeOfCare.start' and answer.exists()) -> episodeofcare.statusHistory as statusHistory, statusHistory.status='finished', statusHistory.period as period, period.start = (item.answer.value), period.end = (item.answer.value) then {
         src.item as iteme where (linkId.value = 'antecedentEpisodeOfCare.end' and answer.exists()) -> period.end = (iteme.answer.value) "antecedentEpisodeOfCareEndNotSameAsStart";
    } "antecedentEpisodeOfCare.requestedPeriod.start";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization') -> 
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization') -> 
       bundle.entry as e3, 
           e3.resource = create('Organization') as organization, 
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
           episodeofcare.managingOrganization = create('Reference') as reference, 
-          reference.reference = append('urn:uuid:',uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) "antecedentEpisodeOfCare.organization";
+          reference.reference = append('urn:uuid:',uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) "antecedentEpisodeOfCare.managingOrganization";
 }
 
 group AntecedentEpisodeOfCareOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.name' and answer.exists()) -> organization.name = (item.answer.value);
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
       item.answer as answer -> address.line = (answer.value) "antecedentEpisodeOfCareorganization.streetAddressLine";
    } "item.answer";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "sender.author.organization.postalCode";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "sender.author.organization.city";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "sender.author.organization.country";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "sender.author.organization.postalCode";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "sender.author.organization.city";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "sender.author.organization.country";
 }
 
 group InitiatorInit(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {

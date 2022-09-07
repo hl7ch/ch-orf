@@ -210,7 +210,7 @@ and  transfer to retirement home etc."
 * section[orderReferral].entry[DocumentReference] only Reference(ChOrfDocumentReference)
 * section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
 * section[orderReferral].entry[DocumentReference].reference 1.. MS
-// ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
+/* ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
 * section[orderReferral].entry contains EpisodeOfCare 0..1 MS
 * section[orderReferral].entry[EpisodeOfCare] only Reference(ChOrfEpisodeOfCare) 
 * section[orderReferral].entry[EpisodeOfCare] ^short = "Episode of Care"
@@ -220,7 +220,7 @@ and  transfer to retirement home etc."
 * section[orderReferral].entry[Consent] only Reference(ChOrfConsent) 
 * section[orderReferral].entry[Consent] ^short = "Consent"
 * section[orderReferral].entry[Consent].reference 1.. MS
-
+*/
 
 // ---------- Composition.section:originalRepresentation ----------
 * section contains originalRepresentation 0..1 MS

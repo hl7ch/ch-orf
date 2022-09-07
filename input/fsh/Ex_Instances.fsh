@@ -26,9 +26,9 @@ InstanceOf: Composition
 
 * extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"
 * extension[=].extension[+].url = "ch-orf-personalrelation"
-* extension[=].extension[=].valueCodeableConcept = SCT#127849001 "Husband (person)"
+* extension[=].extension[=].valueCoding = SCT#127849001 "Husband (person)"
 * extension[=].extension[+].url = "ch-orf-legalrelation"
-* extension[=].extension[=].valueCodeableConcept = SCT#58626002  "Legal guardian (person)"
+* extension[=].extension[=].valueCoding = SCT#58626002  "Legal guardian (person)"
 * extension[=].extension[+].url = "ch-orf-personOrganization"
 * extension[=].extension[=].valueReference = Reference(RelatedPerson/ChOrfRelatedPersonMUfferer)
 
