@@ -1,5 +1,5 @@
-###@host = http://test.ahdis.ch/matchbox/fhir
-@host = http://localhost:8080/matchbox/fhir
+@host = http://test.ahdis.ch/matchbox/fhir
+### @host = http://localhost:8080/matchbox/fhir
 ### @host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
 
 
