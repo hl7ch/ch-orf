@@ -205,12 +205,12 @@ and  transfer to retirement home etc."
 * section[orderReferral].entry[ServiceRequest] only Reference(ChOrfServiceRequest)
 * section[orderReferral].entry[ServiceRequest] ^short = "ServiceRequest"
 * section[orderReferral].entry[ServiceRequest].reference 1.. MS
-/* ---------- Composition.section.entry:DocumentReference ----------
+// ---------- Composition.section.entry:DocumentReference ----------
 * section[orderReferral].entry contains DocumentReference 0..* MS
 * section[orderReferral].entry[DocumentReference] only Reference(ChOrfDocumentReference)
 * section[orderReferral].entry[DocumentReference] ^short = "DocumentReference"
 * section[orderReferral].entry[DocumentReference].reference 1.. MS
-// ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
+/* ---------- Composition.section.entry:ChOrfEpisodeOfCare ----------
 * section[orderReferral].entry contains EpisodeOfCare 0..1 MS
 * section[orderReferral].entry[EpisodeOfCare] only Reference(ChOrfEpisodeOfCare) 
 * section[orderReferral].entry[EpisodeOfCare] ^short = "Episode of Care"
