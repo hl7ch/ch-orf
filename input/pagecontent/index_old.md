@@ -381,7 +381,7 @@ Based on the Questionnaire, a Questionnaire Filler defines a QuestionnaireRespon
 Questionnaires may be accompanied by additional material which can be attached or sent by postal mail (e.g. xray-films or paper documents). The use case may require some references between attached objects (e.g. which pdf-reports belongs to which imaging study).
 
 #### Generic Elements of a Questionnaire
-A Questionnaire shall have a set of generic elements (e.g. author, data entry person, receiver etc.). <sup>&#91;Table 7&#93;</sup> lists the generic elements.
+A Questionnaire shall have a set of generic elements (e.g. author, data entry person, receiver etc.). <sup>&#91;Table 7&#93;</sup> lists the generic given elements.
 
 {:class="table table-bordered"}
 <table>
@@ -402,12 +402,20 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <th></th>
         </tr>
         <tr>
-            <td>Priority</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Order priority.</td>
+            <td>Author</td>
+            <td>X</td>
+            <td>X</td>
+            <td>Author</td>
+            <td>PractitionerRole</td>
+            <td>The person/organization responsible for the form content.</td>
+        </tr>
+        <tr>
+            <td>Data Entry Person</td>
+            <td>X</td>
+            <td>X</td>
+            <td>DataEnterer</td>
+            <td>PractitionerRole</td>
+            <td>The person/organization who has typed/filled in the form content.</td>
         </tr>
         <tr>
             <td>Urgent Notification Contact for this document</td>
@@ -439,14 +447,12 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <td>Person/organization who receives the document.</td>
         </tr>
         <tr>
-            <td>Initiator</td>
+            <td>Copy Receiver</td>
             <td>X</td>
             <td>X</td>
             <td></td>
-            <td>RelatedPerson/PractitionerRole</td>
-            <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
-            asks for spitex support becausehe needs help for the care of his wife).
-            </td>
+            <td>Patient/Organization</td>
+            <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).</td>
         </tr>
         <tr>
             <td>Patient</td>
@@ -458,84 +464,12 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             </td>
         </tr>
         <tr>
-            <td>Familydoctor</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>PractitionerRole</td>
-            <td>Healthprofessional who takes the role of a familydoctor.</td>
-        </tr>
-        <tr>
-            <td>Requested Encounter</td>
+            <td>Precedent Document Identifier</td>
             <td>na</td>
             <td>na</td>
             <td></td>
             <td></td>
-            <td>Requested Encounter such as ambulatory/inpatient/emergency.</td>
-        </tr>
-        <tr>
-            <td>Coverage</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Payor covering the costs.</td>
-        </tr>
-        <tr>
-            <td>Sender/Author</td>
-            <td>X</td>
-            <td>X</td>
-            <td>Sender/Author</td>
-            <td>PractitionerRole</td>
-            <td>The person/organization responsible for the form content.</td>
-        </tr>
-        <tr>
-            <td>Data Entry Person</td>
-            <td>X</td>
-            <td>X</td>
-            <td>DataEnterer</td>
-            <td>PractitionerRole</td>
-            <td>The person/organization who has typed/filled in the form content.</td>
-        </tr>
-        <tr>
-            <td>Copy Receiver</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>Patient/RelatedPerson/PractitionerRole</td>
-            <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).</td>
-        </tr>
-        <tr>
-            <td>Antecedent Episode of Care</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between instituitons such as hospitals, rehab. clinics, retirement homes etc."</td>
-        </tr>
-        <tr>
-            <td>Appointment</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Indication of date/time and location of the requested appointment(s)</td>
-        </tr>
-        <tr>
-            <td>Patientconsent</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Indication of whether the patient has given informed consent to this order; in particular for Spitex and transfer to nursing/retirement home, etc.</td>
-        </tr>
-        <tr>
-            <td>Note</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>General remarks</td>
+            <td>This element provides a link to the preceding document (Bundle.identifier) in a thread (e.g. from a response to the request).</td>
         </tr>
         <tr>
             <td>Date</td>
@@ -544,6 +478,14 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <td></td>
             <td></td>
             <td>Date, the document was created.</td>
+        </tr>
+        <tr>
+            <td>Priority</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
+            <td>Order priority.</td>
         </tr>
     </tbody>
 </table>
