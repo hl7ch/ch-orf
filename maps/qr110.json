@@ -14,7 +14,7 @@
       "text": "Initiant dieser Anmeldung",
       "item": [
         {
-          "linkId": "initiator.legalguardian",
+          "linkId": "initiator.legalrelation",
           "text": "Juristische Beziehung zum Patienten",
           "answer": [
             {

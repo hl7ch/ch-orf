@@ -267,14 +267,14 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
 }
 
 group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target ext: Extension) {
-   src.item as item where (linkId.value = 'initiator.initiatorrelation' and answer.exists()) -> 
+   src.item as item where (linkId.value = 'initiator.personalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-personalrelation', 
-      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.initiatorrelation";
-   src.item as item where (linkId.value = 'initiator.legalguardian' and answer.exists()) -> 
+      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.personalrelation";
+   src.item as item where (linkId.value = 'initiator.legalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-legalrelation', 
-      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.legalguardian";
+      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.legalrelation";
    src.item as item where (linkId='initiator.practitionerRole') -> bundle.entry as e4, 
       e4.resource = create('PractitionerRole') as practitionerrole, 
       ext.extension as extension,
