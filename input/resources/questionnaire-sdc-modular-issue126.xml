@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Questionnaire xmlns="http://hl7.org/fhir">
 	<id value="sdc-modular-issue126"/>
+  <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation">
+    <valueCode value="assemble-root"/>
+	</extension>
 	<url value="http://fhir.ch/ig/ch-orf/Questionnaire/sdc-modular-issue126"/>
 	<name value="SDCModularQuestionnaireExampleForIssue126"/>
 	<title value="SDC Modular Questionnaire Example for Issue 126"/>
