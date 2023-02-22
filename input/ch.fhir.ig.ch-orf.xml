@@ -352,16 +352,14 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
 
-<!--
     <resource>
       <reference>
-        <reference value="Questionnaire/sdc-modular-root"/>
+        <reference value="Questionnaire/sdc-modular-issue126"/>
       </reference>
-      <name value="SDC modular root copy"/>
-      <description value="SDC modular root copy"/>
+      <name value="SDCModularQuestionnaireExampleForIssue126"/>
+      <description value="SDC Modular Questionnaire Example for Issue 126"/>
       <exampleCanonical value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-modular"/>
     </resource>
--->
 
     <resource>
       <reference>

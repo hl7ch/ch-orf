@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Questionnaire xmlns="http://hl7.org/fhir">
+	<id value="sdc-modular-issue126"/>
+	<url value="http://fhir.ch/ig/ch-orf/Questionnaire/sdc-modular-issue126"/>
+	<name value="SDCModularQuestionnaireExampleForIssue126"/>
+	<title value="SDC Modular Questionnaire Example for Issue 126"/>
+	<status value="draft"/>
+	<experimental value="true"/>
+	<description value="SDC Modular Questionnaire Example for ch-orf issue #126"/>
+	<item>
+    <linkId value="1"/>
+    <type value="group"/>
+    <item>
+      <linkId value="1.1"/>
+      <text value="Unable to resolve 'name' sub-questionnaire"/>
+      <type value="display"/>
+    </item>
+  </item>
+  <!--
+    only using this item one provokes 143 errors
+	<item>
+    <linkId value="1"/>
+      <text value="Unable to resolve 'name' sub-questionnaire"/>
+    <type value="display"/>
+  </item>
+  -->
+</Questionnaire>
