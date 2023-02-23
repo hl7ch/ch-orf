@@ -29,7 +29,7 @@ Description: "Initiator and his realtion to the patient"
 * extension contains
     ch-orf-personalrelation 1..1 MS and 
     ch-orf-legalrelation 1..1 MS and
-    ch-orf-personOrganization 1..1 MS 
+    ch-orf-personorganization 1..1 MS 
 
 //* extension[ch-orf-personalrelation] ^short = "Personal relation"
 //* extension[ch-orf-personalrelation].value[x] only CodeableConcept
@@ -39,26 +39,27 @@ Description: "Initiator and his realtion to the patient"
 //* extension[ch-orf-legalrelation].value[x] only CodeableConcept
 * extension[ch-orf-legalrelation].valueCoding from ChOrfVSLegalRelation (required)
 
-//* extension[ch-orf-personOrganization] ^short = "Initiator person or organization"
-* extension[ch-orf-personOrganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+//* extension[ch-orf-personorganization] ^short = "Initiator person or organization"
+* extension[ch-orf-personorganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
 
 
 Extension: ChOrfPersonalRelation
 Id: ch-orf-personalrelation
-//* . ^definition = "Extension to define the personal relation between initator and patient"
+Description: "Extension to define the personal relation between initator and patient"
 * extension 0..0
 * value[x] only CodeableConcept
 * extension.valueCodeableConcept from ChOrfVsPersonalRelation (required)
 
 Extension: ChOrfLegalRelation
 Id: ch-orf-legalrelation
-//* . ^definition = "Extension to define the legal relation between initator and patient"
+Description: "Extension to define the legal relation between initator and patient"
 * extension 0..0
 * value[x] only CodeableConcept
 * extension.valueCodeableConcept from ChOrfVSLegalRelation (required)
 
 Extension: ChOrfPersonOrganization
-Id: ch-orf-personOrganization
+Id: ch-orf-personorganization
+Description: "Reference to Patient, Practitioner, PratictionerRole or RelatedPerson"
 * extension 0..0
 * value[x] only Reference (ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 

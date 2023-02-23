@@ -23,8 +23,9 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
 #### Changed / Updated
 * Update the dependencies to the current published versions
-   * IG [CH Core](http://fhir.ch/ig/ch-core/history.html): v2.0.0 -> v2.1.0
+   * IG [CH Core](http://fhir.ch/ig/ch-core/history.html): v2.0.0 -> v2.1.0 -> v3.1.0 (current), see [#125](https://github.com/hl7ch/ch-orf/issues/125)
       * Update the GLN (Practitioner.identifier) in the examples because of the modulus 10 check 
+      * Added Appendix in index with Safety Considerations, IP Statements, Cross Version Analysis and Global, Dependency Table
    * IG [SDC](http://hl7.org/fhir/uv/sdc/history.html): v2.7.0 -> v3.0.0
       * Adaptation of the parent profile of the CH ORF Questionnaire
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire`

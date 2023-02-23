@@ -29,7 +29,7 @@ InstanceOf: Composition
 * extension[=].extension[=].valueCoding = SCT#127849001 "Husband (person)"
 * extension[=].extension[+].url = "ch-orf-legalrelation"
 * extension[=].extension[=].valueCoding = SCT#58626002  "Legal guardian (person)"
-* extension[=].extension[+].url = "ch-orf-personOrganization"
+* extension[=].extension[+].url = "ch-orf-personorganization"
 * extension[=].extension[=].valueReference = Reference(RelatedPerson/ChOrfRelatedPersonMUfferer)
 
 
