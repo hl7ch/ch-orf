@@ -354,6 +354,15 @@
 
     <resource>
       <reference>
+        <reference value="Questionnaire/sdc-modular-issue126"/>
+      </reference>
+      <name value="SDCModularQuestionnaireExampleForIssue126"/>
+      <description value="SDC Modular Questionnaire Example for Issue 126"/>
+      <exampleCanonical value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-modular"/>
+    </resource>
+
+    <resource>
+      <reference>
         <reference value="Questionnaire/order-referral-form"/>
       </reference>
       <name value="Questionnaire Order-Referral-Form"/>
