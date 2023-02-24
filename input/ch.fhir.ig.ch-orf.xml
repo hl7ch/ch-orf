@@ -38,7 +38,7 @@
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="2.1.0"/>
+    <version value="current"/>
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
@@ -186,7 +186,27 @@
       </reference>
       <exampleBoolean value="false"/>
     </resource>   
-
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-personalrelation"/>
+      </reference>
+      <name value="Extension to define the personal relation between initator and patient" />
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-personorganization"/>
+      </reference>
+      <name value="Reference to Patient, Practitioner, PratictionerRole or RelatedPerson"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="StructureDefinition/ch-orf-legalrelation"/>
+      </reference>
+      <name value="Extension to define the legal relation between initator and patient"/>
+      <exampleBoolean value="false"/>
+    </resource>
     <resource>
       <reference>
         <reference value="StructureDefinition/ch-orf-consentcode"/>
@@ -386,8 +406,7 @@
       <name value="Module Questionnaire Familydoctor"/>
       <description value="Subquestionnaire familyDoctor"/>
     </resource>
-
-
+    
     <resource>
       <reference>
         <reference value="Questionnaire/ch-orf-module-address"/>

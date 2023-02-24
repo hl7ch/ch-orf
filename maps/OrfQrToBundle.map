@@ -279,7 +279,7 @@ group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target
       e4.resource = create('PractitionerRole') as practitionerrole, 
       ext.extension as extension,
       practitionerrole.id = uuid() as uuid4,
-      extension.url = 'ch-orf-personOrganization',
+      extension.url = 'ch-orf-personorganization',
       extension.value =  create('Reference') as reference, 
       reference.reference = append('urn:uuid:',uuid4),
       e4.fullUrl = append('urn:uuid:',uuid4) then {
@@ -288,7 +288,7 @@ group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target
    src.item as item where (linkId='initiator.relatedPerson') -> bundle.entry as e4, 
             e4.resource = create('RelatedPerson') as relatedPerson,
             ext.extension as extension, 
-            extension.url = 'ch-orf-personOrganization',
+            extension.url = 'ch-orf-personorganization',
             extension.value =  create('Reference') as reference, 
             relatedPerson.id = uuid() as uuid4,
             reference.reference = append('urn:uuid:',uuid4),

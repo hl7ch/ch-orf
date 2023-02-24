@@ -150,10 +150,10 @@ group ReceiverInit(source src : BackboneElement, target bundle : Bundle, target 
 group InitiatorItems(source src : BackboneElement, target bundle : Bundle, target patient : Patient, target ext : Extension) {
   src.item as item where ((linkId.value = &apos;initiator.personalrelation&apos;) and answer.exists()) -&gt;  ext.extension as extension,  extension.url = &apos;ch-orf-personalrelation&apos;,  extension.value = create(&apos;CodeableConcept&apos;) as cc,  cc.coding = (item.answer.value) &quot;personalrelation&quot;;
   src.item as item where ((linkId.value = &apos;initiator.legalrelation&apos;) and answer.exists()) -&gt;  ext.extension as extension,  extension.url = &apos;ch-orf-legalrelation&apos;,  extension.value = create(&apos;CodeableConcept&apos;) as cc,  cc.coding = (item.answer.value) &quot;legalrelation&quot;;
-  src.item as item where (linkId = &apos;initiator.practitionerRole&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerrole,  ext.extension as extension,  practitionerrole.id = uuid() as uuid4,  extension.url = &apos;ch-orf-personOrganization&apos;,  extension.value = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid4),  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
+  src.item as item where (linkId = &apos;initiator.practitionerRole&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;PractitionerRole&apos;) as practitionerrole,  ext.extension as extension,  practitionerrole.id = uuid() as uuid4,  extension.url = &apos;ch-orf-personorganization&apos;,  extension.value = create(&apos;Reference&apos;) as reference,  reference.reference = append(&apos;urn:uuid:&apos;, uuid4),  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
     item then InitiatorPractitionerRoleItems(item, bundle, practitionerrole) &quot;data&quot;;
   } &quot;InitiatorPractitionerRoleItems&quot;;
-  src.item as item where (linkId = &apos;initiator.relatedPerson&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  ext.extension as extension,  extension.url = &apos;ch-orf-personOrganization&apos;,  extension.value = create(&apos;Reference&apos;) as reference,  relatedPerson.id = uuid() as uuid4,  reference.reference = append(&apos;urn:uuid:&apos;, uuid4),  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id),  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
+  src.item as item where (linkId = &apos;initiator.relatedPerson&apos;) -&gt;  bundle.entry as e4,  e4.resource = create(&apos;RelatedPerson&apos;) as relatedPerson,  ext.extension as extension,  extension.url = &apos;ch-orf-personorganization&apos;,  extension.value = create(&apos;Reference&apos;) as reference,  relatedPerson.id = uuid() as uuid4,  reference.reference = append(&apos;urn:uuid:&apos;, uuid4),  relatedPerson.patient as reference,  reference.reference = (&apos;urn:uuid:&apos; + %patient.id),  e4.fullUrl = append(&apos;urn:uuid:&apos;, uuid4) then {
     item then InitiatorRelatedPersonItems(item, relatedPerson) &quot;data&quot;;
   } &quot;relatedPerson&quot;;
 }
@@ -3778,7 +3778,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <element value="url"/>
             <transform value="copy"/>
             <parameter>
-               <valueString value="ch-orf-personOrganization"/>
+               <valueString value="ch-orf-personorganization"/>
             </parameter>
          </target>
          <target>
@@ -3876,7 +3876,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
             <element value="url"/>
             <transform value="copy"/>
             <parameter>
-               <valueString value="ch-orf-personOrganization"/>
+               <valueString value="ch-orf-personorganization"/>
             </parameter>
          </target>
          <target>
