@@ -1116,7 +1116,7 @@ Description: "Subquestionnaire receiverCopy"
 
 * item[=].item[+].linkId = "receiverCopy.relatedPerson.givenName"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].text = "Vorame"
+* item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "receiverCopy.relatedPerson.phone"
@@ -1215,7 +1215,7 @@ Description: "Subquestionnaire receiverCopy"
 // 
 // * item[=].item[+].linkId = "initator.relatedPerson.givenName"
 // * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-// * item[=].item[=].text = "Vorame"
+// * item[=].item[=].text = "Vorname"
 // * item[=].item[=].type = #string
 // 
 // * item[=].item[+].linkId = "initator.relatedPerson.phone"
@@ -1456,7 +1456,7 @@ Description: "Subquestionnaire initiator"
 
 * item[=].item[+].linkId = "initiator.relatedPerson.givenName"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].text = "Vorame"
+* item[=].item[=].text = "Vorname"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "initiator.relatedPerson.phone"
