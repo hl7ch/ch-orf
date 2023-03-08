@@ -790,7 +790,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.givenName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].item[=].text = "Vorame"
+* item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.phone"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"

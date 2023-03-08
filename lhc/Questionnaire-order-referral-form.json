@@ -1719,7 +1719,7 @@
             {
               "linkId": "receiverCopy.relatedPerson.givenName",
               "definition": "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given",
-              "text": "Vorame",
+              "text": "Vorname",
               "type": "string"
             },
             {

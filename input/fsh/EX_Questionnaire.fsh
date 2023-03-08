@@ -346,7 +346,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "initiator.relatedPerson.givenName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].item[=].text = "Vorame"
+* item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "initiator.relatedPerson.phone"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"
@@ -518,6 +518,7 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
+* item[=].item[=].repeats = true
 * item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
@@ -1048,7 +1049,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.givenName"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"
-* item[=].item[=].item[=].text = "Vorame"
+* item[=].item[=].item[=].text = "Vorname"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiverCopy.relatedPerson.phone"
 * item[=].item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.telecom.value"

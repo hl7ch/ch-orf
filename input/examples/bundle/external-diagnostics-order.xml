@@ -1390,7 +1390,7 @@
                         <item>
                             <linkId value="initiator.relatedPerson.givenName"/>
                             <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"/>
-                            <text value="Vorame"/>
+                            <text value="Vorname"/>
                             <type value="string"/>
                         </item>
                         <item>
@@ -2627,7 +2627,7 @@
                         <item>
                             <linkId value="receiverCopy.relatedPerson.givenName"/>
                             <definition value="http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.given"/>
-                            <text value="Vorame"/>
+                            <text value="Vorname"/>
                             <type value="string"/>
                         </item>
                         <item>
