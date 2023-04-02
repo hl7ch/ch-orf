@@ -388,41 +388,18 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
     <tbody>
         <tr>
             <th><b>Name</b></th>
-            <th colspan="2"><b>Role Taker</b></th>
-            <th><b>HL7 V3<br />Equivalent</b></th>
-            <th><b>FHIR<br />Representation</b></th>
             <th><b>Comment</b></th>
         </tr>
         <tr>
-            <th></th>
-            <th><b>Human</b></th>
-            <th><b>Organization</b></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>Priority</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.priority">Priority</a></td>
             <td>Order priority.</td>
         </tr>
         <tr>
-            <td>Urgent Notification Contact for this document</td>
-            <td>X</td>
-            <td>X</td>
-            <td>PrimaryInformationRecipient</td>
-            <td>PractitionerRole</td>
+            <td><a href="hhttp://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument">Urgent Notification Contact for this document</a></td>
             <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the document is received.)</td>
         </tr>
         <tr>
-            <td>Urgent Notification Contact for the Response to this document.</td>
-            <td>X</td>
-            <td>X</td>
-            <td>PrimaryInformationRecipient</td>
-            <td>PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument">Urgent Notification Contact for the Response to this document</a></td>
             <td>
                 <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive).
                 </p>
@@ -431,118 +408,62 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             </td>
         </tr>
         <tr>
-            <td>Receiver</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Receiver</a></td>
             <td>Person/organization who receives the document.</td>
         </tr>
         <tr>
-            <td>Initiator</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>RelatedPerson/PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:initiator">Initiator</a></td>
             <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
             asks for spitex support becausehe needs help for the care of his wife).
             </td>
         </tr>
         <tr>
-            <td>Patient</td>
-            <td>X</td>
-            <td></td>
-            <td></td>
-            <td>Patient</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient</a></td>
             <td>The principle target of a particular form content is one patient (for obstetrical and neonatal use cases see...).
             </td>
         </tr>
         <tr>
-            <td>Familydoctor</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>PractitionerRole</td>
+            <td><a href="https://build.fhir.org/ig/hl7ch/ch-core//StructureDefinition-ch-core-patient.html#Patient.generalPractitioner">Familydoctor</a></td>
             <td>Healthprofessional who takes the role of a familydoctor.</td>
         </tr>
         <tr>
-            <td>Requested Encounter</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails">Requested Encounter</a></td>
             <td>Requested Encounter such as ambulatory/inpatient/emergency.</td>
         </tr>
         <tr>
-            <td>Coverage</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
-            <td>Payor covering the costs.</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</td>
+            <td>Payor covering the costs.</a></td>
         </tr>
         <tr>
-            <td>Sender/Author</td>
-            <td>X</td>
-            <td>X</td>
-            <td>Sender/Author</td>
-            <td>PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.author">Sender/Author</a></td>
             <td>The person/organization responsible for the form content.</td>
         </tr>
         <tr>
-            <td>Data Entry Person</td>
-            <td>X</td>
-            <td>X</td>
-            <td>DataEnterer</td>
-            <td>PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer">Data Entry Person</td>
             <td>The person/organization who has typed/filled in the form content.</td>
         </tr>
         <tr>
-            <td>Copy Receiver</td>
-            <td>X</td>
-            <td>X</td>
-            <td></td>
-            <td>Patient/RelatedPerson/PractitionerRole</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Copy Receiver</a></td>
             <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).</td>
         </tr>
         <tr>
-            <td>Antecedent Episode of Care</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare">Antecedent Episode of Care</a></td>
             <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between instituitons such as hospitals, rehab. clinics, retirement homes etc."</td>
         </tr>
         <tr>
-            <td>Appointment</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime">Appointment</a></td>
             <td>Indication of date/time and location of the requested appointment(s)</td>
         </tr>
         <tr>
-            <td>Patientconsent</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent">Patientconsent</a></td>
             <td>Indication of whether the patient has given informed consent to this order; in particular for Spitex and transfer to nursing/retirement home, etc.</td>
         </tr>
         <tr>
-            <td>Note</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.note.text">Note</a></td>
             <td>General remarks</td>
         </tr>
         <tr>
-            <td>Date</td>
-            <td>na</td>
-            <td>na</td>
-            <td></td>
-            <td></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition-definitions.html#Composition.date">Date</a></td>
             <td>Date, the document was created.</td>
         </tr>
     </tbody>
