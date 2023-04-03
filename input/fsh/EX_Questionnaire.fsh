@@ -62,7 +62,11 @@ Usage: #example
 * item[=].text = "Auftrag"
 * item[=].type = #group
 * item[=].required = true
-* item[=].item[0].linkId = "order.placerOrderIdentifier"
+* item[=].item[0].linkId = "order.authoredOn"
+* item[=].item[=].definition = "http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
+* item[=].item[=].text = "Daum/Zeit der Auftragserteilung"
+* item[=].item[=].type = #dateTime
+* item[=].item[+].linkId = "order.placerOrderIdentifier"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"
 * item[=].item[=].text = "Auftragsnummer des Auftraggebers"
 * item[=].item[=].type = #string
@@ -518,7 +522,6 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
-* item[=].item[=].repeats = true
 * item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
