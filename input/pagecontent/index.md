@@ -391,11 +391,30 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <th><b>Comment</b></th>
         </tr>
         <tr>
-            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.priority">Priority</a></td>
-            <td>Order priority.</td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn">Date</a></td>
+            <td>Date when the request transitioned to being actionable (e.g sent to the receiver).</td>
         </tr>
         <tr>
-            <td><a href="hhttp://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument">Urgent Notification Contact for this document</a></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value">Placer Order Identifier</a></td>
+            <td>Placer Order Identifier</td>
+        </tr>
+        <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system">Placer Order Identifier Domain</a></td>
+            <td>Placer Order Identifier Domain</td>
+        </tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value">Filler Order Identifier</a></td>
+            <td>Filler Order Identifier</td>
+        </tr>
+        <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system">Filler Order Identifier Domain</a></td>
+            <td>Filler Order Identifier Domain</td>
+        </tr>
+        <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument">Precedent Document Identifier</a></td>
+            <td>Precedent Document Identifier</td>
+        </tr>
+        <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument">Urgent Notification Contact for this document</a></td>
             <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the document is received.)</td>
         </tr>
         <tr>
@@ -407,6 +426,10 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
                 </p>
             </td>
         </tr>
+       <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.priority">Priority</a></td>
+            <td>Order priority.</td>
+        </tr>
         <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Receiver</a></td>
             <td>Person/organization who receives the document.</td>
@@ -414,32 +437,34 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
         <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:initiator">Initiator</a></td>
             <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
-            asks for spitex support becausehe needs help for the care of his wife).
-            </td>
+            asks for spitex support becausehe needs help for the care of his wife).</td>
         </tr>
         <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient</a></td>
-            <td>The principle target of a particular form content is one patient (for obstetrical and neonatal use cases see...).
-            </td>
+            <td>The principle target of a particular form content is one patient.</td>
+        </tr>
+        <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient Contact Person</a></td>
+            <td>The principle target of a particular form content is one patient.</td>
         </tr>
         <tr>
             <td><a href="https://build.fhir.org/ig/hl7ch/ch-core//StructureDefinition-ch-core-patient.html#Patient.generalPractitioner">Familydoctor</a></td>
             <td>Healthprofessional who takes the role of a familydoctor.</td>
         </tr>
-        <tr>
+       <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails">Requested Encounter</a></td>
             <td>Requested Encounter such as ambulatory/inpatient/emergency.</td>
         </tr>
         <tr>
-            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</td>
-            <td>Payor covering the costs.</a></td>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</a></td>
+            <td>Payor covering the costs.</td>
         </tr>
         <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.author">Sender/Author</a></td>
             <td>The person/organization responsible for the form content.</td>
         </tr>
-        <tr>
-            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer">Data Entry Person</td>
+       <tr>
+            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer">Data Entry Person</a></td>
             <td>The person/organization who has typed/filled in the form content.</td>
         </tr>
         <tr>
@@ -461,11 +486,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
         <tr>
             <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.note.text">Note</a></td>
             <td>General remarks</td>
-        </tr>
-        <tr>
-            <td><a href="http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-composition-definitions.html#Composition.date">Date</a></td>
-            <td>Date, the document was created.</td>
-        </tr>
+        </tr>        
     </tbody>
 </table>
 
@@ -528,7 +549,7 @@ In the Composition, general information about the document is defined, such as t
         </tr>
     </tbody>
 </table>
-<sup>&#91;Table 8&#93;</sup> *Generel information about the document defined in Composition*
+<sup>&#91;Table 8&#93;</sup> *General information about the document defined in Composition*
 
 ###### Questionnaire Resource
 The intention of the ORF Implementation guide is to provide a standardized representation of forms at sender and receiver site as well. This is achieved with the Questionnaire resource, which defines representation of all elements for the user (with the help of a CSS) and user interaction as well (e.g. with drop down lists).
