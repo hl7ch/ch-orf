@@ -239,7 +239,7 @@ Description: "Subquestionnaire order"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "order.authoredOn"
-* item[=].definition = "http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
 * item[=].text = "Daum/Zeit der Auftragserteilung"
 * item[=].type = #dateTime
 

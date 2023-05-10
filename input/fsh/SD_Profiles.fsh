@@ -377,7 +377,7 @@ and where and when the service request is to be fulfilled."
 * patientInstruction MS
 * patientInstruction ^short = "Patient-oriented instructions SHALL be here and NOT in ServiceRequest.patientInstruction"
 * participant ..1 MS
-* participant.actor MS
+* participant.actor MS //corrected from 1..  because must be 0..1
 * participant.actor only Reference(ChOrfLocation)
 * participant.actor ^short = "Name, address and telecom of the appointment location"
 * participant.status MS
