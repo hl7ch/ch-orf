@@ -316,7 +316,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Structure Maps -->
+    <!-- Structure Maps temporär auskommentiert
     <resource>
       <reference>
         <reference value="StructureMap/OrfQrToBundle"/>
@@ -325,7 +325,7 @@
       <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
-
+    -->
     <!-- Example Instances -->
     <resource>
       <reference>
