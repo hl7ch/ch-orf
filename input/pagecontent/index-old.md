@@ -1,12 +1,10 @@
-The CH **O**rder & **R**eferral by **F**orm (CH ORF) implementation guide and its derivates describe how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise information exchange. 
+The **O**rder & **R**eferral by **F**orm (ORF) implementation guide describes how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise information exchange.
 
-Whereas CH ORF is the "mother"-implementation guide defining attributes and value sets necessary in all sorts of order and referrals (such as patient name, order placer and order filler, insurance data etc.), derivates cover specific use cases thus defining dedicated attributes and value sets needed there. Currently under development are CH eTOC for electronic transition of care, CH RAD Order for imaging services and CH LAB Order for laboratory orders. 
+The implementation guide supports creation and domain wide deployment of forms for structured and coded information exchange as well as exchange of such forms for referral, orders etc. Because the implementation guide relies heavily on the FHIR resources Questionnaire and QuestionnaireResponse, forms are addressed here as Questionnaires.
 
-All support creation and domain wide deployment of forms for structured and coded information exchange. Because the implementation guide relies heavily on the FHIR resources Questionnaire and QuestionnaireResponse, forms are addressed here as Questionnaires.
+This implementation guide uses FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
 
-All IG derived from CH Orf use FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
-
-CH ORF and its derivates are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core - STU 3](https://fhir.ch/ig/ch-core/2.1.0/index.html).
+This implementation guide is derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core - STU 3](https://fhir.ch/ig/ch-core/2.1.0/index.html).
 
 <div markdown="1" class="stu-note">
 [Significant Changes, Open and Closed Issues](changelog.html)
@@ -17,30 +15,33 @@ You can download this implementation guide in [NPM format](https://confluence.hl
 
 
 ### Volume 1 – Implementation Guide
-The CH ORF implementation guide addresses three issues:
-1. It supports a scenario where an authority (e.g., health authority, expert panel) defines a set of forms (here called questionnaires) for well-defined use cases which then are deployed in a specific enterprise, domain etc. or even nationwide.
-2. New use cases or changes in use cases can easily be handled either by modification of existing questionnaires or new ones. 
-3. It assures that the representation of an order at filler's site is consistent to the placer site. CH ORF addresses this by supplying a questionnaire which defines sequence and grouping of items in a form. Authors of CH ORF derivates are advised to do the same. 
+This implementation guide concerns directional information exchange between institutions such as requests for referral, requests for previous imaging results, requests for second opinions etc. as well as corresponding responses. Such request are often done – or could be done – by means of structured forms. The same may apply for responses or documents coming along in case the response consists of a particular payload (e.g. exam results). However, forms for these purposes are in general proprietary constructs and seldom suitable for further machine processing. Furthermore, such forms are more or less hard coded and concerned systems may not easily be updated for new use cases.
 
-When writing the CH ORF implementation guide, the authors had the following use case in mind: A human fills in a questionnaire for a particular request and sends this questionnaire to a receiver. There, a human reads the questionnaire with its content. A corresponding response will work in the same way. There is possibly some payload coming with the questionnaire: A request may be accompanied by results of preceding exams (e.g. images, reports); the response may be a diagnostic result. Workflow is therefore not a particular issue because directional information exchange is based on a request and response mechanism.
+The ORF implementation guide addresses two issues:
+1. It supports a scenario where an authority (e.g. health authority, expert panel) defines a set of forms (here called questionnaires) for well-defined use cases which then are deployed in a specific enterprise, domain etc. or even nationwide.
+2. New use cases or changes in use cases can easily be handled either by modification of existing questionnaires or new ones. The implementation guide itself is agnostic to the nature of a particular questionnaire and the ORF implementation guide puts only little limits on its definition.
 
-There may be good reasons to implement user interfaces by other technical means than questionnaires. Therefore CH ORF sets the cardinality for the questionnaire / questionnaireResponse to 0.. thus  allowing auhtors of derivates to decide if applications following their IG must implement a questionnaire / questionnaireResponse or not. In any case, the questionnaire will give guidance for sequence and grouping of items in the user interface.
+Vendors implementing the ORF implementation guide benefit of a high re-use potential. Applications which support the ORF implementation guide may be used for various settings of directional information exchange. The specific needs of a particular use case will be covered by a adequate design of the questionnaire and the value sets being used.
 
-A major challenge is the need for further machine processing: at filler site in terms of prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the receiver may want to have the content of the form ready for further processing in his applications. Obviously the two aims – semantic interoperability and flexibility in the definition of questionnaires – are contradictory. CH ORF addresses this problem by defining the mandatory set of generic elements and codes with defined being part of every CH ORF derived IG. Derivates will then only define additional case specific elements.
+When writing the ORF implementation guide, the authors had the following use case in mind: A human fills in a questionnaire for a particular request and sends this questionnaire to a receiver. There, a human reads the questionnaire with its content. A corresponding response will work in the same way. There is possibly some payload coming with the questionnaire: A request may be accompanied by results of preceding exams (e.g. images, reports); the response may be a diagnostic result.
 
-Vendors implementing the CH ORF implementation guide (or one of its derivates) therefore benefit of a high re-use potential.
+The primary aim of the ORF implementation guide is to assure a consistent representation of questionnaires –  both on the filler and on the receiver site. But there is the need for further machine processing: at filler site in terms of prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the receiver may want to have the content of the form ready for further processing in his applications. Obviously the two aims – semantic interoperability and flexibility in the definition of questionnaires – are contradictory. The ORF implementation guide addresses this problem by a mandatory set of generic elements and codes with defined meaning which are part of every questionnaire in the ORF implementation guide. It is up to a SDC Form Designer to create questionnaires with additional use case specific elements.
 
-There has been a discussion whether population of the resources such as Patient, ServiceRequest etc. with the content of the QuestionnaireResponse should be done by the order placer application or rather by the order filler application. The argument for assigning the task to the order placer is a result of nit making the implementation of a questionnaire / questionnaireResponse mandatory: For the sake of keeping all CH ORF derived exchange formats equal (as far as sensible), the authors decided to mandate the order placer application with the task.
+There has been a discussion whether population of the resources such as Patient, ServiceRequest etc. with the content of the QuestionnaireResponse should be done by the order placer application or rather by the order filler application. The argument for assigning the task to the order placer is a result of the following consideration: the authors of a particular implementation guide may decide to define a questionnaire and its rendering but to leave it open if in a particular implementation the questionnaire is implemented or if the representation towards the user is made (in accordance to the questionnaire definition) by other technical means. In such a case, there would be no QuestionnaireResponse resource in the Bundle because all content is already in concerning resources. In order to handle all FHIR exchange formats equal (as far as sensible), the authors decided to mandate the order placer application with the task.
 
-Applications claiming for conformance with an CH ORF derived implementation guide shall:
+Applications claiming for conformance with the ORF implementation guide shall:
 * Render (and in case of the Questionnaire Filler allow for data entry) all elements of a questionnaire in the user interface (e.g. on screen, in print). Grouping of items and the order of items within shall be adequately reproduced according to the questionnaire.
-* In case of an implementation without the resources Questionnaire and QuestionnaireResponse, the content of otherwise implemented user interfaces shall be in accordance to the questionnaire definition.
+* In case of an implementation without the resources Questionnaire and QuestionnaireResponse, the content of otherwise implemented UIs shall be in accordance to the questionnaire definition.
+* Be able to process all codes related to the generic elements in a questionnaire.
 
-Vendors of applications with Questionnaire Filler/Questionnaire Receiver actors are strongly recommended to implement interfaces to other applications (such as HIS and PACS) at least for all data in the generics elements of questionnaires.
+Vendors of applications with Questionnaire Filler/Questionnaire Receiver actors are strongly recommended to implement interfaces to other applications (such as HIS and PACS) for all data in the generics elements of questionnaires.
+
+Applications designed like this will provide out-of-the-box interconnectivity for generic elements as well as out-of-the-box interoperability for all questionnaires as far it concerns user interfaces at filler and receiver site.
 
 Nothing speaks against interfaces for data in the use case specific part of a particular questionnaire. One has however to keep in mind, that such interfaces are tied to a specific questionnaire. Ownership or other means, which prevent changes of the questionnaire by third parties, are therefore advisable.
 
-The ORF implementation guide deals with transport, workflow and content. It is based on FHIR resources and in particular the FHIR Questionnaire resource. FHIR specifies RESTful web services as a mean for transport. An implementation based on RESTful web services is strongly recommended however not mandatory to comply with the CH ORF implementation guide or its derivates unless the authors of a derivate insist on it. Content is defined by a set of generic given elements and codes and the possibility to extend both as required by the use cases addressed
+The ORF implementation guide deals with transport, workflow and content. It is based on FHIR resources and in particular the FHIR Questionnaire resource. FHIR specifies RESTful web services as a mean for transport. An implementation based on RESTful web services is strongly recommended however not mandatory to comply with the ORF implementation guide. Workflow is addressed by the scope of ORF implementation guide which addresses directional information exchange with request and response. Content is defined by a set of generic given elements and codes and the possibility to extend both as required by the use cases addressed.
+
 
 #### ORF Actors, Transactions and Content Modules
 This implementation guide depends on the implementation guide [Structured Data Capture](http://hl7.org/fhir/uv/sdc/STU3/index.html):
@@ -387,37 +388,41 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
     <tbody>
         <tr>
             <th><b>Name</b></th>
+            <th colspan="2"><b>Role Taker</b></th>
+            <th><b>HL7 V3<br />Equivalent</b></th>
+            <th><b>FHIR<br />Representation</b></th>
             <th><b>Comment</b></th>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn">Date</a></td>
-            <td>Date when the request transitioned to being actionable (e.g sent to the receiver).</td>
+            <th></th>
+            <th><b>Human</b></th>
+            <th><b>Organization</b></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value">Placer Order Identifier</a></td>
-            <td>Placer Order Identifier</td>
+            <td>Priority</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
+            <td>Order priority.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system">Placer Order Identifier Domain</a></td>
-            <td>Placer Order Identifier Domain</td>
-        </tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value">Filler Order Identifier</a></td>
-            <td>Filler Order Identifier</td>
-        </tr>
-        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system">Filler Order Identifier Domain</a></td>
-            <td>Filler Order Identifier Domain</td>
-        </tr>
-        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument">Precedent Document Identifier</a></td>
-            <td>Precedent Document Identifier</td>
-        </tr>
-        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument">Urgent Notification Contact for this document</a></td>
+            <td>Urgent Notification Contact for this document</td>
+            <td>X</td>
+            <td>X</td>
+            <td>PrimaryInformationRecipient</td>
+            <td>PractitionerRole</td>
             <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the document is received.)</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument">Urgent Notification Contact for the Response to this document</a></td>
+            <td>Urgent Notification Contact for the Response to this document.</td>
+            <td>X</td>
+            <td>X</td>
+            <td>PrimaryInformationRecipient</td>
+            <td>PractitionerRole</td>
             <td>
                 <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive).
                 </p>
@@ -425,67 +430,121 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
                 </p>
             </td>
         </tr>
-       <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.priority">Priority</a></td>
-            <td>Order priority.</td>
-        </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Receiver</a></td>
+            <td>Receiver</td>
+            <td>X</td>
+            <td>X</td>
+            <td></td>
+            <td>PractitionerRole</td>
             <td>Person/organization who receives the document.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:initiator">Initiator</a></td>
+            <td>Initiator</td>
+            <td>X</td>
+            <td>X</td>
+            <td></td>
+            <td>RelatedPerson/PractitionerRole</td>
             <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
-            asks for spitex support becausehe needs help for the care of his wife).</td>
+            asks for spitex support becausehe needs help for the care of his wife).
+            </td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient</a></td>
-            <td>The principle target of a particular form content is one patient.</td>
+            <td>Patient</td>
+            <td>X</td>
+            <td></td>
+            <td></td>
+            <td>Patient</td>
+            <td>The principle target of a particular form content is one patient (for obstetrical and neonatal use cases see...).
+            </td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient Contact Person</a></td>
-            <td>The principle target of a particular form content is one patient.</td>
-        </tr>
-        <tr>
-            <td><a href="https://build.fhir.org/ig/hl7ch/ch-core//StructureDefinition-ch-core-patient.html#Patient.generalPractitioner">Familydoctor</a></td>
+            <td>Familydoctor</td>
+            <td>X</td>
+            <td>X</td>
+            <td></td>
+            <td>PractitionerRole</td>
             <td>Healthprofessional who takes the role of a familydoctor.</td>
         </tr>
-       <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails">Requested Encounter</a></td>
+        <tr>
+            <td>Requested Encounter</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
             <td>Requested Encounter such as ambulatory/inpatient/emergency.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</a></td>
+            <td>Coverage</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
             <td>Payor covering the costs.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.author">Sender/Author</a></td>
+            <td>Sender/Author</td>
+            <td>X</td>
+            <td>X</td>
+            <td>Sender/Author</td>
+            <td>PractitionerRole</td>
             <td>The person/organization responsible for the form content.</td>
         </tr>
-       <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer">Data Entry Person</a></td>
+        <tr>
+            <td>Data Entry Person</td>
+            <td>X</td>
+            <td>X</td>
+            <td>DataEnterer</td>
+            <td>PractitionerRole</td>
             <td>The person/organization who has typed/filled in the form content.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Copy Receiver</a></td>
+            <td>Copy Receiver</td>
+            <td>X</td>
+            <td>X</td>
+            <td></td>
+            <td>Patient/RelatedPerson/PractitionerRole</td>
             <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare">Antecedent Episode of Care</a></td>
-            <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between instituitons such as hospitals, rehab. clinics, retirement homes etc.)"</td>
+            <td>Antecedent Episode of Care</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
+            <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between instituitons such as hospitals, rehab. clinics, retirement homes etc."</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime">Appointment</a></td>
+            <td>Appointment</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
             <td>Indication of date/time and location of the requested appointment(s)</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent">Patientconsent</a></td>
+            <td>Patientconsent</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
             <td>Indication of whether the patient has given informed consent to this order; in particular for Spitex and transfer to nursing/retirement home, etc.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.note.text">Note</a></td>
+            <td>Note</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
             <td>General remarks</td>
-        </tr>        
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>na</td>
+            <td>na</td>
+            <td></td>
+            <td></td>
+            <td>Date, the document was created.</td>
+        </tr>
     </tbody>
 </table>
 
@@ -548,7 +607,7 @@ In the Composition, general information about the document is defined, such as t
         </tr>
     </tbody>
 </table>
-<sup>&#91;Table 8&#93;</sup> *General information about the document defined in Composition*
+<sup>&#91;Table 8&#93;</sup> *Generel information about the document defined in Composition*
 
 ###### Questionnaire Resource
 The intention of the ORF Implementation guide is to provide a standardized representation of forms at sender and receiver site as well. This is achieved with the Questionnaire resource, which defines representation of all elements for the user (with the help of a CSS) and user interaction as well (e.g. with drop down lists).

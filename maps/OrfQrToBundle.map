@@ -3,9 +3,9 @@ map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
 //
 // ORF QuestionnaireResponse to Bundle
 // 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License 
-// QRF Questionnaire: http://build.fhir.org/ig/hl7ch/ch-orf/Questionnaire-order-referral-form.html
-// QRF QuestionnaireResponse: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
-// Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html
+// QRF Questionnaire: http://fhir.ch/ig/ch-orf/Questionnaire-order-referral-form.html
+// QRF QuestionnaireResponse: http://fhir.ch/ig/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
+// Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target

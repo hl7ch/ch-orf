@@ -238,6 +238,11 @@ Description: "Subquestionnaire order"
 * date = "2022-05-04"
 * publisher = "HL7 Switzerland"
 
+* item[+].linkId = "order.authoredOn"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
+* item[=].text = "Daum/Zeit der Auftragserteilung"
+* item[=].type = #dateTime
+
 * item[+].linkId = "order.placerOrderIdentifier"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"
 * item[=].text = "Auftragsnummer des Auftraggebers"

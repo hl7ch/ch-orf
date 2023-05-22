@@ -12,9 +12,9 @@
 
 // ORF QuestionnaireResponse to Bundle
 // 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License
-// QRF Questionnaire: http://build.fhir.org/ig/hl7ch/ch-orf/Questionnaire-order-referral-form.html
-// QRF QuestionnaireResponse: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
-// Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html
+// QRF Questionnaire: http://fhir.ch/ig/ch-orf/Questionnaire-order-referral-form.html
+// QRF QuestionnaireResponse: http://fhir.ch/ig/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
+// Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html
 
 uses &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot; alias QuestionnaireResponse as source
 uses &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot; alias Bundle as target
@@ -538,7 +538,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q : Questionnaire
    </text>
    <url value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
    <name value="OrfQrToBundle"/>
-   <description value="&#xd;&#xa;ORF QuestionnaireResponse to Bundle&#xd;&#xa;2021-01-11 Oliver Egger, copyright ahdis ag, Apache License&#xd;&#xa;QRF Questionnaire: http://build.fhir.org/ig/hl7ch/ch-orf/Questionnaire-order-referral-form.html&#xd;&#xa;QRF QuestionnaireResponse: http://build.fhir.org/ig/hl7ch/ch-orf/QuestionnaireResponse-order-referral-form.xml.html&#xd;&#xa;Bundle: http://build.fhir.org/ig/hl7ch/ch-orf/StructureDefinition-ch-orf-document.html"/>
+   <description value="&#xd;&#xa;ORF QuestionnaireResponse to Bundle&#xd;&#xa;2021-01-11 Oliver Egger, copyright ahdis ag, Apache License&#xd;&#xa;QRF Questionnaire: http://fhir.ch/ig/ch-orf/Questionnaire-order-referral-form.html&#xd;&#xa;QRF QuestionnaireResponse: http://fhir.ch/ig/ch-orf/QuestionnaireResponse-order-referral-form.xml.html&#xd;&#xa;Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html"/>
    <structure>
       <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
       <mode value="source"/>
