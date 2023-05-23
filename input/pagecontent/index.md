@@ -380,7 +380,7 @@ Based on the Questionnaire, a Questionnaire Filler defines a QuestionnaireRespon
 Questionnaires may be accompanied by additional material which can be attached or sent by postal mail (e.g. xray-films or paper documents). The use case may require some references between attached objects (e.g. which pdf-reports belongs to which imaging study).
 
 #### Generic Elements of a Questionnaire
-A Questionnaire shall have a set of generic elements (e.g. author, data entry person, receiver etc.). <sup>&#91;Table 7&#93;</sup> lists the generic elements.
+A Questionnaire shall have a set of generic elements (e.g. author, data entry person, receiver etc.). 
 
 {:class="table table-bordered"}
 <table>
@@ -401,6 +401,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system">Placer Order Identifier Domain</a></td>
             <td>Placer Order Identifier Domain</td>
         </tr>
+        <tr>
             <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value">Filler Order Identifier</a></td>
             <td>Filler Order Identifier</td>
         </tr>
