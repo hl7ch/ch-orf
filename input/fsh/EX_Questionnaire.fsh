@@ -339,7 +339,7 @@ Usage: #example
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"
 * item[=].item[=].text = "Andere Person"
 * item[=].item[=].type = #group
-* item[=].item[=].repeats = true
+//* item[=].item[=].repeats = true
 * item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].item[=].extension.valueExpression.name = "linkIdPrefix"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
@@ -522,6 +522,7 @@ Usage: #example
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].item[=].text = "Kontaktperson"
 * item[=].item[=].type = #group
+* item[=].item[=].repeats = true
 * item[=].item[=].item[0].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
 * item[=].item[=].item[=].extension.valueExpression.expression = "%contact.relationship.text"
@@ -635,6 +636,9 @@ Usage: #example
 * item[=].item[=].item[=].item[=].linkId = "familydoctor.organization.country"
 * item[=].item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].item[=].type = #string
+
+
+
 * item[+].linkId = "requestedEncounter"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
 * item[=].text = "Patientenaufnahme"

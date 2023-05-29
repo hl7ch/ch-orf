@@ -32,11 +32,8 @@ InstanceOf: Composition
 * extension[=].extension[+].url = "ch-orf-personorganization"
 * extension[=].extension[=].valueReference = Reference(RelatedPerson/ChOrfRelatedPersonMUfferer)
 
-
 //* extension[=].extension[+].url = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-person-organization"
 //* extension[=].extension[=].valueReference = Reference(RelatedPerson/ChOrfRelatedPersonMUfferer)
-
-
 
 * status = #final
 * type = http://snomed.info/sct#419891008 "Record artifact (record artifact)"

@@ -536,6 +536,7 @@ Description: "Subquestionnaire patient"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.contact"
 * item[=].text = "Kontaktperson"
 * item[=].type = #group
+* item[=].repeats = true
 // * item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemPopulationContext"
 * item[=].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].extension.valueExpression.name = "contact"
@@ -1448,7 +1449,7 @@ Description: "Subquestionnaire initiator"
 * item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson"
 * item[=].text = "Andere Person"
 * item[=].type = #group
-* item[=].repeats = true
+//* item[=].repeats = true
 
 * item[=].item[+].linkId = "initiator.relatedPerson.familyName"
 * item[=].item[=].definition = "http://hl7.org/fhir/StructureDefinition/RelatedPerson#RelatedPerson.name.family"

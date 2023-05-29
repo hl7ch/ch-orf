@@ -1,6 +1,6 @@
 Instance: qr-order-referral-form
 InstanceOf: ChOrfQuestionnaireResponse
-Title: "QuestionnaireResponse Order-Referral-Form"
+Title: "QuestionnaireResponse Medical Referral"
 Description: "Example for QuestionnaireResponse"
 * questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * status = #completed
@@ -147,6 +147,29 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
 
+// ---------- Receiver: Person/organization who receives the document ----------
+* item[+].linkId = "initiator"
+* item[=].text = "Initiant dieser Anmeldung"
+
+* item[=].item[+].linkId = "initiator.legalrelation"
+* item[=].item[=].text = "Juristische Beziehung zum Patienten"
+* item[=].item[=].answer.valueCoding = SCT#373068000 "Nicht definiert"
+
+* item[=].item[+].linkId = "initiator.personalrelation"
+* item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
+* item[=].item[=].answer.valueCoding = http://snomed.info/sct#65616008 "Sohn"
+
+* item[=].item[+].linkId = "initiator.relatedPerson"
+* item[=].item[=].text = "Andere Person"
+
+* item[=].item[=].item[+].linkId = "initiator.relatedPerson.familyName"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].answer.valueString = "Musterfrau"
+
+* item[=].item[=].item[+].linkId = "initiator.relatedPerson.givenName"
+* item[=].item[=].item[=].text = "Vorname"
+* item[=].item[=].item[=].answer.valueString = "Fritz"
+
 // ---------- Patient: The principle target of a particular Form Content is one patient ----------
 * item[+].linkId = "patient"
 * item[=].text = "Patient"
@@ -157,7 +180,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.maidenName"
 * item[=].item[=].text = "Ledigname"
-* item[=].item[=].answer.valueString = "Ledigname"
+* item[=].item[=].answer.valueString = "Vormusterfrau"
 
 * item[=].item[+].linkId = "patient.givenName"
 * item[=].item[=].text = "Vorname"
@@ -212,7 +235,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].text = "Korrespondenzsprache"
 * item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH "Deutsch (Schweiz)"
 
-// ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
+// ---------- Patient Contact Person: The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
 * item[=].item[=].text = "Kontaktperson"
 
@@ -235,6 +258,24 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[+].linkId = "patient.contactperson.email"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].answer.valueString = "max@freund.ch"
+
+// ---------- Family Doctpr:
+* item[=].item[+].linkId = "familydoctor"
+* item[=].item[=].text = "Hausarzt"
+
+* item[=].item[=].item[+].linkId = "familydoctor.practitioner"
+* item[=].item[=].item[=].text = "Hausarzt Person"
+
+* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.title"
+* item[=].item[=].item[=].item[=].text = "Titel"
+* item[=].item[=].item[=].item[=].answer.valueString = "Dr. med."
+
+* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.familyName"
+* item[=].item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].item[=].answer.valueString = "Meier"
+
+* item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.givenName"
+* item[=].item[=].item[=].item[=].answer.valueString = "Sabine"
 
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) & Zimmerkategorie ----------
 * item[+].linkId = "requestedEncounter"
@@ -405,11 +446,44 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].item[=].answer.valueString = "Schweiz"
 
-
 * item[=].item[+].linkId = "receiverCopy.patient"
 * item[=].item[=].text = "Patient selbst"
 * item[=].item[=].answer.valueBoolean = true
 
+// -------- Antecedent Episode of Care ------
+* item[+].linkId = "antecedentEpisodeOfCare"
+* item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
+
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.start"
+* item[=].item[=].text = "Von"
+* item[=].item[=].answer.valueDateTime = "2023-05-22"
+
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
+* item[=].item[=].text = "Bis"
+* item[=].item[=].answer.valueDateTime = "2023-05-27"
+
+* item[=].item[+].linkId = "antecedentEpisodeOfCare.managingOrganization"
+* item[=].item[=].text = "Spital /Heim"
+
+* item[=].item[=].item[0].linkId = "antecedentEpisodeOfCare.managingOrganization.name"
+* item[=].item[=].item[=].text = "Name der Organisation"
+* item[=].item[=].item[=].answer.valueString = "Spital Hinterfultigen"
+
+// -------- Appointment ------
+* item[+].linkId = "appointment"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
+* item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
+
+// -------- Consent ------
+* item[+].linkId = "consent"
+* item[=].text = "Einverständniserklärung"
+
+* item[=].item[+].linkId = "patient.consent.statement"
+* item[=].item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
+* item[=].item[=].answer[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc."
+* item[=].item[=].answer[=].item[+].linkId = "patient.consent.statement.note"
+* item[=].item[=].answer[=].item[=].text = "Anmerkung"
+* item[=].item[=].answer[=].item[=].answer.valueString = "Voraussichtlich einverstanden; Sohn wird die Situation beim nä. Besuch mit Pat. besprechen"
 
 // -------- Service Request Notes ------
 * item[+].linkId = "note"
@@ -417,4 +491,4 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "note.text"
 * item[=].item[=].text = "Kommentar" 
-* item[=].item[=].answer.valueString = "Bemerkung/Kommentar"
+* item[=].item[=].answer.valueString = "Patientin ist sehr ängstlich"

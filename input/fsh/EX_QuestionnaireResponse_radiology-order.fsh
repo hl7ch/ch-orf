@@ -1,6 +1,6 @@
 Instance: qr-radiology-order
 InstanceOf: ChOrfQuestionnaireResponse
-Title: "QuestionnaireResponse Radiology order"
+Title: "QuestionnaireResponse Radiology Order"
 Description: "Example for QuestionnaireResponse"
 * questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * status = #completed

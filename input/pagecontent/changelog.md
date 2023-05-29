@@ -12,14 +12,11 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * [#71](https://github.com/hl7ch/ch-orf/issues/71): Initiator and his relationship to to the patient
 * [#72](https://github.com/hl7ch/ch-orf/issues/72): Patient consent
 * [#73](https://github.com/hl7ch/ch-orf/issues/73): Entry date, discharge Date and Organization of stationary episode antecedent to requested service (e.g spitex)
-
 * [#102](https://github.com/hl7ch/ch-orf/issues/102): Translation of use cases in FR and DE
 * Add documentation in tab 'Questionnaire' about
    * [Modular Form](modular-form.html)
    * [Form Population](form-population.html)
    * [Form Data Extraction](form-data-extraction.html)
-
-
 
 #### Changed / Updated
 * Update the dependencies to the current published versions
@@ -33,10 +30,20 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extract` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap`
          * `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-populate` -> `http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp`
       * Update [Home](index.html) 
-* [Issue #108](https://github.com/hl7ch/ch-orf/issues/108): Improve slicing that infor entry[x] warnings are not shown.
+* Change Cardinality of Contact Person from 0..1 to 0..* [Issue #106](https://github.com/hl7ch/ch-orf/issues/106)
+  
+* Improve slicing: [Issue #108](https://github.com/hl7ch/ch-orf/issues/108): Improve slicing that infor entry[x] warnings are not shown.
+* Update home: [#119](https://github.com/hl7ch/ch-orf/issues/119)
+* Update of QuestionnaireResponse Medical Referral with new items [#138](https://github.com/hl7ch/ch-orf/issues/138)
+
 
 #### Fixed
 * Typo: [#105](https://github.com/hl7ch/ch-orf/issues/105)
+* Link id's: [Issue #113](https://github.com/hl7ch/ch-orf/issues/113)
+* Required elements from Consent resource specified: [Issue #115](https://github.com/hl7ch/ch-orf/issues/115)
+* Typo: [#124](https://github.com/hl7ch/ch-orf/issues/124)
+* Cardinality of Appointment.actor set to 0..1: [#132](https://github.com/hl7ch/ch-orf/issues/132)
+* Erroneuous entry in ch.fhir.ig.ch-orf.xml: [#140](https://github.com/hl7ch/ch-orf/issues/140)eroneuous entry in ch.fhir.ig.ch-orf.xml
 
 
 ### v1.0.0 - HL7 Switzerland STU 1
@@ -53,7 +60,7 @@ During the ballot, the following comments came in, which will be taken into acco
    * [Issue #31](https://github.com/hl7ch/ch-orf/issues/31) 
 * Add patients marital status to the [Questionnaire](Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](Bundle-bundle-order-referral-form.html)).
    * [Issue #60](https://github.com/hl7ch/ch-orf/issues/60) and [Issue #63](https://github.com/hl7ch/ch-orf/issues/63)    
-* Add patients language of correspondance to the [Questionnaire](Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](Bundle-bundle-order-referral-form.html)).
+* Add patients language of correspondence to the [Questionnaire](Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](Bundle-bundle-order-referral-form.html)).
    * [Issue #64](https://github.com/hl7ch/ch-orf/issues/64) 
 * Add 'ZSR' as Practitioner.identifier to the [Questionnaire](Questionnaire-order-referral-form.html) and the examples (e.g. [Bundle Order-Referral-Form](Bundle-bundle-order-referral-form.html)).
    * [Issue #65](https://github.com/hl7ch/ch-orf/issues/65) 

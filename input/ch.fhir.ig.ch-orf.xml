@@ -508,23 +508,23 @@
       <reference>
         <reference value="QuestionnaireResponse/qr-order-referral-form"/>
       </reference>
-      <name value="QuestionnaireResponse Order-Referral-Form"/>
+      <name value="QuestionnaireResponse Medical Referral"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
-    <resource>
+<!--<resource>
       <reference>
         <reference value="QuestionnaireResponse/order-referral-form"/>
       </reference>
-      <name value="QuestionnaireResponse Order-Referral-Form)"/>
+      <name value=")"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
-    </resource>
+    </resource> -->
     <resource>
       <reference>
         <reference value="QuestionnaireResponse/qr-radiology-order"/>
       </reference>
-      <name value="QuestionnaireResponse Radiology order"/>
+      <name value="QuestionnaireResponse Radiology Order"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
@@ -532,7 +532,7 @@
       <reference>
         <reference value="QuestionnaireResponse/qr-external-diagnostics-order"/>
       </reference>
-      <name value="QuestionnaireResponse Order external diagnostics"/>
+      <name value="QuestionnaireResponse External Diagnostics Order"/>
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
