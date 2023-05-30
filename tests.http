@@ -1,0 +1,235 @@
+@host = http://test.ahdis.ch/matchbox/fhir
+###@host = http://localhost:8080/matchbox/fhir
+### @host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
+
+
+
+### ResponseReceiverErikaMusterfrau
+PUT {{host}}/Patient/ResponseReceiverErikaMusterfrau HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/patient/ResponseReceiverErikaMusterfrau.xml
+
+
+
+### Kantonsspital
+PUT {{host}}/Organization/Kantonsspital HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/organization/Kantonsspital.xml
+
+### PraxisSeeblick
+PUT {{host}}/Organization/PraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/organization/PraxisSeeblick.xml
+
+### ResponseReceiverPraxisSeeblick
+PUT {{host}}/Organization/ResponseReceiverPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/organization/ResponseReceiverPraxisSeeblick.xml
+
+
+
+### HansRoentgen
+PUT {{host}}/Practitioner/HansRoentgen HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/HansRoentgen.xml
+
+### MarcAgpar
+PUT {{host}}/Practitioner/MarcAgpar HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/MarcAgpar.xml
+
+### NotificationContactHansRoentgen
+PUT {{host}}/Practitioner/NotificationContactHansRoentgen HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/NotificationContactHansRoentgen.xml
+
+### NotificationContactSabineMeier
+PUT {{host}}/Practitioner/NotificationContactSabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/NotificationContactSabineMeier.xml
+
+### SabineMeier
+PUT {{host}}/Practitioner/SabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/SabineMeier.xml
+
+### StabiloBoss
+PUT {{host}}/Practitioner/StabiloBoss HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitioner/StabiloBoss.xml
+
+
+
+### HansRoentgenKantonsspital
+PUT {{host}}/PractitionerRole/HansRoentgenKantonsspital HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/HansRoentgenKantonsspital.xml
+
+### NotificationContactHansRoentgen
+PUT {{host}}/PractitionerRole/NotificationContactHansRoentgen HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/NotificationContactHansRoentgen.xml
+
+### NotificationContactSabineMeier
+PUT {{host}}/PractitionerRole/NotificationContactSabineMeier HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/NotificationContactSabineMeier.xml
+
+### SabineMeierPraxisSeeblick
+PUT {{host}}/PractitionerRole/SabineMeierPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/SabineMeierPraxisSeeblick.xml
+
+### StabiloBossPraxisSeeblick
+PUT {{host}}/PractitionerRole/StabiloBossPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/practitionerrole/StabiloBossPraxisSeeblick.xml
+
+
+
+### order-referral-form
+PUT {{host}}/ServiceRequest/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/servicerequest/order-referral-form.xml
+
+
+
+### order-referral-form
+PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/questionnaire/order-referral-form.xml
+
+### order-referral-form
+PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/questionnaire/order-referral-form.xml
+
+
+
+### order-referral-form
+PUT {{host}}/QuestionnaireResponse/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/questionnaireresponse/order-referral-form.xml
+
+
+
+### order-referral-form
+PUT {{host}}/Composition/order-referral-form HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/composition/order-referral-form.xml
+
+
+### $document order-referral-form
+GET {{host}}/Composition/order-referral-form/$document HTTP/1.1
+Content-Type: application/fhir+xml
+
+
+### Create modular questionnaire with $assemble operation
+
+### 1. Create FHS Questionnaires (modules)
+### 2. Upload IG on matchbox https://test.ahdis.ch/matchbox/#/igs
+### 3. Invoice $assemble operation on modular Questionnaire
+POST {{host}}/Questionnaire/$assemble HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-QuestionnaireEtoc-modular.json
+
+### 4. If you want to provide the Questionnaire integrated in your IG translate the JSON response 
+###    to fsh back with: https://fshschool.org/FSHOnline/#/
+
+### end
+
+### Prepopulation tests with LHC Forms app
+### Use app available at https://lhcforms.nlm.nih.gov/lforms-fhir-app/
+### Upload resources and select FHR server https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
+### Shortcut to app with server: https://lhcforms.nlm.nih.gov/lforms-fhir-app/?server=https%3A%2F%2Flforms-fhir.nlm.nih.gov%2FbaseR4
+### @host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
+### LHC Forms appp (might be different for two above: https://lhcforms.nlm.nih.gov/sdc)
+
+### ErikaMuster top select as patient
+PUT {{host}}/Patient/ErikaMusterfrau HTTP/1.1
+Content-Type: application/fhir+xml
+
+< input/examples/patient/ErikaMusterFrau.xml
+
+### GET
+GET {{host}}/Patient/ErikaMusterfrau HTTP/1.1
+Content-Type: application/fhir+json
+
+
+### Setup practitioner that it can be used for prepopulation
+PUT {{host}}/Practitioner/SabineMeier HTTP/1.1
+Content-Type: application/fhir+json
+
+< output/Practitioner-SabineMeier.json
+
+### Setup organization that it can be used for prepopulation
+PUT {{host}}/Organization/PraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+json
+
+< output/Organization-PraxisSeeblick.json
+
+### Setup organization that it can be used for prepopulation
+PUT {{host}}/PractitionerRole/SabineMeierPraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+json
+
+< output/PractitionerRole-SabineMeierPraxisSeeblick.json
+
+### reomove in lhc/Questionnaire-order-referral-form the entry with http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode, otherwise you will get error ### Cause: Unable to load ValueSet http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode from FHIR servers
+PUT {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+json
+
+< lhc/Questionnaire-order-referral-form.json
+
+###
+GET {{host}}/Questionnaire/order-referral-form HTTP/1.1
+Content-Type: application/fhir+json
+
+###
+GET {{host}}/Practitioner?name=Meier HTTP/1.1
+Content-Type: application/fhir+json
+
+###
+GET {{host}}/PractitionerRole?practitioner=Practitioner/SabineMeier HTTP/1.1
+Content-Type: application/fhir+json
+
+###
+GET {{host}}/Organization?_id=Organization/PraxisSeeblick HTTP/1.1
+Content-Type: application/fhir+json
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
