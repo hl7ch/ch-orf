@@ -153,7 +153,7 @@ POST {{host}}/Questionnaire/$assemble HTTP/1.1
 Accept: application/json+fhir
 Content-Type: application/json+fhir
 
-< ./output/Questionnaire-order-referral-form-modular.json
+< ./output/Questionnaire-order-referral-form.json
 
 ### 4. If you want to provide the Questionnaire integrated in your IG translate the JSON response 
 ###    to fsh back with: https://fshschool.org/FSHOnline/#/
