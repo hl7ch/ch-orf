@@ -262,7 +262,7 @@ In case vendors decide to include the Patient ID (patient.identifier) as a query
 This section corresponds to transaction [CH ORF-1]. This transaction is used by the Questionnaire Filler and Questionnaire Receiver. This is a combination of extracting resources outlined in the SDC workflow [10.1. OPTIONAL: EHR system extracts data from Questionnaire Response](http://hl7.org/fhir/uv/sdc/STU3/workflow.html) and sending a Bundle including the extracted information according to Volume 3 and QuestionnaireResponse to the Questionnaire Receiver.
 
 ##### Scope
-This transaction is used to submit a filled in Questionnaire together with required additional resources and attachments in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
+This transaction is used to submit a filled in Questionnaire together with required additional resources and attachment in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
 
 ##### Actor Roles
 <div style="max-width:40%;">

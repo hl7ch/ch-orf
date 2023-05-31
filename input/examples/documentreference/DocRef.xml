@@ -9,7 +9,7 @@
     <coding>
       <system value="http://snomed.info/sct"/>
       <code value="4201000179104"/>
-      <display value="Imaging report (record artifact)"/>
+      <display value="imaging report (record artifact)"/>
     </coding>
   </type>
   <category>

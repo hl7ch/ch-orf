@@ -261,7 +261,7 @@ In case vendors decide to include the Patient ID (patient.identifier) as a query
 This section corresponds to transaction [CH ORF-1]. This transaction is used by the Questionnaire Filler and Questionnaire Receiver. This is a combination of extracting resources outlined in the SDC workflow [10.1. OPTIONAL: EHR system extracts data from Questionnaire Response](http://hl7.org/fhir/uv/sdc/STU3/workflow.html) and sending a Bundle including the extracted information according to Volume 3 and QuestionnaireResponse to the Questionnaire Receiver.
 
 ##### Scope
-This transaction is used to submit a filled in Questionnaire together with required additional resources and attachments in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
+This transaction is used to submit a filled in Questionnaire together with required additional resources and attachment in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
 
 ##### Actor Roles
 <div style="max-width:40%;">
@@ -565,7 +565,9 @@ The CH ORF context specific requirements for this resource are shown in the prof
 ###### QuestionnaireResponse Resource
 The QuestionnaireResponse resource depends of the definition of the Questionnaire resource and is therefore use case specific. For deriving QuestionnaireResponse resources from the Questionnaire resources refer to [https://www.hl7.org/fhir/r4/questionnaireresponse.html](https://www.hl7.org/fhir/r4/questionnaireresponse.html).
 
-The CH ORF context specific requirements for this resource are shown in the profile [CH ORF QuestionnaireResponse](StructureDefinition-ch-orf-questionnaireresponse.html).
+The CH ORF context specific requirements for this resource are shown in the profile [CH ORF QuestionnaireResponse](StructureDefinition-ch-orf-questionnaireresponse.html). 
+
+This Implementation Guide provides three examples of QuestionnaireResponse such as [QuestionnaireResponse Medical Referral](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-order-referral-form.html), [QuestionnaireResponse Radiology Order](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-radiology-order.html) and [QuestionnaireResponse External Diagnostics Order](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-external-diagnostics-order.html). Only [QuestionnaireResponse Medical Referral](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-order-referral-form.html) shows all items filled in.
 
 ### Appendix
 

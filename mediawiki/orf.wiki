@@ -232,7 +232,7 @@ This section corresponds to Transaction CH:ORF-1. Transaction CH:ORF-1 is used b
 
 === Scope ===
 
-This transaction is used to submit a filled in questionnaire together with required additional resources and attachments in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
+This transaction is used to submit a filled in questionnaire together with required additional resources and attachment in a Bundle from a Questionnaire Filler to a Questionnaire Receiver.
 
 === Actor Roles ===
 
@@ -495,7 +495,7 @@ There may be the need to provide a linkage between a particular files or between
 | type
 |
 |
-| (e.g. LOINC 18748-4 for Diagnostic Imaging Study)
+| (e.g. LOINC 18748-4 for Diagnostic imaging Study)
 |-
 |
 | content
