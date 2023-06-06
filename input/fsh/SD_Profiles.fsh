@@ -182,7 +182,7 @@ and  transfer to retirement home etc."
 * section[orderReferral].title 1..1 MS
 * section[orderReferral].title ^short = "Order-Referral"
 * section[orderReferral].code 1..1 MS
-* section[orderReferral].code = LNC#93037-0 "Portable medical order form"
+* section[orderReferral].code = LNC#93037-0 // "Portable medical order form"
 * section[orderReferral].text MS
 * section[orderReferral].section 0..0
 
@@ -228,7 +228,7 @@ and  transfer to retirement home etc."
 * section[originalRepresentation].title 1..1 MS
 * section[originalRepresentation].title ^short = "Original representation"
 * section[originalRepresentation].code 1..1 MS
-* section[originalRepresentation].code = LNC#55108-5 "Clinical presentation"
+* section[originalRepresentation].code = LNC#55108-5 // "Clinical presentation"
 * section[originalRepresentation].text 1.. MS
 * section[originalRepresentation].text ^short = "Representation of the original view"
 * section[originalRepresentation].entry 1..1 MS
