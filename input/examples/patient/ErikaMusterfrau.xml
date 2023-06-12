@@ -4,6 +4,7 @@
   <meta>
     <profile value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient"/>
   </meta>
+  <language value="de-CH"/>
   <identifier>
     <type>
       <coding>
@@ -81,7 +82,6 @@
       <coding>
         <system value="urn:ietf:bcp:47"/>
         <code value="de-CH"/>
-        <display value="Deutsch (Schweiz)"/>
       </coding>
     </language>
     <preferred value="true"/>
