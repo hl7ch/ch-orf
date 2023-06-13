@@ -677,7 +677,6 @@
               <valueCoding>
                 <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
                 <code value="EMER"/>
-                <display value="Notfall"/>
               </valueCoding>
             </answer>
           </item>
@@ -2267,6 +2266,7 @@
               <valueCoding>
                 <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
                 <code value="EMER"/>
+                <display value="Notfall"/>
               </valueCoding>
             </answerOption>
           </item>
@@ -3449,7 +3449,6 @@
         <class>
           <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
           <code value="EMER"/>
-          <display value="Notfall"/>
         </class>
         <subject>
           <reference value="urn:uuid:aaddb7b1-eb51-4426-8182-42f66fbf24d0"/>
