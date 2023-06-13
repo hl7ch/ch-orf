@@ -344,7 +344,6 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
 
-<!-- SEE https://github.com/hapifhir/org.hl7.fhir.core/issues/896-
     <resource>
       <reference>
         <reference value="Bundle/radiology-order"/>
@@ -353,7 +352,7 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
--->
+    
     <resource>
       <reference>
         <reference value="Bundle/external-diagnostics-order"/>

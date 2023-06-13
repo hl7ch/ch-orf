@@ -62,7 +62,7 @@ Description: "Example for Questionnaire"
 
 // ----------Initiator: Person/organization who initated this order / application ; e.g. spitex, retirement home etc. ----------
 * item[+].linkId = "initiator"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 
@@ -239,7 +239,7 @@ Description: "Subquestionnaire order"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "order.authoredOn"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest#ServiceRequest.authoredOn"
 * item[=].text = "Daum/Zeit der Auftragserteilung"
 * item[=].type = #dateTime
 
@@ -1173,12 +1173,12 @@ Description: "Subquestionnaire appointment"
 * item[=].item[=].required = true
 
 * item[=].item[+].linkId = "appointment.location.phone"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"
 * item[=].item[=].text = "Telefon"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "appointment.location.email"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"
 * item[=].item[=].text = "E-Mail"
 * item[=].item[=].type = #string
 
@@ -1277,7 +1277,7 @@ Description: "Subquestionnaire initiator"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "initiator.legalrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#373068000 "Nicht definiert"
@@ -1285,7 +1285,7 @@ Description: "Subquestionnaire initiator"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalrelation"
 
 * item[+].linkId = "initiator.personalrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#66089001 "Tochter"

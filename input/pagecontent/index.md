@@ -435,7 +435,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <td>Person/organization who receives the document.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:initiator">Initiator</a></td>
+            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html-definitions.html#key_Composition.extension:initiator">Initiator</a></td>
             <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
             asks for spitex support becausehe needs help for the care of his wife).</td>
         </tr>
@@ -567,7 +567,7 @@ The QuestionnaireResponse resource depends of the definition of the Questionnair
 
 The CH ORF context specific requirements for this resource are shown in the profile [CH ORF QuestionnaireResponse](StructureDefinition-ch-orf-questionnaireresponse.html). 
 
-This Implementation Guide provides three examples of QuestionnaireResponse such as [QuestionnaireResponse Medical Referral](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-order-referral-form.html), [QuestionnaireResponse Radiology Order](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-radiology-order.html) and [QuestionnaireResponse External Diagnostics Order](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-external-diagnostics-order.html). Only [QuestionnaireResponse Medical Referral](file:///Users/bleuer/Documents/GitHub/ch-orf/output/QuestionnaireResponse-qr-order-referral-form.html) shows all items filled in.
+This Implementation Guide provides three examples of QuestionnaireResponse such as [QuestionnaireResponse Medical Referral](QuestionnaireResponse-qr-order-referral-form.html), [QuestionnaireResponse Radiology Order](QuestionnaireResponse-qr-radiology-order.html) and [QuestionnaireResponse External Diagnostics Order](QuestionnaireResponse-qr-external-diagnostics-order.html). Only [QuestionnaireResponse Medical Referral](QuestionnaireResponse-qr-order-referral-form.html) shows all items filled in.
 
 ### Appendix
 
