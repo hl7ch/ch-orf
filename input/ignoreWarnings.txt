@@ -99,4 +99,4 @@ The link 'null#item.patient.consent.statement' for "Answers: 2 options" cannot b
 The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resolved
 The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
 
-# Errorrs due to
+# Errors due StructureMap validation errors #146 (cannot be suppressed currently)
