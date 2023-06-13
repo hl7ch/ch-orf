@@ -157,7 +157,8 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "initiator.personalrelation"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
-* item[=].item[=].answer.valueCoding = http://snomed.info/sct#65616008 "Sohn"
+// * item[=].item[=].answer.valueCoding = http://snomed.info/sct#65616008 "Sohn"
+* item[=].item[=].answer.valueCoding = http://snomed.info/sct#65616008
 
 * item[=].item[+].linkId = "initiator.relatedPerson"
 * item[=].item[=].text = "Andere Person"
@@ -233,7 +234,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.languageOfCorrespondence"
 * item[=].item[=].text = "Korrespondenzsprache"
-* item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH "Deutsch (Schweiz)"
+* item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH
 
 // ---------- Patient Contact Person: The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"

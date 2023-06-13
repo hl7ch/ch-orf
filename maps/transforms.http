@@ -16,7 +16,7 @@ Content-Type: text/fhir-mapping
 
 
 ### 4. POST Questionnaire
-POST {{host}}/Questionnaire
+PUT {{host}}/Questionnaire/order-referral-form
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
@@ -48,7 +48,7 @@ http://smartqedit4.azurewebsites.net/Questionnaire/Index
 
 ### 2a. Transform order-referral-form to ORF Bundle
 POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
-Accept: application/fhir+json;fhirVersion=4.0
+Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
 < ./fsh-generated/resources/QuestionnaireResponse-qr-radiology-order.json
@@ -58,34 +58,14 @@ POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureM
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ./fsh-generated/resources/QuestionnaireResponse-qr-xray-report.json
-
-### 2c. Transform order-referral-form to ORF Bundle
-POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
-Accept: application/fhir+xml;fhirVersion=4.0
-Content-Type: application/fhir+json;fhirVersion=4.0
-
 < ./fsh-generated/resources/QuestionnaireResponse-qr-external-diagnostics-order.json
 
-### 2d. Transform order-referral-form to ORF Bundle
-POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
-Accept: application/fhir+xml;fhirVersion=4.0
-Content-Type: application/fhir+json;fhirVersion=4.0
 
-< ./fsh-generated/resources/QuestionnaireResponse-qr-findings-report.json
-
-
-###
-GET {{host}}/StructureMap?url=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle HTTP/1.1
-Accept: application/fhir+xml;fhirVersion=4.0
-Content-Type: application/fhir+xml;fhirVersion=4.0
+### Error messages
+//  This comes from matchbox:
+//  FIXME  Error @ StructureMap.group[0].rule[1].rule[0].dependent[0].variable[0].extension[0].url (line 937, col95): URL value 'http://hl7.org/fhir/tools/StructureDefinition/original-item-type' does not resolve
+//  However the current validator does not generate an error for this
 
 
-
-
-### 2d. Transform qr110 to ORF Bundle
-POST {{host}}/StructureMap/$transform?source=http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle
-Accept: application/fhir+xml;fhirVersion=4.0
-Content-Type: application/fhir+json;fhirVersion=4.0
-
-< ./maps/qr110.json
+// use the validator_cli.jar to compile the map
+java -jar "/Users/oegger/.vscode/extensions/yannick-lagger.vscode-fhir-tools-1.5.1/validator_cli.jar" -compile http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle -output /Users/oegger/Documents/github/ch-orf/input/resources/structuremap/OrfQrToBundle.xml  -ig /Users/oegger/Documents/github/ch-orf/maps/OrfQrToBundle.map -version 4.0.1
