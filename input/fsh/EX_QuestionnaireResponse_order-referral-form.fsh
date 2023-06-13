@@ -284,7 +284,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "requestedEncounter.class"
 * item[=].item[=].text = "Voraussichtlich: Ambulant / Stationär / Notfall"
-* item[=].item[=].answer.valueCoding = V3ActCode#EMER "Notfall"
+* item[=].item[=].answer.valueCoding = V3ActCode#EMER
 
 
 * item[=].item[+].linkId = "requestedEncounter.desiredAccommodation"
