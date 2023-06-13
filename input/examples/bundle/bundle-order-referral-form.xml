@@ -2267,7 +2267,6 @@
               <valueCoding>
                 <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
                 <code value="EMER"/>
-                <display value="Notfall"/>
               </valueCoding>
             </answerOption>
           </item>
