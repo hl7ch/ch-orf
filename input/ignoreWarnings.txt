@@ -88,6 +88,7 @@ The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" canno
 The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
 The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
 
+# Errors due to answerOption #145
 The link 'null#item.initiator.legalrelation' for "Answers: 2 options" cannot be resolved
 The link 'null#item.initiator.personalrelation' for "Answers: 10 options" cannot be resolved
 The link 'null#item.patient.gender' for "Answers: 3 options" cannot be resolved
@@ -97,3 +98,5 @@ The link 'null#item.order.priority' for "Answers: 4 options" cannot be resolved
 The link 'null#item.patient.consent.statement' for "Answers: 2 options" cannot be resolved
 The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resolved
 The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
+
+# Errorrs due to
