@@ -1,11 +1,11 @@
-@host = http://test.ahdis.ch/matchbox/fhir
+@host = http://test.ahdis.ch/matchboxv3/fhir
 ### @host = http://localhost:8080/matchbox/fhir
 ### @host = https://lforms-smart-fhir.nlm.nih.gov/v/r4/fhir
 
 ### Create modular questionnaire with $assemble operation
 
 ### 1. Create FHS Questionnaires (modules)
-### 2. Upload IG on matchbox https://test.ahdis.ch/matchbox/#/igs
+### 2. Upload IG on matchbox https://test.ahdis.ch/matchboxv3/#/igs
 ### 3. Invoice $assemble operation on modular Questionnaire
 POST {{host}}/Questionnaire/$assemble HTTP/1.1
 Accept: application/json+fhir
@@ -15,6 +15,7 @@ Content-Type: application/json+fhir
 
 ### 4. If you want to provide the Questionnaire integrated in your IG translate the JSON response 
 ###    to fsh back with: https://fshschool.org/FSHOnline/#/
+###    remove appendix 'modular' form url and id
 
 ### end
 

@@ -8,16 +8,18 @@ map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
 // Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html
 
 uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
+uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
+uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
 uses "http://hl7.org/fhir/StructureDefinition/RelatedPerson" alias RelatedPerson as target
 uses "http://hl7.org/fhir/StructureDefinition/Organization" alias Organization as target
 uses "http://hl7.org/fhir/StructureDefinition/Practitioner" alias Practitioner as target
 uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias PractitionerRole as target
 uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
-uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as target
 uses "http://hl7.org/fhir/StructureDefinition/Extension" alias Extension as target
 uses "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" alias EpisodeOfCare as target
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponseTarget as target
 
 group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) {
       qr -> bundle.identifier as documentIdentifier, documentIdentifier.system = 'urn:ietf:rfc:3986',  uuid() as uuidDoc, documentIdentifier.value = append('urn:uuid:', uuidDoc) "documentIdentifier";
@@ -42,7 +44,7 @@ group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) 
              e5.resource = create('ServiceRequest') as servicerequest, 
              servicerequest.id = uuid() as uuid5,
              e5.fullUrl = append('urn:uuid:',uuid5) then {
-               qr.questionnaire as can -> bundle.entry as e6, e6.resource = (can.resolve()) as q, q.id = uuid() as uuid6, e6.fullUrl = append('urn:uuid:',uuid6) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+               qr.questionnaire as can -> bundle.entry as e6, e6.resource = (can.resolve()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
              } "orfbundle";
 }
 
@@ -54,8 +56,8 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
     qr.item as grp where linkId='requestedEncounter' then RequestedEncounterItems(grp, bundle, patient, serviceRequest) "grprequestedencounter";
     qr.item as grp where linkId='coverage' then Coverage(grp, bundle, patient, serviceRequest) "grprequestedencounter";
     qr.item as grp where linkId='sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
-    qr.item as grp where linkId='receiverCopy' then ReceiverCopy(grp, bundle, patient, composition, serviceRequest) "grpsender";
-    qr.item as grp where linkId='appointment' then Appointment(grp, bundle, composition, serviceRequest) "grpsender";
+    qr.item as grp where linkId='receiverCopy' then ReceiverCopy(grp, bundle, patient, composition, serviceRequest) "receiverCopy";
+    qr.item as grp where linkId='appointment' then Appointment(grp, bundle, composition, serviceRequest) "appointment";
     qr.item as grp where linkId='previousResults' then PreviousResults(grp, bundle, serviceRequest) "previousResults";
     qr.item as grp where linkId='antecedentEpisodeOfCare' then AntecedentEpisodeOfCareInit(grp, bundle, patient, composition) "AntecedentEpisodeOfCareInit";
     qr.item as grp where linkId='consent' then Consent(grp, bundle, composition) "consent";
@@ -82,7 +84,7 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
   src.item as item where (linkId.value = 'order.fillerOrderIdentifierDomain' and answer.exists()) -> serviceRequest.identifier as value share filler, 
                                                                                    value.system=(item.answer.valueString) "order.fillerOrderIdentifierDomain"; 
 
-  src.item as item where (linkId.value = 'order.dateTime' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
+  src.item as item where (linkId.value = 'order.authoredOn' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
 
   src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (item.answer.value.code);
 
@@ -98,7 +100,7 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                e5.fullUrl = append('urn:uuid:',uuid5),
                practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid5)
 //   ,
-// FIXME not known here               practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
+// not known here?               practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
                then {
                      item then UrgentNotificationContactForRequestItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
                      item then ExtOrfUrgentNotificationContactForRequest(item, practitionerRoleDataEnterer, extension) "extension";
@@ -117,7 +119,7 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                e5.fullUrl = append('urn:uuid:',uuid5),
                practitionerRoleDataEnterer.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid5)
 // ,
-// FIXME not known here practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
+// not known here? practitionerRoleDataEnterer.organization = create('Reference') as reference, reference.type='Organization', reference.reference = append('urn:uuid:',uuid3) 
                then {
                      item then UrgentNotificationContactForResponseItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
                      item then ExtOrfUrgentNotificationContactForResponse(item, practitionerRoleDataEnterer, extension) "extension";
@@ -229,7 +231,6 @@ group ReceiverItems(source src : BackboneElement, target bundle: Bundle, target 
 }
 
 group Consent(source src : BackboneElement, target bundle: Bundle, target composition : Composition) {
-   // TODO after https://github.com/hl7ch/ch-orf/issues/115
    src.item as item where (linkId.value = 'consent.statement' and answer.exists()) -> bundle.entry as e, 
           e.resource = create('Consent') as consent,
           consent.status = 'active', 
@@ -270,11 +271,11 @@ group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target
    src.item as item where (linkId.value = 'initiator.personalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-personalrelation', 
-      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.personalrelation";
+      extension.value = (item.answer.value) "initiator.personalrelation";
    src.item as item where (linkId.value = 'initiator.legalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-legalrelation', 
-      extension.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value) "initiator.legalrelation";
+      extension.value = (item.answer.value) "initiator.legalrelation";
    src.item as item where (linkId='initiator.practitionerRole') -> bundle.entry as e4, 
       e4.resource = create('PractitionerRole') as practitionerrole, 
       ext.extension as extension,
@@ -445,6 +446,7 @@ group AntecedentEpisodeOfCareItems(source src : BackboneElement, target bundle: 
           e3.resource = create('Organization') as organization, 
           organization.id = uuid() as uuid3,
           e3.fullUrl = append('urn:uuid:',uuid3),
+          episodeofcare.patient = create('Reference') as reference, reference.reference = ('urn:uuid:'+%tgt.id),
           episodeofcare.managingOrganization = create('Reference') as reference, 
           reference.reference = append('urn:uuid:',uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) "antecedentEpisodeOfCare.managingOrganization";
 }
@@ -911,7 +913,7 @@ group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target p
 }
 
 group Appointment(source grp : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
-   grp -> bundle.entry as e4, 
+   grp.item -> bundle.entry as e4, 
    e4.resource = create('Appointment') as appointment, 
    appointment.id = uuid() as uuid4,
    e4.fullUrl = ('urn:uuid:'+%uuid4),
@@ -975,14 +977,14 @@ group Note(source grp : BackboneElement, target serviceRequest: ServiceRequest) 
    grp.item as item where (linkId='note.text' and answer.exists()) -> serviceRequest.note as note, note.text = (item.answer.value) "note.text";
 }
 
-group QrToBundle(source qr : QuestionnaireResponse, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
+group QrToBundle(source qr : QuestionnaireResponse, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponseTarget, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
   qr -> bundle.id = uuid() "id";
   qr -> bundle.type = 'document' "type";
   qr then OrfComposition(qr, q, composition, patient, questionnaireresp, servicerequest, bundle) "composition";
   qr then QrToGroups(qr, patient, bundle, composition, servicerequest) "qrgroups";
 }
 
-group OrfComposition(source qr : QuestionnaireResponse, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
+group OrfComposition(source qr : QuestionnaireResponse, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponseTarget, target servicerequest: ServiceRequest, target bundle : Bundle) {
   qr -> tgt.status = 'final' "status";
   qr -> tgt.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "subject";
   qr -> tgt.section as tgtSection, 
@@ -990,7 +992,7 @@ group OrfComposition(source qr : QuestionnaireResponse, target q: Questionnaire,
      tgtSection.code as code, code.coding as coding, coding.system='http://loinc.org', coding.code='93037-0', coding.display='Portable medical order form',
      tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%questionnaireresp.id),
      tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%servicerequest.id),
-     tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%q.id) "sections";
+     tgtSection.entry = create('Reference') as reference, reference.reference = (%q.url) "sections";
   qr -> servicerequest.status = 'active',
       servicerequest.intent = 'order',
       servicerequest.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "servicerequest";

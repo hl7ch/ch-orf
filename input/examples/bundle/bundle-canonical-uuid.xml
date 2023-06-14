@@ -500,12 +500,12 @@ Success: 0 errors, 1 warnings, 1 notes
                 </item>
                 <item>
                     <linkId value="initiator"/>
-                    <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"/>
+                    <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"/>
                     <text value="Initiant dieser Anmeldung"/>
                     <type value="group"/>
                     <item>
                         <linkId value="initiator.legalrelation"/>
-                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"/>
+                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"/>
                         <text value="Juristische Beziehung zum Patienten"/>
                         <type value="choice"/>
                         <answerOption>
@@ -525,7 +525,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     </item>
                     <item>
                         <linkId value="initiator.personalrelation"/>
-                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"/>
+                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator"/>
                         <text value="Persönliche Beziehung zum Patienten?"/>
                         <type value="choice"/>
                         <answerOption>
@@ -2143,13 +2143,13 @@ Success: 0 errors, 1 warnings, 1 notes
                         </item>
                         <item>
                             <linkId value="appointment.location.phone"/>
-                            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"/>
+                            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"/>
                             <text value="Telefon"/>
                             <type value="string"/>
                         </item>
                         <item>
                             <linkId value="appointment.location.email"/>
-                            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"/>
+                            <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"/>
                             <text value="E-Mail"/>
                             <type value="string"/>
                         </item>

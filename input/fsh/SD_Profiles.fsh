@@ -228,7 +228,7 @@ and  transfer to retirement home etc."
 * section[originalRepresentation].title 1..1 MS
 * section[originalRepresentation].title ^short = "Original representation"
 * section[originalRepresentation].code 1..1 MS
-* section[originalRepresentation].code = LNC#55108-5 // "Clinical presentation"
+* section[originalRepresentation].code = LNC#55108-5 "Clinical presentation Document"
 * section[originalRepresentation].text 1.. MS
 * section[originalRepresentation].text ^short = "Representation of the original view"
 * section[originalRepresentation].entry 1..1 MS

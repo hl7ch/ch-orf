@@ -73,7 +73,7 @@ Usage: #example
 * item[=].type = #group
 * item[=].required = true
 * item[=].item[0].linkId = "order.authoredOn"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest#ServiceRequest.authoredOn"
 * item[=].item[=].text = "Daum/Zeit der Auftragserteilung"
 * item[=].item[=].type = #dateTime
 * item[=].item[+].linkId = "order.placerOrderIdentifier"
@@ -253,17 +253,17 @@ Usage: #example
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].type = #string
 * item[+].linkId = "initiator"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initiator"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 * item[=].item[0].linkId = "initiator.legalrelation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
 * item[=].item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = $sct#373068000 "Nicht definiert"
 * item[=].item[=].answerOption[+].valueCoding = $sct#58626002 "Gesetzlicher Vertreter"
 * item[=].item[+].linkId = "initiator.personalrelation"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:initator"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = $sct#66089001 "Tochter"
@@ -1166,11 +1166,11 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].required = true
 * item[=].item[=].item[+].linkId = "appointment.location.phone"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"
 * item[=].item[=].item[=].text = "Telefon"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "appointment.location.email"
-* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom.value"
+* item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-location#Location.telecom"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
@@ -1239,3 +1239,7 @@ Usage: #example
 * item[=].text = "Bemerkungen"
 * item[=].type = #group
 * item[=].repeats = true
+* item[=].item.linkId = "note.text"
+* item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.note.text"
+* item[=].item.text = "Kommentar"
+* item[=].item.type = #string

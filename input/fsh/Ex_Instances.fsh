@@ -50,7 +50,7 @@ InstanceOf: Composition
 * section[=].entry[+] = Reference(QuestionnaireResponse/qr-order-referral-form)
 * section[=].entry[+] = Reference(ServiceRequest/sr-order-referral-form)
 /* section[+].title = "Original representation"
-* section[=].code = http://loinc.org#55108-5 "Clinical presentation"
+* section[=].code = http://loinc.org#55108-5 "Clinical presentation Document"
 * section[=].text.status = #generated
 * section[=].text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t\t\t\t    Representation of the original view:\n                            <img src=\"pdf1\"/>\n                        </div>"
 * section[=].entry = Reference(pdf)

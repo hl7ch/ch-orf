@@ -316,7 +316,6 @@
       <exampleBoolean value="false"/>
     </resource>
 
-    <!-- Structure Maps temporär auskommentiert
     <resource>
       <reference>
         <reference value="StructureMap/OrfQrToBundle"/>
@@ -325,8 +324,7 @@
       <description value="Mapping ORF QuestionnaireResponse to Bundle"/>
       <exampleBoolean value="false"/>
     </resource>
-    -->
-    <!-- Example Instances -->
+    
     <resource>
       <reference>
         <reference value="Bundle/bundle-order-referral-form"/>
@@ -346,7 +344,6 @@
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition"/>
     </resource>
 
-<!-- SEE https://github.com/hapifhir/org.hl7.fhir.core/issues/896-
     <resource>
       <reference>
         <reference value="Bundle/radiology-order"/>
@@ -355,7 +352,7 @@
       <description value="Example for Bundle"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document"/>
     </resource>
--->
+    
     <resource>
       <reference>
         <reference value="Bundle/external-diagnostics-order"/>
@@ -512,14 +509,6 @@
       <description value="Example for QuestionnaireResponse"/>
       <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
     </resource>
-<!--<resource>
-      <reference>
-        <reference value="QuestionnaireResponse/order-referral-form"/>
-      </reference>
-      <name value=")"/>
-      <description value="Example for QuestionnaireResponse"/>
-      <exampleCanonical value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
-    </resource> -->
     <resource>
       <reference>
         <reference value="QuestionnaireResponse/qr-radiology-order"/>
