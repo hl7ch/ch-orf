@@ -5,7 +5,7 @@ Description: "Example for QuestionnaireResponse"
 * questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * status = #completed
 
-// ---------- order (Auftrag) ----------
+// ---------- Order (Auftrag) ----------
 * item[+].linkId = "order"
 * item[=].text = "Auftrag"
 
@@ -147,7 +147,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
 
-// ---------- Receiver: Person/organization who receives the document ----------
+// ---------- Initiator: Person/organization who initiated this order/referral ----------
 * item[+].linkId = "initiator"
 * item[=].text = "Initiant dieser Anmeldung"
 
@@ -260,7 +260,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].answer.valueString = "max@freund.ch"
 
-// ---------- Family Doctpr:
+// ---------- Family Doctor:
 * item[=].item[+].linkId = "familydoctor"
 * item[=].item[=].text = "Hausarzt"
 
@@ -308,7 +308,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].answer.valueString = "80756015090002647590"
 
-// ---------- sender (Absender) ----------
+// ---------- Sender (Absender) ----------
 * item[+].linkId = "sender"
 * item[=].text = "Absender"
 
