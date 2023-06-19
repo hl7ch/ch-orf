@@ -493,3 +493,4 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[+].linkId = "note.text"
 * item[=].item[=].text = "Kommentar" 
 * item[=].item[=].answer.valueString = "Patientin ist sehr ängstlich"
+/**/
