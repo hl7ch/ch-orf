@@ -235,7 +235,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[+].linkId = "patient.languageOfCorrespondence"
 * item[=].item[=].text = "Korrespondenzsprache"
 //* item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH
-* item[=].item[=].answer.valueCoding =  ChEhealthLanguage#de-CH "German (Switzerland)"
+* item[=].item[=].answer.valueCoding =  Language#de-CH "German (Switzerland)"
 
 // ---------- Patient Contact Person: The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
