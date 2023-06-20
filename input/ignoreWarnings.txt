@@ -81,6 +81,7 @@ The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
 
+The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 80 targets)
 
 The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
 The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
