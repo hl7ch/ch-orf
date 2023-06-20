@@ -523,7 +523,7 @@ Usage: #example
 * item[=].item[=].text = "Korrespondenzsprache"
 * item[=].item[=].type = #choice
 //* item[=].item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
-* item[=].item[=].answerValueSet = ChEhealthLanguage
+* item[=].item[=].answerValueSet = Language
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"
 * item[=].item[=].extension.valueExpression.name = "contact"
 * item[=].item[=].extension.valueExpression.language = #text/fhirpath
