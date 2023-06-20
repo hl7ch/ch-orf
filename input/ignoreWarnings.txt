@@ -29,7 +29,26 @@ The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:ante
 The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end' for "EpisodeOfCare.Period.end" cannot be resolved (valid targets: 129 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 74 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system' for "ServiceRequest.identifier:fillerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument' for "Composition.extension:precedentDocument" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 79 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer' for "Composition.extension:dataEnterer" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:copyReceiver' for "Composition.extension:copyReceiver" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare' for "Composition.extension:antecedentEpisodeOfCare" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end' for "EpisodeOfCare.Period.end" cannot be resolved (valid targets: 129 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
+
+
+The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
 The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
 The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
 The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
