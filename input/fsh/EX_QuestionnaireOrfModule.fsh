@@ -474,7 +474,7 @@ Description: "Subquestionnaire patient"
 * item[+].linkId = "patient.gender"
 * item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].extension.valueExpression.language = #text/fhirpath
-* item[=].extension.valueExpression.expression = "%questionnaire.repeat(item).where(linkId='patient.gender').answerOption.valueCoding.where(code=%patient.gender)"
+* item[=].extension.valueExpression.expression = "%questionnaire.repeat(item).where(linkId='patient.gender').answerOption.value.where(code=%patient.gender)"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.gender"
 * item[=].text = "Geschlecht"
 * item[=].type = #choice
