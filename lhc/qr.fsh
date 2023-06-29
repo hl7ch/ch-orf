@@ -51,7 +51,7 @@ Usage: #example
 * contact.telecom.system = #url
 * contact.telecom.value = "https://www.hl7.ch/"
 * jurisdiction = urn:iso:std:iso:3166#CH
-* copyright = "CC-BY-SA-4.0"
+* copyright = "CC0-1.0"
 * item[0].linkId = "order"
 * item[=].text = "Auftrag"
 * item[=].type = #group
