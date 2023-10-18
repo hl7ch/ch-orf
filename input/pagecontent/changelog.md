@@ -1,7 +1,18 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### v1.1.0 - HL7 Switzerland STU 2 Ballot
+### 2.0.0 - HL7 Switzerland STU 2 Ballot
+
+#### Added
+
+#### Changed / Updated
+
+#### Fixed
+
+#### Issues resolved without amendment
+
+
+### 2.0.0-ballot - HL7 Switzerland STU 2 Ballot
 
 #### Open Issues
 
