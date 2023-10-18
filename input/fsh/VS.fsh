@@ -3,6 +3,7 @@ ValueSet: ChOrfCoverageType
 Id: ch-orf-vs-coveragetype
 Title: "Coverage Type"
 Description: "Value Set for CH ORF Coverage Type"
+* ^experimental = false
 * include codes from system ChOrfCoverageType
 
 
@@ -10,6 +11,7 @@ ValueSet: ChOrfCoverageIdentifierType
 Id: ch-orf-vs-coverageidentifiertype
 Title: "Coverage Identifier Type"
 Description: "Value Set for CH ORF Coverage Identifier Type"
+* ^experimental = false
 * include codes from system ChOrfCoverageIdentifierType
 
 
@@ -17,6 +19,7 @@ ValueSet: ChOrfAppointmentStatus
 Id: ch-orf-vs-appointmentstatus
 Title: "Appointment Status"
 Description: "Value Set for CH ORF Appointment Status"
+* ^experimental = false
 * AppointmentStatus#proposed
 * AppointmentStatus#pending
 * AppointmentStatus#booked
@@ -26,6 +29,7 @@ ValueSet: ChOrfConsentStatus
 Id: ch-orf-vs-consentstatus
 Title: "Consent Status"
 Description: "Value Set for CH ORF Consent Status"
+* ^experimental = false
 * ChOrfConsentStatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
 * ChOrfConsentStatus#Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
 * SCT#373068000 "Undetermined (qualifier value)" // --> entspricht leer
