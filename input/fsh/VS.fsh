@@ -40,6 +40,7 @@ ValueSet: ChOrfEncounterClass
 Id: ch-orf-vs-encounterclass
 Title: "Encounter Class"
 Description: "Value Set for CH ORF Encounter Class"
+* ^experimental = false
 * V3ActCode#AMB     /* Ambulatory: A comprehensive term for health care 
                     provided in a healthcare facility (e.g. a practitioneraTMs 
                     office, clinic setting, or hospital) on a nonresident basis. 
@@ -61,6 +62,7 @@ ValueSet: ChOrfVsDesiredAccommodation
 Id: ch-orf-vs-desiredaccommodation
 Title: "Desired Accomodation"
 Description: "Value Set for CH ORF Desired Accomodation"
+* ^experimental = false
 * ChCoreCSEncounterType#1 "allgemein"
 * ChCoreCSEncounterType#2 "halbprivat"
 * ChCoreCSEncounterType#3 "privat"
@@ -70,7 +72,7 @@ ValueSet: ChOrfVsPersonalRelation
 Id: ch-orf-vs-personalrelation
 Title: "Personal Relation"
 Description: "Value Set for Personal Relation"
-
+* ^experimental = false
 * SCT#66089001 "Daughter (person)"
 * SCT#65616008 "Son (person)"
 //127848009 "Spouse (person)"
@@ -88,5 +90,6 @@ ValueSet: ChOrfVSLegalRelation
 Id: ch-orf-vs-legalrelation
 Title: "Legal Relation"
 Description: "Value Set for Legal Relation"
+* ^experimental = false
 * SCT#373068000 "Undetermined (qualifier value)"
 * SCT#58626002  "Legal guardian (person)"
