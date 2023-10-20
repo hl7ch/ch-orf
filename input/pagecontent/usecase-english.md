@@ -55,12 +55,12 @@ In practice, a (provisional) registration for home care may be necessary before 
 
 The above information is of an administrative nature; CH ORF provides with version 1.1. appropriate attributes. Regarding the patient's consent, the form allows a differentiated representation of the situation as free text.
 
-For the entry of further medical and nursing information, please refer to [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+For the entry of further medical and nursing information, please refer to [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html).
 
 *************************************************************************
 ### Discharge from inpatient treatment
 
-The additional information for the application for home care (see above) also covers the administrative requirements for discharge letters. In addition, further medical and nursing information is required for this use case. For this, please refer to CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+The additional information for the application for home care (see above) also covers the administrative requirements for discharge letters. In addition, further medical and nursing information is required for this use case. For this, please refer to [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html).
 
 *************************************************************************
 ### Appointments

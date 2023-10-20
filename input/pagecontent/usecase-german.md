@@ -55,12 +55,12 @@ In der Praxis kann eine (provisorische) Anmeldung für eine Heimpflege notwendig
 
 Die obigen Angaben sind administrativer Art; CH ORF sieht dafür mit der Version 1.1 entsprechende Attribute vor. Betreffend Einverständnis des Patienten erlaubt das Formular eine differenzierte Darstellung der Situation als Freitext.
 
-Für die Erfassung weiterer medizinischen und pflegerischen Angaben wird auf [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html) verweisen.
+Für die Erfassung weiterer medizinischen und pflegerischen Angaben wird auf [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html) verweisen.
 
 *************************************************************************
 ### Entlassung aus stationärer Behandlung
 
-Die Möglichkeit zusätzlicher Angaben für die Anmeldung zur Heimpflege (s. o.) deckt auch die administrativen Anforderungen an ein Entlassungsschreiben ab. Zusätzlich sind bei diesem Anwendungsfall weitere medizinische und pflegerische Angaben erforderlich. Dafür wird auf CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html)verweisen.
+Die Möglichkeit zusätzlicher Angaben für die Anmeldung zur Heimpflege (s. o.) deckt auch die administrativen Anforderungen an ein Entlassungsschreiben ab. Zusätzlich sind bei diesem Anwendungsfall weitere medizinische und pflegerische Angaben erforderlich. Dafür wird auf [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html)verweisen.
 
 *************************************************************************
 ### Appointments
