@@ -8,6 +8,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 #### Changed / Updated
 
 #### Fixed
+* [#152](https://github.com/hl7ch/ch-orf/issues/152): Fix formatting and update style that it is clear that the text comes from SDC
 * [#153](https://github.com/hl7ch/ch-orf/issues/153): Remove duplicated terms and unify spelling of CH eTOC
 
 #### Issues resolved without amendment
