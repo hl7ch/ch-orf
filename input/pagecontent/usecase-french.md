@@ -52,12 +52,12 @@ Dans la pratique, une inscription (provisoire) pour des soins à domicile peut s
 
 Les indications ci-dessus sont de nature administrative ; CH ORF prévoit des attributs correspondants dans la version 1.1. En ce qui concerne le consentement du patient, le formulaire permet une présentation différenciée de la situation sous forme de texte libre.
 
-Pour la saisie d'autres données médicales et de soins, nous renvoyons à [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+Pour la saisie d'autres données médicales et de soins, nous renvoyons à [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html).
 
 *************************************************************************
 ### Sortie de traitement hospitalier
 
-La possibilité de fournir des informations supplémentaires pour l'inscription aux soins à domicile (voir ci-dessus) couvre également les exigences administratives d'une lettre de sortie. En outre, dans ce cas d'application, d'autres données médicales et de soins sont nécessaires. Pour ce faire, nous vous renvoyons à CH-eTOC [CH-eTOC](http://fhir.ch/ig/ch-etoc/index.html).
+La possibilité de fournir des informations supplémentaires pour l'inscription aux soins à domicile (voir ci-dessus) couvre également les exigences administratives d'une lettre de sortie. En outre, dans ce cas d'application, d'autres données médicales et de soins sont nécessaires. Pour ce faire, nous vous renvoyons à [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html).
 
 *************************************************************************
 ### Appointments

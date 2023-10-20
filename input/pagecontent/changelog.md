@@ -1,7 +1,7 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### 2.0.0 - HL7 Switzerland STU 2 Ballot
+### v2.0.0 - HL7 Switzerland STU 2 Ballot
 
 #### Added
 
@@ -9,11 +9,12 @@ All significant changes to this FHIR implementation guide will be documented on 
 
 #### Fixed
 * [#152](https://github.com/hl7ch/ch-orf/issues/152): Fix formatting and update style that it is clear that the text comes from SDC
+* [#153](https://github.com/hl7ch/ch-orf/issues/153): Remove duplicated terms and unify spelling of CH eTOC
 
 #### Issues resolved without amendment
 
 
-### 2.0.0-ballot - HL7 Switzerland STU 2 Ballot
+### v2.0.0-ballot - HL7 Switzerland STU 2 Ballot
 
 #### Open Issues
 
