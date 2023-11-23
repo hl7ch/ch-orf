@@ -8,7 +8,8 @@ All IG derived from CH Orf use FHIR defined resources – Composition, Questionn
 
 CH ORF and its derivates are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core](https://fhir.ch/ig/ch-core/index.html).
 
-In this implementation guide “Must support” (MS) denotes elements of the questionnaire that are mapped to corresponding resource items.
+### MustSupport
+In this implementation guide “MustSupport” (MS) denotes elements of the questionnaire that are mapped to corresponding resource items.
 
 <div markdown="1" class="stu-note">
 
