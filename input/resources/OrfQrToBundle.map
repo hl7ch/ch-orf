@@ -7,8 +7,7 @@ map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
 // QRF QuestionnaireResponse: http://fhir.ch/ig/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
 // Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html
 
-uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as source
-uses "http://hl7.org/fhir/StructureDefinition/BackboneElement" alias BackboneElement as source
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponseSource as source
 uses "http://hl7.org/fhir/StructureDefinition/Bundle" alias Bundle as target
 uses "http://hl7.org/fhir/StructureDefinition/Composition" alias Composition as target
 uses "http://hl7.org/fhir/StructureDefinition/Patient" alias Patient as target
@@ -19,36 +18,54 @@ uses "http://hl7.org/fhir/StructureDefinition/PractitionerRole" alias Practition
 uses "http://hl7.org/fhir/StructureDefinition/ServiceRequest" alias ServiceRequest as target
 uses "http://hl7.org/fhir/StructureDefinition/Extension" alias Extension as target
 uses "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" alias EpisodeOfCare as target
-uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponseTarget as target
+uses "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" alias QuestionnaireResponse as target
 
-group OrfQrToBundle(source qr : QuestionnaireResponse, target bundle : Bundle ) {
+group OrfQrToBundle(source qr : QuestionnaireResponseSource, target bundle : Bundle ) {
       qr -> bundle.identifier as documentIdentifier, documentIdentifier.system = 'urn:ietf:rfc:3986',  uuid() as uuidDoc, documentIdentifier.value = append('urn:uuid:', uuidDoc) "documentIdentifier";
-      qr as qrcp -> bundle.entry as e, 
-             e.resource = create('Composition') as composition, 
-             composition.id = uuid() as uuid,
-             e.fullUrl = append('urn:uuid:',uuid),
-             bundle.entry as e2, 
-             bundle.timestamp = (now()) as timestamp,
-             composition.date = timestamp,
-             composition.title = 'Order and Referral by Form',
-             composition.type as type, type.coding as coding, coding.code = '419891008', coding.system = 'http://snomed.info/sct',
-             composition.category as category, category.coding as coding, coding.code = '721963009', coding.system = 'http://snomed.info/sct',
-             e2.resource = create('Patient') as patient,
-             patient.id = uuid() as uuid2,
-             e2.fullUrl = append('urn:uuid:',uuid2),
-             bundle.entry as e4, 
-             e4.resource = qrcp as questionnaireresp,
-             questionnaireresp.id = uuid() as uuid4,
-             e4.fullUrl = append('urn:uuid:',uuid4),
-             bundle.entry as e5, 
-             e5.resource = create('ServiceRequest') as servicerequest, 
-             servicerequest.id = uuid() as uuid5,
-             e5.fullUrl = append('urn:uuid:',uuid5) then {
-               qr.questionnaire as can -> bundle.entry as e6, e6.resource = (can.resolve()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
-             } "orfbundle";
+    qr -> bundle.entry as e, 
+           e.resource = create('Composition') as composition, 
+            composition.id = uuid() as uuid,
+            e.fullUrl = append('urn:uuid:',uuid),
+            bundle.entry as e2, 
+            bundle.timestamp = (now()) as timestamp,
+            composition.date = timestamp,
+            composition.title = 'Order and Referral by Form',
+            composition.type as type, type.coding as coding, coding.code = '419891008', coding.system = 'http://snomed.info/sct',
+            composition.category as category, category.coding as coding, coding.code = '721963009', coding.system = 'http://snomed.info/sct',
+            e2.resource = create('Patient') as patient,
+            patient.id = uuid() as uuid2,
+            e2.fullUrl = append('urn:uuid:',uuid2),
+            bundle.entry as e4, 
+            e4.resource = create('QuestionnaireResponse') as questionnaireresp then {
+               qr then QuestionnaireResponseMap(qr, questionnaireresp) "questionnaireresp";
+               qr -> questionnaireresp.id = uuid() as uuid4,
+               e4.fullUrl = append('urn:uuid:',uuid4),
+               bundle.entry as e5, 
+               e5.resource = create('ServiceRequest') as servicerequest, 
+               servicerequest.id = uuid() as uuid5,
+               e5.fullUrl = append('urn:uuid:',uuid5) then {
+   // FIXME API-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Error setting resource on BackboneElement for rule OrfQrToBundle|OrfQrToBundle|orfbundle to value Questionnaire[http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|1.1.0-assembled]: Cannot set property resource on entry - value is not a primitive type (Questionnaire) or an ElementModel type
+   //              qr.questionnaire as can -> bundle.entry as e6, e6.resource = (%can.resolve().first()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+               qr.questionnaire as can -> (%can.resolve().first().ofType(FHIR.Questionnaire)) as q then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+         } "orfbundle";
+      } "OrfQrToBundle";
 }
 
-group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
+group QuestionnaireResponseMap(source src, target tgt : QuestionnaireResponse)  {
+   src.identifier as value -> tgt.identifier = value "identifier";
+   src.basedOn as value -> tgt.basedOn = value "basedOn";
+   src.partOf as value -> tgt.partOf = value "partOf";
+   src.questionnaire as value -> tgt.questionnaire = value "questionnaire";
+   src.status as value -> tgt.status = value "status";
+   src.subject as value -> tgt.subject = value "subject";
+   src.encounter as value -> tgt.encounter = value "encounter";
+   src.authored as value -> tgt.authored = value "authored";
+   src.author as value -> tgt.author = value "author";
+   src.source as value -> tgt.source = value "source";
+   src.item as value -> tgt.item = value "item";
+}
+ 
+group QrToGroups(source qr : QuestionnaireResponseSource, target patient : Patient, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
     qr.item as grp where linkId='order' then OrderItems(grp, bundle, composition, serviceRequest) "grporder";
     qr.item as grp where linkId='receiver' then ReceiverInit(grp, bundle, composition, serviceRequest) "receiver";
     qr.item as grp where linkId='initiator' then InitiatorInit(grp, bundle, patient, composition, serviceRequest) "grpinitiator";
@@ -64,29 +81,29 @@ group QrToGroups(source qr : QuestionnaireResponse, target patient : Patient, ta
     qr.item as grp where linkId='note' then Note(grp, serviceRequest) "note";
 }
 
-group OrderItems(source src : BackboneElement, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
+group OrderItems(source src, target bundle: Bundle, target composition, target serviceRequest : ServiceRequest) {
 
   src.item as item where (linkId.value = 'order.precedentDocumentIdentifier' and answer.exists())   -> composition.extension as ext, ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument',
-                                                                        ext.value = create('Identifier') as value, value.system='urn:ietf:rfc:3986', value.value=('urn:uuid:'+item.answer.valueString) "order.precedentDocumentIdentifier"; 
+                                                                        ext.value = create('Identifier') as value, value.system='urn:ietf:rfc:3986', value.value=('urn:uuid:'+%item.answer.value) "orderPrecedentDocumentIdentifier"; 
 
   src.item as item where (linkId.value = 'order.placerOrderIdentifier' and answer.exists()) -> serviceRequest.identifier as value share placer, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'PLAC',
-                                                                                   value.value=(item.answer.valueString) "order.placerOrderIdentifier"; 
+                                                                                   value.value=(%item.answer.value) "orderPlacerOrderIdentifier"; 
   src.item as item where (linkId.value = 'order.placerOrderIdentifierDomain' and answer.exists()) -> serviceRequest.identifier as value share placer, 
-                                                                                   value.system=(item.answer.valueString) "order.placerOrderIdentifierDomain"; 
+                                                                                   value.system=(%item.answer.value) "orderPlacerOrderIdentifierDomain"; 
   src.item as item where (linkId.value = 'order.fillerOrderIdentifier' and answer.exists()) -> serviceRequest.identifier as value share filler, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'FILL',
-                                                                                   value.value=(item.answer.valueString) "order.fillerOrderIdentifier"; 
+                                                                                   value.value=(%item.answer.value) "orderFillerOrderIdentifier"; 
   src.item as item where (linkId.value = 'order.fillerOrderIdentifierDomain' and answer.exists()) -> serviceRequest.identifier as value share filler, 
-                                                                                   value.system=(item.answer.valueString) "order.fillerOrderIdentifierDomain"; 
+                                                                                   value.system=(%item.answer.value) "orderFillerOrderIdentifierDomain"; 
 
-  src.item as item where (linkId.value = 'order.authoredOn' and answer.exists()) -> serviceRequest.authoredOn = (item.answer.value);
+  src.item as item where (linkId.value = 'order.authoredOn' and answer.exists()) -> serviceRequest.authoredOn = (%item.answer.value);
 
-  src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (item.answer.value.code);
+  src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (%item.answer.value);
 
   src.item as item where (linkId.value = 'order.notificationContactDocument') then {
       item -> bundle.entry as e4, 
@@ -104,8 +121,8 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                then {
                      item then UrgentNotificationContactForRequestItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
                      item then ExtOrfUrgentNotificationContactForRequest(item, practitionerRoleDataEnterer, extension) "extension";
-                  } "order.notificationContactDocument.items";
-      } "order.notificationContactDocument";
+                  } "orderNotificationContactDocumentItems";
+      } "ordeNnotificationContactDocument";
    
    src.item as item where (linkId.value = 'order.notificationContactDocumentResponse') then {
       item -> bundle.entry as e4, 
@@ -123,99 +140,99 @@ group OrderItems(source src : BackboneElement, target bundle: Bundle, target com
                then {
                      item then UrgentNotificationContactForResponseItems(item, practitionerRoleDataEnterer, practitionerDataEnterer) "data";
                      item then ExtOrfUrgentNotificationContactForResponse(item, practitionerRoleDataEnterer, extension) "extension";
-                  } "order.notificationContactDocumentResponse.items";
-      } "order.notificationContactDocumentResponse";
+                  } "orderNotificationContactDocumentResponseItems";
+      } "orderNotificationContactDocumentResponse";
 }
 
-group UrgentNotificationContactForRequestPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group UrgentNotificationContactForRequestPractitionerItems(source src, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "sender.author.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "senderAuthorPractitionerTitle"; 
      src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerPhone"; 
    src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerEmail"; 
 }
 
-group UrgentNotificationContactForRequestItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner) {
+group UrgentNotificationContactForRequestItems(source src, target practitionerRole: PractitionerRole, target practitioner : Practitioner) {
    src.item as item where (linkId.value = 'order.notificationContactDocument.practitioner') then UrgentNotificationContactForRequestPractitionerItems(item, practitioner);
 }
 
-group ExtOrfUrgentNotificationContactForRequest(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
+group ExtOrfUrgentNotificationContactForRequest(source src, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument' "url";
   src -> ext.value = create('Reference') as reference, 
                 reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
-group UrgentNotificationContactForResponsePractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group UrgentNotificationContactForResponsePractitionerItems(source src, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "sender.author.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "senderAuthorPractitionerTitle"; 
      src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerPhone"; 
    src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerEmail"; 
 }
 
-group UrgentNotificationContactForResponseItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner) {
+group UrgentNotificationContactForResponseItems(source src, target practitionerRole: PractitionerRole, target practitioner : Practitioner) {
    src.item as item where (linkId.value = 'order.notificationContactDocumentResponse.practitioner') then UrgentNotificationContactForResponsePractitionerItems(item, practitioner);
 }
 
-group ExtOrfUrgentNotificationContactForResponse(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
+group ExtOrfUrgentNotificationContactForResponse(source src, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactfortheresponsetothisdocument' "url";
   src -> ext.value = create('Reference') as reference, 
                  reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
 
-group ReceiverPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-   src.item as item where (linkId.value = 'receiver.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'receiver.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group ReceiverPractitionerItems(source src, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'receiver.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'receiver.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'receiver.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "receiver.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "receiverPractitionerTitle"; 
    src.item as item where (linkId.value = 'receiver.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.gln"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerGln"; 
    src.item as item where (linkId.value = 'receiver.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.zsr"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerZsr"; 
    src.item as item where (linkId.value = 'receiver.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerPhone"; 
    src.item as item where (linkId.value = 'receiver.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerEmail"; 
 }
 
-group ReceiverOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'receiver.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group ReceiverOrganizationItems(source src, target organization : Organization) {
+   src.item as item where (linkId.value = 'receiver.organization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'receiver.organization.gln' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "receiver.organization.gln";
+                                                                                   value.value=(%item.answer.value) "receiverOrganizationGln";
    src.item as item where (linkId.value = 'receiver.organization.zsr' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "receiver.organization.zsr"; 
+                                                                                   value.value=(%item.answer.value) "receiverOrganizationZsr"; 
    src.item as item where (linkId.value = 'receiver.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "receiver.organization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'receiver.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "receiver.organization.postalCode";
-   src.item as item where (linkId.value = 'receiver.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "receiver.organization.city";
-   src.item as item where (linkId.value = 'receiver.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "receiver.organization.country";
+     item.answer as answer -> address.line = (%answer.value) "receiverOrganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'receiver.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "receiverOrganizationPostalCode";
+   src.item as item where (linkId.value = 'receiver.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "receiverOrganizationCity";
+   src.item as item where (linkId.value = 'receiver.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "receiverOrganizationCountry";
 }
 
-group ReceiverItems(source src : BackboneElement, target bundle: Bundle, target practitionerRole: practitionerRole) {
+group ReceiverItems(source src, target bundle: Bundle, target practitionerRole: PractitionerRole) {
    src.item as item where (linkId.value = 'receiver.practitioner') -> 
       bundle.entry as e2, 
       e2.resource = create('Practitioner') as practitioner, 
@@ -230,7 +247,7 @@ group ReceiverItems(source src : BackboneElement, target bundle: Bundle, target 
      e3.fullUrl = append('urn:uuid:',uuid3) then ReceiverOrganizationItems(item, organization);
 }
 
-group Consent(source src : BackboneElement, target bundle: Bundle, target composition : Composition) {
+group Consent(source src, target bundle: Bundle, target composition : Composition) {
    src.item as item where (linkId.value = 'consent.statement' and answer.exists()) -> bundle.entry as e, 
           e.resource = create('Consent') as consent,
           consent.status = 'active', 
@@ -244,18 +261,18 @@ group Consent(source src : BackboneElement, target bundle: Bundle, target compos
           ext.value = create('Reference') as reference, 
           consent.extension as extcode,
           extcode.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-consentcode',
-          extcode.value = create('CodeableConcept') as cc, cc.coding = (item.answer.value),
+          extcode.value = create('CodeableConcept') as cc, cc.coding = (%item.answer.value),
           reference.reference = append('urn:uuid:',uuid) then {
             item.answer as answer then {
                answer.item as item where (linkId.value = 'consent.statement.note' and answer.exists())
                -> consent.extension as extnote,
                   extnote.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-consentnote',
-                  extnote.value = (item.answer.value) "consent.statement.note";
-            } "item.answer";
-          } "consent.statement";
+                  extnote.value = (%item.answer.value) "consentStatementNote";
+            } "itemAnswer";
+          } "consentStatement";
 }
 
-group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
+group ReceiverInit(source src, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
    src -> bundle.entry as e, 
           e.resource = create('PractitionerRole') as practitionerRole, 
           practitionerRole.id = uuid() as uuid,
@@ -267,15 +284,15 @@ group ReceiverInit(source src : BackboneElement, target bundle: Bundle, target c
           ReceiverItems(src, bundle, practitionerRole) "receiver";
 }
 
-group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target ext: Extension) {
+group InitiatorItems(source src, target bundle: Bundle, target patient: Patient, target ext: Extension) {
    src.item as item where (linkId.value = 'initiator.personalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-personalrelation', 
-      extension.value = (item.answer.value) "initiator.personalrelation";
+      extension.value = (%item.answer.value) "Initiatorpersonalrelation";
    src.item as item where (linkId.value = 'initiator.legalrelation' and answer.exists()) -> 
       ext.extension as extension, 
       extension.url = 'ch-orf-legalrelation', 
-      extension.value = (item.answer.value) "initiator.legalrelation";
+      extension.value = (%item.answer.value) "Initiatorlegalrelation";
    src.item as item where (linkId='initiator.practitionerRole') -> bundle.entry as e4, 
       e4.resource = create('PractitionerRole') as practitionerrole, 
       ext.extension as extension,
@@ -297,29 +314,29 @@ group InitiatorItems(source src : BackboneElement, target bundle: Bundle, target
             reference.reference = ('urn:uuid:'+%patient.id),
             e4.fullUrl = append('urn:uuid:',uuid4) then {
                item then InitiatorRelatedPersonItems(item, relatedPerson) "data";
-            } "initiator.relatedPerson";
+            } "InitiatorelatedPerson";
 }
 
-group InitiatorRelatedPersonItems(source src : BackboneElement, target relatedPerson: RelatedPerson) {
-   src.item as item where (linkId.value = 'initiator.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'initiator.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (item.answer.value);
+group InitiatorRelatedPersonItems(source src, target relatedPerson: RelatedPerson) {
+   src.item as item where (linkId.value = 'initiator.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'initiator.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'initiator.relatedPerson.phone' and answer.exists()) then {
       item.answer as answer -> relatedPerson.telecom as value, value.system = 'phone',
-                                value.value= (answer.value) "initiator.relatedPerson.phone"; 
-   } "phone";
+                                value.value= (%answer.value) "InitiatorelatedPersonPhone"; 
+   } "Phone";
    src.item as item where (linkId.value = 'initiator.relatedPerson.email' and answer.exists()) -> relatedPerson.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "initiator.relatedPerson.email"; 
+                                                                                   value.value=(%item.answer.value) "InitiatorelatedPersonEmail"; 
    src.item as item where (linkId.value = 'initiator.relatedPerson.streetAddressLine' and answer.exists()) -> relatedPerson.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "initiator.relatedPerson.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'initiator.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (item.answer.value) "initiator.relatedPerson.postalCode";
-   src.item as item where (linkId.value = 'initiator.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (item.answer.value) "initiator.relatedPerson.city";
-   src.item as item where (linkId.value = 'initiator.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (item.answer.value) "initiator.relatedPerson.country";
+     item.answer as answer -> address.line = (%answer.value) "InitiatorelatedPersonStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'initiator.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (%item.answer.value) "InitiatorelatedPersonPostalCode";
+   src.item as item where (linkId.value = 'initiator.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (%item.answer.value) "InitiatorelatedPersonCity";
+   src.item as item where (linkId.value = 'initiator.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (%item.answer.value) "InitiatorelatedPersonCountry";
 }
 
 
-group InitiatorPractitionerRoleItems(source src : BackboneElement, target bundle: Bundle, target practitionerRole: practitionerRole) {
+group InitiatorPractitionerRoleItems(source src, target bundle: Bundle, target practitionerRole: PractitionerRole) {
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner') -> 
       bundle.entry as e2, 
       e2.resource = create('Practitioner') as practitioner, 
@@ -334,38 +351,38 @@ group InitiatorPractitionerRoleItems(source src : BackboneElement, target bundle
      e3.fullUrl = append('urn:uuid:',uuid3) then InitiatorOrganizationItems(item, organization);
 }
 
-group InitiatorPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-   src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group InitiatorPractitionerItems(source src, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "initiator.practitionerRole.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "InitiatorractitionerRolePractitionerTitle"; 
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "initiator.practitionerRole.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "InitiatorractitionerRolePractitionerPhone"; 
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "initiator.practitionerRole.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "InitiatorractitionerRolePractitionerEmail"; 
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.gln"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerGln"; 
    src.item as item where (linkId.value = 'initiator.practitionerRole.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "receiver.practitioner.zsr"; 
+                                                                                   value.value=(%item.answer.value) "receiverPractitionerZsr"; 
 }
 
-group InitiatorOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group InitiatorOrganizationItems(source src, target organization : Organization) {
+   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'initiator.practitionerRole.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "initiator.practitionerRole.organization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "initiator.practitionerRole.organization.postalCode";
-   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "initiator.practitionerRole.organization.city";
-   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "initiator.practitionerRole.organization.country";
+     item.answer as answer -> address.line = (%answer.value) "InitiatorractitionerRoleOrganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "InitiatorractitionerRoleOrganizationPostalCode";
+   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "InitiatorractitionerRoleOrganizationCity";
+   src.item as item where (linkId.value = 'initiator.practitionerRole.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "InitiatorractitionerRoleOrganizationCountry";
 }
 
-group FamilyDoctorInit(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
+group FamilyDoctorInit(source src, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
   src -> bundle.entry as e4, 
   e4.resource = create('PractitionerRole') as practitionerRole,
   practitionerRole.id = uuid() as uuid4,
@@ -388,44 +405,44 @@ group FamilyDoctorInit(source src : BackboneElement, target bundle: Bundle, targ
  } "FamilyDoctorInit";
 }
 
-group FamilyDoctorPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-   src.item as item where (linkId.value = 'familydoctor.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'familydoctor.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group FamilyDoctorPractitionerItems(source src, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'familydoctor.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'familydoctor.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'familydoctor.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "familydoctor.practitioner.gln"; 
+                                                                                   value.value=(%item.answer.value) "familydoctorPractitionerGln"; 
    src.item as item where (linkId.value = 'familydoctor.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "familydoctor.practitioner.zsr"; 
+                                                                                   value.value=(%item.answer.value) "familydoctorPractitionerZsr"; 
    src.item as item where (linkId.value = 'familydoctor.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "familydoctor.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "familydoctorPractitionerTitle"; 
    src.item as item where (linkId.value = 'familydoctor.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "familydoctor.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "familydoctorPractitionerPhone"; 
    src.item as item where (linkId.value = 'familydoctor.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "familydoctor.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "familydoctorPractitionerEmail"; 
 }
 
-group FamilyDoctorOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'familydoctor.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group FamilyDoctorOrganizationItems(source src, target organization : Organization) {
+   src.item as item where (linkId.value = 'familydoctor.organization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'familydoctor.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "familydoctor.organization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'familydoctor.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "familydoctor.organization.postalCode";
-   src.item as item where (linkId.value = 'familydoctor.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "familydoctor.organization.city";
-   src.item as item where (linkId.value = 'familydoctor.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "familydoctor.organization.country";
+     item.answer as answer -> address.line = (%answer.value) "familydoctorOrganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'familydoctor.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "familydoctorOrganizationPostalCode";
+   src.item as item where (linkId.value = 'familydoctor.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "familydoctorOrganizationCity";
+   src.item as item where (linkId.value = 'familydoctor.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "familydoctorOrganizationCountry";
    src.item as item where (linkId.value = 'familydoctor.organization.gln' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "familydoctor.organization.gln";
+                                                                                   value.value=(%item.answer.value) "familydoctorOrganizationGln";
    src.item as item where (linkId.value = 'familydoctor.organization.zsr' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "familydoctorr.organization.zsr"; 
+                                                                                   value.value=(%item.answer.value) "familydoctorOrganizationZsr"; 
 }
 
-group AntecedentEpisodeOfCareInit(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target composition : Composition) {
+group AntecedentEpisodeOfCareInit(source src, target bundle: Bundle, target patient: Patient, target composition : Composition) {
    src -> composition.extension as ext, 
           ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-antecedentepisodeofcare',
           bundle.entry as e4, 
@@ -437,10 +454,10 @@ group AntecedentEpisodeOfCareInit(source src : BackboneElement, target bundle: B
           then AntecedentEpisodeOfCareItems(src, bundle, patient, episodeofcare) "AntecedentEpisodeOfCareItems";
 }
 
-group AntecedentEpisodeOfCareItems(source src : BackboneElement, target bundle: Bundle, target tgt: Patient, target episodeofcare : EpisodeOfCare) {
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.start' and answer.exists()) -> episodeofcare.statusHistory as statusHistory, statusHistory.status='finished', statusHistory.period as period, period.start = (item.answer.value), period.end = (item.answer.value) then {
-        src.item as iteme where (linkId.value = 'antecedentEpisodeOfCare.end' and answer.exists()) -> period.end = (iteme.answer.value) "antecedentEpisodeOfCareEndNotSameAsStart";
-   } "antecedentEpisodeOfCare.requestedPeriod.start";
+group AntecedentEpisodeOfCareItems(source src, target bundle: Bundle, target tgt: Patient, target episodeofcare : EpisodeOfCare) {
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.start' and answer.exists()) -> episodeofcare.statusHistory as statusHistory, statusHistory.status='finished', statusHistory.period as period, period.start = (%item.answer.value), period.end = (%item.answer.value) then {
+        src.item as iteme where (linkId.value = 'antecedentEpisodeOfCare.end' and answer.exists()) -> period.end = (%iteme.answer.value) "antecedentEpisodeOfCareEndNotSameAsStart";
+   } "antecedentEpisodeOfCareRequestedPeriodStart";
    src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization') -> 
       bundle.entry as e3, 
           e3.resource = create('Organization') as organization, 
@@ -448,82 +465,82 @@ group AntecedentEpisodeOfCareItems(source src : BackboneElement, target bundle: 
           e3.fullUrl = append('urn:uuid:',uuid3),
           episodeofcare.patient = create('Reference') as reference, reference.reference = ('urn:uuid:'+%tgt.id),
           episodeofcare.managingOrganization = create('Reference') as reference, 
-          reference.reference = append('urn:uuid:',uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) "antecedentEpisodeOfCare.managingOrganization";
+          reference.reference = append('urn:uuid:',uuid3) then AntecedentEpisodeOfCareOrganizationItems(item, organization) "antecedentEpisodeOfCareManagingOrganization";
 }
 
-group AntecedentEpisodeOfCareOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group AntecedentEpisodeOfCareOrganizationItems(source src, target organization : Organization) {
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-      item.answer as answer -> address.line = (answer.value) "antecedentEpisodeOfCareorganization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "sender.author.organization.postalCode";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "sender.author.organization.city";
-   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "sender.author.organization.country";
+      item.answer as answer -> address.line = (%answer.value) "antecedentEpisodeOfCareorganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "senderAuthorOrganizationPostalCode";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "senderAuthorOrganizationCity";
+   src.item as item where (linkId.value = 'antecedentEpisodeOfCare.managingOrganization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "senderAuthorOrganizationCountry";
 }
 
-group InitiatorInit(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
+group InitiatorInit(source src, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
    src -> composition.extension as ext, 
           ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator'
           then InitiatorItems(src, bundle, patient, ext) "receiver";
 }
 
-group PatientItems(source src : BackboneElement, target bundle: Bundle, target tgt: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
+group PatientItems(source src, target bundle: Bundle, target tgt: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
   src.item as grp where linkId='familydoctor' then FamilyDoctorInit(grp, bundle, tgt, composition, serviceRequest) "grpfamily";
 
   src.item as item then PatientItems(item, bundle, tgt, composition, serviceRequest);
-  src.item as item where (linkId.value = 'patient.familyName' and answer.exists()) -> tgt.name as name share patientName,name.family = (item.answer.value);
-  src.item as item where (linkId.value = 'patient.maidenName' and answer.exists()) -> tgt.name as name, name.use = 'maiden', name.family = (item.answer.value);
-  src.item as item where (linkId.value = 'patient.givenName' and answer.exists()) -> tgt.name as name share patientName, name.given = (item.answer.value);
+  src.item as item where (linkId.value = 'patient.familyName' and answer.exists()) -> tgt.name as name share patientName,name.family = (%item.answer.value);
+  src.item as item where (linkId.value = 'patient.maidenName' and answer.exists()) -> tgt.name as name, name.use = 'maiden', name.family = (%item.answer.value);
+  src.item as item where (linkId.value = 'patient.givenName' and answer.exists()) -> tgt.name as name share patientName, name.given = (%item.answer.value);
   src.item as item where (linkId.value = 'patient.localPid' and answer.exists()) -> tgt.identifier as value share localpid, 
                                                                                    value.type as type, type.coding as coding,
                                                                                    coding.system = 'http://terminology.hl7.org/CodeSystem/v2-0203',
                                                                                    coding.code = 'MR',
-                                                                                   value.value=(item.answer.valueString) "patient.localPid";
+                                                                                   value.value=(%item.answer.value) "PatientLocalPid";
   src.item as item where (linkId.value = 'patient.localPidDomain' and answer.exists()) -> tgt.identifier as value share localpid, 
-                                                                                   value.system=(item.answer.valueString) "patient.localPidDomain"; 
-  src.item as item where (linkId.value = 'patient.birthDate' and answer.exists()) -> tgt.birthDate = (item.answer.value);
-  src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (item.answer.value.code);
+                                                                                   value.system=(%item.answer.value) "PatientLocalPidDomain"; 
+  src.item as item where (linkId.value = 'patient.birthDate' and answer.exists()) -> tgt.birthDate = (%item.answer.value);
+  src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (%item.answer.value);
   src.item as item where (linkId.value = 'patient.maritalStatus' and answer.exists()) then {
    item.answer as answer then {
       answer.value: Coding as coding -> tgt.maritalStatus as maritalStatus, maritalStatus.coding = coding "maritalStatus"; 
       } "answer";
-  } "patient.maritalStatus"; 
+  } "patientMaritalStatus"; 
   src.item as item where (linkId.value = 'patient.phone' and answer.exists()) then {
-   item.answer as answer -> tgt.telecom as value, value.system = 'phone', value.value=(answer.value) "patient.phone";  
-  } "patient.phone";
+   item.answer as answer -> tgt.telecom as value, value.system = 'phone', value.value=(%answer.value) "PatientPhone";  
+  } "PatientPhone";
   src.item as item where (linkId.value = 'patient.email' and answer.exists()) -> tgt.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "patient.email"; 
+                                                                                   value.value=(%item.answer.value) "PatientEmail"; 
   src.item as item where (linkId.value = 'patient.streetAddressLine' and answer.exists()) -> tgt.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "patient.streetAddressLine";
-  } "item.answer";
-  src.item as item where (linkId.value = 'patient.postalCode' and answer.exists()) -> tgt.address as address share orgAddress, address.postalCode = (item.answer.value) "patient.postalCode";
-  src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (item.answer.value) "patient.city";
-  src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (item.answer.value) "patient.country";
+     item.answer as answer -> address.line = (%answer.value) "PatientStreetAddressLine";
+  } "itemAnswer";
+  src.item as item where (linkId.value = 'patient.postalCode' and answer.exists()) -> tgt.address as address share orgAddress, address.postalCode = (%item.answer.value) "PatientPostalCode";
+  src.item as item where (linkId.value = 'patient.city' and answer.exists()) -> tgt.address as address share orgAddress, address.city = (%item.answer.value) "PatientCity";
+  src.item as item where (linkId.value = 'patient.country' and answer.exists()) -> tgt.address as address share orgAddress, address.country = (%item.answer.value) "PatientCountry";
 
   src.item as item where (linkId.value = 'patient.languageOfCorrespondence' and answer.exists()) then {
    item.answer as answer then {
       answer.value: Coding as coding -> tgt.communication as communication, communication.preferred = true, communication.language as language, language.coding = coding "languageOfCorrespondence"; 
       } "answer";
-  } "patient.languageOfCorrespondence"; 
+  } "PatientLanguageOfCorrespondence"; 
 
   src.item as item where (linkId.value = 'patient.contactperson') -> tgt.contact as contact then {
-   item.item as item where (linkId.value = 'patient.contactperson.familyName' and answer.exists()) -> contact.name as name share contactName,name.family = (item.answer.value);
-   item.item as item where (linkId.value = 'patient.contactperson.givenName' and answer.exists()) -> contact.name as name share contactName, name.given = (item.answer.value);
+   item.item as item where (linkId.value = 'patient.contactperson.familyName' and answer.exists()) -> contact.name as name share contactName,name.family = (%item.answer.value);
+   item.item as item where (linkId.value = 'patient.contactperson.givenName' and answer.exists()) -> contact.name as name share contactName, name.given = (%item.answer.value);
 
    src.item as item where (linkId.value = 'patient.contactperson.phone' and answer.exists()) then {
-      item.answer as answer -> tgt.telecom as value, value.system = 'phone', value.value=(answer.value) "patient.phone";  
-     } "patient.contactperson.phone";
+      item.answer as answer -> tgt.telecom as value, value.system = 'phone', value.value=(%answer.value) "PatientPhone";  
+     } "PatientContactpersonPhone";
    
    item.item as item where (linkId.value = 'patient.contactperson.email' and answer.exists()) -> contact.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "patient.email"; 
+                                                                                   value.value=(%item.answer.value) "PatientEmail"; 
    item.item as item where (linkId.value = 'patient.contactperson.relationship' and answer.exists()) -> contact.relationship as relationship, 
-                                                                                   relationship.text=(item.answer.value) "patient.contactperson.relationship"; 
+                                                                                   relationship.text=(%item.answer.value) "PatientContactpersonRelationship"; 
   } "contact";
 }
 
-group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
+group RequestedEncounterItems(source src, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
   src -> bundle.entry as e4, 
                 e4.resource = create('Encounter') as encounter, 
                 encounter.id = uuid() as uuid4,
@@ -535,21 +552,21 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
                 extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
                 then {
                   src.item as item where (linkId.value = 'requestedEncounter.class' and answer.exists()) -> 
-                      encounter.class = (item.answer.value) "requestedEncounter.class";
+                      encounter.class = (%item.answer.value) "requestedEncounterClass";
                   src.item as item where (linkId.value = 'requestedEncounter.desiredAccommodation' and answer.exists()) -> 
                       encounter.extension as extension,
                       extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation', 
-                      extension.value = (item.answer.value) "requestedEncounter.desiredAccommodation";
+                      extension.value = (%item.answer.value) "requestedEncounterDesiredAccommodation";
    } "RequestedEncounterItems";
  }
 
- group Coverage(source src : BackboneElement, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
+ group Coverage(source src, target bundle: Bundle, target patient: Patient, target serviceRequest : ServiceRequest) {
 // coverage.beneficiary
 // coverage.beneficiary.ahvn13
      src.item as item where where (linkId.value = 'coverage.beneficiary') then {
       item.item as item where (linkId.value = 'coverage.beneficiary.ahvn13' and answer.exists()) -> 
-         patient.identifier as identifier, identifier.system = 'urn:oid:2.16.756.5.32', identifier.value = (item.answer.value) "coverage.beneficiary.ahvn13";
-     } "coverage.beneficiary";
+         patient.identifier as identifier, identifier.system = 'urn:oid:2.16.756.5.32', identifier.value = (%item.answer.value) "coverageBeneficiaryAhvn13";
+     } "coverageBeneficiary";
 
 //   coverage.kvg	
 //   coverage.kvg.name	 
@@ -564,10 +581,10 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
       coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'KVG' then {
          item.item as item where (linkId.value = 'coverage.kvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.kvg.name";
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageKvgName";
          item.item as item where (linkId.value = 'coverage.kvg.insuranceCardNumber' and answer.exists()) ->
            coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'VeKa', 
-           identifier.value = (item.answer.value) "coverage.kvg.insuranceCardNumber";
+           identifier.value = (%item.answer.value) "coverageKvgInsuranceCardNumber";
       } "coveragekvg";
 //   coverage.uvg	Unfallversicherung (nach UVG)	0..1	group		Definition: Coverage.type
 //   coverage.uvg.name	Name der Versicherung	0..1	string		Definition: Coverage.payor
@@ -582,10 +599,10 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
       coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'UVG' then {
          item.item as item where (linkId.value = 'coverage.uvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.uvg.name";
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageUvgName";
          item.item as item where (linkId.value = 'coverage.uvg.claimNumber' and answer.exists()) ->
            coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'Claim', 
-           identifier.value = (item.answer.value) "coverage.uvg.claimNumber";
+           identifier.value = (%item.answer.value) "coverageUvgClaimNumber";
       } "coverageuvg";
 //  coverage.vvg	Zusatzversicherung (nach VVG)	0..1	group		Definition: Coverage.type
 //  coverage.vvg.name	Name der Versicherung	0..1	string		Definition: Coverage.payor
@@ -600,10 +617,10 @@ group RequestedEncounterItems(source src : BackboneElement, target bundle: Bundl
       coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'VVG' then {
          item.item as item where (linkId.value = 'coverage.vvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.vvg.name";
+           coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageVvgName";
          item.item as item where (linkId.value = 'coverage.vvg.insuranceCardNumber' and answer.exists()) ->
            coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'VeKa', 
-           identifier.value = (item.answer.value) "coverage.vvg.insuranceCardNumber";
+           identifier.value = (%item.answer.value) "coverageVvgInsuranceCardNumber";
       } "coveragevvg";
 
 // coverage.iv	Invalidenversicherung (IV)	0..1	group		Definition: Coverage.type
@@ -618,9 +635,9 @@ src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IVG' then {
       item.item as item where (linkId.value = 'coverage.iv.verfuegungsnummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'IV', 
-      identifier.value = (item.answer.value),
+      identifier.value = (%item.answer.value),
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'IV' "coverage.iv.verfuegungsnummer";
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'IV' "coverageivverfuegungsnummer";
    } "coverageiv";
 
  // coverage.mv	Militärversicherung (MV)	0..1	group		Definition: Coverage.type
@@ -635,9 +652,9 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MVG' then {
       item.item as item where (linkId.value = 'coverage.mv.versichertennummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'MV', 
-      identifier.value = (item.answer.value),
+      identifier.value = (%item.answer.value),
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'MV' "coverage.mv.versichertennummer";
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = 'MV' "coveragemvversichertennummer";
    } "coveragemv";
       
    // coverage.self	Selbstzahler	0..1	group		Definition: Coverage.type
@@ -673,8 +690,8 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
             coverage.payor as subject, subject.reference = ('urn:uuid:'+%relatedPerson.id),
             relatedPerson.patient as reference, reference.reference = ('urn:uuid:'+%patient.id)
             then 
-              CoverageRelatedPersonItems(item,relatedPerson) "coverage.self.relatedPerson";
-      } "coverage.self.patientrelated.";
+              CoverageRelatedPersonItems(item,relatedPerson) "coverageselfrelatedPerson";
+      } "coverageselfpatientrelated";
    } "self";
  
 // coverage.other	Anderer Kostenträger	0..1	group		Definition: Coverage.type
@@ -691,95 +708,95 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Other' then {
       item.item as item where (linkId.value = 'coverage.other.name' and answer.exists()) ->
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
-      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (item.answer.value) "coverage.other.name";
+      coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageOtherName";
       item.item as item where (linkId.value = 'coverage.other.id' and answer.exists()) ->
-      coverage.identifier as identifier, identifier.value = (item.answer.value) "coverage.other.id";
+      coverage.identifier as identifier, identifier.value = (%item.answer.value) "coverageOtherId";
    } "coveragevvg";
 }
 
-group CoverageRelatedPersonItems(source src : BackboneElement, target relatedPerson: RelatedPerson) {
-   src.item as item where (linkId.value = 'coverage.self.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'coverage.self.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (item.answer.value);
+group CoverageRelatedPersonItems(source src, target relatedPerson: RelatedPerson) {
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'coverage.self.relatedPerson.phone' and answer.exists()) then {
       item.answer as answer -> relatedPerson.telecom as value, value.system = 'phone',
-                                value.value= (answer.value) "coverage.self.relatedPerson.phone"; 
-   } "phone";
+                                value.value= (%answer.value) "coverageSelfRelatedPersonPhone"; 
+   } "Phone";
    src.item as item where (linkId.value = 'coverage.self.relatedPerson.email' and answer.exists()) -> relatedPerson.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "coverage.self.relatedPerson.email"; 
+                                                                                   value.value=(%item.answer.value) "coverageSelfRelatedPersonEmail"; 
    src.item as item where (linkId.value = 'coverage.self.relatedPerson.streetAddressLine' and answer.exists()) -> relatedPerson.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "coverage.self.relatedPerson.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'coverage.self.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (item.answer.value) "coverage.self.relatedPerson.postalCode";
-   src.item as item where (linkId.value = 'coverage.self.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (item.answer.value) "coverage.self.relatedPerson.city";
-   src.item as item where (linkId.value = 'coverage.self.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (item.answer.value) "coverage.self.relatedPerson.country";
+     item.answer as answer -> address.line = (%answer.value) "coverageSelfRelatedPersonStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (%item.answer.value) "coverageSelfRelatedPersonPostalCode";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (%item.answer.value) "coverageSelfRelatedPersonCity";
+   src.item as item where (linkId.value = 'coverage.self.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (%item.answer.value) "coverageSelfRelatedPersonCountry";
 }
 
 
-group SenderAuthorPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'sender.author.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'sender.author.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group SenderAuthorPractitionerItems(source src, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'sender.author.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'sender.author.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'sender.author.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "sender.author.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "senderAuthorPractitionerTitle"; 
    src.item as item where (linkId.value = 'sender.author.practitioner.gln' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.gln"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerGln"; 
    src.item as item where (linkId.value = 'sender.author.practitioner.zsr' and answer.exists()) -> practitioner.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "recsender.author.practitioner.zsr"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerZsr"; 
    src.item as item where (linkId.value = 'sender.author.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerPhone"; 
    src.item as item where (linkId.value = 'sender.author.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerEmail"; 
 }
 
-group SenderAuthorOrganizationItems(source src : BackboneElement, target organization: Organization) {
-   src.item as item where (linkId.value = 'sender.author.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group SenderAuthorOrganizationItems(source src, target organization: Organization) {
+   src.item as item where (linkId.value = 'sender.author.organization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'sender.author.organization.gln' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.51.1.3',
-                                                                                   value.value=(item.answer.value) "sender.author.organization.gln";
+                                                                                   value.value=(%item.answer.value) "senderAuthorOrganizationGln";
    src.item as item where (linkId.value = 'sender.author.organization.zsr' and answer.exists()) -> organization.identifier as value, 
                                                                                    value.system = 'urn:oid:2.16.756.5.30.1.123.100.2.1.1',
-                                                                                   value.value=(item.answer.value) "sender.author.organization.zsr"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorOrganizationZsr"; 
    src.item as item where (linkId.value = 'sender.author.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "sender.author.organization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'sender.author.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "sender.author.organization.postalCode";
-   src.item as item where (linkId.value = 'sender.author.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "sender.author.organization.city";
-   src.item as item where (linkId.value = 'sender.author.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "sender.author.organization.country";
+     item.answer as answer -> address.line = (%answer.value) "senderAuthorOrganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'sender.author.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "senderAuthorOrganizationPostalCode";
+   src.item as item where (linkId.value = 'sender.author.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "senderAuthorOrganizationCity";
+   src.item as item where (linkId.value = 'sender.author.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "senderAuthorOrganizationCountry";
 }
 
-group SenderAuthorItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner, target organization: Organization) {
+group SenderAuthorItems(source src, target practitionerRole: PractitionerRole, target practitioner : Practitioner, target organization: Organization) {
    src.item as item where (linkId.value = 'sender.author.practitioner') then SenderAuthorPractitionerItems(item, practitioner);
    src.item as item where (linkId.value = 'sender.author.organization') then SenderAuthorOrganizationItems(item, organization);
 }
 
-group SenderDataEntererPractitionerItems(source src : BackboneElement, target practitioner: Practitioner) {
-   src.item as item where (linkId.value = 'sender.dataenterer.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'sender.dataenterer.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group SenderDataEntererPractitionerItems(source src, target practitioner: Practitioner) {
+   src.item as item where (linkId.value = 'sender.dataenterer.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'sender.dataenterer.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'sender.dataenterer.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerPhone"; 
    src.item as item where (linkId.value = 'sender.dataenterer.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "sender.author.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "senderAuthorPractitionerEmail"; 
 }
 
-group SenderDataEntererItems(source src : BackboneElement, target practitionerRole: practitionerRole, target practitioner : Practitioner, target organization: Organization) {
+group SenderDataEntererItems(source src, target practitionerRole: PractitionerRole, target practitioner : Practitioner, target organization: Organization) {
    src.item as item where (linkId.value = 'sender.dataenterer.practitioner') then SenderDataEntererPractitionerItems(item, practitioner);
 }
 
-group ChExtEprDataEnterer(source src: BackboneElement, target practitionerRole: PractitionerRole, target ext: Extension) {
+group ChExtEprDataEnterer(source src, target practitionerRole: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-core/StructureDefinition/ch-ext-epr-dataenterer' "url";
   src -> ext.extension as ext, ext.url='enterer', ext.value = create('Reference') as reference, 
                  reference.reference = ('urn:uuid:'+%practitionerRole.id) "practitionerRole";
 }
 
-group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
+group SenderAuthorInit(source src, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
    src -> bundle.entry as e, 
           e.resource = create('PractitionerRole') as practitionerRole, 
           practitionerRole.id = uuid() as uuid,
@@ -796,7 +813,7 @@ group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, targ
           serviceRequest.requester = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid),
           practitionerRole.practitioner = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid2),
           practitionerRole.organization = create('Reference') as reference, reference.reference = append('urn:uuid:',uuid3) then {
-             src.item as item where (linkId.value = 'sender.author') then SenderAuthorItems(item, practitionerRole, practitioner, organization) "sender.author";
+             src.item as item where (linkId.value = 'sender.author') then SenderAuthorItems(item, practitionerRole, practitioner, organization) "senderAuthor";
              src.item as item where (linkId.value = 'sender.dataenterer') then {
                item -> bundle.entry as e4, 
                       e4.resource = create('PractitionerRole') as practitionerRoleDataEnterer, 
@@ -812,55 +829,55 @@ group SenderAuthorInit(source src : BackboneElement, target bundle: Bundle, targ
                       then {
                             item then SenderDataEntererItems(item, practitionerRoleDataEnterer, practitionerDataEnterer, organization) "data";
                             item then ChExtEprDataEnterer(item, practitionerRoleDataEnterer, extension) "extension";
-                         } "sender.dataenterer.items";
-             } "sender.dataenterer";
+                         } "senderDataentererItems";
+             } "senderDataenterer";
           } "sender";
 }
 
-group ReceiverCopyRelatedPersonItems(source src : BackboneElement, target relatedPerson: RelatedPerson) {
-   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (item.answer.value);
+group ReceiverCopyRelatedPersonItems(source src, target relatedPerson: RelatedPerson) {
+   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.familyName' and answer.exists()) -> relatedPerson.name as name share name, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.givenName' and answer.exists()) -> relatedPerson.name as name share name, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'receiverCopy.relatedPerson.phone' and answer.exists()) then {
       item.answer as answer -> relatedPerson.telecom as value, value.system = 'phone',
-                                value.value= (answer.value) "receiverCopy.relatedPerson.phone"; 
-   } "phone";
+                                value.value= (%answer.value) "receiverCopyRelatedPersonPhone"; 
+   } "Phone";
    src.item as item where (linkId.value = 'receiverCopy.relatedPerson.email' and answer.exists()) -> relatedPerson.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "receiverCopy.relatedPerson.email"; 
+                                                                                   value.value=(%item.answer.value) "receiverCopyRelatedPersonEmail"; 
    src.item as item where (linkId.value = 'receiverCopy.relatedPerson.streetAddressLine' and answer.exists()) -> relatedPerson.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "receiverCopy.relatedPerson.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (item.answer.value) "receiverCopy.relatedPerson.postalCode";
-   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (item.answer.value) "receiverCopy.relatedPerson.city";
-   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (item.answer.value) "receiverCopy.relatedPerson.country";
+     item.answer as answer -> address.line = (%answer.value) "receiverCopyRelatedPersonStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.postalCode' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.postalCode = (%item.answer.value) "receiverCopyRelatedPersonPostalCode";
+   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.city' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.city = (%item.answer.value) "receiverCopyRelatedPersonCity";
+   src.item as item where (linkId.value = 'receiverCopy.relatedPerson.country' and answer.exists()) -> relatedPerson.address as address share orgAddress, address.country = (%item.answer.value) "receiverCopyRelatedPersonCountry";
 }
 
-group ReceiverCopyPractitionerItems(source src : BackboneElement, target practitioner : Practitioner) {
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (item.answer.value);
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (item.answer.value);
+group ReceiverCopyPractitionerItems(source src, target practitioner : Practitioner) {
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.familyName' and answer.exists()) -> practitioner.name as name share practitionerName, name.family = (%item.answer.value);
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.givenName' and answer.exists()) -> practitioner.name as name share practitionerName, name.given = (%item.answer.value);
    src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.title' and answer.exists()) -> practitioner.name as name share practitionerName, 
-                                                                        name.prefix = (item.answer.value) as prefix,
+                                                                        name.prefix = (%item.answer.value) as prefix,
                                                                         prefix.extension as ext, ext.url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier',
-                                                                        ext.value = create('code') as value, value.value='AC' "receiverCopy.practitionerRole.practitioner.title"; 
+                                                                        ext.value = create('code') as value, value.value='AC' "receiverCopyPractitionerRolePractitionerTitle"; 
    src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.phone' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'phone',
-                                                                                   value.value=(item.answer.value) "receiverCopy.practitionerRole.practitioner.phone"; 
+                                                                                   value.value=(%item.answer.value) "receiverCopyPractitionerRolePractitionerPhone"; 
    src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner.email' and answer.exists()) -> practitioner.telecom as value, 
                                                                                    value.system = 'email',
-                                                                                   value.value=(item.answer.value) "receiverCopy.practitionerRole.practitioner.email"; 
+                                                                                   value.value=(%item.answer.value) "receiverCopyPractitionerRolePractitionerEmail"; 
 }
 
-group ReceiverCopyOrganizationItems(source src : BackboneElement, target organization : Organization) {
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.name' and answer.exists()) -> organization.name = (item.answer.value);
+group ReceiverCopyOrganizationItems(source src, target organization : Organization) {
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.name' and answer.exists()) -> organization.name = (%item.answer.value);
    src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.streetAddressLine' and answer.exists()) -> organization.address as address share orgAddress then {
-     item.answer as answer -> address.line = (answer.value) "receiverCopy.practitionerRole.organization.streetAddressLine";
-   } "item.answer";
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (item.answer.value) "receiverCopy.practitionerRole.organization.postalCode";
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (item.answer.value) "receiverCopy.practitionerRole.organization.city";
-   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (item.answer.value) "receiverCopy.practitionerRole.organization.country";
+     item.answer as answer -> address.line = (%answer.value) "receiverCopyPractitionerRoleOrganizationStreetAddressLine";
+   } "itemAnswer";
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.postalCode' and answer.exists()) -> organization.address as address share orgAddress, address.postalCode = (%item.answer.value) "receiverCopyPractitionerRoleOrganizationPostalCode";
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.city' and answer.exists()) -> organization.address as address share orgAddress, address.city = (%item.answer.value) "receiverCopyPractitionerRoleOrganizationCity";
+   src.item as item where (linkId.value = 'receiverCopy.practitionerRole.organization.country' and answer.exists()) -> organization.address as address share orgAddress, address.country = (%item.answer.value) "receiverCopyPractitionerRoleOrganizationCountry";
 }
 
-group ReceiverCopyPractitionerRoleItems(source src : BackboneElement, target bundle: Bundle, target practitionerRole: practitionerRole) {
+group ReceiverCopyPractitionerRoleItems(source src, target bundle: Bundle, target practitionerRole: PractitionerRole) {
    src.item as item where (linkId.value = 'receiverCopy.practitionerRole.practitioner') -> 
       bundle.entry as e2, 
       e2.resource = create('Practitioner') as practitioner, 
@@ -875,31 +892,38 @@ group ReceiverCopyPractitionerRoleItems(source src : BackboneElement, target bun
      e3.fullUrl = append('urn:uuid:',uuid3) then ReceiverCopyOrganizationItems(item, organization);
 }
 
-group ExtOrfCopyReceiverPatient(source src: BackboneElement, target patient: Patient, target ext: Extension) {
+group ExtOrfCopyReceiverPatient(source src, target patient: Patient, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -> ext.value = create('Reference') as reference, 
                 reference.reference = ('urn:uuid:'+%patient.id) "patient";
 }
 
-group ExtOrfCopyReceiver(source src: BackboneElement, target res, target ext: Extension) {
+group ExtOrfCopyReceiverPractitionerRole(source src, target res: PractitionerRole, target ext: Extension) {
   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
   src -> ext.value = create('Reference') as reference, 
                 reference.reference = ('urn:uuid:'+%res.id) "organization";
 }
 
-group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
+group ExtOrfCopyReceiverRelatedPerson(source src, target res : RelatedPerson, target ext: Extension) {
+   src -> ext.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-copyreceiver' "url";
+   src -> ext.value = create('Reference') as reference, 
+                 reference.reference = ('urn:uuid:'+%res.id) "organization";
+ }
+ 
+
+group ReceiverCopy(source grp , target bundle: Bundle, target patient: Patient, target composition : Composition, target serviceRequest: ServiceRequest) {
   grp.item as item where (linkId='receiverCopy.practitionerRole') -> bundle.entry as e4, 
             e4.resource = create('PractitionerRole') as practitionerrole, 
             composition.extension as extension,
             practitionerrole.id = uuid() as uuid4,
             e4.fullUrl = append('urn:uuid:',uuid4) then {
                item then ReceiverCopyPractitionerRoleItems(item, bundle, practitionerrole) "data";
-               item then ExtOrfCopyReceiver(item, practitionerrole, extension) "extension";
+               item then ExtOrfCopyReceiverPractitionerRole(item, practitionerrole, extension) "extension";
             } "receiverCopyPractitionerRole1";
    grp.item as item where (linkId='receiverCopy.patient') ->  
             composition.extension as extension then {
-               item then ExtOrfCopyReceiver(item, patient, extension) "extension";
-            } "receiverCopyPractitionerRole2";
+               item then ExtOrfCopyReceiverPatient(item, patient, extension) "extension";
+            } "receiverCopyPatient";
    grp.item as item where (linkId='receiverCopy.relatedPerson') -> bundle.entry as e4, 
             e4.resource = create('RelatedPerson') as relatedPerson, 
             composition.extension as extension,
@@ -908,12 +932,12 @@ group ReceiverCopy(source grp : BackboneElement, target bundle: Bundle, target p
             reference.reference = ('urn:uuid:'+%patient.id),
             e4.fullUrl = append('urn:uuid:',uuid4) then {
                item then ReceiverCopyRelatedPersonItems(item, relatedPerson) "data";
-               item then ExtOrfCopyReceiver(item, relatedPerson, extension) "extension";
-            } "receiverCopyPractitionerRole3";
+               item then ExtOrfCopyReceiverRelatedPerson(item, relatedPerson, extension) "extension";
+            } "receiverCopyRelatedPerson";
 }
 
-group Appointment(source grp : BackboneElement, target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
-   grp.item -> bundle.entry as e4, 
+group Appointment(source grp , target bundle: Bundle, target composition : Composition, target serviceRequest: ServiceRequest) {
+   grp -> bundle.entry as e4, 
    e4.resource = create('Appointment') as appointment, 
    appointment.id = uuid() as uuid4,
    e4.fullUrl = ('urn:uuid:'+%uuid4),
@@ -921,42 +945,42 @@ group Appointment(source grp : BackboneElement, target bundle: Bundle, target co
    extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
    extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
    then {
-      grp.item as item where (linkId.value = 'appointment.status' and answer.value.code='proposed') -> appointment.status = (item.answer.value.code) then {
+      grp.item as item where (linkId.value = 'appointment.status' and answer.value='proposed') -> appointment.status = (%item.answer.value) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
-           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (item2.answer.value), requestedPeriod.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (item3.answer.value) "appointment.requestedPeriod.end.if.not.same.as.start";
-           } "appointment.requestedPeriod.start";
-         } "appointment.requestedPeriod";
+           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (%item2.answer.value), requestedPeriod.end = (%item2.answer.value) then {
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (%item3.answer.value) "appointmentRequestedPeriodendifnotsameasstart";
+           } "appointmentRequestedPeriodStart";
+         } "appointmentRequestedPeriod";
       } "proposed";
-      grp.item as item where (linkId.value = 'appointment.status' and (answer.value.code='pending' or answer.value.code='booked')) -> appointment.status = (item.answer.value.code) then {
+      grp.item as item where (linkId.value = 'appointment.status' and (answer.value='pending' or answer.value='booked')) -> appointment.status = (%item.answer.value) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
-           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (item2.answer.value), appointment.end = (item2.answer.value) then {
-           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (item3.answer.value) "appointment.end.if.not.same.as.start";
-           } "appointment.start";
-         } "appointment.startend";
+           itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (%item2.answer.value), appointment.end = (%item2.answer.value) then {
+           itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (%item3.answer.value) "appointmentendifnotsameasstart";
+           } "appointmentStart";
+         } "appointmentStartend";
       } "pendingorbooked";
-      grp.item as item where (linkId.value = 'appointment.patientInstruction' and answer.exists()) -> appointment.patientInstruction = (item.answer.value) "appointment.patientInstruction";
+      grp.item as item where (linkId.value = 'appointment.patientInstruction' and answer.exists()) -> appointment.patientInstruction = (%item.answer.value) "appointmentPatientInstruction";
       grp.item as item where (linkId.value = 'appointment.location') then {
          item -> bundle.entry as e5, 
          e5.resource = create('Location') as location, 
          location.id = uuid() as uuid5,
          e5.fullUrl = ('urn:uuid:'+%uuid5),
          appointment.participant as participant, participant.status = 'tentative', participant.actor = create('Reference') as actor, actor.reference = ('urn:uuid:'+%location.id) then {
-            item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> location.name = (item3.answer.value);
-            item.item as item3 where (linkId.value = 'appointment.location.phone' and answer.exists()) -> location.telecom as value, value.system = 'phone', value.value=(item3.answer.value) "appointment.location.phone"; 
-            item.item as item3 where (linkId.value = 'appointment.location.email' and answer.exists()) -> location.telecom as value, value.system = 'email', value.value=(item3.answer.value) "appointment.location.email"; 
+            item.item as item3 where (linkId.value = 'appointment.location.name' and answer.exists()) -> location.name = (%item3.answer.value);
+            item.item as item3 where (linkId.value = 'appointment.location.phone' and answer.exists()) -> location.telecom as value, value.system = 'phone', value.value=(%item3.answer.value) "appointmentLocationPhone"; 
+            item.item as item3 where (linkId.value = 'appointment.location.email' and answer.exists()) -> location.telecom as value, value.system = 'email', value.value=(%item3.answer.value) "appointmentLocationEmail"; 
             item.item as item3 where (linkId.value = 'appointment.location.streetAddressLine' and answer.exists()) -> location.address as address share orgAddress then {
-               item.answer as answer -> address.line = (answer.value) "line";
-            } "appointment.location.streetAddressLine";
-            item.item as item3 where (linkId.value = 'appointment.location.postalCode' and answer.exists()) -> location.address as address share orgAddress, address.postalCode = (item3.answer.value) "appointment.location.postalCode";
-            item.item as item3 where (linkId.value = 'appointment.location.city' and answer.exists()) -> location.address as address share orgAddress, address.city = (item3.answer.value) "appointment.location.city";
-            item.item as item3 where (linkId.value = 'appointment.location.country' and answer.exists()) -> location.address as address share orgAddress, address.country = (item3.answer.value) "appointment.location.country";
+               item.answer as answer -> address.line = (%answer.value) "line";
+            } "appointmentLocationStreetAddressLine";
+            item.item as item3 where (linkId.value = 'appointment.location.postalCode' and answer.exists()) -> location.address as address share orgAddress, address.postalCode = (%item3.answer.value) "appointmentLocationPostalCode";
+            item.item as item3 where (linkId.value = 'appointment.location.city' and answer.exists()) -> location.address as address share orgAddress, address.city = (%item3.answer.value) "appointmentlocationCity";
+            item.item as item3 where (linkId.value = 'appointment.location.country' and answer.exists()) -> location.address as address share orgAddress, address.country = (%item3.answer.value) "appointmentLocationCountry";
          } "location";
-      } "appointment.location";
+      } "appointmentLocation";
    } "Appointment";
 }
 
-group PreviousResults(source grp : BackboneElement, target bundle: Bundle, target serviceRequest: ServiceRequest) {
+group PreviousResults(source grp , target bundle: Bundle, target serviceRequest: ServiceRequest) {
    grp.item as item where (linkId='previousResults.attachment' and answer.exists()) then {
       item.answer as answer then {
          answer.value: Attachment as attachment -> 
@@ -967,24 +991,24 @@ group PreviousResults(source grp : BackboneElement, target bundle: Bundle, targe
             e.fullUrl = append('urn:uuid:',uuid), 
             media.content = attachment,
             serviceRequest.supportingInfo as supportingInfo,
-            supportingInfo.reference = ('urn:uuid:'+uuid)
+            supportingInfo.reference = ('urn:uuid:'+%uuid)
             "media"; 
       } "answer";
    } "item";
 }
 
-group Note(source grp : BackboneElement, target serviceRequest: ServiceRequest) {
-   grp.item as item where (linkId='note.text' and answer.exists()) -> serviceRequest.note as note, note.text = (item.answer.value) "note.text";
+group Note(source grp , target serviceRequest: ServiceRequest) {
+   grp.item as item where (linkId='note.text' and answer.exists()) -> serviceRequest.note as note, note.text = (%item.answer.value) "noteText";
 }
 
-group QrToBundle(source qr : QuestionnaireResponse, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponseTarget, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
+group QrToBundle(source qr : QuestionnaireResponseSource, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
   qr -> bundle.id = uuid() "id";
   qr -> bundle.type = 'document' "type";
   qr then OrfComposition(qr, q, composition, patient, questionnaireresp, servicerequest, bundle) "composition";
   qr then QrToGroups(qr, patient, bundle, composition, servicerequest) "qrgroups";
 }
 
-group OrfComposition(source qr : QuestionnaireResponse, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponseTarget, target servicerequest: ServiceRequest, target bundle : Bundle) {
+group OrfComposition(source qr : QuestionnaireResponseSource, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
   qr -> tgt.status = 'final' "status";
   qr -> tgt.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "subject";
   qr -> tgt.section as tgtSection, 
