@@ -13,10 +13,7 @@ In this implementation guide “MustSupport” (MS) denotes elements of the ques
 
 <div markdown="1" class="stu-note">
 
-This implementation guide is under STU ballot by [HL7 Switzerland](https://www.hl7.ch/) until September 30th, 2023 midnight.
-Please add your feedback via the ‘Propose a change’-link in the footer on the page where you have comments. 
-
-[Significant Changes, Open and Closed Issues](changelog.html)
+[Significant changes, open and closed issues](changelog.html)
 </div>
 
 **Download:** 

@@ -24,44 +24,30 @@ Extension: ChOrfInitiator
 Id: ch-orf-initiator
 Title: "CH ORF Initiator"
 Description: "Initiator and his realtion to the patient"
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Composition"
 * . ^short = "Extension"
-* . ^definition = "Extension to define Person/organization who initated this order (may or may nor receive a copy)"
+* . ^definition = "Extension to define person/organization who initated this order (may or may not receive a copy)"
 * extension contains
     ch-orf-personalrelation 1..1 MS and 
     ch-orf-legalrelation 1..1 MS and
     ch-orf-personorganization 1..1 MS 
 
-//* extension[ch-orf-personalrelation] ^short = "Personal relation"
-//* extension[ch-orf-personalrelation].value[x] only CodeableConcept
-* extension[ch-orf-personalrelation].valueCoding from ChOrfVsPersonalRelation (required)
+* extension[ch-orf-personalrelation] ^short = "Personal relation between initiator and patient"
+* extension[ch-orf-personalrelation].value[x] only Coding
+* extension[ch-orf-personalrelation].value[x] from ChOrfVsPersonalRelation (required)
+* extension[ch-orf-personalrelation].value[x] 1..
 
-//* extension[ch-orf-legalrelation] ^short = "Legal relation"
-//* extension[ch-orf-legalrelation].value[x] only CodeableConcept
-* extension[ch-orf-legalrelation].valueCoding from ChOrfVSLegalRelation (required)
+* extension[ch-orf-legalrelation] ^short = "Legal relation between initator and patient"
+* extension[ch-orf-legalrelation].value[x] only Coding
+* extension[ch-orf-legalrelation].value[x] from ChOrfVSLegalRelation (required)
+* extension[ch-orf-legalrelation].value[x] 1..
 
-//* extension[ch-orf-personorganization] ^short = "Initiator person or organization"
-* extension[ch-orf-personorganization].valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+* extension[ch-orf-personorganization] ^short = "Initiator person or organization"
+* extension[ch-orf-personorganization].value[x] only Reference
+* extension[ch-orf-personorganization].value[x] only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+* extension[ch-orf-personorganization].value[x] 1..
 
-
-Extension: ChOrfPersonalRelation
-Id: ch-orf-personalrelation
-Description: "Extension to define the personal relation between initator and patient"
-* extension 0..0
-* value[x] only CodeableConcept
-* extension.valueCodeableConcept from ChOrfVsPersonalRelation (required)
-
-Extension: ChOrfLegalRelation
-Id: ch-orf-legalrelation
-Description: "Extension to define the legal relation between initator and patient"
-* extension 0..0
-* value[x] only CodeableConcept
-* extension.valueCodeableConcept from ChOrfVSLegalRelation (required)
-
-Extension: ChOrfPersonOrganization
-Id: ch-orf-personorganization
-Description: "Reference to Patient, Practitioner, PratictionerRole or RelatedPerson"
-* extension 0..0
-* value[x] only Reference (ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
 
 /*Extension: ChOrfRelationInitiatorPatient
 Id: ch-orf-personalrelationinitiatorpatient
@@ -113,10 +99,8 @@ Extension: ChOrfConsentCode
 Id: ch-orf-consentcode
 Title: "CH ORF Consent Code"
 Description: "Consent Code"
-
-//* ^context[0].type = #fhirpath
-//* ^context[0].expression = "ChOrfConsent"
-
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Consent"
 * valueCoding 1..1
 //* valueCodeableConcept only CodeableConcept
 * valueCoding from  ChOrfConsentStatus (required)
@@ -127,15 +111,11 @@ Extension: ChOrfConsentNote
 Id: ch-orf-consentnote
 Title: "CH ORF Consent Note"
 Description: "Consent Note "
-//* ^context[0].type = #fhirpath
-//* ^context[0].expression = "ChOrfConsent"
-
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Consent"
 * valueString 1..1
 //* valueString only string
 * valueString ^short = "valueString"
-
-
-
 
 
 Extension: ChOrfReceiver
@@ -147,6 +127,7 @@ Description: "Person/organization who receives the document"
 * valueReference 1..1
 * valueReference only Reference(ChCorePractitionerRole)
 * valueReference ^short = "valueReference"
+
 
 Extension: ChOrfAntecedentEpisodeOfCare
 Id: ch-orf-antecedentepisodeofcare
@@ -189,6 +170,8 @@ Extension: ChOrfRequestedEncounterDetails
 Id: ch-orf-requestedencounterdetails
 Title: "CH ORF Requested Encounter Details"
 Description: "Requested Encounter Details for ServiceRequest Fulfillment."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "ServiceRequest"
 * valueReference 1..1
 * valueReference only Reference(ChOrfRequestedEncounter) 
 * valueReference ^short = "Requested Encounter Details for ServiceRequest Fulfillment"
@@ -198,6 +181,8 @@ Extension: ChOrfLocationAndTime
 Id: ch-orf-locationandtime
 Title: "CH ORF Location and Time"
 Description: "Location and Time of ServiceRequest Fulfillment."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "ServiceRequest"
 * valueReference 1..1
 * valueReference only Reference(ChOrfAppointment) 
 * valueReference ^short = "Location and Time for ServiceRequest Fulfillment"
@@ -207,6 +192,8 @@ Extension: ChOrfDesiredAccommodation
 Id: ch-orf-desiredaccommodation
 Title: "CH ORF Desired Accommodation"
 Description: "Desired Accommodation during the Requested Encounter."
+* ^context[0].type = #fhirpath
+* ^context[0].expression = "Encounter"
 * valueCoding 1..1
 * valueCoding ^short = "Desired Accommodation during the Requested Encounter"
 * valueCoding from ChOrfVsDesiredAccommodation
