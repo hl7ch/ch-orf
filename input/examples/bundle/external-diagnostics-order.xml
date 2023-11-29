@@ -4,6 +4,7 @@
   <meta>
     <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
   </meta>
+  <language value="de-CH"/>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:uuid:8a03521a-2380-49a4-85bc-f66cbec2d6fd"/>
@@ -14,6 +15,7 @@
     <fullUrl value="urn:uuid:668a514b-8544-4e3b-82b4-83b1a45e3a21"/>
     <resource>
       <Composition>
+        <language value="de-CH"/>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-urgentnoficationcontactforthisdocument">
           <valueReference>
             <reference value="urn:uuid:c25edd30-4206-440d-aeaa-4e27ffbb21b4"/>
@@ -76,6 +78,7 @@
     <fullUrl value="urn:uuid:3a12ef44-6acd-4736-924c-cd60b311da50"/>
     <resource>
       <Patient>
+        <language value="de-CH"/>
         <identifier>
           <type>
             <coding>
@@ -121,6 +124,7 @@
         <meta>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
         </meta>
+        <language value="de-CH"/>
         <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <status value="completed"/>
         <item>
@@ -530,6 +534,7 @@
     <fullUrl value="urn:uuid:4d15b80e-8813-47b1-9fd2-5fbb96b87e7a"/>
     <resource>
       <ServiceRequest>
+        <language value="de-CH"/>
         <identifier>
           <type>
             <coding>
@@ -566,6 +571,7 @@
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap"/>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp"/>
         </meta>
+        <language value="de-CH"/>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
         </extension>
@@ -2768,6 +2774,7 @@
     <fullUrl value="urn:uuid:c25edd30-4206-440d-aeaa-4e27ffbb21b4"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:12a25f9f-1df1-46f5-9bea-524291d3bee1"/>
         </practitioner>
@@ -2778,6 +2785,7 @@
     <fullUrl value="urn:uuid:12a25f9f-1df1-46f5-9bea-524291d3bee1"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Iller"/>
           <given value="Frederica"/>
@@ -2802,6 +2810,7 @@
     <fullUrl value="urn:uuid:2e5e9263-ef5f-41d0-bf46-74797451b149"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:1ff4c57a-6454-4c7e-af57-7062bec59b70"/>
         </practitioner>
@@ -2812,6 +2821,7 @@
     <fullUrl value="urn:uuid:1ff4c57a-6454-4c7e-af57-7062bec59b70"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Lacer"/>
           <given value="Paul"/>
@@ -2836,6 +2846,7 @@
     <fullUrl value="urn:uuid:018977be-801c-46e6-81a8-daed933558fe"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:6a864e84-6707-4b73-96ae-4b94a8964ae3"/>
         </practitioner>
@@ -2849,6 +2860,7 @@
     <fullUrl value="urn:uuid:6a864e84-6707-4b73-96ae-4b94a8964ae3"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <identifier>
           <system value="urn:oid:2.51.1.3"/>
           <value value="7601000618306"/>
@@ -2877,6 +2889,7 @@
     <fullUrl value="urn:uuid:2a9a5035-4423-44a3-a4df-8d64cceac6ec"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="University Hospital"/>
         <address>
           <line value="Uniweg 33"/>
@@ -2892,6 +2905,7 @@
     <fullUrl value="urn:uuid:aa73b56c-7bf7-4465-8388-be59f5c35b91"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:4af9ebaf-cd14-446f-9af3-b27b2352f894"/>
         </practitioner>
@@ -2905,6 +2919,7 @@
     <fullUrl value="urn:uuid:4af9ebaf-cd14-446f-9af3-b27b2352f894"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <identifier>
           <system value="urn:oid:2.51.1.3"/>
           <value value="7601000050717"/>
@@ -2933,6 +2948,7 @@
     <fullUrl value="urn:uuid:ae7cfef9-c8ee-474d-9bc0-6ee2e0f53b9a"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="Regional Hospital"/>
         <address>
           <line value="Musterstrasse 129"/>

@@ -10,6 +10,7 @@ Success: 0 errors, 1 warnings, 1 notes
 -->
 <Bundle xmlns="http://hl7.org/fhir">
     <id value="bundle-order-referral-form"/>
+    <language value="de-CH"/>
     <identifier>
         <system value="urn:ietf:rfc:3986"/>
         <value value="urn:uuid:26d3dff7-ab05-4737-a49c-5eccd33595f7"/>
@@ -21,6 +22,7 @@ Success: 0 errors, 1 warnings, 1 notes
         <resource>
             <Composition xmlns="http://hl7.org/fhir">
                 <id value="comp-order-referral-form"/>
+                <language value="de-CH"/>
                 <status value="final"/>
                 <type>
                     <coding>
@@ -70,6 +72,7 @@ Success: 0 errors, 1 warnings, 1 notes
         <resource>
             <PractitionerRole xmlns="http://hl7.org/fhir">
                 <id value="SabineMeierPraxisSeeblick"/>
+                <language value="de-CH"/>
             </PractitionerRole>
         </resource>
     </entry>
@@ -78,6 +81,7 @@ Success: 0 errors, 1 warnings, 1 notes
         <resource>
             <QuestionnaireResponse xmlns="http://hl7.org/fhir">
                 <id value="qr-order-referral-form"/>
+                <language value="de-CH"/>
                 <!--                <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/> -->
                 <questionnaire value="urn:uuid:edfbad97-979c-4ab6-9c70-918fa363cca9" />
                 <status value="completed"/>
@@ -106,6 +110,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap"/>
                     <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp"/>
                 </meta>
+                <language value="de-CH"/>
                 <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
                     <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
                 </extension>
