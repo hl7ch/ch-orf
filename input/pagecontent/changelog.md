@@ -3,16 +3,15 @@ All significant changes to this FHIR implementation guide will be documented on 
 
 ### v2.0.0 - HL7 Switzerland STU 2 Ballot
 
-#### Added
-
 #### Changed / Updated
 * [#151](https://github.com/hl7ch/ch-orf/issues/151): Clarify/update Consent.policyRule
+* [#154](https://github.com/hl7ch/ch-orf/issues/154): Explanation of what MustSupport means in this IG
 #### Fixed
 * [#152](https://github.com/hl7ch/ch-orf/issues/152): Fix formatting and update style that it is clear that the text comes from SDC
 * [#153](https://github.com/hl7ch/ch-orf/issues/153): Remove duplicated terms and unify spelling of CH eTOC
 
 #### Issues resolved without amendment
-
+* [#155](https://github.com/hl7ch/ch-orf/issues/155): Terminology binding in service request
 
 ### v2.0.0-ballot - HL7 Switzerland STU 2 Ballot
 
