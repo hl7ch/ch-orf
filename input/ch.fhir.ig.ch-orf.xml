@@ -928,5 +928,9 @@
       <code value="path-pages" />
       <value value="pages"/>
     </parameter>
+    <parameter>
+      <code value="display-warnings" />
+      <value value="true"/>
+    </parameter>
   </definition>
 </ImplementationGuide>
