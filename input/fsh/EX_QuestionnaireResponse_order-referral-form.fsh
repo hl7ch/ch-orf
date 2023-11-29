@@ -481,7 +481,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.consent.statement"
 * item[=].item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
-* item[=].item[=].answer[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc."
+* item[=].item[=].answer[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian' etc."
 * item[=].item[=].answer[=].item[+].linkId = "patient.consent.statement.note"
 * item[=].item[=].answer[=].item[=].text = "Anmerkung"
 * item[=].item[=].answer[=].item[=].answer.valueString = "Voraussichtlich einverstanden; Sohn wird die Situation beim nä. Besuch mit Pat. besprechen"

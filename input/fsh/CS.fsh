@@ -23,7 +23,7 @@ Description: "Value Set for CH ORF Consent Status"
 * ^caseSensitive = true
 * ^experimental = false
 * #ExplicitAgreement "Patient is informed and has explicitly agreed"
-* #Other "Other situatioin such as 'impicit agreement', 'agreed by legal guardian'  etc." 
+* #Other "Other situation such as 'implicit agreement', 'agreed by legal guardian' etc." 
 
 
 CodeSystem: ChOrfCoverageIdentifierType

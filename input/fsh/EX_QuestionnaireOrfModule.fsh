@@ -1267,6 +1267,7 @@ Instance: ch-orf-module-initiator
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Initiator"
 Description: "Subquestionnaire initiator"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator"
@@ -1449,7 +1450,7 @@ Description: "Subquestionnaire patientConsent"
 * item[=].text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = ChOrfConsentStatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
-* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc." 
+* item[=].answerOption[+].valueCoding = ChOrfConsentStatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian' etc." 
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-consentstatus"
 //* item[=].initial.valueCoding = SCT#373068000
 //* item[=].required = true
