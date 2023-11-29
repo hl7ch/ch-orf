@@ -1385,7 +1385,7 @@
               <valueCoding>
                 <system value="http://fhir.ch/ig/ch-core/CodeSystem/ech-11-maritalstatus"/>
                 <code value="7"/>
-                <display value="aufgelöste Partnerschaft"/>
+                <display value="aufgelöste Partnerschaft"/>
               </valueCoding>
             </answerOption>
             <answerOption>

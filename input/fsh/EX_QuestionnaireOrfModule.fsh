@@ -6,6 +6,7 @@ Description: "Example for Questionnaire"
 * meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"
 * meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap"
 * meta.profile[+] = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-pop-exp"
+* language = #de-CH
 
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-root
@@ -229,6 +230,7 @@ Instance: ch-orf-module-order
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Order"
 Description: "Subquestionnaire order"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order"
@@ -334,6 +336,7 @@ Instance: ch-orf-module-receiver
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Receiver"
 Description: "Subquestionnaire receiver"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver"
@@ -414,6 +417,7 @@ Instance: ch-orf-module-patient
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Patient"
 Description: "Subquestionnaire patient"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient"
@@ -496,7 +500,7 @@ Description: "Subquestionnaire patient"
 * item[=].answerOption[+].valueCoding = EchMaritalStatus#4 "geschieden"
 * item[=].answerOption[+].valueCoding = EchMaritalStatus#5 "unverheiratet"
 * item[=].answerOption[+].valueCoding = EchMaritalStatus#6 "in eingetragener Partnerschaft"
-* item[=].answerOption[+].valueCoding = EchMaritalStatus#7 "aufgelöste Partnerschaft"
+* item[=].answerOption[+].valueCoding = EchMaritalStatus#7 "aufgelöste Partnerschaft"
 * item[=].answerOption[+].valueCoding = EchMaritalStatus#9 "unbekannt"
 
 * item[+].linkId = "patient.phone"
@@ -605,7 +609,7 @@ Instance: ch-orf-module-familydoctor
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Family doctor"
 Description: "Subquestionnaire familyDoctor"
-
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor"
@@ -686,6 +690,7 @@ Instance: ch-orf-module-requestedencounter
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Requested Encounter"
 Description: "Subquestionnaire requestedEncounter"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter"
@@ -716,6 +721,7 @@ Instance: ch-orf-module-coverage
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Coverage"
 Description: "Subquestionnaire coverage"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage"
@@ -892,6 +898,7 @@ Instance: ch-orf-module-sender
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Sender"
 Description: "Subquestionnaire sender"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender"
@@ -1047,6 +1054,7 @@ Instance: ch-orf-module-receivercopy
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Receiver Copy"
 Description: "Subquestionnaire receiverCopy"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy"
@@ -1147,6 +1155,7 @@ Instance: ch-orf-module-appointment
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Appointment"
 Description: "Subquestionnaire appointment"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * url = "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment"
@@ -1224,6 +1233,7 @@ Instance: ch-orf-module-practitioner-nametel
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Practitioner Name-Tel"
 Description: "SubQuestionnaire 'practitioner-nametel'"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
@@ -1389,6 +1399,7 @@ Instance: ch-orf-module-address
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Address"
 Description: "Subquestionnaire address"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
@@ -1434,6 +1445,7 @@ Instance: ch-orf-module-consent
 InstanceOf: Questionnaire
 Title: "Module Questionnaire Patient Consent"
 Description: "Subquestionnaire patientConsent"
+* language = #de-CH
 * extension[0].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assemble-expectation"
 * extension[=].valueCode = #assemble-child
 * extension[1].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembleContext"
