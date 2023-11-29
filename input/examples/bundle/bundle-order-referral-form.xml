@@ -4,6 +4,7 @@
     <meta>
         <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-document" />
     </meta>
+    <language value="de-CH"/>
       <identifier>
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:uuid:961aba74-a098-44ad-af05-aa6d0dbc4021"/>
@@ -14,6 +15,7 @@
     <fullUrl value="urn:uuid:2744e113-d29e-40b7-af6e-c19a3a8a1c7c"/>
     <resource>
       <Composition>
+      <language value="de-CH"/>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-precedentdocument">
           <valueIdentifier>
             <system value="urn:ietf:rfc:3986"/>
@@ -123,6 +125,7 @@
     <fullUrl value="urn:uuid:aaddb7b1-eb51-4426-8182-42f66fbf24d0"/>
     <resource>
       <Patient>
+        <language value="de-CH"/>
         <identifier>
           <type>
             <coding>
@@ -200,6 +203,7 @@
         <meta>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
         </meta>
+        <language value="de-CH"/>
         <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
         <status value="completed"/>
         <item>
@@ -1020,6 +1024,7 @@
     <fullUrl value="urn:uuid:2f9f6d08-6fbc-4659-af0d-abdae83da63f"/>
     <resource>
       <ServiceRequest>
+        <language value="de-CH"/>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-requestedencounterdetails">
           <valueReference>
             <reference value="urn:uuid:f435f713-5fb9-42a8-b3cc-7033ba75e3d5"/>
@@ -1068,6 +1073,7 @@
     <resource>
     <Questionnaire>
       <id value="order-referral-form" />
+      <language value="de-CH"/>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-targetStructureMap">
           <valueCanonical value="http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle"/>
         </extension>
@@ -3270,6 +3276,7 @@
     <fullUrl value="urn:uuid:a5c91b7a-8c58-4a71-a1bc-08bd093681b8"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:fa460d46-61d2-43bc-8451-35e7637ca4cd"/>
         </practitioner>
@@ -3280,6 +3287,7 @@
     <fullUrl value="urn:uuid:fa460d46-61d2-43bc-8451-35e7637ca4cd"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Röntgen"/>
           <given value="Hans"/>
@@ -3304,6 +3312,7 @@
     <fullUrl value="urn:uuid:9fec93d4-ac30-4d89-8975-e5e2ebabd28a"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:265ff485-c1d8-4c92-a515-35a52887d425"/>
         </practitioner>
@@ -3314,6 +3323,7 @@
     <fullUrl value="urn:uuid:265ff485-c1d8-4c92-a515-35a52887d425"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Meier"/>
           <given value="Sabine"/>
@@ -3338,6 +3348,7 @@
     <fullUrl value="urn:uuid:305422f3-dbfb-4ce0-bd12-e26d0024f550"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:a52dafd4-3a96-463c-88b1-e7096f21dc70"/>
         </practitioner>
@@ -3351,6 +3362,7 @@
     <fullUrl value="urn:uuid:a52dafd4-3a96-463c-88b1-e7096f21dc70"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <identifier>
           <system value="urn:oid:2.51.1.3"/>
           <value value="7601000201041"/>
@@ -3383,6 +3395,7 @@
     <fullUrl value="urn:uuid:aa7ac1e4-fa1f-4d75-a6ba-a6e1eb022c44"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="Kantonsspital"/>
         <address>
           <line value="Kantonsstrasse 14"/>
@@ -3398,6 +3411,7 @@
     <fullUrl value="urn:uuid:c1ed3d1d-8aff-401f-ae87-16e178323a10"/>
     <resource>
       <RelatedPerson>
+        <language value="de-CH"/>
         <patient>
           <reference value="urn:uuid:aaddb7b1-eb51-4426-8182-42f66fbf24d0"/>
         </patient>
@@ -3412,6 +3426,7 @@
     <fullUrl value="urn:uuid:11a6e0bc-534a-478a-b729-5d336601e789"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:2b7e232d-7f46-48d3-877c-93e7db6d0576"/>
         </practitioner>
@@ -3422,6 +3437,7 @@
     <fullUrl value="urn:uuid:2b7e232d-7f46-48d3-877c-93e7db6d0576"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Meier"/>
           <given value="Sabine"/>
@@ -3438,6 +3454,7 @@
     <fullUrl value="urn:uuid:f435f713-5fb9-42a8-b3cc-7033ba75e3d5"/>
     <resource>
       <Encounter>
+        <language value="de-CH"/>
         <extension url="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-desiredaccommodation">
           <valueCoding>
             <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-21-encountertype"/>
@@ -3460,6 +3477,7 @@
     <fullUrl value="urn:uuid:4d45ffb2-6335-4cf2-9d16-ad4387272345"/>
     <resource>
       <Coverage>
+        <language value="de-CH"/>
         <contained>
           <Organization>
             <id value="org"/>
@@ -3495,6 +3513,7 @@
     <fullUrl value="urn:uuid:4388146d-9909-4613-b0c5-2ac3de31dfb8"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:46ff1cb2-4ece-4952-8fdd-ffc23727f7cc"/>
         </practitioner>
@@ -3508,6 +3527,7 @@
     <fullUrl value="urn:uuid:46ff1cb2-4ece-4952-8fdd-ffc23727f7cc"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <identifier>
           <system value="urn:oid:2.51.1.3"/>
           <value value="7601000618627"/>
@@ -3540,6 +3560,7 @@
     <fullUrl value="urn:uuid:d8d014fe-01b0-403d-b8a3-1caa177d59f6"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="Praxis Seeblick"/>
         <address>
           <line value="Seestrasse 133"/>
@@ -3555,6 +3576,7 @@
     <fullUrl value="urn:uuid:40300c5d-0259-438a-88b8-4b24a9c6bf79"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:99dbf210-4384-4a23-8be4-524d1809bb39"/>
         </practitioner>
@@ -3568,6 +3590,7 @@
     <fullUrl value="urn:uuid:99dbf210-4384-4a23-8be4-524d1809bb39"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Boss"/>
           <given value="Stabilo"/>
@@ -3587,6 +3610,7 @@
     <fullUrl value="urn:uuid:b7fdf56d-3bc9-48d9-b470-d1cafb8a0716"/>
     <resource>
       <PractitionerRole>
+        <language value="de-CH"/>
         <practitioner>
           <reference value="urn:uuid:ba1d8d1f-31ad-4a4f-961e-791cc5444134"/>
         </practitioner>
@@ -3600,6 +3624,7 @@
     <fullUrl value="urn:uuid:ba1d8d1f-31ad-4a4f-961e-791cc5444134"/>
     <resource>
       <Practitioner>
+        <language value="de-CH"/>
         <name>
           <family value="Meier"/>
           <given value="Sabine"/>
@@ -3624,6 +3649,7 @@
     <fullUrl value="urn:uuid:0398e29f-0a03-4783-a8db-69c41afa5948"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="Praxis Seeblick"/>
         <address>
           <line value="Seestrasse 133"/>
@@ -3638,6 +3664,7 @@
     <fullUrl value="urn:uuid:9ba0fe13-1d13-4785-b408-1c69dda0d4c2"/>
     <resource>
       <EpisodeOfCare>
+        <language value="de-CH"/>
         <status value="finished"/>
         <statusHistory>
           <status value="finished"/>
@@ -3659,6 +3686,7 @@
     <fullUrl value="urn:uuid:344e4508-77e1-43ea-b401-b6c4f428b962"/>
     <resource>
       <Organization>
+        <language value="de-CH"/>
         <name value="Spital Hinterfultigen"/>
       </Organization>
     </resource>
