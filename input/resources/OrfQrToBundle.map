@@ -2,7 +2,7 @@ map "http://fhir.ch/ig/ch-orf/StructureMap/OrfQrToBundle" = "OrfQrToBundle"
 
 //
 // ORF QuestionnaireResponse to Bundle
-// 2021-01-11 Oliver Egger, copyright ahdis ag, Apache License 
+// 2021-01-11 Oliver Egger
 // QRF Questionnaire: http://fhir.ch/ig/ch-orf/Questionnaire-order-referral-form.html
 // QRF QuestionnaireResponse: http://fhir.ch/ig/ch-orf/QuestionnaireResponse-order-referral-form.xml.html
 // Bundle: http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-document.html
