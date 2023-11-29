@@ -3,49 +3,13 @@
 # Snapshot information concerns the parent profile CH Core Encounter (identifier:VisitNumber)
 The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
 
-# Allow German display values or clearer descriptions for the questionnaire
-Display Name for http://hl7.org/fhir/administrative-gender#female should be one of 'Female' instead of 'Weiblich' for 'http://hl7.org/fhir/administrative-gender#female'
-Display Name for http://hl7.org/fhir/administrative-gender#male should be one of 'Male' instead of 'Männlich' for 'http://hl7.org/fhir/administrative-gender#male'
-Display Name for http://hl7.org/fhir/administrative-gender#other should be one of 'Other' instead of 'Anderes' for 'http://hl7.org/fhir/administrative-gender#other'
-Display Name for http://hl7.org/fhir/request-priority#routine should be one of 'Routine' instead of 'Die Anfrage hat normale Priorität.' for 'http://hl7.org/fhir/request-priority#routine'
-Display Name for http://hl7.org/fhir/request-priority#urgent should be one of 'Urgent' instead of 'Die Anfrage sollte dringend bearbeitet werden - höhere Priorität als normal.' for 'http://hl7.org/fhir/request-priority#urgent'
-Display Name for http://hl7.org/fhir/request-priority#asap should be one of 'ASAP' instead of 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for 'http://hl7.org/fhir/request-priority#asap'
-Display Name for http://hl7.org/fhir/request-priority#stat should be one of 'STAT' instead of 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for 'http://hl7.org/fhir/request-priority#stat'
-Display Name for http://hl7.org/fhir/appointmentstatus#proposed should be one of 'Proposed' instead of 'Wunsch des Patienten (vorgeschlagen)' for 'http://hl7.org/fhir/appointmentstatus#proposed'
-Display Name for http://hl7.org/fhir/appointmentstatus#pending should be one of 'Pending' instead of 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for 'http://hl7.org/fhir/appointmentstatus#pending'
-Display Name for http://hl7.org/fhir/appointmentstatus#booked should be one of 'Booked' instead of 'Vom Patienten und Leistungserbringer bestätigt (gebucht)' for 'http://hl7.org/fhir/appointmentstatus#booked'
-Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB should be one of 'ambulatory' instead of 'Ambulant' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB'
-Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP should be one of 'inpatient encounter' instead of 'Stationär' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP'
-Display Name for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER should be one of 'emergency' instead of 'Notfall' for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER'
-
 # Only text is supported for Patient.contact.relationship (CodeableConcept)
-No code provided, and a code should be provided from the value set 'Patient Contact Relationship ' (http://hl7.org/fhir/ValueSet/patient-contactrelationship)
+No code provided, and a code should be provided from the value set 'Patient Contact Relationship ' (http://hl7.org/fhir/ValueSet/patient-contactrelationship|4.0.1)
 
 # See examples in IG CH RAD-Order
 WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime'): The Implementation Guide contains no examples for this extension
 
-# Build Errors: 
-
-
 # Questionnaire Definition Elements do not resolve to fragment on html page #144 
-
-The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 79 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system' for "ServiceRequest.identifier:fillerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument' for "Composition.extension:precedentDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer' for "Composition.extension:dataEnterer" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:copyReceiver' for "Composition.extension:copyReceiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare' for "Composition.extension:antecedentEpisodeOfCare" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end' for "EpisodeOfCare.Period.end" cannot be resolved (valid targets: 129 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
@@ -54,7 +18,6 @@ The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:prec
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 79 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer' for "Composition.extension:dataEnterer" cannot be resolved (valid targets: 378 targets)
@@ -63,29 +26,9 @@ The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:ante
 The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end' for "EpisodeOfCare.Period.end" cannot be resolved (valid targets: 129 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system' for "ServiceRequest.identifier:fillerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument' for "Composition.extension:precedentDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 79 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer' for "Composition.extension:dataEnterer" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:copyReceiver' for "Composition.extension:copyReceiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare' for "Composition.extension:antecedentEpisodeOfCare" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-episodeofcare.html#EpisodeOfCare.Period.end' for "EpisodeOfCare.Period.end" cannot be resolved (valid targets: 129 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime' for "ServiceRequest.extension:locationAndTime" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent' for "Composition.extension:patientConsent" cannot be resolved (valid targets: 378 targets)
-
-
-The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
+The link 'StructureDefinition-ch-orf-initiator.html#Extension.extension:ch-orf-personalrelation' for "Extension.extension:ch-orf-personalrelation" cannot be resolved (valid targets: 80 targets)
 The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
 The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
-The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
 The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
 
 # Errors due to answerOption #145
