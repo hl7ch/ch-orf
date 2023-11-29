@@ -12,7 +12,7 @@ POST {{host}}/StructureMap HTTP/1.1
 Accept: application/fhir+xml;fhirVersion=4.0
 Content-Type: text/fhir-mapping
 
-< ./maps/OrfQrToBundle.map
+< ./OrfQrToBundle.map
 
 
 ### 4. POST Questionnaire
