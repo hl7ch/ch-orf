@@ -43,11 +43,13 @@ group OrfQrToBundle(source qr : QuestionnaireResponseSource, target bundle : Bun
                bundle.entry as e5, 
                e5.resource = create('ServiceRequest') as servicerequest, 
                servicerequest.id = uuid() as uuid5,
-               e5.fullUrl = append('urn:uuid:',uuid5) then {
-   // FIXME API-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Error setting resource on BackboneElement for rule OrfQrToBundle|OrfQrToBundle|orfbundle to value Questionnaire[http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|1.1.0-assembled]: Cannot set property resource on entry - value is not a primitive type (Questionnaire) or an ElementModel type
-   //              qr.questionnaire as can -> bundle.entry as e6, e6.resource = (%can.resolve().first()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
-               qr.questionnaire as can -> (%can.resolve().first().ofType(FHIR.Questionnaire)) as q then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
-         } "orfbundle";
+               e5.fullUrl = append('urn:uuid:',uuid5) then QrToBundle(qr, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+               //{
+// see also issue StructureMap: Questionnaire cannot be embedded in Bundle #146  
+// FIXME API-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Error setting resource on BackboneElement for rule OrfQrToBundle|OrfQrToBundle|orfbundle to value Questionnaire[http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|1.1.0-assembled]: Cannot set property resource on entry - value is not a primitive type (Questionnaire) or an ElementModel type
+//              qr.questionnaire as can -> bundle.entry as e6, e6.resource = (%can.resolve().first()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+//               qr.questionnaire as can -> (%can.resolve().first().ofType(FHIR.Questionnaire)) as q then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
+//         } "orfbundle";
       } "OrfQrToBundle";
 }
 
@@ -1001,22 +1003,25 @@ group Note(source grp , target serviceRequest: ServiceRequest) {
    grp.item as item where (linkId='note.text' and answer.exists()) -> serviceRequest.note as note, note.text = (%item.answer.value) "noteText";
 }
 
-group QrToBundle(source qr : QuestionnaireResponseSource, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
+group QrToBundle(source qr : QuestionnaireResponseSource, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
+// group QrToBundle(source qr : QuestionnaireResponseSource, target q: Questionnaire, target patient : Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target composition : Composition, target bundle : Bundle) {
   qr -> bundle.id = uuid() "id";
   qr -> bundle.type = 'document' "type";
-  qr then OrfComposition(qr, q, composition, patient, questionnaireresp, servicerequest, bundle) "composition";
+  qr then OrfComposition(qr, composition, patient, questionnaireresp, servicerequest, bundle) "composition";
   qr then QrToGroups(qr, patient, bundle, composition, servicerequest) "qrgroups";
 }
 
-group OrfComposition(source qr : QuestionnaireResponseSource, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
-  qr -> tgt.status = 'final' "status";
+//group OrfComposition(source qr : QuestionnaireResponseSource, target q: Questionnaire, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
+group OrfComposition(source qr : QuestionnaireResponseSource, target tgt : Composition, target patient: Patient, target questionnaireresp: QuestionnaireResponse, target servicerequest: ServiceRequest, target bundle : Bundle) {
+   qr -> tgt.status = 'final' "status";
   qr -> tgt.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "subject";
   qr -> tgt.section as tgtSection, 
      tgtSection.title = 'Order-Referral', 
      tgtSection.code as code, code.coding as coding, coding.system='http://loinc.org', coding.code='93037-0', coding.display='Portable medical order form',
      tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%questionnaireresp.id),
-     tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%servicerequest.id),
-     tgtSection.entry = create('Reference') as reference, reference.reference = (%q.url) "sections";
+     tgtSection.entry = create('Reference') as reference, reference.reference = ('urn:uuid:'+%servicerequest.id) "sections";
+//     ,
+//     tgtSection.entry = create('Reference') as reference, reference.reference = (%q.url) "sections";
   qr -> servicerequest.status = 'active',
       servicerequest.intent = 'order',
       servicerequest.subject = create('Reference') as reference, reference.reference = ('urn:uuid:'+%patient.id) "servicerequest";
