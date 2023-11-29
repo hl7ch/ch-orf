@@ -52,14 +52,12 @@ Title: "CH ORF Consent"
 Description: "Profile to specify if the patient gave an informed consent to this order; in particulars for spitex 
 and  transfer to retirement home etc."
 * . ^short = "CH ORF Consent"
-* policyRule = SCT#385432009  //not applicable
-
 * status = ConsentState#active
 * scope = ConsentScopeCodes#patient-privacy
 * category = LNC#59284-0
-* policyRule.coding = SCT#385432009 //not applicable
-
-
+* policyRule ^short = "Element required due to rule 'ppc-1'. Because it is not applicable in the context of CH ORF, a data absent reason is given."
+* policyRule.extension contains http://hl7.org/fhir/StructureDefinition/data-absent-reason named data-absent-reason 1..1
+* policyRule.extension[data-absent-reason].valueCode = #not-applicable
 * extension contains ChOrfConsentCode named consentCode 0..1 MS
 * extension contains ChOrfConsentNote named consentNote 0..1 MS
 

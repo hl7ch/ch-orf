@@ -9,6 +9,9 @@ No code provided, and a code should be provided from the value set 'Patient Cont
 # See examples in IG CH RAD-Order
 WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime'): The Implementation Guide contains no examples for this extension
 
+# Data absent reason is given
+No code provided, and a code should be provided from the value set 'Consent PolicyRule Codes' (http://hl7.org/fhir/ValueSet/consent-policy|4.0.1)
+
 # Questionnaire Definition Elements do not resolve to fragment on html page #144 
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)

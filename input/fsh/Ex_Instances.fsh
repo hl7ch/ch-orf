@@ -64,7 +64,8 @@ Description: "Example for ChOrfConsent"
 // scope = ConsentScopeCodes#patient-privacy
 // category = LNC#59284-0
 // provision.type is left empty, because patient is not yet informed
-* policyRule.coding = SCT#385432009 //not applicable
+* policyRule.extension.url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+* policyRule.extension.valueCode = #not-applicable
 * extension[consentCode].valueCoding = SCT#373068000 "Undetermined (qualifier value)"
 * extension[consentNote].valueString = "Tochter wird die Spitexunterstützung beim nächsten Besuch thematisieren"
 
