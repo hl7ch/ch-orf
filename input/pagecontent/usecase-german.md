@@ -60,7 +60,7 @@ Für die Erfassung weiterer medizinischen und pflegerischen Angaben wird auf [CH
 *************************************************************************
 ### Entlassung aus stationärer Behandlung
 
-Die Möglichkeit zusätzlicher Angaben für die Anmeldung zur Heimpflege (s. o.) deckt auch die administrativen Anforderungen an ein Entlassungsschreiben ab. Zusätzlich sind bei diesem Anwendungsfall weitere medizinische und pflegerische Angaben erforderlich. Dafür wird auf [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html)verweisen.
+Die Möglichkeit zusätzlicher Angaben für die Anmeldung zur Heimpflege (s. o.) deckt auch die administrativen Anforderungen an ein Entlassungsschreiben ab. Zusätzlich sind bei diesem Anwendungsfall weitere medizinische und pflegerische Angaben erforderlich. Dafür wird auf [CH eTOC](http://fhir.ch/ig/ch-etoc/index.html) verwiesen.
 
 *************************************************************************
 ### Appointments
