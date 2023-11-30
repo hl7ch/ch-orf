@@ -11,8 +11,6 @@ CH ORF and its derivates are derived from the implementation guides [HL7 Structu
 ### MustSupport
 In this implementation guide “MustSupport” (MS) denotes elements of the questionnaire that are mapped to corresponding resource items. 
 
-In this implementation guide "Must support" (MS) denotes elements of the questionnaire that are mapped to corresponding resource items.
-
 <div markdown="1" class="stu-note">
 
 [Significant changes, open and closed issues](changelog.html)
