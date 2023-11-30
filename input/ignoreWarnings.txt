@@ -17,7 +17,6 @@ The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifi
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument' for "Composition.extension:precedentDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
@@ -85,4 +84,3 @@ No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCod
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP'
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER'
-Wrong whitespace in Display Name 'Other situation such as 'implicit agreement', 'agreed by legal guardian' etc.' for http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other - should be 'Other situation such as 'implicit agreement', 'agreed by legal guardian' etc.' (for the language(s) 'de-CH')
