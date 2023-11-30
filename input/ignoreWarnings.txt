@@ -16,13 +16,13 @@ No code provided, and a code should be provided from the value set 'Consent Poli
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system' for "ServiceRequest.identifier:fillerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument' for "Composition.extension:precedentDocument" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument' for "Composition.extension:urgentNoficationContactForTheResponseToThisDocument" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:receiver' for "Composition.extension:receiver" cannot be resolved (valid targets: 378 targets)
-The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-encounter.html#Encounter.extension:desiredAccommodation' for "Encounter.extension:desiredAccommodation" cannot be resolved (valid targets: 253 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system' for "ServiceRequest.identifier:fillerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
+The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument' for "Composition.extension:urgentNoficationContactForThisDocument" cannot be resolved (valid targets: 378 targets)
+The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails' for "ServiceRequest.extension:requestedEncounterDetails" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer' for "Composition.extension:dataEnterer" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:copyReceiver' for "Composition.extension:copyReceiver" cannot be resolved (valid targets: 378 targets)
 The link 'StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare' for "Composition.extension:antecedentEpisodeOfCare" cannot be resolved (valid targets: 378 targets)
@@ -34,7 +34,7 @@ The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-
 The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
 The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
 
-# Errors due to answerOption #145
+# Errors due to answerOption (https://github.com/hl7ch/ch-orf/issues/145)
 The link 'null#item.initiator.legalrelation' for "Answers: 2 options" cannot be resolved
 The link 'null#item.initiator.personalrelation' for "Answers: 10 options" cannot be resolved
 The link 'null#item.patient.gender' for "Answers: 3 options" cannot be resolved
@@ -44,9 +44,6 @@ The link 'null#item.order.priority' for "Answers: 4 options" cannot be resolved
 The link 'null#item.patient.consent.statement' for "Answers: 2 options" cannot be resolved
 The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resolved
 The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
-
-# Errors due StructureMap validation errors #146 (cannot be suppressed currently)
-The target parameter 'q' was not found
 
 # German display values in Questionnaires
 Wrong Display Name 'Wunsch des Patienten (vorgeschlagen)' for http://hl7.org/fhir/appointmentstatus#proposed - should be 'Proposed' (for the language(s) 'de-CH')
@@ -87,4 +84,3 @@ No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCod
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP'
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER'
-Wrong whitespace in Display Name 'Other situation such as 'implicit agreement', 'agreed by legal guardian' etc.' for http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus#Other - should be 'Other situation such as 'implicit agreement', 'agreed by legal guardian' etc.' (for the language(s) 'de-CH')

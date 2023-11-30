@@ -32,4 +32,5 @@ Alias:  V3ActCode =                 http://terminology.hl7.org/CodeSystem/v3-Act
 Alias:  ConsentScopeCodes =         http://terminology.hl7.org/CodeSystem/consentscope
 Alias:  ConsentState =              http://hl7.org/fhir/consent-state-codes
 Alias:  EpisodeOfCareStatus =       http://hl7.org/fhir/episode-of-care-status
+Alias:  Language =                  urn:ietf:bcp:47
 

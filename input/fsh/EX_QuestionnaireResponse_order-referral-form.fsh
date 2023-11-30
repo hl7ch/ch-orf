@@ -5,7 +5,7 @@ Description: "Example for QuestionnaireResponse"
 * questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
 * status = #completed
 
-// ---------- order (Auftrag) ----------
+// ---------- Order (Auftrag) ----------
 * item[+].linkId = "order"
 * item[=].text = "Auftrag"
 
@@ -42,11 +42,11 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.familyName"
 * item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].answer.valueString = "Röntgen"
+* item[=].item[=].item[=].item[=].answer.valueString = "Rderfiller"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.givenName"
 * item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].answer.valueString = "Hans"
+* item[=].item[=].item[=].item[=].answer.valueString = "Otto"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
@@ -54,7 +54,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocument.practitioner.email"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].answer.valueString = "hans.roentgen@kantonsspital.ch"
+* item[=].item[=].item[=].item[=].answer.valueString = "otto.rderfiller@happyhosptial.ch"
 
 // ---------- Urgent Notification Contact for the Response to this document ----------
 * item[=].item[+].linkId = "order.notificationContactDocumentResponse"
@@ -69,11 +69,11 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.familyName"
 * item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].answer.valueString = "Meier"
+* item[=].item[=].item[=].item[=].answer.valueString = "Rderplacer"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.givenName"
 * item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].answer.valueString = "Sabine"
+* item[=].item[=].item[=].item[=].answer.valueString = "Ottilie"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"
@@ -81,7 +81,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "order.notificationContactDocumentResponse.practitioner.email"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].answer.valueString = "sabine.meier@praxisseeblick.ch"
+* item[=].item[=].item[=].item[=].answer.valueString = "ottilie.rderplacer@happydoctors.ch"
 
 // ---------- Order Priority ----------
 * item[=].item[+].linkId = "order.priority"
@@ -101,11 +101,11 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.familyName"
 * item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Röntgen"
+* item[=].item[=].item[=].answer.valueString = "Rderfiller"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.givenName"
 * item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].answer.valueString = "Hans"
+* item[=].item[=].item[=].answer.valueString = "Otto"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.gln"
 * item[=].item[=].item[=].text = "GLN"
@@ -121,18 +121,18 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.email"
 * item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].answer.valueString = "hans.roentgen@kantonsspital.ch"
+* item[=].item[=].item[=].answer.valueString = "otto.rderfiller@happyhospital.ch"
 
 * item[=].item[+].linkId = "receiver.organization"
 * item[=].item[=].text = "Empfangende Organisation"
 
 * item[=].item[=].item[+].linkId = "receiver.organization.name"
 * item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].answer.valueString = "Kantonsspital"
+* item[=].item[=].item[=].answer.valueString = "Spital Happyhospital"
 
 * item[=].item[=].item[+].linkId = "receiver.organization.streetAddressLine"
 * item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].answer[0].valueString = "Kantonsstrasse 14"
+* item[=].item[=].item[=].answer[0].valueString = "Happystrasse 14"
 * item[=].item[=].item[=].answer[1].valueString = "Postfach 14"
 
 * item[=].item[=].item[+].linkId = "receiver.organization.postalCode"
@@ -147,7 +147,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Land"
 * item[=].item[=].item[=].answer.valueString = "Schweiz"
 
-// ---------- Receiver: Person/organization who receives the document ----------
+// ---------- Initiator: Person/organization who initiated this order/referral ----------
 * item[+].linkId = "initiator"
 * item[=].text = "Initiant dieser Anmeldung"
 
@@ -165,7 +165,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "initiator.relatedPerson.familyName"
 * item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].answer.valueString = "Musterfrau"
+* item[=].item[=].item[=].answer.valueString = "Leidend"
 
 * item[=].item[=].item[+].linkId = "initiator.relatedPerson.givenName"
 * item[=].item[=].item[=].text = "Vorname"
@@ -177,15 +177,15 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.familyName"
 * item[=].item[=].text = "Name"
-* item[=].item[=].answer.valueString = "Musterfrau"
+* item[=].item[=].answer.valueString = "Ufferer"
 
 * item[=].item[+].linkId = "patient.maidenName"
 * item[=].item[=].text = "Ledigname"
-* item[=].item[=].answer.valueString = "Vormusterfrau"
+* item[=].item[=].answer.valueString = "Leidend"
 
 * item[=].item[+].linkId = "patient.givenName"
 * item[=].item[=].text = "Vorname"
-* item[=].item[=].answer.valueString = "Erika"
+* item[=].item[=].answer.valueString = "Susanna"
 
 * item[=].item[+].linkId = "patient.localPid"
 * item[=].item[=].text = "Lokale Patienten-ID"
@@ -213,12 +213,12 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.email"
 * item[=].item[=].text = "E-Mail"
-* item[=].item[=].answer.valueString = "erika@musterfrau.ch"
+* item[=].item[=].answer.valueString = "susanna@ufferer.ch"
 
 * item[=].item[+].linkId = "patient.streetAddressLine"
 * item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].answer[+].valueString = "Musterweg"
-* item[=].item[=].answer[+].valueString = "6a"
+* item[=].item[=].answer[+].valueString = "Musterweg 6a"
+//* item[=].item[=].answer[+].valueString = "6a"
 
 * item[=].item[+].linkId = "patient.postalCode"
 * item[=].item[=].text = "PLZ"
@@ -234,7 +234,8 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[+].linkId = "patient.languageOfCorrespondence"
 * item[=].item[=].text = "Korrespondenzsprache"
-* item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH
+//* item[=].item[=].answer.valueCoding =  urn:ietf:bcp:47#de-CH
+* item[=].item[=].answer.valueCoding =  Language#de-CH "German (Switzerland)"
 
 // ---------- Patient Contact Person: The principle target of a particular Form Content is one patient ----------
 * item[=].item[+].linkId = "patient.contactperson"
@@ -260,7 +261,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "E-Mail"
 * item[=].item[=].item[=].answer.valueString = "max@freund.ch"
 
-// ---------- Family Doctpr:
+// ---------- Family Doctor:
 * item[=].item[+].linkId = "familydoctor"
 * item[=].item[=].text = "Hausarzt"
 
@@ -308,7 +309,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].text = "Kennnummer der Versichertenkarte"
 * item[=].item[=].item[=].answer.valueString = "80756015090002647590"
 
-// ---------- sender (Absender) ----------
+// ---------- Sender (Absender) ----------
 * item[+].linkId = "sender"
 * item[=].text = "Absender"
 
@@ -325,11 +326,11 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.familyName"
 * item[=].item[=].item[=].item[=].text = "Name"
-* item[=].item[=].item[=].item[=].answer.valueString = "Meier"
+* item[=].item[=].item[=].item[=].answer.valueString = "Rderplacer"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.givenName"
 * item[=].item[=].item[=].item[=].text = "Vorname"
-* item[=].item[=].item[=].item[=].answer.valueString = "Sabine"
+* item[=].item[=].item[=].item[=].answer.valueString = "Ottilie"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.gln"
 * item[=].item[=].item[=].item[=].text = "GLN"
@@ -345,19 +346,19 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.email"
 * item[=].item[=].item[=].item[=].text = "E-Mail"
-* item[=].item[=].item[=].item[=].answer.valueString = "sabine.meier@praxisseeblick.ch"
+* item[=].item[=].item[=].item[=].answer.valueString = "ottilie.rderplacer@happydoctors.ch"
 
 * item[=].item[=].item[+].linkId = "sender.author.organization"
 * item[=].item[=].item[=].text = "Verantwortliche Organisation"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.name"
 * item[=].item[=].item[=].item[=].text = "Name der Organisation"
-* item[=].item[=].item[=].item[=].answer.valueString = "Praxis Seeblick"
+* item[=].item[=].item[=].item[=].answer.valueString = "Praxis Happydoctors"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.streetAddressLine"
 * item[=].item[=].item[=].item[=].text = "Strasse, Hausnummer, Postfach etc."
-* item[=].item[=].item[=].item[=].answer[+].valueString = "Seestrasse 133"
-* item[=].item[=].item[=].item[=].answer[+].valueString = "Haus C"
+* item[=].item[=].item[=].item[=].answer[+].valueString = "Happystrasse 133"
+//* item[=].item[=].item[=].item[=].answer[+].valueString = "Haus C"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.organization.postalCode"
 * item[=].item[=].item[=].item[=].text = "PLZ"
@@ -474,6 +475,13 @@ Description: "Example for QuestionnaireResponse"
 * item[+].linkId = "appointment"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
+* item[=].item[+].linkId = "appointment.location"
+* item[=].item[=].text = "Ort der Durchführung"
+* item[=].item[=].item[+].linkId = "appointment.location.name"
+* item[=].item[=].item[=].text = "Name"
+* item[=].item[=].item[=].answer.valueString = "Notfall Spital Happyhospital"
+* item[=].item[+].linkId = "appointment.status"
+* item[=].item[=].answer[+].valueCoding = AppointmentStatus#pending
 
 // -------- Consent ------
 * item[+].linkId = "consent"
