@@ -1,8 +1,8 @@
 {
   "package-id" : "ch.fhir.ig.ch-orf",
-  "version" : "2.0.0",
-  "path" : "http://fhir.ch/ig/ch-orf/2.0.0",
-  "mode" : "milestone",
+  "version" : "2.0.1",
+  "path" : "http://fhir.ch/ig/ch-orf/2.0.1",
+  "mode" : "technical-correction",
   "status" : "trial-use",
   "sequence" : "STU 2",
   "desc" : "HL7 Switzerland STU 2",
