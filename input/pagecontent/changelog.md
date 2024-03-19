@@ -6,6 +6,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 #### Changed / Updated
 * [#172](https://github.com/hl7ch/ch-orf/issues/172)
    * Adapt the URL to the renaming of CH Term: ch-epr-term to ch-term
+* [#174](https://github.com/hl7ch/ch-orf/issues/174): Not requiring the display value 'Clinical presentation Document' (Composition.section:originalRepresentation.code)
 
 #### Fixed
 * [#170](https://github.com/hl7ch/ch-orf/issues/170): Typos
