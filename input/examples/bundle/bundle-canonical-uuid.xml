@@ -1074,7 +1074,7 @@ Success: 0 errors, 1 warnings, 1 notes
                         <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"/>
                         <text value="Korrespondenzsprache"/>
                         <type value="choice"/>
-                        <answerValueSet value="http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"/>
+                        <answerValueSet value="http://fhir.ch/ig/ch-term/ValueSet/DocumentEntry.languageCode"/>
                     </item>
                     <item>
                         <extension url="http://hl7.org/fhir/StructureDefinition/variable">

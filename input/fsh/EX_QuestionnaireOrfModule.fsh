@@ -533,7 +533,7 @@ Description: "Subquestionnaire patient"
 * item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.communication:languageOfCorrespondence"
 * item[=].text = "Korrespondenzsprache"
 * item[=].type = #choice
-* item[=].answerValueSet = "http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.languageCode"
+* item[=].answerValueSet = "http://fhir.ch/ig/ch-term/ValueSet/DocumentEntry.languageCode"
 
 // ---------- Patient Contact Person : The principle target of a particular Form Content is one patient ----------
 * item[+].linkId = "patient.contactperson"

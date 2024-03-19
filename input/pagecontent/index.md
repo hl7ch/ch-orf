@@ -540,13 +540,13 @@ In the Composition, general information about the document is defined, such as t
             <td><a href="StructureDefinition-ch-orf-composition.html#Composition.type">Composition.type</a></td>
             <td>Precise type of the document</td>
             <td><code>CodeableConcept</code></td>
-            <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.typeCode.html">DocumentEntry.typeCode</a></td>
+            <td><a href="http://fhir.ch/ig/ch-term/ValueSet-DocumentEntry.typeCode.html">DocumentEntry.typeCode</a></td>
         </tr>
         <tr>
             <td><a href="StructureDefinition-ch-orf-composition.html#Composition.category">Composition.category</a></td>
             <td>High-level kind of the document at a macro level</td>
             <td><code>CodeableConcept</code></td>
-            <td><a href="http://fhir.ch/ig/ch-epr-term/ValueSet-DocumentEntry.classCode.html">DocumentEntry.classCode</a></td>
+            <td><a href="http://fhir.ch/ig/ch-term/ValueSet-DocumentEntry.classCode.html">DocumentEntry.classCode</a></td>
         </tr>
     </tbody>
 </table>

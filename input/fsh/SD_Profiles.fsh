@@ -156,10 +156,10 @@ and  transfer to retirement home etc."
 
 * status MS
 * type MS
-* type from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.typeCode (preferred)
+* type from http://fhir.ch/ig/ch-term/ValueSet/DocumentEntry.typeCode (preferred)
 * type ^short = "Precise type of clinical document"
 * category 1..1 MS
-* category from http://fhir.ch/ig/ch-epr-term/ValueSet/DocumentEntry.classCode (preferred)
+* category from http://fhir.ch/ig/ch-term/ValueSet/DocumentEntry.classCode (preferred)
 * category ^short = "High-level kind of a clinical document at a macro level"
 * subject 1.. MS
 * subject ^short = "Patient as the principle target of a particular form content"

@@ -3,6 +3,10 @@ All significant changes to this FHIR implementation guide will be documented on 
 
 ### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot
 
+#### Changed / Updated
+* [#172](https://github.com/hl7ch/ch-orf/issues/172)
+   * Adapt the URL to the renaming of CH Term: ch-epr-term to ch-term
+
 #### Fixed
 * [#170](https://github.com/hl7ch/ch-orf/issues/170): Typos
 
