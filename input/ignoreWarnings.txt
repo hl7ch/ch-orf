@@ -12,7 +12,13 @@ WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefi
 # Data absent reason is given
 No code provided, and a code should be provided from the value set 'Consent PolicyRule Codes' (http://hl7.org/fhir/ValueSet/consent-policy|4.0.1)
 
-# Questionnaire Definition Elements do not resolve to fragment on html page #144 
+# Draft code systems
+Reference to draft CodeSystem http://hl7.org/fhir/appointmentstatus|4.0.1
+Reference to draft CodeSystem http://hl7.org/fhir/request-priority|4.0.1
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/consentscope|2.0.0
+Reference to draft CodeSystem http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext|3.0.0
+
+# Questionnaire Definition Elements do not resolve to fragment on html page (https://github.com/hl7ch/ch-orf/issues/144)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value' for "ServiceRequest.identifier:placerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system' for "ServiceRequest.identifier:placerOrderIdentifier.system" cannot be resolved (valid targets: 265 targets)
 The link 'StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value' for "ServiceRequest.identifier:fillerOrderIdentifier.value" cannot be resolved (valid targets: 265 targets)
@@ -46,41 +52,29 @@ The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resol
 The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
 
 # German display values in Questionnaires
-Wrong Display Name 'Wunsch des Patienten (vorgeschlagen)' for http://hl7.org/fhir/appointmentstatus#proposed - should be 'Proposed' (for the language(s) 'de-CH')
-Wrong Display Name 'Wunsch des Patienten (vorgeschlagen)' for http://hl7.org/fhir/appointmentstatus#proposed - should be 'Proposed' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/appointmentstatus#proposed'
-Wrong Display Name 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for http://hl7.org/fhir/appointmentstatus#pending - should be 'Pending' (for the language(s) 'de-CH')
-Wrong Display Name 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for http://hl7.org/fhir/appointmentstatus#pending - should be 'Pending' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/appointmentstatus#pending'
-Wrong Display Name 'Vom Patienten und Leistungserbringer bestätigt (gebucht)' for http://hl7.org/fhir/appointmentstatus#booked - should be 'Booked' (for the language(s) 'de-CH')
-Wrong Display Name 'Vom Patienten und Leistungserbringer bestätigt (gebucht)' for http://hl7.org/fhir/appointmentstatus#booked - should be 'Booked' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/appointmentstatus#booked'
-Der Displayname f\u00fcr http://snomed.info/sct#373068000 sollte einer von ''Undetermined (qualifier value)', 'Undetermined' or 'Not known'' anstelle von 'Nicht definiert' sein. (from Tx-Server) for 'http://snomed.info/sct#373068000'
-Der Displayname f\u00fcr http://snomed.info/sct#58626002 sollte einer von ''Legal guardian', 'Legal custodian' or 'Legal guardian (person)'' anstelle von 'Gesetzlicher Vertreter' sein. (from Tx-Server) for 'http://snomed.info/sct#58626002'
-Der Displayname f\u00fcr http://snomed.info/sct#394921008 sollte einer von ''Cohabitee (person)' or 'Cohabitee'' anstelle von 'Partner (eingetragene Partnerschaft)' sein. (from Tx-Server) for 'http://snomed.info/sct#394921008'
-Der Displayname f\u00fcr http://snomed.info/sct#66089001 sollte einer von ''Daughter' or 'Daughter (person)'' anstelle von 'Tochter' sein. (from Tx-Server) for 'http://snomed.info/sct#66089001'
-Der Displayname f\u00fcr http://snomed.info/sct#65616008 sollte einer von ''Son' or 'Son (person)'' anstelle von 'Sohn' sein. (from Tx-Server) for 'http://snomed.info/sct#65616008'
-Der Displayname f\u00fcr http://snomed.info/sct#127849001 sollte einer von ''Husband' or 'Husband (person)'' anstelle von 'Ehemann' sein. (from Tx-Server) for 'http://snomed.info/sct#127849001'
-Der Displayname f\u00fcr http://snomed.info/sct#127850001 sollte einer von ''Wife' or 'Wife (person)'' anstelle von 'Ehefrau' sein. (from Tx-Server) for 'http://snomed.info/sct#127850001'
-Der Displayname f\u00fcr http://snomed.info/sct#70924004 sollte einer von ''Brother' or 'Brother (person)'' anstelle von 'Bruder' sein. (from Tx-Server) for 'http://snomed.info/sct#70924004'
-Der Displayname f\u00fcr http://snomed.info/sct#27733009 sollte einer von ''Sister', 'Sister (person)' or 'Sr - Sister'' anstelle von 'Schwester' sein. (from Tx-Server) for 'http://snomed.info/sct#27733009'
-Der Displayname f\u00fcr http://snomed.info/sct#72705000 sollte einer von ''Mother', 'Maternal' or 'Mother (person)'' anstelle von 'Mutter' sein. (from Tx-Server) for 'http://snomed.info/sct#72705000'
-Der Displayname f\u00fcr http://snomed.info/sct#66839005 sollte einer von ''Father' or 'Father (person)'' anstelle von 'Vater' sein. (from Tx-Server) for 'http://snomed.info/sct#66839005'
-Der Displayname f\u00fcr http://snomed.info/sct#48385004 sollte einer von ''Acquaintance' or 'Acquaintance (person)'' anstelle von 'Bekannt' sein. (from Tx-Server) for 'http://snomed.info/sct#48385004'
-Wrong Display Name 'Die Anfrage hat normale Priorität.' for http://hl7.org/fhir/request-priority#routine - should be 'Routine' (for the language(s) 'de-CH')
-Wrong Display Name 'Die Anfrage hat normale Priorität.' for http://hl7.org/fhir/request-priority#routine - should be 'Routine' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/request-priority#routine'
-Wrong Display Name 'Die Anfrage sollte dringend bearbeitet werden - höhere Priorität als normal.' for http://hl7.org/fhir/request-priority#urgent - should be 'Urgent' (for the language(s) 'de-CH')
-Wrong Display Name 'Die Anfrage sollte dringend bearbeitet werden - höhere Priorität als normal.' for http://hl7.org/fhir/request-priority#urgent - should be 'Urgent' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/request-priority#urgent'
-Wrong Display Name 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for http://hl7.org/fhir/request-priority#asap - should be 'ASAP' (for the language(s) 'de-CH')
-Wrong Display Name 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for http://hl7.org/fhir/request-priority#asap - should be 'ASAP' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/request-priority#asap'
-Wrong Display Name 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for http://hl7.org/fhir/request-priority#stat - should be 'STAT' (for the language(s) 'de-CH')
-Wrong Display Name 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for http://hl7.org/fhir/request-priority#stat - should be 'STAT' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/request-priority#stat'
-Wrong Display Name 'Männlich' for http://hl7.org/fhir/administrative-gender#male - should be 'Male' (for the language(s) 'de-CH')
-Wrong Display Name 'Männlich' for http://hl7.org/fhir/administrative-gender#male - should be 'Male' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/administrative-gender#male'
-Wrong Display Name 'Weiblich' for http://hl7.org/fhir/administrative-gender#female - should be 'Female' (for the language(s) 'de-CH')
-Wrong Display Name 'Weiblich' for http://hl7.org/fhir/administrative-gender#female - should be 'Female' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/administrative-gender#female'
-Wrong Display Name 'Anderes' for http://hl7.org/fhir/administrative-gender#other - should be 'Other' (for the language(s) 'de-CH')
-Wrong Display Name 'Anderes' for http://hl7.org/fhir/administrative-gender#other - should be 'Other' (for the language(s) 'de-CH') for 'http://hl7.org/fhir/administrative-gender#other'
+Wrong Display Name 'Wunsch des Patienten (vorgeschlagen)' for http://hl7.org/fhir/appointmentstatus#proposed. Valid display is 'Proposed' (for the language(s) 'de-CH')
+Wrong Display Name 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for http://hl7.org/fhir/appointmentstatus#pending. Valid display is 'Pending' (for the language(s) 'de-CH')
+Wrong Display Name 'Vom Patienten und Leistungserbringer bestätigt (gebucht)' for http://hl7.org/fhir/appointmentstatus#booked. Valid display is 'Booked' (for the language(s) 'de-CH')
+Der Displayname f\u00fcr http://snomed.info/sct#373068000 sollte einer von ''Undetermined (qualifier value)', 'Undetermined' or 'Not known'' anstelle von 'Nicht definiert' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#58626002 sollte einer von ''Legal guardian', 'Legal custodian' or 'Legal guardian (person)'' anstelle von 'Gesetzlicher Vertreter' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#66089001 sollte einer von ''Daughter' or 'Daughter (person)'' anstelle von 'Tochter' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#65616008 sollte einer von ''Son' or 'Son (person)'' anstelle von 'Sohn' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#127849001 sollte einer von ''Husband' or 'Husband (person)'' anstelle von 'Ehemann' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#127850001 sollte einer von ''Wife' or 'Wife (person)'' anstelle von 'Ehefrau' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#394921008 sollte einer von ''Cohabitee (person)' or 'Cohabitee'' anstelle von 'Partner (eingetragene  Partnerschaft)' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#70924004 sollte einer von ''Brother' or 'Brother (person)'' anstelle von 'Bruder' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#27733009 sollte einer von ''Sister', 'Sister (person)' or 'Sr - Sister'' anstelle von 'Schwester' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#72705000 sollte einer von ''Mother', 'Maternal' or 'Mother (person)'' anstelle von 'Mutter' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#66839005 sollte einer von ''Father' or 'Father (person)'' anstelle von 'Vater' sein.
+Der Displayname f\u00fcr http://snomed.info/sct#48385004 sollte einer von ''Acquaintance' or 'Acquaintance (person)'' anstelle von 'Bekannt' sein.
+Wrong Display Name 'Die Anfrage hat normale Priorität.' for http://hl7.org/fhir/request-priority#routine. Valid display is 'Routine' (for the language(s) 'de-CH')
+Wrong Display Name 'Die Anfrage sollte dringend bearbeitet werden - höhere Priorität als normal.' for http://hl7.org/fhir/request-priority#urgent. Valid display is 'Urgent' (for the language(s) 'de-CH')
+Wrong Display Name 'Die Anfrage sollte so schnell wie möglich bearbeitet werden - höhere Priorität als dringend.' for http://hl7.org/fhir/request-priority#asap. Valid display is 'ASAP' (for the language(s) 'de-CH')
+Wrong Display Name 'Die Anfrage sollte sofort bearbeitet werden - höchstmögliche Priorität. Z.B. bei einem Notfall.' for http://hl7.org/fhir/request-priority#stat. Valid display is 'STAT' (for the language(s) 'de-CH')
+Wrong Display Name 'Männlich' for http://hl7.org/fhir/administrative-gender#male. Valid display is 'Male' (for the language(s) 'de-CH')
+Wrong Display Name 'Weiblich' for http://hl7.org/fhir/administrative-gender#female. Valid display is 'Female' (for the language(s) 'de-CH')
+Wrong Display Name 'Anderes' for http://hl7.org/fhir/administrative-gender#other. Valid display is 'Other' (for the language(s) 'de-CH')
+Wrong Display Name 'Nicht definiert' for http://snomed.info/sct#373068000. Valid display is one of 3 choices: 'Undetermined (qualifier value)', 'Undetermined' or 'Not known' (for the language(s) '--')
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB in the language de-CH
-No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB'
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP in the language de-CH
-No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#IMP'
 No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH
-No valid Display Names found for http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER in the language de-CH for 'http://terminology.hl7.org/CodeSystem/v3-ActCode#EMER'
