@@ -1,13 +1,19 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### v2.0.0 - HL7 Switzerland STU 2 Ballot
+### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot
+
+#### Fixed
+* [#170](https://github.com/hl7ch/ch-orf/issues/170): Typos
+
+### v2.0.1 - HL7 Switzerland STU 2
 
 * [#270](https://github.com/hl7ch/ch-core/issues/270): Technical correction for invalid package
 
 #### Changed / Updated
 * [#151](https://github.com/hl7ch/ch-orf/issues/151): Clarify/update Consent.policyRule
 * [#154](https://github.com/hl7ch/ch-orf/issues/154): Explanation of what MustSupport means in this IG
+
 #### Fixed
 * [#152](https://github.com/hl7ch/ch-orf/issues/152): Fix formatting and update style that it is clear that the text comes from SDC
 * [#153](https://github.com/hl7ch/ch-orf/issues/153): Remove duplicated terms and unify spelling of CH eTOC
@@ -49,7 +55,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
       * Update [Home](index.html) 
 * Change Cardinality of Contact Person from 0..1 to 0..* [Issue #106](https://github.com/hl7ch/ch-orf/issues/106)
   
-* Improve slicing: [Issue #108](https://github.com/hl7ch/ch-orf/issues/108): Improve slicing that infor entry[x] warnings are not shown.
+* Improve slicing: [Issue #108](https://github.com/hl7ch/ch-orf/issues/108): Improve slicing that info entry[x] warnings are not shown.
 * Update home: [#119](https://github.com/hl7ch/ch-orf/issues/119)
 * Update of QuestionnaireResponse Medical Referral with new items [#138](https://github.com/hl7ch/ch-orf/issues/138)
 
@@ -60,7 +66,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * Required elements from Consent resource specified: [Issue #115](https://github.com/hl7ch/ch-orf/issues/115)
 * Typo: [#124](https://github.com/hl7ch/ch-orf/issues/124)
 * Cardinality of Appointment.actor set to 0..1: [#132](https://github.com/hl7ch/ch-orf/issues/132)
-* Erroneuous entry in ch.fhir.ig.ch-orf.xml: [#140](https://github.com/hl7ch/ch-orf/issues/140)eroneuous entry in ch.fhir.ig.ch-orf.xml
+* Erroneous entry in ch.fhir.ig.ch-orf.xml: [#140](https://github.com/hl7ch/ch-orf/issues/140)eroneuous entry in ch.fhir.ig.ch-orf.xml
 
 
 ### v1.0.0 - HL7 Switzerland STU 1

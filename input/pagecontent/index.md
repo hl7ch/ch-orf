@@ -1,12 +1,12 @@
-The CH **O**rder & **R**eferral by **F**orm (CH ORF) implementation guide and its derivates describe how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise information exchange. 
+The CH **O**rder & **R**eferral by **F**orm (CH ORF) implementation guide and its derivatives describe how forms for eReferrals, requests for information (such as diagnostic imaging results, lab results, discharge reports etc.) can be defined, deployed and used in order to achieve a syntactical and semantically consistent cross enterprise information exchange. 
 
-Whereas CH ORF is the "mother"-implementation guide defining attributes and value sets necessary in all sorts of order and referrals (such as patient name, order placer and order filler, insurance data etc.), derivates cover specific use cases thus defining dedicated attributes and value sets needed there. Currently under development are CH eTOC for electronic transition of care, CH RAD Order for imaging services and CH LAB Order for laboratory orders. 
+Whereas CH ORF is the "mother"-implementation guide defining attributes and value sets necessary in all sorts of order and referrals (such as patient name, order placer and order filler, insurance data etc.), derivatives cover specific use cases thus defining dedicated attributes and value sets needed there. Currently under development are CH eTOC for electronic transition of care, CH RAD Order for imaging services and CH LAB Order for laboratory orders. 
 
 All support creation and domain wide deployment of forms for structured and coded information exchange. Because the implementation guide relies heavily on the FHIR resources Questionnaire and QuestionnaireResponse, forms are addressed here as Questionnaires.
 
 All IG derived from CH Orf use FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
 
-CH ORF and its derivates are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core](https://fhir.ch/ig/ch-core/index.html).
+CH ORF and its derivatives are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core](https://fhir.ch/ig/ch-core/index.html).
 
 <div markdown="1" class="stu-note">
 [Significant changes, open and closed issues](changelog.html)
@@ -22,17 +22,17 @@ In this implementation guide “MustSupport” (MS) denotes elements of the ques
 The CH ORF implementation guide addresses three issues:
 1. It supports a scenario where an authority (e.g., health authority, expert panel) defines a set of forms (here called questionnaires) for well-defined use cases which then are deployed in a specific enterprise, domain etc. or even nationwide.
 2. New use cases or changes in use cases can easily be handled either by modification of existing questionnaires or new ones. 
-3. It assures that the representation of an order at filler's site is consistent to the placer site. CH ORF addresses this by supplying a questionnaire which defines sequence and grouping of items in a form. Authors of CH ORF derivates are advised to do the same. 
+3. It assures that the representation of an order at filler's site is consistent to the placer site. CH ORF addresses this by supplying a questionnaire which defines sequence and grouping of items in a form. Authors of CH ORF derivatives are advised to do the same. 
 
 When writing the CH ORF implementation guide, the authors had the following use case in mind: A human fills in a questionnaire for a particular request and sends this questionnaire to a receiver. There, a human reads the questionnaire with its content. A corresponding response will work in the same way. There is possibly some payload coming with the questionnaire: A request may be accompanied by results of preceding exams (e.g. images, reports); the response may be a diagnostic result. Workflow is therefore not a particular issue because directional information exchange is based on a request and response mechanism.
 
-There may be good reasons to implement user interfaces by other technical means than questionnaires. Therefore CH ORF sets the cardinality for the questionnaire / questionnaireResponse to 0.. thus  allowing auhtors of derivates to decide if applications following their IG must implement a questionnaire / questionnaireResponse or not. In any case, the questionnaire will give guidance for sequence and grouping of items in the user interface.
+There may be good reasons to implement user interfaces by other technical means than questionnaires. Therefore CH ORF sets the cardinality for the questionnaire / questionnaireResponse to 0.. thus  allowing authors of derivatives to decide if applications following their IG must implement a questionnaire / questionnaireResponse or not. In any case, the questionnaire will give guidance for sequence and grouping of items in the user interface.
 
-A major challenge is the need for further machine processing: at filler site in terms of prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the receiver may want to have the content of the form ready for further processing in his applications. Obviously the two aims – semantic interoperability and flexibility in the definition of questionnaires – are contradictory. CH ORF addresses this problem by defining the mandatory set of generic elements and codes with defined being part of every CH ORF derived IG. Derivates will then only define additional case specific elements.
+A major challenge is the need for further machine processing: at filler site in terms of prepopulating attributes with content from other applications (e.g. demographic data of a patient) whereas the receiver may want to have the content of the form ready for further processing in his applications. Obviously the two aims – semantic interoperability and flexibility in the definition of questionnaires – are contradictory. CH ORF addresses this problem by defining the mandatory set of generic elements and codes with defined being part of every CH ORF derived IG. Derivatives will then only define additional case specific elements.
 
-Vendors implementing the CH ORF implementation guide (or one of its derivates) therefore benefit of a high re-use potential.
+Vendors implementing the CH ORF implementation guide (or one of its derivatives) therefore benefit of a high re-use potential.
 
-There has been a discussion whether population of the resources such as Patient, ServiceRequest etc. with the content of the QuestionnaireResponse should be done by the order placer application or rather by the order filler application. The argument for assigning the task to the order placer is a result of nit making the implementation of a questionnaire / questionnaireResponse mandatory: For the sake of keeping all CH ORF derived exchange formats equal (as far as sensible), the authors decided to mandate the order placer application with the task.
+There has been a discussion whether population of the resources such as Patient, ServiceRequest etc. with the content of the QuestionnaireResponse should be done by the order placer application or rather by the order filler application. The argument for assigning the task to the order placer is a result of not making the implementation of a questionnaire / questionnaireResponse mandatory: For the sake of keeping all CH ORF derived exchange formats equal (as far as sensible), the authors decided to mandate the order placer application with the task.
 
 Applications claiming for conformance with an CH ORF derived implementation guide shall:
 * Render (and in case of the Questionnaire Filler allow for data entry) all elements of a questionnaire in the user interface (e.g. on screen, in print). Grouping of items and the order of items within shall be adequately reproduced according to the questionnaire.
@@ -42,7 +42,7 @@ Vendors of applications with Questionnaire Filler/Questionnaire Receiver actors 
 
 Nothing speaks against interfaces for data in the use case specific part of a particular questionnaire. One has however to keep in mind, that such interfaces are tied to a specific questionnaire. Ownership or other means, which prevent changes of the questionnaire by third parties, are therefore advisable.
 
-The ORF implementation guide deals with transport, workflow and content. It is based on FHIR resources and in particular the FHIR Questionnaire resource. FHIR specifies RESTful web services as a mean for transport. An implementation based on RESTful web services is strongly recommended however not mandatory to comply with the CH ORF implementation guide or its derivates unless the authors of a derivate insist on it. Content is defined by a set of generic given elements and codes and the possibility to extend both as required by the use cases addressed
+The ORF implementation guide deals with transport, workflow and content. It is based on FHIR resources and in particular the FHIR Questionnaire resource. FHIR specifies RESTful web services as a mean for transport. An implementation based on RESTful web services is strongly recommended however not mandatory to comply with the CH ORF implementation guide or its derivatives unless the authors of a derivate insist on it. Content is defined by a set of generic given elements and codes and the possibility to extend both as required by the use cases addressed
 
 #### ORF Actors, Transactions and Content Modules
 This implementation guide depends on the implementation guide [Structured Data Capture](http://hl7.org/fhir/uv/sdc/STU3/index.html):   
@@ -474,7 +474,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
         </tr>
         <tr>
             <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare">Antecedent Episode of Care</a></td>
-            <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between instituitons such as hospitals, rehab. clinics, retirement homes etc.)"</td>
+            <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between institutions such as hospitals, rehab. clinics, retirement homes etc.)"</td>
         </tr>
         <tr>
             <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime">Appointment</a></td>
@@ -493,7 +493,7 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
 
 <sup>&#91;Table 7&#93;</sup> *Generic elements in questionnaires compliant to the ORF implementation guide*
 
-<sup>&#91;Table 7&#93;</sup> shows that the FHIR representation of elements representing a person and/or an organisation is defined by the **PractitionerRole** resource. The Practitioner and/or the Organisation resource can then be referenced from the PractitionerRole resource.
+<sup>&#91;Table 7&#93;</sup> shows that the FHIR representation of elements representing a person and/or an organization is defined by the **PractitionerRole** resource. The Practitioner and/or the Organization resource can then be referenced from the PractitionerRole resource.
 
 #### Healthcare Domain specific Elements of a Questionnaire
      
@@ -577,7 +577,7 @@ This Implementation Guide provides three examples of QuestionnaireResponse such 
 This implementation guide defines data elements, resources, formats, and methods for exchanging healthcare data between different participants in the healthcare process. As such, clinical safety is a key concern. Additional guidance regarding safety for the specification’s many and various implementations is available at: [https://www.hl7.org/FHIR/safety.html](https://www.hl7.org/FHIR/safety.html).
 
 Although the present specification does gives users the opportunity to observe data protection and data security regulations, its use does not guarantee compliance with these regulations. Effective compliance must be ensured by appropriate measures during implementation projects and in daily operations. The corresponding implementation measures are explained in the standard. 
-In addition, the present specification can only influence compliance with the security regulations in the technical area of standardisation. It cannot influence organisational and contractual matters.
+In addition, the present specification can only influence compliance with the security regulations in the technical area of standardization. It cannot influence organizational and contractual matters.
 
 #### IP Statements
 This document is licensed under Creative Commons "No Rights Reserved" ([CC0](https://creativecommons.org/publicdomain/zero/1.0/)).
