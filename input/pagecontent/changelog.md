@@ -10,6 +10,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 
 #### Fixed
 * [#170](https://github.com/hl7ch/ch-orf/issues/170): Typos
+* [#171](https://github.com/hl7ch/ch-orf/issues/171): Fix the extension type: element not fhirpath
 
 ### v2.0.1 - HL7 Switzerland STU 2
 
