@@ -1233,7 +1233,7 @@ Usage: #example
 * item[=].item.text = "Ist der Patient über die Anmeldung informiert und explizit einverstanden?"
 * item[=].item.type = #choice
 * item[=].item.answerOption[0].valueCoding = $ch-orf-cs-consentstatus#ExplicitAgreement "Patient is informed and has explicitly agreed"
-* item[=].item.answerOption[+].valueCoding = $ch-orf-cs-consentstatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc."
+* item[=].item.answerOption[+].valueCoding = $ch-orf-cs-consentstatus#Other "Other situation such as 'implicit agreement', 'agreed by legal guardian' etc."
 * item[=].item.item.linkId = "patient.consent.statement.note"
 * item[=].item.item.text = "Anmerkung"
 * item[=].item.item.type = #string

@@ -2745,7 +2745,7 @@
               <valueCoding>
                 <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-consentstatus"/>
                 <code value="Other"/>
-                <display value="Other situation such as 'implicit agreement', 'agreed by legal guardian'  etc."/>
+                <display value="Other situation such as 'implicit agreement', 'agreed by legal guardian' etc."/>
               </valueCoding>
             </answerOption>
             <item>
