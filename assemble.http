@@ -1,0 +1,111 @@
+@host = http://test.ahdis.ch/matchbox/fhir
+
+### Create modular questionnaire with $assemble operation
+
+GET {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-address.json
+
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-initiator.json
+
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-receivercopy.json
+
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-appointment.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-order.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-requestedencounter.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-consent.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-patient.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-sender.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-coverage.json
+
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-practitioner-nametel.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-familydoctor.json
+
+###
+POST {{host}}/Questionnaire HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-ch-orf-module-receiver.json
+
+### 1. Create FHS Questionnaires (modules)
+### 2. Upload IG on matchbox https://test.ahdis.ch/matchboxv3/#/igs
+### 3. Invoice $assemble operation on modular Questionnaire
+POST {{host}}/Questionnaire/$assemble HTTP/1.1
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+< ./output/Questionnaire-order-referral-form-modular.json
+
