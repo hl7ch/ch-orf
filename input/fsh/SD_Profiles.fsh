@@ -63,7 +63,7 @@ and  transfer to retirement home etc."
 
 
 Profile: ChOrfServiceRequest
-Parent: ServiceRequest
+Parent: CHCoreServiceRequest // // cannot use CH Core ServiceRequest because the that uses ChCoreCoverage and that can't be use because of different identifier profiling
 Id: ch-orf-servicerequest
 Title: "CH ORF ServiceRequest"
 Description: "Profile to define how the record of a request for service to be performed is represented in the context of an order.
