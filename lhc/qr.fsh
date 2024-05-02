@@ -73,13 +73,14 @@ Usage: #example
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "order.fillerOrderIdentifierDomain"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system"
+// * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system" #144
 * item[=].item[=].text = "Identifier Domain der Auftragsnummer des Auftragsempfängers"
 * item[=].item[=].type = #string
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].item[=].extension.valueBoolean = true
 * item[=].item[=].linkId = "order.precedentDocumentIdentifier"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument"
+// * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument" #144
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].item[=].text = "Identifier des Vorgängerdokuments"
 * item[=].item[=].type = #string
 * item[=].item[+].linkId = "order.notificationContactDocument"

@@ -51,7 +51,8 @@ Description: "Example for Questionnaire"
 
 // ---------- Receiver: Person/organization who receives the document ----------
 * item[+].linkId = "receiver"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:receiver" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Empfänger"
 * item[=].type = #group
 
@@ -95,7 +96,8 @@ Description: "Example for Questionnaire"
 
 // ---------- Encounter Class (Ambulant / Satinär / Notfall) ----------
 * item[+].linkId = "requestedEncounter"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:requestedEncounterDetails" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension"
 * item[=].text = "Patientenaufnahme"
 * item[=].type = #group
 
@@ -141,7 +143,8 @@ Description: "Example for Questionnaire"
 
 // ---------- Copy Receiver (Copy of this order and all results therefrom) ----------
 * item[+].linkId = "receiverCopy"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:copyReceiver" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Kopieempfänger (Kopie dieses Auftrags und aller daraus resultierenden Resultate)"
 * item[=].type = #group
 
@@ -155,17 +158,18 @@ Description: "Example for Questionnaire"
 /*------ Antecedent Episode of Care ------------------------------ */
 
 * item[+].linkId = "antecedentEpisodeOfCare"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:antecedentEpisodeOfCare"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:antecedentEpisodeOfCare" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.start"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
 * item[=].item[=].text = "Von"
 * item[=].item[=].type = #dateTime
 
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 
@@ -192,7 +196,8 @@ Description: "Example for Questionnaire"
 
 /*------ Appointment ------------------------------ */
 * item[+].linkId = "appointment"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension:locationAndTime" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.extension"
 * item[=].text = "Ort und Zeit der Durchführung der angeforderten Leistung"
 * item[=].type = #group
 * item[=].repeats = true
@@ -205,7 +210,8 @@ Description: "Example for Questionnaire"
 
 /*------ Consent ------------------------------ */
 * item[+].linkId = "consent"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:patientConsent"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:patientConsent" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Einverständniserklärung"
 * item[=].type = #group
 
@@ -241,44 +247,50 @@ Description: "Subquestionnaire order"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "order.authoredOn"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest#ServiceRequest.authoredOn"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.authoredOn"
 * item[=].text = "Daum/Zeit der Auftragserteilung"
 * item[=].type = #dateTime
 
 * item[+].linkId = "order.placerOrderIdentifier"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.value" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier"
 * item[=].text = "Auftragsnummer des Auftraggebers"
 * item[=].type = #string
 
 * item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].extension.valueBoolean = true
 * item[=].linkId = "order.placerOrderIdentifierDomain"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.system"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:placerOrderIdentifier.system" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier"
 * item[=].text = "Identifier Domain der Auftragsnummer des Auftraggebers"
 * item[=].type = #string
 
 * item[+].linkId = "order.fillerOrderIdentifier"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.value"
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier" #144
 * item[=].text = "Auftragsnummer des Auftragsempfängers"
 * item[=].type = #string
 
 * item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].extension.valueBoolean = true
 * item[=].linkId = "order.fillerOrderIdentifierDomain"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier:fillerOrderIdentifier.system" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.identifier"
 * item[=].text = "Identifier Domain der Auftragsnummer des Auftragsempfängers"
 * item[=].type = #string
 
 * item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden"
 * item[=].extension.valueBoolean = true
 * item[=].linkId = "order.precedentDocumentIdentifier"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:precedentDocument" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Identifier des Vorgängerdokuments"
 * item[=].type = #string
 
 // ---------- Urgent Notification Contact for this document ----------
 * item[+].linkId = "order.notificationContactDocument"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForThisDocument"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForThisDocument" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Dringender Benachrichtigungskontakt für dieses Dokument"
 * item[=].type = #group
 
@@ -301,7 +313,8 @@ Description: "Subquestionnaire order"
 
 // ---------- Urgent Notification Contact for the Response to this document ----------
 * item[+].linkId = "order.notificationContactDocumentResponse"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForTheResponseToThisDocument"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:urgentNoficationContactForTheResponseToThisDocument" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Dringender Benachrichtigungskontakt für die Antwort auf dieses Dokument"
 * item[=].type = #group
 
@@ -709,7 +722,8 @@ Description: "Subquestionnaire requestedEncounter"
 * item[=].answerOption[+].valueCoding = V3ActCode#EMER "Notfall"
 
 * item[+].linkId = "requestedEncounter.desiredAccommodation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension:desiredAccommodation" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-encounter#Encounter.extension"
 * item[=].text = "Zimmerkategorie"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = ChCoreCSEncounterType#1 "allgemein"
@@ -1029,7 +1043,8 @@ Description: "Subquestionnaire sender"
 
 // ---------- Data Entry Person: The person who has typed/filled in the Form Content. ----------
 * item[+].linkId = "sender.dataenterer"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:dataEnterer"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension:dataEnterer" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-composition#Composition.extension"
 * item[=].text = "Erfasser"
 * item[=].type = #group
 
@@ -1288,7 +1303,8 @@ Description: "Subquestionnaire initiator"
 * publisher = "HL7 Switzerland"
 
 * item[+].linkId = "initiator.legalrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
+//* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension"
 * item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#373068000 "Nicht definiert"
@@ -1296,7 +1312,8 @@ Description: "Subquestionnaire initiator"
 //* item[=].answerValueSet = "http://fhir.ch/ig/ch-orf/ValueSet/ch-orf-vs-legalrelation"
 
 * item[+].linkId = "initiator.personalrelation"
-* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation"
+// * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension:ch-orf-personalrelation" #144
+* item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension"
 * item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].type = #choice
 * item[=].answerOption[+].valueCoding = SCT#66089001 "Tochter"
