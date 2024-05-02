@@ -319,7 +319,7 @@ Description: "Profile to describe how to provide a reference to a document to ma
 // Probably better in CH Core -> next release
 // Preliminary design: Answer of BAG still pending: 23.05.2021
 Profile: ChOrfCoverage
-Parent: Coverage          // not ChCoreCoverage because of different identifier profiling
+Parent: ChCoreCoverage
 Id: ch-orf-coverage
 Title: "CH ORF Coverage"
 Description: "Profile to specify how the coverage is represented. 

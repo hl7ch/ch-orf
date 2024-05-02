@@ -391,35 +391,35 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             <th><b>Comment</b></th>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn">Date</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.authoredOn">Date</a></td>
             <td>Date when the request transitioned to being actionable (e.g sent to the receiver).</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.value">Placer Order Identifier</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier">Placer Order Identifier</a></td>
             <td>Placer Order Identifier</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:placerOrderIdentifier.system">Placer Order Identifier Domain</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier">Placer Order Identifier Domain</a></td>
             <td>Placer Order Identifier Domain</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.value">Filler Order Identifier</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier">Filler Order Identifier</a></td>
             <td>Filler Order Identifier</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier:fillerOrderIdentifier.system">Filler Order Identifier Domain</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.identifier">Filler Order Identifier Domain</a></td>
             <td>Filler Order Identifier Domain</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:precedentDocument">Precedent Document Identifier</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Precedent Document Identifier</a></td>
             <td>Precedent Document Identifier</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForThisDocument">Urgent Notification Contact for this document</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Urgent Notification Contact for this document</a></td>
             <td>An information recipient to notify for urgent matters (e.g. in a radiology service, the radiologist has to be called by phone right away at the time the document is received.)</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:urgentNoficationContactForTheResponseToThisDocument">Urgent Notification Contact for the Response to this document</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Urgent Notification Contact for the Response to this document</a></td>
             <td>
                 <p>An information recipient to notify for urgent matters about the response (e.g. in a clinical setting, the referring doctor has to be called by phone right away at the time the images and reports arrive).
                 </p>
@@ -428,64 +428,64 @@ A Questionnaire shall have a set of generic elements (e.g. author, data entry pe
             </td>
         </tr>
        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.priority">Priority</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest">Priority</a></td>
             <td>Order priority.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Receiver</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Receiver</a></td>
             <td>Person/organization who receives the document.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html-definitions.html#key_Composition.extension:initiator">Initiator</a></td>
-            <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home(e.g the husband
-            asks for spitex support becausehe needs help for the care of his wife).</td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Initiator</a></td>
+            <td>Person or organization who initiated the service request; particularly in the context of spitex or admission to a nursing/retirement home (e.g the husband
+            asks for spitex support because he needs help for the care of his wife).</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.subject">Patient</a></td>
             <td>The principle target of a particular form content is one patient.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.subject">Patient Contact Person</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.subject">Patient Contact Person</a></td>
             <td>The principle target of a particular form content is one patient.</td>
         </tr>
         <tr>
-            <td><a href="https://build.fhir.org/ig/hl7ch/ch-core//StructureDefinition-ch-core-patient.html#Patient.generalPractitioner">Familydoctor</a></td>
+            <td><a href="https://hl7.org/fhir/R4/patient.html#Patient.managingOrganization">Familydoctor</a></td>
             <td>Healthprofessional who takes the role of a familydoctor.</td>
         </tr>
        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:requestedEncounterDetails">Requested Encounter</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension">Requested Encounter</a></td>
             <td>Requested Encounter such as ambulatory/inpatient/emergency.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.insurance">Coverage</a></td>
             <td>Payor covering the costs.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.author">Sender/Author</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.author">Sender/Author</a></td>
             <td>The person/organization responsible for the form content.</td>
         </tr>
        <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:dataEnterer">Data Entry Person</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Data Entry Person</a></td>
             <td>The person/organization who has typed/filled in the form content.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:receiver">Copy Receiver</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Copy Receiver</a></td>
             <td>Person/organization who receives the copy of this order (shall receive also all results therefrom).</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:antecedentEpisodeOfCare">Antecedent Episode of Care</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Antecedent Episode of Care</a></td>
             <td>Documentation of the episode of care preceding this order (e.g in case of care transfer between institutions such as hospitals, rehab. clinics, retirement homes etc.)"</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension:locationAndTime">Appointment</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.extension">Appointment</a></td>
             <td>Indication of date/time and location of the requested appointment(s)</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-composition.html#Composition.extension:patientConsent">Patientconsent</a></td>
+            <td><a href="StructureDefinition-ch-orf-composition.html#Composition.extension">Patientconsent</a></td>
             <td>Indication of whether the patient has given informed consent to this order; in particular for Spitex and transfer to nursing/retirement home, etc.</td>
         </tr>
         <tr>
-            <td><a href="http://fhir.ch/ig/ch-orf/StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.note.text">Note</a></td>
+            <td><a href="StructureDefinition-ch-orf-servicerequest.html#ServiceRequest.note.text">Note</a></td>
             <td>General remarks</td>
         </tr>        
     </tbody>
