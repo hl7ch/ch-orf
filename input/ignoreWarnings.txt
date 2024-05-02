@@ -31,6 +31,12 @@ The link 'null#item.patient.consent.statement' for "Answers: 2 options" cannot b
 The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resolved
 The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
 
+The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
+The link 'StructureDefinition-sdc-questionnaire-subQuestionnaire.html' for "sub-questionnaire" cannot be resolved
+The link 'OperationDefinition-Questionnaire-assemble.html' for "$assemble" cannot be resolved
+The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
+
+
 # German display values in Questionnaires
 Wrong Display Name 'Wunsch des Patienten (vorgeschlagen)' for http://hl7.org/fhir/appointmentstatus#proposed. Valid display is 'Proposed' (for the language(s) 'de-CH')
 Wrong Display Name 'Vom Patienten bestätigt, aber vom Leistungserbringer noch nicht (ausstehend)' for http://hl7.org/fhir/appointmentstatus#pending. Valid display is 'Pending' (for the language(s) 'de-CH')
