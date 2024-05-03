@@ -28,6 +28,7 @@ group OrfQrToBundle(source qr : QuestionnaireResponseSource, target bundle : Bun
             e.fullUrl = append('urn:uuid:',uuid),
             bundle.entry as e2, 
             bundle.timestamp = (now()) as timestamp,
+            bundle.type = 'document',
             composition.date = timestamp,
             composition.title = 'Order and Referral by Form',
             composition.type as type, type.coding as coding, coding.code = '419891008', coding.system = 'http://snomed.info/sct',
@@ -77,7 +78,6 @@ group QrToGroups(source qr : QuestionnaireResponseSource, target patient : Patie
     qr.item as grp where linkId='sender' then SenderAuthorInit(grp, bundle, composition, serviceRequest) "grpsender";
     qr.item as grp where linkId='receiverCopy' then ReceiverCopy(grp, bundle, patient, composition, serviceRequest) "receiverCopy";
     qr.item as grp where linkId='appointment' then Appointment(grp, bundle, composition, serviceRequest) "appointment";
-    qr.item as grp where linkId='previousResults' then PreviousResults(grp, bundle, serviceRequest) "previousResults";
     qr.item as grp where linkId='antecedentEpisodeOfCare' then AntecedentEpisodeOfCareInit(grp, bundle, patient, composition) "AntecedentEpisodeOfCareInit";
     qr.item as grp where linkId='consent' then Consent(grp, bundle, composition) "consent";
     qr.item as grp where linkId='note' then Note(grp, serviceRequest) "note";
@@ -105,7 +105,7 @@ group OrderItems(source src, target bundle: Bundle, target composition, target s
 
   src.item as item where (linkId.value = 'order.authoredOn' and answer.exists()) -> serviceRequest.authoredOn = (%item.answer.value);
 
-  src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (%item.answer.value);
+  src.item as item where (linkId.value = 'order.priority' and answer.exists()) -> serviceRequest.priority = (%item.answer.value.code);
 
   src.item as item where (linkId.value = 'order.notificationContactDocument') then {
       item -> bundle.entry as e4, 
@@ -501,7 +501,7 @@ group PatientItems(source src, target bundle: Bundle, target tgt: Patient, targe
   src.item as item where (linkId.value = 'patient.localPidDomain' and answer.exists()) -> tgt.identifier as value share localpid, 
                                                                                    value.system=(%item.answer.value) "PatientLocalPidDomain"; 
   src.item as item where (linkId.value = 'patient.birthDate' and answer.exists()) -> tgt.birthDate = (%item.answer.value);
-  src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (%item.answer.value);
+  src.item as item where (linkId.value = 'patient.gender' and answer.exists()) -> tgt.gender = (%item.answer.value.code);
   src.item as item where (linkId.value = 'patient.maritalStatus' and answer.exists()) then {
    item.answer as answer then {
       answer.value: Coding as coding -> tgt.maritalStatus as maritalStatus, maritalStatus.coding = coding "maritalStatus"; 
@@ -947,14 +947,14 @@ group Appointment(source grp , target bundle: Bundle, target composition : Compo
    extension.url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime',
    extension.value = create('Reference') as reference, reference.reference = ('urn:uuid:'+%uuid4)                
    then {
-      grp.item as item where (linkId.value = 'appointment.status' and answer.value='proposed') -> appointment.status = (%item.answer.value) then {
+      grp.item as item where (linkId.value = 'appointment.status' and answer.value.code='proposed') -> appointment.status = (%item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.requestedPeriod as requestedPeriod, requestedPeriod.start = (%item2.answer.value), requestedPeriod.end = (%item2.answer.value) then {
            itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> requestedPeriod.end = (%item3.answer.value) "appointmentRequestedPeriodendifnotsameasstart";
            } "appointmentRequestedPeriodStart";
          } "appointmentRequestedPeriod";
       } "proposed";
-      grp.item as item where (linkId.value = 'appointment.status' and (answer.value='pending' or answer.value='booked')) -> appointment.status = (%item.answer.value) then {
+      grp.item as item where (linkId.value = 'appointment.status' and (answer.value.code='pending' or answer.value.code='booked')) -> appointment.status = (%item.answer.value.code) then {
          grp.item as itemp where (linkId.value = 'appointment.requestedPeriod') then {
            itemp.item as item2 where (linkId.value = 'appointment.requestedPeriod.start' and answer.exists()) -> appointment.start = (%item2.answer.value), appointment.end = (%item2.answer.value) then {
            itemp.item as item3 where (linkId.value = 'appointment.requestedPeriod.end' and answer.exists()) -> appointment.end = (%item3.answer.value) "appointmentendifnotsameasstart";
@@ -980,23 +980,6 @@ group Appointment(source grp , target bundle: Bundle, target composition : Compo
          } "location";
       } "appointmentLocation";
    } "Appointment";
-}
-
-group PreviousResults(source grp , target bundle: Bundle, target serviceRequest: ServiceRequest) {
-   grp.item as item where (linkId='previousResults.attachment' and answer.exists()) then {
-      item.answer as answer then {
-         answer.value: Attachment as attachment -> 
-            bundle.entry as e, 
-            e.resource = create('Media') as media, 
-            media.id = uuid() as uuid,
-            media.status = 'completed',
-            e.fullUrl = append('urn:uuid:',uuid), 
-            media.content = attachment,
-            serviceRequest.supportingInfo as supportingInfo,
-            supportingInfo.reference = ('urn:uuid:'+%uuid)
-            "media"; 
-      } "answer";
-   } "item";
 }
 
 group Note(source grp , target serviceRequest: ServiceRequest) {
