@@ -9,7 +9,12 @@ All IG derived from CH Orf use FHIR defined resources – Composition, Questionn
 CH ORF and its derivatives are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core](https://fhir.ch/ig/ch-core/index.html).
 
 <div markdown="1" class="stu-note">
-[Significant changes, open and closed issues](changelog.html)
+
+This implementation guide is under STU ballot by [HL7 Switzerland](https://www.hl7.ch/) until September 30th, 2024 midnight.   
+Please add your feedback via the ‘Propose a change’-link in the footer on the page where you have comments. 
+
+[Significant changes, open and closed issues.](changelog.html)
+
 </div>
 
 **Download:** 
