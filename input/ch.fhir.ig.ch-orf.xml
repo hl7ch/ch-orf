@@ -893,7 +893,7 @@
       </page>
       <page>
         <nameUrl value="changelog.html"/>
-        <title value="Change Log"/>
+        <title value="Changelog"/>
         <generation value="markdown"/>
       </page>
     </page>
