@@ -1,6 +1,8 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
+* [#179](https://github.com/hl7ch/ch-orf/issues/179): Unify spelling
+
 ### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot
 
 #### Changed / Updated

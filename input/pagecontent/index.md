@@ -4,7 +4,7 @@ Whereas CH ORF is the "mother"-implementation guide defining attributes and valu
 
 All support creation and domain wide deployment of forms for structured and coded information exchange. Because the implementation guide relies heavily on the FHIR resources Questionnaire and QuestionnaireResponse, forms are addressed here as Questionnaires.
 
-All IG derived from CH Orf use FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
+All IG derived from CH ORF use FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
 
 CH ORF and its derivatives are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core](https://fhir.ch/ig/ch-core/index.html).
 
