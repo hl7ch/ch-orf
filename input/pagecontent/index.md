@@ -15,7 +15,7 @@ CH ORF and its derivatives are derived from the implementation guides [HL7 Struc
 </div>
 
 **Download:** 
-You can download this implementation guide in [NPM format](https://confluence.hl7.org/display/FHIR/NPM+Package+Specification) from [here](package.tgz).
+You can download this implementation guide in [npm format](https://confluence.hl7.org/display/FHIR/NPM+Package+Specification) from [here](package.tgz).
 
 ### MustSupport
 In this implementation guide “MustSupport” (MS) denotes elements of the questionnaire that are mapped to corresponding resource items. 
