@@ -1,7 +1,17 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot
+### v3.0.0 - HL7 Switzerland STU 3 (2024)
+
+#### Added
+
+#### Changed / Updated
+* [#185](https://github.com/hl7ch/ch-orf/issues/185): Add dates to the published versions in the changelog
+
+#### Fixed
+
+
+### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot (2024-05-17)
 
 #### Changed / Updated
 * [#172](https://github.com/hl7ch/ch-orf/issues/172)
@@ -12,7 +22,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 * [#170](https://github.com/hl7ch/ch-orf/issues/170): Typos
 * [#171](https://github.com/hl7ch/ch-orf/issues/171): Fix the extension type: element not fhirpath
 
-### v2.0.1 - HL7 Switzerland STU 2
+### v2.0.1 - HL7 Switzerland STU 2 (2023-12-28)
 
 * [#270](https://github.com/hl7ch/ch-core/issues/270): Technical correction for invalid package
 
@@ -30,7 +40,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 #### Issues resolved without amendment
 * [#155](https://github.com/hl7ch/ch-orf/issues/155): Terminology binding in service request
 
-### v2.0.0-ballot - HL7 Switzerland STU 2 Ballot
+### v2.0.0-ballot - HL7 Switzerland STU 2 Ballot (2022-06-29)
 
 #### Open Issues
 
@@ -75,7 +85,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * Erroneous entry in ch.fhir.ig.ch-orf.xml: [#140](https://github.com/hl7ch/ch-orf/issues/140)eroneuous entry in ch.fhir.ig.ch-orf.xml
 
 
-### v1.0.0 - HL7 Switzerland STU 1
+### v1.0.0 - HL7 Switzerland STU 1 (2022-02-22)
 
 #### Open Issues
 During the ballot, the following comments came in, which will be taken into account in the further development of CH ORF:
