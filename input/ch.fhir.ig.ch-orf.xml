@@ -15,7 +15,7 @@
   <title value="CH ORF (R4)"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2024-05-17"/>
+  <date value="2024-10-03"/>
   <publisher value="HL7 Switzerland"/>
   <contact>
     <name value="HL7 Switzerland"/>
@@ -43,12 +43,12 @@
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="5.0.0-ballot"/>
+    <version value="current"/>
   </dependsOn>
   <dependsOn id="cheprterm">
     <uri value="http://fhir.ch/ig/ch-term/ImplementationGuide/ch.fhir.ig.ch-term"/>
     <packageId value="ch.fhir.ig.ch-term"/>
-    <version value="3.0.x"/>
+    <version value="current"/>
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
