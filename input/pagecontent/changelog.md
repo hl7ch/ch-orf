@@ -8,6 +8,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 #### Changed / Updated
 * [#185](https://github.com/hl7ch/ch-orf/issues/185): Add dates to the published versions in the changelog
 * [#182](https://github.com/hl7ch/ch-orf/issues/182): Translations optimized in the French use case
+* [#179](https://github.com/hl7ch/ch-orf/issues/179): Unify spelling
 
 #### Fixed
 
