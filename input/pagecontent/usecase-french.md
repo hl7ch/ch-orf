@@ -1,10 +1,10 @@
 ### Ordre de radiologie
 
 * **Patiente:** Mme. S. Ufferer
-* **Placer d'ordre:** 
+* **Donneur d'ordre:** 
    * **Personne responsable:** Dr O. Rderplacer, médecin généraliste dans le cabinet de groupe 'Happy Doctors'
    * **Personne chargée de la saisie des informations:** D. Ataenterer, assistante médicale dans le cabinet de groupe 'Happy Doctors'
-* **Remplisseur d'ordre:** Dr O. Rderfiller, radiologue à l'institut de radiologie de l'hôpital 'Happy Hospital'
+* **Destinataire de l'ordre:** Dr O. Rderfiller, radiologue à l'institut de radiologie de l'hôpital 'Happy Hospital'
 
 Madame S. Ufferer a rendez-vous le 15 mars 2021 chez son médecin généraliste, le Dr O. Rderplacer, au cabinet de groupe 'Happy Doctors'. La patiente se plaint de douleurs récurrentes au genou. Sur la base de l'anamnèse et de l'examen physique, le médecin décide de prescrire une radiographie qui sera réalisée à l'institut de radiologie de l'hôpital 'Happy Hospital' du Dr O. Rderfiller. L'assistante médicale D. Ataenterer saisit l'ordre de radiologie et l'envoie à l'institut de radiologie. Il est également indiqué dans le mandat que la copie de ce mandat (ainsi que tous les résultats qui en découlent) doit être envoyée à la patiente.
 
@@ -16,9 +16,9 @@ Madame S. Ufferer a rendez-vous le 15 mars 2021 chez son médecin généraliste,
 ### Ordre de diagnostic externe
 
 * **Patiente:** Mme. S. Ufferer
-* **Placer d'ordre:** 
+* **Donneur d'ordre:** 
    * **Personne responsable:** Dr P. Lacer, médecin de garde à l'Hôpital Ragional
-* **Remplisseur d'ordre:** Dr F. Iller, radiologue à l'hôpital universitaire
+* **Destinataire de l'ordre:** Dr F. Iller, radiologue à l'hôpital universitaire
 
 Madame S. Ufferer ressent une douleur lancinante dans le bas-ventre tard dans la soirée du 30 mars 2021. Son médecin de famille du cabinet de groupe 'Happy Doctors', qui est de garde, adresse la patiente à l'hôpital régional. Le médecin de garde de l'hôpital régional, le Dr P. Lacer, lui prescrit un scanner thoracique. Sur la base du scanner thoracique, il soupçonne un anévrisme de l'aorte. Comme aucun radiologue n'est de garde à l'hôpital régional pendant ce quart de nuit, le Dr P. Lacer téléphone à la radiologue Dr F. Iller de l'hôpital universitaire et lui envoie la demande de diagnostic externe. En raison du diagnostic de suspicion, le temps presse et la radiologue veut être contactée d'urgence après réception de la commande avec les images du scanner. La suspicion d'un anévrisme de l'aorte abdominale se confirme et le Dr F. Iller le signale immédiatement par téléphone au Dr P. Lacer. Mme S. Ufferer est donc transférée en urgence en chirurgie thoracique et opérée immédiatement.
 
