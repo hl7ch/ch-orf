@@ -6,7 +6,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 #### Open Issues
 During the ballot, the following comments came in, which will be taken into account in the further development of CH ORF:
 
-* [CH Term #41](https://github.com/hl7ch/ch-term/issues/41): Revision (harmonization, usage SCT) of code system and value set ServiceRequest Category
+* [#176](https://github.com/hl7ch/ch-orf/issues/176): Revision (harmonization, usage SCT) of code system and value set ServiceRequest Category
 
 See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 
