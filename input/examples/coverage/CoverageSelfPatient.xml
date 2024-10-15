@@ -16,9 +16,9 @@
     <status value="active" />
     <type>
         <coding>
-            <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype" />
-            <code value="Self"/>
-            <display value="Self-payer"/>
+            <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor" />
+            <code value="5"/>
+            <display value="Selbstzahler (z.B. Ausländer ohne Grundversicherung)"/>
         </coding>
     </type>
     <beneficiary>

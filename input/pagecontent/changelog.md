@@ -16,6 +16,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * [#185](https://github.com/hl7ch/ch-orf/issues/185): Add dates to the published versions in the changelog
 * [#182](https://github.com/hl7ch/ch-orf/issues/182): Translations optimized in the French use case
 * [#179](https://github.com/hl7ch/ch-orf/issues/179): Unify spelling
+* [#177](https://github.com/hl7ch/ch-orf/issues/177): Update to the CH Core Coverage (parent) -> usage of the revised CS/VS in CH Core for Coverage.type (remove the CH ORF own CS/VS)
 
 #### Fixed
 

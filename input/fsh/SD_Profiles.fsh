@@ -336,7 +336,7 @@ This provides an organization or the individual, which will pay for services req
 * identifier.value 1.. MS
 * status MS
 * type MS
-* type from ChOrfCoverageType (required)
+* type from http://fhir.ch/ig/ch-term/ValueSet/mainguarantor (required)
 * beneficiary MS
 * beneficiary only Reference(ChCorePatient)
 * payor MS
