@@ -32,9 +32,9 @@
     <status value="active" />
     <type>
         <coding>
-            <system value="http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype" />
-            <code value="KVG"/>
-            <display value="According to KVG"/>
+            <system value="http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor" />
+            <code value="1"/>
+            <display value="Krankenversicherung (obligat.)"/>
         </coding>
     </type>
     <beneficiary>

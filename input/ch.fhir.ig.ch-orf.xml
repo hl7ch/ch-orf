@@ -216,18 +216,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-
-
-
-
     <!-- ValueSets-->
-    <resource>
-      <reference>
-        <reference value="ValueSet/ch-orf-vs-coveragetype"/>
-      </reference>
-      <name value="Coverage Type"/>
-      <exampleBoolean value="false"/>
-    </resource>
     <resource>
       <reference>
         <reference value="ValueSet/ch-orf-vs-coverageidentifiertype"/>
@@ -281,15 +270,7 @@
       <exampleBoolean value="false"/>
     </resource>
 
-
     <!-- CodeSystems -->
-    <resource>
-      <reference>
-        <reference value="CodeSystem/ch-orf-cs-coveragetype"/>
-      </reference>
-      <name value="Coverage Type"/>
-      <exampleBoolean value="false"/>
-    </resource>
     <resource>
       <reference>
         <reference value="CodeSystem/ch-orf-cs-coverageidentifiertype"/>

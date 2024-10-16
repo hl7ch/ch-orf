@@ -580,7 +580,7 @@ group RequestedEncounterItems(source src, target bundle: Bundle, target patient:
       serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
       coverage.status = 'active',
       coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'KVG' then {
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '1' then {
          item.item as item where (linkId.value = 'coverage.kvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
            coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageKvgName";
@@ -598,7 +598,7 @@ group RequestedEncounterItems(source src, target bundle: Bundle, target patient:
       serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
       coverage.status = 'active',
       coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'UVG' then {
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '4' then {
          item.item as item where (linkId.value = 'coverage.uvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
            coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageUvgName";
@@ -616,7 +616,7 @@ group RequestedEncounterItems(source src, target bundle: Bundle, target patient:
       serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
       coverage.status = 'active',
       coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'VVG' then {
+      coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/mainguarantor', coding.code = 'ZV' then {
          item.item as item where (linkId.value = 'coverage.vvg.name' and answer.exists()) ->
            coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
            coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageVvgName";
@@ -634,7 +634,7 @@ src.item as item where where (linkId.value = 'coverage.iv') -> bundle.entry as e
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'IVG' then {
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '2' then {
       item.item as item where (linkId.value = 'coverage.iv.verfuegungsnummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'IV', 
       identifier.value = (%item.answer.value),
@@ -651,7 +651,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'MVG' then {
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '3' then {
       item.item as item where (linkId.value = 'coverage.mv.versichertennummer' and answer.exists()) ->
       coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'MV', 
       identifier.value = (%item.answer.value),
@@ -672,7 +672,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
          serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
          coverage.status = 'active',
          coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-         coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
+         coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '5',
          coverage.payor  as subject, subject.reference = ('urn:uuid:'+%patient.id) "payor";
 
       item.item as item2 where (linkId.value = 'coverage.self.patientRelatedPerson' and answer.exists() and answer.value) then {        
@@ -684,7 +684,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
             serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
             coverage.status = 'active',
             coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-            coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Self',
+            coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '5',
             bundle.entry as e6, 
             e6.resource = create('RelatedPerson') as relatedPerson, 
             relatedPerson.id = uuid() as uuid6,
@@ -707,7 +707,7 @@ src.item as item where where (linkId.value = 'coverage.mv') -> bundle.entry as e
    serviceRequest.insurance as insurance, insurance.reference = ('urn:uuid:'+%uuid4),
    coverage.status = 'active',
    coverage.beneficiary = create('Reference') as subject, subject.reference = ('urn:uuid:'+%patient.id),
-   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coveragetype', coding.code = 'Other' then {
+   coverage.type as type, type.coding as coding, coding.system = 'http://fhir.ch/ig/ch-core/CodeSystem/bfs-medstats-25-mainguarantor', coding.code = '8' then {
       item.item as item where (linkId.value = 'coverage.other.name' and answer.exists()) ->
       coverage.payor as payor, payor.reference as refcontained, refcontained.value = '#org', 
       coverage.contained = create('Organization') as organization, organization.id = 'org', organization.name = (%item.answer.value) "coverageOtherName";

@@ -1,21 +1,3 @@
-// Probably better in CH Core -> next release
-// Platzhalter
-CodeSystem: ChOrfCoverageType
-Id: ch-orf-cs-coveragetype
-Title: "Coverage Type"
-Description: "Code System for CH ORF Coverage Type"
-* ^caseSensitive = true
-* ^experimental = false
-* #KVG "According to KVG"
-* #UVG "According to UVG"
-* #VVG "According to VVG"
-* #IVG "According to IVG"
-* #MVG "According to MVG"
-* #Self "Self-payer"
-* #Other "Other"
-
-
-
 CodeSystem: ChOrfConsentStatus
 Id: ch-orf-cs-consentstatus
 Title: "Consent Status"
