@@ -734,7 +734,7 @@ Usage: #example
 * item[=].item[=].item.type = #string
 * item[=].item[+].linkId = "coverage.mv"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].item[=].text = "Militärversicherung (MV)"
+* item[=].item[=].text = "Militärversicherung MV (fr/it: AM)"
 * item[=].item[=].type = #group
 * item[=].item[=].item.linkId = "coverage.mv.versichertennummer"
 * item[=].item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"

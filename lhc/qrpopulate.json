@@ -984,7 +984,7 @@
           {
             "linkId": "coverage.mv",
             "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-            "text": "Militärversicherung (MV)",
+            "text": "Militärversicherung MV (fr/it: AM)",
             "type": "group",
             "item": [
               {

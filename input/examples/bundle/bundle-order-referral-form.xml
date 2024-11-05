@@ -2390,7 +2390,7 @@
           <item>
             <linkId value="coverage.mv"/>
             
-            <text value="Militärversicherung (MV)"/>
+            <text value="Militärversicherung MV (fr/it: AM)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.mv.versichertennummer"/>

@@ -1417,7 +1417,7 @@
                     <item>
                         <linkId value="coverage.mv"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Militärversicherung (MV)"/>
+                        <text value="Militärversicherung MV (fr/it: AM)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.mv.versichertennummer"/>

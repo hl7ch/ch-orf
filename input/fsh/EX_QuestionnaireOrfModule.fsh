@@ -817,7 +817,7 @@ Description: "Subquestionnaire coverage"
 // MV
 * item[+].linkId = "coverage.mv"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Militärversicherung (MV)"
+* item[=].text = "Militärversicherung MV (fr/it: AM)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.mv.versichertennummer"
