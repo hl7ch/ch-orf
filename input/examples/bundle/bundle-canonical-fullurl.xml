@@ -1351,7 +1351,7 @@
                     <item>
                         <linkId value="coverage.kvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Krankenkasse (nach KVG)"/>
+                        <text value="Krankenkasse nach KVG (fr/it: LAMal)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.kvg.name"/>

@@ -299,7 +299,7 @@ Description: "Example for QuestionnaireResponse"
 
 // KVG
 * item[=].item[+].linkId = "coverage.kvg"
-* item[=].item[=].text = "Krankenkasse (nach KVG)"
+* item[=].item[=].text = "Krankenkasse nach KVG (fr/it: LAMal)"
 
 * item[=].item[=].item[+].linkId = "coverage.kvg.name"
 * item[=].item[=].item[=].text = "Name der Versicherung"

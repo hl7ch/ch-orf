@@ -972,7 +972,7 @@
         {
           "linkId": "coverage.kvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Krankenkasse (nach KVG)",
+          "text": "Krankenkasse nach KVG (fr/it: LAMal)",
           "type": "group",
           "item": [
             {

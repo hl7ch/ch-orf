@@ -690,7 +690,7 @@ Usage: #example
 * item[=].item[=].item.type = #string
 * item[=].item[+].linkId = "coverage.kvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].item[=].text = "Krankenkasse (nach KVG)"
+* item[=].item[=].text = "Krankenkasse nach KVG (fr/it: LAMal)"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "coverage.kvg.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"

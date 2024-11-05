@@ -1822,7 +1822,7 @@
           <item>
             <linkId value="coverage.kvg"/>
             
-            <text value="Krankenkasse (nach KVG)"/>
+            <text value="Krankenkasse nach KVG (fr/it: LAMal)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.kvg.name"/>

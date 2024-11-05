@@ -758,7 +758,7 @@ Description: "Subquestionnaire coverage"
 // KVG
 * item[+].linkId = "coverage.kvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Krankenkasse (nach KVG)"
+* item[=].text = "Krankenkasse nach KVG (fr/it: LAMal)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.kvg.name"
