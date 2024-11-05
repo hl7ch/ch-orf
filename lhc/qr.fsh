@@ -182,7 +182,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
@@ -596,7 +596,7 @@ Usage: #example
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"

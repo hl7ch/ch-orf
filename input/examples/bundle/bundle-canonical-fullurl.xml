@@ -412,7 +412,7 @@
                         <item>
                             <linkId value="receiver.practitioner.zsr"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                            <text value="ZSR"/>
+                            <text value="ZSR (fr/it: RCC)"/>
                             <type value="string"/>
                         </item>
                         <item>
@@ -1183,7 +1183,7 @@
                             <item>
                                 <linkId value="familydoctor.practitioner.zsr"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                                <text value="ZSR"/>
+                                <text value="ZSR (fr/it: RCC)"/>
                                 <type value="string"/>
                             </item>
                             <item>
@@ -1664,7 +1664,7 @@
                                 </extension>
                                 <linkId value="sender.author.practitioner.zsr"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                                <text value="ZSR"/>
+                                <text value="ZSR (fr/it: RCC)"/>
                                 <type value="string"/>
                             </item>
                             <item>

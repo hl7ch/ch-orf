@@ -355,7 +355,7 @@
               {
                 "linkId": "receiver.practitioner.zsr",
                 "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value",
-                "text": "ZSR",
+                "text": "ZSR (fr/it: RCC)",
                 "type": "string"
               },
               {
@@ -1167,7 +1167,7 @@
                   {
                     "linkId": "sender.author.practitioner.zsr",
                     "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value",
-                    "text": "ZSR",
+                    "text": "ZSR (fr/it: RCC)",
                     "type": "string"
                   },
                   {

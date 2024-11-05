@@ -210,7 +210,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
@@ -605,7 +605,7 @@ Usage: #example
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.zsr"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[+].linkId = "familydoctor.practitioner.phone"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.telecom.value"
@@ -887,7 +887,7 @@ Usage: #example
 * item[=].item[=].item[=].item[=].extension.valueExpression.expression = "%user.identifier.where(system='urn:oid:2.16.756.5.30.1.123.100.2.1.1').value"
 * item[=].item[=].item[=].item[=].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].item[+].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath

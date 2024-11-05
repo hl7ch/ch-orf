@@ -377,7 +377,7 @@
             </item>
             <item>
               <linkId value="receiver.practitioner.zsr"/>
-              <text value="ZSR"/>
+              <text value="ZSR (fr/it: RCC)"/>
               <answer>
                 <valueString value="A123262"/>
               </answer>
@@ -757,7 +757,7 @@
               </item>
               <item>
                 <linkId value="sender.author.practitioner.zsr"/>
-                <text value="ZSR"/>
+                <text value="ZSR (fr/it: RCC)"/>
                 <answer>
                   <valueString value="A123321"/>
                 </answer>
@@ -1385,7 +1385,7 @@
             <item>
               <linkId value="receiver.practitioner.zsr"/>
               
-              <text value="ZSR"/>
+              <text value="ZSR (fr/it: RCC)"/>
               <type value="string"/>
             </item>
             <item>
@@ -2156,7 +2156,7 @@
               <item>
                 <linkId value="familydoctor.practitioner.zsr"/>
                 
-                <text value="ZSR"/>
+                <text value="ZSR (fr/it: RCC)"/>
                 <type value="string"/>
               </item>
               <item>
@@ -2637,7 +2637,7 @@
                 </extension>
                 <linkId value="sender.author.practitioner.zsr"/>
                 
-                <text value="ZSR"/>
+                <text value="ZSR (fr/it: RCC)"/>
                 <type value="string"/>
               </item>
               <item>

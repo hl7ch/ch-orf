@@ -386,7 +386,7 @@ Description: "Subquestionnaire receiver"
 
 * item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].text = "ZSR"
+* item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "receiver.practitioner.phone"
@@ -659,7 +659,7 @@ Description: "Subquestionnaire familyDoctor"
 
 * item[=].item[+].linkId = "familydoctor.practitioner.zsr"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].text = "ZSR"
+* item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "familydoctor.practitioner.phone"
@@ -987,7 +987,7 @@ Description: "Subquestionnaire sender"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath
