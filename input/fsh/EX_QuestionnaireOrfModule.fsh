@@ -752,7 +752,7 @@ Description: "Subquestionnaire coverage"
 
 * item[=].item[+].linkId = "coverage.beneficiary.ahvn13"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"
-* item[=].item[=].text = "AHV-Nr. des Patienten"
+* item[=].item[=].text = "AHV-Nr. des Patienten (fr/it: AVS)"
 * item[=].item[=].type = #string
 
 // KVG

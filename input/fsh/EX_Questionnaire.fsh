@@ -686,7 +686,7 @@ Usage: #example
 * item[=].item[=].type = #group
 * item[=].item[=].item.linkId = "coverage.beneficiary.ahvn13"
 * item[=].item[=].item.definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"
-* item[=].item[=].item.text = "AHV-Nr. des Patienten"
+* item[=].item[=].item.text = "AHV-Nr. des Patienten (fr/it: AVS)"
 * item[=].item[=].item.type = #string
 * item[=].item[+].linkId = "coverage.kvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"

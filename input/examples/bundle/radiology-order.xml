@@ -1758,7 +1758,7 @@
             <item>
               <linkId value="coverage.beneficiary.ahvn13"/>
               
-              <text value="AHV-Nr. des Patienten"/>
+              <text value="AHV-Nr. des Patienten (fr/it: AVS)"/>
               <type value="string"/>
             </item>
           </item>

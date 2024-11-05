@@ -1348,7 +1348,7 @@ Success: 0 errors, 1 warnings, 1 notes
                         <item>
                             <linkId value="coverage.beneficiary.ahvn13"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"/>
-                            <text value="AHV-Nr. des Patienten"/>
+                            <text value="AHV-Nr. des Patienten (fr/it: AVS)"/>
                             <type value="string"/>
                         </item>
                     </item>

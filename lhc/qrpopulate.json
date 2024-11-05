@@ -902,7 +902,7 @@
               {
                 "linkId": "coverage.beneficiary.ahvn13",
                 "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13",
-                "text": "AHV-Nr. des Patienten",
+                "text": "AHV-Nr. des Patienten (fr/it: AVS)",
                 "type": "string"
               }
             ]
