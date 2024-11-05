@@ -774,7 +774,7 @@ Description: "Subquestionnaire coverage"
 // UVG
 * item[+].linkId = "coverage.uvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Unfallversicherung (nach UVG)"
+* item[=].text = "Unfallversicherung nach UVG (fr: LAA, it: LAINF)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.uvg.name"

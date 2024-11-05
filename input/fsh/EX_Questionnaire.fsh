@@ -702,7 +702,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[+].linkId = "coverage.uvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].item[=].text = "Unfallversicherung (nach UVG)"
+* item[=].item[=].text = "Unfallversicherung nach UVG (fr: LAA, it: LAINF)"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "coverage.uvg.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"

@@ -992,7 +992,7 @@
         {
           "linkId": "coverage.uvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Unfallversicherung (nach UVG)",
+          "text": "Unfallversicherung nach UVG (fr: LAA, it: LAINF)",
           "type": "group",
           "item": [
             {

@@ -1373,7 +1373,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.uvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Unfallversicherung (nach UVG)"/>
+                        <text value="Unfallversicherung nach UVG (fr: LAA, it: LAINF)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.uvg.name"/>
