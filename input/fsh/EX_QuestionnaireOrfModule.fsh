@@ -806,7 +806,7 @@ Description: "Subquestionnaire coverage"
 // IV
 * item[+].linkId = "coverage.iv"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Invalidenversicherung (IV)"
+* item[=].text = "Invalidenversicherung IV (fr/it: AI)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.iv.verfuegungsnummer"

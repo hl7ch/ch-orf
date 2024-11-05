@@ -726,7 +726,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[+].linkId = "coverage.iv"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].item[=].text = "Invalidenversicherung (IV)"
+* item[=].item[=].text = "Invalidenversicherung IV (fr/it: AI)"
 * item[=].item[=].type = #group
 * item[=].item[=].item.linkId = "coverage.iv.verfuegungsnummer"
 * item[=].item[=].item.definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.identifier"

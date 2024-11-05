@@ -1409,7 +1409,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.iv"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Invalidenversicherung (IV)"/>
+                        <text value="Invalidenversicherung IV (fr/it: AI)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.iv.verfuegungsnummer"/>
