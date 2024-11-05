@@ -112,7 +112,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].answer.valueString = "7601000201041"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
-* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].answer.valueString = "A123262"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
@@ -299,7 +299,7 @@ Description: "Example for QuestionnaireResponse"
 
 // KVG
 * item[=].item[+].linkId = "coverage.kvg"
-* item[=].item[=].text = "Krankenkasse (nach KVG)"
+* item[=].item[=].text = "Krankenkasse nach KVG (fr/it: LAMal)"
 
 * item[=].item[=].item[+].linkId = "coverage.kvg.name"
 * item[=].item[=].item[=].text = "Name der Versicherung"
@@ -337,7 +337,7 @@ Description: "Example for QuestionnaireResponse"
 * item[=].item[=].item[=].item[=].answer.valueString = "7601000618627"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
-* item[=].item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].item[=].answer.valueString = "A123321"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"

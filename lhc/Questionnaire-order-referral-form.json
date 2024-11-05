@@ -369,7 +369,7 @@
             {
               "linkId": "receiver.practitioner.zsr",
               "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value",
-              "text": "ZSR",
+              "text": "ZSR (fr/it: RCC)",
               "type": "string"
             },
             {
@@ -964,7 +964,7 @@
             {
               "linkId": "coverage.beneficiary.ahvn13",
               "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13",
-              "text": "AHV-Nr. des Patienten",
+              "text": "AHV-Nr. des Patienten (fr/it: AVS)",
               "type": "string"
             }
           ]
@@ -972,7 +972,7 @@
         {
           "linkId": "coverage.kvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Krankenkasse (nach KVG)",
+          "text": "Krankenkasse nach KVG (fr/it: LAMal)",
           "type": "group",
           "item": [
             {
@@ -992,7 +992,7 @@
         {
           "linkId": "coverage.uvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Unfallversicherung (nach UVG)",
+          "text": "Unfallversicherung nach UVG (fr: LAA, it: LAINF)",
           "type": "group",
           "item": [
             {
@@ -1012,7 +1012,7 @@
         {
           "linkId": "coverage.vvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Zusatzversicherung (nach VVG)",
+          "text": "Zusatzversicherung nach VVG (fr/it: LCA)",
           "type": "group",
           "item": [
             {
@@ -1032,7 +1032,7 @@
         {
           "linkId": "coverage.iv",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Invalidenversicherung (IV)",
+          "text": "Invalidenversicherung IV (fr/it: AI)",
           "type": "group",
           "item": [
             {
@@ -1046,7 +1046,7 @@
         {
           "linkId": "coverage.mv",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Militärversicherung (MV)",
+          "text": "Militärversicherung MV (fr/it: AM)",
           "type": "group",
           "item": [
             {
@@ -1343,7 +1343,7 @@
                   ],
                   "linkId": "sender.author.practitioner.zsr",
                   "definition": "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value",
-                  "text": "ZSR",
+                  "text": "ZSR (fr/it: RCC)",
                   "type": "string"
                 },
                 {

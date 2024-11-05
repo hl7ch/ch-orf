@@ -386,7 +386,7 @@ Description: "Subquestionnaire receiver"
 
 * item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].text = "ZSR"
+* item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "receiver.practitioner.phone"
@@ -659,7 +659,7 @@ Description: "Subquestionnaire familyDoctor"
 
 * item[=].item[+].linkId = "familydoctor.practitioner.zsr"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].text = "ZSR"
+* item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].type = #string
 
 * item[=].item[+].linkId = "familydoctor.practitioner.phone"
@@ -752,13 +752,13 @@ Description: "Subquestionnaire coverage"
 
 * item[=].item[+].linkId = "coverage.beneficiary.ahvn13"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"
-* item[=].item[=].text = "AHV-Nr. des Patienten"
+* item[=].item[=].text = "AHV-Nr. des Patienten (fr/it: AVS)"
 * item[=].item[=].type = #string
 
 // KVG
 * item[+].linkId = "coverage.kvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Krankenkasse (nach KVG)"
+* item[=].text = "Krankenkasse nach KVG (fr/it: LAMal)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.kvg.name"
@@ -774,7 +774,7 @@ Description: "Subquestionnaire coverage"
 // UVG
 * item[+].linkId = "coverage.uvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Unfallversicherung (nach UVG)"
+* item[=].text = "Unfallversicherung nach UVG (fr: LAA, it: LAINF)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.uvg.name"
@@ -790,7 +790,7 @@ Description: "Subquestionnaire coverage"
 // Zusatz
 * item[+].linkId = "coverage.vvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Zusatzversicherung (nach VVG)"
+* item[=].text = "Zusatzversicherung nach VVG (fr/it: LCA)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.vvg.name"
@@ -806,7 +806,7 @@ Description: "Subquestionnaire coverage"
 // IV
 * item[+].linkId = "coverage.iv"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Invalidenversicherung (IV)"
+* item[=].text = "Invalidenversicherung IV (fr/it: AI)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.iv.verfuegungsnummer"
@@ -817,7 +817,7 @@ Description: "Subquestionnaire coverage"
 // MV
 * item[+].linkId = "coverage.mv"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Militärversicherung (MV)"
+* item[=].text = "Militärversicherung MV (fr/it: AM)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.mv.versichertennummer"
@@ -987,7 +987,7 @@ Description: "Subquestionnaire sender"
 
 * item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"
-* item[=].item[=].item[=].text = "ZSR"
+* item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
 * item[=].item[=].item[=].type = #string
 * item[=].item[=].item[=].extension.url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression"
 * item[=].item[=].item[=].extension.valueExpression.language = #text/fhirpath

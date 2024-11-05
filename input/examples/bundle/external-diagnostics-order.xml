@@ -883,7 +883,7 @@
             <item>
               <linkId value="receiver.practitioner.zsr"/>
               
-              <text value="ZSR"/>
+              <text value="ZSR (fr/it: RCC)"/>
               <type value="string"/>
             </item>
             <item>
@@ -1654,7 +1654,7 @@
               <item>
                 <linkId value="familydoctor.practitioner.zsr"/>
                 
-                <text value="ZSR"/>
+                <text value="ZSR (fr/it: RCC)"/>
                 <type value="string"/>
               </item>
               <item>
@@ -1815,14 +1815,14 @@
             <item>
               <linkId value="coverage.beneficiary.ahvn13"/>
               
-              <text value="AHV-Nr. des Patienten"/>
+              <text value="AHV-Nr. des Patienten (fr/it: AVS)"/>
               <type value="string"/>
             </item>
           </item>
           <item>
             <linkId value="coverage.kvg"/>
             
-            <text value="Krankenkasse (nach KVG)"/>
+            <text value="Krankenkasse nach KVG (fr/it: LAMal)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.kvg.name"/>
@@ -1840,7 +1840,7 @@
           <item>
             <linkId value="coverage.uvg"/>
             
-            <text value="Unfallversicherung (nach UVG)"/>
+            <text value="Unfallversicherung nach UVG (fr: LAA, it: LAINF)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.uvg.name"/>
@@ -1858,7 +1858,7 @@
           <item>
             <linkId value="coverage.vvg"/>
             
-            <text value="Zusatzversicherung (nach VVG)"/>
+            <text value="Zusatzversicherung nach VVG (fr/it: LCA)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.vvg.name"/>
@@ -1876,7 +1876,7 @@
           <item>
             <linkId value="coverage.iv"/>
             
-            <text value="Invalidenversicherung (IV)"/>
+            <text value="Invalidenversicherung IV (fr/it: AI)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.iv.verfuegungsnummer"/>
@@ -1888,7 +1888,7 @@
           <item>
             <linkId value="coverage.mv"/>
             
-            <text value="Militärversicherung (MV)"/>
+            <text value="Militärversicherung MV (fr/it: AM)"/>
             <type value="group"/>
             <item>
               <linkId value="coverage.mv.versichertennummer"/>
@@ -2135,7 +2135,7 @@
                 </extension>
                 <linkId value="sender.author.practitioner.zsr"/>
                 
-                <text value="ZSR"/>
+                <text value="ZSR (fr/it: RCC)"/>
                 <type value="string"/>
               </item>
               <item>

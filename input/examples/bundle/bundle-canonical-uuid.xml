@@ -416,7 +416,7 @@ Success: 0 errors, 1 warnings, 1 notes
                         <item>
                             <linkId value="receiver.practitioner.zsr"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                            <text value="ZSR"/>
+                            <text value="ZSR (fr/it: RCC)"/>
                             <type value="string"/>
                         </item>
                         <item>
@@ -1187,7 +1187,7 @@ Success: 0 errors, 1 warnings, 1 notes
                             <item>
                                 <linkId value="familydoctor.practitioner.zsr"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                                <text value="ZSR"/>
+                                <text value="ZSR (fr/it: RCC)"/>
                                 <type value="string"/>
                             </item>
                             <item>
@@ -1348,14 +1348,14 @@ Success: 0 errors, 1 warnings, 1 notes
                         <item>
                             <linkId value="coverage.beneficiary.ahvn13"/>
                             <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-patient#Patient.identifier:AHVN13"/>
-                            <text value="AHV-Nr. des Patienten"/>
+                            <text value="AHV-Nr. des Patienten (fr/it: AVS)"/>
                             <type value="string"/>
                         </item>
                     </item>
                     <item>
                         <linkId value="coverage.kvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Krankenkasse (nach KVG)"/>
+                        <text value="Krankenkasse nach KVG (fr/it: LAMal)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.kvg.name"/>
@@ -1373,7 +1373,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.uvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Unfallversicherung (nach UVG)"/>
+                        <text value="Unfallversicherung nach UVG (fr: LAA, it: LAINF)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.uvg.name"/>
@@ -1391,7 +1391,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.vvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Zusatzversicherung (nach VVG)"/>
+                        <text value="Zusatzversicherung nach VVG (fr/it: LCA)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.vvg.name"/>
@@ -1409,7 +1409,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.iv"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Invalidenversicherung (IV)"/>
+                        <text value="Invalidenversicherung IV (fr/it: AI)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.iv.verfuegungsnummer"/>
@@ -1421,7 +1421,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.mv"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Militärversicherung (MV)"/>
+                        <text value="Militärversicherung MV (fr/it: AM)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.mv.versichertennummer"/>
@@ -1668,7 +1668,7 @@ Success: 0 errors, 1 warnings, 1 notes
                                 </extension>
                                 <linkId value="sender.author.practitioner.zsr"/>
                                 <definition value="http://fhir.ch/ig/ch-core/StructureDefinition/ch-core-practitioner#Practitioner.identifier:ZSR.value"/>
-                                <text value="ZSR"/>
+                                <text value="ZSR (fr/it: RCC)"/>
                                 <type value="string"/>
                             </item>
                             <item>
