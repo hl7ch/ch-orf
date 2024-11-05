@@ -714,7 +714,7 @@ Usage: #example
 * item[=].item[=].item[=].type = #string
 * item[=].item[+].linkId = "coverage.vvg"
 * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].item[=].text = "Zusatzversicherung (nach VVG)"
+* item[=].item[=].text = "Zusatzversicherung nach VVG (fr/it: LCA)"
 * item[=].item[=].type = #group
 * item[=].item[=].item[0].linkId = "coverage.vvg.name"
 * item[=].item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.payor"

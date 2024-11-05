@@ -1012,7 +1012,7 @@
         {
           "linkId": "coverage.vvg",
           "definition": "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type",
-          "text": "Zusatzversicherung (nach VVG)",
+          "text": "Zusatzversicherung nach VVG (fr/it: LCA)",
           "type": "group",
           "item": [
             {

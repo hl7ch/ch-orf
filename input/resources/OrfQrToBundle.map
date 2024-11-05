@@ -606,7 +606,7 @@ group RequestedEncounterItems(source src, target bundle: Bundle, target patient:
            coverage.identifier as identifier, identifier.type as typeid, typeid.coding as coding, coding.system = 'http://fhir.ch/ig/ch-orf/CodeSystem/ch-orf-cs-coverageidentifiertype', coding.code = 'Claim', 
            identifier.value = (%item.answer.value) "coverageUvgClaimNumber";
       } "coverageuvg";
-//  coverage.vvg	Zusatzversicherung (nach VVG)	0..1	group		Definition: Coverage.type
+//  coverage.vvg	Zusatzversicherung nach VVG (fr/it: LCA)	0..1	group		Definition: Coverage.type
 //  coverage.vvg.name	Name der Versicherung	0..1	string		Definition: Coverage.payor
 //  coverage.vvg.insuranceCardNumber	Kennnummer der Versichertenkarte	0..1	string		Definition: Coverage.identifier
  src.item as item where where (linkId.value = 'coverage.vvg') -> bundle.entry as e4, 

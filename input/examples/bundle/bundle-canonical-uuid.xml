@@ -1391,7 +1391,7 @@ Success: 0 errors, 1 warnings, 1 notes
                     <item>
                         <linkId value="coverage.vvg"/>
                         <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"/>
-                        <text value="Zusatzversicherung (nach VVG)"/>
+                        <text value="Zusatzversicherung nach VVG (fr/it: LCA)"/>
                         <type value="group"/>
                         <item>
                             <linkId value="coverage.vvg.name"/>

@@ -790,7 +790,7 @@ Description: "Subquestionnaire coverage"
 // Zusatz
 * item[+].linkId = "coverage.vvg"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-coverage#Coverage.type"
-* item[=].text = "Zusatzversicherung (nach VVG)"
+* item[=].text = "Zusatzversicherung nach VVG (fr/it: LCA)"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "coverage.vvg.name"
