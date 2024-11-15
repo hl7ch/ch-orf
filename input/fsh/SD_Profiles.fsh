@@ -74,7 +74,7 @@ This resource is used to share relevant information required to support an CH OR
 //* extension contains ChOrfRequestedEncounterDetails named requestedEncounterClass 0..1 MS
 //* extension contains ChOrfRequestedEncounterDetails named desiredAccomodation 0..1 MS
 * identifier MS
-* identifier ^slicing.discriminator.type = #pattern
+* identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "$this"
 * identifier ^slicing.rules = #open
 * identifier contains placerOrderIdentifier 1..1 MS
@@ -170,7 +170,7 @@ and  transfer to retirement home etc."
 * title ^short = "Meaningful title"
 
 * section MS
-* section ^slicing.discriminator.type = #pattern
+* section ^slicing.discriminator.type = #value
 * section ^slicing.discriminator.path = "code"
 * section ^slicing.rules = #open
 

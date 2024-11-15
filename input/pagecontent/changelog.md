@@ -20,7 +20,7 @@ See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
 * [#183](https://github.com/hl7ch/ch-orf/issues/183): Add acronyms (fr, it) for ZSR/AHV/KVG/UVG/VVG/IV/MV (de) to the questionnaire
 
 #### Fixed
-
+* [#191](https://github.com/hl7ch/ch-orf/issues/191): Replace deprecated discriminator (`pattern` -> `value`) resp. removal of the redundant slice definition (inherited from parent profile)
 
 ### v3.0.0-ballot - HL7 Switzerland STU 3 Ballot (2024-05-17)
 
