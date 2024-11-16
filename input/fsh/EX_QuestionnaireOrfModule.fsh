@@ -248,7 +248,7 @@ Description: "Subquestionnaire order"
 
 * item[+].linkId = "order.authoredOn"
 * item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-servicerequest#ServiceRequest.authoredOn"
-* item[=].text = "Daum/Zeit der Auftragserteilung"
+* item[=].text = "Datum/Zeit der Auftragserteilung"
 * item[=].type = #dateTime
 
 * item[+].linkId = "order.placerOrderIdentifier"

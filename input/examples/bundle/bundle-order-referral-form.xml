@@ -1172,7 +1172,7 @@
           <item>
             <linkId value="order.authoredOn"/>
             
-            <text value="Daum/Zeit der Auftragserteilung"/>
+            <text value="Datum/Zeit der Auftragserteilung"/>
             <type value="dateTime"/>
           </item>
           <item>
