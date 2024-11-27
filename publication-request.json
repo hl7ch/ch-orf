@@ -1,9 +1,9 @@
 {
   "package-id" : "ch.fhir.ig.ch-orf",
-  "version" : "3.0.0-ballot",
-  "path" : "http://fhir.ch/ig/ch-orf/3.0.0-ballot",
+  "version" : "3.0.0",
+  "path" : "http://fhir.ch/ig/ch-orf/3.0.0",
   "mode" : "milestone",
-  "status" : "ballot",
+  "status" : "trial-use",
   "sequence" : "STU 3",
   "desc" : "HL7 Switzerland STU 3",
   "changes" : "changelog.html",

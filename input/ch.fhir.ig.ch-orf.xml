@@ -10,12 +10,12 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="3.0.0-ci-build"/>
+  <version value="3.0.0"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2024-10-03"/>
+  <date value="2024-12-17"/>
   <publisher value="HL7 Switzerland"/>
   <contact>
     <name value="HL7 Switzerland"/>
@@ -38,14 +38,14 @@
   <dependsOn id="hl7terminology">
     <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
     <packageId value="hl7.terminology"/>
-    <version value="5.5.0"/>
+    <version value="6.1.0"/>
   </dependsOn>
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
     <version value="current"/>
   </dependsOn>
-  <dependsOn id="cheprterm">
+  <dependsOn id="chterm">
     <uri value="http://fhir.ch/ig/ch-term/ImplementationGuide/ch.fhir.ig.ch-term"/>
     <packageId value="ch.fhir.ig.ch-term"/>
     <version value="current"/>
@@ -882,7 +882,7 @@
     <!-- parameters -->
     <parameter>
       <code value="releaselabel"/>
-      <value value="ci-build"/>
+      <value value="trial-use"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>

@@ -1,7 +1,7 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
-### v3.0.0 - HL7 Switzerland STU 3 (2024)
+### v3.0.0 - HL7 Switzerland STU 3 (2024-12-17)
 
 #### Open Issues
 During the ballot, the following comments came in, which will be taken into account in the further development of CH ORF:
@@ -9,8 +9,6 @@ During the ballot, the following comments came in, which will be taken into acco
 * [#176](https://github.com/hl7ch/ch-orf/issues/176): Revision (harmonization, usage SCT) of code system and value set ServiceRequest Category
 
 See also open issues on [GitHub](https://github.com/hl7ch/ch-orf/issues).
-
-#### Added
 
 #### Changed / Updated
 * [#185](https://github.com/hl7ch/ch-orf/issues/185): Add dates to the published versions in the changelog
