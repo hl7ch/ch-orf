@@ -1,6 +1,9 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
+### v3.0.1 - HL7 Switzerland STU 3 Update (2025)
+* [#195](https://github.com/hl7ch/ch-orf/issues/195): Updated **dependencies** to align with the latest versions of CH Core and CH Term to support CH LAB-Order's 2025 ballot submission; applied **technical corrections** required by the updated IG Publisher.
+
 ### v3.0.0 - HL7 Switzerland STU 3 (2024-12-17)
 
 #### Open Issues
