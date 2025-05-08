@@ -179,7 +179,7 @@ Success: 0 errors, 1 warnings, 1 notes
                 <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
                     <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|3.0.1"/>
                 </extension>
-                <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1"/>
+                <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
                 <version value="3.0.1"/>
                 <name value="OrderReferralForm"/>
                 <title value="Order Referral Form"/>
