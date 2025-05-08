@@ -980,11 +980,6 @@
           </item>
         </item>
         <item>
-          <linkId value="appointment"/>
-          
-          <text value="Ort und Zeit der Durchführung der angeforderten Leistung"/>
-        </item>
-        <item>
           <linkId value="consent"/>
           <text value="Einverständniserklärung"/>
           <item>

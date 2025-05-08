@@ -1,7 +1,9 @@
 == Suppressed Messages ==
 
-# Snapshot information concerns the parent profile CH Core Encounter (identifier:VisitNumber)
+# Caused through the underlying profile
 The repeating element has a pattern. The pattern will apply to all the repeats (this has not been clear to all users)
+The extension http://hl7.org/fhir/StructureDefinition/regex|%
+The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|%
 
 # See examples in IG CH RAD-Order
 WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime'): The Implementation Guide contains no examples for this extension
