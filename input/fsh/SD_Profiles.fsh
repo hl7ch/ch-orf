@@ -30,9 +30,9 @@ This is independent of the content and content structure of the response items t
 * encounter only Reference(ChCoreEncounter)
 * authored MS
 * author MS
-* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChCorePatient or RelatedPerson or ChCoreOrganization)
+* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChCorePatient or CHCoreRelatedPerson or ChCoreOrganization)
 * source MS
-* source only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* source only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or CHCoreRelatedPerson)
 * item MS
 * item.linkId MS
 * item.definition MS
@@ -340,7 +340,7 @@ This provides an organization or the individual, which will pay for services req
 * beneficiary MS
 * beneficiary only Reference(ChCorePatient)
 * payor MS
-* payor only Reference(ChCoreOrganization or ChCorePatient or RelatedPerson)
+* payor only Reference(ChCoreOrganization or ChCorePatient or CHCoreRelatedPerson)
 
 
 Profile: ChOrfLocation

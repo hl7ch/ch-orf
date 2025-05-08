@@ -16,7 +16,7 @@ Description: "Receiver of the copy of this order and the results therefrom"
 * ^context[0].type = #element
 * ^context[0].expression = "Composition"
 * valueReference 1..1
-* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+* valueReference only Reference(ChCorePractitionerRole or ChCorePatient or CHCoreRelatedPerson)
 * valueReference ^short = "valueReference"
 
 //========================
@@ -45,7 +45,7 @@ Description: "Initiator and his realtion to the patient"
 
 * extension[ch-orf-personorganization] ^short = "Initiator person or organization"
 * extension[ch-orf-personorganization].value[x] only Reference
-* extension[ch-orf-personorganization].value[x] only Reference(ChCorePractitionerRole or ChCorePatient or RelatedPerson)
+* extension[ch-orf-personorganization].value[x] only Reference(ChCorePractitionerRole or ChCorePatient or CHCoreRelatedPerson)
 * extension[ch-orf-personorganization].value[x] 1..
 
 
@@ -82,7 +82,7 @@ Id: ch-orf-initiator-person-organization
 Title: "CH ORF Initiator (Practioner or Related Person"
 Description: "Person/organization who initated this order (may or may nor receive a copy)"
 * extension ^short = "Information about the Initiator Person and Organization"
-* extension.valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* extension.valueReference only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or CHCoreRelatedPerson)
 */
 
 Extension: ChOrfPatientConsent
