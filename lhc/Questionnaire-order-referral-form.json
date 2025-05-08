@@ -53,47 +53,47 @@
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|3.0.1"
     },
     {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom",
-      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"
+      "valueCanonical": "http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|3.0.1"
     }
   ],
-  "url": "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular",
-  "version": "1.1.0-assembled",
+  "url": "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form-modular|3.0.1",
+  "version": "3.0.1",
   "name": "OrderReferralForm",
   "title": "Order-Referral-Form v17",
   "status": "active",

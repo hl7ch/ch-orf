@@ -118,7 +118,7 @@
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaireresponse"/>
         </meta>
         <language value="de-CH"/>
-        <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
+        <questionnaire value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1"/>
         <status value="completed"/>
         <item>
           <linkId value="order"/>
@@ -508,7 +508,6 @@
         <meta>
           <versionId value="42"/>
           <lastUpdated value="2023-06-12T21:11:39.305+00:00"/>
-          <source value="#dQEVCLkxu8TKSXYI"/>
           <profile value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-questionnaire"/>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire"/>
           <profile value="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap"/>
@@ -545,46 +544,46 @@
           </extension>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|3.0.1"/>
         </extension>
-        <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-        <version value="1.1.0-assembled"/>
+        <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1"/>
+        <version value="3.0.1"/>
         <name value="OrderReferralForm"/>
         <title value="Order Referral Form"/>
         <status value="active"/>

@@ -894,6 +894,10 @@
     <parameter>
       <code value="path-expansion-params" />
       <value value="../expansion-params.json"/>
+    </parameter> 
+    <parameter>
+      <code value="pin-canonicals" />
+      <value value="pin-multiples"/>
     </parameter>    
   </definition>
 </ImplementationGuide>
