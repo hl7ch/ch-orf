@@ -253,7 +253,6 @@ The CH ORF exchange format is defined as a document type corresponding to a Bund
 * timestamp ^short = "Date, the document was created"
 * total 0..0
 * link 0..0
-* entry MS
 * entry contains 
     Questionnaire 0..1 MS and
     QuestionnaireResponse 0..1 MS and 
@@ -326,7 +325,6 @@ Description: "Profile to specify how the coverage is represented.
 This provides an organization or the individual, which will pay for services requested."
 * . ^short = "CH ORF Coverage"
 * contained MS
-* identifier MS
 * identifier.type 1.. MS
 * identifier.type from ChOrfCoverageIdentifierType
 * identifier.type.coding 1.. MS
@@ -350,7 +348,8 @@ Title: "CH ORF Location"
 Description: "Profile to define the details of the location of the appointment."
 * . ^short = "CH ORF Location"
 * name MS
-* telecom MS
+* telecom[phone] MS
+* telecom[email] MS
 * address MS
 
 Profile: ChOrfAppointment
