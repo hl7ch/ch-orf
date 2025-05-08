@@ -266,15 +266,13 @@ Usage: #example
 * item[=].text = "Initiant dieser Anmeldung"
 * item[=].type = #group
 * item[=].item[0].linkId = "initiator.legalrelation"
-// * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-definitions#Extension.extension:ch-orf-personalrelation" #144
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-definitions#Extension"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension"
 * item[=].item[=].text = "Juristische Beziehung zum Patienten"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = $sct#373068000 "Nicht definiert"
 * item[=].item[=].answerOption[+].valueCoding = $sct#58626002 "Gesetzlicher Vertreter"
 * item[=].item[+].linkId = "initiator.personalrelation"
-// * item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-definitions#Extension.extension:ch-orf-personalrelation" #144
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator-definitions#Extension.extension:ch-orf-personalrelation"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-initiator#Extension.extension"
 * item[=].item[=].text = "Persönliche Beziehung zum Patienten?"
 * item[=].item[=].type = #choice
 * item[=].item[=].answerOption[0].valueCoding = $sct#66089001 "Tochter"
