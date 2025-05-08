@@ -379,7 +379,7 @@
               <linkId value="receiver.practitioner.zsr"/>
               <text value="ZSR (fr/it: RCC)"/>
               <answer>
-                <valueString value="A123262"/>
+                <valueString value="Y604801"/>
               </answer>
             </item>
             <item>
@@ -759,7 +759,7 @@
                 <linkId value="sender.author.practitioner.zsr"/>
                 <text value="ZSR (fr/it: RCC)"/>
                 <answer>
-                  <valueString value="A123321"/>
+                  <valueString value="L248519"/>
                 </answer>
               </item>
               <item>
@@ -3369,7 +3369,7 @@
         </identifier>
         <identifier>
           <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
-          <value value="A123262"/>
+          <value value="Y604801"/>
         </identifier>
         <name>
           <family value="Röntgen"/>
@@ -3534,7 +3534,7 @@
         </identifier>
         <identifier>
           <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
-          <value value="A123321"/>
+          <value value="L248519"/>
         </identifier>
         <name>
           <family value="Meier"/>
