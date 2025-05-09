@@ -2,7 +2,7 @@ Instance: qr-external-diagnostics-order
 InstanceOf: ChOrfQuestionnaireResponse
 Title: "QuestionnaireResponse External Diagnostics Order"
 Description: "Example for QuestionnaireResponse"
-* questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
+* questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1"
 * status = #completed
 
 // ---------- order (Auftrag) ----------

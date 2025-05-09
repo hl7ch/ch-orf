@@ -47,7 +47,7 @@ group OrfQrToBundle(source qr : QuestionnaireResponseSource, target bundle : Bun
                e5.fullUrl = append('urn:uuid:',uuid5) then QrToBundle(qr, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
                //{
 // see also issue StructureMap: Questionnaire cannot be embedded in Bundle #146  
-// FIXME API-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Error setting resource on BackboneElement for rule OrfQrToBundle|OrfQrToBundle|orfbundle to value Questionnaire[http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|1.1.0-assembled]: Cannot set property resource on entry - value is not a primitive type (Questionnaire) or an ElementModel type
+// FIXME API-0389: Failed to call access method: org.hl7.fhir.exceptions.FHIRException: Error setting resource on BackboneElement for rule OrfQrToBundle|OrfQrToBundle|orfbundle to value Questionnaire[http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1-assembled]: Cannot set property resource on entry - value is not a primitive type (Questionnaire) or an ElementModel type
 //              qr.questionnaire as can -> bundle.entry as e6, e6.resource = (%can.resolve().first()) as q, q.url as url, e6.fullUrl = url, q.id = (%url.substring(%url.indexOf('Questionnaire/')+14)) then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
 //               qr.questionnaire as can -> (%can.resolve().first().ofType(FHIR.Questionnaire)) as q then QrToBundle(qr, q, patient, questionnaireresp, servicerequest, composition, bundle) "orfbundle";
 //         } "orfbundle";

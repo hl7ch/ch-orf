@@ -10,12 +10,12 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="4.0.0-ballot-ci-build"/>
+  <version value="3.0.1"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
   <experimental value="false"/>
-  <date value="2024-12-17"/>
+  <date value="2025-05-08"/>
   <publisher value="HL7 Switzerland"/>
   <contact>
     <name value="HL7 Switzerland"/>
@@ -37,18 +37,13 @@
   <fhirVersion value="4.0.1"/>
   <dependsOn id="hl7terminology">
     <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
-    <packageId value="hl7.terminology"/>
-    <version value="6.1.0"/>
+    <packageId value="hl7.terminology.r4"/>
+    <version value="6.3.0"/>
   </dependsOn>
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="5.0.0"/>
-  </dependsOn>
-  <dependsOn id="chterm">
-    <uri value="http://fhir.ch/ig/ch-term/ImplementationGuide/ch.fhir.ig.ch-term"/>
-    <packageId value="ch.fhir.ig.ch-term"/>
-    <version value="3.1.x"/>
+    <version value="current"/>
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
@@ -896,5 +891,13 @@
       <code value="display-warnings" />
       <value value="true"/>
     </parameter>
+    <parameter>
+      <code value="path-expansion-params" />
+      <value value="../expansion-params.json"/>
+    </parameter> 
+    <parameter>
+      <code value="pin-canonicals" />
+      <value value="pin-multiples"/>
+    </parameter>    
   </definition>
 </ImplementationGuide>

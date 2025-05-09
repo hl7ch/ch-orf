@@ -30,9 +30,9 @@ This is independent of the content and content structure of the response items t
 * encounter only Reference(ChCoreEncounter)
 * authored MS
 * author MS
-* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChCorePatient or RelatedPerson or ChCoreOrganization)
+* author only Reference(Device or ChCorePractitioner or ChCorePractitionerRole or ChCorePatient or CHCoreRelatedPerson or ChCoreOrganization)
 * source MS
-* source only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or RelatedPerson)
+* source only Reference(ChCorePatient or ChCorePractitioner or ChCorePractitionerRole or CHCoreRelatedPerson)
 * item MS
 * item.linkId MS
 * item.definition MS
@@ -253,7 +253,6 @@ The CH ORF exchange format is defined as a document type corresponding to a Bund
 * timestamp ^short = "Date, the document was created"
 * total 0..0
 * link 0..0
-* entry MS
 * entry contains 
     Questionnaire 0..1 MS and
     QuestionnaireResponse 0..1 MS and 
@@ -326,7 +325,6 @@ Description: "Profile to specify how the coverage is represented.
 This provides an organization or the individual, which will pay for services requested."
 * . ^short = "CH ORF Coverage"
 * contained MS
-* identifier MS
 * identifier.type 1.. MS
 * identifier.type from ChOrfCoverageIdentifierType
 * identifier.type.coding 1.. MS
@@ -340,7 +338,7 @@ This provides an organization or the individual, which will pay for services req
 * beneficiary MS
 * beneficiary only Reference(ChCorePatient)
 * payor MS
-* payor only Reference(ChCoreOrganization or ChCorePatient or RelatedPerson)
+* payor only Reference(ChCoreOrganization or ChCorePatient or CHCoreRelatedPerson)
 
 
 Profile: ChOrfLocation
@@ -350,7 +348,8 @@ Title: "CH ORF Location"
 Description: "Profile to define the details of the location of the appointment."
 * . ^short = "CH ORF Location"
 * name MS
-* telecom MS
+* telecom[phone] MS
+* telecom[email] MS
 * address MS
 
 Profile: ChOrfAppointment

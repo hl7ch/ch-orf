@@ -2,7 +2,7 @@ Instance: qr-order-referral-form
 InstanceOf: ChOrfQuestionnaireResponse
 Title: "QuestionnaireResponse Medical Referral"
 Description: "Example for QuestionnaireResponse"
-* questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"
+* questionnaire = "http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form|3.0.1"
 * status = #completed
 
 // ---------- Order (Auftrag) ----------
@@ -113,7 +113,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.zsr"
 * item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
-* item[=].item[=].item[=].answer.valueString = "A123262"
+* item[=].item[=].item[=].answer.valueString = "Y604801"
 
 * item[=].item[=].item[+].linkId = "receiver.practitioner.phone"
 * item[=].item[=].item[=].text = "Telefon"
@@ -338,7 +338,7 @@ Description: "Example for QuestionnaireResponse"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.zsr"
 * item[=].item[=].item[=].item[=].text = "ZSR (fr/it: RCC)"
-* item[=].item[=].item[=].item[=].answer.valueString = "A123321"
+* item[=].item[=].item[=].item[=].answer.valueString = "L248519"
 
 * item[=].item[=].item[=].item[+].linkId = "sender.author.practitioner.phone"
 * item[=].item[=].item[=].item[=].text = "Telefon"

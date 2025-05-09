@@ -379,7 +379,7 @@
               <linkId value="receiver.practitioner.zsr"/>
               <text value="ZSR (fr/it: RCC)"/>
               <answer>
-                <valueString value="A123262"/>
+                <valueString value="Y604801"/>
               </answer>
             </item>
             <item>
@@ -759,7 +759,7 @@
                 <linkId value="sender.author.practitioner.zsr"/>
                 <text value="ZSR (fr/it: RCC)"/>
                 <answer>
-                  <valueString value="A123321"/>
+                  <valueString value="L248519"/>
                 </answer>
               </item>
               <item>
@@ -980,11 +980,6 @@
           </item>
         </item>
         <item>
-          <linkId value="appointment"/>
-          
-          <text value="Ort und Zeit der Durchführung der angeforderten Leistung"/>
-        </item>
-        <item>
           <linkId value="consent"/>
           <text value="Einverständniserklärung"/>
           <item>
@@ -1104,46 +1099,46 @@
           </extension>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-order|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-practitioner-nametel|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receiver|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-address|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-initiator|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-patient|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-familydoctor|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-requestedencounter|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-coverage|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-sender|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-receivercopy|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-appointment|3.0.1"/>
         </extension>
         <extension url="http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-assembledFrom">
-          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|1.1.0"/>
+          <valueCanonical value="http://fhir.ch/ig/ch-orf/Questionnaire/ch-orf-module-consent|3.0.1"/>
         </extension>
         <url value="http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form"/>
-        <version value="1.1.0-assembled"/>
+        <version value="3.0.1"/>
         <name value="OrderReferralForm"/>
         <title value="Order Referral Form"/>
         <status value="active"/>
@@ -3369,7 +3364,7 @@
         </identifier>
         <identifier>
           <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
-          <value value="A123262"/>
+          <value value="Y604801"/>
         </identifier>
         <name>
           <family value="Röntgen"/>
@@ -3534,7 +3529,7 @@
         </identifier>
         <identifier>
           <system value="urn:oid:2.16.756.5.30.1.123.100.2.1.1"/>
-          <value value="A123321"/>
+          <value value="L248519"/>
         </identifier>
         <name>
           <family value="Meier"/>

@@ -6,7 +6,7 @@ All support creation and domain wide deployment of forms for structured and code
 
 All IG derived from CH ORF use FHIR defined resources – Composition, Questionnaire, QuestionnaireResponse, Patient, PractitionerRole, Practitioner, Organization, ServiceRequest and Bundle from FHIR R4. For details on HL7 FHIR R4 see [http://hl7.org/fhir/r4](http://hl7.org/fhir/r4).
 
-CH ORF and its derivatives are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core - STU 5](https://fhir.ch/ig/ch-core/5.0.0/index.html).
+CH ORF and its derivatives are derived from the implementation guides [HL7 Structured Data Capture - STU 3](http://hl7.org/fhir/uv/sdc/STU3/index.html) and [CH Core - STU 6 Ballot](https://fhir.ch/ig/ch-core/6.0.0-ballot/index.html).
 
 <div markdown="1" class="stu-note">
 
