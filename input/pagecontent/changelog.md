@@ -2,7 +2,7 @@
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
 ### v3.0.2 - HL7 Switzerland STU 3 Technical Correction (2025-12)
-* Update dependency: CH Core 6.0.0-ballot -> 6.0.0 (TODO)
+* Update dependency: CH Core 6.0.0-ballot -> 6.0.0 
 
 ### v3.0.1 - HL7 Switzerland STU 3 Technical Correction (2025-05-22)
 * [#195](https://github.com/hl7ch/ch-orf/issues/195): Updated **dependencies** to align with the latest versions of CH Core and CH Term to support CH LAB-Order's 2025 ballot submission; applied **technical corrections** required by the updated IG Publisher.
