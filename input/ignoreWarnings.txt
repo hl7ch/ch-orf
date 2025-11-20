@@ -12,7 +12,7 @@ WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefi
 Reference to draft CodeSystem%
 
 # Errors due to answerOption (https://github.com/hl7ch/ch-orf/issues/145)
-The link 'StructureDefinition-ch-orf-%
+The link '#%
 
 # German display values in Questionnaires
 Wrong Display Name%
