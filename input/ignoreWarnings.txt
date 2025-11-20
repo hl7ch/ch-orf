@@ -8,24 +8,20 @@ The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValue
 # See examples in IG CH RAD-Order
 WARNING: StructureDefinition.where(url = 'http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-locationandtime'): The Implementation Guide contains no examples for this extension
 
-# Draft code systems / experimental value sets
-Reference to draft CodeSystem http://hl7.org/fhir/appointmentstatus|%
-Reference to draft CodeSystem http://hl7.org/fhir/request-priority|%
-Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/consentscope|%
-Reference to draft CodeSystem http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext|%
+# Draft code systems
+Reference to draft CodeSystem%
 
 # Errors due to answerOption (https://github.com/hl7ch/ch-orf/issues/145)
-The link 'null#item.initiator.legalrelation' for "Answers: 2 options" cannot be resolved
-The link 'null#item.initiator.personalrelation' for "Answers: 10 options" cannot be resolved
-The link 'null#item.patient.gender' for "Answers: 3 options" cannot be resolved
-The link 'null#item.patient.maritalStatus' for "Answers: 8 options" cannot be resolved
-The link 'null#item.requestedEncounter.class' for "Answers: 3 options" cannot be resolved
-The link 'null#item.order.priority' for "Answers: 4 options" cannot be resolved
-The link 'null#item.patient.consent.statement' for "Answers: 2 options" cannot be resolved
-The link 'null#item.appointment.status' for "Answers: 3 options" cannot be resolved
-The link 'null#item.requestedEncounter.desiredAccommodation' for "Answers: 3 options" cannot be resolved
-The link 'http://hl7.org/fhir/uv/sdc/2019May/' for "SDC v2.7.0" cannot be resolved
+The link 'StructureDefinition-ch-orf-%
 
 # German display values in Questionnaires
-No valid Display Names found for%
 Wrong Display Name%
+There are no valid display names found for the code%
+
+# Known IG Publisher issue (https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/Publisher.20v2.2E0.2E24.20-.20error.20in.20local.20build/with/547712458)
+The HTML fragment 'expansion-params.xhtml' is not included anywhere in the produced implementation guide
+No definition could be found for URL value 'http://hl7.org/fhir/tools/StructureDefinition/expansion-parameters'
+
+# Pinned version (usage of Questionnaire in IG)
+There are multiple different potential matches for the url 'http://fhir.ch/ig/ch-orf/Questionnaire/order-referral-form'.%
+Pinned the version% 
