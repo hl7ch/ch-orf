@@ -3,6 +3,7 @@ All significant changes to this FHIR implementation guide will be documented on 
 
 ### v3.0.2 - HL7 Switzerland STU 3 Technical Correction (2025-12)
 * Update dependency: CH Core 6.0.0-ballot -> 6.0.0 
+* Correction of wrong path: EpisodeOfCare.period -> EpisodeOfCare.statusHistory.period
 
 ### v3.0.1 - HL7 Switzerland STU 3 Technical Correction (2025-05-22)
 * [#195](https://github.com/hl7ch/ch-orf/issues/195): Updated **dependencies** to align with the latest versions of CH Core and CH Term to support CH LAB-Order's 2025 ballot submission; applied **technical corrections** required by the updated IG Publisher.
@@ -151,7 +152,7 @@ During the ballot, the following comments came in, which will be taken into acco
    * [Issue #52](https://github.com/hl7ch/ch-orf/issues/52)
 * Different elements for start and end time of an Appointment, according to the status. Add examples of Appointments with the different status.
    * [Issue #48](https://github.com/hl7ch/ch-orf/issues/48)  
-* Links to SDC FHIR IG: Some links were broken and other links led to wrong versions. For this publication, the IG CH ORF is derived from [SDC v2.7.0](http://hl7.org/fhir/uv/sdc/2019May/). The links were fixed so that they link to this version.
+* Links to SDC FHIR IG: Some links were broken and other links led to wrong versions. For this publication, the IG CH ORF is derived from [SDC v2.7.0](https://hl7.org/fhir/uv/sdc/2019May/). The links were fixed so that they link to this version.
    * Issues: [#32](https://github.com/hl7ch/ch-orf/issues/32), [#34](https://github.com/hl7ch/ch-orf/issues/34), [#35](https://github.com/hl7ch/ch-orf/issues/35), [#36](https://github.com/hl7ch/ch-orf/issues/36), [#49](https://github.com/hl7ch/ch-orf/issues/49), [#45](https://github.com/hl7ch/ch-orf/issues/45)
 * Fixed typos
    * Issues: [#45](https://github.com/hl7ch/ch-orf/issues/45), [#41](https://github.com/hl7ch/ch-orf/issues/41), [#37](https://github.com/hl7ch/ch-orf/issues/37), [#38](https://github.com/hl7ch/ch-orf/issues/38), [#39](https://github.com/hl7ch/ch-orf/issues/39), [#40](https://github.com/hl7ch/ch-orf/issues/40)

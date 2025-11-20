@@ -164,12 +164,12 @@ Description: "Example for Questionnaire"
 * item[=].type = #group
 
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.start"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period"
 * item[=].item[=].text = "Von"
 * item[=].item[=].type = #dateTime
 
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 

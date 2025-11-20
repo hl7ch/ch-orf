@@ -1117,11 +1117,11 @@ Usage: #example
 * item[=].text = "Vorgängiger Aufenthalt in Spital / Heim"
 * item[=].type = #group
 * item[=].item[0].linkId = "antecedentEpisodeOfCare.start"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period"
 * item[=].item[=].text = "Von"
 * item[=].item[=].type = #dateTime
 * item[=].item[+].linkId = "antecedentEpisodeOfCare.end"
-* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.period"
+* item[=].item[=].definition = "http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period"
 * item[=].item[=].text = "Bis"
 * item[=].item[=].type = #dateTime
 * item[=].item[+].extension.url = "http://hl7.org/fhir/StructureDefinition/variable"

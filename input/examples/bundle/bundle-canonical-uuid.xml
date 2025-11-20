@@ -2046,13 +2046,13 @@ Success: 0 errors, 1 warnings, 1 notes
                     <type value="group"/>
                     <item>
                         <linkId value="antecedentEpisodeOfCare.start"/>
-                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"/>
+                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period.end"/>
                         <text value="Von"/>
                         <type value="dateTime"/>
                     </item>
                     <item>
                         <linkId value="antecedentEpisodeOfCare.end"/>
-                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.Period.end"/>
+                        <definition value="http://fhir.ch/ig/ch-orf/StructureDefinition/ch-orf-episodeofcare#EpisodeOfCare.statusHistory.period.end"/>
                         <text value="Bis"/>
                         <type value="dateTime"/>
                     </item>
