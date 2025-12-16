@@ -1,6 +1,9 @@
 
 All significant changes to this FHIR implementation guide will be documented on this page.   
 
+### v3.0.3 (unreleased)
+
+
 ### v3.0.2 - HL7 Switzerland STU 3 Technical Correction (2025-12-16)
 * Update dependency: CH Core 6.0.0-ballot -> 6.0.0 
 * Correction of wrong path: EpisodeOfCare.period -> EpisodeOfCare.statusHistory.period

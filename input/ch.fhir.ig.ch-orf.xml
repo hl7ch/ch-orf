@@ -10,7 +10,7 @@
     </div>
   </text>
   <url value="http://fhir.ch/ig/ch-orf/ImplementationGuide/ch.fhir.ig.ch-orf"/>
-  <version value="3.0.2"/>
+  <version value="3.0.3-ci-build"/>
   <name value="CH_ORF"/>
   <title value="CH ORF (R4)"/>
   <status value="active"/>
@@ -43,7 +43,7 @@
   <dependsOn id="chcore">
     <uri value="http://fhir.ch/ig/ch-core/ImplementationGuide/ch.fhir.ig.ch-core"/>
     <packageId value="ch.fhir.ig.ch-core"/>
-    <version value="6.0.0"/>
+    <version value="current"/>
   </dependsOn>
   <dependsOn id="sdc">
     <uri value="http://hl7.org/fhir/uv/sdc/ImplementationGuide/hl7.fhir.uv.sdc"/>
@@ -877,8 +877,8 @@
     <!-- parameters -->
     <parameter>
       <code value="releaselabel"/>
-      <value value="trial-use"/>
-      <!--<value value="ci-build"/>-->
+      <!--<value value="trial-use"/>-->
+      <value value="ci-build"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
